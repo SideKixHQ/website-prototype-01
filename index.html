@@ -3385,47 +3385,45 @@ class Component extends DCLogic {
 <!--kx-nav-link-->
 <script>
 (function(){
-  var HREF='how-it-works.html';
-  function make(tray){
-    var base=tray.querySelector('.kx-tray-item');
-    if(!base) return null;
-    var a=document.createElement('a');           /* a real link, so it works without JS */
+  var PAGES=[['How it works','how-it-works.html'],['Membership','membership.html']];
+  function make(tray,label,href){
+    var base=tray.querySelector('.kx-tray-item'); if(!base) return null;
+    var a=document.createElement('a');
     a.className='kx-tray-item';
-    a.href=HREF;
-    a.setAttribute('data-page',HREF);
+    a.href=href;
+    a.setAttribute('data-page',href);
     a.setAttribute('role','menuitem');
-    a.setAttribute('style', base.getAttribute('style')||'');
+    a.setAttribute('style',(base.getAttribute('style')||''));
     a.style.textDecoration='none';
     a.style.borderColor='rgba(212,168,86,.8)';
     a.style.color='#FFEBB9';
-    a.innerHTML='<span style="opacity:.7;font-size:11px;" aria-hidden="true">&#8599;</span>How it works';
+    a.innerHTML='<span style="opacity:.7;font-size:11px;" aria-hidden="true">&#8599;</span>'+label;
     return a;
   }
-  function sync(tray,master,a){
-    var open=master.getAttribute('aria-expanded')==='true',
-        n=tray.querySelectorAll('.kx-tray-item').length;
-    a.style.transitionDelay=(open?50:(n-1)*28)+'ms';
-    a.style.opacity=open?'1':'0';
-    a.style.transform=open?'translateX(0) scale(1)':'translateX(24px) scale(.7)';
-    a.style.pointerEvents=open?'auto':'none';
-    a.setAttribute('tabindex',open?'0':'-1');
-    a.setAttribute('aria-hidden',open?'false':'true');
+  function sync(tray,master,el,idx,total){
+    var open=master.getAttribute('aria-expanded')==='true';
+    el.style.transitionDelay=(open?(50+idx*40):(total-1-idx)*28)+'ms';
+    el.style.opacity=open?'1':'0';
+    el.style.transform=open?'translateX(0) scale(1)':'translateX(24px) scale(.7)';
+    el.style.pointerEvents=open?'auto':'none';
+    el.setAttribute('tabindex',open?'0':'-1');
+    el.setAttribute('aria-hidden',open?'false':'true');
   }
   function attach(){
-    var tray=document.getElementById('kx-orbtray'),
-        master=document.getElementById('kx-orbmaster');
+    var tray=document.getElementById('kx-orbtray'), master=document.getElementById('kx-orbmaster');
     if(!tray||!master) return false;
-    if(!tray.querySelector('[data-page]')){
-      var a=make(tray); if(!a) return false;
-      tray.appendChild(a);
-      sync(tray,master,a);
-      new MutationObserver(function(){ sync(tray,master,a); })
-        .observe(master,{attributes:true,attributeFilter:['aria-expanded']});
-    }
+    if(tray.querySelector('[data-page]')) return true;
+    var added=[];
+    PAGES.forEach(function(pg){
+      var a=make(tray,pg[0],pg[1]); if(a){ tray.appendChild(a); added.push(a); }
+    });
+    if(!added.length) return false;
+    function run(){ added.forEach(function(el,k){ sync(tray,master,el,k,added.length); }); }
+    new MutationObserver(run).observe(master,{attributes:true,attributeFilter:['aria-expanded']});
+    run();
     return true;
   }
-  /* keep it there even if the page re-renders the tray */
-  var tries=0, iv=setInterval(function(){ attach(); if(++tries>240) clearInterval(iv); },400);
+  var t=0, iv=setInterval(function(){ attach(); if(++t>240) clearInterval(iv); },400);
   if(document.readyState!=='loading') attach();
   else document.addEventListener('DOMContentLoaded',attach);
 })();
@@ -3446,4 +3444,136 @@ class Component extends DCLogic {
   addEventListener('hashchange',jump);
 })();
 </script>
+<!--kx-cta-link-->
+<script>
+(function(){
+  var HREF='membership.html';
+  function swap(){
+    var nav=document.getElementById('kx-nav'); if(!nav) return false;
+    if(nav.querySelector('[data-memlink]')) return true;
+    var btn=nav.querySelector('button.kx-mag'); if(!btn) return false;
+    var a=document.createElement('a');           /* a real link, so nothing can swallow the click */
+    a.setAttribute('data-memlink','1');
+    a.className=btn.className;
+    a.href=HREF;
+    a.setAttribute('style',(btn.getAttribute('style')||'')+';text-decoration:none;display:inline-block;');
+    a.innerHTML=btn.innerHTML;
+    btn.parentNode.replaceChild(a,btn);
+    if(!(window.matchMedia&&matchMedia('(hover:none)').matches)){
+      a.style.transition='transform .25s cubic-bezier(.16,1,.3,1)';
+      a.addEventListener('pointermove',function(ev){
+        var r=a.getBoundingClientRect();
+        a.style.transform='translate('+((ev.clientX-r.left-r.width/2)*.32)+'px,'+((ev.clientY-r.top-r.height/2)*.42)+'px)';
+      });
+      a.addEventListener('pointerleave',function(){ a.style.transform='translate(0,0)'; });
+    }
+    return true;
+  }
+  var t=0, iv=setInterval(function(){ swap(); if(++t>240) clearInterval(iv); },400);
+  if(document.readyState!=='loading') swap(); else document.addEventListener('DOMContentLoaded',swap);
+})();
+</script>
+<!--kx-chrome-->
+<style>
+#kx-nav{pointer-events:none}
+#kx-nav > *{pointer-events:auto}
+#kx-nav > img,#kx-nav > a:first-child{transition:opacity .45s ease,transform .5s cubic-bezier(.16,1,.3,1)}
+#kx-nav .kx-mag{transition:transform .25s cubic-bezier(.16,1,.3,1),padding .35s ease,font-size .35s ease,box-shadow .35s}
+body.kxc-away #kx-nav{background:none !important;border-bottom-color:transparent !important}
+body.kxc-away #kx-nav > img,body.kxc-away #kx-nav > a:first-child{opacity:0;transform:translateY(-8px);pointer-events:none}
+body.kxc-away #kx-nav .kx-mag{padding:9px 18px !important;font-size:12.5px !important}
+@media(prefers-reduced-motion:reduce){#kx-nav > img,#kx-nav > a:first-child{transition:none}}
+</style>
+<script>
+(function(){
+  var body=document.body, hideT=null, lastY=window.scrollY;
+  var TOUCH=!!(window.matchMedia&&matchMedia('(hover:none)').matches);
+  function here(){
+    body.classList.remove('kxc-away');
+    clearTimeout(hideT);
+    hideT=setTimeout(function(){ if(window.scrollY>220) body.classList.add('kxc-away'); }, TOUCH?2200:1500);
+  }
+  addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y<160||y<lastY-4) here();
+    else if(y>lastY+4) body.classList.add('kxc-away');
+    lastY=y;
+  },{passive:true});
+  if(!TOUCH) addEventListener('pointermove',function(e){ if(e.clientY<130) here(); });
+  document.addEventListener('focusin',function(e){ if(e.target.closest&&e.target.closest('#kx-nav')) here(); });
+  here();
+})();
+</script>
+<!--kx-orbcue-->
+<style>
+#kx-orbtray{flex-wrap:wrap;justify-content:flex-end;max-width:min(66vw,720px)}
+#kx-orbcue{position:fixed;right:clamp(24px,3vw,48px);bottom:calc(clamp(24px,3vw,48px) - 4px);z-index:151;
+  font-family:'Space Grotesk',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(212,168,86,.75);pointer-events:none;text-align:center;width:170px;opacity:0;transition:opacity .6s ease}
+#kx-orbcue.on{opacity:1}
+@media(max-width:560px){#kx-orbcue{width:130px;font-size:8px}}
+</style>
+<script>
+(function(){
+  function go(){
+    var nav=document.getElementById('kx-orbnav'); if(!nav) return false;
+    if(document.getElementById('kx-orbcue')) return true;
+    var cue=document.createElement('div'); cue.id='kx-orbcue'; cue.textContent='Menu';
+    document.body.appendChild(cue);
+    var master=document.getElementById('kx-orbmaster'), used=false;
+    setTimeout(function(){ if(!used) cue.classList.add('on'); },1400);
+    function hide(){ used=true; cue.classList.remove('on'); }
+    if(master){ master.addEventListener('click',hide); master.addEventListener('pointerenter',hide); }
+    return true;
+  }
+  var t=0, iv=setInterval(function(){ if(go()||++t>240) clearInterval(iv); },400);
+  if(document.readyState!=='loading') go(); else document.addEventListener('DOMContentLoaded',go);
+})();
+</script>
+<!--kx-orbhide-->
+<script>
+(function(){
+  /* one window listener that looks the orb up each time, so a re-render cannot unhook it */
+  var idle=null, gone=false;
+  function orb(){ return document.getElementById('kx-orbnav'); }
+  function apply(hidden){
+    var el=orb(); if(!el) return;
+    el.style.transition='opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1)';
+    el.style.opacity=hidden?'0':'1';
+    el.style.transform=hidden?'translateY(26px) scale(.9)':'none';
+    el.style.pointerEvents=hidden?'none':'auto';
+  }
+  addEventListener('scroll',function(){
+    if(!gone){
+      gone=true;
+      var m=document.getElementById('kx-orbmaster');
+      if(m && m.getAttribute('aria-expanded')==='true') m.click();
+      apply(true);
+    }
+    clearTimeout(idle);
+    idle=setTimeout(function(){ gone=false; apply(false); },420);
+  },{passive:true});
+})();
+</script>
+<!--kx-orbmobile-->
+<style>
+@media(max-width:760px){
+  #kx-orbnav{height:auto !important;right:14px !important;bottom:14px !important;
+    flex-direction:column-reverse !important;align-items:flex-end !important}
+  #kx-orbnav > div:last-child{width:92px !important;height:92px !important}
+  #kx-orbmaster{width:92px !important;height:92px !important}
+  #kx-orbtray{flex-direction:column !important;align-items:flex-end !important;
+    margin:0 6px 10px 0 !important;max-width:none !important;gap:8px !important;max-height:62vh;overflow-y:auto}
+  #kx-orbtray .kx-tray-item{padding:11px 15px !important;font-size:11px !important}
+  #kx-orbcue{width:92px !important;right:14px !important;bottom:10px !important;font-size:8px !important;letter-spacing:.18em !important}
+}
+@media(max-width:420px){
+  #kx-orbnav > div:last-child,#kx-orbmaster{width:78px !important;height:78px !important}
+  #kx-orbcue{width:78px !important}
+}
+@media(max-width:760px) and (orientation:landscape){
+  #kx-orbnav > div:last-child,#kx-orbmaster{width:70px !important;height:70px !important}
+  #kx-orbcue{display:none !important}
+}
+</style>
 </body></html>
