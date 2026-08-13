@@ -3385,47 +3385,86 @@ class Component extends DCLogic {
 <!--kx-nav-link-->
 <script>
 (function(){
-  var PAGES=[['How it works','how-it-works.html'],['Membership','membership.html']];
-  function make(tray,label,href){
-    var base=tray.querySelector('.kx-tray-item'); if(!base) return null;
-    var a=document.createElement('a');
-    a.className='kx-tray-item';
-    a.href=href;
-    a.setAttribute('data-page',href);
-    a.setAttribute('role','menuitem');
-    a.setAttribute('style',(base.getAttribute('style')||''));
-    a.style.textDecoration='none';
-    a.style.borderColor='rgba(212,168,86,.8)';
-    a.style.color='#FFEBB9';
-    a.innerHTML='<span style="opacity:.7;font-size:11px;" aria-hidden="true">&#8599;</span>'+label;
-    return a;
-  }
-  function sync(tray,master,el,idx,total){
-    var open=master.getAttribute('aria-expanded')==='true';
-    el.style.transitionDelay=(open?(50+idx*40):(total-1-idx)*28)+'ms';
-    el.style.opacity=open?'1':'0';
-    el.style.transform=open?'translateX(0) scale(1)':'translateX(24px) scale(.7)';
-    el.style.pointerEvents=open?'auto':'none';
-    el.setAttribute('tabindex',open?'0':'-1');
-    el.setAttribute('aria-hidden',open?'false':'true');
-  }
-  function attach(){
-    var tray=document.getElementById('kx-orbtray'), master=document.getElementById('kx-orbmaster');
+  var PAGES=[['home','Home','index.html'],
+             ['how-it-works','How it works','how-it-works.html'],
+             ['membership','Membership','membership.html']];
+  function build(){
+    var tray=document.getElementById('kx-orbtray'),
+        master=document.getElementById('kx-orbmaster');
     if(!tray||!master) return false;
-    if(tray.querySelector('[data-page]')) return true;
-    var added=[];
+    if(tray.querySelector('[data-pagenav]')) return true;
+
+    var base=tray.querySelector('.kx-tray-item');
+    if(!base) return false;
+    var baseStyle=base.getAttribute('style')||'';
+    [].slice.call(tray.querySelectorAll('.kx-tray-item')).forEach(function(el){ el.remove(); });
+
+    var mine=[];
     PAGES.forEach(function(pg){
-      var a=make(tray,pg[0],pg[1]); if(a){ tray.appendChild(a); added.push(a); }
+      var here=pg[0]==='home';
+      var el=document.createElement(here?'span':'a');
+      el.className='kx-tray-item';
+      el.setAttribute('data-pagenav','1');
+      el.setAttribute('role','menuitem');
+      el.setAttribute('tabindex','-1');
+      el.setAttribute('style',baseStyle);
+      el.style.textDecoration='none';
+      el.innerHTML='<span style="opacity:.6;font-size:11px;" aria-hidden="true">'+(here?'&#9679;':'&#8599;')+'</span>'+pg[1];
+      if(here){
+        el.setAttribute('aria-current','page');
+        el.style.background='#D4A856'; el.style.color='#1a1400'; el.style.borderColor='#D4A856'; el.style.cursor='default';
+      }else{
+        el.href=pg[2];
+        el.style.borderColor='rgba(212,168,86,.55)'; el.style.color='#FFEBB9';
+        el.addEventListener('pointerenter',function(){ el.style.background='#D4A856'; el.style.color='#1a1400'; });
+        el.addEventListener('pointerleave',function(){ el.style.background='rgba(12,12,13,.78)'; el.style.color='#FFEBB9'; });
+      }
+      tray.appendChild(el); mine.push(el);
     });
-    if(!added.length) return false;
-    function run(){ added.forEach(function(el,k){ sync(tray,master,el,k,added.length); }); }
-    new MutationObserver(run).observe(master,{attributes:true,attributeFilter:['aria-expanded']});
-    run();
+
+    var open=false;
+    function sync(){
+      var tr=document.getElementById('kx-orbtray'); if(!tr) return;
+      var live=[].slice.call(tr.querySelectorAll('[data-pagenav]'));   /* always style what is on the page now */
+      live.forEach(function(el,i){
+        var d=live.length-1-i;
+        el.setAttribute('tabindex',open?'0':'-1');
+        el.setAttribute('aria-hidden',open?'false':'true');
+        el.style.opacity=open?'1':'0';
+        el.style.transform=open?'translateX(0) scale(1)':'translateX(24px) scale(.7)';
+        el.style.pointerEvents=open?'auto':'none';
+        el.style.transitionDelay=(open?(50+d*55):(i*28))+'ms';
+      });
+    }
+    /* the page's own orb never sets aria-expanded, so track the state here */
+    if(!window.__kxOrbState){
+      window.__kxOrbState={open:false,subs:[]};
+      document.addEventListener('click',function(e){
+        if(e.__kxOrbSeen) return; e.__kxOrbSeen=1;      /* one toggle per real click */
+        var t=e.target, inMaster=t&&t.closest&&t.closest('#kx-orbmaster'),
+            inNav=t&&t.closest&&t.closest('#kx-orbnav');
+        if(inMaster){ window.__kxOrbState.open=!window.__kxOrbState.open; }
+        else if(!inNav){ window.__kxOrbState.open=false; }
+        else return;
+        window.__kxOrbState.subs.forEach(function(fn){ fn(window.__kxOrbState.open); });
+      },true);
+      window.addEventListener('keydown',function(e){
+        if(e.key==='Escape'){ window.__kxOrbState.open=false;
+          window.__kxOrbState.subs.forEach(function(fn){ fn(false); }); }
+      });
+      addEventListener('scroll',function(){
+        if(window.__kxOrbState.open){ window.__kxOrbState.open=false;
+          window.__kxOrbState.subs.forEach(function(fn){ fn(false); }); }
+      },{passive:true});
+    }
+    window.__kxOrbState.subs.push(function(v){ open=v; sync(); });
+    open=window.__kxOrbState.open;
+    sync();
     return true;
   }
-  var t=0, iv=setInterval(function(){ attach(); if(++t>240) clearInterval(iv); },400);
-  if(document.readyState!=='loading') attach();
-  else document.addEventListener('DOMContentLoaded',attach);
+  var t=0, iv=setInterval(function(){ build(); if(++t>240) clearInterval(iv); },400);
+  if(document.readyState!=='loading') build();
+  else document.addEventListener('DOMContentLoaded',build);
 })();
 </script>
 <!--kx-hash-jump-->
@@ -3558,8 +3597,8 @@ body.kxc-away #kx-nav .kx-mag{padding:9px 18px !important;font-size:12.5px !impo
 <!--kx-orbmobile-->
 <style>
 @media(max-width:760px){
-  #kx-orbnav{height:auto !important;right:14px !important;bottom:14px !important;
-    flex-direction:column-reverse !important;align-items:flex-end !important}
+  #kx-orbnav{height:auto !important;right:14px !important;bottom:14px !important;justify-content:flex-end !important;
+    flex-direction:column !important;align-items:flex-end !important}
   #kx-orbnav > div:last-child{width:92px !important;height:92px !important}
   #kx-orbmaster{width:92px !important;height:92px !important}
   #kx-orbtray{flex-direction:column !important;align-items:flex-end !important;
