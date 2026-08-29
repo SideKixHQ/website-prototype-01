@@ -6,23 +6,91 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.ico">
 <style>
- body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#050505;
-  color:#EFEADE;font-family:'Poppins',system-ui,-apple-system,sans-serif;text-align:center;padding:28px}
+ body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#050505;
+  color:#EFEADE;font-family:'Poppins',system-ui,-apple-system,sans-serif;text-align:center}
+ main.w{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 28px;max-width:520px;margin:0 auto}
+ .nfbar{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:16px clamp(18px,4vw,48px);border-bottom:1px solid rgba(212,168,86,.16);
+  background:rgba(5,5,5,.82)}
+ .nfbar img{height:26px;width:auto;display:block}
+ .nfbar .nfcta{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;
+  text-decoration:none;border:1px solid rgba(212,168,86,.5);background:rgba(212,168,86,.06);
+  color:#F3E4A8;font-weight:600;font-size:14px;white-space:nowrap}
+ .nfbar .nfcta:hover{background:rgba(212,168,86,.14);border-color:#D4A856}
+ .nffoot{border-top:1px solid rgba(212,168,86,.16);padding:26px clamp(18px,4vw,48px) 34px}
+ .nffoot p{font-family:Georgia,serif;font-style:italic;color:#A1853E;font-size:14px;margin:0 0 14px}
+ .nffoot nav{display:flex;flex-wrap:wrap;gap:6px 4px;justify-content:center}
+ .nffoot nav a{color:#B9B4AB;font-weight:500;font-size:13.5px;padding:0 11px;
+  min-height:44px;text-decoration:none;display:inline-flex;align-items:center}
+ .nffoot nav a:hover{color:#F3E4A8;text-decoration:underline;text-underline-offset:4px}
  .w{max-width:520px}
  h1{font-family:Georgia,serif;font-weight:600;font-size:clamp(30px,6vw,48px);color:#FFF8E8;margin:0 0 14px;line-height:1.1}
  em{font-style:italic;color:#D4A856}
  p{color:#B9B4AB;font-size:16px;line-height:1.7;margin:0 0 28px}
- a{display:inline-flex;align-items:center;min-height:48px;padding:0 28px;border-radius:999px;text-decoration:none;
-  background:linear-gradient(180deg,#D7C582,#A1853E);color:#1a1400;font-weight:700}
+ main a.go{display:inline-flex;align-items:center;min-height:48px;padding:0 28px;border-radius:999px;
+  text-decoration:none;background:linear-gradient(180deg,#D7C582,#A1853E);color:#1a1400;font-weight:700}
  a:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px}
 </style><link rel="preload" href="assets/fonts.css" as="style"><link rel="stylesheet" href="assets/fonts.css">
+
+<style>
+/* ---------------- mobile hardening ---------------- */
+@media(max-width:760px){
+  html,body{overflow-x:hidden;max-width:100%}
+  img,svg,video,iframe,canvas{max-width:100%;height:auto}
+  /* gradient text goes solid, so nothing can vanish */
+  .kx-gold-text{background:none !important;color:#F3E4A8 !important;
+    -webkit-text-fill-color:#F3E4A8 !important;animation:none !important}
+  /* long urls and slugs must wrap rather than push the page sideways */
+  p,li,td,th,dd,dt,h1,h2,h3,h4,summary,a{overflow-wrap:anywhere;word-break:normal}
+  /* wide tables scroll inside their own box */
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+}
+</style>
+<style id="kx-nowidows">
+/* ---------------- no orphans, anywhere ----------------
+   a single word stranded on its own line. text-wrap:pretty tells the browser
+   to avoid it in body copy; balance evens out short headings. both degrade to
+   normal wrapping where unsupported. */
+h1,h2,h3,h4,.lede,.standfirst,.eyebrow,blockquote,figcaption,summary,
+.mdek,.hlab,.ulab,.usub,.glab,.ratiolab,.oddslab,.oddssub,.turnp,
+.fi-h,.fi-b,.fi-c,.arline,.buynote,.afterres,.updatenote,.mnote,.mlab{
+  text-wrap:balance}
+p,li,dd,td,th,.rblurb,.gdef,.cos,.barnote,.oddscaveat,.potfoot{
+  text-wrap:pretty}
+</style>
+<style>
+/* a skip link is invisible until focused, and must be readable at that moment */
+.skip-link{color:#F3E4A8;background:#0a0906}
+.skip-link:focus{background:var(--gold,#D4A856);color:#1a1400;outline:3px solid #F3E4A8;outline-offset:2px}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:0;background:#D4A856;color:#1a1400;padding:12px 18px;border-radius:0 0 8px 0;font-weight:700;z-index:99">Skip to content</a>
 <style>.skip-link:focus{left:0}</style>
+<header class="nfbar">
+  <a href="index.html" aria-label="SideKix home"><img src="assets/sidekix-wordmark.png" alt="SideKix"></a>
+  <a class="nfcta" href="membership.html">Build the Future</a>
+</header>
+
 <main class="w" id="main">
 <h1>That page took a <em>different path</em>.</h1>
 <p>The page you were looking for is not here. Everything else still is.</p>
 <a class="go" href="index.html">Back to the start</a>
-<p style="margin:22px 0 0"><a href="how-it-works.html" style="background:none;color:#A9A399;font-weight:500;font-size:14px;padding:0;min-height:44px;text-decoration:underline;text-underline-offset:4px">or see how SideKix works</a></p>
-<p style="margin:36px 0 0;color:#847F77;font-size:10px;letter-spacing:.08em;line-height:1.6">SideKix&trade; is a trademark of Character Limit LLC. U.S. federal trademark application pending.</p></main></body></html>
+<p style="margin:22px 0 0"><a href="how-it-works.html" style="display:inline-flex;align-items:center;color:#A9A399;font-weight:500;font-size:14px;min-height:44px;text-decoration:underline;text-underline-offset:4px">or see how SideKix works</a></p>
+<p style="margin:36px 0 0;color:#847F77;font-size:10px;letter-spacing:.08em;line-height:1.6">SideKix&trade; is a trademark of Character Limit LLC. U.S. federal trademark application pending.</p></main>
+
+<footer class="nffoot">
+  <p>Talent is everywhere. Opportunity is for all.</p>
+  <nav aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="membership.html">Membership</a>
+    <a href="resources.html">Blog and resources</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="tools.html">Calculators</a>
+    <a href="faq.html">FAQ</a>
+    <a href="join.html">Early access</a>
+  </nav>
+</footer>
+</body></html>
