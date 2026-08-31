@@ -1,0 +1,159 @@
+{
+  "updated": "2026-08-28",
+  "note": "Real events, verified 2026-08-28. Sources: score.org, pacesbdc.org, smallbusinessmajority.org, georgiasbdc.org, sbdcalbany.org. All online, all $0. Summaries written in-house.",
+  "events": [
+    {
+      "title": "Hiring Employees, Contractors or Family: Avoid Costly Tax and Payroll Mistakes",
+      "host": "SCORE",
+      "start": "2026-09-01T13:00:00-04:00",
+      "duration": "",
+      "topic": "Hiring",
+      "url": "https://www.score.org/business-education/worker-classification-101-employees-contractors-and-family-hires/",
+      "summary": "Where the line sits between an employee and a contractor, what payroll rules follow from that, and what changes when the person you hire is family."
+    },
+    {
+      "title": "How to Build an AI Marketing Agent That Produces Better Content",
+      "host": "SCORE",
+      "start": "2026-09-03T13:00:00-04:00",
+      "duration": "",
+      "topic": "Marketing",
+      "url": "https://www.score.org/business-education/creating-a-personalized-ai-marketing-agent-your-business/",
+      "summary": "Turning a general AI tool into something that writes in your voice, and building a weekly rhythm around it instead of one-off prompts."
+    },
+    {
+      "title": "Build Your Holiday Marketing: Offers, Calendar and Content",
+      "host": "SCORE",
+      "start": "2026-09-08T13:00:00-04:00",
+      "duration": "",
+      "topic": "Marketing",
+      "url": "https://www.score.org/business-education/build-your-holiday-marketing-plan-plan-your-offers-marketing-calendar-and-content/",
+      "summary": "Getting Q4 offers and content mapped in September rather than scrambling in November."
+    },
+    {
+      "title": "Small Business Legal Clinic with Pro Bono Attorneys",
+      "host": "Pace University SBDC",
+      "start": "2026-09-09T16:30:00-04:00",
+      "duration": "2 hr",
+      "topic": "Legal",
+      "url": "https://nysbdc.ecenterdirect.com/events/1020216",
+      "summary": "A virtual clinic where you sit with volunteer attorneys on your own situation: contracts, incorporation, IP, commercial leases. Run with the City Bar Justice Center."
+    },
+    {
+      "title": "Alternative Funding: Grants, Crowdfunding and More",
+      "host": "SCORE",
+      "start": "2026-09-10T13:00:00-04:00",
+      "duration": "",
+      "topic": "Funding",
+      "url": "https://www.score.org/business-education/alternative-funding-for-small-businesses-grants-crowdfunding-and-more/",
+      "summary": "What is out there beyond a bank loan, and which routes actually fit a business at your stage."
+    },
+    {
+      "title": "Google Workspace with Gemini as a Productivity Partner",
+      "host": "SCORE",
+      "start": "2026-09-15T13:00:00-04:00",
+      "duration": "",
+      "topic": "Operations",
+      "url": "https://www.score.org/business-education/how-to-use-google-workspace-with-gemini-as-your-ai-powered-productivity-partner/",
+      "summary": "Using Gemini inside Docs, Sheets and Gmail to analyze data and move work along without jumping between tools."
+    },
+    {
+      "title": "Intellectual Property Rights for Small Business",
+      "host": "Pace University SBDC",
+      "start": "2026-09-16T16:00:00-04:00",
+      "duration": "90 min",
+      "topic": "Legal",
+      "url": "https://nysbdc.ecenterdirect.com/events/1020190",
+      "summary": "Trademarks, copyrights, trade secrets and patents, what each actually protects, and the mistakes small operators tend to make first."
+    },
+    {
+      "title": "How a Graduated Income Tax Would Hit Colorado Small Businesses",
+      "host": "Small Business Majority",
+      "start": "2026-09-22T10:00:00-06:00",
+      "duration": "",
+      "topic": "Policy",
+      "url": "https://smallbusinessmajority.org/events/how-graduated-income-tax-will-impact-colorados-small-businesses-c-mo-afectar-un-impuesto-progresivo-sobre-la-renta-las-peque-empresas-de-colorado-606307",
+      "summary": "A breakdown of Colorado's Initiative 195 and what a shift away from a flat tax would mean for owners in the state. Q&A after, with Spanish interpretation."
+    },
+    {
+      "title": "Small Business Financial Management: Growth and Profitability",
+      "host": "SCORE",
+      "start": "2026-09-22T13:00:00-04:00",
+      "duration": "",
+      "topic": "Finance",
+      "url": "https://www.score.org/business-education/mastering-small-business-financial-management-keys-growth-and-profitability/",
+      "summary": "Organizing the books, watching cash flow, and using business credit without digging a hole."
+    },
+    {
+      "title": "AI Exchange: Getting Ready to Actually Use AI",
+      "host": "SBDC at University at Albany",
+      "start": "2026-09-24T07:30:00-04:00",
+      "duration": "90 min",
+      "topic": "Technology",
+      "url": "https://www.sbdcalbany.org/course/ai-exchange",
+      "summary": "Part of a monthly series alternating webinars and roundtables. This session is about building a strategy before you start buying tools."
+    },
+    {
+      "title": "Using AI for Financial Management Without Breaking the Books",
+      "host": "SCORE",
+      "start": "2026-09-24T13:00:00-04:00",
+      "duration": "",
+      "topic": "Finance",
+      "url": "https://www.score.org/business-education/using-ai-for-financial-management-balancing-ai-tools-with-reliable-bookkeeping/",
+      "summary": "Where AI genuinely helps with business finances, what you still have to verify by hand, and why the bookkeeping underneath it has to be right."
+    },
+    {
+      "title": "Beyond the Barcode: Inventory, Retail Channels and Scaling",
+      "host": "SCORE",
+      "start": "2026-09-29T13:00:00-04:00",
+      "duration": "",
+      "topic": "Operations",
+      "url": "https://www.score.org/business-education/beyond-the-barcode-manage-inventory-navigate-retail-channels-and-prepare-to-scale/",
+      "summary": "How barcode and product data underpins inventory, ecommerce, and selling across more than one channel."
+    },
+    {
+      "title": "Finding the Financing Fit for Your Small Business",
+      "host": "UGA Small Business Development Center",
+      "start": "2026-10-02T11:00:00-04:00",
+      "duration": "40 min",
+      "topic": "Funding",
+      "url": "https://georgiasbdc.org/training-program/0786-009-sta-finding-the-financing-fit-for-your-small-business/",
+      "summary": "Traditional lending against newer funding models, how to judge which fits your situation, and where the process usually snags. Supported by Wells Fargo."
+    },
+    {
+      "title": "Choosing the Right Business Entity",
+      "host": "Pace University SBDC",
+      "start": "2026-10-07T16:00:00-04:00",
+      "duration": "90 min",
+      "topic": "Legal",
+      "url": "https://nysbdc.ecenterdirect.com/events/1020207",
+      "summary": "Sole proprietorship, LLC and S-corp side by side, with the tax treatment and liability protection that comes with each."
+    },
+    {
+      "title": "Decoding Congress Heading Into the Midterms",
+      "host": "Small Business Majority",
+      "start": "2026-10-08T15:00:00-04:00",
+      "duration": "",
+      "topic": "Policy",
+      "url": "https://smallbusinessmajority.org/events/what-small-businesses-need-know-decoding-congress-heading-midterms-618200",
+      "summary": "Their federal affairs team on the legislation moving before the election and what it changes for owners."
+    },
+    {
+      "title": "Emerging Technologies for Small Businesses and Startups",
+      "host": "Pace University Lubin School of Business",
+      "start": "2026-10-21T12:00:00-04:00",
+      "duration": "60 min",
+      "topic": "Technology",
+      "url": "https://nysbdc.ecenterdirect.com/events/1020224?_locale=en_US",
+      "summary": "A professor's framework for spotting where AI, automation and IoT create real value in a small operation, without a large upfront spend."
+    },
+    {
+      "title": "Contract Basics for Small Business Owners",
+      "host": "Pace University SBDC",
+      "start": "2026-11-04T16:00:00-05:00",
+      "duration": "90 min",
+      "topic": "Legal",
+      "url": "https://nysbdc.ecenterdirect.com/events/1020208",
+      "summary": "How to build a contract, the provisions worth insisting on, and what your options are when the other side breaks one."
+    }
+  ]
+}

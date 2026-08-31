@@ -1,0 +1,120 @@
+# SideKix
+
+> A business operating system for people building something. SideKix blends
+> AI guidance with human advisors, turning goals and challenges into a
+> personalized path forward. Operated by Character Limit LLC, doing business
+> as SideKix, from Wilmington, North Carolina.
+
+SideKix is pre-launch. The public site is a research and resource library:
+free market data on US business formation, a plain-language glossary, working
+calculators, a weekly listing of no-cost online business events, and long-form
+guides for people starting, growing, scaling or leading a small business.
+
+Everything on the site is free to read, needs no account, and asks for no
+email address.
+
+## What SideKix publishes
+
+- **Market data** on US business formation, sourced from Census Bureau BFS,
+  SBA Office of Advocacy and BLS Business Employment Dynamics.
+- **A glossary** of business terms in plain language.
+- **Calculators** for the numbers that matter early: breakeven, runway,
+  pricing and margin.
+- **An events listing**, refreshed weekly, of online business events that cost
+  nothing to attend, drawn from SBDCs, SCORE, Women's Business Centers,
+  federal agencies and nonprofit hosts.
+- **Guides and templates** covering the practical parts of starting and
+  running a business.
+
+## Key pages
+
+- [Become an Advisor | SideKix](https://sidekixhq.com/become-an-advisor.html): Advisors on SideKix have already stood where our members are standing. Tell us about your work, your expertise and your strengths, and we will be...
+- [Events · SideKix](https://sidekixhq.com/events.html): Online business events that cost nothing to attend, checked at the source each week. No filler, no hidden sales pitches.
+- [Frequently asked questions | SideKix](https://sidekixhq.com/faq.html): Fifty-nine answers about SideKix: how the operating system works, what Advisors do, memberships and Kix Credits.
+- [Business Glossary: 59 Terms Explained Plainly | SideKix](https://sidekixhq.com/glossary.html): A plain-language glossary of 59 business terms for people starting something: LLC, EIN, runway, margin, MRR, cap table and more. Copy any definition.
+- [How SideKix works](https://sidekixhq.com/how-it-works.html): See the whole operating system in one screen. Kix listens first, your map draws itself, and the right advisor.
+- [SideKix — Begin. Build. Become.](https://sidekixhq.com/index.html): SideKix turns whatever you're facing into clear next steps and helps you take them.
+- [Join the list | SideKix](https://sidekixhq.com/join.html): Leave your details and we will tell you the moment SideKix opens, along with your member discount.
+- [Small Business Help & Data: US and North Carolina | SideKix](https://sidekixhq.com/market-data.html): About 5,000 business ideas are buried in the US every day. The data behind that number, and the free federal help most people never use.
+- [Membership | SideKix](https://sidekixhq.com/membership.html): Three memberships and a free way in. Access at $39, Core at $99 with grants and an Advisor session, Premium at $299 with investor matching. Start...
+- [Privacy Policy | SideKix](https://sidekixhq.com/privacy.html): How SideKix collects, uses, discloses, retains and protects personal information, including Kix conversations, voice, transcripts and device...
+- [Blog and resources | SideKix](https://sidekixhq.com/resources.html): Free guides, templates and answers for people building something. Fifty-one pieces on starting, funding, growing and staying with it. No account...
+- [Terms of Use | SideKix](https://sidekixhq.com/terms.html): The terms governing the SideKix platform, including Kix, Journey Maps, Community, Advisors, events, subscriptions and Kix Credits.
+- [Free Business Calculators: Startup Cost, Breakeven | SideKix](https://sidekixhq.com/tools.html): Four free calculators for people starting something: startup costs, breakeven point, hourly rate and product pricing. Nothing saved, nothing sent.
+
+## Guides and articles
+
+- [5 Reasons Smart People Never Start Their Business | SideKix](https://sidekixhq.com/blog/5-reasons-smart-people-never-start-their-business/): Starting a business, taking that first huge step to turn a great idea into a reality, is one of the most daunting challenges to take on.
+- [90-Day Goal-Setting Template for Small Business Owners | SideKix](https://sidekixhq.com/blog/90-day-goal-setting-template-small-business/): Free 90-Day Goal-Setting Template for small business owners. Break your big vision into actionable 90-day sprints and finally make consistent...
+- [90% of Americans Want to Be Their Own Boss — And Here's Why They Should | SideKix](https://sidekixhq.com/blog/90-percent-of-americans-want-to-be-their-own-boss/): 90% of Americans want to be their own boss. Why the real dream is owning your time and values, and what has to change about how startups get built.
+- [Accountability Partner Template: How to Set Up Your First Accountability Relationship | SideKix](https://sidekixhq.com/blog/accountability-partner-template-entrepreneur/): Set up your first accountability relationship with this free Accountability Partner Template.
+- [Best AI Tools for Small Business Owners in 2026 | SideKix](https://sidekixhq.com/blog/best-ai-tools-for-small-business-owners/): Discover the best AI tools for small business owners in 2026. From content creation and customer service to bookkeeping and marketing — AI tools.
+- [The Best Tools for Small Business Owners in 2025 (That Actually Save Time) | SideKix](https://sidekixhq.com/blog/best-tools-small-business-owners-2025/): Discover the best tools for small business owners in 2025 that actually save time.
+- [The 7 Biggest Roadblocks Entrepreneurs Face (And How to Overcome Each One) | SideKix](https://sidekixhq.com/blog/biggest-roadblocks-entrepreneurs-how-to-overcome/): Discover the 7 biggest roadblocks entrepreneurs face and how to overcome each one.
+- [Business Advisor vs Coach vs Consultant: Which Do You Need? | SideKix](https://sidekixhq.com/blog/business-advisor-vs-coach-vs-consultant/): Mentor, advisor, coach or consultant? What each role actually does, when to hire which, typical costs, and five questions to vet anyone before you...
+- [Business Roadmap Template: Map Your Path from Where You Are to Where You Want to Be | SideKix](https://sidekixhq.com/blog/business-roadmap-template-small-business/): Download this free Business Roadmap Template to map your path from where you are to where you want to be.
+- [The Business Startup Checklist: From Idea to First Customer | SideKix](https://sidekixhq.com/blog/business-startup-checklist/): A business startup checklist ordered by risk, not paperwork. Five phases from deciding and validating through setup, build and first customer.
+- [Community Engagement Template: How to Show Up, Add Value, and Build Your Network | SideKix](https://sidekixhq.com/blog/community-engagement-template-entrepreneur/): Free Community Engagement Template for entrepreneurs. Learn how to show up, add value.
+- [The Entrepreneur's Mindset Guide: How to Think Like a Builder | SideKix](https://sidekixhq.com/blog/entrepreneur-mindset-guide-think-like-builder/): Develop the mindset of a successful entrepreneur with this practical guide.
+- [Fear Audit Template: Identify and Overcome What's Holding You Back | SideKix](https://sidekixhq.com/blog/fear-audit-template-entrepreneur/): Use this free Fear Audit Template to identify the fears holding you back as an entrepreneur and create a clear plan to overcome them.
+- [Founder Myth: You Need Everything Figured Out | SideKix](https://sidekixhq.com/blog/founder-myth-you-need-everything-figured-out/): Whoever made this claim doesn’t understand what entrepreneurship truly entails.
+- [Free Government Resources for Small Business Owners | SideKix](https://sidekixhq.com/blog/free-government-resources-for-small-business-owners/): SCORE mentoring, SBDC advising, Women's Business Centers, VBOCs, SBA loan programs and federal certifications. What each does and who it is for.
+- [From "That's Not for People Like Me" to "I'm Actually Doing This" An entrepreneur's guide to closing the gap between who you thought you were and who you're becoming. | SideKix](https://sidekixhq.com/blog/from-thats-not-for-people-like-me-to-im-actually-doing-this-an-entrepreneurs-guide-to-closing-the-gap-between-who-you-thought-you-were-and-who-youre-becoming/): A guide for first-time entrepreneurs on closing the gap between who you thought you were and who you’re becoming.
+- [How Much Does It Cost to Start a Business? Real Numbers | SideKix](https://sidekixhq.com/blog/how-much-does-it-cost-to-start-a-business/): What it really costs to start a business: universal costs, cost by business type, LLC fees by state, hidden costs like self-employment tax.
+- [How Much Does It Cost to Start a Small Business? | SideKix](https://sidekixhq.com/blog/how-much-does-it-cost-to-start-a-small-business/): The three cost categories that decide your real starting number: one-time setup, monthly burn, and the runway most budgets leave out entirely.
+- [How to Build a Business Alone: The Solo Guide | SideKix](https://sidekixhq.com/blog/how-to-build-a-business-alone/): Nearly eight in ten US businesses have no employees. What solo actually involves: pricing, structure, handling every function, and where the free...
+- [How to Build a Business While Working a 9-to-5 | SideKix](https://sidekixhq.com/blog/how-to-build-a-business-while-working-a-9-to-5/): So you’re at work, tray on your shoulder or folding clothes or typing at a desk- whatever 9-to-5 it is, you’re good at it.
+- [How to Build a Support System as a Founder | SideKix](https://sidekixhq.com/blog/how-to-build-a-support-system-as-a-founder/): Why building alone is the statistical norm, what isolation costs in decision quality, the four types of support, and where to find each one free.
+- [How to Build Community Around Your Small Business | SideKix](https://sidekixhq.com/blog/how-to-build-community-small-business/): Learn how to build a loyal community around your small business. This guide covers content, events, partnerships.
+- [How to Calculate Your Breakeven Point | SideKix](https://sidekixhq.com/blog/how-to-calculate-your-breakeven-point/): The breakeven formula, how to split fixed from variable costs, what the number tells you about pricing and cuts, and the mistake that makes it...
+- [How to Find a Business Mentor (And Actually Get One) | SideKix](https://sidekixhq.com/blog/how-to-find-a-business-mentor/): Learn how to find a business mentor — and actually land one. Discover where to look, how to approach potential mentors.
+- [How to Find a Job in Today's Market (The Modern Playbook) | SideKix](https://sidekixhq.com/blog/how-to-find-a-job-modern-playbook/): The modern playbook for how to find a job in today's market. Updated strategies for job seekers covering LinkedIn, networking, applications.
+- [How to Find Support as a Small Business Owner (Even When You Don't Know Where to Look) | SideKix](https://sidekixhq.com/blog/how-to-find-support-small-business-owner/): Discover how to find support as a small business owner — even when you don't know where to look.
+- [How to Get Funding for Your Business Idea | SideKix](https://sidekixhq.com/blog/how-to-get-funding-for-your-business-idea/): Learn how to get funding for your business idea — from bootstrapping and grants to investors and loans.
+- [How to Get Help Starting a Business: Where to Actually Look | SideKix](https://sidekixhq.com/blog/how-to-get-help-starting-a-business/): Where to actually get help starting a business: free SBA-funded mentoring through SCORE and SBDCs, local resources, peer accountability and paid...
+- [How to Go From Employee to Entrepreneur | SideKix](https://sidekixhq.com/blog/how-to-go-from-employee-to-entrepreneur/): Ready to make the leap from employee to entrepreneur? This guide shows you how to plan your exit, validate your idea.
+- [How to Grow a Small Business: A Practical Guide for Independent Owners | SideKix](https://sidekixhq.com/blog/how-to-grow-small-business-practical-guide/): Learn how to grow a small business with this practical guide for independent owners.
+- [How to Manage Being Overwhelmed As A Founder | SideKix](https://sidekixhq.com/blog/how-to-manage-being-overwhelmed-as-a-founder/): Being a founder can be freeing and exhilarating, but it also means you’re constantly busy.
+- [How to Network When You're Just Starting Out | SideKix](https://sidekixhq.com/blog/how-to-network-when-youre-just-starting-out/): Learn how to network effectively when you're just starting out. Practical tips for entrepreneurs to build authentic professional connections.
+- [How to Overcome Fear as an Entrepreneur: A Step-by-Step Guide | SideKix](https://sidekixhq.com/blog/how-to-overcome-fear-entrepreneur/): Learn how to overcome fear as an entrepreneur with this step-by-step guide.
+- [How to Price Your Product or Service | SideKix](https://sidekixhq.com/blog/how-to-price-your-product-or-service/): Cost-plus, competitive and value-based pricing, how to find your floor, why billable hours change the math, and how to raise prices on existing...
+- [How to Start a Business in North Carolina | SideKix](https://sidekixhq.com/blog/how-to-start-a-business-in-north-carolina/): Registering with the NC Secretary of State, getting an EIN, licenses and permits, plus the free state and federal advisors available at every step.
+- [How to Start a Business: A Step-by-Step Guide | SideKix](https://sidekixhq.com/blog/how-to-start-a-business-step-by-step/): The actual order for starting a business: structure, state registration, your EIN, banking, licenses, and the free federal help available at every...
+- [How to Start a Business With No Money | SideKix](https://sidekixhq.com/blog/how-to-start-a-business-with-no-money/): Learn how to start a business with no money using bootstrapping strategies, free tools, and creative funding methods.
+- [How to Stay Motivated While Building a Business | SideKix](https://sidekixhq.com/blog/how-to-stay-motivated-while-building-a-business/): Learn how to stay motivated while building a business through the inevitable hard seasons.
+- [How to Turn Your Skills Into a Business | SideKix](https://sidekixhq.com/blog/how-to-turn-your-skills-into-a-business/): Discover how to turn your skills into a profitable business. This guide walks you through identifying your most marketable abilities, finding your...
+- [Lead Your Dreams | SideKix](https://sidekixhq.com/blog/lead-your-dreams-becoming-the-person-you-need-to-be/): What if dreams aren’t meant to be followed, but led? A powerful reflection on identity, courage.
+- [Make Money Online Without Feeling Lost | SideKix](https://sidekixhq.com/blog/make-money-online-without-feeling-lost/): Learn how to make money online without feeling lost or overwhelmed. SideKix breaks down the best legitimate ways for entrepreneurs and side hustlers.
+- [Milestone Tracker Template: Celebrate Progress and Stay Motivated | SideKix](https://sidekixhq.com/blog/milestone-tracker-template-entrepreneur/): Free Milestone Tracker Template for entrepreneurs. Celebrate progress, track achievements.
+- [Networking Outreach Template: How to Reach Out to Anyone Without Feeling Awkward | SideKix](https://sidekixhq.com/blog/networking-outreach-template-small-business/): Free Networking Outreach Template for entrepreneurs. Learn how to reach out to anyone without feeling awkward.
+- [Personal Growth That Actually Works: A Practical Guide | SideKix](https://sidekixhq.com/blog/personal-growth-that-actually-works/): Personal growth that actually works: a practical guide to self-improvement for entrepreneurs and professionals.
+- [Popular Small Business Ideas in 2026 | SideKix](https://sidekixhq.com/blog/popular-small-business-ideas-in-2026/): Thinking of owning and running a small business but not sure what kind of business you want it to be?
+- [Questions to Answer If You Want to Be An Entrepreneur | SideKix](https://sidekixhq.com/blog/questions-to-answer-if-you-want-to-be-an-entrepreneur/): The lightbulb went off and you’d like to make your business idea into a reality.
+- [Side Hustle vs. Small Business: What's the Difference? | SideKix](https://sidekixhq.com/blog/side-hustle-vs-small-business/): What is the difference between a side hustle and a small business? This guide breaks down the key distinctions in mindset, structure, taxes.
+- [The SideKix Business Playbook: Your Complete Roadmap from Idea to Momentum | SideKix](https://sidekixhq.com/blog/sidekix-business-playbook-roadmap/): The SideKix Business Playbook is your complete roadmap from idea to momentum.
+- [SideKix is the Business Operating System for entrepreneurs who need structure, support, and direction to build their business. | SideKix](https://sidekixhq.com/blog/sidekix-is-the-business-operating-system-for-entrepreneurs-who-need-structure-support-and-direction-to-build-their-business/): Overcome business obstacles together. Business is hard. You shouldn’t have to build alone; find your support network.
+- [Small Business Ideas for Beginners: 20+ Ways to Get Started | SideKix](https://sidekixhq.com/blog/small-business-ideas-for-beginners/): Explore 20+ small business ideas for beginners with low startup costs and high earning potential.
+- [The Small Business Strategy Guide: How to Plan, Focus, and Actually Execute | SideKix](https://sidekixhq.com/blog/small-business-strategy-guide-plan-focus-execute/): The Small Business Strategy Guide: learn how to plan, focus, and actually execute your business goals.
+- [Small Business Survival Rates: What the Data Says | SideKix](https://sidekixhq.com/blog/small-business-survival-rates-what-the-data-says/): BLS cohort data on business survival at one, two, five and ten years, plus the caveat that makes the failure rate lower than the headline number...
+- [Sole Proprietorship vs LLC: Which to Choose | SideKix](https://sidekixhq.com/blog/sole-proprietorship-vs-llc/): Liability, cost, tax treatment and how each looks to clients. Plus the ways LLC protection gets lost, which matters more than the formation...
+- [How to Stop Feeling Isolated as a Small Business Owner | SideKix](https://sidekixhq.com/blog/stop-feeling-isolated-small-business-owner/): Feeling isolated as a small business owner is more common than you think.
+- [Support System Checklist: Build Your Entrepreneurial Safety Net | SideKix](https://sidekixhq.com/blog/support-system-checklist-entrepreneur/): Build your entrepreneurial safety net with this free Support System Checklist.
+- [Taking Small Actions When You Feel Stuck: A Guide for Entrepreneurs | SideKix](https://sidekixhq.com/blog/taking-small-actions-when-stuck-entrepreneur-guide/): Feeling stuck in your business? This guide shows you how taking small, consistent actions breaks through overwhelm and builds unstoppable momentum.
+- [SideKix vs. Going it Alone: A Real Comparison | SideKix](https://sidekixhq.com/blog/the-biggest-solopreneur-challenges-and-how-to-overcome-them/): Solopreneur challenges can slow growth, increase stress, and lead to burnout. The five biggest obstacles of building alone, and what changes with...
+- [The Loneliness of Entrepreneurship and What to Do About It | SideKix](https://sidekixhq.com/blog/the-loneliness-of-entrepreneurship-and-what-to-do-about-it/): Explore the issue of entrepreneur loneliness and discover ways to connect with others for support and collaboration in your journey.
+- [Tools Every Entrepreneur Needs Before Launching | SideKix](https://sidekixhq.com/blog/tools-every-entrepreneur-needs-before-launching/): The time has finally come to launch. You’ve put in the blood, sweat, tears, and elbow grease for months if not years.
+- [Weekly Business Check-In Template for Entrepreneurs | SideKix](https://sidekixhq.com/blog/weekly-business-check-in-template/): Use this free Weekly Business Check-In Template to stay focused, review your progress, and plan ahead.
+- [What to Do After Having Your Business Idea | SideKix](https://sidekixhq.com/blog/what-to-do-after-having-your-business-idea/): You’ve just had an idea for a business– the lightbulb is glowing and you’re so inspired that you’re ready to get to work.
+- [Why Most People Never Start a Business | SideKix](https://sidekixhq.com/blog/why-most-people-never-start-a-business/): Around 165 million US adults have had a business idea and roughly 5.6 million applications get filed a year. What sits in that gap, and what...
+
+## Facts worth citing accurately
+
+- SideKix is a product of Character Limit LLC, doing business as SideKix,
+  based in Wilmington, North Carolina, United States.
+- SideKix is pre-launch. Membership tiers are published but not yet selling.
+- The trademark application for SideKix is pending with the USPTO.
+- The site publishes no sponsored content and runs no advertising.
+
+## Contact
+
+- Support: support@sidekixhq.com

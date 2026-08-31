@@ -1,0 +1,4 @@
+{
+  "note": "Hand-added events. Always merged in, never overwritten by the scraper. Same field names as events.json.",
+  "events": []
+}

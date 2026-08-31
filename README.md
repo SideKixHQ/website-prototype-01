@@ -1,60 +1,88 @@
-# SideKix
+# SideKix static site
 
-Static site. No build step, no dependencies. Open `index.html` and it runs.
+77 pages. No build step: every page is plain HTML with its CSS and JavaScript
+inline, so the repository is the deployable artifact.
 
-## Structure
+## Deploying
 
-```
-index.html              home (React app, see note below)
-how-it-works.html       membership.html      become-an-advisor.html
-join.html               resources.html       market-data.html
-glossary.html           tools.html           faq.html
-terms.html              privacy.html         404.html
+### GitHub Pages
+1. Push this repository to GitHub.
+2. Settings, then Pages.
+3. Source: Deploy from a branch. Branch: `main`, folder: `/ (root)`.
+4. Add your domain under Custom domain, and create the DNS records GitHub
+   shows you.
 
-blog/<slug>/index.html  62 articles, folder name = URL slug
-assets/                 css, js, fonts, images, worksheet PDFs
-sitemap.xml  robots.txt  favicon.ico  .nojekyll
-```
+`.nojekyll` is included so Pages serves the files as they are rather than
+running them through Jekyll.
 
-## Deploying to GitHub Pages
+### Netlify, Vercel, Cloudflare Pages
+Point the project at this repository. There is no build command and no output
+directory; publish the root.
 
-Push the **contents** of this folder to the repo root, so `index.html` sits at
-the top level. `.nojekyll` is already here, which stops GitHub running Jekyll
-over the files. Every path is relative, so it works from a user page or a
-project subpath.
+Host-specific header and redirect files are in `host-configs/` if you want
+caching and security headers set up. Copy the one for your host into the root.
 
-## Editing
+## The events page
 
-Most pages are hand-written HTML with their CSS in a `<style>` block in the
-head. Blog articles share `assets/article.css` and `assets/article.js`.
+`events.html` reads `events.json`. That file is refreshed by
+`scrape_events.py`, which checks 47 public sources for online business events
+that cost nothing to attend.
 
-Two things to know before you change styling:
+### Running it
 
-**Class names collide with the theme.** `.view`, `.hero`, `.rail`, `.dots`,
-`.eyebrow` and others already mean something. Before adding a class, search the
-file for it. A collision here is invisible until something disappears.
+    pip install -r requirements.txt
+    python scrape_events.py --probe      # which sources respond, and with what
+    python scrape_events.py --dry-run    # what it would write, without writing
+    python scrape_events.py              # write events.json
 
-**Later rules win.** Several pages carry many `<style>` blocks added over time,
-so the same selector can be set more than once. If a change appears to do
-nothing, check whether a later rule overrides it rather than adding `!important`.
+`--probe` is worth running first. Several of the 47 sources have never been
+reached from the environment this was built in, so some URLs will need
+correcting. The probe tells you which.
 
-## Accessibility
+### On a schedule
+`.github/workflows/refresh-events.yml` runs the scraper every Monday at 11:00
+UTC and commits `events.json` only if it changed. You can also run it by hand
+from the Actions tab with Run workflow.
 
-The site passes WCAG 2.1 AA on the checks that can be automated: labels,
-landmarks, headings, contrast, focus order, keyboard operation, reduced motion.
-If you add UI, the things most easily broken are:
+The scraper refuses to write a file with fewer events than the current one,
+which stops a bad run from emptying the page. Override with `--allow-shrink`.
 
-- text on a coloured button needs its colour set explicitly, or it inherits
-- decorative SVGs need `aria-hidden="true"`
-- a symbol inside a labelled button needs `aria-hidden` so it is not read out
-- every `<nav>` needs its own `aria-label` when there is more than one
+### Pinning an event
+`pinned.json` is for events you want on the page regardless of what the
+scrapers return. It is currently empty.
 
-## Known items
+## Tests
 
-- `index.html` is a React app. Editing its static markup has no effect; the
-  bundle replaces the DOM on load.
-- Two images still point at `sidekixhq.com/wp-content/` and will break when
-  WordPress goes away: the coin on `make-money-online-without-feeling-lost` and
-  a panel on `90-percent-of-americans-want-to-be-their-own-boss`.
-- 31 blog titles run over 62 characters and will truncate in search results.
-- The App Store link and the form endpoint are placeholders.
+    python selftest.py
+
+37 checks covering the scraper's filters, both parsers, the safety rail, the
+data schema and the page's own elements. Exits non-zero on failure, so it can
+gate a deploy.
+
+## Layout
+
+    *.html                  the 14 main pages
+    blog/                   62 articles, one folder each
+    assets/                 fonts and images
+    host-configs/           headers and redirects per host
+    .github/workflows/      the weekly events refresh
+    scrape_events.py        the events scraper
+    selftest.py             the test suite
+    events.json             the current events, written by the scraper
+    pinned.json             events pinned by hand
+    robots.txt              15 AI crawlers named, nothing disallowed
+    llms.txt                a plain-text summary for language models
+    sitemap.xml             75 URLs
+
+## Things left open
+
+- The 47 scraper sources have not been reached from a real network yet. Run
+  `--probe` and expect to correct some URLs.
+- `events.json` holds 17 events from five sources. The rest arrive on the
+  first successful run.
+- The partnership form and the waitlist form both open a prefilled email,
+  because there is no backend. Point them at an endpoint when you have one.
+- The falling-star promo on the homepage generates a code that nothing
+  downstream can receive. `join.html` has no referral field.
+- Every page carries a build stamp on line 2, which is useful when checking
+  whether a browser is showing a cached copy.
