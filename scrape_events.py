@@ -690,10 +690,16 @@ def _session() -> requests.Session:
     return s
 
 
+# Neoserra labels the price two different ways depending on which page you
+# land on. A live workshop page says "Fee No Cost" inside a single paragraph;
+# an on-demand one says "<strong>Cost</strong> No Fee". Looking only for the
+# second is why 486 events published with no price at all while their own
+# pages stated one plainly.
 COST_ON_DETAIL = (
+    re.compile(r"<[^>]*>\s*Fee\s+([^<]{1,40})<", re.I),
     re.compile(r"Cost\s*</strong>\s*([^<]{1,40})", re.I),
     re.compile(r">\s*Cost\s*<[^>]*>\s*([^<]{1,40})", re.I),
-    re.compile(r"\bCost\b\s*:\s*([^<\n]{1,40})", re.I),
+    re.compile(r"\b(?:Cost|Fee)\b\s*:\s*([^<\n]{1,40})", re.I),
 )
 
 
@@ -715,8 +721,13 @@ def cost_from_detail(url: str) -> str:
         m = pattern.search(body)
         if m:
             got = " ".join(m.group(1).split())
-            if got and len(got) < 40:
-                return got
+            if not got or len(got) >= 40:
+                continue
+            # "No Cost", "No Fee" and "Free" are the same statement. Saying it
+            # one way on every card is kinder than showing the reader three.
+            if NOFEE.search(got) or re.fullmatch(r"free", got, re.I):
+                return "No Fee"
+            return got
     return ""
 
 
