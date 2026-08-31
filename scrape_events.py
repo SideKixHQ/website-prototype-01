@@ -541,7 +541,11 @@ def _neoserra_cards(soup: BeautifulSoup, source: dict) -> list[dict]:
         out.append({
             "title": title, "host": source["name"], "start": when,
             "duration": "", "topic": "", "url": url,
-            "summary": " ".join(x for x in (fmt, state, blob[:300]) if x),
+            # summary is what the reader sees; raw is what the filters read.
+            # Pouring the whole card into the summary produced "Online Meeting
+            # (Live) No Fee Online Meeting (Live) No Fee" on the page.
+            "summary": fmt,
+            "raw": " ".join(x for x in (fmt, state, blob[:300]) if x),
             "location": loc, "cost": cost,
         })
     return out
@@ -601,7 +605,7 @@ def _neoserra_aspx(soup: BeautifulSoup, source: dict) -> list[dict]:
         out.append({
             "title": title, "host": source["name"], "start": when,
             "duration": "", "topic": topic, "url": url,
-            "summary": blob[:400], "location": loc, "cost": "",
+            "summary": "", "raw": blob[:400], "location": loc, "cost": "",
         })
     return out
 
@@ -703,8 +707,12 @@ COST_ON_DETAIL = (
 )
 
 
-def cost_from_detail(url: str) -> str:
-    """Read the price off an event's own page.
+def detail_of(url: str) -> tuple[str, str]:
+    """Read the price and the description off an event's own page.
+
+    One request, two answers. The listing pages carry neither a reliable price
+    nor any real description, which is why cards were reading "Online Meeting
+    (Live) No Fee Online Meeting (Live) No Fee" where a summary should be.
 
     Neoserra's listing pages differ on this: eCenterDirect prints "No Fee" on
     the card, the older events.aspx prints nothing at all. Rather than let a
@@ -715,8 +723,22 @@ def cost_from_detail(url: str) -> str:
         r = _session().get(url, timeout=12)
         r.raise_for_status()
     except requests.RequestException:
-        return ""
+        return "", ""
     body = re.sub(r"<script[\s\S]*?</script>", " ", r.text)
+
+    blurb = ""
+    try:
+        soup = BeautifulSoup(r.text, "html.parser")
+        node = soup.select_one(".cdworkshopHTMLinfo, .event-description, .description")
+        if node:
+            blurb = " ".join(node.get_text(" ", strip=True).split())
+        if not blurb:
+            tag = soup.find("meta", attrs={"name": "description"})
+            if tag and tag.get("content"):
+                blurb = " ".join(tag["content"].split())
+    except Exception:
+        blurb = ""
+    blurb = blurb[:260]
     for pattern in COST_ON_DETAIL:
         m = pattern.search(body)
         if m:
@@ -726,9 +748,9 @@ def cost_from_detail(url: str) -> str:
             # "No Cost", "No Fee" and "Free" are the same statement. Saying it
             # one way on every card is kinder than showing the reader three.
             if NOFEE.search(got) or re.fullmatch(r"free", got, re.I):
-                return "No Fee"
-            return got
-    return ""
+                return "No Fee", blurb
+            return got, blurb
+    return "", blurb
 
 
 def enrich_costs(events: list[dict], limit: int = 900, workers: int = 8) -> int:
@@ -744,13 +766,17 @@ def enrich_costs(events: list[dict], limit: int = 900, workers: int = 8) -> int:
     todo = todo[:limit]
     if not todo:
         return 0
-    log(f"  reading cost from {len(todo)} event pages...")
+    log(f"  reading {len(todo)} event pages for price and description...")
     filled = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-        for event, got in zip(todo, pool.map(lambda e: cost_from_detail(e["url"]), todo)):
+        results = pool.map(lambda e: detail_of(e["url"]), todo)
+        for event, (got, blurb) in zip(todo, results):
             if got:
                 event["cost"] = got
                 filled += 1
+            # The host's own words beat anything assembled from a listing row.
+            if blurb and len(blurb) > len(event.get("summary", "")):
+                event["summary"] = blurb
     return filled
 
 
@@ -763,7 +789,8 @@ def is_priced(event: dict) -> bool:
 
 
 def keep(event: dict, now: datetime, horizon: datetime) -> bool:
-    blob = f"{event['title']} {event['summary']} {event.get('location', '')}"
+    blob = (f"{event['title']} {event['summary']} {event.get('location', '')} "
+            f"{event.get('raw', '')}")
     streams = (event.get("host") in ALWAYS_STREAMS) or bool(LIVESTREAM.search(blob))
     # "No Fee" is a statement that the event is free, so the negation is
     # removed before asking whether anything here looks like a price.
@@ -805,6 +832,9 @@ def normalize(event: dict) -> dict:
     event.setdefault("mode", "")
     event.setdefault("cost", "")
     event.setdefault("host_topic", "")
+    # raw exists so the filters can read the whole listing row. It is not for
+    # the page, and it would triple the size of events.json.
+    event.pop("raw", None)
     event.setdefault("location", "")
     event.setdefault("category", "")
     event.setdefault("scope", "")
