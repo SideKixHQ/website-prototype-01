@@ -15,6 +15,8 @@ Safety rules baked in:
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
+import threading
 import datetime as dt
 import json
 import re
@@ -654,6 +656,80 @@ def mode_of(blob: str, streams: bool) -> str:
     return ""
 
 
+_LOCAL = threading.local()
+
+
+def _session() -> requests.Session:
+    """One Session per thread. Sharing one across threads is asking for trouble."""
+    s = getattr(_LOCAL, "s", None)
+    if s is None:
+        s = requests.Session()
+        s.headers.update(UA)
+        _LOCAL.s = s
+    return s
+
+
+COST_ON_DETAIL = (
+    re.compile(r"Cost\s*</strong>\s*([^<]{1,40})", re.I),
+    re.compile(r">\s*Cost\s*<[^>]*>\s*([^<]{1,40})", re.I),
+    re.compile(r"\bCost\b\s*:\s*([^<\n]{1,40})", re.I),
+)
+
+
+def cost_from_detail(url: str) -> str:
+    """Read the price off an event's own page.
+
+    Neoserra's listing pages differ on this: eCenterDirect prints "No Fee" on
+    the card, the older events.aspx prints nothing at all. Rather than let a
+    whole front end publish with an unknown price, the detail page is read,
+    where both of them do state it.
+    """
+    try:
+        r = _session().get(url, timeout=12)
+        r.raise_for_status()
+    except requests.RequestException:
+        return ""
+    body = re.sub(r"<script[\s\S]*?</script>", " ", r.text)
+    for pattern in COST_ON_DETAIL:
+        m = pattern.search(body)
+        if m:
+            got = " ".join(m.group(1).split())
+            if got and len(got) < 40:
+                return got
+    return ""
+
+
+def enrich_costs(events: list[dict], limit: int = 700, workers: int = 8) -> int:
+    """Fill in the price for events whose listing page did not state one.
+
+    Run after dedupe so the work is only done for events that will actually be
+    published. Threaded because it is all waiting on the network, and serial
+    fetching would add minutes to the job for no reason.
+    """
+    todo = [e for e in events
+            if not e.get("cost")
+            and re.search(r"workshop\.aspx|/events?/\d+|confId=|ekey=", e.get("url", ""), re.I)]
+    todo = todo[:limit]
+    if not todo:
+        return 0
+    log(f"  reading cost from {len(todo)} event pages...")
+    filled = 0
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
+        for event, got in zip(todo, pool.map(lambda e: cost_from_detail(e["url"]), todo)):
+            if got:
+                event["cost"] = got
+                filled += 1
+    return filled
+
+
+def is_priced(event: dict) -> bool:
+    """True when the host states a price that is not zero."""
+    cost = event.get("cost", "")
+    if not cost:
+        return False
+    return bool(PAID.search(NOFEE.sub(" free ", cost)))
+
+
 def keep(event: dict, now: datetime, horizon: datetime) -> bool:
     blob = f"{event['title']} {event['summary']} {event.get('location', '')}"
     streams = (event.get("host") in ALWAYS_STREAMS) or bool(LIVESTREAM.search(blob))
@@ -786,6 +862,23 @@ def main() -> int:
         events = pinned + events
 
     events = dedupe(events)
+
+    # Cost comes last because it is the only step that costs a request per
+    # event. Doing it after dedupe means we never pay for a duplicate, and
+    # anything that turns out to carry a price is dropped here rather than
+    # published as though it were free.
+    filled = enrich_costs(events)
+    if filled:
+        log(f"  read a price from {filled} event pages")
+    priced = [e for e in events if is_priced(e)]
+    if priced:
+        log(f"  dropping {len(priced)} event(s) whose own page states a price")
+    events = [e for e in events if not is_priced(e)]
+
+    unstated = sum(1 for e in events if not e.get("cost"))
+    log(f"  cost stated by the host for {len(events) - unstated}, "
+        f"not stated for {unstated}")
+
     events.sort(key=lambda e: e["start"])
 
     log(f"\n{len(events)} events after filtering")
