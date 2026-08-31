@@ -38,6 +38,8 @@ from pathlib import Path
 HERE = Path(__file__).parent
 PAGE = HERE / "events.html"
 DATA = HERE / "events.json"
+SITEMAP = HERE / "sitemap.xml"
+LLMS = HERE / "llms.txt"
 
 SITE = "https://sidekixhq.com"
 PAGE_URL = f"{SITE}/events.html"
@@ -281,6 +283,60 @@ BADGE_CSS = """
 """
 
 
+def touch_sitemap(updated: str) -> None:
+    """Move the events page's lastmod to the day the list was actually rebuilt.
+
+    A lastmod that never moves, on a page that changes every week, is a signal
+    pointing the wrong way. Crawlers use it to decide how often to come back.
+    """
+    if not SITEMAP.exists():
+        note(False, "sitemap lastmod")
+        return
+    text = SITEMAP.read_text()
+    block = re.search(r"<url>(?:(?!</url>)[\s\S])*?events\.html(?:(?!</url>)[\s\S])*?</url>",
+                      text, re.I)
+    if not block:
+        note(False, "sitemap lastmod (no events entry)")
+        return
+    fixed, n = re.subn(r"(<lastmod>)[^<]*(</lastmod>)",
+                       r"\g<1>" + updated + r"\g<2>", block.group(0), count=1)
+    if not n:
+        note(False, "sitemap lastmod (no lastmod tag)")
+        return
+    if fixed == block.group(0):
+        note(True, "sitemap lastmod (already current)")
+        return
+    SITEMAP.write_text(text.replace(block.group(0), fixed, 1))
+    note(True, f"sitemap lastmod set to {updated}")
+
+
+LLMS_OLD = "a weekly listing of no-cost online business events"
+LLMS_NEW = ("a weekly listing of business events in every state, online, "
+            "livestreamed and in person, with the cost shown as the host states it")
+
+
+def fix_llms() -> None:
+    """llms.txt is what an answer engine reads to decide what this site is.
+
+    It still described the events page as online-only and free, which stopped
+    being true the moment in-person events were let in. A file whose whole job
+    is telling machines the truth about the site is the last place to leave a
+    stale claim standing.
+    """
+    if not LLMS.exists():
+        note(False, "llms.txt")
+        return
+    text = LLMS.read_text()
+    if LLMS_NEW in text:
+        note(True, "llms.txt (already updated)")
+        return
+    if LLMS_OLD not in text:
+        note(False, "llms.txt (line not found)")
+        return
+    LLMS.write_text(text.replace(LLMS_OLD, LLMS_NEW))
+    note(True, "llms.txt")
+
+
 def main() -> int:
     if not PAGE.exists() or not DATA.exists():
         print("events.html or events.json missing", file=sys.stderr)
@@ -344,6 +400,9 @@ def main() -> int:
         note(True, f"structured data inserted ({min(len(events), SEO_LIMIT)} events)")
 
     PAGE.write_text(page)
+    touch_sitemap(updated)
+    fix_llms()
+
     for line in changes:
         print("  " + line, file=sys.stderr)
     missing = [c for c in changes if c.startswith("NOT FOUND")]
