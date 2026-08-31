@@ -15,6 +15,7 @@ Safety rules baked in:
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import re
 import sys
@@ -29,7 +30,58 @@ HERE = Path(__file__).parent
 OUT = HERE / "events.json"
 PINNED = HERE / "pinned.json"
 
-UA = {"User-Agent": "Mozilla/5.0 (compatible; SideKixEvents/1.0; +https://sidekixhq.com)"}
+# A single non-browser User-Agent with no other headers is what most bot
+# filters reject, and eight sources came back 403, 406 or 429 on the first real
+# run: SCORE, MBDA, USDA Rural Development, NAWBO, Goldman 10KSB, Native CDFI
+# Network, Kiva and Hello Alice. These are the headers an ordinary browser
+# sends. A Session is used so cookies set by an interstitial are kept for the
+# retry, which is what 406 usually wants.
+UA = {
+    "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                   "AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/126.0.0.0 Safari/537.36"),
+    "Accept": ("text/html,application/xhtml+xml,application/xml;q=0.9,"
+               "image/avif,image/webp,*/*;q=0.8"),
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Upgrade-Insecure-Requests": "1",
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache",
+    "Connection": "keep-alive",
+}
+
+SESSION = requests.Session()
+SESSION.headers.update(UA)
+
+
+def fetch(url: str, tries: int = 3):
+    """GET with a retry and a growing pause.
+
+    429 means we asked too fast, so waiting is the whole fix. 403 and 406 are
+    sometimes a first-request check that passes on the retry once a cookie is
+    set. Anything else fails fast, because retrying a 404 is pointless.
+    """
+    import time
+    last = None
+    for attempt in range(tries):
+        try:
+            r = SESSION.get(url, timeout=TIMEOUT, allow_redirects=True)
+            if r.status_code in (403, 406, 429) and attempt < tries - 1:
+                time.sleep(2 * (attempt + 1))
+                last = requests.HTTPError(f"{r.status_code} on attempt {attempt + 1}")
+                continue
+            r.raise_for_status()
+            return r
+        except requests.RequestException as err:
+            last = err
+            if attempt < tries - 1:
+                time.sleep(1.5 * (attempt + 1))
+                continue
+    raise last if last else requests.RequestException("unknown")
 TIMEOUT = 25
 
 # Set to False to publish titles, hosts and dates only, with no host-authored
@@ -83,7 +135,8 @@ SOURCES = [
     # FEDERAL. slow-moving markup, evergreen subject matter.
     # ============================================================
     {"name": "IRS", "url": "https://www.irs.gov/businesses/small-businesses-self-employed/webinars-for-small-businesses"},
-    {"name": "USPTO", "url": "https://www.uspto.gov/learning-and-resources/events"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "USPTO", "url": "https://www.uspto.gov/learning-and-resources/events"},
     {"name": "MBDA", "url": "https://www.mbda.gov/events"},
     {"name": "USDA Rural Development", "url": "https://www.rd.usda.gov/newsroom/events"},
 
@@ -98,14 +151,18 @@ SOURCES = [
     # then delete the ones that come back empty.
     # ============================================================
     {"name": "Alabama SBDC", "url": "https://www.asbdc.org/events/"},
-    {"name": "Alaska SBDC", "url": "https://aksbdc.org/events/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Alaska SBDC", "url": "https://aksbdc.org/events/"},
     {"name": "Arizona SBDC", "url": "https://azsbdc.net/events"},
     {"name": "Florida SBDC", "url": "https://floridasbdc.org/training/"},
     {"name": "Georgia SBDC", "url": "https://georgiasbdc.org/training-program/"},
-    {"name": "Hawaii SBDC", "url": "https://www.hisbdc.org/events/"},
-    {"name": "Idaho SBDC", "url": "https://idahosbdc.org/events/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Hawaii SBDC", "url": "https://www.hisbdc.org/events/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Idaho SBDC", "url": "https://idahosbdc.org/events/"},
     {"name": "Illinois SBDC", "url": "https://www.illinoissbdc.biz/events/"},
-    {"name": "Indiana SBDC", "url": "https://isbdc.org/events/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Indiana SBDC", "url": "https://isbdc.org/events/"},
     {"name": "New York SBDC", "url": "https://nysbdc.ecenterdirect.com/events", "parser": "neoserra"},
     {"name": "Pace University SBDC", "url": "https://www.pacesbdc.org/events"},
     {"name": "Virginia SBDC", "url": "https://clients.virginiasbdc.org/events.aspx", "parser": "neoserra"},
@@ -126,7 +183,8 @@ SOURCES = [
     # anything in-person. only the virtual and hybrid chapters will
     # survive the filter as things stand. see ALLOW_INPERSON below.
     # ============================================================
-    {"name": "1 Million Cups", "url": "https://www.1millioncups.com/communities"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "1 Million Cups", "url": "https://www.1millioncups.com/communities"},
     {"name": "Startup Grind", "url": "https://www.startupgrind.com/events/"},
     {"name": "Founder Institute", "url": "https://fi.co/events"},
     {"name": "CO by US Chamber", "url": "https://www.uschamber.com/co/events"},
@@ -143,7 +201,8 @@ SOURCES = [
     # ============================================================
     # POLICY AND ADVOCACY NONPROFITS
     # ============================================================
-    {"name": "Right to Start", "url": "https://www.righttostart.org/events"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Right to Start", "url": "https://www.righttostart.org/events"},
     {"name": "America the Entrepreneurial", "url": "https://www.americatheentrepreneurial.org/events"},
 
     # ============================================================
@@ -153,9 +212,11 @@ SOURCES = [
     # ============================================================
     {"name": "Opportunity Finance Network", "url": "https://www.ofn.org/events/"},
     {"name": "CDFI Fund", "url": "https://www.cdfifund.gov/news/events"},
-    {"name": "LISC", "url": "https://www.lisc.org/our-resources/events/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "LISC", "url": "https://www.lisc.org/our-resources/events/"},
     {"name": "Kiva", "url": "https://www.kiva.org/borrow/events"},
-    {"name": "Grameen America", "url": "https://www.grameenamerica.org/events"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Grameen America", "url": "https://www.grameenamerica.org/events"},
     {"name": "Native CDFI Network", "url": "https://nativecdfi.net/events/"},
     {"name": "Community Development Bankers Association", "url": "https://www.cdbanks.org/events"},
 
@@ -180,12 +241,17 @@ SOURCES = [
     {"name": "Amazon Small Business Academy", "url": "https://www.amazon.com/smallbusinessacademy"},
     {"name": "Verizon Small Business Digital Ready", "url": "https://digitalready.verizonwireless.com/events"},
     {"name": "Grow with Google", "url": "https://grow.google/events/"},
-    {"name": "Salesforce Small Business", "url": "https://www.salesforce.com/small-business/events/"},
-    {"name": "Intuit QuickBooks", "url": "https://quickbooks.intuit.com/r/webinars/"},
-    {"name": "HubSpot Academy", "url": "https://academy.hubspot.com/events"},
-    {"name": "Meta Boost", "url": "https://www.facebook.com/business/boost/events"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Salesforce Small Business", "url": "https://www.salesforce.com/small-business/events/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Intuit QuickBooks", "url": "https://quickbooks.intuit.com/r/webinars/"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "HubSpot Academy", "url": "https://academy.hubspot.com/events"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "Meta Boost", "url": "https://www.facebook.com/business/boost/events"},
     {"name": "Goldman Sachs 10,000 Small Businesses", "url": "https://www.goldmansachs.com/citizenship/10000-small-businesses/US/events/"},
-    {"name": "LinkedIn for Small Business", "url": "https://www.linkedin.com/smallbusiness/events"},
+    # 404 on 2026-08-31, needs a current URL:
+    # {"name": "LinkedIn for Small Business", "url": "https://www.linkedin.com/smallbusiness/events"},
 
     # not yet confirmed as running a public events calendar. probe first.
     # {"name": "US Bank", "url": "https://www.usbank.com/business-banking/business-resources.html"},
@@ -221,6 +287,42 @@ def classify(text: str) -> str:
         if re.search(pattern, low):
             return label
     return "Business"
+
+
+import re as _re
+
+_DATEISH = _re.compile(
+    r"^\s*(?:"
+    r"(?:mon|tue|wed|thu|fri|sat|sun)[a-z]*,?\s*"          # Monday,
+    r"|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+\d"  # October 21
+    r"|\d{1,2}[/-]\d{1,2}"                                  # 10/21
+    r"|\d{1,2}:\d{2}\s*(?:am|pm)"                          # 12:00 pm
+    r")", _re.I)
+
+_TIMERANGE = _re.compile(r"\d{1,2}:\d{2}\s*(?:am|pm).{0,12}\d{1,2}:\d{2}\s*(?:am|pm)", _re.I)
+
+
+def is_real_title(text: str) -> bool:
+    """Reject link text that is a date or a time range rather than a title.
+
+    The first real run produced two entries titled things like
+    "October 21 from 12:00 pm to 1:00 pm (EDT)", because on some calendars the
+    date is its own link next to the title. A title has to have some words in
+    it that are not calendar furniture.
+    """
+    t = (text or "").strip()
+    if len(t) < 12:
+        return False
+    if _TIMERANGE.search(t):
+        return False
+    if _DATEISH.match(t):
+        # a date at the start is fine only if real words follow it
+        tail = _DATEISH.sub("", t, count=1)
+        words = [w for w in _re.findall(r"[A-Za-z]{3,}", tail)
+                 if w.lower() not in {"from", "edt", "est", "pdt", "pst", "cdt", "cst", "utc", "and"}]
+        return len(words) >= 3
+    # a title made only of numbers and punctuation is not a title
+    return len(_re.findall(r"[A-Za-z]{3,}", t)) >= 2
 
 
 def clean(raw: str) -> str:
@@ -271,9 +373,12 @@ def from_jsonld(soup: BeautifulSoup, source: dict) -> list[dict]:
         for block in walk(data):
             if not is_event(block) or not block.get("startDate"):
                 continue
+            _t = clean(block.get("name", ""))
+            if not is_real_title(_t):
+                continue
             found.append(
                 {
-                    "title": clean(block.get("name", "")),
+                    "title": _t,
                     "host": name_of(block.get("organizer")) or source["name"],
                     "start": block["startDate"],
                     "duration": "",
@@ -320,6 +425,8 @@ def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
         if when.tzinfo is None:
             when = when.replace(tzinfo=timezone(timedelta(hours=-4)))
 
+        if not is_real_title(title):
+            continue
         found.append(
             {
                 "title": title,
@@ -336,8 +443,7 @@ def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
 
 def scrape(source: dict) -> list[dict]:
     try:
-        resp = requests.get(source["url"], headers=UA, timeout=TIMEOUT)
-        resp.raise_for_status()
+        resp = fetch(source["url"])
     except requests.RequestException as err:
         log(f"  ! {source['name']}: fetch failed ({err})")
         return []
@@ -403,6 +509,8 @@ def from_sba(soup: BeautifulSoup, source: dict) -> list[dict]:
             if got:
                 host = got
 
+        if not is_real_title(title):
+            continue
         out.append({
             "title": title,
             "host": host,
@@ -443,6 +551,8 @@ def from_neoserra(soup: BeautifulSoup, source: dict) -> list[dict]:
         base = re.match(r"https?://[^/]+", source["url"])
         url = href if href.startswith("http") else (base.group(0) + "/" + href.lstrip("/") if base else href)
 
+        if not is_real_title(title):
+            continue
         out.append({
             "title": title,
             "host": source["name"],
@@ -511,7 +621,7 @@ def probe() -> int:
     for src in SOURCES:
         name = src["name"]
         try:
-            r = requests.get(src["url"], headers=UA, timeout=TIMEOUT)
+            r = fetch(src["url"])
             code = r.status_code
         except requests.RequestException as err:
             log(f"  {name:34s} {'---':>5}  {'':>9}  {'':>6}  {type(err).__name__}")
@@ -605,12 +715,23 @@ def main() -> int:
     # so a run that came back with 6 against an existing 17 wrote silently and
     # the page lost eleven events. The comparison against the existing file now
     # happens on every run, whatever the count.
+    # Compare against events in the existing file that have NOT yet happened.
+    # The old comparison counted everything, so as the current 17 expire the
+    # bar would keep rising against a shrinking real set and the guard would
+    # block forever. What matters is whether we are about to publish fewer
+    # upcoming events than we already show.
     previous = 0
     if OUT.exists():
         try:
-            previous = len(json.loads(OUT.read_text()).get("events", []))
+            old = json.loads(OUT.read_text()).get("events", [])
         except (json.JSONDecodeError, OSError):
-            previous = 0
+            old = []
+        today = dt.date.today().isoformat()
+        previous = sum(1 for e in old if str(e.get("start", ""))[:10] >= today)
+        stale = len(old) - previous
+        if stale:
+            log(f"  {stale} event(s) in the existing file have already passed; "
+                f"comparing against the {previous} still upcoming.")
 
     if previous and len(events) < previous:
         log(f"\nREFUSING to write: got {len(events)}, existing file has {previous}.")
