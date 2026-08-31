@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-08-31 14:08:28 cta-trace -->
+<!-- kx-build 2026-08-31 21:40:46 trace-mobile -->
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -1162,6 +1162,78 @@ main{overflow-x:clip}
   #kx-orbtray{top:84px !important}
 }
 </style>
+<style id="kx-loop-mobile">
+/* ---- the trace diagram on a phone ----
+   Three things were wrong.
+
+   1. The viewBox was 0 0 440 440 while JOURNEY sits at y=18 and ADVISORS at
+      y=432. With overflow:visible those labels rendered outside the svg's own
+      box and landed on the content above and below. The viewBox is wider now,
+      so everything is inside the drawing and scales with it.
+
+   2. The button is width:fit-content and its label changes between
+      "Trace a path", "Tracing…" and "Trace another path". It resized on every
+      state change. It now holds one width.
+
+   3. The caption below reserved 1.6em, which is one line. On a phone the
+      longer states wrap to two or three, so everything under it jumped. It
+      now reserves the taller case. */
+
+.loop-stage svg{overflow:visible}
+
+/* the button keeps its width whatever the label says */
+.loop-go{min-width:220px !important;width:220px !important;
+  justify-content:center !important;text-align:center}
+
+/* the caption reserves room for the longest state, so nothing below moves */
+.loop-path{min-height:3.2em !important;display:flex;align-items:center;
+  justify-content:center;text-align:center}
+
+@media(max-width:600px){
+  .loop-go{width:min(280px,86vw) !important;min-width:0 !important}
+  .loop-path{min-height:4.4em !important;padding:0 12px}
+  .loop-stage .lbl{font-size:11.5px !important;letter-spacing:.1em !important}
+
+  /* The centre block is absolutely positioned in the middle of the diagram and
+     holds three lines: "Paths traced", the count, and a caption. On a phone the
+     caption wraps to two lines and runs straight into the ADVISORS label at the
+     bottom of the circle. The count is what matters in the middle; the caption
+     moves out and sits under the diagram where there is room for it. */
+  /* .loop-centre is positioned at 50% of .loop-stage, but the stage holds the
+     diagram AND the caption AND the button, so its midpoint sits well below
+     the circle's centre and the count landed on the ADVISORS node.
+     The svg is square and fills the stage's width, so its vertical centre is
+     at half the stage's WIDTH. A percentage margin resolves against width,
+     which is exactly the number needed and it holds at any screen size. */
+  /* full width, so percentages inside it resolve against the stage width and
+     therefore against the square svg */
+  .loop-centre{
+    width:100% !important;
+    max-width:none !important;
+    top:0 !important;
+    margin-top:50% !important}
+  /* the svg is square, so its bottom edge is one stage-width below the top.
+     .loop-centre sits at the halfway point and is shifted up by half its own
+     height, so the caption needs a little over half a width to clear the
+     circle. a percentage margin resolves against width, which is the only
+     measure here that tracks the diagram at every screen size. */
+  .loop-centre em{
+    position:absolute !important;
+    left:50% !important;
+    top:0 !important;
+    margin-top:58% !important;
+    transform:translateX(-50%) !important;
+    width:100% !important;
+    font-size:11.5px !important;
+    line-height:1.5 !important;
+    white-space:nowrap !important;
+    text-align:center}
+}
+@media(max-width:420px){
+  .loop-stage .lbl{font-size:12.5px !important;letter-spacing:.06em !important}
+  .loop-path{min-height:5em !important}
+}
+</style>
 </head>
 <body>
 <div aria-hidden="true" id="kx-desat"></div>
@@ -1376,7 +1448,7 @@ main{overflow-x:clip}
 <section class="wrap loop" id="loop">
 <div class="loop-grid">
 <div class="loop-stage">
-<svg aria-label="How the four parts connect" viewbox="0 0 440 440">
+<svg aria-label="How the four parts connect" viewBox="-40 -40 520 520" viewbox="-40 -34 520 520">
 <circle class="ring" cx="220" cy="220" r="150"></circle>
 <line class="chord" data-e="0-1" x1="220.0" x2="370.0" y1="70.0" y2="220.0"></line>
 <line class="chord" data-e="0-2" x1="220.0" x2="220.0" y1="70.0" y2="370.0"></line>
