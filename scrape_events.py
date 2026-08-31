@@ -790,11 +790,21 @@ def normalize(event: dict) -> dict:
     if when.tzinfo is None:
         when = when.replace(tzinfo=timezone(timedelta(hours=-4)))
     event["start"] = when.isoformat()
-    event["topic"] = event["topic"] or classify(f"{event['title']} {event['summary']}")
+    # Hosts label their own events, and between them they use 47 different
+    # words for eight ideas: "Cash Flow Management", "Business Accounting and
+    # Budget" and "Financial Analysis" are all Finance. Publishing their labels
+    # raw turned the topic filter into a wall of 47 pills, most with one event
+    # behind them. The host's word is kept as a signal and then mapped onto the
+    # fixed set, so the filter stays a filter.
+    event["host_topic"] = event.get("topic", "")
+    event["topic"] = classify(
+        f"{event['title']} {event['summary']} {event.get('host_topic', '')}"
+    ) or "Business"
     if not INCLUDE_SUMMARIES:
         event["summary"] = ""
     event.setdefault("mode", "")
     event.setdefault("cost", "")
+    event.setdefault("host_topic", "")
     event.setdefault("location", "")
     event.setdefault("category", "")
     event.setdefault("scope", "")
