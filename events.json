@@ -28,7 +28,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Minnesota",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Start Up Smart",
@@ -193,7 +193,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44260",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) SPANISH - Start Smart - Webinar via Zoom September 1, 2026 10:00am - 12:00pm Business Start-up/Preplanning",
       "location": "Online Meeting (Live) SPANISH - Start Smart - Webinar via Zoom September 1",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -210,7 +210,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Washington",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Starting Your Business In Illinois",
@@ -249,7 +249,7 @@
       "url": "https://nbdc.ecenterdirect.com/events/10466",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Beyond the Micro-Purchase: Understanding Simplified Acquisitions September 1, 2026 12:00-1:30pm Government Industrial Base (GIB) Readiness",
       "location": "Online Meeting (Live) Beyond the Micro-Purchase: Understanding Simplified Acquisitions September 1",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Nebraska",
       "mode": "Online"
@@ -305,7 +305,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44477",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Building a Business Plan with LivePlan - Webinar via Zoom September 1, 2026 1:00pm - 3:00pm Business Plan",
       "location": "Online Meeting (Live) Building a Business Plan with LivePlan - Webinar via Zoom September 1",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -321,7 +321,7 @@
       "location": "122 Carlson Library",
       "category": "Federal",
       "scope": "Pennsylvania",
-      "mode": "",
+      "mode": "In person",
       "cost": ""
     },
     {
@@ -490,7 +490,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Minnesota",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Solid Start - Legal, Tax and Capital Essentials When Starting Your Business",
@@ -588,7 +588,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "South Dakota",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "LV Meet the Buyers Expo",
@@ -601,7 +601,7 @@
       "location": "3311 Airport Rd",
       "category": "Federal",
       "scope": "Pennsylvania",
-      "mode": "",
+      "mode": "In person",
       "cost": ""
     },
     {
@@ -616,7 +616,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "INTELIGENCIA ARTIFICIAL SIN COMPLICACIONES: Automatiza, Ahorra Tiempo y Crece",
@@ -725,7 +725,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44312",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Social Media for Small Businesses - Webinar via Zoom September 2, 2026 10:00am - 11:00am Social Media",
       "location": "Online Meeting (Live) Social Media for Small Businesses - Webinar via Zoom September 2",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -795,7 +795,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44474",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Unlock the Path to Sustainable Business Growth — Virtual Preview Event - Webinar via Zoom September 2, 2026 1:00pm - 2:00pm Business Start-up/Preplanning",
       "location": "Online Meeting (Live) Unlock the Path to Sustainable Business Growth — Virtual Preview Event - Webinar via Zoom September 2",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -997,20 +997,6 @@
       "mode": ""
     },
     {
-      "title": "In-Person Small Business Consulting Office Hours in Coatesville",
-      "host": "Pennsylvania SBDC",
-      "start": "2026-09-03T09:00:00-04:00",
-      "duration": "",
-      "topic": "Business",
-      "url": "https://pasbdc.ecenterdirect.com/events/33760",
-      "summary": "Workshop/Seminar Canceled Workshop/Seminar Canceled Workshop/Seminar In-Person Small Business Consulting Office Hours in Coatesville September 3, 2026 9:00am-12:00pm 357 Lincoln Hwy E, Coatesville PA 19320 Business Plan",
-      "location": "2026 9:00am-12:00pm 357 Lincoln Hwy E, Coatesville PA 19320",
-      "cost": "Canceled Workshop/Seminar",
-      "category": "College",
-      "scope": "Pennsylvania",
-      "mode": "In person"
-    },
-    {
       "title": "Business Financing Made Simple: What Lenders Expect and How to Prepare for Success",
       "host": "Louisiana SBDC",
       "start": "2026-09-03T10:00:00-04:00",
@@ -1033,24 +1019,10 @@
       "url": "https://utsa.ecenterdirect.com/events/44261",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Busting Myths to Small Business Financing - Webinar via Zoom September 3, 2026 10:00am - 12:00pm Business Financing",
       "location": "Online Meeting (Live) Busting Myths to Small Business Financing - Webinar via Zoom September 3",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
-    },
-    {
-      "title": "LLC Formation 101",
-      "host": "Texas SBDC at UTSA",
-      "start": "2026-09-03T10:00:00-04:00",
-      "duration": "",
-      "topic": "Legal",
-      "url": "https://utsa.ecenterdirect.com/events/44246",
-      "summary": "Workshop/Seminar Class is full Workshop/Seminar Class is full Workshop/Seminar LLC Formation 101 September 3, 2026 10:00am - 12:00pm 9050 Viscount Blvd #B520, El Paso TX 79925-6511 Legal Issues",
-      "location": "10:00am - 12:00pm 9050 Viscount Blvd #B520, El Paso TX 79925",
-      "cost": "Class is full Workshop/Seminar",
-      "category": "College",
-      "scope": "Texas",
-      "mode": ""
     },
     {
       "title": "Building your Business Performance Dashboard Metrics - A Step by Step Guide - *Live Webinar* - PW",
@@ -1117,7 +1089,7 @@
       "url": "https://nbdc.ecenterdirect.com/events/10467",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Developing a Compelling Capability Statement (2026 Update) September 3, 2026 12:00-1:30pm Government Industrial Base (GIB) Readiness",
       "location": "Online Meeting (Live) Developing a Compelling Capability Statement (2026 Update) September 3",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Nebraska",
       "mode": "Online"
@@ -1261,20 +1233,6 @@
       "category": "College",
       "scope": "Virginia",
       "mode": ""
-    },
-    {
-      "title": "Financial Basics for Small Business Owners in Spanish - Virtual",
-      "host": "Indiana SBDC",
-      "start": "2026-09-03T18:00:00-04:00",
-      "duration": "",
-      "topic": "Finance",
-      "url": "https://isbdc.ecenterdirect.com/events/17362",
-      "summary": "Online Meeting (Live) Canceled Online Meeting (Live) Canceled Online Meeting (Live) Financial Basics for Small Business Owners in Spanish - Virtual September 3, 2026 6:00pm-8:00pm Other",
-      "location": "Online Meeting (Live) Financial Basics for Small Business Owners in Spanish - Virtual September 3",
-      "cost": "Canceled Online Meeting (Live)",
-      "category": "College",
-      "scope": "Indiana",
-      "mode": "Online"
     },
     {
       "title": "Going Into Business - Remote using Zoom",
@@ -1453,10 +1411,10 @@
       "url": "https://scsbdc.ecenterdirect.com/events/315726",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Small Business Lender Matchmaker September 8, 2026 9:00 AM - Noon 25 Goldsmith St Flywheel, Greenville SC 29609-4588 Business Financing",
       "location": "2026 9:00 AM - Noon 25 Goldsmith St Flywheel, Greenville SC 29609",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "South Carolina",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "7 Strategies for Financial Success",
@@ -1621,7 +1579,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33845",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Your Marketing Help Desk: Social Media, Canva & Branding Essentials: LIVE Q+A SESSION September 8, 2026 12:00pm Social Media",
       "location": "Online Meeting (Live) Your Marketing Help Desk: Social Media",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Online"
@@ -1680,7 +1638,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Building Trust with AI, Part 1: Reviews & Reputation",
@@ -1764,7 +1722,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Comenzando un Negocio en IL",
@@ -1778,7 +1736,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Business Plan Workshop in North Platte",
@@ -1792,7 +1750,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Introduction to the NIST Cybersecurity Framework (Virtual)",
@@ -1876,7 +1834,7 @@
       "cost": "",
       "category": "College",
       "scope": "New Jersey",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "ReadyTN Business - Disaster Preparedness (Online-Live)",
@@ -1918,7 +1876,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Finding the Right Location for Your Small Business",
@@ -2083,7 +2041,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33840",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar IN PERSON | Innovation Lunch & Learn September 9, 2026 12:00pm 416 Market St, Lewisburg PA 17837-1418 Other",
       "location": "2026 12:00pm 416 Market St, Lewisburg PA 17837",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "In person"
@@ -2171,20 +2129,6 @@
       "category": "College",
       "scope": "Massachusetts",
       "mode": "Online"
-    },
-    {
-      "title": "Profit Mastery: Four-Part In-Person Workshop Series | September 9, 11, 16 & 18, 2026",
-      "host": "Texas SBDC at UTSA",
-      "start": "2026-09-09T13:00:00-04:00",
-      "duration": "",
-      "topic": "Finance",
-      "url": "https://utsa.ecenterdirect.com/events/44159",
-      "summary": "Workshop/Seminar Waitlist only Workshop/Seminar Waitlist only Workshop/Seminar Profit Mastery: Four-Part In-Person Workshop Series | September 9, 11, 16 & 18, 2026 September 9, 2026 1:00pm - 5:00pm 700 N. St. Mary's Street, Floor 5, San Antonio TX 78205-3507 Accounting/Budget",
-      "location": "",
-      "cost": "Waitlist only Workshop/Seminar",
-      "category": "College",
-      "scope": "Texas",
-      "mode": "In person"
     },
     {
       "title": "First Steps: Concept to Plan",
@@ -2338,7 +2282,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Know Your Numbers",
@@ -2352,7 +2296,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Business Plan Workshop in McCook",
@@ -2366,7 +2310,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Business Plan Workshop in Valentine",
@@ -2380,7 +2324,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Money Matters for Small Business: Understanding the Mechanics of a Loan",
@@ -2533,7 +2477,7 @@
       "location": "Penn State DuBois Route 219",
       "category": "Federal",
       "scope": "Pennsylvania",
-      "mode": "",
+      "mode": "In person",
       "cost": ""
     },
     {
@@ -2590,7 +2534,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Stop Guessing at Your Marketing: The Simple Framework to Know What to Do, What to Drop, and How to Decide - Webinar via Zoom",
@@ -2601,7 +2545,7 @@
       "url": "https://utsa.ecenterdirect.com/events/43754",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Stop Guessing at Your Marketing: The Simple Framework to Know What to Do, What to Drop, and How to Decide - Webinar via Zoom September 10, 2026 10:00am - 11:30am Marketing/Sales",
       "location": "Online Meeting (Live) Stop Guessing at Your Marketing: The Simple Framework to Know What to Do",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -2618,7 +2562,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Use AI Without Giving Up the Experience, Voice, and Judgment Customers Trust",
@@ -2646,21 +2590,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
-    },
-    {
-      "title": "CANCELLED: Social Media Marketing (HYBRID)",
-      "host": "New Mexico SBDC",
-      "start": "2026-09-10T11:30:00-04:00",
-      "duration": "",
-      "topic": "Marketing",
-      "url": "https://nmsbdc.ecenterdirect.com/events/14079",
-      "summary": "Workshop/Seminar Canceled Workshop/Seminar Canceled Workshop/Seminar CANCELLED: Social Media Marketing (HYBRID) September 10, 2026 11:30am - 1:00pm 5101 College Blvd, Farmington NM 87402-4709 Marketing/Sales",
-      "location": "2026 11:30am - 1:00pm 5101 College Blvd, Farmington NM 87402",
-      "cost": "Canceled Workshop/Seminar",
-      "category": "College",
-      "scope": "New Mexico",
-      "mode": "Livestream"
+      "mode": "In person"
     },
     {
       "title": "Find The Right Franchise For You: A Business Model for Wealth Generation & Legacy Building",
@@ -2685,7 +2615,7 @@
       "url": "https://nbdc.ecenterdirect.com/events/10478",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Navigating Barriers to Payment under Cost Reimbursable Contracts September 10, 2026 12:00-1:30pm Accounting/Budget",
       "location": "Online Meeting (Live) Navigating Barriers to Payment under Cost Reimbursable Contracts September 10",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Nebraska",
       "mode": "Online"
@@ -2727,7 +2657,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44313",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Building a Brand That Feels Like You - Webinar via Zoom September 10, 2026 1:00pm - 2:00pm Marketing/Sales",
       "location": "Online Meeting (Live) Building a Brand That Feels Like You - Webinar via Zoom September 10",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -2814,7 +2744,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "SEBD Certification - Certification to Grow Your Business",
@@ -2912,7 +2842,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Minnesota",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Meta Certification Practice Test Review - Media Planning - Sep 11 | APAC (INDIA/SOUTH ASIA) | English",
@@ -2951,7 +2881,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/32983",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar First Step: Mechanics of Starting a Small Business - Hybrid September 11, 2026 9:00 am to 11:00 am Murdoch Building 3420 Forbes Avenue, Pittsburgh PA 15213 Business Start-up/Preplanning",
       "location": "00 am Murdoch Building 3420 Forbes Avenue, Pittsburgh PA 15213",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Livestream"
@@ -3136,7 +3066,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Start Your Business in PA: The First Steps Live Q&A with SBA + PA Business One-Stop Shop",
@@ -3147,7 +3077,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33795",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Start Your Business in PA: The First Steps Live Q&A with SBA + PA Business One-Stop Shop September 14, 2026 12:00pm Business Plan",
       "location": "Online Meeting (Live) Start Your Business in PA: The First Steps Live Q&A with SBA + PA Business One-Stop Shop September 14",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Online"
@@ -3164,7 +3094,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Washington",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "2026 NEW VENTURE ACADEMY FALL CO-HORT",
@@ -3178,7 +3108,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "EXIM Bank Symposium - Huntsville",
@@ -3192,7 +3122,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Guide to Starting a Business - Virtual",
@@ -3248,7 +3178,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "IRS Record Keeping for Small Businesses",
@@ -3388,7 +3318,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "International Trade for Small Business",
@@ -3402,7 +3332,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "South Carolina",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "GET MONEY, SAVE MONEY - TWC Skills for Small Business Grant",
@@ -3416,7 +3346,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Accounting Software Basics",
@@ -3431,20 +3361,6 @@
       "category": "College",
       "scope": "Louisiana",
       "mode": "Online"
-    },
-    {
-      "title": "IN-PERSON: Small Business Website Workday at the New York Public Library",
-      "host": "New York SBDC",
-      "start": "2026-09-15T10:00:00-04:00",
-      "duration": "",
-      "topic": "Technology",
-      "url": "https://nysbdc.ecenterdirect.com/events/1020188",
-      "summary": "Workshop/Seminar Waitlist only Workshop/Seminar Waitlist only Workshop/Seminar IN-PERSON: Small Business Website Workday at the New York Public Library September 15, 2026 10:00 AM - 12:00 PM 455 5th Ave 5th Floor, New York NY 10016-0109 eCommerce",
-      "location": "10:00 AM - 12:00 PM 455 5th Ave 5th Floor, New York NY 10016",
-      "cost": "Waitlist only Workshop/Seminar",
-      "category": "College",
-      "scope": "New York",
-      "mode": "In person"
     },
     {
       "title": "Capital Readiness: Applying for a Business Loan",
@@ -3500,7 +3416,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Unlock The Power of Contracts For Your Business - Virtual Event",
@@ -3581,7 +3497,7 @@
       "url": "https://nbdc.ecenterdirect.com/events/10468",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) How to Take Advantage of Your Socio-Economic Status Effectively – It’s Not What You Think (2026 Update) September 15, 2026 12:00-1:30pm Socioeconomic Certification (WOSB/VOSB/HUBZone/etc.)",
       "location": "Online Meeting (Live) How to Take Advantage of Your Socio-Economic Status Effectively – It’s Not What You Think (2026 Update) September 15",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Nebraska",
       "mode": "Online"
@@ -3738,7 +3654,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Disaster-Proof Your Business: Technology Strategies for Resilience",
@@ -3808,7 +3724,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "So You Started a Business, Now What?",
@@ -3892,7 +3808,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "South Carolina",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Webinar: How to Start a Business",
@@ -3990,7 +3906,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Navigating Federal Cybersecurity Regulatory Requirements in Government Contracting (Virtual)",
@@ -4018,7 +3934,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "QuickBooks 201: Beyond the Basics",
@@ -4046,7 +3962,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Washington",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Funding Opportunities & Growth",
@@ -4102,7 +4018,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Launch Your Business with Customer Focused Marketing",
@@ -4200,7 +4116,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Blast Off - Advanced Startup Training",
@@ -4270,7 +4186,7 @@
       "cost": "",
       "category": "College",
       "scope": "New Hampshire",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Ohio SBDC Edicion Digital",
@@ -4298,7 +4214,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Tax Planning Clinic Virtual Meeting",
@@ -4354,7 +4270,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Personal Credit for Business Success",
@@ -4421,7 +4337,7 @@
       "url": "https://nysbdc.ecenterdirect.com/events/1020235",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Intellectual Property (IP) Fundamentals [ONLINE] September 17, 2026 Event will be held from 6-8 PM (ONLINE ONLY) Online, New York NY 10010 Intellectual Property",
       "location": "6-8 PM (ONLINE ONLY) Online, New York NY 10010",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "New York",
       "mode": "Online"
@@ -4495,6 +4411,20 @@
       "category": "College",
       "scope": "Ohio",
       "mode": ""
+    },
+    {
+      "title": "In-Person Small Business Consulting Office Hours in Coatesville",
+      "host": "Pennsylvania SBDC",
+      "start": "2026-09-17T09:00:00-04:00",
+      "duration": "",
+      "topic": "Business",
+      "url": "https://pasbdc.ecenterdirect.com/events/33764",
+      "summary": "Workshop/Seminar No Fee Workshop/Seminar No Fee Workshop/Seminar In-Person Small Business Consulting Office Hours in Coatesville September 17, 2026 9:00am-12:00pm 357 Lincoln Hwy E, Coatesville PA 19320 Business Plan",
+      "location": "2026 9:00am-12:00pm 357 Lincoln Hwy E, Coatesville PA 19320",
+      "cost": "No Fee Workshop/Seminar",
+      "category": "College",
+      "scope": "Pennsylvania",
+      "mode": "In person"
     },
     {
       "title": "Strategic Focus in 60 Minutes",
@@ -4609,20 +4539,6 @@
       "mode": ""
     },
     {
-      "title": "In-Person Consulting Opportunity for **Bradford County** For-Profit Small Businesses",
-      "host": "Pennsylvania SBDC",
-      "start": "2026-09-17T10:00:00-04:00",
-      "duration": "",
-      "topic": "Finance",
-      "url": "https://pasbdc.ecenterdirect.com/events/33742",
-      "summary": "Workshop/Seminar Waitlist only Workshop/Seminar Waitlist only Workshop/Seminar In-Person Consulting Opportunity for **Bradford County** For-Profit Small Businesses September 17, 2026 10:00 a.m. - 2:00 p.m. Northern Tier Regional Planning & Development Commission 312 Main Street, Towanda PA 18848 Business Start-up/Preplanning",
-      "location": "312 Main Street, Towanda PA 18848",
-      "cost": "Waitlist only Workshop/Seminar",
-      "category": "College",
-      "scope": "Pennsylvania",
-      "mode": "In person"
-    },
-    {
       "title": "OSHA: Machine Guarding",
       "host": "Pennsylvania SBDC",
       "start": "2026-09-17T10:00:00-04:00",
@@ -4631,7 +4547,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33312",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) OSHA: Machine Guarding September 17, 2026 10:00 a.m. to 12:00 p.m. Risk Management",
       "location": "Online Meeting (Live) OSHA: Machine Guarding September 17",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Online"
@@ -4645,7 +4561,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44185",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) SEO in 2026: How Small Businesses Can Get Found on Google, AI Search & Local Results - Webinar via Zoom September 17, 2026 10:00am - 12:00pm Marketing/Sales",
       "location": "Online Meeting (Live) SEO in 2026: How Small Businesses Can Get Found on Google",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -4869,7 +4785,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44294",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Start Smart - Webinar via Zoom September 17, 2026 1:00pm - 3:00pm Business Start-up/Preplanning",
       "location": "Online Meeting (Live) Start Smart - Webinar via Zoom September 17",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -4995,7 +4911,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44245",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Marketing Research - How to find business opportunities for your company in the public and private sectors - Webinar via Zoom September 17, 2026 3:00pm - 4:00pm Small Disadvantaged Businesses",
       "location": "Online Meeting (Live) Marketing Research - How to find business opportunities for your company in the public and private sectors - Webinar via Zoom September 17",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -5051,7 +4967,7 @@
       "url": "https://isbdc.ecenterdirect.com/events/17357",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) AI Basics for Small Businesses - Virtual September 17, 2026 6:00 pm to 8:00 pm EST Social Media",
       "location": "Online Meeting (Live) AI Basics for Small Businesses - Virtual September 17",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Indiana",
       "mode": "Online"
@@ -5082,7 +4998,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Start Up Toolbox: Get Started",
@@ -5110,7 +5026,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "How to Start a Business 101",
@@ -5138,7 +5054,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "QuickBooks Level 2 for the online user (In-Person)",
@@ -5149,7 +5065,7 @@
       "url": "https://isbdc.ecenterdirect.com/events/17455",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar QuickBooks Level 2 for the online user (In-Person) September 18, 2026 Friday - 9 a.m. to 4 p.m.(CDT) 9800 Connecticut Dr, Crown Point IN 46307-7840 Accounting/Budget",
       "location": "9 a.m. to 4 p.m.(CDT) 9800 Connecticut Dr, Crown Point IN 46307",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Indiana",
       "mode": "Online"
@@ -5292,7 +5208,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Reimagining Your Workforce Sponsorship Springfield",
@@ -5321,20 +5237,6 @@
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Online"
-    },
-    {
-      "title": "Cash Flow IN-PERSON EVENT",
-      "host": "South Carolina SBDC",
-      "start": "2026-09-22T00:00:00-04:00",
-      "duration": "",
-      "topic": "Finance",
-      "url": "https://scsbdc.ecenterdirect.com/events/315749",
-      "summary": "Workshop/Seminar Canceled Workshop/Seminar Canceled Workshop/Seminar Cash Flow IN-PERSON EVENT September 22, 2026 10 am Midlands Tech-Northeast Campus Auditorium 151 Powell Rd., Columbia SC 29203 Cash Flow Management",
-      "location": "151 Powell Rd., Columbia SC 29203",
-      "cost": "Canceled Workshop/Seminar",
-      "category": "College",
-      "scope": "South Carolina",
-      "mode": "In person"
     },
     {
       "title": "Master Your Money Series: Part 2 QuickBooks for Real Businesses",
@@ -5373,7 +5275,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44276",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar CMMC The Journey so far: A Practical Guide for Small Businesses (Virtual) September 22, 2026 10am-11am Virtual, San Antonio TX 78207 Cybersecurity Assistance",
       "location": "2026 10am-11am Virtual, San Antonio TX 78207",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -5446,7 +5348,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Making Sense of Washington: A Practical Guide for Small Business Owners",
@@ -5457,10 +5359,10 @@
       "url": "https://asbdc.ecenterdirect.com/events/10690",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Making Sense of Washington: A Practical Guide for Small Business Owners September 22, 2026 9:30 AM 800 Ben Graves Drive, Huntsville AL 35816 Managing a Business",
       "location": "2026 9:30 AM 800 Ben Graves Drive, Huntsville AL 35816",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Turning Your Skills & Passions into Sustainable Businesses",
@@ -5513,7 +5415,7 @@
       "url": "https://utsa.ecenterdirect.com/events/43755",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) The Science of Word-of-Mouth: Why \"Good Work\" Isn't Enough Anymore - Webinar via Zoom September 22, 2026 10:00am - 11:30am Marketing/Sales",
       "location": "Online Meeting (Live) The Science of Word-of-Mouth: Why \"Good Work\" Isn't Enough Anymore - Webinar via Zoom September 22",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -5558,7 +5460,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Could Your Social Media Be Putting Your Business at Risk?",
@@ -5639,7 +5541,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44014",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Legal Toolbox for Small Businesses – Webinar via Zoom September 22, 2026 1:00pm - 2:00pm Legal Issues",
       "location": "Online Meeting (Live) Legal Toolbox for Small Businesses – Webinar via Zoom September 22",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -5684,7 +5586,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Use AI to Turn First-Time Customers into Repeat Customers",
@@ -5723,7 +5625,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44305",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Serving Success: Understanding Texas's New Mobile Food Vendor Law - Webinar via Zoom September 22, 2026 3:00pm - 4:00pm Business Start-up/Preplanning",
       "location": "Online Meeting (Live) Serving Success: Understanding Texas's New Mobile Food Vendor Law - Webinar via Zoom September 22",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -5754,7 +5656,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Kentucky",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Small Business Matters - WK 4: Market Research that Moves the Business (Live Webinar)",
@@ -5796,7 +5698,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Is Your Website ADA Compliant? Protect Your Business and Improve Accessibility Online",
@@ -5922,7 +5824,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Food is Life Summit",
@@ -5975,7 +5877,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44100",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) From Followers to Customers: Turning Attention Into Revenue - Webinar via Zoom September 23, 2026 10:00am - 11:00am Social Media",
       "location": "Online Meeting (Live) From Followers to Customers: Turning Attention Into Revenue - Webinar via Zoom September 23",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -6073,7 +5975,7 @@
       "url": "https://ilsbdc.ecenterdirect.com/events/41693",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Grant Preparation 101 - Live online seminar September 23, 2026 12:00 to 1:00 p.m. GATA",
       "location": "Online Meeting (Live) Grant Preparation 101 - Live online seminar September 23",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Illinois",
       "mode": "Online"
@@ -6101,7 +6003,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33851",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar How to Know if Your Business Idea Will Really Work (Hybrid Event) September 23, 2026 12:00 pm - 1:00 pm The University of Scranton Weiss Hall 325 Madison Ave., Scranton PA 18510 Business Start-up/Preplanning",
       "location": "325 Madison Ave., Scranton PA 18510",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Livestream"
@@ -6146,7 +6048,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Iniciando tu negocio: Lo que necesitas saber para lanzar un negocio en CT (septiembre)",
@@ -6160,7 +6062,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Connecticut",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "11 Estrategias Para Una Empresa Exitosa",
@@ -6199,7 +6101,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44306",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Cottage Food Business - Webinar via Zoom September 23, 2026 3:00pm - 4:00pm Legal Issues",
       "location": "Online Meeting (Live) Cottage Food Business - Webinar via Zoom September 23",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -6258,7 +6160,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Business Plan Workshop in Benkelman",
@@ -6272,7 +6174,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Business Plan Workshop in Imperial",
@@ -6286,7 +6188,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Build Your 90-Day Financial Plan: A Hands-On Workshop for Founders [Online]",
@@ -6311,7 +6213,7 @@
       "url": "https://nysbdc.ecenterdirect.com/events/1019912",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Business Plan Writting and Export Plan Writting September 24, 2026 Business Plan",
       "location": "Online Meeting (Live) Business Plan Writting and Export Plan Writting September 24",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "New York",
       "mode": "Online"
@@ -6468,7 +6370,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Capital Conversions",
@@ -6482,7 +6384,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "The 2026 Lead Generation Playbook: From First Click to Closed Client",
@@ -6580,7 +6482,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "An Introduction to Government Small Business Certifications (2026 Update)",
@@ -6591,7 +6493,7 @@
       "url": "https://nbdc.ecenterdirect.com/events/10479",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) An Introduction to Government Small Business Certifications (2026 Update) September 24, 2026 12:00-1:30pm Socioeconomic Certification (WOSB/VOSB/HUBZone/etc.)",
       "location": "Online Meeting (Live) An Introduction to Government Small Business Certifications (2026 Update) September 24",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Nebraska",
       "mode": "Online"
@@ -6692,7 +6594,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Talk Tax with the IRS",
@@ -6720,7 +6622,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Understanding Virginia Cottage Law",
@@ -6762,7 +6664,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Excel Level 1 & 2 - Sedalia",
@@ -6804,7 +6706,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nebraska",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Youth Entrepreneur Program",
@@ -6818,7 +6720,7 @@
       "cost": "",
       "category": "College",
       "scope": "Oregon",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "How to Start a Small Business in Illinois",
@@ -6899,7 +6801,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44012",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) One Big Beautiful Bill – Individual Provision - Webinar via Zoom September 25, 2026 10:00am - 11:30am Tax Planning",
       "location": "Online Meeting (Live) One Big Beautiful Bill – Individual Provision - Webinar via Zoom September 25",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -6927,10 +6829,10 @@
       "url": "https://ilsbdc.ecenterdirect.com/events/41687",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Illinois SBDC for the Metro East @ SIUE & The Wedge present Starting Your Small Business in Illinois September 25, 2026 3:00 to 5:00 p.m. The Wedge Innovation Center 620 E Broadway, Alton IL 62002 Business Plan",
       "location": "620 E Broadway, Alton IL 62002",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Ask a UTSA SBDC Business Advisor - Webinar via Zoom",
@@ -6941,7 +6843,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44428",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Ask a UTSA SBDC Business Advisor - Webinar via Zoom September 25, 2026 3:00pm - 4:00pm Business Start-up/Preplanning",
       "location": "Online Meeting (Live) Ask a UTSA SBDC Business Advisor - Webinar via Zoom September 25",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -6958,7 +6860,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Kentucky",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "In-Person Consulting Opportunity for **Monroe County** For-Profit Small Businesses",
@@ -7151,7 +7053,7 @@
       "url": "https://nbdc.ecenterdirect.com/events/10469",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Communicating with Government Contracting Officials: What Can (and Should) Contractors Really Say and Do? (2026 Update) September 29, 2026 12:00-1:30pm Government Industrial Base (GIB) Readiness",
       "location": "Online Meeting (Live) Communicating with Government Contracting Officials: What Can (and Should) Contractors Really Say and Do? (2026 Update) September 29",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Nebraska",
       "mode": "Online"
@@ -7165,7 +7067,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44416",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Before Bankruptcy: Understanding Your Financial Numbers and Business Options - Webinar via Zoom September 29, 2026 1:00pm - 2:00pm Credit Counseling",
       "location": "Online Meeting (Live) Before Bankruptcy: Understanding Your Financial Numbers and Business Options - Webinar via Zoom September 29",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -7235,7 +7137,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44277",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Protecting Controlled Unclassified Information (CUI) (Virtual) September 30, 2026 10am-11am Virtual, San Antonio TX 78207 Cybersecurity Assistance",
       "location": "2026 10am-11am Virtual, San Antonio TX 78207",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -7336,7 +7238,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Common Transaction Privilege Tax (TPT) Errors and How to Avoid Them",
@@ -7389,7 +7291,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44240",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) How to Fund Your Business in This Changing Economy - Webinar via Zoom September 30, 2026 12:00pm - 1:00pm Business Financing",
       "location": "Online Meeting (Live) How to Fund Your Business in This Changing Economy - Webinar via Zoom September 30",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -7504,7 +7406,7 @@
       "cost": "",
       "category": "College",
       "scope": "Ohio",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Preparing for a Tax Audit: What Business Owners NEED to Know",
@@ -7518,7 +7420,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Texas",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Government Contracting 101",
@@ -7672,7 +7574,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "AI Masterclass – Part 3: Digital Marketing & Social Media with AI",
@@ -7826,7 +7728,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Find the Leak: Build Your Opportunity Map",
@@ -7879,7 +7781,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44389",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Marketing That Works for Small Business Budgets [Beyond Social Media] - Webinar via Zoom October 6, 2026 10:00am - 11:30am Marketing/Sales",
       "location": "Online Meeting (Live) Marketing That Works for Small Business Budgets [Beyond Social Media] - Webinar via Zoom October 6",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -7963,7 +7865,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44406",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Blueprint for Success: Mastering Your Business Model Canvas - Webinar via Zoom October 6, 2026 4:00pm - 5:00pm Business Plan",
       "location": "Online Meeting (Live) Blueprint for Success: Mastering Your Business Model Canvas - Webinar via Zoom October 6",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -7980,7 +7882,7 @@
       "cost": "",
       "category": "College",
       "scope": "Ohio",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Writing Your Business Plan - The Essentials of a Strong Plan",
@@ -8134,7 +8036,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Government Contracting 101 - *Webinar (Live)* - PW",
@@ -8386,7 +8288,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Not the Same Old Shhh: Be Wowed By Your Public Library’s Business Resources - Webinar via Zoom",
@@ -8397,7 +8299,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44388",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Not the Same Old Shhh: Be Wowed By Your Public Library’s Business Resources - Webinar via Zoom October 8, 2026 10:00am - 11:00am Business Start-up/Preplanning",
       "location": "Online Meeting (Live) Not the Same Old Shhh: Be Wowed By Your Public Library’s Business Resources - Webinar via Zoom October 8",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -8509,7 +8411,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44403",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Business Tax Fundamentals - Webinar via Zoom October 8, 2026 3:00pm - 4:00pm Tax Planning",
       "location": "Online Meeting (Live) Business Tax Fundamentals - Webinar via Zoom October 8",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -8526,7 +8428,7 @@
       "cost": "",
       "category": "College",
       "scope": "Utah",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Fund Your Business with Kiva!",
@@ -8554,7 +8456,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "eCommerce Planning Pt1: The Basics",
@@ -8638,7 +8540,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "South Carolina",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "How to Work with Commercial & Private Projects",
@@ -8680,7 +8582,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Starting Your Business in Illinois - October 13th, 2026",
@@ -8985,7 +8887,7 @@
       "url": "https://ilsbdc.ecenterdirect.com/events/41688",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Starting Your Small Business in Illinois Live Seminar October 14, 2026 3:00 to 5:00 p.m. Business Plan",
       "location": "",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Illinois",
       "mode": ""
@@ -9002,7 +8904,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Cybersecurity Basics",
@@ -9016,7 +8918,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Time Management",
@@ -9055,10 +8957,10 @@
       "url": "https://asbdc.ecenterdirect.com/events/10682",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Creating High-Trust Teams in Technical and Government Contracting Environments October 15, 2026 9:30AM 850 Ben Graves Dr NW, Huntsville AL 35816-4201 Human Resources",
       "location": "2026 9:30AM 850 Ben Graves Dr NW, Huntsville AL 35816",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Intro to Federal Government Contracting",
@@ -9114,7 +9016,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Marketing to the Government",
@@ -9212,7 +9114,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Microsoft Office Excel: Part 2",
@@ -9237,7 +9139,7 @@
       "url": "https://isbdc.ecenterdirect.com/events/17358",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Building a Business Plan using LivePlan - Virtual October 15, 2026 6:00 pm to 8:00 pm EST Other",
       "location": "Online Meeting (Live) Building a Business Plan using LivePlan - Virtual October 15",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Indiana",
       "mode": "Online"
@@ -9293,7 +9195,7 @@
       "url": "https://isbdc.ecenterdirect.com/events/17502",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar QuickBooks Basics 1- Essentials for the Online user (In Person One day class) October 16, 2026 Friday- 9 a.m. to 4:00 p.m. (CST) 9800 Connecticut Dr, Crown Point IN 46307-7840 Accounting/Budget",
       "location": "4:00 p.m. (CST) 9800 Connecticut Dr, Crown Point IN 46307",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Indiana",
       "mode": "Online"
@@ -9411,6 +9313,20 @@
       "mode": ""
     },
     {
+      "title": "In-Person Consulting Opportunity for **Bradford County** For-Profit Small Businesses",
+      "host": "Pennsylvania SBDC",
+      "start": "2026-10-20T10:00:00-04:00",
+      "duration": "",
+      "topic": "Finance",
+      "url": "https://pasbdc.ecenterdirect.com/events/33740",
+      "summary": "Workshop/Seminar No Fee Workshop/Seminar No Fee Workshop/Seminar In-Person Consulting Opportunity for **Bradford County** For-Profit Small Businesses October 20, 2026 10:00 a.m. - 2:00 p.m. PA State Rep. Clint Owlett's Office 121 Canton Street, Troy PA 16947 Business Start-up/Preplanning",
+      "location": "121 Canton Street, Troy PA 16947",
+      "cost": "No Fee Workshop/Seminar",
+      "category": "College",
+      "scope": "Pennsylvania",
+      "mode": "In person"
+    },
+    {
       "title": "Tax Basics and TNTAP Essentials for New Businesses",
       "host": "Tennessee SBDC",
       "start": "2026-10-20T10:00:00-04:00",
@@ -9461,7 +9377,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44387",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Don’t Be Spooked: Demystifying Franchise Ownership - Webinar via Zoom October 20, 2026 12:00pm - 1:00pm Franchising",
       "location": "Online Meeting (Live) Don’t Be Spooked: Demystifying Franchise Ownership - Webinar via Zoom October 20",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -9506,7 +9422,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Indiana",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Microloans & Alternative Lending Option Webinar",
@@ -9534,7 +9450,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Pennsylvania",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Using Excel as a Small Biz Owner",
@@ -9741,7 +9657,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33850",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar The First Step Express: Starting Your Business (Hybrid Event) October 21, 2026 12:00 pm - 1:00 pm The University of Scranton Weiss Hall 325 Madison Ave., Scranton PA 18510 Business Start-up/Preplanning",
       "location": "325 Madison Ave., Scranton PA 18510",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Livestream"
@@ -9797,7 +9713,7 @@
       "url": "https://nysbdc.ecenterdirect.com/events/1019913",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Selling to the Global Market and Export Plan Writing October 22, 2026 Business Plan",
       "location": "Online Meeting (Live) Selling to the Global Market and Export Plan Writing October 22",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "New York",
       "mode": "Online"
@@ -9867,7 +9783,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33313",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) OSHA: Lock Out/Tag Out October 22, 2026 10:00 a.m. to 12:00 p.m. Risk Management",
       "location": "Online Meeting (Live) OSHA: Lock Out/Tag Out October 22",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Online"
@@ -10021,7 +9937,7 @@
       "url": "https://isbdc.ecenterdirect.com/events/17359",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) SEO - The Importance of a Quality Website - Virtual October 22, 2026 6:00 pm to 8:00 pm EST Social Media",
       "location": "Online Meeting (Live) SEO - The Importance of a Quality Website - Virtual October 22",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Indiana",
       "mode": "Online"
@@ -10094,7 +10010,7 @@
       "cost": "",
       "category": "College",
       "scope": "Utah",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "QuickBooks Bootcamp: Your Path to Organized Finances",
@@ -10119,7 +10035,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44429",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Navigating the IRS: Understand the Basics - Webinar via Zoom October 23, 2026 1:00pm - 2:30pm Tax Planning",
       "location": "Online Meeting (Live) Navigating the IRS: Understand the Basics - Webinar via Zoom October 23",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10206,7 +10122,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Stop Guessing at Your Marketing: What to Do & What to Drop - Webinar via Zoom",
@@ -10217,7 +10133,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44390",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Stop Guessing at Your Marketing: What to Do & What to Drop - Webinar via Zoom October 27, 2026 10:00am - 11:30am Marketing/Sales",
       "location": "Online Meeting (Live) Stop Guessing at Your Marketing: What to Do & What to Drop - Webinar via Zoom October 27",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10245,7 +10161,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44407",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Veteran Entrepreneur Resources & Q&A - Webinar via Zoom October 27, 2026 1:00pm - 2:00pm Veterans",
       "location": "Online Meeting (Live) Veteran Entrepreneur Resources & Q&A - Webinar via Zoom October 27",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10259,7 +10175,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44404",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Maximizing Business Tax Deductions - Webinar via Zoom October 27, 2026 3:00pm - 4:00pm Tax Planning",
       "location": "Online Meeting (Live) Maximizing Business Tax Deductions - Webinar via Zoom October 27",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10276,7 +10192,7 @@
       "cost": "No Fee Multi-session Course",
       "category": "College",
       "scope": "Minnesota",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Writing Your Business Plan - Financials Section",
@@ -10332,7 +10248,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Washington",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "From Tenant to Owner: Timing, Financing, and the Playbook for Buying Commercial Real Estate",
@@ -10402,7 +10318,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Build a Digital Marketing Strategy That Actually Works - Webinar via Zoom",
@@ -10413,7 +10329,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44475",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Build a Digital Marketing Strategy That Actually Works - Webinar via Zoom October 28, 2026 10:00am - 12:00pm Marketing/Sales",
       "location": "Online Meeting (Live) Build a Digital Marketing Strategy That Actually Works - Webinar via Zoom October 28",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10430,7 +10346,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Unlock Your Business Potential: Marketing Strategies",
@@ -10469,7 +10385,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44500",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) So You Want to Start a Business… Now What? - Webinar via Zoom October 28, 2026 1:00pm - 2:00pm Business Start-up/Preplanning",
       "location": "Online Meeting (Live) So You Want to Start a Business… Now What? - Webinar via Zoom October 28",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10497,7 +10413,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44400",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Funding that fits: How to find small business financing that works for your business - Webinar via Zoom October 28, 2026 3:00pm - 4:00m Credit Counseling",
       "location": "Online Meeting (Live) Funding that fits: How to find small business financing that works for your business - Webinar via Zoom October 28",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10567,7 +10483,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44476",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Using AI to Market Your Business Without Losing the Human Touch - Webinar via Zoom October 29, 2026 10:00am - 12:00pm Marketing/Sales",
       "location": "Online Meeting (Live) Using AI to Market Your Business Without Losing the Human Touch - Webinar via Zoom October 29",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -10598,7 +10514,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nevada",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "The Value of Trademarks and Trade Secrets in the Age of AI",
@@ -10654,7 +10570,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "How to Start a Small Business without Making Expensive Mistakes",
@@ -10682,7 +10598,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Nevada",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Introduction to Grant Writing",
@@ -10710,7 +10626,7 @@
       "cost": "",
       "category": "College",
       "scope": "Utah",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Learn to Lead with True Colors Assessment",
@@ -10850,7 +10766,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Illinois",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "What Visitors Tell You, And How to Keep Them Coming Back",
@@ -10892,7 +10808,7 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Thinking about Entrepreneurship? How about Buying a Business or a Franchise? - *Webinar (Live)* - PW",
@@ -11018,7 +10934,7 @@
       "cost": "No Fee Workshop/Seminar",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Grow with AI Series Part 4",
@@ -11057,7 +10973,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44516",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Introduction to AI and Responsible Use in Business - Webinar via Zoom - in Spanish November 5, 2026 12:00pm - 1:00pm Artificial Intelligence (AI)",
       "location": "Online Meeting (Live) Introduction to AI and Responsible Use in Business - Webinar via Zoom - in Spanish November 5",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -11113,7 +11029,7 @@
       "url": "https://pasbdc.ecenterdirect.com/events/33233",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) First Step: Mechanics of Starting a Small Business - Virtual Only November 5, 2026 5:30 to 7:30 p.m. Business Start-up/Preplanning",
       "location": "Online Meeting (Live) First Step: Mechanics of Starting a Small Business - Virtual Only November 5",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Pennsylvania",
       "mode": "Online"
@@ -11144,7 +11060,7 @@
       "cost": "",
       "category": "College",
       "scope": "Utah",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "QuickBooks for Beginners: Understanding the Essentials",
@@ -11225,7 +11141,7 @@
       "url": "https://ilsbdc.ecenterdirect.com/events/41689",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Starting Your Small Business in Illinois Live Webinar November 11, 2026 3:00 to 5:00 p.m. Business Plan",
       "location": "",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Illinois",
       "mode": "Online"
@@ -11267,7 +11183,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44483",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Brand Strategy: Building a Brand That Works Harder for Your Business - Webinar via Zoom November 12, 2026 10:00am - 11:00am Marketing/Sales",
       "location": "Online Meeting (Live) Brand Strategy: Building a Brand That Works Harder for Your Business - Webinar via Zoom November 12",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -11295,7 +11211,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44517",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Effective Prompts: How to Give AI Better Instructions - Webinar via Zoom - in Spanish November 12, 2026 12:00pm - 1:00pm Artificial Intelligence (AI)",
       "location": "Online Meeting (Live) Effective Prompts: How to Give AI Better Instructions - Webinar via Zoom - in Spanish November 12",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -11393,7 +11309,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44484",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Website Strategy: Turning Your Website Into a Better Business Tool - Webinar via Zoom November 17, 2026 10:00am - 11:00am Marketing/Sales",
       "location": "Online Meeting (Live) Website Strategy: Turning Your Website Into a Better Business Tool - Webinar via Zoom November 17",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -11508,20 +11424,6 @@
       "cost": "",
       "category": "College",
       "scope": "Tennessee",
-      "mode": ""
-    },
-    {
-      "title": "Business Boost - Connect & Network at the UTSA SBDC - IN-PERSON ONLY EVENT",
-      "host": "Texas SBDC at UTSA",
-      "start": "2026-11-18T10:00:00-04:00",
-      "duration": "",
-      "topic": "Finance",
-      "url": "https://utsa.ecenterdirect.com/events/44495",
-      "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar Business Boost - Connect & Network at the UTSA SBDC - IN-PERSON ONLY EVENT November 18, 2026 10:00am - 12:00pm 700 N. St. Mary's Street, Floor 5, San Antonio TX 78205-3507 Accounting/Budget",
-      "location": "",
-      "cost": "Workshop/Seminar",
-      "category": "College",
-      "scope": "Texas",
       "mode": "In person"
     },
     {
@@ -11533,10 +11435,10 @@
       "url": "https://asbdc.ecenterdirect.com/events/10630",
       "summary": "Workshop/Seminar Workshop/Seminar Workshop/Seminar An Introduction to Government Contracting November 18, 2026 11:30AM 800 Ben Graves Drive, Huntsville AL 35816 Government Contracting",
       "location": "2026 11:30AM 800 Ben Graves Drive, Huntsville AL 35816",
-      "cost": "Workshop/Seminar",
+      "cost": "",
       "category": "College",
       "scope": "Alabama",
-      "mode": ""
+      "mode": "In person"
     },
     {
       "title": "Drafting Provisional Patent Applications",
@@ -11603,7 +11505,7 @@
       "url": "https://nysbdc.ecenterdirect.com/events/1019914",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) \"Marketing Strategies-with Neuro-Marketing Concepts\" November 19, 2026 Marketing/Sales",
       "location": "Online Meeting (Live) \"Marketing Strategies-with Neuro-Marketing Concepts\" November 19",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "New York",
       "mode": "Online"
@@ -11673,7 +11575,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44485",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Social Media Strategy: Creating Content With More Purpose - Webinar via Zoom November 19, 2026 10:00am - 11:00am Marketing/Sales",
       "location": "Online Meeting (Live) Social Media Strategy: Creating Content With More Purpose - Webinar via Zoom November 19",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -11687,7 +11589,7 @@
       "url": "https://utsa.ecenterdirect.com/events/44518",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Practical Applications: Communication, Emails, and Follow-Ups - Webinar via Zoom - in Spanish November 19, 2026 12:00pm - 1:00pm Artificial Intelligence (AI)",
       "location": "Online Meeting (Live) Practical Applications: Communication",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
@@ -11743,7 +11645,7 @@
       "url": "https://isbdc.ecenterdirect.com/events/17360",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) Credit Consulting Basics for Small Business Owners - Virtual November 19, 2026 6:00 pm to 8:00 pm EST Other",
       "location": "Online Meeting (Live) Credit Consulting Basics for Small Business Owners - Virtual November 19",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "Indiana",
       "mode": "Online"
@@ -11775,20 +11677,6 @@
       "category": "College",
       "scope": "Texas",
       "mode": "Online"
-    },
-    {
-      "title": "The Wedge + SIUE Presents: Legal Support for Small Businesses",
-      "host": "Illinois SBDC",
-      "start": "2026-11-26T00:00:00-04:00",
-      "duration": "",
-      "topic": "Legal",
-      "url": "https://ilsbdc.ecenterdirect.com/events/41292",
-      "summary": "Workshop/Seminar Canceled Workshop/Seminar Canceled Workshop/Seminar The Wedge + SIUE Presents: Legal Support for Small Businesses November 26, 2026 3-5 pm The Wedge Innovation Center 620 E. Broadway, Alton IL 62002 Legal Issues",
-      "location": "620 E. Broadway, Alton IL 62002",
-      "cost": "Canceled Workshop/Seminar",
-      "category": "College",
-      "scope": "Illinois",
-      "mode": ""
     },
     {
       "title": "SBDC In-Person Workshop: Tax Know-How for Small Business",
@@ -11869,7 +11757,7 @@
       "url": "https://nysbdc.ecenterdirect.com/events/1019915",
       "summary": "Online Meeting (Live) Online Meeting (Live) Online Meeting (Live) \"Preparation for Holiday Sales\" December 17, 2026 Marketing/Sales",
       "location": "Online Meeting (Live) \"Preparation for Holiday Sales\" December 17",
-      "cost": "Online Meeting (Live)",
+      "cost": "",
       "category": "College",
       "scope": "New York",
       "mode": "Online"
