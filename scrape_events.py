@@ -112,6 +112,20 @@ PAID = re.compile(
 # "No Fee". PAID matched the word "Fee" inside it and threw away the free
 # events along with the paid ones. Negations are neutralised before the paid
 # test runs, rather than trying to write one regex that means both things.
+# .event-status is a status, not a price. It holds "No Fee" often enough to
+# look like a cost field, and then holds "Workshop/Seminar", "Online Meeting
+# (Live)", "Canceled" or "Class is full" the rest of the time. Reading it as a
+# price put "Online Meeting (Live)" on 58 cards under the heading Cost. Only
+# text that actually talks about money is treated as money.
+FEEISH = re.compile(r"no fee|free|\bfees?\b|\$\s*\d|\bno cost\b", re.I)
+
+# An event that has been called off, filled up or closed its list is not an
+# event anyone can attend, whatever its date says.
+CLOSED = re.compile(
+    r"\bcancell?ed\b|class is full\b|\bwait ?list only\b|\bsold out\b"
+    r"|registration (?:is )?closed|\bpostponed\b",
+    re.I)
+
 NOFEE = re.compile(
     r"\bno[- ](?:fee|cost|charge)s?\b|\bfree of charge\b|\bfee:?\s*(?:none|0|\$0)\b",
     re.I)
@@ -507,7 +521,8 @@ def _neoserra_cards(soup: BeautifulSoup, source: dict) -> list[dict]:
         url = href if href.startswith("http") else (base.group(0) + "/" + href.lstrip("/") if base else href)
 
         status = card.select_one(".event-status")
-        cost = " ".join(status.get_text(" ", strip=True).split()) if status else ""
+        state = " ".join(status.get_text(" ", strip=True).split()) if status else ""
+        cost = state if FEEISH.search(state) else ""
         fmt = card.select_one(".event-format")
         fmt = " ".join(fmt.get_text(" ", strip=True).split()) if fmt else ""
 
@@ -526,7 +541,7 @@ def _neoserra_cards(soup: BeautifulSoup, source: dict) -> list[dict]:
         out.append({
             "title": title, "host": source["name"], "start": when,
             "duration": "", "topic": "", "url": url,
-            "summary": " ".join(x for x in (fmt, cost, blob[:300]) if x),
+            "summary": " ".join(x for x in (fmt, state, blob[:300]) if x),
             "location": loc, "cost": cost,
         })
     return out
@@ -637,7 +652,7 @@ def from_neoserra(soup: BeautifulSoup, source: dict) -> list[dict]:
 ALWAYS_STREAMS = {"1 Million Cups"}
 
 
-def mode_of(blob: str, streams: bool) -> str:
+def mode_of(blob: str, streams: bool, place: str = "") -> str:
     """Online, Livestream or In person, from how the host describes it.
 
     Livestream is deliberately its own answer rather than being folded into
@@ -653,6 +668,12 @@ def mode_of(blob: str, streams: bool) -> str:
         return "Livestream"
     if inperson:
         return "In person"
+    # A street address is a statement of where to turn up, even when nobody
+    # wrote the words "in person". 262 events came back with no mode at all
+    # because they simply listed a building and a town.
+    if place and not ONLINE.search(place):
+        if re.search(r"\d", place) or re.search(r",\s*[A-Z]{2}\b", place):
+            return "In person"
     return ""
 
 
@@ -699,7 +720,7 @@ def cost_from_detail(url: str) -> str:
     return ""
 
 
-def enrich_costs(events: list[dict], limit: int = 700, workers: int = 8) -> int:
+def enrich_costs(events: list[dict], limit: int = 900, workers: int = 8) -> int:
     """Fill in the price for events whose listing page did not state one.
 
     Run after dedupe so the work is only done for events that will actually be
@@ -739,7 +760,9 @@ def keep(event: dict, now: datetime, horizon: datetime) -> bool:
     if PAID.search(priced) or REPLAY.search(blob) or BIGEVENT.search(blob):
         return False
 
-    event["mode"] = event.get("mode") or mode_of(blob, streams)
+    if CLOSED.search(blob):
+        return False
+    event["mode"] = event.get("mode") or mode_of(blob, streams, event.get("location", ""))
     if INPERSON.search(blob) and not ALLOW_INPERSON and not streams:
         return False
     try:
