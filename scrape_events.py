@@ -94,7 +94,7 @@ SUMMARY_CHARS = 165
 # communities. The page promises online events, so in-person is filtered out by
 # default. Flip this to True to include them, and the card will need to show a
 # location or the promise on the page has to change.
-ALLOW_INPERSON = False
+ALLOW_INPERSON = True
 
 # What never belongs on this page, whatever ALLOW_INPERSON is set to.
 # The old single pattern only caught a dollar sign, so "a small fee applies",
@@ -107,7 +107,16 @@ PAID = re.compile(
     re.I)
 REPLAY = re.compile(r"on[- ]demand|\brecorded\b|\breplay\b|\bwatch anytime\b", re.I)
 INPERSON = re.compile(r"in[- ]person|\bonsite\b|\bon-site\b", re.I)
-BIGEVENT = re.compile(r"\bconference\b|\bexpo\b|\bsummit\b|\bgala\b", re.I)
+# Conferences, expos and summits used to be rejected wholesale. Many of the
+# best free sessions are exactly that, and the PAID pattern already catches the
+# ticketed ones, so only fundraisers are dropped by name now.
+BIGEVENT = re.compile(r"\bgala\b|\bfundraiser\b|\bfundraising dinner\b", re.I)
+
+# How a host says "you can attend this from your desk".
+ONLINE = re.compile(
+    r"\bonline\b|\bvirtual\b|\bwebinar\b|\bwebcast\b|\bremote\b"
+    r"|\bzoom\b|google meet|microsoft teams|\bteleconference\b|\blive online\b",
+    re.I)
 
 # A meeting held in a room but streamed out is attendable from anywhere, which
 # is the whole point of this page. 1 Million Cups Wilmington meets in person
@@ -122,143 +131,21 @@ REJECT = re.compile("|".join(p.pattern for p in (PAID, REPLAY, INPERSON, BIGEVEN
 
 HORIZON_DAYS = 120
 
-SOURCES = [
-    # ============================================================
-    # NATIONAL AGGREGATORS. highest yield per parser. sba.gov alone
-    # carries SBDC, SCORE, WBC, VBOC and APEX events from every state.
-    # ============================================================
-    {"name": "SBA", "url": "https://www.sba.gov/events", "parser": "sba"},
-    {"name": "America's SBDC", "url": "https://americassbdc.org/training-events/"},
-    {"name": "SCORE", "url": "https://www.score.org/business-education/"},
+def load_sources() -> list[dict]:
+    """The source list is data, not code.
 
-    # ============================================================
-    # FEDERAL. slow-moving markup, evergreen subject matter.
-    # ============================================================
-    {"name": "IRS", "url": "https://www.irs.gov/businesses/small-businesses-self-employed/webinars-for-small-businesses"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "USPTO", "url": "https://www.uspto.gov/learning-and-resources/events"},
-    {"name": "MBDA", "url": "https://www.mbda.gov/events"},
-    {"name": "USDA Rural Development", "url": "https://www.rd.usda.gov/newsroom/events"},
+    It changes every time a host redesigns a page, which is far more often than
+    the parsers change. Keeping it in sources.json means the list can be edited,
+    reviewed and diffed on its own without anyone touching the scraper.
+    """
+    path = HERE / "sources.json"
+    if not path.exists():
+        print("sources.json missing, nothing to scrape", file=sys.stderr)
+        return []
+    return json.loads(path.read_text()).get("sources", [])
 
-    # ============================================================
-    # STATE SBDC NETWORKS. 63 members, ~1,000 centers, nearly all
-    # hosted by universities and colleges. every domain below came
-    # from the America's SBDC state directory.
-    #
-    # many run Neoserra / eCenterDirect, which the "neoserra" parser
-    # handles. the rest fall through to JSON-LD then headings.
-    # run with --probe to see which respond and which return events,
-    # then delete the ones that come back empty.
-    # ============================================================
-    {"name": "Alabama SBDC", "url": "https://www.asbdc.org/events/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Alaska SBDC", "url": "https://aksbdc.org/events/"},
-    {"name": "Arizona SBDC", "url": "https://azsbdc.net/events"},
-    {"name": "Florida SBDC", "url": "https://floridasbdc.org/training/"},
-    {"name": "Georgia SBDC", "url": "https://georgiasbdc.org/training-program/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Hawaii SBDC", "url": "https://www.hisbdc.org/events/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Idaho SBDC", "url": "https://idahosbdc.org/events/"},
-    {"name": "Illinois SBDC", "url": "https://www.illinoissbdc.biz/events/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Indiana SBDC", "url": "https://isbdc.org/events/"},
-    {"name": "New York SBDC", "url": "https://nysbdc.ecenterdirect.com/events", "parser": "neoserra"},
-    {"name": "Pace University SBDC", "url": "https://www.pacesbdc.org/events"},
-    {"name": "Virginia SBDC", "url": "https://clients.virginiasbdc.org/events.aspx", "parser": "neoserra"},
 
-    # ============================================================
-    # UNIVERSITY AND COLLEGE CENTERS
-    # ============================================================
-    {"name": "SBDC at University at Albany", "url": "https://www.sbdcalbany.org/course/ai-exchange"},
-
-    # ============================================================
-    # RECURRING NATIONAL NETWORKS. chapter-based programmes that run
-    # the same format in many cities, week in week out. these are the
-    # ones that turn a listings page into a way in, because someone in
-    # a small town can join the same room as someone in Kansas City.
-    #
-    # NOTE ON 1 MILLION CUPS: 160+ communities, every Wednesday 9am,
-    # always free. but most chapters meet IN PERSON, and REJECT drops
-    # anything in-person. only the virtual and hybrid chapters will
-    # survive the filter as things stand. see ALLOW_INPERSON below.
-    # ============================================================
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "1 Million Cups", "url": "https://www.1millioncups.com/communities"},
-    {"name": "Startup Grind", "url": "https://www.startupgrind.com/events/"},
-    {"name": "Founder Institute", "url": "https://fi.co/events"},
-    {"name": "CO by US Chamber", "url": "https://www.uschamber.com/co/events"},
-    {"name": "Techstars", "url": "https://www.techstars.com/communities/startup-weekend"},
-    {"name": "Hello Alice", "url": "https://helloalice.com/events/"},
-    {"name": "NAWBO", "url": "https://www.nawbo.org/events"},
-
-    # ============================================================
-    # NONPROFIT AND CDFI
-    # ============================================================
-    {"name": "Small Business Majority", "url": "https://smallbusinessmajority.org/events"},
-    {"name": "Accion Opportunity Fund", "url": "https://aofund.org/events/"},
-
-    # ============================================================
-    # POLICY AND ADVOCACY NONPROFITS
-    # ============================================================
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Right to Start", "url": "https://www.righttostart.org/events"},
-    {"name": "America the Entrepreneurial", "url": "https://www.americatheentrepreneurial.org/events"},
-
-    # ============================================================
-    # MISSION LENDERS. CDFIs, nonprofit loan funds and community
-    # development banks. they run capital-readiness sessions that
-    # commercial banks charge for, and they are in every state.
-    # ============================================================
-    {"name": "Opportunity Finance Network", "url": "https://www.ofn.org/events/"},
-    {"name": "CDFI Fund", "url": "https://www.cdfifund.gov/news/events"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "LISC", "url": "https://www.lisc.org/our-resources/events/"},
-    {"name": "Kiva", "url": "https://www.kiva.org/borrow/events"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Grameen America", "url": "https://www.grameenamerica.org/events"},
-    {"name": "Native CDFI Network", "url": "https://nativecdfi.net/events/"},
-    {"name": "Community Development Bankers Association", "url": "https://www.cdbanks.org/events"},
-
-    # ============================================================
-    # LIBRARIES. well-structured calendars, different flavour of event.
-    # ============================================================
-    # {"name": "New York Public Library", "url": "https://www.nypl.org/events/calendar"},
-    # {"name": "Brooklyn Public Library", "url": "https://www.bklynlibrary.org/calendar"},
-
-    # ============================================================
-    # CORPORATE PROGRAMMES. all verified as running free live sessions.
-    # they are lead generation for the sponsor, which sits against the
-    # page's "no sales pitch" line, so weigh each one. the ones below
-    # teach rather than demo, which is the test worth applying.
-    #
-    # coverage against the four stages:
-    #   STARTING  Amazon ASBA (Start track), Grow with Google, SCORE
-    #   GROWING   Verizon Digital Ready, Salesforce, HubSpot, Meta
-    #   SCALING   Amazon ASBA (Launch), Intuit, Square, Shopify
-    #   LEADING   CO by US Chamber, Goldman 10KSB, LinkedIn
-    # ============================================================
-    {"name": "Amazon Small Business Academy", "url": "https://www.amazon.com/smallbusinessacademy"},
-    {"name": "Verizon Small Business Digital Ready", "url": "https://digitalready.verizonwireless.com/events"},
-    {"name": "Grow with Google", "url": "https://grow.google/events/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Salesforce Small Business", "url": "https://www.salesforce.com/small-business/events/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Intuit QuickBooks", "url": "https://quickbooks.intuit.com/r/webinars/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "HubSpot Academy", "url": "https://academy.hubspot.com/events"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "Meta Boost", "url": "https://www.facebook.com/business/boost/events"},
-    {"name": "Goldman Sachs 10,000 Small Businesses", "url": "https://www.goldmansachs.com/citizenship/10000-small-businesses/US/events/"},
-    # 404 on 2026-08-31, needs a current URL:
-    # {"name": "LinkedIn for Small Business", "url": "https://www.linkedin.com/smallbusiness/events"},
-
-    # not yet confirmed as running a public events calendar. probe first.
-    # {"name": "US Bank", "url": "https://www.usbank.com/business-banking/business-resources.html"},
-    # {"name": "PayPal", "url": "https://www.paypal.com/us/brc/events"},
-    # {"name": "Square", "url": "https://squareup.com/us/en/townsquare/events"},
-    # {"name": "Wells Fargo", "url": "https://www.wellsfargo.com/biz/business-resources/"},
-]
+SOURCES = load_sources()
 
 # topic keyword -> label, first match wins, checked in order
 TOPIC_RULES = [
@@ -385,6 +272,7 @@ def from_jsonld(soup: BeautifulSoup, source: dict) -> list[dict]:
                     "topic": "",
                     "url": block.get("url") or source["url"],
                     "summary": clean(block.get("description", "")),
+                    "location": name_of(block.get("location")),
                 }
             )
     return found
@@ -441,30 +329,73 @@ def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
     return found
 
 
-def scrape(source: dict) -> list[dict]:
-    try:
-        resp = fetch(source["url"])
-    except requests.RequestException as err:
-        log(f"  ! {source['name']}: fetch failed ({err})")
-        return []
-
-    soup = BeautifulSoup(resp.text, "html.parser")
-
-    # a source may name a dedicated parser. json-ld is still tried first,
-    # because when a site publishes it, it is always the better data.
+def parse_page(soup: BeautifulSoup, source: dict) -> tuple[list[dict], str]:
+    """json-ld first, then the source's named parser, then headings."""
     events = from_jsonld(soup, source)
-    how = "json-ld"
-    if not events:
-        which = source.get("parser")
-        if which == "sba":
-            events, how = from_sba(soup, source), "sba"
-        elif which == "neoserra":
-            events, how = from_neoserra(soup, source), "neoserra"
-        else:
-            events, how = from_headings(soup, source), "headings"
+    if events:
+        return events, "json-ld"
+    which = source.get("parser")
+    if which == "sba":
+        return from_sba(soup, source), "sba"
+    if which == "neoserra":
+        return from_neoserra(soup, source), "neoserra"
+    return from_headings(soup, source), "headings"
 
-    log(f"  {source['name']}: {len(events)} raw via {how}")
-    return events
+
+def paged_url(url: str, page: int) -> str:
+    """Page two onwards of a listing.
+
+    Only Drupal-style ?page=N is handled, which is what the SBA aggregators
+    use. A source that paginates differently should get its own parser rather
+    than a guess here.
+    """
+    if page == 0:
+        return url
+    join = "&" if "?" in url else "?"
+    return f"{url}{join}page={page}"
+
+
+def scrape(source: dict) -> list[dict]:
+    """Fetch a source and return its events.
+
+    A source may declare "pages" to walk a paginated listing. The SBA
+    aggregators carry over a thousand events between them, and reading only the
+    first page threw almost all of it away. Paging stops at the first page that
+    returns nothing new, so a source that runs out at page four does not cost
+    twelve requests.
+    """
+    pages = int(source.get("pages", 1))
+    collected: list[dict] = []
+    how = "?"
+    seen_urls: set[str] = set()
+
+    for page in range(pages):
+        try:
+            resp = fetch(paged_url(source["url"], page))
+        except requests.RequestException as err:
+            if page == 0:
+                log(f"  ! {source['name']}: fetch failed ({err})")
+                return []
+            break
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+        got, how = parse_page(soup, source)
+
+        fresh = [e for e in got if e.get("url") not in seen_urls]
+        if not fresh:
+            break
+        seen_urls.update(e.get("url") for e in fresh)
+        collected.extend(fresh)
+
+    # Every event carries where it came from, so the page can group by kind of
+    # host and by state without guessing from the host name.
+    for e in collected:
+        e.setdefault("category", source.get("category", ""))
+        e.setdefault("scope", source.get("scope", ""))
+
+    pagenote = f" over {pages} pages" if pages > 1 else ""
+    log(f"  {source['name']}: {len(collected)} raw via {how}{pagenote}")
+    return collected
 
 
 def from_sba(soup: BeautifulSoup, source: dict) -> list[dict]:
@@ -498,9 +429,10 @@ def from_sba(soup: BeautifulSoup, source: dict) -> list[dict]:
             continue
 
         blob = row.get_text(" ", strip=True)
-        # the aggregator lists in-person events too, so drop anything not online
-        if not re.search(r"\bonline\b|\bvirtual\b|\bwebinar\b", blob, re.I):
-            continue
+        # The aggregator lists in-person events too. Those used to be dropped
+        # here. They are kept now and labelled by mode instead, because an SBA
+        # district office workshop three towns over is exactly the kind of
+        # event this page exists to surface.
 
         host = source["name"]
         h = row.find(attrs={"class": re.compile(r"host|organiz", re.I)})
@@ -565,16 +497,42 @@ def from_neoserra(soup: BeautifulSoup, source: dict) -> list[dict]:
     return out
 
 
+# Hosts whose events are streamed as a matter of course, whether or not the
+# listing happens to say so. 1 Million Cups chapters pitch in a room and put it
+# on Facebook Live every time; waiting for each listing to mention that would
+# lose most of them.
+ALWAYS_STREAMS = {"1 Million Cups"}
+
+
+def mode_of(blob: str, streams: bool) -> str:
+    """Online, Livestream or In person, from how the host describes it.
+
+    Livestream is deliberately its own answer rather than being folded into
+    Online. Someone choosing between them cares: a livestream is a room you are
+    watching, an online event is a room you are in.
+    """
+    inperson = bool(INPERSON.search(blob))
+    if streams and inperson:
+        return "Livestream"
+    if ONLINE.search(blob):
+        return "Online"
+    if streams:
+        return "Livestream"
+    if inperson:
+        return "In person"
+    return ""
+
+
 def keep(event: dict, now: datetime, horizon: datetime) -> bool:
-    blob = f"{event['title']} {event['summary']}"
-    # paid, recorded and big-ticket events are never allowed
+    blob = f"{event['title']} {event['summary']} {event.get('location', '')}"
+    streams = (event.get("host") in ALWAYS_STREAMS) or bool(LIVESTREAM.search(blob))
+    # paid, recorded and fundraising events are never allowed
     if PAID.search(blob) or REPLAY.search(blob) or BIGEVENT.search(blob):
         return False
 
-    if INPERSON.search(blob):
-        # a room with a camera in it is still reachable from anywhere
-        if not (ALLOW_INPERSON or LIVESTREAM.search(blob)):
-            return False
+    event["mode"] = event.get("mode") or mode_of(blob, streams)
+    if INPERSON.search(blob) and not ALLOW_INPERSON and not streams:
+        return False
     try:
         when = dateparse.parse(event["start"])
     except (ValueError, OverflowError, TypeError):
@@ -592,6 +550,10 @@ def normalize(event: dict) -> dict:
     event["topic"] = event["topic"] or classify(f"{event['title']} {event['summary']}")
     if not INCLUDE_SUMMARIES:
         event["summary"] = ""
+    event.setdefault("mode", "")
+    event.setdefault("location", "")
+    event.setdefault("category", "")
+    event.setdefault("scope", "")
     return event
 
 
@@ -634,16 +596,7 @@ def probe() -> int:
             continue
 
         soup = BeautifulSoup(r.text, "html.parser")
-        got = from_jsonld(soup, src)
-        how = "json-ld"
-        if not got:
-            which = src.get("parser")
-            if which == "sba":
-                got, how = from_sba(soup, src), "sba"
-            elif which == "neoserra":
-                got, how = from_neoserra(soup, src), "neoserra"
-            else:
-                got, how = from_headings(soup, src), "headings"
+        got, how = parse_page(soup, src)
 
         now = datetime.now(timezone.utc)
         horizon = now + timedelta(days=HORIZON_DAYS)
