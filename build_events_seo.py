@@ -288,6 +288,243 @@ BADGE_CSS = """
 """
 
 
+BROWSER_CSS = r"""
+.kx-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;max-width:1100px;margin:0 auto 26px;padding:0 24px}
+.kx-controls input[type=search],.kx-controls select{font-family:'Space Grotesk',system-ui,sans-serif;font-size:13px;color:#EFE9DF;background:rgba(239,233,223,.05);border:1px solid rgba(239,233,223,.18);border-radius:999px;padding:11px 16px;outline:none;transition:border-color .15s ease,background .15s ease}
+.kx-controls input[type=search]{flex:1 1 320px;min-width:220px}
+.kx-controls input[type=search]::placeholder{color:#8B857C}
+.kx-controls input[type=search]:focus,.kx-controls select:focus{border-color:rgba(214,178,102,.7);background:rgba(239,233,223,.09)}
+.kx-controls select{cursor:pointer;-webkit-appearance:none;appearance:none;padding-right:34px;background-image:linear-gradient(45deg,transparent 50%,#9B958B 50%),linear-gradient(135deg,#9B958B 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.kx-controls select option{background:#14120F;color:#EFE9DF}
+.kx-clear{font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9B958B;background:none;border:none;cursor:pointer;padding:11px 6px}
+.kx-clear:hover{color:#EFE9DF}
+/* The selected pill used to change only its border, which on a dark page is
+   almost invisible. Selection is a solid fill now: one glance tells you what
+   you are looking at. */
+#kx-filters .kx-store[aria-pressed="true"]{background:#D6B266;border-color:#D6B266;color:#14120F;font-weight:600}
+#kx-filters .kx-store[aria-pressed="true"] .kx-n{color:#14120F;opacity:.65}
+#kx-filters .kx-store{transition:background .15s ease,color .15s ease,border-color .15s ease}
+.kx-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#D6B266;text-decoration:none;border-bottom:1px solid rgba(214,178,102,.35);padding-bottom:2px}
+.kx-go:hover{color:#EFE9DF;border-bottom-color:#EFE9DF}
+.kx-hits{text-align:center;color:#9B958B;font-size:13px;margin:0 0 22px}
+"""
+
+BROWSER_JS = r"""
+/* The events browser.
+
+   This replaces the original topic-chip filter for one reason: the chips were
+   the only way to narrow 842 events, they were rebuilt from whatever word each
+   host happened to use for a topic, and there were 47 of them. Someone looking
+   for a free online funding session in Ohio had no way to say so.
+
+   It reads events.json itself rather than reaching into the page's variables,
+   so it stands on its own and cannot be broken by a change elsewhere. */
+(function(){
+  var MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var FULL=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var STROKE=['#D6B266','#8FD4B6','#C48E7A'];
+  var all=[],view=[],topic='All';
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+  function costOf(e){
+    var c=(e.cost||'').trim();
+    if(!c) return 'Cost not listed';
+    if(/no fee|no cost|free/i.test(c)) return 'No cost';
+    return c;
+  }
+  function isFree(e){return /no fee|no cost|free/i.test(e.cost||'');}
+  function when(e){var d=new Date(e.start);return isNaN(d)?null:d;}
+
+  function time(d){
+    var h=d.getHours(),m=d.getMinutes();
+    if(!h&&!m) return '';
+    var ap=h>=12?'pm':'am',hh=h%12||12;
+    return hh+(m?':'+String(m).padStart(2,'0'):'')+ap;
+  }
+
+  function blobOf(e){
+    return ((e.title||'')+' '+(e.host||'')+' '+(e.summary||'')+' '+
+            (e.location||'')+' '+(e.topic||'')+' '+(e.host_topic||'')+' '+
+            (e.scope||'')).toLowerCase();
+  }
+
+  function card(e,i){
+    var d=when(e),bits=[];
+    bits.push('<span class="kx-badge kx-mode-'+esc((e.mode||'other').toLowerCase().replace(/ /g,'-'))+'">'+esc(e.mode||'Check with host')+'</span>');
+    if(e.location&&!/online/i.test(e.location)){
+      bits.push('<span class="kx-badge kx-where">'+esc(e.location)+'</span>');
+    }
+    bits.push('<span class="kx-badge kx-cost">'+esc(costOf(e))+'</span>');
+    if(e.scope&&e.scope!=='National'){bits.push('<span class="kx-badge">'+esc(e.scope)+'</span>');}
+    var t=time(d);
+    return '<article class="kx-ev" data-i="'+i+'" data-topic="'+esc(e.topic||'')+'">'+
+      '<div class="rough" aria-hidden="true"></div>'+
+      '<div class="kx-num" style="-webkit-text-stroke:1.5px '+STROKE[i%3]+';">'+d.getDate()+'</div>'+
+      '<div class="kx-mon">'+MONTHS[d.getMonth()]+'</div>'+
+      '<h3><a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a></h3>'+
+      '<p>'+esc((e.summary||'').slice(0,180))+'</p>'+
+      '<div class="kx-meta">'+esc(e.host)+' &middot; '+esc(FULL[d.getMonth()]+' '+d.getDate())+(t?' &middot; '+esc(t):'')+'</div>'+
+      '<div class="kx-badges">'+bits.join('')+'</div>'+
+      '<a class="kx-go" href="'+esc(e.url)+'" target="_blank" rel="noopener">Open event page &rarr;</a>'+
+      '</article>';
+  }
+
+  function apply(){
+    var q=(document.getElementById('kx-q').value||'').trim().toLowerCase();
+    var type=document.getElementById('kx-f-type').value;
+    var cost=document.getElementById('kx-f-cost').value;
+    var state=document.getElementById('kx-f-state').value;
+    var terms=q.split(/\s+/).filter(Boolean);
+
+    view=all.filter(function(e){
+      if(topic!=='All'&&e.topic!==topic) return false;
+      if(type&&(e.mode||'')!==type) return false;
+      if(cost==='free'&&!isFree(e)) return false;
+      if(cost==='unknown'&&(e.cost||'').trim()) return false;
+      if(state&&e.scope!==state) return false;
+      if(terms.length){
+        var b=e._blob;
+        for(var i=0;i<terms.length;i++){ if(b.indexOf(terms[i])<0) return false; }
+      }
+      return true;
+    });
+
+    var grid=document.getElementById('kx-grid');
+    grid.innerHTML=view.length
+      ? view.slice(0,300).map(card).join('')
+      : '<p style="grid-column:1/-1;text-align:center;color:#9B958B;font-size:15px;">Nothing matches those filters yet. Clearing one of them usually helps.</p>';
+
+    var hits=document.getElementById('kx-hits');
+    if(hits){
+      hits.textContent=view.length===0?'No events match'
+        :(view.length===1?'1 event':view.length+' events')+
+         (view.length>300?', showing the first 300':'');
+    }
+    var c=document.getElementById('kx-count');
+    if(c) c.textContent=view.length;
+    var none=document.getElementById('kx-none');
+    if(none) none.hidden=true;
+  }
+
+  function pills(){
+    var box=document.getElementById('kx-filters');
+    if(!box) return;
+    var counts={},order=[];
+    all.forEach(function(e){
+      var t=e.topic||'Business';
+      if(counts[t]===undefined){counts[t]=0;order.push(t);}
+      counts[t]++;
+    });
+    order.sort(function(a,b){return counts[b]-counts[a];});
+    var list=['All'].concat(order);
+    counts['All']=all.length;
+    box.innerHTML=list.map(function(t){
+      return '<button type="button" class="kx-store" aria-pressed="'+(t===topic)+
+             '" data-topic="'+esc(t)+'">'+esc(t)+
+             '<span class="kx-n" aria-hidden="true">'+counts[t]+'</span></button>';
+    }).join('');
+    box.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click',function(){
+        topic=b.getAttribute('data-topic');
+        box.querySelectorAll('button').forEach(function(o){
+          o.setAttribute('aria-pressed',String(o===b));
+        });
+        apply();
+      });
+    });
+  }
+
+  function controls(){
+    var grid=document.getElementById('kx-grid');
+    if(!grid||document.getElementById('kx-q')) return;
+    var states=[],modes=[];
+    all.forEach(function(e){
+      if(e.scope&&states.indexOf(e.scope)<0) states.push(e.scope);
+      if(e.mode&&modes.indexOf(e.mode)<0) modes.push(e.mode);
+    });
+    states.sort(); modes.sort();
+
+    var bar=document.createElement('div');
+    bar.className='kx-controls';
+    bar.innerHTML=
+      '<input type="search" id="kx-q" aria-label="Search events" placeholder="Search by title, host, topic or place">'+
+      '<select id="kx-f-type" aria-label="Format"><option value="">Any format</option>'+
+        modes.map(function(m){return '<option value="'+esc(m)+'">'+esc(m)+'</option>';}).join('')+'</select>'+
+      '<select id="kx-f-cost" aria-label="Cost"><option value="">Any cost</option>'+
+        '<option value="free">No cost</option><option value="unknown">Cost not listed</option></select>'+
+      '<select id="kx-f-state" aria-label="Where"><option value="">Anywhere</option>'+
+        states.map(function(s){return '<option value="'+esc(s)+'">'+esc(s)+'</option>';}).join('')+'</select>'+
+      '<button type="button" class="kx-clear" id="kx-clear">Clear</button>';
+    var hits=document.createElement('p');
+    hits.className='kx-hits'; hits.id='kx-hits';
+    grid.parentNode.insertBefore(bar,grid);
+    grid.parentNode.insertBefore(hits,grid);
+
+    document.getElementById('kx-q').addEventListener('input',apply);
+    ['kx-f-type','kx-f-cost','kx-f-state'].forEach(function(id){
+      document.getElementById(id).addEventListener('change',apply);
+    });
+    document.getElementById('kx-clear').addEventListener('click',function(){
+      document.getElementById('kx-q').value='';
+      ['kx-f-type','kx-f-cost','kx-f-state'].forEach(function(id){
+        document.getElementById(id).value='';
+      });
+      topic='All';
+      var box=document.getElementById('kx-filters');
+      if(box) box.querySelectorAll('button').forEach(function(o){
+        o.setAttribute('aria-pressed',String(o.getAttribute('data-topic')==='All'));
+      });
+      apply();
+    });
+  }
+
+  function boot(events){
+    var now=Date.now();
+    all=events.filter(function(e){
+      var d=new Date(e.start); return !isNaN(d)&&d.getTime()>now;
+    }).sort(function(a,b){return new Date(a.start)-new Date(b.start);});
+    all.forEach(function(e){ e._blob=blobOf(e); });
+    var seo=document.getElementById('kx-seo');
+    if(seo) seo.hidden=true;
+    pills(); controls(); apply();
+  }
+
+  function start(){
+    fetch('events.json',{cache:'no-store'}).then(function(r){return r.json();})
+      .then(function(j){ boot(j.events||[]); })
+      .catch(function(){ /* the plain list stays on screen, which is the point of it */ });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(start,80);});
+  } else { setTimeout(start,80); }
+})();
+"""
+
+BROWSER_START = "<!-- kx:browser:start -->"
+BROWSER_END = "<!-- kx:browser:end -->"
+
+
+def add_browser(page: str) -> str:
+    """Install the search-and-filter browser in place of the topic-chip filter.
+
+    Injected as one block between markers so it can be refreshed or removed
+    whole, and so running this script twice does not leave two copies behind.
+    """
+    block = (BROWSER_START + "\n<style>" + BROWSER_CSS + "</style>\n<script>"
+             + BROWSER_JS + "</script>\n" + BROWSER_END)
+    if BROWSER_START in page and BROWSER_END in page:
+        page = re.sub(re.escape(BROWSER_START) + r"[\s\S]*?" + re.escape(BROWSER_END),
+                      lambda _: block, page, count=1)
+        note(True, "events browser refreshed")
+    else:
+        page = page.replace("</body>", block + "\n</body>", 1)
+        note(True, "events browser installed")
+    return page
+
+
 def touch_sitemap(updated: str) -> None:
     """Move the events page's lastmod to the day the list was actually rebuilt.
 
@@ -378,6 +615,7 @@ def main() -> int:
         note(bool(n), "hero copy")
 
     page = patch_card_template(page)
+    page = add_browser(page)
 
     if "function costLabel" not in page:
         page = page.replace("function stageOf(e){", HELPERS + "\nfunction stageOf(e){", 1)
