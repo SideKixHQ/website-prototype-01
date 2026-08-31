@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "refresh rebuilds events.json. probe only reports what every source returns and writes nothing."
+        description: "refresh rebuilds events.json and the page. probe only reports what every source returns and writes nothing."
         type: choice
         options: [refresh, probe]
         default: refresh
@@ -33,7 +33,7 @@ jobs:
 
       # Probe reads every source and reports what it returns without touching
       # events.json. Run this after editing sources.json, and run it from here
-      # rather than from a laptop: the runner's IP and headers are what the
+      # rather than from a laptop: the runner IP and headers are what the
       # weekly job actually uses, so a source that works locally but 403s in CI
       # shows up where it matters.
       - name: Probe sources
@@ -44,15 +44,23 @@ jobs:
         if: ${{ inputs.mode != 'probe' }}
         run: python scrape_events.py ${{ inputs.allow_shrink && '--allow-shrink' || '' }}
 
+      # events.html is drawn entirely by JavaScript, so a crawler that does not
+      # run scripts sees a page with no events on it. This writes the next few
+      # weeks into the HTML as a plain list with Event structured data beside
+      # it, and keeps the page copy honest about in-person and cost.
+      - name: Rebuild page copy and structured data
+        if: ${{ inputs.mode != 'probe' }}
+        run: python build_events_seo.py
+
       - name: Commit if changed
         if: ${{ inputs.mode != 'probe' }}
         run: |
-          if git diff --quiet events.json; then
+          if git diff --quiet events.json events.html; then
             echo "No change."
             exit 0
           fi
           git config user.name "events-bot"
           git config user.email "actions@github.com"
-          git add events.json
+          git add events.json events.html
           git commit -m "Refresh events ($(date -u +%Y-%m-%d))"
           git push
