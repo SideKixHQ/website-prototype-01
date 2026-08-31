@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-08-31 14:08:28 cta-trace -->
+<!-- kx-build 2026-08-31 21:25:19 faq-email -->
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -1339,6 +1339,24 @@ main{overflow-x:clip}
   #kx-orbtray{top:84px !important}
 }
 </style>
+<style id="kx-faqmail">
+/* the address in plain sight, and a copy button, so the block still works for
+   anyone whose browser has no mail client wired up */
+.faqmail{margin:18px 0 0 !important;font-size:14px;color:#9C968D;
+  display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.faqaddr{display:inline !important;min-height:0 !important;padding:0 !important;
+  border:none !important;background:none !important;
+  color:#D4A856 !important;font-size:14px !important;text-decoration:underline;
+  text-underline-offset:3px}
+.faqaddr:hover{color:#F3E4A8 !important}
+.faqcopy{min-height:32px;padding:0 12px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(212,168,86,.4);background:rgba(212,168,86,.06);
+  font-family:var(--util);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#C8BFA9;line-height:30px;
+  transition:background .25s,border-color .25s,color .25s}
+.faqcopy:hover{background:#D4A856;border-color:#F3E4A8;color:#1B1400}
+.faqcopy[data-done]{background:#D4A856;border-color:#F3E4A8;color:#1B1400}
+</style>
 </head>
 <body>
 <div aria-hidden="true" id="kx-desat"></div>
@@ -1370,6 +1388,10 @@ main{overflow-x:clip}
 <div class="faqfoot">
 <p>Still stuck on something?</p>
 <a href="mailto:support@sidekixhq.com?subject=Question%20about%20SideKix">Ask the team</a>
+<p class="faqmail">Or write to
+    <a class="faqaddr" href="mailto:support@sidekixhq.com?subject=Question%20about%20SideKix">support@sidekixhq.com</a>
+<button class="faqcopy" data-copy="support@sidekixhq.com" type="button">Copy</button>
+</p>
 </div>
 </section>
 </main>
@@ -2044,6 +2066,34 @@ try{
   document.addEventListener('pointerout',function(e){
     var t=e.target;
     if(t&&t.closest&&t.closest('.faqbar a, .faqsec')) offSoon();
+  });
+})();
+</script>
+<script id="kx-faqcopy">
+/* copy the address to the clipboard, with a fallback for browsers that do not
+   expose the async clipboard on an insecure origin */
+(function(){
+  document.addEventListener('click', function(e){
+    var b = e.target && e.target.closest ? e.target.closest('[data-copy]') : null;
+    if(!b) return;
+    e.preventDefault();
+    var text = b.getAttribute('data-copy'), done = function(){
+      var was = b.textContent;
+      b.textContent = 'Copied';
+      b.setAttribute('data-done','1');
+      setTimeout(function(){ b.textContent = was; b.removeAttribute('data-done'); }, 1600);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(); });
+    } else { fallback(); }
+    function fallback(){
+      var t=document.createElement('textarea');
+      t.value=text; t.setAttribute('readonly','');
+      t.style.position='absolute'; t.style.left='-9999px';
+      document.body.appendChild(t); t.select();
+      try{ document.execCommand('copy'); done(); }catch(err){}
+      document.body.removeChild(t);
+    }
   });
 })();
 </script>
