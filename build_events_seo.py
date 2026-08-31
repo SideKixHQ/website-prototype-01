@@ -307,6 +307,29 @@ BROWSER_CSS = r"""
 .kx-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#D6B266;text-decoration:none;border-bottom:1px solid rgba(214,178,102,.35);padding-bottom:2px}
 .kx-go:hover{color:#EFE9DF;border-bottom-color:#EFE9DF}
 .kx-hits{text-align:center;color:#9B958B;font-size:13px;margin:0 0 22px}
+
+/* Phones.
+
+   The grid already collapsed to one column below 640px, but a 1fr track keeps
+   an automatic minimum sized to its content, so each card resolved to 515px
+   inside a 348px column and 147px of every card sat off the right edge,
+   clipped. minmax(0,1fr) lets the track shrink to the screen.
+
+   The rest is thumbs: iOS zooms the whole page when a focused input is under
+   16px and never zooms back, and the card's main action was a 19px-tall line
+   of text where 44px is the floor. */
+@media (max-width:640px){
+  #kx-grid{grid-template-columns:minmax(0,1fr) !important}
+  .kx-controls{padding:0 20px;gap:8px}
+  .kx-controls input[type=search]{flex:1 1 100%;font-size:16px;padding:13px 16px}
+  .kx-controls select{flex:1 1 calc(50% - 4px);min-width:0;font-size:16px;padding:13px 30px 13px 14px}
+  .kx-clear{min-height:44px;padding:12px 10px;flex:0 0 auto}
+  .kx-go{min-height:44px;align-items:flex-end;padding-bottom:12px;margin-top:8px}
+  .kx-badge{font-size:11px;padding:6px 10px}
+  .kx-badge.kx-where{max-width:100%}
+  .kx-hits{margin-bottom:16px}
+  #kx-seo{padding:0 20px 40px}
+}
 """
 
 BROWSER_JS = r"""
