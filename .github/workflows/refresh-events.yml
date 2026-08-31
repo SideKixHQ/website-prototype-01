@@ -4,6 +4,16 @@ on:
   schedule:
     - cron: "0 11 * * 1"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "refresh rebuilds events.json. probe only reports what every source returns and writes nothing."
+        type: choice
+        options: [refresh, probe]
+        default: refresh
+      allow_shrink:
+        description: "Write even when the result is smaller than the file already published"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -21,10 +31,21 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Probe reads every source and reports what it returns without touching
+      # events.json. Run this after editing sources.json, and run it from here
+      # rather than from a laptop: the runner's IP and headers are what the
+      # weekly job actually uses, so a source that works locally but 403s in CI
+      # shows up where it matters.
+      - name: Probe sources
+        if: ${{ inputs.mode == 'probe' }}
+        run: python scrape_events.py --probe
+
       - name: Scrape
-        run: python scrape_events.py
+        if: ${{ inputs.mode != 'probe' }}
+        run: python scrape_events.py ${{ inputs.allow_shrink && '--allow-shrink' || '' }}
 
       - name: Commit if changed
+        if: ${{ inputs.mode != 'probe' }}
         run: |
           if git diff --quiet events.json; then
             echo "No change."
