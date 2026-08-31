@@ -105,6 +105,15 @@ PAID = re.compile(
     r"|\bfees?\b|\bpaid\b|\bpricing\b|\bcost[s]?\s+\$?\d"
     r"|\bticket(s|ed)?\b|\bregistration fee\b|\bmembers only\b",
     re.I)
+# Said out loud, this is why twenty-five states published nothing: every
+# eCenterDirect card carries a price flag, and the most common value is
+# "No Fee". PAID matched the word "Fee" inside it and threw away the free
+# events along with the paid ones. Negations are neutralised before the paid
+# test runs, rather than trying to write one regex that means both things.
+NOFEE = re.compile(
+    r"\bno[- ](?:fee|cost|charge)s?\b|\bfree of charge\b|\bfee:?\s*(?:none|0|\$0)\b",
+    re.I)
+
 REPLAY = re.compile(r"on[- ]demand|\brecorded\b|\breplay\b|\bwatch anytime\b", re.I)
 INPERSON = re.compile(r"in[- ]person|\bonsite\b|\bon-site\b", re.I)
 # Conferences, expos and summits used to be rejected wholesale. Many of the
@@ -469,10 +478,24 @@ def _neoserra_cards(soup: BeautifulSoup, source: dict) -> list[dict]:
             continue
         title = " ".join(title_el.get_text(" ", strip=True).split())
 
+        # The visible time reads like "September 8, 2026 3:00-5:00pm CENTRAL".
+        # Handed to a date parser whole, that raises and the event is dropped,
+        # which is the second reason a shelf of live events came back empty.
+        # The date and the start time are lifted out and the rest discarded.
         when = ""
         t = card.find("time")
         if t:
-            when = t.get("datetime") or " ".join(t.get_text(" ", strip=True).split())
+            when = (t.get("datetime") or "").strip()
+            if not when:
+                raw = " ".join(t.get_text(" ", strip=True).split())
+                d = re.search(r"([A-Z][a-z]{2,8}\.?\s+\d{1,2},?\s+\d{4})", raw)
+                if d:
+                    when = d.group(1)
+                    c = re.search(r"(\d{1,2}:\d{2})\s*(?:[-–]|to)?\s*[\d:]*\s*([AaPp])\.?[Mm]", raw)
+                    if c:
+                        when = f"{when} {c.group(1)}{c.group(2).lower()}m"
+                else:
+                    when = raw
         if not when:
             continue
 
@@ -634,8 +657,10 @@ def mode_of(blob: str, streams: bool) -> str:
 def keep(event: dict, now: datetime, horizon: datetime) -> bool:
     blob = f"{event['title']} {event['summary']} {event.get('location', '')}"
     streams = (event.get("host") in ALWAYS_STREAMS) or bool(LIVESTREAM.search(blob))
-    # paid, recorded and fundraising events are never allowed
-    if PAID.search(blob) or REPLAY.search(blob) or BIGEVENT.search(blob):
+    # "No Fee" is a statement that the event is free, so the negation is
+    # removed before asking whether anything here looks like a price.
+    priced = NOFEE.sub(" free ", blob)
+    if PAID.search(priced) or REPLAY.search(blob) or BIGEVENT.search(blob):
         return False
 
     event["mode"] = event.get("mode") or mode_of(blob, streams)
