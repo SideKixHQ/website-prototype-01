@@ -266,6 +266,11 @@ function hideSeoList(){
 """
 
 BADGE_CSS = """
+/* The plain list is the page for anyone whose browser is not running the
+   script, which includes most answer engines. A browser that IS running it
+   gets the interactive grid instead and never sees this, with no flash of it
+   first, because the class lands before the body is parsed. */
+.kx-js #kx-seo{display:none}
 #kx-seo{max-width:1100px;margin:0 auto;padding:0 56px 60px;color:#9B958B;font-size:14px;line-height:1.7}
 #kx-seo h2{color:#EFE9DF;font-size:20px;margin:0 0 10px}
 #kx-seo ul{list-style:none;padding:0;margin:0}
@@ -379,6 +384,14 @@ def main() -> int:
         note("function costLabel" in page, "card helpers")
     else:
         note(True, "card helpers (already present)")
+
+    if "kx-js" not in page:
+        page = page.replace(
+            "</head>",
+            "<script>document.documentElement.className+=' kx-js';</script>\n</head>", 1)
+        note(True, "no-script fallback flag")
+    else:
+        note(True, "no-script fallback flag (already present)")
 
     if "#kx-seo{" not in page:
         page = page.replace("</head>", f"<style>{BADGE_CSS}</style>\n</head>", 1)
