@@ -364,7 +364,10 @@ BROWSER_JS = r"""
       '<div class="kx-num" style="-webkit-text-stroke:1.5px '+STROKE[i%3]+';">'+d.getDate()+'</div>'+
       '<div class="kx-mon">'+MONTHS[d.getMonth()]+'</div>'+
       '<h3><a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a></h3>'+
-      '<p>'+esc((e.summary||'').slice(0,180))+'</p>'+
+      /* Only show a description when there is one. Where the host publishes
+         nothing, the listing row leaves behind a scrap like "Online Meeting
+         (Live)", which the badges below already say. */
+      ((e.summary||'').length>45 ? '<p>'+esc(e.summary.slice(0,200))+'</p>' : '')+
       '<div class="kx-meta">'+esc(e.host)+' &middot; '+esc(FULL[d.getMonth()]+' '+d.getDate())+(t?' &middot; '+esc(t):'')+'</div>'+
       '<div class="kx-badges">'+bits.join('')+'</div>'+
       '<a class="kx-go" href="'+esc(e.url)+'" target="_blank" rel="noopener">Open event page &rarr;</a>'+
