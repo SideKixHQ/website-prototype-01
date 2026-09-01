@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-01 13:15:02 tier-order -->
+<!-- kx-build 2026-09-01 14:36:18 nav-colours -->
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -2959,6 +2959,236 @@ main{overflow-x:clip}
 
   .mem .tiers .tier[data-tier="premium"],
   .tiers .tier[data-tier="premium"]{order:3 !important}
+}
+</style>
+<style id="kx-mainnav-hover">
+/* ---- hover: the word turns gold and a gold rule slides under it ----
+   As written, hover only changed the colour to cream and there was no
+   underline at all; the rule under the current page was a separate thing that
+   never appeared on hover. Both now happen.
+
+   The rule is drawn on the link itself with a scaled pseudo-element, so it is
+   exactly as wide as the word rather than a fixed length, and it grows from
+   the left rather than appearing all at once. */
+
+.kx-links a,.kx-links span{
+  position:relative;
+  transition:color .22s ease}
+
+.kx-links a::after{
+  content:"";
+  position:absolute;
+  left:2px;right:2px;
+  bottom:8px;
+  height:1px;
+  background:var(--gold,#D4A856);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s cubic-bezier(.16,1,.3,1);
+  pointer-events:none}
+
+.kx-links a:hover{color:var(--gold,#D4A856)}
+.kx-links a:hover::after{transform:scaleX(1)}
+
+/* keyboard users get the same feedback, not just the focus ring */
+.kx-links a:focus-visible{color:var(--gold,#D4A856)}
+.kx-links a:focus-visible::after{transform:scaleX(1)}
+
+/* the current page keeps its own rule, always on and slightly brighter */
+.kx-links span::after{
+  content:"";
+  position:absolute;
+  left:2px;right:2px;
+  bottom:8px;
+  height:1px;
+  background:var(--gold-pale,#F3E4A8);
+  opacity:.85;
+  transform:none}
+
+@media(max-width:760px){
+  /* in the stacked panel a full-width rule under a row reads as a divider,
+     so hover moves to a gold left edge and the colour change instead */
+  .kx-links a::after,.kx-links span::after{display:none}
+  .kx-links a,.kx-links span{
+    border-left:2px solid transparent;
+    transition:color .22s ease,border-color .22s ease,background .22s ease}
+  .kx-links a:hover,.kx-links a:focus-visible{
+    color:var(--gold,#D4A856);
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+  .kx-links span{
+    color:var(--gold,#D4A856);
+    border-left-color:var(--gold-pale,#F3E4A8);
+    background:rgba(212,168,86,.05)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .kx-links a::after{transition:none}
+  .kx-links a,.kx-links span{transition:none}
+}
+</style>
+<style id="kx-mainnav-current">
+/* ---- only the current page is highlighted ----
+   Three separate causes were making an item look permanently lit.
+
+   1. On a touch screen :hover sticks to whatever you last tapped, so after
+      tapping a menu item it stayed gold and underlined. Hover rules are now
+      inside @media(hover:hover), so they only apply on devices that really
+      hover. Touch gets :active instead, which clears itself.
+
+   2. The stacked panel gives every row a 2px transparent left border so the
+      hover edge does not shift the text. Written as a shorthand, the colour
+      resolved to currentColor in some engines, which drew a coloured edge on
+      every row. The colour is now set on its own line.
+
+   3. The gold treatment is keyed to [aria-current="page"] rather than to the
+      element being a span, so there is one condition deciding it. */
+
+/* nothing is lit unless it is the current page */
+.kx-links a{color:#BDB49F}
+.kx-links a::after{transform:scaleX(0)}
+
+@media(hover:hover){
+  .kx-links a:hover{color:var(--gold,#D4A856)}
+  .kx-links a:hover::after{transform:scaleX(1)}
+}
+.kx-links a:focus-visible{color:var(--gold,#D4A856)}
+.kx-links a:focus-visible::after{transform:scaleX(1)}
+/* a tap lights it for as long as the finger is down, then releases */
+.kx-links a:active{color:var(--gold,#D4A856)}
+
+/* the current page, and only the current page */
+.kx-links [aria-current="page"]{color:var(--gold,#D4A856)}
+.kx-links [aria-current="page"]::after{
+  content:"";position:absolute;left:2px;right:2px;bottom:8px;height:1px;
+  background:var(--gold-pale,#F3E4A8);opacity:.85;transform:none}
+
+@media(max-width:760px){
+  .kx-links a,.kx-links span{
+    border-left-style:solid;
+    border-left-width:2px;
+    border-left-color:transparent}
+
+  @media(hover:hover){
+    .kx-links a:hover{
+      border-left-color:var(--gold,#D4A856);
+      background:rgba(212,168,86,.06)}
+  }
+  .kx-links a:active{
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+  .kx-links a:focus-visible{
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+
+  .kx-links [aria-current="page"]{
+    border-left-color:var(--gold-pale,#F3E4A8);
+    background:rgba(212,168,86,.05)}
+  /* a plain link must never carry the current-page tint */
+  .kx-links a:not([aria-current="page"]){background:transparent}
+}
+</style>
+<style id="kx-mainnav-states">
+/* ---- gold means "you are pointing at this", nothing else ----
+   The current page and the hover state were both gold with a gold rule, so on
+   the homepage Home looked lit permanently and pointing at another item just
+   produced a second lit item. Nothing distinguished the pointer.
+
+   Gold is now reserved for the pointer. The current page is marked in a
+   quieter way: brighter than a plain link so you can still see where you are,
+   with a dim rule underneath, but not gold. Only ever one gold item on screen. */
+
+/* where you are: cream, not gold */
+.kx-links [aria-current="page"]{
+  color:#E8DEC4 !important;
+  cursor:default}
+.kx-links [aria-current="page"]::after{
+  background:rgba(232,222,196,.42) !important;
+  opacity:1 !important;
+  transform:none !important}
+
+/* what you are pointing at: gold, and the only gold thing */
+@media(hover:hover){
+  .kx-links a:hover{color:var(--gold,#D4A856) !important}
+  .kx-links a:hover::after{
+    background:var(--gold,#D4A856) !important;
+    transform:scaleX(1) !important}
+}
+.kx-links a:active{color:var(--gold,#D4A856) !important}
+.kx-links a:focus-visible{color:var(--gold,#D4A856) !important}
+.kx-links a:focus-visible::after{
+  background:var(--gold,#D4A856) !important;
+  transform:scaleX(1) !important}
+
+@media(max-width:760px){
+  .kx-links [aria-current="page"]{
+    border-left-color:rgba(232,222,196,.5) !important;
+    background:rgba(255,255,255,.03) !important}
+  @media(hover:hover){
+    .kx-links a:hover{
+      border-left-color:var(--gold,#D4A856) !important;
+      background:rgba(212,168,86,.08) !important}
+  }
+  .kx-links a:active,.kx-links a:focus-visible{
+    border-left-color:var(--gold,#D4A856) !important;
+    background:rgba(212,168,86,.08) !important}
+}
+</style>
+<style id="kx-mainnav-final">
+/* ---- one rule for the underline, one colour for hover ----
+   Two things were still wrong.
+
+   The current page carried a permanent underline. Three earlier blocks each
+   drew an ::after on it, so removing one left the others. Every ::after on a
+   current item is switched off here, in one place.
+
+   Hover used #D4A856, which is the mid gold and sits close to the plain link
+   colour at small sizes. It is now the pale gold, which is brighter than the
+   current-page cream so the pointer is unmistakable. */
+
+/* the current page: cream, and no rule under it */
+.kx-links [aria-current="page"]{
+  color:#9C968D !important;
+  cursor:default}
+.kx-links [aria-current="page"]::after,
+.kx-links [aria-current="page"]::before{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  transform:none !important}
+
+/* the pointer: pale gold, with the rule sliding under it */
+.kx-links a::after{
+  background:#FFD166 !important;
+  height:1.5px !important;
+  bottom:7px !important}
+
+@media(hover:hover){
+  .kx-links a:hover{color:#FFD166 !important}
+  .kx-links a:hover::after{transform:scaleX(1) !important}
+}
+.kx-links a:active{color:#FFD166 !important}
+.kx-links a:focus-visible{color:#FFD166 !important}
+.kx-links a:focus-visible::after{transform:scaleX(1) !important}
+
+@media(max-width:760px){
+  /* no rule at all in the stacked panel; the left edge does the work */
+  .kx-links a::after,.kx-links span::after{display:none !important}
+
+  .kx-links [aria-current="page"]{
+    border-left-color:rgba(156,150,141,.55) !important;
+    background:rgba(255,255,255,.03) !important}
+
+  @media(hover:hover){
+    .kx-links a:hover{
+      color:#FFD166 !important;
+      border-left-color:#FFD166 !important;
+      background:rgba(212,168,86,.10) !important}
+  }
+  .kx-links a:active,.kx-links a:focus-visible{
+    color:#FFD166 !important;
+    border-left-color:#FFD166 !important;
+    background:rgba(212,168,86,.10) !important}
 }
 </style>
 </head>
