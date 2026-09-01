@@ -4849,6 +4849,11 @@ try{
   function findAndFit(){
     if(window.innerWidth > 900) {
       /* desktop is fine as authored; clear anything we set */
+      document.querySelectorAll('[data-kxclamp]').forEach(function(el){
+        el.style.removeProperty('max-width');
+        el.style.removeProperty('box-sizing');
+        el.removeAttribute('data-kxclamp');
+      });
       document.querySelectorAll('[data-kxfit]').forEach(function(el){
         var b = el.getAttribute('data-kxbase');
         if(b) el.style.fontSize = b; else el.style.removeProperty('font-size');
@@ -4858,6 +4863,25 @@ try{
       });
       return;
     }
+    /* The hero paragraph carries max-width:600px inline. On a phone the
+       column is narrower than that, so each line ran past the right edge and
+       was cut. Constrain any block in the hero that is wider than the room it
+       has. Measured, not assumed, so it holds whatever the app renders. */
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    var blocks = document.querySelectorAll('p,div,h1,h2,ul,ol');
+    for(var b=0;b<blocks.length;b++){
+      var el2 = blocks[b];
+      var r = el2.getBoundingClientRect();
+      if(r.width === 0) continue;
+      if(r.right <= vw - 4) continue;              /* already inside */
+      if(el2.closest('#kx-film') || el2.closest('#kx-orbnav')) continue;
+      var room = vw - r.left - 16;
+      if(room < 80) continue;
+      el2.style.maxWidth = Math.floor(room) + 'px';
+      el2.style.boxSizing = 'border-box';
+      el2.setAttribute('data-kxclamp','1');
+    }
+
     PHRASES.forEach(function(phrase){
       var all = document.querySelectorAll('h1,h2,div,span,p,em,b,strong');
       for(var i=0;i<all.length;i++){
