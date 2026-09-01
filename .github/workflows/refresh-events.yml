@@ -55,13 +55,16 @@ jobs:
       - name: Commit if changed
         if: ${{ inputs.mode != 'probe' }}
         run: |
-          if git diff --quiet events.json events.html sitemap.xml llms.txt; then
+          git config user.name "events-bot"
+          git config user.email "actions@github.com"
+          # assets/ is staged too: pulling the inlined images and font out of
+          # the HTML writes new files there, and an untracked file is invisible
+          # to git diff, so staging first is what makes the check honest.
+          git add events.json events.html sitemap.xml llms.txt assets
+          if git diff --cached --quiet; then
             echo "No change."
             exit 0
           fi
-          git config user.name "events-bot"
-          git config user.email "actions@github.com"
-          git add events.json events.html sitemap.xml llms.txt
           git commit -m "Refresh events ($(date -u +%Y-%m-%d))"
           # Someone editing the repo while this job runs used to make the push
           # fail outright and lose the whole refresh. Rebasing onto whatever
