@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<!-- kx-build 2026-08-31 14:08:28 cta-trace -->
+<html lang="en">
+<head>
+<style>
+/* the shared tokens, copied from market-data. without these every var()
+   reference on this page resolved to nothing. */
+:root{
+  --util:'Space Grotesk',ui-monospace,monospace;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Poppins',system-ui,sans-serif;
+  --grey:#9F9683;
+  --gold:#D4A856;
+  --gold-pale:#F3E4A8;
+  --gold-mid:#A1853E;
+  --ink:#0B0A06}
+</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Free Business Events Near You, Every State, Updated Weekly | SideKix</title>
+<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." property="og:description"/>
+<meta content="Business events in every state, checked every week" property="og:title"/>
+<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." name="description"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;family=Cormorant+Garamond:wght@600&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+@font-face{font-family:"EA Majer";font-weight:400;src:url("assets/inline/97f178701802.ttf") format("truetype");font-display:swap}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#060502;color:#fff;font-family:"Poppins",system-ui,sans-serif;overflow-x:hidden;}
+  a{color:#D4A856;text-decoration:none}
+  ::selection{background:#D4A856;color:#111}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}}
+
+  /* desaturation veil: a hole at the cursor lets color through */
+  #kx-desat{position:fixed;inset:0;z-index:60;pointer-events:none;
+    background:rgba(4,4,4,.32);
+    backdrop-filter:grayscale(1) brightness(.64) contrast(1.14);
+    -webkit-backdrop-filter:grayscale(1) brightness(.64) contrast(1.14);
+    -webkit-mask-image:radial-gradient(circle var(--r,270px) at var(--mx,50%) var(--my,40%),transparent 0,transparent 48%,#000 100%);
+    mask-image:radial-gradient(circle var(--r,270px) at var(--mx,50%) var(--my,40%),transparent 0,transparent 48%,#000 100%);}
+
+  @keyframes kxShimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+  @keyframes kxPulseRing{0%,100%{opacity:.6}50%{opacity:1}}
+  @property --kxa{syntax:'<angle>';inherits:false;initial-value:0deg}
+  @keyframes kxTrace{to{--kxa:360deg}}
+  @keyframes kxDot{0%,100%{opacity:1}50%{opacity:.25}}
+
+  .kx-trace::before{content:"";position:absolute;inset:-2.5px;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--kxa),transparent 0 58%,#F3E4A8 72%,#FFFFEF 80%,#D4A856 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:kxTrace 6.5s linear infinite;pointer-events:none;}
+  .kx-gold-text{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
+  .kx-link{position:relative;transition:color .2s}
+  .kx-link:hover{color:#fff}
+  .kx-link::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:#D4A856;transition:width .28s cubic-bezier(.16,1,.3,1)}
+  .kx-link:hover::after{width:100%}
+
+  .kx-store{display:inline-flex;align-items:center;gap:7px;cursor:pointer;background:rgba(255,255,255,.05);border:1px solid #3F3D38;color:#fff;font-weight:600;font-size:12.5px;padding:8px 14px;border-radius:10px;font-family:'Poppins';transition:border-color .2s,background .2s}
+  .kx-store:hover{border-color:#D4A856;background:rgba(212,168,86,.1)}
+  .kx-store[aria-pressed="true"]{border-color:#D4A856;background:rgba(212,168,86,.16);color:#F3E4A8}
+  .kx-store:focus-visible{outline:2px solid #D4A856;outline-offset:3px}
+
+  .kx-mag{position:relative;border:none;cursor:pointer;background:linear-gradient(180deg,#D7C582,#A1853E);color:#1B1400;font-weight:700;font-size:14px;padding:12px 26px;border-radius:999px;font-family:'Poppins';display:inline-block;}
+
+  .kx-eyebrow{font-family:'Space Grotesk',monospace;font-size:13px;letter-spacing:.24em;color:#D4A856;margin-bottom:16px;}
+  .kx-h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(38px,4.6vw,60px);margin:0;letter-spacing:-.006em;line-height:1.05;}
+
+  /* event card, matching the kx-glowbox treatment */
+  .kx-ev{position:relative;padding:34px 30px;border:1px solid #2C2A25;border-radius:22px;background:rgba(18,18,18,.7);transition:border-color .3s,transform .3s;}
+  .kx-ev:hover{border-color:rgba(212,168,86,.5);transform:translateY(-3px)}
+  .kx-ev .rough{position:absolute;inset:7px;border:1.6px solid rgba(212,168,86,.4);border-radius:18px;filter:url(#kx-rough);pointer-events:none;}
+  .kx-num{font-family:'EA Majer',sans-serif;font-size:52px;line-height:1;margin-bottom:4px;color:transparent;}
+  .kx-mon{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.22em;color:#928F86;margin-bottom:18px;}
+  .kx-ev h3{font-size:21px;font-weight:800;margin:0 0 10px;line-height:1.3}
+  .kx-ev h3 a{color:#fff}
+  .kx-ev h3 a:hover{color:#D4A856}
+  .kx-ev p{color:#9B958B;font-size:15px;line-height:1.65;margin:0 0 16px}
+  .kx-meta{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.12em;color:#928F86;text-transform:uppercase}
+  .kx-meta span+span::before{content:"·";margin:0 8px;color:#3F3D38}
+
+  .kx-next{position:relative;padding:44px 40px;border:1px solid rgba(212,168,86,.5);border-radius:22px;background:linear-gradient(180deg,#1E1705,#111);}
+  .kx-unit b{font-family:'EA Majer',sans-serif;font-size:46px;line-height:1;color:transparent;-webkit-text-stroke:1.5px #F3E4A8;font-variant-numeric:tabular-nums}
+  .kx-unit span{display:block;font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.2em;color:#928F86;margin-top:8px}
+
+  @media (hover:none){#kx-cursor,#kx-ring,#kx-desat{display:none!important}}
+  @media (max-width:1024px){#kx-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:640px){
+    #kx-nav{padding:14px 18px!important}
+    #kx-nav img{height:26px!important}
+    #kx-head,#kx-list,footer{padding-left:20px!important;padding-right:20px!important}
+    #kx-grid{grid-template-columns:1fr!important}
+    .kx-next{padding:30px 24px!important}
+  }
+</style>
+<style>
+/* footer and skip-link styles, brought across with the markup */
+/* ---------------- accessibility ---------------- */ .skip-link{position:absolute;left:-9999px;top:0;z-index:400;background:#D4A856;color:#1B1400; font-family:'Poppins',system-ui,sans-serif;font-weight:700;font-size:14px;padding:14px 22px;border-radius:0 0 12px 0;text-decoration:none}
+.skip-link:focus{left:0}
+/* ---------------- footer ---------------- */ .sk-footer{position:relative;z-index:80;pointer-events:auto;margin-top:90px;padding:0; border-top:1px solid rgba(212,168,86,.2); background:linear-gradient(180deg,rgba(5,5,5,.35),rgba(5,5,5,.94) 45%)}
+.sk-inner{max-width:1180px;margin:0 auto;padding:54px 28px 34px; display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.sk-brand{max-width:34ch}
+.sk-word{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;color:#FFF8D8;letter-spacing:.01em;margin-bottom:10px}
+.sk-brand p{color:#BDB49F;font-family:'Poppins',system-ui,sans-serif;font-size:14px;line-height:1.65;margin:0 0 18px}
+.sk-col h2{font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase; color:#9F9683;margin:6px 0 12px;font-weight:500}
+.sk-col ul{list-style:none;margin:0;padding:0}
+.sk-col li{margin:0}
+.sk-col a{font-family:'Poppins',system-ui,sans-serif;font-size:14.5px;color:#D4C9B1;text-decoration:none; min-height:40px;display:inline-flex;align-items:center;transition:color .3s}
+.sk-col a:hover,.sk-col a:focus-visible{color:#F3E4A8}
+.sk-col a:focus-visible,.sk-social a:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px;border-radius:6px}
+.sk-social{display:flex;gap:4px;flex-wrap:wrap}
+.sk-social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px; color:#BDB49F;transition:color .3s,background .3s}
+.sk-social a:hover,.sk-social a:focus-visible{color:#1B1400;background:#D4A856}
+.sk-social svg{width:18px;height:18px;fill:currentColor}
+.sk-base{max-width:1180px;margin:0 auto;padding:18px 28px 34px;border-top:1px solid rgba(212,168,86,.12); display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center; font-family:'Space Grotesk',monospace;font-size:10.5px;letter-spacing:.14em;color:#9F9683}
+.sk-base .sk-tag{margin-left:auto;color:#D4A856}
+/* these came across from the footer without their media queries, so the
+   mobile layout was collapsing the columns at every width. wrapped back
+   up at the breakpoints the other pages use. */
+@media(max-width:900px){
+  .sk-inner{grid-template-columns:1fr 1fr;gap:30px;padding:40px 20px 26px}
+  .sk-brand{grid-column:1 / -1;max-width:none}
+}
+@media(max-width:560px){
+  .sk-footer{margin-top:60px}
+  .sk-inner{grid-template-columns:1fr;gap:26px}
+  .sk-base{padding:16px 20px 30px;gap:6px 18px}
+}
+.sk-base .sk-tag{margin-left:0}
+.sk-base .sk-tm{flex:1 1 100%;order:9;color:#877F6F;font-size:9.5px;letter-spacing:.1em; line-height:1.6;margin-top:10px;text-transform:none;font-family:'Poppins',system-ui,sans-serif}
+.sk-base .sk-tm{font-size:9px}
+/* WCAG 2.5.8 wants 44px; footer links were 40 and .cnav 38 */ .sk-col a{min-height:44px !important}
+.sk-social a{width:44px !important;height:44px !important}
+@media(max-width:900px){.sk-inner{grid-template-columns:1fr 1fr;gap:30px;padding:40px 20px 26px}.sk-brand{grid-column:1 / -1;max-width:none}}
+@media(max-width:560px){.sk-footer{margin-top:60px}.sk-inner{grid-template-columns:1fr;gap:26px}.sk-base{padding:16px 20px 30px;gap:6px 18px}.sk-base .sk-tag{margin-left:0}}
+@media(max-width:560px){.sk-base .sk-tm{font-size:9px}}
+</style>
+<link href="https://sidekixhq.com/events.html" rel="canonical"/>
+
+<meta content="website" property="og:type"/><meta content="SideKix" property="og:site_name"/>
+
+
+<meta content="https://sidekixhq.com/events.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+<style>
+/* ---- topic chips carry their own colour, as on the resources page ----
+   every chip here was gold whatever the topic. resources gives each category
+   a colour at rest and a solid fill when selected. this is that pattern, using
+   colours already in the palette so the two pages match.
+   older browsers ignore color-mix and fall back to the base chip, which stays
+   legible either way. */
+.kx-store[data-topic="Finance"]{
+  --c:#A6E0B4;color:#A6E0B4;
+  border-color:color-mix(in srgb,#A6E0B4 40%,transparent);
+  background:color-mix(in srgb,#A6E0B4 7%,transparent)}
+.kx-store[data-topic="Finance"]:hover{
+  border-color:#A6E0B4;background:color-mix(in srgb,#A6E0B4 14%,transparent)}
+.kx-store[data-topic="Finance"][aria-pressed="true"]{
+  background:#A6E0B4;border-color:#A6E0B4;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Funding"]{
+  --c:#FFE7A6;color:#FFE7A6;
+  border-color:color-mix(in srgb,#FFE7A6 40%,transparent);
+  background:color-mix(in srgb,#FFE7A6 7%,transparent)}
+.kx-store[data-topic="Funding"]:hover{
+  border-color:#FFE7A6;background:color-mix(in srgb,#FFE7A6 14%,transparent)}
+.kx-store[data-topic="Funding"][aria-pressed="true"]{
+  background:#FFE7A6;border-color:#FFE7A6;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Hiring"]{
+  --c:#84D0C6;color:#84D0C6;
+  border-color:color-mix(in srgb,#84D0C6 40%,transparent);
+  background:color-mix(in srgb,#84D0C6 7%,transparent)}
+.kx-store[data-topic="Hiring"]:hover{
+  border-color:#84D0C6;background:color-mix(in srgb,#84D0C6 14%,transparent)}
+.kx-store[data-topic="Hiring"][aria-pressed="true"]{
+  background:#84D0C6;border-color:#84D0C6;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Legal"]{
+  --c:#B18BE4;color:#B18BE4;
+  border-color:color-mix(in srgb,#B18BE4 40%,transparent);
+  background:color-mix(in srgb,#B18BE4 7%,transparent)}
+.kx-store[data-topic="Legal"]:hover{
+  border-color:#B18BE4;background:color-mix(in srgb,#B18BE4 14%,transparent)}
+.kx-store[data-topic="Legal"][aria-pressed="true"]{
+  background:#B18BE4;border-color:#B18BE4;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Marketing"]{
+  --c:#F2933F;color:#F2933F;
+  border-color:color-mix(in srgb,#F2933F 40%,transparent);
+  background:color-mix(in srgb,#F2933F 7%,transparent)}
+.kx-store[data-topic="Marketing"]:hover{
+  border-color:#F2933F;background:color-mix(in srgb,#F2933F 14%,transparent)}
+.kx-store[data-topic="Marketing"][aria-pressed="true"]{
+  background:#F2933F;border-color:#F2933F;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Operations"]{
+  --c:#6FB0E0;color:#6FB0E0;
+  border-color:color-mix(in srgb,#6FB0E0 40%,transparent);
+  background:color-mix(in srgb,#6FB0E0 7%,transparent)}
+.kx-store[data-topic="Operations"]:hover{
+  border-color:#6FB0E0;background:color-mix(in srgb,#6FB0E0 14%,transparent)}
+.kx-store[data-topic="Operations"][aria-pressed="true"]{
+  background:#6FB0E0;border-color:#6FB0E0;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Policy"]{
+  --c:#DCE2E8;color:#DCE2E8;
+  border-color:color-mix(in srgb,#DCE2E8 40%,transparent);
+  background:color-mix(in srgb,#DCE2E8 7%,transparent)}
+.kx-store[data-topic="Policy"]:hover{
+  border-color:#DCE2E8;background:color-mix(in srgb,#DCE2E8 14%,transparent)}
+.kx-store[data-topic="Policy"][aria-pressed="true"]{
+  background:#DCE2E8;border-color:#DCE2E8;color:#0C0B08;font-weight:600}
+.kx-store[data-topic="Technology"]{
+  --c:#F0855A;color:#F0855A;
+  border-color:color-mix(in srgb,#F0855A 40%,transparent);
+  background:color-mix(in srgb,#F0855A 7%,transparent)}
+.kx-store[data-topic="Technology"]:hover{
+  border-color:#F0855A;background:color-mix(in srgb,#F0855A 14%,transparent)}
+.kx-store[data-topic="Technology"][aria-pressed="true"]{
+  background:#F0855A;border-color:#F0855A;color:#0C0B08;font-weight:600}
+
+/* the All chip keeps the gold treatment, as Everything does on resources */
+.kx-store[data-topic="All"]{--c:#D4A856;color:#D4A856;
+  border-color:rgba(212,168,86,.4);background:rgba(212,168,86,.07)}
+.kx-store[data-topic="All"]:hover{border-color:#D4A856;background:rgba(212,168,86,.14)}
+.kx-store[data-topic="All"][aria-pressed="true"]{
+  background:#D4A856;border-color:#D4A856;color:#0C0B08;font-weight:600}
+</style>
+<style>
+/* the count number on each chip, and the count line beneath, both matching
+   the resources page. */
+.kx-store .kx-n{
+  margin-left:7px;font-size:9.5px;opacity:.75;font-variant-numeric:tabular-nums}
+.kx-store[aria-pressed="true"] .kx-n{opacity:.85}
+.kx-count{
+  text-align:center;margin:14px 0 0;font-family:var(--util,'Space Grotesk',monospace);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9B958B;min-height:1.2em}
+.kx-none{
+  grid-column:1/-1;text-align:center;color:#9B958B;font-size:15px;margin:0}
+.kx-none[hidden]{display:none}
+.kx-ev[hidden]{display:none}
+</style>
+<style>
+/* ---- lighter veil, brighter copy ----
+   the veil ran grayscale(1) brightness(.64), which drained the colour out of
+   the topic chips and pushed the body copy down toward the background. it is
+   now a partial desaturation at a much gentler dim, so the page reads without
+   losing the cursor effect entirely. */
+#kx-desat{
+  background:rgba(4,4,4,.14) !important;
+  backdrop-filter:grayscale(.35) brightness(.88) contrast(1.04) !important;
+  -webkit-backdrop-filter:grayscale(.35) brightness(.88) contrast(1.04) !important}
+
+/* the two greys were the hardest things to read on the page */
+.kx-ev p, .kx-meta, .kx-count{color:#CEC9BC !important}
+.kx-sub, .kx-stamp{color:#C1BDB1 !important}
+.kx-ev h3 a{color:#FFFFEF !important}
+.kx-mon{color:#D4A856 !important}
+</style>
+<style>
+/* ---- a card lights up in its own colour ----
+   the cards only shifted their border on hover, so pointing at one gave no
+   sense of which topic it belonged to. each now throws a shadow in the colour
+   of its own chip, and the month abbreviation warms to match. keyboard users
+   get the same treatment via :focus-within, since they never hover. */
+.kx-ev{transition:border-color .3s ease, box-shadow .35s ease, transform .3s ease}
+.kx-ev[data-topic="Finance"]:hover{
+  border-color:rgba(166,224,180,.55) !important;
+  box-shadow:0 0 0 1px rgba(166,224,180,.28),
+             0 0 44px rgba(166,224,180,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Finance"]:hover .kx-mon{color:rgb(166,224,180) !important}
+.kx-ev[data-topic="Finance"]:focus-within{
+  border-color:rgba(166,224,180,.55) !important;
+  box-shadow:0 0 0 1px rgba(166,224,180,.28), 0 0 44px rgba(166,224,180,.22) !important}
+.kx-ev[data-topic="Funding"]:hover{
+  border-color:rgba(255,231,166,.55) !important;
+  box-shadow:0 0 0 1px rgba(255,231,166,.28),
+             0 0 44px rgba(255,231,166,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Funding"]:hover .kx-mon{color:rgb(255,231,166) !important}
+.kx-ev[data-topic="Funding"]:focus-within{
+  border-color:rgba(255,231,166,.55) !important;
+  box-shadow:0 0 0 1px rgba(255,231,166,.28), 0 0 44px rgba(255,231,166,.22) !important}
+.kx-ev[data-topic="Hiring"]:hover{
+  border-color:rgba(132,208,198,.55) !important;
+  box-shadow:0 0 0 1px rgba(132,208,198,.28),
+             0 0 44px rgba(132,208,198,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Hiring"]:hover .kx-mon{color:rgb(132,208,198) !important}
+.kx-ev[data-topic="Hiring"]:focus-within{
+  border-color:rgba(132,208,198,.55) !important;
+  box-shadow:0 0 0 1px rgba(132,208,198,.28), 0 0 44px rgba(132,208,198,.22) !important}
+.kx-ev[data-topic="Legal"]:hover{
+  border-color:rgba(177,139,228,.55) !important;
+  box-shadow:0 0 0 1px rgba(177,139,228,.28),
+             0 0 44px rgba(177,139,228,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Legal"]:hover .kx-mon{color:rgb(177,139,228) !important}
+.kx-ev[data-topic="Legal"]:focus-within{
+  border-color:rgba(177,139,228,.55) !important;
+  box-shadow:0 0 0 1px rgba(177,139,228,.28), 0 0 44px rgba(177,139,228,.22) !important}
+.kx-ev[data-topic="Marketing"]:hover{
+  border-color:rgba(242,147,63,.55) !important;
+  box-shadow:0 0 0 1px rgba(242,147,63,.28),
+             0 0 44px rgba(242,147,63,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Marketing"]:hover .kx-mon{color:rgb(242,147,63) !important}
+.kx-ev[data-topic="Marketing"]:focus-within{
+  border-color:rgba(242,147,63,.55) !important;
+  box-shadow:0 0 0 1px rgba(242,147,63,.28), 0 0 44px rgba(242,147,63,.22) !important}
+.kx-ev[data-topic="Operations"]:hover{
+  border-color:rgba(111,176,224,.55) !important;
+  box-shadow:0 0 0 1px rgba(111,176,224,.28),
+             0 0 44px rgba(111,176,224,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Operations"]:hover .kx-mon{color:rgb(111,176,224) !important}
+.kx-ev[data-topic="Operations"]:focus-within{
+  border-color:rgba(111,176,224,.55) !important;
+  box-shadow:0 0 0 1px rgba(111,176,224,.28), 0 0 44px rgba(111,176,224,.22) !important}
+.kx-ev[data-topic="Policy"]:hover{
+  border-color:rgba(220,226,232,.55) !important;
+  box-shadow:0 0 0 1px rgba(220,226,232,.28),
+             0 0 44px rgba(220,226,232,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Policy"]:hover .kx-mon{color:rgb(220,226,232) !important}
+.kx-ev[data-topic="Policy"]:focus-within{
+  border-color:rgba(220,226,232,.55) !important;
+  box-shadow:0 0 0 1px rgba(220,226,232,.28), 0 0 44px rgba(220,226,232,.22) !important}
+.kx-ev[data-topic="Technology"]:hover{
+  border-color:rgba(240,133,90,.55) !important;
+  box-shadow:0 0 0 1px rgba(240,133,90,.28),
+             0 0 44px rgba(240,133,90,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Technology"]:hover .kx-mon{color:rgb(240,133,90) !important}
+.kx-ev[data-topic="Technology"]:focus-within{
+  border-color:rgba(240,133,90,.55) !important;
+  box-shadow:0 0 0 1px rgba(240,133,90,.28), 0 0 44px rgba(240,133,90,.22) !important}
+
+/* the pointer light that follows the cursor inside a card */
+.kx-ev::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:0;transition:opacity .4s ease;z-index:0;
+  background:radial-gradient(420px circle at var(--px,50%) var(--py,0%),
+    rgba(255,255,255,.05), transparent 60%)}
+.kx-ev:hover::after{opacity:1}
+.kx-ev > *{position:relative;z-index:1}
+
+@media(prefers-reduced-motion:reduce){
+  .kx-ev{transition:none}
+  .kx-ev::after{display:none}
+}
+</style>
+<style>
+/* ---- the selected chip lifts off the page, as on resources ----
+   resources gives the pressed chip
+     box-shadow:0 6px 22px color-mix(in srgb,var(--c) 30%,transparent)
+   and font-weight:700. these chips had neither, so a selected filter sat flat
+   and looked like a coloured label rather than a pressed control. */
+.kx-store[data-topic="Finance"][aria-pressed="true"]{
+  background:#A6E0B4 !important;border-color:#A6E0B4 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#A6E0B4 30%,transparent) !important}
+.kx-store[data-topic="Funding"][aria-pressed="true"]{
+  background:#FFE7A6 !important;border-color:#FFE7A6 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#FFE7A6 30%,transparent) !important}
+.kx-store[data-topic="Hiring"][aria-pressed="true"]{
+  background:#84D0C6 !important;border-color:#84D0C6 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#84D0C6 30%,transparent) !important}
+.kx-store[data-topic="Legal"][aria-pressed="true"]{
+  background:#B18BE4 !important;border-color:#B18BE4 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#B18BE4 30%,transparent) !important}
+.kx-store[data-topic="Marketing"][aria-pressed="true"]{
+  background:#F2933F !important;border-color:#F2933F !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#F2933F 30%,transparent) !important}
+.kx-store[data-topic="Operations"][aria-pressed="true"]{
+  background:#6FB0E0 !important;border-color:#6FB0E0 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#6FB0E0 30%,transparent) !important}
+.kx-store[data-topic="Policy"][aria-pressed="true"]{
+  background:#DCE2E8 !important;border-color:#DCE2E8 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#DCE2E8 30%,transparent) !important}
+.kx-store[data-topic="Technology"][aria-pressed="true"]{
+  background:#F0855A !important;border-color:#F0855A !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px color-mix(in srgb,#F0855A 30%,transparent) !important}
+.kx-store[data-topic="All"][aria-pressed="true"]{
+  background:#D4A856 !important;border-color:#D4A856 !important;color:#1B1400 !important;
+  font-weight:700 !important;
+  box-shadow:0 6px 22px rgba(212,168,86,.3) !important}
+.kx-store{transition:background .25s ease,border-color .25s ease,box-shadow .3s ease,color .25s ease}
+@media(prefers-reduced-motion:reduce){.kx-store{transition:none}}
+</style>
+<style>
+/* ---- the chips now match resources exactly ----
+   they were a different control entirely: 10px rounded rectangles in Poppins
+   at 12.5px sentence case, 8px padding. resources uses full pills in the
+   utility face at 10.5px uppercase with .16em tracking and a 44px tap target.
+   these values are copied from .filters button, not approximated. */
+.kx-store{
+  font-family:var(--util,'Space Grotesk',monospace) !important;
+  font-size:10.5px !important;
+  letter-spacing:.16em !important;
+  text-transform:uppercase !important;
+  font-weight:400 !important;
+  border-radius:999px !important;
+  padding:0 16px !important;
+  min-height:44px !important;
+  gap:0 !important}
+.kx-store .kx-n{margin-left:8px;font-size:9.5px;opacity:.7;letter-spacing:.04em}
+.kx-store[aria-pressed="true"]{font-weight:700 !important}
+</style>
+<style>
+/* the count line is gone from the page. it stays in the markup, visually
+   hidden, because it was the only thing telling a screen reader that pressing
+   a filter had done anything. sighted readers watch the grid change; without
+   this they would hear nothing at all. */
+.sr-only{
+  position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+</style>
+<style>
+/* the floating orb menu, ported from the shell. every other top-level page
+   carries it; this one did not, which is why its lower area looked wrong. */
+
+
+
+/* eight tray items would run off a phone screen, so let them wrap */
+#kx-orbtray{flex-wrap:wrap;justify-content:flex-end;max-width:min(66vw,720px)}
+
+/* a quiet cue so the menu is findable without a tap */
+#kx-orbcue{position:fixed;right:clamp(24px,3vw,48px);bottom:calc(clamp(24px,3vw,48px) - 4px);z-index:151;
+  font-family:var(--util,'Space Grotesk',monospace);font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(212,168,86,.75);pointer-events:none;text-align:center;width:170px;
+  opacity:0;transition:opacity .6s ease}
+
+#kx-orbcue.on{opacity:1}
+#kx-orbcue{width:130px;font-size:8px}
+
+  /* the 170px orb is a desktop object; scale it down and stack the tray above it */
+  #kx-orbnav{height:auto !important;right:14px !important;bottom:14px !important;justify-content:flex-end !important;
+    flex-direction:column !important;align-items:flex-end !important}
+
+  #kx-orbnav > div:last-child{width:92px !important;height:92px !important}
+
+  #kx-orbmaster{width:92px !important;height:92px !important}
+
+  #kx-orbtray{flex-direction:column !important;align-items:flex-end !important;
+    margin:0 6px 10px 0 !important;max-width:none !important;gap:8px !important}
+
+  #kx-orbtray .kx-tray-item{padding:11px 15px !important;font-size:11px !important}
+
+  #kx-orbcue{width:92px;right:14px;bottom:10px;font-size:8px;letter-spacing:.18em}
+
+  #kx-orbnav > div:last-child,#kx-orbmaster{width:78px !important;height:78px !important}
+
+  #kx-orbcue{width:78px}
+
+  #kx-orbnav > div:last-child,#kx-orbmaster{width:70px !important;height:70px !important}
+
+  #kx-orbcue{display:none}
+@keyframes kxOrbGlow{0%,100%{box-shadow:0 0 16px 2px rgba(255,182,88,.45)}50%{box-shadow:0 0 34px 8px rgba(255,196,104,.85)}}
+@keyframes kxPulseRing{0%,100%{opacity:.6}50%{opacity:1}}
+</style>
+<style>
+/* ---- the wash: the thing that lights up the top of the page ----
+   resources appends a fixed #reswash layer and, on hovering a chip or a card,
+   sets --wash to that category's colour and fades it in. that is the glow at
+   the top of the page. this page had no equivalent, which is what was missing
+   every time I said the chips matched. same geometry and timing as resources. */
+/* z-index:-1 works on resources because its content sits directly on the
+   body. here everything lives inside #kx-root, which is position:relative
+   with a solid background:#0B0A06, so it painted straight over a layer sitting
+   behind it. the wash now sits ABOVE the page background and below the content,
+   which is the same visual result by a different route. */
+/* resources puts this at z-index:-1, which works there because its content
+   sits straight on the body. here everything is wrapped in #kx-root, and a
+   negative z-index behind an opaque wrapper never showed. so the layering is
+   explicit instead: wash at 0, page content at 1, no negative values, nothing
+   depending on how a browser resolves auto.
+   the gradient has a plain rgba fallback first, because color-mix is not
+   universally supported and a browser that cannot parse it drops the whole
+   declaration and paints nothing. */
+/* this was 20% at z-index:0, so it sat ON TOP of the page and washed the
+   whole thing out on hover. resources uses 12% at z-index:-1, which paints
+   above the background but behind the content. matched, and taken down to 10%
+   because this page is darker than resources to begin with. */
+#evwash{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  transition:opacity .6s ease, background .6s ease;
+  background:radial-gradient(760px circle at 50% 20%,
+    rgba(212,168,86,.10), transparent 68%);
+  background:radial-gradient(760px circle at 50% 20%,
+    color-mix(in srgb, var(--wash,#D4A856) 10%, transparent), transparent 68%)}
+#evwash.on{opacity:1}
+#kx-root{position:relative;z-index:1;background:transparent !important}
+#evwash.on{opacity:1}
+/* reduced motion removes the fade, not the wash itself */
+@media(prefers-reduced-motion:reduce){#evwash{transition:none}}
+</style>
+<style>
+/* the eyebrow said NO COST TO ATTEND. it is now the back link the other
+   top-level pages carry, matching .mback on market-data exactly. */
+.evbackrow{display:flex;justify-content:center;margin:0 0 22px}
+/* two things were wrong here.
+   this page never defines --util, --grey or --gold-pale, which the rest of the
+   site uses, so any rule referencing them fell back silently. they are declared
+   below with the same values market-data uses.
+   and .kx-mag means something different here: on market-data it is only a size
+   tweak and a magnet hook, but on this page it IS the gold pill button style,
+   background gradient and all. adding it turned the back link into a gold
+   button. the class is off; the magnet selector already lists .evback. */
+.evback{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;text-decoration:none;
+  font-family:var(--util);font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:400 !important;
+  color:var(--grey);transition:color .25s}
+.evback:hover{color:var(--gold-pale)}
+.evback:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px;border-radius:6px}
+.evback svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+<style>
+/* the closing line is its own beat, so it gets its own weight rather than
+   trailing off the end of the paragraph above it. */
+.evkicker{
+  margin:14px auto 0;
+  font-family:var(--display,'Cormorant Garamond',Georgia,serif);
+  font-size:clamp(20px,2.4vw,26px);
+  font-weight:600;line-height:1.3;letter-spacing:.005em;
+  color:#F3E4A8;text-align:center}
+</style>
+<style>
+/* the filters now sit between the date stamp and the next-up panel, matching
+   the order on resources. they had a bottom margin but no top one, so they
+   were tight under the stamp and loose above the panel. balanced. */
+#kx-filters{margin:30px 0 40px !important}
+</style>
+<style>
+/* the stage label, quiet enough not to compete with the title */
+.kx-stage{
+  margin-top:12px;display:inline-block;
+  font-family:var(--util);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:#928F86;border-top:1px solid rgba(212,168,86,.16);padding-top:10px}
+.kx-ev:hover .kx-stage{color:#CEC9BC}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://sidekixhq.com/#org","name":"SideKix","legalName":"Character Limit LLC","url":"https://sidekixhq.com/","logo":"https://sidekixhq.com/assets/k-mark.png","email":"support@sidekixhq.com","address":{"@type":"PostalAddress","addressLocality":"Wilmington","addressRegion":"NC","addressCountry":"US"},"description":"A business operating system blending AI guidance with human advisors."},{"@type":"CollectionPage","@id":"https://sidekixhq.com/events.html#page","url":"https://sidekixhq.com/events.html","name":"Business events that cost nothing to attend","description":"Online business events from SBDCs, SCORE and nonprofit hosts, checked weekly.","isPartOf":{"@id":"https://sidekixhq.com/#website"},"publisher":{"@id":"https://sidekixhq.com/#org"},"inLanguage":"en-US","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1","main p:first-of-type"]}},{"@type":"WebSite","@id":"https://sidekixhq.com/#website","url":"https://sidekixhq.com/","name":"SideKix","publisher":{"@id":"https://sidekixhq.com/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Business events that cost nothing to attend","item":"https://sidekixhq.com/events.html"}]}]}</script>
+<meta content="https://sidekixhq.com/assets/k-mark.png" property="og:image"/>
+<style id="kx-img-aspect">
+/* ---- width and height attributes must not fight the stylesheet ----
+   the SEO pass added intrinsic width and height to every image, which is right
+   for layout stability. but those attributes are presentational hints: when a
+   rule sets only one axis, the OTHER axis still takes the attribute value. the
+   phone logo has height:15px in CSS and width="2164" on the tag, so it drew
+   2164px wide and stretched across the header.
+   this lets the stylesheet win on both axes while keeping the attributes for
+   aspect-ratio, so nothing stretches and layout shift is still prevented. */
+/* the rule has to sit BELOW any real styling, so it only fills in the axis
+   nobody set. a bare element selector loses to every class rule, which is
+   exactly what is wanted here. */
+img{width:auto;height:auto}
+</style>
+<style id="kx-backlink">
+/* ---- one back link, the same on every page ----
+   there were four different class names, four different labels and four pages
+   with none at all. this is the market-data treatment, which was the most
+   considered of them, applied everywhere under one class. */
+.kx-backrow{display:flex;justify-content:center;margin:0 0 22px}
+.kx-bk{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;
+  text-decoration:none;font-weight:400;
+  font-family:var(--util,'Space Grotesk',ui-monospace,monospace);
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey,#9C968D);transition:color .25s}
+.kx-bk:hover{color:var(--gold-pale,#F3E4A8)}
+.kx-bk:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px;border-radius:6px}
+.kx-bk svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+<style id="kx-navclear">
+/* the bar grew from about 66px to 142px so it could contain the orb and the
+   tray. the sections that clear it were still padded for the old height, which
+   left the back link 7px under the bar's edge. this tops the difference up
+   without touching the original values. */
+main > section:first-of-type,
+main > .wrap:first-of-type{padding-top:176px !important}
+@media(max-width:820px){
+  main > section:first-of-type,
+  main > .wrap:first-of-type{padding-top:150px !important}
+}
+</style>
+<style id="kx-bar-height">
+/* ---- the bar is back to bar height ----
+   it was padded to about 174px so it would fully contain the orb. but the bar
+   paints a gradient across the whole width, so that became a 174px dark band
+   sitting over the page and dimming everything under it while you scroll.
+   the bar is a bar again. the orb simply overhangs it, which is what a
+   floating control does, and it does not need the background to follow it. */
+#kx-nav{
+  padding-top:22px !important;
+  padding-bottom:22px !important}
+
+@media(max-width:820px){
+  #kx-nav{padding-top:18px !important;padding-bottom:18px !important}
+}
+
+/* the content clearance goes back to clearing a normal bar, not the old
+   inflated one */
+main > section:first-of-type,
+main > .wrap:first-of-type{padding-top:132px !important}
+@media(max-width:820px){
+  main > section:first-of-type,
+  main > .wrap:first-of-type{padding-top:118px !important}
+}
+</style>
+<style id="kx-footer-hover">
+/* ---- the footer hover reads again ----
+   the hover rule never broke. what happened is that the warm pass moved the
+   resting colour from #CFC9BE to #D4C9B1, doubling its warmth from 17 to 35
+   and pushing it toward the gold of the hover state. luminance was untouched,
+   so the contrast audit saw nothing wrong, but the two colours stopped
+   looking like different states.
+   the hover now separates on brightness as well as hue, and picks up an
+   underline so the change is unmistakable rather than a subtle tint. */
+.sk-col a{
+  border-bottom:1px solid transparent;
+  transition:color .22s ease, border-color .22s ease}
+.sk-col a:hover,
+.sk-col a:focus-visible{
+  color:#FFF6DC !important;
+  border-bottom-color:rgba(243,228,168,.55)}
+
+/* the social icons already invert on hover, so they only need the timing */
+.sk-social a{transition:color .22s ease, background .22s ease}
+</style>
+<style id="kx-hidden-fix">
+/* ---- hidden has to actually hide ----
+   the photo preview is marked hidden until someone picks a file, but
+   .preview{display:flex} is an author rule and the [hidden] rule comes from
+   the user-agent stylesheet, so flex won. the empty img rendered as a broken
+   image with its alt text beside it.
+   this restores the expected behaviour for every element on the site, not
+   just this one, since the same trap applies anywhere a class sets display
+   on something that also gets hidden. */
+[hidden]{display:none !important}
+</style>
+<style id="kx-bgorb-dim">
+/* ---- the background orbs were washing out the top of the page ----
+   four fixed radial blobs at 0.5 to 0.82 opacity, and the first sits at
+   top:6%, directly behind the heading and the filter pills. blurred colour at
+   that strength under small uppercase type is what made the pills hard to
+   read and the words look soft.
+   they are dimmed overall, and a mask fades them out entirely across the top
+   third of the viewport, so the heading and pills sit on clean background
+   while the colour still carries lower down the page. */
+.kx-bgorb{
+  opacity:.34 !important;
+  -webkit-mask-image:linear-gradient(180deg,
+    transparent 0%, transparent 22%, rgba(0,0,0,.55) 38%, #000 56%);
+  mask-image:linear-gradient(180deg,
+    transparent 0%, transparent 22%, rgba(0,0,0,.55) 38%, #000 56%)}
+
+/* the one behind the heading is dimmed hardest, since it does the most damage */
+.kx-bgorb:first-of-type{opacity:.18 !important}
+
+@media(max-width:820px){
+  /* less room at the top on a phone, so the clear band runs further down */
+  .kx-bgorb{
+    opacity:.28 !important;
+    -webkit-mask-image:linear-gradient(180deg,
+      transparent 0%, transparent 26%, rgba(0,0,0,.5) 44%, #000 62%);
+    mask-image:linear-gradient(180deg,
+      transparent 0%, transparent 26%, rgba(0,0,0,.5) 44%, #000 62%)}
+  .kx-bgorb:first-of-type{opacity:.14 !important}
+}
+</style>
+<style id="kx-fixed-fix">
+/* the homepage leaves the document scrolling normally and clips nothing above
+   the orb. matching that. */
+html, body, #kx-root{overflow-x:visible !important}
+main{overflow-x:clip}
+@supports not (overflow:clip){ main{overflow-x:hidden} }
+</style>
+<meta content="Business events in every state, checked every week" name="twitter:title"/>
+<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." name="twitter:description"/>
+<meta content="https://sidekixhq.com/assets/k-mark.png" name="twitter:image"/>
+<style>
+#kx-seo{max-width:1100px;margin:0 auto;padding:0 56px 60px;color:#9B958B;font-size:14px;line-height:1.7}
+#kx-seo h2{color:#EFE9DF;font-size:20px;margin:0 0 10px}
+#kx-seo ul{list-style:none;padding:0;margin:0}
+#kx-seo li{padding:10px 0;border-bottom:1px solid rgba(239,233,223,.08)}
+#kx-seo li a{color:#EFE9DF;text-decoration:none;font-weight:600}
+#kx-seo li a:hover{text-decoration:underline}
+#kx-seo li span{display:block;color:#9B958B;font-size:13px;margin-top:3px}
+.kx-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.kx-badge{font-family:'Space Grotesk',system-ui,sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid rgba(239,233,223,.18);color:#C9C2B6;white-space:nowrap}
+.kx-badge.kx-mode-online{border-color:rgba(122,196,168,.45);color:#8FD4B6}
+.kx-badge.kx-mode-livestream{border-color:rgba(214,178,102,.5);color:#E2BE72}
+.kx-badge.kx-mode-in-person{border-color:rgba(196,142,122,.45);color:#DDA98C}
+.kx-badge.kx-cost{border-color:rgba(239,233,223,.28);color:#EFE9DF}
+.kx-badge.kx-where{max-width:260px;overflow:hidden;text-overflow:ellipsis}
+</style>
+<script>document.documentElement.className+=' kx-js';</script>
+</head>
+<body><a class="skip-link" href="#maincontent">Skip to content</a>
+<nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
+<a aria-label="SideKix home" href="index.html" style="display:block;"><img alt="SideKix" decoding="async" fetchpriority="high" height="602" loading="eager" src="assets/sidekix-wordmark.png" style="height:30px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(212,168,86,.3));" width="2164"/></a>
+<button aria-expanded="false" aria-label="Menu" class="kx-burger" type="button"><i aria-hidden="true"></i><span>Menu</span></button><div class="kx-links"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="membership.html">Membership</a><a href="resources.html">Resources</a><span aria-current="page">Events</span><a href="partners.html">Partners</a></div></nav><div id="kx-orbnav" style="position:fixed;top:0;right:clamp(14px,2.6vw,34px);bottom:auto;left:auto;z-index:900;height:auto;display:flex;align-items:flex-start;justify-content:flex-end;padding-top:6px;">
+<div id="kx-orbtray" style="display:flex;align-items:center;gap:11px;margin-right:2px;"><a class="kx-tray-item" data-pagenav="1" href="index.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>Home</a><a class="kx-tray-item" data-pagenav="1" href="how-it-works.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>How it works</a><a class="kx-tray-item" data-pagenav="1" href="membership.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>Membership</a><a class="kx-tray-item" data-pagenav="1" href="resources.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;background:linear-gradient(180deg,#D7C582,#A1853E);border-color:#F3E4A8;color:#1B1400;font-weight:700;"><span style="font-size:10px;opacity:.8">●</span>Blog</a><a class="kx-tray-item" data-pagenav="1" href="faq.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>FAQs</a><a class="kx-tray-item" data-pagenav="1" href="become-an-advisor.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>Advisors</a></div>
+<div style="position:relative;width:104px;height:104px;flex:none;">
+<div aria-hidden="true" style="position:absolute;left:50%;top:50%;width:33%;height:33%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;animation:kxOrbGlow 2.8s ease-in-out infinite;"></div>
+<button aria-label="Open section navigation" class="kx-trace" id="kx-orbmaster" style="position:absolute;left:50%;top:50%;width:104px;height:104px;border:none;border-radius:999px;background:none;padding:0;cursor:pointer;transform:translate(-50%,-50%);transition:transform .4s cubic-bezier(.16,1,.3,1);"><img alt="Navigate" decoding="async" height="143" loading="lazy" src="assets/inline/0c7c1adbfa9d.png" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 40px rgba(255,182,88,.7));transition:filter .3s;pointer-events:none;" width="147"/><span id="kx-orbmark" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:transform .4s cubic-bezier(.16,1,.3,1);"><img alt="K" decoding="async" height="268" loading="lazy" src="assets/k-mark.png" style="width:auto;height:24%;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));" width="260"/></span></button>
+</div>
+</div><div id="kx-root" style="position:relative;width:100%;background:#060502;">
+<svg aria-hidden="true" height="0" style="position:absolute;" width="0"><defs>
+<filter id="kx-rough"><feturbulence basefrequency="0.014" numoctaves="2" result="n" seed="7" type="fractalNoise"></feturbulence><fedisplacementmap in="SourceGraphic" in2="n" scale="4" xchannelselector="R" ychannelselector="G"></fedisplacementmap></filter>
+</defs></svg>
+<!-- colored aurora, revealed under the cursor -->
+<div class="kx-bgorb" style="position:fixed;top:6%;left:6%;width:540px;height:540px;border-radius:50%;filter:blur(130px);opacity:.5;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(56,210,255,.6),transparent 66%);"></div>
+<div class="kx-bgorb" style="position:fixed;top:52%;left:-6%;width:520px;height:520px;border-radius:50%;filter:blur(120px);opacity:.82;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(124,120,255,.55),transparent 66%);"></div>
+<div class="kx-bgorb" style="position:fixed;top:40%;right:-6%;width:560px;height:560px;border-radius:50%;filter:blur(130px);opacity:.8;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(255,176,40,.62),transparent 66%);"></div>
+<div class="kx-bgorb" style="position:fixed;bottom:2%;left:48%;width:460px;height:460px;border-radius:50%;filter:blur(120px);opacity:.8;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(214,112,255,.55),transparent 66%);"></div>
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(135% 105% at 50% 28%,transparent 52%,rgba(0,0,0,.42) 100%);"></div>
+<div aria-hidden="true" id="kx-desat"></div>
+<div id="kx-progress" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:200;background:linear-gradient(90deg,#A1853E,#F3E4A8);box-shadow:0 0 14px rgba(231,182,70,.7);"></div>
+<div aria-hidden="true" id="kx-cursor" style="position:fixed;top:0;left:0;width:36px;height:36px;border-radius:999px;pointer-events:none;z-index:210;mix-blend-mode:screen;background:radial-gradient(circle,rgba(255,224,140,1),rgba(255,198,92,.6) 42%,rgba(231,182,70,0) 72%);transform:translate(-50%,-50%);opacity:0;"></div>
+<div aria-hidden="true" id="kx-ring" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:999px;pointer-events:none;z-index:59;transform:translate(-50%,-50%);border:1px solid rgba(212,168,86,.28);box-shadow:0 0 60px rgba(231,182,70,.12) inset;opacity:0;animation:kxPulseRing 3s ease-in-out infinite;"></div>
+<!-- NAV -->
+<!-- HEAD -->
+<!-- NEXT UP -->
+<!-- LIST -->
+<!-- CTA -->
+<!-- FOOTER -->
+<main id="maincontent"><section id="kx-head" style="position:relative;z-index:6;padding:clamp(150px,20vh,220px) 56px clamp(50px,7vh,80px);max-width:1160px;margin:0 auto;text-align:center;">
+<p class="kx-backrow"><a class="kx-bk" href="resources.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to resources</a></p><h1 class="kx-h2">Opportunities are everywhere.</h1>
+<p style="color:#CEC9BC;font-size:16.5px;margin:20px auto 0;max-width:600px;line-height:1.7;">Events run online, streamed live, and held in person, from colleges, nonprofits, banks and companies in every state. Anything with a published price is left out, and each card shows what the host says about cost.</p><p class="evkicker">Learn. Connect. Move Forward.</p>
+<div id="kx-stamp" style="font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.2em;color:#928F86;margin-top:26px;"></div>
+</section><section style="position:relative;z-index:6;padding:0 56px;max-width:1160px;margin:0 auto;">
+<div id="kx-filters" style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:52px;"></div><p aria-live="polite" class="sr-only" id="kx-count"></p><div class="kx-next" hidden="" id="kx-next">
+<div aria-hidden="true" style="position:absolute;inset:7px;border:1.6px solid rgba(212,168,86,.6);border-radius:18px;filter:url(#kx-rough);pointer-events:none;"></div>
+<div style="position:relative;">
+<div class="kx-eyebrow" style="display:flex;align-items:center;justify-content:center;gap:10px;">
+<span style="width:6px;height:6px;border-radius:50%;background:#D4A856;animation:kxDot 2.4s ease-in-out infinite;"></span>NEXT UP
+        </div>
+<h2 id="kx-next-title" style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(28px,3.4vw,42px);margin:0 0 10px;text-align:center;letter-spacing:-.006em;line-height:1.1;"></h2>
+<p class="kx-meta" id="kx-next-meta" style="text-align:center;margin:0 0 26px;"></p>
+<div id="kx-countdown" style="display:flex;gap:38px;justify-content:center;margin-bottom:30px;flex-wrap:wrap;"></div>
+<div style="text-align:center;"><a class="kx-mag kx-trace" href="#" id="kx-next-link" rel="noopener" target="_blank">Save your seat</a></div>
+</div>
+</div>
+</section><section id="kx-list" style="position:relative;z-index:6;padding:clamp(70px,10vh,120px) 56px clamp(90px,12vh,150px);max-width:1160px;margin:0 auto;">
+<div id="kx-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;"></div>
+</section><section style="position:relative;z-index:6;text-align:center;padding:0 56px clamp(90px,13vh,160px);max-width:900px;margin:0 auto;">
+<div class="kx-eyebrow">EVERY MONDAY</div>
+<h2 class="kx-h2">The list, before the week starts.</h2>
+<p style="color:#9B958B;font-size:16px;margin:20px auto 32px;max-width:520px;line-height:1.7;">Join the waitlist and the week's events land Monday morning, alongside early access to SideKix.</p>
+<a class="kx-mag kx-trace" href="join.html?intent=waitlist">Join the waitlist</a>
+</section><!-- kx:seo:start -->
+<section id="kx-seo" aria-label="Upcoming business events">
+  <h2>Upcoming events</h2>
+  <p>Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week.</p>
+  <p>Last checked 2026-09-01.</p>
+  <ul>
+    <li><a href="https://www.facebookblueprint.com/student/page/389031-reach-your-business-goals-with-reels" rel="noopener nofollow" target="_blank">Reach your business goals with Reels ads - Sep 1 | APAC | English</a><span> Meta Blueprint. Tuesday, September 1, 2026. Check with host. Cost not listed.</span></li>
+    <li><a href="https://www.facebookblueprint.com/student/page/288464-digital-marketing-associate-certification-prep" rel="noopener nofollow" target="_blank">Digital Marketing Associate Certification Prep - Sep 1 &amp; 2 | NORAM | English</a><span> Meta Blueprint. Tuesday, September 1, 2026. Check with host. Cost not listed.</span></li>
+    <li><a href="https://www.risbdc.org/workshop.aspx?ekey=30460012" rel="noopener nofollow" target="_blank">NETWORK WITH US IN NEWPORT</a><span> Rhode Island SBDC. Tuesday, September 1, 2026 at 8:00 AM. Check with host. No cost. Greater Newport Chamber of Commerce Innovate Newport.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=10460038" rel="noopener nofollow" target="_blank">Queen Creek Start Smart Series: In-Person | Session 5 of 5</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 8:30 AM. In person. No cost. Queen Creek Chamber of Commerce.</span></li>
+    <li><a href="https://clients.virginiasbdc.org/workshop.aspx?ekey=50460039" rel="noopener nofollow" target="_blank">Hampton Roads Military Business Network</a><span> Virginia SBDC. Tuesday, September 1, 2026 at 8:30 AM. Check with host. No cost. The HIVE by City of Virginia Beach.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=40460054" rel="noopener nofollow" target="_blank">BN1: DreamBuilder Session 5</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 9:00 AM. Check with host. No cost. Ship Arizona.</span></li>
+    <li><a href="https://www2.lsbdc.org/workshop.aspx?ekey=19460074" rel="noopener nofollow" target="_blank">Funding &amp; Support for Louisiana Small Businesses: An Introduction to SSBCI</a><span> Louisiana SBDC. Tuesday, September 1, 2026 at 9:00 AM. Online. No cost.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=80460088" rel="noopener nofollow" target="_blank">Government Contracting Essentials with The City of Yuma</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 10:00 AM. Check with host. No cost. Small Business Development Center - Arizona Western College RTC Center.</span></li>
+    <li><a href="https://www2.lsbdc.org/workshop.aspx?ekey=19460078" rel="noopener nofollow" target="_blank">Tax Strategy for Small Business Owners</a><span> Louisiana SBDC. Tuesday, September 1, 2026 at 10:00 AM. Online. No cost.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44260" rel="noopener nofollow" target="_blank">SPANISH - Start Smart - Webinar via Zoom</a><span> Texas SBDC at UTSA. Tuesday, September 1, 2026 at 10:00 AM. Online. Cost not listed.</span></li>
+    <li><a href="https://wsbdc.ecenterdirect.com/events/99273000" rel="noopener nofollow" target="_blank">Reality Check- Impulso Empresarial</a><span> Washington SBDC. Tuesday, September 1, 2026 at 10:00 AM. In person. No cost. 2026 10:00am-12:00 1615 S 325th St, Federal Way WA 98003.</span></li>
+    <li><a href="https://ilsbdc.ecenterdirect.com/events/42285" rel="noopener nofollow" target="_blank">Starting Your Business In Illinois</a><span> Illinois SBDC. Tuesday, September 1, 2026 at 11:00 AM. Online. No cost.</span></li>
+    <li><a href="https://www2.lsbdc.org/workshop.aspx?ekey=9460087" rel="noopener nofollow" target="_blank">SEBD Certification: A Certification to Grow Your Business</a><span> Louisiana SBDC. Tuesday, September 1, 2026 at 12:00 PM. Online. No cost.</span></li>
+    <li><a href="https://nbdc.ecenterdirect.com/events/10466" rel="noopener nofollow" target="_blank">Beyond the Micro-Purchase: Understanding Simplified Acquisitions</a><span> Nebraska Business Development Center. Tuesday, September 1, 2026 at 12:00 PM. Online. Cost not listed.</span></li>
+    <li><a href="https://iowasbdc.org/event/lunch-and-learn-an-intro-to-ai-in-your-small-food-business/" rel="noopener nofollow" target="_blank">Lunch and Learn, An Intro to AI in your Small Food Business</a><span> Iowa State University Extension and Outreach. Tuesday, September 1, 2026 at 12:00 PM. Check with host. Cost not listed.</span></li>
+    <li><a href="https://iowasbdc.org/event/hiring-employees-contractors-or-family-avoid-costly-tax-and-payroll-mistakes/" rel="noopener nofollow" target="_blank">Hiring Employees, Contractors or Family, Avoid Costly Tax and Payroll Mistakes</a><span> SCORE. Tuesday, September 1, 2026 at 12:00 PM. Online. Cost not listed.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=40460004" rel="noopener nofollow" target="_blank">PNC: Obtaining Business Credit</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 1:00 PM. Check with host. No cost. Cochise College SBDC Downtown Center.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44477" rel="noopener nofollow" target="_blank">Building a Business Plan with LivePlan - Webinar via Zoom</a><span> Texas SBDC at UTSA. Tuesday, September 1, 2026 at 1:00 PM. Online. Cost not listed.</span></li>
+    <li><a href="https://business.pa.gov/event/first-step-starting-a-small-business-in-pennsylvania-53/" rel="noopener nofollow" target="_blank">First Step: Starting A Small Business in Pennsylvania</a><span> Cindy Nellis. Tuesday, September 1, 2026 at 1:00 PM. In person. Cost not listed. 122 Carlson Library.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44470" rel="noopener nofollow" target="_blank">*Serie* Como Iniciar Su Propia Pequena Empresa</a><span> Texas SBDC at UTSA. Tuesday, September 1, 2026 at 2:00 PM. Online. No cost.</span></li>
+    <li><a href="https://www2.lsbdc.org/workshop.aspx?ekey=4460142" rel="noopener nofollow" target="_blank">Finish the Year Strong: Your Q4 Plan</a><span> Louisiana SBDC. Tuesday, September 1, 2026 at 3:00 PM. Online. No cost.</span></li>
+    <li><a href="https://iowasbdc.org/event/always-ready-getting-ready-15/" rel="noopener nofollow" target="_blank">Always Ready: Getting Ready</a><span> Iowa Center for Economic Success. Tuesday, September 1, 2026 at 3:00 PM. Online. Cost not listed.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=80460085" rel="noopener nofollow" target="_blank">How to do Business with City of San Luis</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 5:00 PM. Check with host. No cost. Small Business Development Center - Arizona Western College RTC Center.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=10460044" rel="noopener nofollow" target="_blank">Surprise Start Smart Series: In Person | Session 2 of 5</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 5:00 PM. In person. No cost. Spark Surprise Business Center Suite 143.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=30460067" rel="noopener nofollow" target="_blank">Graham County Fall DreamBuilder - Kick Off</a><span> Arizona SBDC. Tuesday, September 1, 2026 at 6:00 PM. Check with host. No cost. Eastern Arizona College Academic Programs Building.</span></li>
+    <li><a href="https://pasbdc.ecenterdirect.com/events/33080" rel="noopener nofollow" target="_blank">The First Step: Starting a Small Business in Pennsylvania (Webinar)</a><span> Pennsylvania SBDC. Tuesday, September 1, 2026 at 6:00 PM. Online. No cost.</span></li>
+    <li><a href="https://kysbdc.ecenterdirect.com/events/10540" rel="noopener nofollow" target="_blank">Start Smart: Starting A Business in Kentucky</a><span> Kentucky SBDC. Tuesday, September 1, 2026 at 7:00 PM. Online. No cost.</span></li>
+    <li><a href="https://ilsbdc.ecenterdirect.com/events/42298" rel="noopener nofollow" target="_blank">Business Financials for Success - Orientation</a><span> Illinois SBDC. Wednesday, September 2, 2026. Online. No cost.</span></li>
+    <li><a href="https://ilsbdc.ecenterdirect.com/events/42299" rel="noopener nofollow" target="_blank">Exito Financiero para su Negocio</a><span> Illinois SBDC. Wednesday, September 2, 2026. Online. No cost.</span></li>
+    <li><a href="https://mnsbdc.ecenterdirect.com/events/11658" rel="noopener nofollow" target="_blank">First of Six-Part Flourishing Leadership Series</a><span> Minnesota SBDC. Wednesday, September 2, 2026. In person. No cost. 2026 8am-9am 102 1st St W, Bemidji MN 56601.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=82460008" rel="noopener nofollow" target="_blank">Solid Start - Legal, Tax and Capital Essentials When Starting Your Business</a><span> Ohio SBDC. Wednesday, September 2, 2026. Check with host. No cost. Ohio SBDC at Lakeland Community College.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44363" rel="noopener nofollow" target="_blank">Build a YouTube Channel That Helps Customers Find, Understand, and Choose You</a><span> Texas SBDC at UTSA. Wednesday, September 2, 2026. Online. No cost.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44095" rel="noopener nofollow" target="_blank">Cybersecurity Resources for Small Businesses (Virtual)</a><span> Texas SBDC at UTSA. Wednesday, September 2, 2026. Online. No cost. 2026 2pm-3pm Virtual, San Antonio TX 78207.</span></li>
+    <li><a href="https://www.facebookblueprint.com/student/page/705417-certification-prep-virtual-training-media-planning-part-1" rel="noopener nofollow" target="_blank">Certification Prep Virtual Training | Media Planning - Part 1 - Sep 2 | APAC (INDIA/SOUTH ASIA) | English</a><span> Meta Blueprint. Wednesday, September 2, 2026. Online. Cost not listed.</span></li>
+    <li><a href="https://www.facebookblueprint.com/student/page/251480-optimize-and-troubleshoot-the-meta-pixel" rel="noopener nofollow" target="_blank">Optimize and Troubleshoot the Meta Pixel - Sep 2 | NORAM | English</a><span> Meta Blueprint. Wednesday, September 2, 2026. Check with host. Cost not listed.</span></li>
+    <li><a href="https://www.facebookblueprint.com/student/page/555762-maximize-performance-with-advantage-sales-campaigns" rel="noopener nofollow" target="_blank">Maximize performance with Advantage+ sales campaigns - Sep 2 | NORAM | English</a><span> Meta Blueprint. Wednesday, September 2, 2026. Check with host. Cost not listed.</span></li>
+    <li><a href="https://sdceo.ecenterdirect.com/events/1019298" rel="noopener nofollow" target="_blank">Coffee &amp; Conversation (Chamberlain)</a><span> South Dakota SBDC. Wednesday, September 2, 2026 at 7:30 AM. In person. No cost. 30 a.m. The Meeting Place 100 S Main St., Chamberlain SD 57325.</span></li>
+    <li><a href="https://business.pa.gov/event/lv-meet-the-buyers-expo-2/" rel="noopener nofollow" target="_blank">LV Meet the Buyers Expo</a><span> LV Meet the Buyers. Wednesday, September 2, 2026 at 8:30 AM. In person. Cost not listed. 3311 Airport Rd.</span></li>
+    <li><a href="https://nbdc.ecenterdirect.com/events/10293" rel="noopener nofollow" target="_blank">Intro to State, and Local Government Contracting</a><span> Nebraska Business Development Center. Wednesday, September 2, 2026 at 9:00 AM. In person. No cost. 2026 9:00 - 10:30 AM (CDT) 5752 Ames Ave, Omaha NE 68104.</span></li>
+    <li><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=12460007" rel="noopener nofollow" target="_blank">INTELIGENCIA ARTIFICIAL SIN COMPLICACIONES: Automatiza, Ahorra Tiempo y Crece</a><span> Puerto Rico SBTDC. Wednesday, September 2, 2026 at 9:00 AM. Check with host. No cost. BRRC (Business Response &amp; Recovery Center) Centro de Creacion y Recuperacion de Negocios.</span></li>
+    <li><a href="https://clients.tsbdc.org/workshop.aspx?ekey=21460027" rel="noopener nofollow" target="_blank">Get the Right People in the Right Seats</a><span> Tennessee SBDC. Wednesday, September 2, 2026 at 9:00 AM. Check with host. No cost. The Farragut Community Center.</span></li>
+    <li><a href="https://clients.utahsbdc.org/workshop.aspx?ekey=4460013" rel="noopener nofollow" target="_blank">Starting Your Business 101 - Online-Zoom</a><span> Utah SBDC. Wednesday, September 2, 2026 at 9:00 AM. Online. No cost.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=30460068" rel="noopener nofollow" target="_blank">Greenlee Fall DreamBuilder - Kick Off</a><span> Arizona SBDC. Wednesday, September 2, 2026 at 9:30 AM. Check with host. No cost. Duncan Town Hall Town Hall.</span></li>
+    <li><a href="https://clients.msbdc.org/workshop.aspx?ekey=60460016" rel="noopener nofollow" target="_blank">September Tech Talks with Rob - Getting Found Online: Google, AI Search and Your Digital Presence</a><span> Massachusetts SBDC. Wednesday, September 2, 2026 at 10:00 AM. Online. No cost.</span></li>
+    <li><a href="https://nysbdc.ecenterdirect.com/events/1020212" rel="noopener nofollow" target="_blank">September 2026 Business First Wednesday</a><span> New York SBDC. Wednesday, September 2, 2026 at 10:00 AM. Online. No cost.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030" rel="noopener nofollow" target="_blank">Smart Start #1 Launch and Legalize Your Business in Ohio</a><span> Ohio SBDC. Wednesday, September 2, 2026 at 10:00 AM. Online. No cost.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44312" rel="noopener nofollow" target="_blank">Social Media for Small Businesses - Webinar via Zoom</a><span> Texas SBDC at UTSA. Wednesday, September 2, 2026 at 10:00 AM. Online. Cost not listed.</span></li>
+    <li><a href="https://asbdc.ecenterdirect.com/events/10722" rel="noopener nofollow" target="_blank">Introduction to Intellectual Property for Industry</a><span> Alabama SBDC. Wednesday, September 2, 2026 at 12:00 PM. Online. No cost.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037" rel="noopener nofollow" target="_blank">Brand Identity &amp; Intro to Social Media</a><span> Ohio SBDC. Wednesday, September 2, 2026 at 12:00 PM. Online. No cost.</span></li>
+    <li><a href="https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111" rel="noopener nofollow" target="_blank">Setting Up Your Accounting System</a><span> Virginia SBDC. Wednesday, September 2, 2026 at 12:00 PM. Online. No cost.</span></li>
+    <li><a href="https://www2.lsbdc.org/workshop.aspx?ekey=4460145" rel="noopener nofollow" target="_blank">PAVE: Finding Your Customers and Market Opportunity</a><span> Louisiana SBDC. Wednesday, September 2, 2026 at 1:00 PM. Online. No cost.</span></li>
+    <li><a href="https://utsa.ecenterdirect.com/events/44474" rel="noopener nofollow" target="_blank">Unlock the Path to Sustainable Business Growth — Virtual Preview Event - Webinar via Zoom</a><span> Texas SBDC at UTSA. Wednesday, September 2, 2026 at 1:00 PM. Online. Cost not listed.</span></li>
+    <li><a href="https://pasbdc.ecenterdirect.com/events/33510" rel="noopener nofollow" target="_blank">First Steps: Mapping the Business Concept</a><span> Pennsylvania SBDC. Wednesday, September 2, 2026 at 1:30 PM. Online. No cost.</span></li>
+    <li><a href="https://iowasbdc.org/event/always-ready-lending-in-person-3/" rel="noopener nofollow" target="_blank">Always Ready: Lending (In-Person)</a><span> Iowa SBDC. Wednesday, September 2, 2026 at 3:00 PM. In person. Cost not listed. 2210 Grand Avenue.</span></li>
+    <li><a href="https://nysbdc.ecenterdirect.com/events/1020197" rel="noopener nofollow" target="_blank">Workshop: Launch Your Business (2-Part Session) [Online]</a><span> New York SBDC. Wednesday, September 2, 2026 at 3:30 PM. Online. No cost.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=91460008" rel="noopener nofollow" target="_blank">Business Basics 2 *In-Person*</a><span> Ohio SBDC. Wednesday, September 2, 2026 at 3:30 PM. In person. No cost. Ohio SBDC at Summit Medina Business Alliance Bounce Innovation Hub.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009" rel="noopener nofollow" target="_blank">Virtual Small Business Orientation</a><span> Ohio SBDC. Wednesday, September 2, 2026 at 5:30 PM. Online. No cost.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009" rel="noopener nofollow" target="_blank">Basis of a Successful Enterprise (B.A.S.E.) Business Startup Workshop</a><span> Ohio SBDC. Wednesday, September 2, 2026 at 5:30 PM. Online. No cost.</span></li>
+    <li><a href="https://clients.arizonasbdc.com/workshop.aspx?ekey=70460027" rel="noopener nofollow" target="_blank">DreamBuilder Cohort- Springerville</a><span> Arizona SBDC. Wednesday, September 2, 2026 at 6:00 PM. Check with host. No cost. NPC - Springerville Center.</span></li>
+    <li><a href="https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041" rel="noopener nofollow" target="_blank">New Business Information Webinar - evening</a><span> Ohio SBDC. Wednesday, September 2, 2026 at 6:00 PM. Online. No cost.</span></li>
+  </ul>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Business events for founders across the United States","description":"Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week.","url":"https://sidekixhq.com/events.html","numberOfItems":60,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Event","name":"Reach your business goals with Reels ads - Sep 1 | APAC | English","startDate":"2026-09-01T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/389031-reach-your-business-goals-with-reels"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/389031-reach-your-business-goals-with-reels","description":"Reach your business goals with Reels ads - Sep 1 | APAC | English Monday, Aug 31, 2026 at 11:00 PM to 12:30 AM EDT Location: APAC | Language: English Instructor: Su."}},{"@type":"ListItem","position":2,"item":{"@type":"Event","name":"Digital Marketing Associate Certification Prep - Sep 1 & 2 | NORAM | English","startDate":"2026-09-01T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/288464-digital-marketing-associate-certification-prep"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/288464-digital-marketing-associate-certification-prep","description":"Digital Marketing Associate Certification Prep - Sep 1 & 2 | NORAM | English Tuesday, Sep 1, 2026 at 2:00 PM to 5:00 PM EDT Location: NORAM Instructor: Brian."}},{"@type":"ListItem","position":3,"item":{"@type":"Event","name":"NETWORK WITH US IN NEWPORT","startDate":"2026-09-01T08:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Greater Newport Chamber of Commerce Innovate Newport","address":{"@type":"PostalAddress","name":"Greater Newport Chamber of Commerce Innovate Newport"}},"organizer":{"@type":"Organization","name":"Rhode Island SBDC"},"url":"https://www.risbdc.org/workshop.aspx?ekey=30460012","description":"Join us for an informational networking coffee hour with Paul Harden of the RI Small Business Development Center (RISBDC) and Lori Burke, Chamber Membership Sales Associate. Learn more about the no-charge, confidential business services available to assist new","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.risbdc.org/workshop.aspx?ekey=30460012","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":4,"item":{"@type":"Event","name":"Queen Creek Start Smart Series: In-Person | Session 5 of 5","startDate":"2026-09-01T08:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Queen Creek Chamber of Commerce","address":{"@type":"PostalAddress","name":"Queen Creek Chamber of Commerce"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460038","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Start Smart Series: In-Person Wrap Up Your Plan and Celebrate! Program Details Start Date: September 1st, 2026 | Session 5 of 5 Meeting Day & Time: Tuesdays, 8:30 AM – 10:30 AM Format: In-Person Milestone Celebration: September 1st No-Fee Light refreshments wi","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460038","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":5,"item":{"@type":"Event","name":"Hampton Roads Military Business Network","startDate":"2026-09-01T08:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"The HIVE by City of Virginia Beach","address":{"@type":"PostalAddress","name":"The HIVE by City of Virginia Beach"}},"organizer":{"@type":"Organization","name":"Virginia SBDC"},"url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460039","description":"Military Business Network – Breakfast Event Date: Tuesday, September 1st 2026 Time: 8:30 – 9:30 AM Location: THE HIVE, Town Center, Virginia Beach Join us for our Military Business Network breakfast, bringing together veterans, military spouses, and supporters","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460039","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":6,"item":{"@type":"Event","name":"BN1: DreamBuilder Session 5","startDate":"2026-09-01T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Ship Arizona","address":{"@type":"PostalAddress","name":"Ship Arizona"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460054","description":"Join us at Cochise College's SBDC for the kick-off of DreamBuilder, a FREE 6-week entrepreneurship boot camp. This week, we'll get to know each other and the DreamBuilder business plan generator. We'll explore your BIG PICTURE GOALS and begin the process of co","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460054","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":7,"item":{"@type":"Event","name":"Funding & Support for Louisiana Small Businesses: An Introduction to SSBCI","startDate":"2026-09-01T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460074"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460074","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Looking for funding to start or grow your business? Join us for an introduction to Louisiana's State Small Business Credit Initiative (SSBCI) and learn how the program helps connect small businesses with financing opportunities and no-cost technical assistance","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460074","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":8,"item":{"@type":"Event","name":"Government Contracting Essentials with The City of Yuma","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Small Business Development Center - Arizona Western College RTC Center","address":{"@type":"PostalAddress","name":"Small Business Development Center - Arizona Western College RTC Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460088","description":"Government Contracting Essentials Join us for the Government Contracting Essentials Workshop—a NO-COST event hosted in partnership with the Arizona APEX Accelerator, AWC SBDC, and the City of Yuma. Discover how to navigate federal, state, and defense contracti","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460088","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":9,"item":{"@type":"Event","name":"Tax Strategy for Small Business Owners","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460078"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460078","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460078","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":10,"item":{"@type":"Event","name":"SPANISH - Start Smart - Webinar via Zoom","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44260"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44260","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":11,"item":{"@type":"Event","name":"Reality Check- Impulso Empresarial","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2026 10:00am-12:00 1615 S 325th St, Federal Way WA 98003","address":{"@type":"PostalAddress","name":"2026 10:00am-12:00 1615 S 325th St, Federal Way WA 98003"}},"organizer":{"@type":"Organization","name":"Washington SBDC"},"url":"https://wsbdc.ecenterdirect.com/events/99273000","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://wsbdc.ecenterdirect.com/events/99273000","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":12,"item":{"@type":"Event","name":"Starting Your Business In Illinois","startDate":"2026-09-01T11:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://ilsbdc.ecenterdirect.com/events/42285"},"organizer":{"@type":"Organization","name":"Illinois SBDC"},"url":"https://ilsbdc.ecenterdirect.com/events/42285","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ilsbdc.ecenterdirect.com/events/42285","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":13,"item":{"@type":"Event","name":"SEBD Certification: A Certification to Grow Your Business","startDate":"2026-09-01T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=9460087"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=9460087","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=9460087","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":14,"item":{"@type":"Event","name":"Beyond the Micro-Purchase: Understanding Simplified Acquisitions","startDate":"2026-09-01T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://nbdc.ecenterdirect.com/events/10466"},"organizer":{"@type":"Organization","name":"Nebraska Business Development Center"},"url":"https://nbdc.ecenterdirect.com/events/10466","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":15,"item":{"@type":"Event","name":"Lunch and Learn, An Intro to AI in your Small Food Business","startDate":"2026-09-01T12:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://iowasbdc.org/event/lunch-and-learn-an-intro-to-ai-in-your-small-food-business/"},"organizer":{"@type":"Organization","name":"Iowa State University Extension and Outreach"},"url":"https://iowasbdc.org/event/lunch-and-learn-an-intro-to-ai-in-your-small-food-business/","description":"<p>Tuesday, September 1, 12:00 PM Lunch and Learn - An Intro to AI in your Small Food Business Join the Food Innovation and Business Hub to learn more about AI. AI."}},{"@type":"ListItem","position":16,"item":{"@type":"Event","name":"Hiring Employees, Contractors or Family, Avoid Costly Tax and Payroll Mistakes","startDate":"2026-09-01T12:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://iowasbdc.org/event/hiring-employees-contractors-or-family-avoid-costly-tax-and-payroll-mistakes/"},"organizer":{"@type":"Organization","name":"SCORE"},"url":"https://iowasbdc.org/event/hiring-employees-contractors-or-family-avoid-costly-tax-and-payroll-mistakes/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"<p>Format Online Live Event Date September 1, 2026 Time 1:00 pm EDT Duration 1 hour Price free Overview Hiring someone to work in your business comes with important."}},{"@type":"ListItem","position":17,"item":{"@type":"Event","name":"PNC: Obtaining Business Credit","startDate":"2026-09-01T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Cochise College SBDC Downtown Center","address":{"@type":"PostalAddress","name":"Cochise College SBDC Downtown Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460004","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460004","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":18,"item":{"@type":"Event","name":"Building a Business Plan with LivePlan - Webinar via Zoom","startDate":"2026-09-01T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44477"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44477","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":19,"item":{"@type":"Event","name":"First Step: Starting A Small Business in Pennsylvania","startDate":"2026-09-01T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"122 Carlson Library","address":{"@type":"PostalAddress","name":"122 Carlson Library"}},"organizer":{"@type":"Organization","name":"Cindy Nellis"},"url":"https://business.pa.gov/event/first-step-starting-a-small-business-in-pennsylvania-53/","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"<p>The First Step: How to Start and Finance Your Business. This monthly seminar provides an overview of the steps to starting a business along with an in-depth look."}},{"@type":"ListItem","position":20,"item":{"@type":"Event","name":"*Serie* Como Iniciar Su Propia Pequena Empresa","startDate":"2026-09-01T14:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44470"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44470","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://utsa.ecenterdirect.com/events/44470","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":21,"item":{"@type":"Event","name":"Finish the Year Strong: Your Q4 Plan","startDate":"2026-09-01T15:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460142"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460142","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"The businesses with the strongest fourth quarter don't get lucky. They plan for it. Build your Q4 marketing plan in just one hour. The businesses that win the fourth quarter plan it in September, and this session builds your plan in one hour. If you sell to co","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460142","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":22,"item":{"@type":"Event","name":"Always Ready: Getting Ready","startDate":"2026-09-01T15:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://iowasbdc.org/event/always-ready-getting-ready-15/"},"organizer":{"@type":"Organization","name":"Iowa Center for Economic Success"},"url":"https://iowasbdc.org/event/always-ready-getting-ready-15/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"<p>September 1 @ 3:00 pm - 4:00 pm CDT Presenter: The Iowa Center Staff Date: Tuesday, September 1, 2026 Time: 3:00 pm, 4:00 pm Location: Online Register: Here."}},{"@type":"ListItem","position":23,"item":{"@type":"Event","name":"How to do Business with City of San Luis","startDate":"2026-09-01T17:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Small Business Development Center - Arizona Western College RTC Center","address":{"@type":"PostalAddress","name":"Small Business Development Center - Arizona Western College RTC Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460085","description":"How to do Contracting Work with the City of San Luis Interested in doing business with the City of San Luis? Join us to learn about city contracting opportunities, the procurement process, how to review bid documents, use the procurement portal, and understand","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460085","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":24,"item":{"@type":"Event","name":"Surprise Start Smart Series: In Person | Session 2 of 5","startDate":"2026-09-01T17:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Spark Surprise Business Center Suite 143","address":{"@type":"PostalAddress","name":"Spark Surprise Business Center Suite 143"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460044","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Start Smart Series: In Person | Marketing and Pricing, Know your Value & Sell It! Program Details Start Date: September 1st, 2026 | Session 2 of 5 Meeting Day & Time: Tuesdays, 5:00 PM – 7:00 PM Format: In Person Celebration: September 22, 2026 No-Fee Light re","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460044","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":25,"item":{"@type":"Event","name":"Graham County Fall DreamBuilder - Kick Off","startDate":"2026-09-01T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Eastern Arizona College Academic Programs Building","address":{"@type":"PostalAddress","name":"Eastern Arizona College Academic Programs Building"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460067","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460067","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":26,"item":{"@type":"Event","name":"The First Step: Starting a Small Business in Pennsylvania (Webinar)","startDate":"2026-09-01T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://pasbdc.ecenterdirect.com/events/33080"},"organizer":{"@type":"Organization","name":"Pennsylvania SBDC"},"url":"https://pasbdc.ecenterdirect.com/events/33080","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://pasbdc.ecenterdirect.com/events/33080","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":27,"item":{"@type":"Event","name":"Start Smart: Starting A Business in Kentucky","startDate":"2026-09-01T19:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://kysbdc.ecenterdirect.com/events/10540"},"organizer":{"@type":"Organization","name":"Kentucky SBDC"},"url":"https://kysbdc.ecenterdirect.com/events/10540","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://kysbdc.ecenterdirect.com/events/10540","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":28,"item":{"@type":"Event","name":"Business Financials for Success - Orientation","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://ilsbdc.ecenterdirect.com/events/42298"},"organizer":{"@type":"Organization","name":"Illinois SBDC"},"url":"https://ilsbdc.ecenterdirect.com/events/42298","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ilsbdc.ecenterdirect.com/events/42298","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":29,"item":{"@type":"Event","name":"Exito Financiero para su Negocio","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://ilsbdc.ecenterdirect.com/events/42299"},"organizer":{"@type":"Organization","name":"Illinois SBDC"},"url":"https://ilsbdc.ecenterdirect.com/events/42299","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ilsbdc.ecenterdirect.com/events/42299","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":30,"item":{"@type":"Event","name":"First of Six-Part Flourishing Leadership Series","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2026 8am-9am 102 1st St W, Bemidji MN 56601","address":{"@type":"PostalAddress","name":"2026 8am-9am 102 1st St W, Bemidji MN 56601"}},"organizer":{"@type":"Organization","name":"Minnesota SBDC"},"url":"https://mnsbdc.ecenterdirect.com/events/11658","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Multi-session Course","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://mnsbdc.ecenterdirect.com/events/11658","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":31,"item":{"@type":"Event","name":"Solid Start - Legal, Tax and Capital Essentials When Starting Your Business","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Ohio SBDC at Lakeland Community College","address":{"@type":"PostalAddress","name":"Ohio SBDC at Lakeland Community College"}},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=82460008","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=82460008","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":32,"item":{"@type":"Event","name":"Build a YouTube Channel That Helps Customers Find, Understand, and Choose You","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44363"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44363","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://utsa.ecenterdirect.com/events/44363","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":33,"item":{"@type":"Event","name":"Cybersecurity Resources for Small Businesses (Virtual)","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44095"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44095","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://utsa.ecenterdirect.com/events/44095","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":34,"item":{"@type":"Event","name":"Certification Prep Virtual Training | Media Planning - Part 1 - Sep 2 | APAC (INDIA/SOUTH ASIA) | English","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/705417-certification-prep-virtual-training-media-planning-part-1"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/705417-certification-prep-virtual-training-media-planning-part-1","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Certification Prep Virtual Training | Media Planning - Part 1 - Sep 2 | APAC (INDIA/SOUTH ASIA) | English Wednesday, Sep 2, 2026 at 1:00 AM to 3:00 AM EDT Location."}},{"@type":"ListItem","position":35,"item":{"@type":"Event","name":"Optimize and Troubleshoot the Meta Pixel - Sep 2 | NORAM | English","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/251480-optimize-and-troubleshoot-the-meta-pixel"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/251480-optimize-and-troubleshoot-the-meta-pixel","description":"Optimize and Troubleshoot the Meta Pixel - Sep 2 | NORAM | English Wednesday, Sep 2, 2026 at 11:00 AM to 12:30 PM EDT Location: NORAM Instructor: Felipe Barrientos."}},{"@type":"ListItem","position":36,"item":{"@type":"Event","name":"Maximize performance with Advantage+ sales campaigns - Sep 2 | NORAM | English","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/555762-maximize-performance-with-advantage-sales-campaigns"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/555762-maximize-performance-with-advantage-sales-campaigns","description":"Maximize performance with Advantage+ sales campaigns - Sep 2 | NORAM | English Wednesday, Sep 2, 2026 at 3:00 PM to 4:00 PM EDT Location: NORAM Instructor: Martha."}},{"@type":"ListItem","position":37,"item":{"@type":"Event","name":"Coffee & Conversation (Chamberlain)","startDate":"2026-09-02T07:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"30 a.m. The Meeting Place 100 S Main St., Chamberlain SD 57325","address":{"@type":"PostalAddress","name":"30 a.m. The Meeting Place 100 S Main St., Chamberlain SD 57325"}},"organizer":{"@type":"Organization","name":"South Dakota SBDC"},"url":"https://sdceo.ecenterdirect.com/events/1019298","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://sdceo.ecenterdirect.com/events/1019298","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":38,"item":{"@type":"Event","name":"LV Meet the Buyers Expo","startDate":"2026-09-02T08:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"3311 Airport Rd","address":{"@type":"PostalAddress","name":"3311 Airport Rd"}},"organizer":{"@type":"Organization","name":"LV Meet the Buyers"},"url":"https://business.pa.gov/event/lv-meet-the-buyers-expo-2/","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"<p>The Lehigh Valley Meet the Buyers Expo is where major corporations and small businesses come together to explore shared opportunities. Engage with key."}},{"@type":"ListItem","position":39,"item":{"@type":"Event","name":"Intro to State, and Local Government Contracting","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2026 9:00 - 10:30 AM (CDT) 5752 Ames Ave, Omaha NE 68104","address":{"@type":"PostalAddress","name":"2026 9:00 - 10:30 AM (CDT) 5752 Ames Ave, Omaha NE 68104"}},"organizer":{"@type":"Organization","name":"Nebraska Business Development Center"},"url":"https://nbdc.ecenterdirect.com/events/10293","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://nbdc.ecenterdirect.com/events/10293","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":40,"item":{"@type":"Event","name":"INTELIGENCIA ARTIFICIAL SIN COMPLICACIONES: Automatiza, Ahorra Tiempo y Crece","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"BRRC (Business Response & Recovery Center) Centro de Creacion y Recuperacion de Negocios","address":{"@type":"PostalAddress","name":"BRRC (Business Response & Recovery Center) Centro de Creacion y Recuperacion de Negocios"}},"organizer":{"@type":"Organization","name":"Puerto Rico SBTDC"},"url":"https://ic.prsbtdc.org/workshop.aspx?ekey=12460007","description":"USTED SE ESTÁ REGISTRANDO PARA UN SEMINARIO PRESENCIAL. Por favor, siga las siguientes instrucciones para registrarse: Escriba su nombre con ambos apellidos en letra mayúscula sin acentos. No utilizar el mismo email para registrar varias personas. Recibirá ema","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=12460007","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":41,"item":{"@type":"Event","name":"Get the Right People in the Right Seats","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"The Farragut Community Center","address":{"@type":"PostalAddress","name":"The Farragut Community Center"}},"organizer":{"@type":"Organization","name":"Tennessee SBDC"},"url":"https://clients.tsbdc.org/workshop.aspx?ekey=21460027","description":"Most business challenges come down to people, but the real issue is usually a lack of clarity. In this session, learn how to attract the right team members, clearly define roles, and ensure everyone in your organization is rowing in the same direction and posi","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.tsbdc.org/workshop.aspx?ekey=21460027","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":42,"item":{"@type":"Event","name":"Starting Your Business 101 - Online-Zoom","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.utahsbdc.org/workshop.aspx?ekey=4460013"},"organizer":{"@type":"Organization","name":"Utah SBDC"},"url":"https://clients.utahsbdc.org/workshop.aspx?ekey=4460013","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.utahsbdc.org/workshop.aspx?ekey=4460013","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":43,"item":{"@type":"Event","name":"Greenlee Fall DreamBuilder - Kick Off","startDate":"2026-09-02T09:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Duncan Town Hall Town Hall","address":{"@type":"PostalAddress","name":"Duncan Town Hall Town Hall"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460068","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460068","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":44,"item":{"@type":"Event","name":"September Tech Talks with Rob - Getting Found Online: Google, AI Search and Your Digital Presence","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=60460016"},"organizer":{"@type":"Organization","name":"Massachusetts SBDC"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=60460016","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Join us for “Tech Talk with Rob” an enlightening webinar series designed specifically for small business owners looking to navigate the complex world of technology. Each session, hosted by tech expert Rob, will delve into critical topics that are essential for","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=60460016","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":45,"item":{"@type":"Event","name":"September 2026 Business First Wednesday","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://nysbdc.ecenterdirect.com/events/1020212"},"organizer":{"@type":"Organization","name":"New York SBDC"},"url":"https://nysbdc.ecenterdirect.com/events/1020212","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://nysbdc.ecenterdirect.com/events/1020212","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":46,"item":{"@type":"Event","name":"Smart Start #1 Launch and Legalize Your Business in Ohio","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"This is an introductory webinar that provides an overview of the critical steps and requirements needed whether you are starting a business in the State of Ohio OR already registered. Learn about creating a great business concept, the difference between busine","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":47,"item":{"@type":"Event","name":"Social Media for Small Businesses - Webinar via Zoom","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44312"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44312","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":48,"item":{"@type":"Event","name":"Introduction to Intellectual Property for Industry","startDate":"2026-09-02T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://asbdc.ecenterdirect.com/events/10722"},"organizer":{"@type":"Organization","name":"Alabama SBDC"},"url":"https://asbdc.ecenterdirect.com/events/10722","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://asbdc.ecenterdirect.com/events/10722","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":49,"item":{"@type":"Event","name":"Brand Identity & Intro to Social Media","startDate":"2026-09-02T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Not familiar with social media? We will be reviewing the basics of the most used social media platforms to utilize for small businesses. Learn basic tips and tricks on what content should be posted on what platform, the differentiating demographics, social med","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":50,"item":{"@type":"Event","name":"Setting Up Your Accounting System","startDate":"2026-09-02T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111"},"organizer":{"@type":"Organization","name":"Virginia SBDC"},"url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":51,"item":{"@type":"Event","name":"PAVE: Finding Your Customers and Market Opportunity","startDate":"2026-09-02T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460145"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460145","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Even the best products and services struggle without the right customers. This session helps you identify who is most likely to buy from you, understand what they value, and evaluate the competitive landscape before committing valuable time and money. You'll l","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460145","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":52,"item":{"@type":"Event","name":"Unlock the Path to Sustainable Business Growth — Virtual Preview Event - Webinar via Zoom","startDate":"2026-09-02T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44474"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44474","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":53,"item":{"@type":"Event","name":"First Steps: Mapping the Business Concept","startDate":"2026-09-02T13:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://pasbdc.ecenterdirect.com/events/33510"},"organizer":{"@type":"Organization","name":"Pennsylvania SBDC"},"url":"https://pasbdc.ecenterdirect.com/events/33510","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://pasbdc.ecenterdirect.com/events/33510","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":54,"item":{"@type":"Event","name":"Always Ready: Lending (In-Person)","startDate":"2026-09-02T15:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2210 Grand Avenue","address":{"@type":"PostalAddress","name":"2210 Grand Avenue"}},"organizer":{"@type":"Organization","name":"Iowa SBDC"},"url":"https://iowasbdc.org/event/always-ready-lending-in-person-3/","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"<p>September 2 @ 3:00 pm - 4:00 pm CDT Presenter: The Iowa Center Staff Date: Wednesday, September 2, 2026 Time: 3:00, 4:00 pm Location: 2210 Grand Avenue, Des."}},{"@type":"ListItem","position":55,"item":{"@type":"Event","name":"Workshop: Launch Your Business (2-Part Session) [Online]","startDate":"2026-09-02T15:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://nysbdc.ecenterdirect.com/events/1020197"},"organizer":{"@type":"Organization","name":"New York SBDC"},"url":"https://nysbdc.ecenterdirect.com/events/1020197","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://nysbdc.ecenterdirect.com/events/1020197","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":56,"item":{"@type":"Event","name":"Business Basics 2 *In-Person*","startDate":"2026-09-02T15:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Ohio SBDC at Summit Medina Business Alliance Bounce Innovation Hub","address":{"@type":"PostalAddress","name":"Ohio SBDC at Summit Medina Business Alliance Bounce Innovation Hub"}},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=91460008","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=91460008","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":57,"item":{"@type":"Event","name":"Virtual Small Business Orientation","startDate":"2026-09-02T17:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":58,"item":{"@type":"Event","name":"Basis of a Successful Enterprise (B.A.S.E.) Business Startup Workshop","startDate":"2026-09-02T17:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"About this Event: B.A.S.E. is the Basis of a Successful Enterprise. B.A.S.E. will help you discover what it will take for you to build a business around your dreams and passion. Not just any business but a business that will allow you to live, thrive and becom","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":59,"item":{"@type":"Event","name":"DreamBuilder Cohort- Springerville","startDate":"2026-09-02T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"NPC - Springerville Center","address":{"@type":"PostalAddress","name":"NPC - Springerville Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=70460027","description":"Join the NPC SBDC DreamBuilder Cohort — This NO‑COST hybrid business development program is designed to help you plan, build, and fund your business from start to finish! Whether you're just getting started or ready to expand, DreamBuilder provides the tools,","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=70460027","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":60,"item":{"@type":"Event","name":"New Business Information Webinar - evening","startDate":"2026-09-02T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041","validFrom":"2026-09-01"}}}]}</script>
+<!-- kx:seo:end -->
+</main><footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="resources.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookies.html">Cookie Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
+</div>
+<script>
+/* ── ambient layers ──────────────────────────────────────────── */
+(function stars(){
+  /* the whole page runs from a single script. an exception in the ambient
+     layer stopped execution before the events ever rendered, leaving the
+     decoration up and the list empty. the decoration may now fail alone. */
+  var c=document.getElementById('kx-stars');
+  if(!c || typeof c.getContext!=='function') return;
+  var x=null;
+  try{ x=c.getContext('2d'); }catch(e){ return; }
+  if(!x) return;
+  var s=[],w,h;
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;
+    s=[];for(var i=0;i<130;i++)s.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+.2,a:Math.random(),v:Math.random()*.014+.004});}
+  size();addEventListener('resize',size);
+  (function loop(){x.clearRect(0,0,w,h);
+    for(var i=0;i<s.length;i++){var p=s[i];p.a+=p.v;
+      x.globalAlpha=.25+Math.abs(Math.sin(p.a))*.55;
+      x.fillStyle='#FFE9B8';x.beginPath();x.arc(p.x,p.y,p.r,0,6.284);x.fill();}
+    requestAnimationFrame(loop);})();
+})();
+
+(function pointer(){
+  var d=document.getElementById('kx-desat'),cu=document.getElementById('kx-cursor'),rg=document.getElementById('kx-ring');
+  addEventListener('pointermove',function(e){
+    d.style.setProperty('--mx',e.clientX+'px');
+    d.style.setProperty('--my',e.clientY+'px');
+    cu.style.transform='translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
+    rg.style.transform='translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
+    cu.style.opacity=1;rg.style.opacity=1;
+  },{passive:true});
+})();
+
+addEventListener('scroll',function(){
+  var t=document.documentElement;
+  var p=t.scrollTop/(t.scrollHeight-innerHeight)*100;
+  document.getElementById('kx-progress').style.width=p+'%';
+  var n=document.getElementById('kx-nav');
+  if(t.scrollTop>40){n.style.background='rgba(10,10,10,.86)';n.style.backdropFilter='blur(14px)';n.style.borderBottomColor='#1E1C18';n.style.padding='14px 56px';}
+  else{n.style.background='transparent';n.style.backdropFilter='none';n.style.borderBottomColor='transparent';n.style.padding='22px 56px';}
+},{passive:true});
+
+/* ── events ──────────────────────────────────────────────────── */
+var MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+var STROKE=['#38D2FF','#D670FF','#F3E4A8'];
+var EVENTS=[],filter='All';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function time(d){return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}
+function meta(parts){return parts.filter(function(p){return p&&String(p).trim();})
+                                 .map(function(p){return '<span>'+esc(p)+'</span>';}).join('');}
+
+function upcoming(){
+  var now=Date.now();
+  return EVENTS.filter(function(e){return new Date(e.start).getTime()>now;})
+               .sort(function(a,b){return new Date(a.start)-new Date(b.start);});
+}
+
+function renderNext(){
+  var list=upcoming(),panel=document.getElementById('kx-next');
+  if(!list.length){panel.hidden=true;return;}
+  var e=list[0],d=new Date(e.start);
+  panel.hidden=false;
+  document.getElementById('kx-next-title').textContent=e.title;
+  document.getElementById('kx-next-meta').innerHTML=
+    meta([e.host, d.toLocaleDateString([],{weekday:'long'})+', '+MONTHS[d.getMonth()]+' '+d.getDate(), time(d), e.duration]);
+  document.getElementById('kx-next-link').href=e.url;
+  tick(d);clearInterval(window.__kxt);window.__kxt=setInterval(function(){tick(d);},1000);
+}
+
+function tick(target){
+  var ms=Math.max(0,target.getTime()-Date.now()),s=Math.floor(ms/1000);
+  var parts=[[Math.floor(s/86400),'DAYS'],[Math.floor(s%86400/3600),'HOURS'],[Math.floor(s%3600/60),'MINUTES']];
+  document.getElementById('kx-countdown').innerHTML=parts.map(function(p){
+    return '<div class="kx-unit" style="text-align:center"><b>'+String(p[0]).padStart(2,'0')+'</b><span>'+p[1]+'</span></div>';
+  }).join('');
+}
+
+function renderFilters(){
+  /* built once. the previous version rebuilt innerHTML on every click, which
+     destroyed the button the reader had just pressed and threw keyboard focus
+     back to the top of the page. the resources page never does that: the chips
+     are permanent and only aria-pressed changes. */
+  var topics=['All'],seen={},counts={};
+  upcoming().forEach(function(e){
+    if(!e.topic) return;
+    if(!seen[e.topic]){seen[e.topic]=1;topics.push(e.topic);}
+    counts[e.topic]=(counts[e.topic]||0)+1;
+  });
+  counts['All']=upcoming().length;
+  var box=document.getElementById('kx-filters');
+  box.innerHTML=topics.map(function(t){
+    return '<button type="button" class="kx-store" aria-pressed="'+(t===filter)+
+           '" data-topic="'+esc(t)+'">'+esc(t)+
+           '<span class="kx-n" aria-hidden="true">'+counts[t]+'</span></button>';
+  }).join('');
+  box.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click',function(){ setFilter(b.getAttribute('data-topic')); });
+  });
+}
+
+function setFilter(t){
+  filter=t;
+  var box=document.getElementById('kx-filters');
+  box.querySelectorAll('button').forEach(function(b){
+    b.setAttribute('aria-pressed', b.getAttribute('data-topic')===t ? 'true':'false');
+  });
+  hideSeoList();
+  renderGrid();
+}
+
+
+/* Which part of the journey an event speaks to. Derived from the words in the
+   title and summary, so nothing in events.json has to change and older entries
+   pick one up automatically. First match wins, order matters. */
+var STAGE_RULES = [
+  /* trailing \b was the bug: \bmarket\b does not match "Marketing", because
+     the boundary fails against the following letter. these stem instead. */
+  [/\b(start\w*|launch\w*|idea|first step|form(ing|ation)|entity|llc|s-corp|incorporat\w*|register\w*|new business|before you)/i, 'Starting'],
+  [/\b(scal\w*|expand\w*|multi[- ]?location|franchis\w*|inventor\w*|supply chain|operation\w*|automat\w*|barcode|logistic\w*|process\w*)/i, 'Scaling'],
+  [/\b(lead\w*|manag\w*|hir\w*|employe\w*|contractor|payroll|team|culture|delegat\w*|board|succession|staff\w*)/i, 'Leading'],
+  [/\b(grow\w*|market\w*|customer\w*|sales|revenue|fund\w*|capital|loan\w*|grant\w*|profit\w*|cash flow|financ\w*|tax\w*|bookkeep\w*|budget\w*|price|pricing|brand\w*|content|social|seo|advertis\w*|holiday|ai\b|artificial intelligence|technolog\w*|software|website|legal|trademark|copyright|patent|contract\w*|lease|polic\w*|regulat\w*|complian\w*)/i, 'Growing']
+];
+
+function costLabel(e){
+  /* An event whose host never published a price says so. Rounding an unknown
+     down to "free" is the one mistake this page cannot afford to make. */
+  var c=(e.cost||'').trim();
+  if(!c) return 'Cost not listed';
+  if(/no fee|no cost|free/i.test(c)) return 'No cost';
+  return c;
+}
+function hideSeoList(){
+  /* The plain list is the page without JavaScript. Once the grid has drawn
+     the same events, the list is redundant, so it goes. */
+  var s=document.getElementById('kx-seo');
+  if(s) s.hidden=true;
+}
+
+function stageOf(e){
+  var blob = (e.title||'') + ' ' + (e.summary||'') + ' ' + (e.topic||'');
+  for (var i=0;i<STAGE_RULES.length;i++){
+    if (STAGE_RULES[i][0].test(blob)) return STAGE_RULES[i][1];
+  }
+  return '';
+}
+
+function renderGrid(){
+  /* the cards are drawn once and then shown or hidden, as on resources.
+     re-rendering the whole grid on every click threw away scroll position
+     and any card the reader had open. */
+  var grid=document.getElementById('kx-grid');
+  var drawn=grid.querySelectorAll('.kx-ev').length>0;
+  if(drawn){
+    var shown=0;
+    [].slice.call(grid.querySelectorAll('.kx-ev')).forEach(function(c){
+      var on = filter==='All' || c.getAttribute('data-topic')===filter;
+      c.hidden=!on; if(on) shown++;
+    });
+    setCount(shown);
+    var none=document.getElementById('kx-none');
+    if(none) none.hidden = shown>0;
+    return;
+  }
+  var list=upcoming();
+  if(!list.length){
+    grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#9B958B;font-size:15px;">Nothing listed right now. The list refreshes every Monday.</p>';
+    setCount(0);
+    return;
+  }
+  grid.innerHTML=list.map(function(e,i){
+    var d=new Date(e.start);
+    return '<article class="kx-ev" data-topic="'+esc(e.topic||'')+'">'+
+      '<div class="rough" aria-hidden="true"></div>'+
+      '<div class="kx-num" style="-webkit-text-stroke:1.5px '+STROKE[i%3]+';">'+d.getDate()+'</div>'+
+      '<div class="kx-mon">'+MONTHS[d.getMonth()]+'</div>'+
+      '<h3><a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a></h3>'+
+      '<p>'+esc(e.summary)+'</p>'+
+      '<div class="kx-meta">'+meta([e.host, time(d), e.duration])+'</div>'+
+      '<div class="kx-badges">'+'<span class="kx-badge kx-mode-'+esc((e.mode||'other').toLowerCase().replace(/ /g,'-'))+'">'+esc(e.mode||'Check with host')+'</span>'+(e.location && !/online/i.test(e.location) ? '<span class="kx-badge kx-where">'+esc(e.location)+'</span>' : '')+'<span class="kx-badge kx-cost">'+esc(costLabel(e))+'</span>'+'</div>'+
+      (stageOf(e) ? '<div class="kx-stage">'+esc(stageOf(e))+'</div>' : '')+
+      '</article>';
+  }).join('') +
+  '<p id="kx-none" class="kx-none" hidden>Nothing under this topic right now. The list refreshes every Monday.</p>';
+  renderGrid();
+}
+
+function setCount(n){
+  var el=document.getElementById('kx-count');
+  if(!el) return;
+  el.textContent = filter==='All'
+    ? ('Showing all '+n+(n===1?' event':' events'))
+    : ('Showing '+n+(n===1?' event':' events')+' in '+filter);
+}
+
+fetch('events.json').then(function(r){return r.json();}).then(function(data){
+  EVENTS=data.events||[];
+  var u=new Date(data.updated+'T12:00:00');
+  document.getElementById('kx-stamp').textContent='UPDATED '+MONTHS[u.getMonth()]+' '+u.getDate()+', '+u.getFullYear();
+  renderNext();renderFilters();renderGrid();
+  /* a deep link like events.html?topic=Finance should land on that filter.
+     how-it-works sends people here with a topic, and the parameter was being
+     ignored, so they arrived at the unfiltered list. */
+  (function(){
+    var qs={};
+    (location.search||'').replace(/^\?/,'').split('&').forEach(function(kv){
+      var p=kv.split('='); if(p[0]) qs[decodeURIComponent(p[0])]=decodeURIComponent((p[1]||'').replace(/\+/g,' '));
+    });
+    var want=qs.topic;
+    if(!want) return;
+    var btn=document.querySelector('#kx-filters .kx-store[data-topic="'+want+'"]');
+    if(btn) setFilter(want);
+  })();
+}).catch(function(){
+  document.getElementById('kx-grid').innerHTML='<p style="grid-column:1/-1;text-align:center;color:#9B958B;">The list could not load. Refresh the page, or check back Monday.</p>';
+});
+</script>
+<script>
+/* the cards carry a light that follows the pointer, the same idea the
+   membership tier cards use. one listener on the grid, not one per card. */
+(function(){
+  var grid=document.getElementById('kx-grid');
+  if(!grid || !window.matchMedia || !matchMedia('(hover:hover)').matches) return;
+  grid.addEventListener('pointermove', function(ev){
+    var card=ev.target && ev.target.closest ? ev.target.closest('.kx-ev') : null;
+    if(!card) return;
+    var r=card.getBoundingClientRect();
+    card.style.setProperty('--px',(ev.clientX-r.left)+'px');
+    card.style.setProperty('--py',(ev.clientY-r.top)+'px');
+  }, {passive:true});
+})();
+</script>
+<script>window.KXHERE='events';</script>
+<script>
+(function(){
+  var orbnav=document.getElementById('kx-orbnav'),
+      tray=document.getElementById('kx-orbtray'),
+      master=document.getElementById('kx-orbmaster');
+  if(!orbnav||!tray||!master) return;
+
+  var base=tray.querySelector('.kx-tray-item');
+  var baseStyle=base?base.getAttribute('style'):'';
+  [].slice.call(tray.querySelectorAll('.kx-tray-item')).forEach(function(el){ el.remove(); });
+
+  var HERE=(window.KXHERE||''), items=[];
+  [['home','Home','index.html'],
+   ['how-it-works','How it works','how-it-works.html'],
+   ['membership','Membership','membership.html'],
+   ['resources','Resources','resources.html'],
+   ['events','Events','events.html'],
+   ['partners','Partners','partners.html']].forEach(function(pg){
+    var here=HERE===pg[0];
+    var el=document.createElement(here?'span':'a');
+    el.className='kx-tray-item';
+    el.setAttribute('style',baseStyle);
+    el.style.textDecoration='none';
+    el.setAttribute('role','menuitem');
+    el.setAttribute('tabindex','-1');
+    el.innerHTML='<span style="opacity:.6;font-size:11px;" aria-hidden="true">'+(here?'&#9679;':'&#8599;')+'</span>'+pg[1];
+    if(here){
+      el.setAttribute('aria-current','page');
+      el.style.background='#D4A856'; el.style.color='#1B1400'; el.style.borderColor='#D4A856'; el.style.cursor='default';
+    }else{
+      el.href=pg[2];
+      el.style.borderColor='rgba(212,168,86,.55)'; el.style.color='#FFEBB9';
+      el.addEventListener('pointerenter',function(){ el.style.background='#D4A856'; el.style.color='#1B1400'; });
+      el.addEventListener('pointerleave',function(){ el.style.background='rgba(12,12,13,.78)'; el.style.color='#FFEBB9'; });
+    }
+    tray.appendChild(el); items.push(el);
+  });
+
+  var open=false;
+  master.setAttribute('aria-expanded','false');
+  master.setAttribute('aria-haspopup','menu');
+  tray.setAttribute('role','menu');
+  tray.setAttribute('aria-label','Site navigation');
+
+  function layout(){
+    items.forEach(function(it,i){
+      var d=items.length-1-i;
+      it.setAttribute('tabindex',open?'0':'-1');
+      it.setAttribute('aria-hidden',open?'false':'true');
+      if(open){ it.style.opacity='1'; it.style.transform='translateX(0) scale(1)'; it.style.pointerEvents='auto'; it.style.transitionDelay=(50+d*55)+'ms'; }
+      else{ it.style.opacity='0'; it.style.transform='translateX(24px) scale(.7)'; it.style.pointerEvents='none'; it.style.transitionDelay=(i*28)+'ms'; }
+    });
+  }
+  function setOpen(v,focusBack){
+    open=v;
+    master.setAttribute('aria-expanded',v?'true':'false');
+    master.style.transform='translate(-50%,-50%) scale('+(v?0.9:1)+')';
+    layout();
+    if(v){ requestAnimationFrame(function(){ items[items.length-1].focus&&items[items.length-1].focus(); }); }
+    else if(focusBack){ master.focus(); }
+  }
+  layout();
+  master.addEventListener('click',function(e){ e.stopPropagation(); setOpen(!open,false); });
+  master.addEventListener('pointerenter',function(){ master.querySelector('img').style.filter='drop-shadow(0 0 40px rgba(255,196,104,.9)) brightness(1.1)'; });
+  master.addEventListener('pointerleave',function(){ master.querySelector('img').style.filter='drop-shadow(0 0 40px rgba(255,182,88,.7))'; });
+  document.addEventListener('click',function(e){ if(open&&!orbnav.contains(e.target)) setOpen(false); });
+  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&open) setOpen(false,true); });
+
+  /* the orb steps aside while you scroll */
+  orbnav.style.transition='opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1)';
+  var idle=null, gone=false;
+  function apply(hidden){
+    orbnav.style.opacity=hidden?'0':'1';
+    orbnav.style.transform=hidden?'translateY(26px) scale(.9)':'none';
+    orbnav.style.pointerEvents=hidden?'none':'auto';
+  }
+  addEventListener('scroll',function(){
+    if(!gone){ gone=true; if(open) setOpen(false); apply(true); }
+    clearTimeout(idle);
+    idle=setTimeout(function(){ gone=false; apply(false); },420);
+  },{passive:true});
+})();
+
+</script>
+<script>
+/* mirrors the resources wash: hovering a topic chip or an event card lights
+   the top of the page in that topic's colour. */
+(function(){
+  /* reduced motion should turn off the fade, not the feature. bailing out here
+     meant the layer was never created at all for those readers, and for any
+     browser that reports reduce-motion by default. the CSS handles it. */
+  var COL={Finance:'#A6E0B4',Funding:'#FFE7A6',Hiring:'#84D0C6',Legal:'#B18BE4',
+           Marketing:'#F2933F',Operations:'#6FB0E0',Policy:'#DCE2E8',Technology:'#F0855A'};
+  var wash=document.createElement('div'); wash.id='evwash'; document.body.appendChild(wash);
+  var off=null;
+  function washTo(col){ clearTimeout(off); wash.style.setProperty('--wash',col); wash.classList.add('on'); }
+  function washOff(){ off=setTimeout(function(){ wash.classList.remove('on'); },260); }
+  function topicOf(el){ return el.getAttribute('data-topic')||''; }
+  /* one pair of listeners on the containers, since the cards and chips are
+     rendered by script and replaced when the data loads */
+  ['kx-filters','kx-grid'].forEach(function(id){
+    var box=document.getElementById(id); if(!box) return;
+    box.addEventListener('pointerover',function(ev){
+      var el=ev.target && ev.target.closest ? ev.target.closest('[data-topic]') : null;
+      if(!el) return;
+      washTo(COL[topicOf(el)]||'#D4A856');
+    });
+    box.addEventListener('pointerout',function(ev){
+      var el=ev.target && ev.target.closest ? ev.target.closest('[data-topic]') : null;
+      if(el) washOff();
+    });
+  });
+})();
+</script>
+<script>
+/* the magnetic pull the rest of the site uses. this page carried three
+   kx-mag elements and no script, so none of them moved. copied from
+   market-data, with the events chips and cards added to the selector.
+   the interval re-wires anything rendered from events.json after load. */
+try{
+(function(){
+  var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var TOUCH=!!(window.matchMedia&&matchMedia('(hover:none)').matches);
+  if(RM||TOUCH) return;
+  var SEL = '.kx-mag,.cta,.go,.wait,.btn,.evback,.kx-store,.sk-social a,.kx-tray-item';
+  function wire(root){
+    [].slice.call((root||document).querySelectorAll(SEL)).forEach(function(el){
+      if(el.dataset.mag) return;
+      el.dataset.mag='1';
+      var t=el.style.transition||'';
+      el.style.transition = (t? t+',' : '') + 'transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s';
+      el.addEventListener('pointermove',function(ev){
+        var r=el.getBoundingClientRect();
+        var dx=ev.clientX-r.left-r.width/2, dy=ev.clientY-r.top-r.height/2;
+        el.style.transform='translate('+(dx*0.32)+'px,'+(dy*0.42)+'px)';
+      });
+      el.addEventListener('pointerleave',function(){ el.style.transform='translate(0,0)'; });
+    });
+  }
+  wire(document);
+  var n=0, iv=setInterval(function(){ wire(document); if(++n>60) clearInterval(iv); },500);
+})();
+}catch(e){console.error("SideKix [magnetic] failed:",e);}
+</script>
+<script>
+/* the pill reads CLOSE while the tray is open. mirrors the aria-expanded the
+   tray script already maintains, rather than duplicating its logic. */
+(function(){
+  var orb=document.getElementById('kx-orbnav'),
+      master=document.getElementById('kx-orbmaster');
+  if(!orb||!master) return;
+  function sync(){
+    orb.classList.toggle('tray-open', master.getAttribute('aria-expanded')==='true');
+  }
+  new MutationObserver(sync).observe(master,{attributes:true,attributeFilter:['aria-expanded']});
+  sync();
+})();
+</script>
+<script id="kx-backlink-js">
+/* ---- the back link follows where you actually came from ----
+   each page has a hard-coded fallback that reflects the site hierarchy. that
+   is still correct when someone arrives cold from a search result or a shared
+   link, where there is no previous page on this site to go back to.
+   when the previous page IS on this site, the link retargets to it and
+   relabels itself. so arriving at the glossary from market-data offers "Back
+   to market data" rather than always "Back to resources". */
+(function(){
+  var link = document.querySelector('.kx-bk');
+  if(!link) return;
+
+  /* how each page is named when it is the thing you came from */
+  var NAMES = {
+    'index.html'            : 'SideKix',
+    ''                      : 'SideKix',
+    'how-it-works.html'     : 'how it works',
+    'membership.html'       : 'membership',
+    'resources.html'        : 'resources',
+    'events.html'           : 'events',
+    'market-data.html'      : 'market data',
+    'glossary.html'         : 'the glossary',
+    'tools.html'            : 'the calculators',
+    'faq.html'              : 'the FAQs',
+    'join.html'             : 'early access',
+    'become-an-advisor.html': 'the advisor page',
+    'privacy.html'          : 'the privacy policy',
+    'terms.html'            : 'the terms'
+  };
+
+  var ref = document.referrer;
+  if(!ref) return;                                    /* arrived cold */
+
+  var from;
+  try { from = new URL(ref); } catch(e){ return; }
+  if(from.origin !== location.origin) return;         /* came from another site */
+  if(from.pathname === location.pathname) return;     /* a reload, not a journey */
+
+  var file = from.pathname.split('/').filter(Boolean).pop() || 'index.html';
+  var label, href;
+
+  if(NAMES[file]){
+    label = NAMES[file];
+    href  = from.pathname + from.search;
+  } else if(from.pathname.indexOf('/blog/') > -1){
+    /* an article. its own title is the most useful name we have */
+    label = 'the article';
+    href  = from.pathname;
+  } else {
+    return;                                           /* somewhere unmapped, keep the default */
+  }
+
+  /* the arrow is a child element, so only the text node is replaced */
+  var txt = null;
+  for(var i=0;i<link.childNodes.length;i++){
+    if(link.childNodes[i].nodeType === 3 && link.childNodes[i].nodeValue.trim()){
+      txt = link.childNodes[i]; break;
+    }
+  }
+  if(!txt) return;
+  txt.nodeValue = ' Back to ' + label;
+  link.setAttribute('href', href);
+  link.setAttribute('data-dynamic','1');
+})();
+</script>
+<!-- kx:browser:start -->
+<style>
+.kx-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;max-width:1100px;margin:0 auto 26px;padding:0 24px}
+.kx-controls input[type=search],.kx-controls select{font-family:'Space Grotesk',system-ui,sans-serif;font-size:13px;color:#EFE9DF;background:rgba(239,233,223,.05);border:1px solid rgba(239,233,223,.18);border-radius:999px;padding:11px 16px;outline:none;transition:border-color .15s ease,background .15s ease}
+.kx-controls input[type=search]{flex:1 1 320px;min-width:220px}
+.kx-controls input[type=search]::placeholder{color:#8B857C}
+.kx-controls input[type=search]:focus,.kx-controls select:focus{border-color:rgba(214,178,102,.7);background:rgba(239,233,223,.09)}
+.kx-controls select{cursor:pointer;-webkit-appearance:none;appearance:none;padding-right:34px;background-image:linear-gradient(45deg,transparent 50%,#9B958B 50%),linear-gradient(135deg,#9B958B 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.kx-controls select option{background:#14120F;color:#EFE9DF}
+.kx-clear{font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9B958B;background:none;border:none;cursor:pointer;padding:11px 6px}
+.kx-clear:hover{color:#EFE9DF}
+/* The selected pill used to change only its border, which on a dark page is
+   almost invisible. Selection is a solid fill now: one glance tells you what
+   you are looking at. */
+#kx-filters .kx-store[aria-pressed="true"]{background:#D6B266;border-color:#D6B266;color:#14120F;font-weight:600}
+#kx-filters .kx-store[aria-pressed="true"] .kx-n{color:#14120F;opacity:.65}
+#kx-filters .kx-store{transition:background .15s ease,color .15s ease,border-color .15s ease}
+.kx-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#D6B266;text-decoration:none;border-bottom:1px solid rgba(214,178,102,.35);padding-bottom:2px}
+.kx-go:hover{color:#EFE9DF;border-bottom-color:#EFE9DF}
+.kx-hits{text-align:center;color:#9B958B;font-size:13px;margin:0 0 22px}
+.kx-more{grid-column:1/-1;justify-self:center;margin-top:6px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#EFE9DF;background:rgba(239,233,223,.05);border:1px solid rgba(239,233,223,.22);border-radius:999px;padding:14px 26px;cursor:pointer;min-height:44px}
+.kx-more:hover{background:#D6B266;border-color:#D6B266;color:#14120F}
+
+/* Phones.
+
+   The grid already collapsed to one column below 640px, but a 1fr track keeps
+   an automatic minimum sized to its content, so each card resolved to 515px
+   inside a 348px column and 147px of every card sat off the right edge,
+   clipped. minmax(0,1fr) lets the track shrink to the screen.
+
+   The rest is thumbs: iOS zooms the whole page when a focused input is under
+   16px and never zooms back, and the card's main action was a 19px-tall line
+   of text where 44px is the floor. */
+@media (max-width:640px){
+  #kx-grid{grid-template-columns:minmax(0,1fr) !important}
+  .kx-controls{padding:0 20px;gap:8px}
+  .kx-controls input[type=search]{flex:1 1 100%;font-size:16px;padding:13px 16px}
+  .kx-controls select{flex:1 1 calc(50% - 4px);min-width:0;font-size:16px;padding:13px 30px 13px 14px}
+  .kx-clear{min-height:44px;padding:12px 10px;flex:0 0 auto}
+  .kx-go{min-height:44px;align-items:flex-end;padding-bottom:12px;margin-top:8px}
+  .kx-badge{font-size:11px;padding:6px 10px}
+  .kx-badge.kx-where{max-width:100%}
+  .kx-hits{margin-bottom:16px}
+  #kx-seo{padding:0 20px 40px}
+}
+</style>
+<script>
+/* The events browser.
+
+   This replaces the original topic-chip filter for one reason: the chips were
+   the only way to narrow 842 events, they were rebuilt from whatever word each
+   host happened to use for a topic, and there were 47 of them. Someone looking
+   for a free online funding session in Ohio had no way to say so.
+
+   It reads events.json itself rather than reaching into the page's variables,
+   so it stands on its own and cannot be broken by a change elsewhere. */
+(function(){
+  var MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var FULL=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var STROKE=['#D6B266','#8FD4B6','#C48E7A'];
+  var all=[],view=[],topic='All';
+  var PAGE=60, shown=PAGE;
+
+  /* The page's own script renders every one of the 842 cards and rebuilds the
+     topic chips the moment events.json lands. This block replaces both. Doing
+     that work first cost about half a second of blocked main thread and a
+     second parse of a 500KB file to produce a result nobody ever saw, which is
+     why the page felt slow arriving from anywhere else. These stubs are
+     installed while that fetch is still in flight. */
+  try{ window.renderGrid=function(){}; window.renderFilters=function(){}; }catch(e){}
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+  function costOf(e){
+    var c=(e.cost||'').trim();
+    if(!c) return 'Cost not listed';
+    if(/no fee|no cost|free/i.test(c)) return 'No cost';
+    return c;
+  }
+  function isFree(e){return /no fee|no cost|free/i.test(e.cost||'');}
+  function when(e){var d=new Date(e.start);return isNaN(d)?null:d;}
+
+  function time(d){
+    var h=d.getHours(),m=d.getMinutes();
+    if(!h&&!m) return '';
+    var ap=h>=12?'pm':'am',hh=h%12||12;
+    return hh+(m?':'+String(m).padStart(2,'0'):'')+ap;
+  }
+
+  function blobOf(e){
+    return ((e.title||'')+' '+(e.host||'')+' '+(e.summary||'')+' '+
+            (e.location||'')+' '+(e.topic||'')+' '+(e.host_topic||'')+' '+
+            (e.scope||'')).toLowerCase();
+  }
+
+  function card(e,i){
+    var d=when(e),bits=[];
+    bits.push('<span class="kx-badge kx-mode-'+esc((e.mode||'other').toLowerCase().replace(/ /g,'-'))+'">'+esc(e.mode||'Check with host')+'</span>');
+    if(e.location&&!/online/i.test(e.location)){
+      bits.push('<span class="kx-badge kx-where">'+esc(e.location)+'</span>');
+    }
+    bits.push('<span class="kx-badge kx-cost">'+esc(costOf(e))+'</span>');
+    if(e.scope&&e.scope!=='National'){bits.push('<span class="kx-badge">'+esc(e.scope)+'</span>');}
+    var t=time(d);
+    return '<article class="kx-ev" data-i="'+i+'" data-topic="'+esc(e.topic||'')+'">'+
+      '<div class="rough" aria-hidden="true"></div>'+
+      '<div class="kx-num" style="-webkit-text-stroke:1.5px '+STROKE[i%3]+';">'+d.getDate()+'</div>'+
+      '<div class="kx-mon">'+MONTHS[d.getMonth()]+'</div>'+
+      '<h3><a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+'</a></h3>'+
+      /* Only show a description when there is one. Where the host publishes
+         nothing, the listing row leaves behind a scrap like "Online Meeting
+         (Live)", which the badges below already say. */
+      ((e.summary||'').length>45 ? '<p>'+esc(e.summary.slice(0,200))+'</p>' : '')+
+      '<div class="kx-meta">'+esc(e.host)+' &middot; '+esc(FULL[d.getMonth()]+' '+d.getDate())+(t?' &middot; '+esc(t):'')+'</div>'+
+      '<div class="kx-badges">'+bits.join('')+'</div>'+
+      '<a class="kx-go" href="'+esc(e.url)+'" target="_blank" rel="noopener">Open event page &rarr;</a>'+
+      '</article>';
+  }
+
+  function apply(){
+    var q=(document.getElementById('kx-q').value||'').trim().toLowerCase();
+    var type=document.getElementById('kx-f-type').value;
+    var cost=document.getElementById('kx-f-cost').value;
+    var state=document.getElementById('kx-f-state').value;
+    var terms=q.split(/\s+/).filter(Boolean);
+
+    view=all.filter(function(e){
+      if(topic!=='All'&&e.topic!==topic) return false;
+      if(type&&(e.mode||'')!==type) return false;
+      if(cost==='free'&&!isFree(e)) return false;
+      if(cost==='unknown'&&(e.cost||'').trim()) return false;
+      if(state&&e.scope!==state) return false;
+      if(terms.length){
+        var b=e._blob;
+        for(var i=0;i<terms.length;i++){ if(b.indexOf(terms[i])<0) return false; }
+      }
+      return true;
+    });
+
+    shown=PAGE;
+    draw();
+  }
+
+  function draw(){
+    /* Only the first screenful is built. Writing 300 cards at once was 197ms
+       of main-thread work before anyone had scrolled past the third one. */
+    var grid=document.getElementById('kx-grid');
+    var left=view.length-shown;
+    grid.innerHTML=view.length
+      ? view.slice(0,shown).map(card).join('') +
+        (left>0 ? '<button type="button" id="kx-more" class="kx-more">Show '+
+          Math.min(PAGE,left)+' more of '+view.length+'</button>' : '')
+      : '<p style="grid-column:1/-1;text-align:center;color:#9B958B;font-size:15px;">Nothing matches those filters yet. Clearing one of them usually helps.</p>';
+
+    var more=document.getElementById('kx-more');
+    if(more) more.addEventListener('click',function(){ shown+=PAGE; draw(); });
+
+    var hits=document.getElementById('kx-hits');
+    if(hits){
+      hits.textContent=view.length===0?'No events match'
+        :(view.length===1?'1 event':view.length+' events')+
+         (left>0?', showing '+shown:'');
+    }
+    var c=document.getElementById('kx-count');
+    if(c) c.textContent=view.length;
+    var none=document.getElementById('kx-none');
+    if(none) none.hidden=true;
+  }
+
+  function pills(){
+    var box=document.getElementById('kx-filters');
+    if(!box) return;
+    var counts={},order=[];
+    all.forEach(function(e){
+      var t=e.topic||'Business';
+      if(counts[t]===undefined){counts[t]=0;order.push(t);}
+      counts[t]++;
+    });
+    order.sort(function(a,b){return counts[b]-counts[a];});
+    var list=['All'].concat(order);
+    counts['All']=all.length;
+    box.innerHTML=list.map(function(t){
+      return '<button type="button" class="kx-store" aria-pressed="'+(t===topic)+
+             '" data-topic="'+esc(t)+'">'+esc(t)+
+             '<span class="kx-n" aria-hidden="true">'+counts[t]+'</span></button>';
+    }).join('');
+    box.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click',function(){
+        topic=b.getAttribute('data-topic');
+        box.querySelectorAll('button').forEach(function(o){
+          o.setAttribute('aria-pressed',String(o===b));
+        });
+        apply();
+      });
+    });
+  }
+
+  function controls(){
+    var grid=document.getElementById('kx-grid');
+    if(!grid||document.getElementById('kx-q')) return;
+    var states=[],modes=[];
+    all.forEach(function(e){
+      if(e.scope&&states.indexOf(e.scope)<0) states.push(e.scope);
+      if(e.mode&&modes.indexOf(e.mode)<0) modes.push(e.mode);
+    });
+    states.sort(); modes.sort();
+
+    var bar=document.createElement('div');
+    bar.className='kx-controls';
+    bar.innerHTML=
+      '<input type="search" id="kx-q" aria-label="Search events" placeholder="Search by title, host, topic or place">'+
+      '<select id="kx-f-type" aria-label="Format"><option value="">Any format</option>'+
+        modes.map(function(m){return '<option value="'+esc(m)+'">'+esc(m)+'</option>';}).join('')+'</select>'+
+      '<select id="kx-f-cost" aria-label="Cost"><option value="">Any cost</option>'+
+        '<option value="free">No cost</option><option value="unknown">Cost not listed</option></select>'+
+      '<select id="kx-f-state" aria-label="Where"><option value="">Anywhere</option>'+
+        states.map(function(s){return '<option value="'+esc(s)+'">'+esc(s)+'</option>';}).join('')+'</select>'+
+      '<button type="button" class="kx-clear" id="kx-clear">Clear</button>';
+    var hits=document.createElement('p');
+    hits.className='kx-hits'; hits.id='kx-hits';
+    grid.parentNode.insertBefore(bar,grid);
+    grid.parentNode.insertBefore(hits,grid);
+
+    document.getElementById('kx-q').addEventListener('input',apply);
+    ['kx-f-type','kx-f-cost','kx-f-state'].forEach(function(id){
+      document.getElementById(id).addEventListener('change',apply);
+    });
+    document.getElementById('kx-clear').addEventListener('click',function(){
+      document.getElementById('kx-q').value='';
+      ['kx-f-type','kx-f-cost','kx-f-state'].forEach(function(id){
+        document.getElementById(id).value='';
+      });
+      topic='All';
+      var box=document.getElementById('kx-filters');
+      if(box) box.querySelectorAll('button').forEach(function(o){
+        o.setAttribute('aria-pressed',String(o.getAttribute('data-topic')==='All'));
+      });
+      apply();
+    });
+  }
+
+  function boot(events){
+    var now=Date.now();
+    all=events.filter(function(e){
+      var d=new Date(e.start); return !isNaN(d)&&d.getTime()>now;
+    }).sort(function(a,b){return new Date(a.start)-new Date(b.start);});
+    all.forEach(function(e){ e._blob=blobOf(e); });
+    var seo=document.getElementById('kx-seo');
+    if(seo) seo.hidden=true;
+    pills(); controls(); apply();
+  }
+
+  function start(){
+    /* The page has already fetched events.json and put it in EVENTS. Fetching
+       it again, with no-store on top, meant a second 500KB download and a
+       second parse of the same file on every single visit. Wait for the one
+       that is already coming, and only fetch if it never arrives. */
+    var waited=0;
+    (function poll(){
+      if (window.EVENTS && window.EVENTS.length){ boot(window.EVENTS); return; }
+      waited+=40;
+      if (waited>9000){
+        fetch('events.json').then(function(r){return r.json();})
+          .then(function(j){ boot(j.events||[]); })
+          .catch(function(){ /* the plain list stays up, which is the point of it */ });
+        return;
+      }
+      setTimeout(poll,40);
+    })();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(start,80);});
+  } else { setTimeout(start,80); }
+})();
+</script>
+<!-- kx:browser:end -->
+
+<!-- shared header/navigation, matching the other pages -->
+<style id="kx-mainnav">
+/* ---- the menu lives in the bar ----
+   Replaces the floating orb and its tray. The orb had to be positioned against
+   the viewport and the tray against the orb, and every size change meant three
+   numbers had to agree. A row of links inside a bar that is already there has
+   none of that: the layout places them.
+
+   Below 760px the links collapse behind a button and open as a full-width
+   panel under the bar, so nothing floats over the content. */
+
+#kx-nav{gap:18px}
+
+.kx-links{display:flex;align-items:center;gap:clamp(14px,2vw,30px);margin-left:auto}
+.kx-links a,.kx-links span{
+  font-family:var(--util,'Space Grotesk',monospace);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:#BDB49F;white-space:nowrap;
+  padding:10px 2px;min-height:44px;display:inline-flex;align-items:center;
+  transition:color .25s}
+.kx-links a:hover{color:#FFF6DC}
+.kx-links a:focus-visible{outline:2px solid var(--gold,#D4A856);outline-offset:3px;border-radius:4px}
+/* the page you are on is text, not a link */
+.kx-links span{color:var(--gold,#D4A856);position:relative}
+.kx-links span::after{
+  content:"";position:absolute;left:2px;right:2px;bottom:6px;height:1px;
+  background:var(--gold,#D4A856);opacity:.7}
+
+/* the button that opens the panel on small screens */
+.kx-burger{
+  display:none;margin-left:auto;
+  min-width:44px;min-height:44px;padding:0 12px;
+  border:1px solid rgba(212,168,86,.42);border-radius:999px;
+  background:rgba(212,168,86,.06);cursor:pointer;
+  font-family:var(--util,'Space Grotesk',monospace);
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#E1D7BE;
+  align-items:center;gap:8px;
+  transition:background .25s,border-color .25s,color .25s}
+.kx-burger:hover{background:#D4A856;border-color:#F3E4A8;color:#1B1400}
+.kx-burger i{
+  display:inline-block;width:14px;height:1px;background:currentColor;position:relative}
+.kx-burger i::before,.kx-burger i::after{
+  content:"";position:absolute;left:0;width:14px;height:1px;background:currentColor}
+.kx-burger i::before{top:-4px} .kx-burger i::after{top:4px}
+.kx-burger[aria-expanded="true"] i{background:transparent}
+.kx-burger[aria-expanded="true"] i::before{top:0;transform:rotate(45deg)}
+.kx-burger[aria-expanded="true"] i::after{top:0;transform:rotate(-45deg)}
+
+@media(max-width:760px){
+  .kx-burger{display:inline-flex}
+  .kx-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    margin:0;padding:6px 0 10px;
+    background:#0A0806;
+    border-bottom:1px solid rgba(212,168,86,.28);
+    box-shadow:0 24px 50px rgba(0,0,0,.55);
+    max-height:0;overflow:hidden;
+    transition:max-height .32s ease}
+  .kx-links a,.kx-links span{
+    padding:0 clamp(20px,5vw,32px);min-height:52px;font-size:12px;
+    border-bottom:1px solid rgba(212,168,86,.10)}
+  .kx-links a:last-child,.kx-links span:last-child{border-bottom:none}
+  .kx-links span::after{display:none}
+  #kx-nav.kx-open .kx-links{max-height:70vh;overflow-y:auto}
+}
+
+/* the orb and its tray are gone */
+#kx-orbnav,#kx-orbcue{display:none !important}
+
+@media(prefers-reduced-motion:reduce){
+  .kx-links{transition:none}
+  .kx-burger,.kx-burger i::before,.kx-burger i::after{transition:none}
+}
+</style>
+<style id="kx-mainnav-hover">
+/* ---- hover: the word turns gold and a gold rule slides under it ----
+   As written, hover only changed the colour to cream and there was no
+   underline at all; the rule under the current page was a separate thing that
+   never appeared on hover. Both now happen.
+
+   The rule is drawn on the link itself with a scaled pseudo-element, so it is
+   exactly as wide as the word rather than a fixed length, and it grows from
+   the left rather than appearing all at once. */
+
+.kx-links a,.kx-links span{
+  position:relative;
+  transition:color .22s ease}
+
+.kx-links a::after{
+  content:"";
+  position:absolute;
+  left:2px;right:2px;
+  bottom:8px;
+  height:1px;
+  background:var(--gold,#D4A856);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s cubic-bezier(.16,1,.3,1);
+  pointer-events:none}
+
+.kx-links a:hover{color:var(--gold,#D4A856)}
+.kx-links a:hover::after{transform:scaleX(1)}
+
+/* keyboard users get the same feedback, not just the focus ring */
+.kx-links a:focus-visible{color:var(--gold,#D4A856)}
+.kx-links a:focus-visible::after{transform:scaleX(1)}
+
+/* the current page keeps its own rule, always on and slightly brighter */
+.kx-links span::after{
+  content:"";
+  position:absolute;
+  left:2px;right:2px;
+  bottom:8px;
+  height:1px;
+  background:var(--gold-pale,#F3E4A8);
+  opacity:.85;
+  transform:none}
+
+@media(max-width:760px){
+  /* in the stacked panel a full-width rule under a row reads as a divider,
+     so hover moves to a gold left edge and the colour change instead */
+  .kx-links a::after,.kx-links span::after{display:none}
+  .kx-links a,.kx-links span{
+    border-left:2px solid transparent;
+    transition:color .22s ease,border-color .22s ease,background .22s ease}
+  .kx-links a:hover,.kx-links a:focus-visible{
+    color:var(--gold,#D4A856);
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+  .kx-links span{
+    color:var(--gold,#D4A856);
+    border-left-color:var(--gold-pale,#F3E4A8);
+    background:rgba(212,168,86,.05)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .kx-links a::after{transition:none}
+  .kx-links a,.kx-links span{transition:none}
+}
+</style>
+<style id="kx-mainnav-current">
+/* ---- only the current page is highlighted ----
+   Three separate causes were making an item look permanently lit.
+
+   1. On a touch screen :hover sticks to whatever you last tapped, so after
+      tapping a menu item it stayed gold and underlined. Hover rules are now
+      inside @media(hover:hover), so they only apply on devices that really
+      hover. Touch gets :active instead, which clears itself.
+
+   2. The stacked panel gives every row a 2px transparent left border so the
+      hover edge does not shift the text. Written as a shorthand, the colour
+      resolved to currentColor in some engines, which drew a coloured edge on
+      every row. The colour is now set on its own line.
+
+   3. The gold treatment is keyed to [aria-current="page"] rather than to the
+      element being a span, so there is one condition deciding it. */
+
+/* nothing is lit unless it is the current page */
+.kx-links a{color:#BDB49F}
+.kx-links a::after{transform:scaleX(0)}
+
+@media(hover:hover){
+  .kx-links a:hover{color:var(--gold,#D4A856)}
+  .kx-links a:hover::after{transform:scaleX(1)}
+}
+.kx-links a:focus-visible{color:var(--gold,#D4A856)}
+.kx-links a:focus-visible::after{transform:scaleX(1)}
+/* a tap lights it for as long as the finger is down, then releases */
+.kx-links a:active{color:var(--gold,#D4A856)}
+
+/* the current page, and only the current page */
+.kx-links [aria-current="page"]{color:var(--gold,#D4A856)}
+.kx-links [aria-current="page"]::after{
+  content:"";position:absolute;left:2px;right:2px;bottom:8px;height:1px;
+  background:var(--gold-pale,#F3E4A8);opacity:.85;transform:none}
+
+@media(max-width:760px){
+  .kx-links a,.kx-links span{
+    border-left-style:solid;
+    border-left-width:2px;
+    border-left-color:transparent}
+
+  @media(hover:hover){
+    .kx-links a:hover{
+      border-left-color:var(--gold,#D4A856);
+      background:rgba(212,168,86,.06)}
+  }
+  .kx-links a:active{
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+  .kx-links a:focus-visible{
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+
+  .kx-links [aria-current="page"]{
+    border-left-color:var(--gold-pale,#F3E4A8);
+    background:rgba(212,168,86,.05)}
+  /* a plain link must never carry the current-page tint */
+  .kx-links a:not([aria-current="page"]){background:transparent}
+}
+</style>
+<style id="kx-mainnav-states">
+/* ---- gold means "you are pointing at this", nothing else ----
+   The current page and the hover state were both gold with a gold rule, so on
+   the homepage Home looked lit permanently and pointing at another item just
+   produced a second lit item. Nothing distinguished the pointer.
+
+   Gold is now reserved for the pointer. The current page is marked in a
+   quieter way: brighter than a plain link so you can still see where you are,
+   with a dim rule underneath, but not gold. Only ever one gold item on screen. */
+
+/* where you are: cream, not gold */
+.kx-links [aria-current="page"]{
+  color:#E8DEC4 !important;
+  cursor:default}
+.kx-links [aria-current="page"]::after{
+  background:rgba(232,222,196,.42) !important;
+  opacity:1 !important;
+  transform:none !important}
+
+/* what you are pointing at: gold, and the only gold thing */
+@media(hover:hover){
+  .kx-links a:hover{color:var(--gold,#D4A856) !important}
+  .kx-links a:hover::after{
+    background:var(--gold,#D4A856) !important;
+    transform:scaleX(1) !important}
+}
+.kx-links a:active{color:var(--gold,#D4A856) !important}
+.kx-links a:focus-visible{color:var(--gold,#D4A856) !important}
+.kx-links a:focus-visible::after{
+  background:var(--gold,#D4A856) !important;
+  transform:scaleX(1) !important}
+
+@media(max-width:760px){
+  .kx-links [aria-current="page"]{
+    border-left-color:rgba(232,222,196,.5) !important;
+    background:rgba(255,255,255,.03) !important}
+  @media(hover:hover){
+    .kx-links a:hover{
+      border-left-color:var(--gold,#D4A856) !important;
+      background:rgba(212,168,86,.08) !important}
+  }
+  .kx-links a:active,.kx-links a:focus-visible{
+    border-left-color:var(--gold,#D4A856) !important;
+    background:rgba(212,168,86,.08) !important}
+}
+</style>
+<style id="kx-mainnav-final">
+/* ---- one rule for the underline, one colour for hover ----
+   Two things were still wrong.
+
+   The current page carried a permanent underline. Three earlier blocks each
+   drew an ::after on it, so removing one left the others. Every ::after on a
+   current item is switched off here, in one place.
+
+   Hover used #D4A856, which is the mid gold and sits close to the plain link
+   colour at small sizes. It is now the pale gold, which is brighter than the
+   current-page cream so the pointer is unmistakable. */
+
+/* the current page: cream, and no rule under it */
+.kx-links [aria-current="page"]{
+  color:#9C968D !important;
+  cursor:default}
+.kx-links [aria-current="page"]::after,
+.kx-links [aria-current="page"]::before{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  transform:none !important}
+
+/* the pointer: pale gold, with the rule sliding under it */
+.kx-links a::after{
+  background:#FFD166 !important;
+  height:1.5px !important;
+  bottom:7px !important}
+
+@media(hover:hover){
+  .kx-links a:hover{color:#FFD166 !important}
+  .kx-links a:hover::after{transform:scaleX(1) !important}
+}
+.kx-links a:active{color:#FFD166 !important}
+.kx-links a:focus-visible{color:#FFD166 !important}
+.kx-links a:focus-visible::after{transform:scaleX(1) !important}
+
+@media(max-width:760px){
+  /* no rule at all in the stacked panel; the left edge does the work */
+  .kx-links a::after,.kx-links span::after{display:none !important}
+
+  .kx-links [aria-current="page"]{
+    border-left-color:rgba(156,150,141,.55) !important;
+    background:rgba(255,255,255,.03) !important}
+
+  @media(hover:hover){
+    .kx-links a:hover{
+      color:#FFD166 !important;
+      border-left-color:#FFD166 !important;
+      background:rgba(212,168,86,.10) !important}
+  }
+  .kx-links a:active,.kx-links a:focus-visible{
+    color:#FFD166 !important;
+    border-left-color:#FFD166 !important;
+    background:rgba(212,168,86,.10) !important}
+}
+</style>
+<style id="kx-bar-clean">
+/* ---- one bar, the same on every page ----
+   It had drifted badly. Across the 14 pages: z-index was 100 on seven and 850
+   on seven, side padding was 56px on three and 0 on eleven, and the frosted
+   background was present on eleven and missing on three. Hence "bigger on some
+   pages, smaller on others".
+
+   Three specific faults, fixed here.
+
+   1. flex-wrap:wrap let the links panel wrap onto a second row INSIDE the bar
+      rather than dropping below it. That was the extra strip underneath.
+      The bar is nowrap; the panel is positioned, so it does not need to wrap.
+
+   2. z-index:850 put the bar above almost everything. A fixed element that
+      high spans the full width and intercepts touches near the top of the
+      screen, which is what the advisor carousel was losing its drags to.
+      100 is above the page and below the modals, which is where a bar belongs.
+
+   3. The bar and logo faded out as you scrolled down, so navigation vanished
+      exactly when someone was deep in a page. It stays put now. That also
+      removes the half-faded, blurred logo, because there is no transition to
+      catch mid-way. */
+
+#kx-nav{
+  position:fixed !important;
+  top:0 !important;left:0 !important;right:0 !important;
+  z-index:100 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  flex-wrap:nowrap !important;
+  gap:16px !important;
+  padding:14px clamp(16px,4vw,48px) !important;
+  background:rgba(6,5,2,.90) !important;
+  -webkit-backdrop-filter:blur(8px) !important;
+  backdrop-filter:blur(8px) !important;
+  border-bottom:1px solid rgba(212,168,86,.18) !important;
+  transition:none !important}
+
+/* the bar no longer fades, so neither does the wordmark */
+#kx-nav .wm,
+body.chrome-away #kx-nav,
+body.chrome-away #kx-nav .wm{
+  opacity:1 !important;
+  transform:none !important;
+  pointer-events:auto !important;
+  background:rgba(6,5,2,.90) !important;
+  border-bottom-color:rgba(212,168,86,.18) !important;
+  transition:none !important}
+body.chrome-away #kx-nav .wm,#kx-nav .wm{background:none !important}
+
+#kx-nav > a:first-child img{height:34px !important;width:auto !important;display:block}
+
+@media(max-width:760px){
+  #kx-nav{padding:11px 16px !important}
+  #kx-nav > a:first-child img{height:28px !important}
+}
+
+/* nothing sits under the bar */
+body{padding-top:0}
+</style>
+<style id="kx-nav-stack">
+/* ---- the bar has to sit above the page, below the modals ----
+   I lowered it from 850 to 100 to stop it intercepting touches over the
+   carousel. That fixed the carousel and broke the menu: the footer is at 200,
+   the cursor at 950, the old cue at 901, so the dropdown panel opened behind
+   page content and looked like nothing happened.
+
+   500 clears everything on the page (the highest is the footer at 200) and
+   stays below the modals: the film at 1000 and the support sheet at 1200. The
+   carousel and the page body have no z-index of their own, so the bar being
+   above them costs nothing; what caused the carousel problem was 850, which
+   put the bar above things that needed to receive touches.
+
+   The panel is given its own stacking so it is never trapped behind a sibling
+   inside the bar. */
+#kx-nav{z-index:500 !important}
+.kx-links{z-index:2}
+.kx-burger{position:relative;z-index:3}
+</style>
+<script id="kx-mainnav-js">
+/* opens and closes the small-screen panel. escape closes it, so does a tap
+   anywhere outside, and so does following a link. */
+(function(){
+  var nav=document.getElementById('kx-nav');
+  if(!nav) return;
+  var burger=nav.querySelector('.kx-burger');
+  if(!burger) return;
+
+  function setOpen(on){
+    nav.classList.toggle('kx-open', on);
+    burger.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  burger.addEventListener('click', function(e){
+    e.preventDefault();
+    setOpen(!nav.classList.contains('kx-open'));
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setOpen(false);
+  });
+  document.addEventListener('click', function(e){
+    if(!nav.contains(e.target)) setOpen(false);
+  });
+  nav.querySelectorAll('.kx-links a').forEach(function(a){
+    a.addEventListener('click', function(){ setOpen(false); });
+  });
+})();
+</script>
+</body>
+</html>
