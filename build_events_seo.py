@@ -28,6 +28,8 @@ find rather than failing silently.
 
 from __future__ import annotations
 
+import base64
+import hashlib
 import html
 import json
 import re
@@ -588,6 +590,87 @@ def add_browser(page: str) -> str:
     return page
 
 
+MIME_EXT = {
+    "image/png": ".png", "image/jpeg": ".jpg", "image/jpg": ".jpg",
+    "image/webp": ".webp", "image/gif": ".gif", "image/svg+xml": ".svg",
+    "image/avif": ".avif", "font/ttf": ".ttf", "font/otf": ".otf",
+    "font/woff": ".woff", "font/woff2": ".woff2",
+    "application/font-woff2": ".woff2", "application/font-woff": ".woff",
+}
+
+DATA_URI = re.compile(r"data:([a-z0-9/+.\-]+);base64,([A-Za-z0-9+/=]{500,})")
+
+
+def asset_index() -> dict:
+    """Every file already in assets/, keyed by the hash of its contents."""
+    index = {}
+    root = HERE / "assets"
+    if not root.exists():
+        return index
+    for path in root.rglob("*"):
+        if path.is_file():
+            try:
+                index.setdefault(hashlib.sha256(path.read_bytes()).hexdigest(), path)
+            except OSError:
+                continue
+    return index
+
+
+def unpack_data_uris(page: str) -> str:
+    """Pull inlined images and fonts out of the HTML and into real files.
+
+    The page carried 234KB of binary encoded as base64: a 158KB wordmark, a
+    30KB PNG, a 30KB font, and a 10KB mark. Base64 costs a third again on top
+    of bytes that are already compressed, so gzip barely touches it.
+
+    The cost that matters is not the size, it is that bytes inside an HTML file
+    cannot be cached. The wordmark was re-downloaded on every page view and on
+    every navigation between pages, and it sits in a <style> in the head, so
+    nothing paints until it has arrived and been decoded. On a phone on
+    cellular that is the difference between a page that appears and a page that
+    takes fifteen seconds.
+
+    Two of the four were byte-for-byte identical to files already sitting in
+    assets/, cacheable, being ignored. Those are matched by hash and reused;
+    anything with no match is written out once and referenced from then on.
+    """
+    found = DATA_URI.findall(page)
+    if not found:
+        note(True, "inline binaries (none left)")
+        return page
+
+    index = asset_index()
+    outdir = HERE / "assets" / "inline"
+    freed = 0
+    reused = 0
+    written = 0
+
+    for mime, payload in found:
+        try:
+            raw = base64.b64decode(payload)
+        except (ValueError, TypeError):
+            continue
+        digest = hashlib.sha256(raw).hexdigest()
+        target = index.get(digest)
+        if target is None:
+            outdir.mkdir(parents=True, exist_ok=True)
+            target = outdir / (digest[:12] + MIME_EXT.get(mime, ".bin"))
+            if not target.exists():
+                target.write_bytes(raw)
+            index[digest] = target
+            written += 1
+        else:
+            reused += 1
+        page = page.replace(f"data:{mime};base64,{payload}",
+                            target.relative_to(HERE).as_posix())
+        freed += len(payload)
+
+    note(True, f"inline binaries moved out ({len(found)} found, {reused} matched "
+               f"an existing asset, {written} written, {freed // 1024}KB of "
+               f"base64 removed from the page)")
+    return page
+
+
 def touch_sitemap(updated: str) -> None:
     """Move the events page's lastmod to the day the list was actually rebuilt.
 
@@ -712,6 +795,8 @@ def main() -> int:
         anchor = "</main>" if "</main>" in page else "</body>"
         page = page.replace(anchor, block + "\n" + anchor, 1)
         note(True, f"structured data inserted ({min(len(events), SEO_LIMIT)} events)")
+
+    page = unpack_data_uris(page)
 
     PAGE.write_text(page)
     touch_sitemap(updated)
