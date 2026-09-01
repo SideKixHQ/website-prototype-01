@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-01 14:36:18 nav-colours -->
+<!-- kx-build 2026-09-01 18:35:53 footer-legal -->
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -96,6 +96,82 @@ img{width:auto;height:auto}
    on something that also gets hidden. */
 [hidden]{display:none !important}
 </style>
+<style id="kx-perf-mobile">
+/* ---- less continuous work on a phone ----
+   Two changes, both scoped so desktop is untouched.
+
+   1. backdrop-filter is switched off below 900px. There are 328 uses of it
+      across the site and each one makes the browser re-blur everything behind
+      the element on every frame it changes. On a fixed bar that means a
+      full-width blur recomputing on every scroll frame. A solid background
+      looks near identical and costs nothing.
+
+   2. Animations stop while the page is in the background. Without this they
+      keep running when you switch apps or lock the screen, which is a large
+      part of why the phone stays warm after you have put it down. */
+
+@media(max-width:900px){
+  *,*::before,*::after{
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important}
+
+  /* the bar relied on the blur for legibility, so it gets a solid ground */
+  #kx-nav{background:#080705 !important}
+
+  /* large-radius blur is the most expensive paint on a phone GPU */
+  [style*="blur(130px)"],[style*="blur(120px)"]{filter:blur(38px) !important}
+}
+
+/* nothing animates while the page is not being looked at */
+html.kx-idle *,
+html.kx-idle *::before,
+html.kx-idle *::after{
+  animation-play-state:paused !important;
+  transition:none !important}
+</style>
+<script id="kx-perf-js">
+/* ---- stop the work when nothing is being looked at ----
+   Twelve requestAnimationFrame loops run on the homepage and none of them
+   checked whether they were visible, so they ran at 60fps whether on screen or
+   not, and kept running after the phone was locked.
+
+   This wraps requestAnimationFrame once, before anything else uses it, and
+   holds every callback while the page is hidden. Each loop reschedules itself
+   through the same function, so holding it holds the whole chain. Nothing else
+   in the page had to change. */
+(function(){
+  var raf = window.requestAnimationFrame;
+  if(!raf) return;
+  var held = [], hidden = false;
+
+  window.requestAnimationFrame = function(cb){
+    if(hidden){ held.push(cb); return -1; }
+    return raf.call(window, cb);
+  };
+
+  function release(){
+    var q = held; held = [];
+    q.forEach(function(cb){ try{ raf.call(window, cb); }catch(e){} });
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    hidden = document.hidden;
+    document.documentElement.classList.toggle('kx-idle', hidden);
+    if(!hidden) release();
+  });
+
+  /* on a phone, switching apps fires pagehide rather than visibilitychange */
+  window.addEventListener('pagehide', function(){
+    hidden = true;
+    document.documentElement.classList.add('kx-idle');
+  });
+  window.addEventListener('pageshow', function(){
+    hidden = false;
+    document.documentElement.classList.remove('kx-idle');
+    release();
+  });
+})();
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:0;background:#D4A856;color:#1B1400;padding:12px 18px;border-radius:0 0 8px 0;font-weight:700;z-index:99">Skip to content</a>

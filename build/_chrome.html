@@ -1,0 +1,222 @@
+<style id="kx-orb-topright">
+/* ---- the orb sits top right, the old CTA comes out ---- */
+#kx-nav .kx-mag.kx-trace{display:none !important}
+
+#kx-orbnav{
+  position:fixed !important;
+  top:0 !important;
+  bottom:auto !important;
+  right:clamp(14px,2.6vw,34px) !important;
+  height:auto !important;
+  /* the nav is 100 on some pages and 850 on others, so clear the higher */
+  z-index:900 !important;
+  align-items:flex-start !important;
+  justify-content:flex-end !important;
+  padding-top:6px}
+
+#kx-orbnav > div:last-child{width:104px !important;height:104px !important}
+#kx-orbmaster{width:104px !important;height:104px !important}
+
+#kx-orbtray{
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  flex-wrap:nowrap !important;
+  margin:30px 10px 0 0 !important;
+  max-width:min(70vw,720px) !important}
+#kx-orbtray .kx-tray-item{
+  padding:10px 15px !important;font-size:11px !important;white-space:nowrap}
+
+#kx-nav{padding-right:124px !important}
+
+@media(max-width:820px){
+  #kx-orbnav{right:10px !important;padding-top:4px}
+  #kx-orbnav > div:last-child,#kx-orbmaster{width:86px !important;height:86px !important}
+  #kx-nav{padding-right:98px !important}
+  #kx-orbtray{
+    margin:24px 8px 0 0 !important;
+    flex-wrap:wrap !important;
+    max-width:min(74vw,480px) !important;
+    justify-content:flex-end !important}
+  #kx-orbtray .kx-tray-item{padding:9px 12px !important;font-size:10.5px !important}
+}
+@media(max-width:420px){
+  #kx-orbnav > div:last-child,#kx-orbmaster{width:74px !important;height:74px !important}
+  #kx-nav{padding-right:86px !important}
+}
+</style>
+<style id="kx-orb-label">
+/* MENU as a pill inside the orb, under the mark.
+   NOTHING here touches the images. the orb contains two of them, the eclipse
+   and a small K on top, and both are sized by their own inline styles. every
+   attempt to "improve" them broke the composition, so they are left alone. */
+#kx-orbnav > div:last-child{position:relative}
+
+#kx-orbnav > div:last-child::after{
+  content:"MENU";
+  position:absolute;left:50%;top:72%;
+  transform:translate(-50%,-50%);
+  padding:3px 9px;
+  border-radius:999px;
+  background:rgba(10,9,6,.82);
+  border:1px solid rgba(212,168,86,.55);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  font-family:var(--util,'Space Grotesk',ui-monospace,monospace);
+  font-size:8.5px;letter-spacing:.2em;line-height:1;
+  color:#F3E4A8;
+  pointer-events:none;white-space:nowrap;
+  transition:background .3s ease,border-color .3s ease,color .3s ease}
+
+#kx-orbnav:hover > div:last-child::after{
+  background:rgba(212,168,86,.9);border-color:#F3E4A8;color:#141000}
+
+#kx-orbnav.tray-open > div:last-child::after{
+  content:"CLOSE";background:rgba(212,168,86,.92);border-color:#F3E4A8;color:#141000}
+
+@media(max-width:820px){
+  #kx-orbnav > div:last-child::after{font-size:8px;letter-spacing:.16em;padding:3px 8px;top:73%}
+}
+@media(max-width:420px){
+  #kx-orbnav > div:last-child::after{font-size:7.5px;letter-spacing:.14em;padding:2px 7px}
+}
+@media(prefers-reduced-motion:reduce){
+  #kx-orbnav > div:last-child::after{transition:none}
+}
+</style>
+<style id="kx-orbcue-fix">
+/* the old floating cue said "Menu" at the bottom right, where the orb used
+   to be. it points at nothing now. */
+#kx-orbcue{display:none !important}
+</style>
+<style id="kx-orb-bar">
+/* ---- the bar has to be deep enough to hold what sits in it ----
+   the orb is 104px and the tray sits beside it, but the bar was only about
+   66px tall, so both spilled out the bottom and the tray read as floating
+   over the page rather than sitting in the bar. the bar now runs deeper.
+   the MENU pill was also 8.5px, which is below the point where uppercase
+   with .2em tracking stays readable. */
+
+/* measured: the orb runs to 139px while the bar ended at 84, so it overhung
+   by 55px. the bar now clears it with a little room under the pill. */
+#kx-nav{
+  padding-top:26px !important;
+  padding-bottom:118px !important;
+  align-items:flex-start !important}
+
+/* the tray drops to sit level with the middle of the orb */
+/* measured: the logo centres on row 32, the chips on 59, and the bar ends
+   at 66. so the chips were crossing the bar's edge. this lines them up
+   with the logo instead, which keeps them inside the bar. */
+#kx-orbtray{margin:14px 12px 0 0 !important}
+
+/* readable at a glance */
+#kx-orbnav > div:last-child::after{
+  top:76% !important;
+  font-size:11px !important;
+  letter-spacing:.16em !important;
+  padding:5px 13px !important;
+  background:rgba(8,7,4,.94) !important;
+  border-color:rgba(243,228,168,.7) !important;
+  color:#FFF3D0 !important}
+#kx-orbnav:hover > div:last-child::after,
+#kx-orbnav.tray-open > div:last-child::after{
+  background:#D4A856 !important;border-color:#F3E4A8 !important;color:#141000 !important}
+
+@media(max-width:820px){
+  /* five chips in a row will not fit beside a logo on a phone. wrapping put
+     them over the wordmark, so on small screens the tray drops as a column
+     under the orb instead, which is how it behaved originally. */
+  #kx-nav{padding-top:20px !important;padding-bottom:34px !important}
+  #kx-orbnav{flex-direction:column !important;align-items:flex-end !important}
+  #kx-orbtray{
+    order:2 !important;
+    flex-direction:column !important;
+    align-items:flex-end !important;
+    flex-wrap:nowrap !important;
+    margin:10px 0 0 0 !important;
+    max-width:none !important;
+    gap:8px !important}
+  #kx-orbnav > div:last-child{order:1 !important}
+  #kx-orbnav > div:last-child::after{
+    font-size:10px !important;letter-spacing:.14em !important;padding:4px 11px !important;top:77% !important}
+}
+@media(max-width:420px){
+  #kx-orbnav > div:last-child::after{
+    font-size:9px !important;letter-spacing:.12em !important;padding:4px 10px !important}
+}
+</style>
+<style id="kx-bar-height">
+/* ---- the bar is back to bar height ----
+   it was padded to about 174px so it would fully contain the orb. but the bar
+   paints a gradient across the whole width, so that became a 174px dark band
+   sitting over the page and dimming everything under it while you scroll.
+   the bar is a bar again. the orb simply overhangs it, which is what a
+   floating control does, and it does not need the background to follow it. */
+#kx-nav{
+  padding-top:22px !important;
+  padding-bottom:22px !important}
+
+@media(max-width:820px){
+  #kx-nav{padding-top:18px !important;padding-bottom:18px !important}
+}
+
+/* the content clearance goes back to clearing a normal bar, not the old
+   inflated one */
+main > section:first-of-type,
+main > .wrap:first-of-type{padding-top:132px !important}
+@media(max-width:820px){
+  main > section:first-of-type,
+  main > .wrap:first-of-type{padding-top:118px !important}
+}
+</style>
+<style id="kx-img-aspect">
+/* ---- width and height attributes must not fight the stylesheet ----
+   the SEO pass added intrinsic width and height to every image, which is right
+   for layout stability. but those attributes are presentational hints: when a
+   rule sets only one axis, the OTHER axis still takes the attribute value. the
+   phone logo has height:15px in CSS and width="2164" on the tag, so it drew
+   2164px wide and stretched across the header.
+   this lets the stylesheet win on both axes while keeping the attributes for
+   aspect-ratio, so nothing stretches and layout shift is still prevented. */
+/* the rule has to sit BELOW any real styling, so it only fills in the axis
+   nobody set. a bare element selector loses to every class rule, which is
+   exactly what is wanted here. */
+img{width:auto;height:auto}
+</style>
+<style id="kx-backlink">
+/* ---- one back link, the same on every page ----
+   there were four different class names, four different labels and four pages
+   with none at all. this is the market-data treatment, which was the most
+   considered of them, applied everywhere under one class. */
+.kx-backrow{display:flex;justify-content:center;margin:0 0 22px}
+.kx-bk{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;
+  text-decoration:none;font-weight:400;
+  font-family:var(--util,'Space Grotesk',ui-monospace,monospace);
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey,#9C968D);transition:color .25s}
+.kx-bk:hover{color:var(--gold-pale,#F3E4A8)}
+.kx-bk:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px;border-radius:6px}
+.kx-bk svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+<style id="kx-footer-hover">
+/* ---- the footer hover reads again ----
+   the hover rule never broke. what happened is that the warm pass moved the
+   resting colour from #CFC9BE to #D4C9B1, doubling its warmth from 17 to 35
+   and pushing it toward the gold of the hover state. luminance was untouched,
+   so the contrast audit saw nothing wrong, but the two colours stopped
+   looking like different states.
+   the hover now separates on brightness as well as hue, and picks up an
+   underline so the change is unmistakable rather than a subtle tint. */
+.sk-col a{
+  border-bottom:1px solid transparent;
+  transition:color .22s ease, border-color .22s ease}
+.sk-col a:hover,
+.sk-col a:focus-visible{
+  color:#FFF6DC !important;
+  border-bottom-color:rgba(243,228,168,.55)}
+
+/* the social icons already invert on hover, so they only need the timing */
+.sk-social a{transition:color .22s ease, background .22s ease}
+</style>
