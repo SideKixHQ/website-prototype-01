@@ -600,155 +600,6 @@ img{width:auto;height:auto}
 .kx-bk svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round;flex:none}
 </style>
-<style id="kx-orb-topright">
-/* ---- the orb, set up exactly as it is on the homepage ----
-   the homepage version works: a direct child of body, position:fixed, pinned
-   top-right. every other arrangement I tried, including riding inside the bar
-   as a flex child, put it somewhere else on these two pages. this matches the
-   page that is known good rather than inventing a third approach. */
-#kx-nav .kx-mag.kx-trace{display:none !important}
-
-#kx-orbnav{
-  position:fixed !important;
-  top:0 !important;
-  right:clamp(14px,2.6vw,34px) !important;
-  bottom:auto !important;
-  left:auto !important;
-  margin:0 !important;
-  z-index:900 !important;
-  height:auto !important;
-  display:flex !important;
-  align-items:flex-start !important;
-  justify-content:flex-end !important;
-  padding-top:6px !important}
-
-#kx-orbnav > div:last-child{width:104px !important;height:104px !important}
-#kx-orbmaster{width:104px !important;height:104px !important}
-
-#kx-nav{padding-right:124px !important}
-
-#kx-orbtray{
-  flex-direction:row !important;align-items:center !important;
-  justify-content:flex-end !important;flex-wrap:nowrap !important;
-  margin:32px 10px 0 0 !important;
-  max-width:min(70vw,720px) !important}
-#kx-orbtray .kx-tray-item{padding:10px 15px !important;font-size:11px !important;white-space:nowrap}
-
-@media(max-width:820px){
-  #kx-orbnav{right:10px !important;flex-direction:column !important;align-items:flex-end !important}
-  #kx-orbnav > div:last-child,#kx-orbmaster{width:86px !important;height:86px !important}
-  #kx-nav{padding-right:98px !important}
-  #kx-orbtray{
-    order:2 !important;flex-direction:column !important;align-items:flex-end !important;
-    flex-wrap:nowrap !important;margin:10px 0 0 0 !important;
-    max-width:none !important;gap:8px !important}
-  #kx-orbnav > div:last-child{order:1 !important}
-}
-@media(max-width:420px){
-  #kx-orbnav > div:last-child,#kx-orbmaster{width:74px !important;height:74px !important}
-  #kx-nav{padding-right:86px !important}
-}
-</style>
-<style id="kx-orb-label">
-/* MENU as a pill inside the orb, under the mark.
-   NOTHING here touches the images. the orb contains two of them, the eclipse
-   and a small K on top, and both are sized by their own inline styles. every
-   attempt to "improve" them broke the composition, so they are left alone. */
-#kx-orbnav > div:last-child{position:relative}
-
-#kx-orbnav > div:last-child::after{
-  content:"MENU";
-  position:absolute;left:50%;top:72%;
-  transform:translate(-50%,-50%);
-  padding:3px 9px;
-  border-radius:999px;
-  background:rgba(10,9,6,.82);
-  border:1px solid rgba(212,168,86,.55);
-  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
-  font-family:var(--util,'Space Grotesk',ui-monospace,monospace);
-  font-size:8.5px;letter-spacing:.2em;line-height:1;
-  color:#F3E4A8;
-  pointer-events:none;white-space:nowrap;
-  transition:background .3s ease,border-color .3s ease,color .3s ease}
-
-#kx-orbnav:hover > div:last-child::after{
-  background:rgba(212,168,86,.9);border-color:#F3E4A8;color:#141000}
-
-#kx-orbnav.tray-open > div:last-child::after{
-  content:"CLOSE";background:rgba(212,168,86,.92);border-color:#F3E4A8;color:#141000}
-
-@media(max-width:820px){
-  #kx-orbnav > div:last-child::after{font-size:8px;letter-spacing:.16em;padding:3px 8px;top:73%}
-}
-@media(max-width:420px){
-  #kx-orbnav > div:last-child::after{font-size:7.5px;letter-spacing:.14em;padding:2px 7px}
-}
-@media(prefers-reduced-motion:reduce){
-  #kx-orbnav > div:last-child::after{transition:none}
-}
-</style>
-<style id="kx-orbcue-fix">
-/* the old floating cue said "Menu" at the bottom right, where the orb used
-   to be. it points at nothing now. */
-#kx-orbcue{display:none !important}
-</style>
-<style id="kx-orb-bar">
-/* ---- the bar has to be deep enough to hold what sits in it ----
-   the orb is 104px and the tray sits beside it, but the bar was only about
-   66px tall, so both spilled out the bottom and the tray read as floating
-   over the page rather than sitting in the bar. the bar now runs deeper.
-   the MENU pill was also 8.5px, which is below the point where uppercase
-   with .2em tracking stays readable. */
-
-/* measured: the orb runs to 139px while the bar ended at 84, so it overhung
-   by 55px. the bar now clears it with a little room under the pill. */
-#kx-nav{
-  padding-top:26px !important;
-  padding-bottom:118px !important;
-  align-items:flex-start !important}
-
-/* the tray drops to sit level with the middle of the orb */
-/* measured: the logo centres on row 32, the chips on 59, and the bar ends
-   at 66. so the chips were crossing the bar's edge. this lines them up
-   with the logo instead, which keeps them inside the bar. */
-#kx-orbtray{margin:14px 12px 0 0 !important}
-
-/* readable at a glance */
-#kx-orbnav > div:last-child::after{
-  top:76% !important;
-  font-size:11px !important;
-  letter-spacing:.16em !important;
-  padding:5px 13px !important;
-  background:rgba(8,7,4,.94) !important;
-  border-color:rgba(243,228,168,.7) !important;
-  color:#FFF3D0 !important}
-#kx-orbnav:hover > div:last-child::after,
-#kx-orbnav.tray-open > div:last-child::after{
-  background:#D4A856 !important;border-color:#F3E4A8 !important;color:#141000 !important}
-
-@media(max-width:820px){
-  /* five chips in a row will not fit beside a logo on a phone. wrapping put
-     them over the wordmark, so on small screens the tray drops as a column
-     under the orb instead, which is how it behaved originally. */
-  #kx-nav{padding-top:20px !important;padding-bottom:34px !important}
-  #kx-orbnav{flex-direction:column !important;align-items:flex-end !important}
-  #kx-orbtray{
-    order:2 !important;
-    flex-direction:column !important;
-    align-items:flex-end !important;
-    flex-wrap:nowrap !important;
-    margin:10px 0 0 0 !important;
-    max-width:none !important;
-    gap:8px !important}
-  #kx-orbnav > div:last-child{order:1 !important}
-  #kx-orbnav > div:last-child::after{
-    font-size:10px !important;letter-spacing:.14em !important;padding:4px 11px !important;top:77% !important}
-}
-@media(max-width:420px){
-  #kx-orbnav > div:last-child::after{
-    font-size:9px !important;letter-spacing:.12em !important;padding:4px 10px !important}
-}
-</style>
 <style id="kx-navclear">
 /* the bar grew from about 66px to 142px so it could contain the orb and the
    tray. the sections that clear it were still padded for the old height, which
@@ -853,52 +704,6 @@ html, body, #kx-root{overflow-x:visible !important}
 main{overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
-<style id="kx-orb-width">
-/* ---- the wrapper is only as wide as the disc ----
-   the wrapper held the tray and the disc side by side. the tray is up to
-   716px wide even when invisible, so a shrink-to-fit box pinned with
-   right:26px ran ~840px leftward and the disc sat in the middle of that box
-   rather than at the right of the screen.
-   the wrapper is now exactly disc-sized, and the tray is taken out of its
-   flow and hung to the left, so nothing can push the disc inward. */
-#kx-orbnav{
-  width:104px !important;
-  height:104px !important;
-  padding:0 !important;
-  display:block !important;
-  top:6px !important}
-
-#kx-orbnav > div:last-child{
-  position:absolute !important;
-  top:0 !important;right:0 !important;
-  width:104px !important;height:104px !important}
-
-#kx-orbtray{
-  position:absolute !important;
-  top:32px !important;
-  right:118px !important;
-  left:auto !important;
-  flex-direction:row !important;
-  align-items:center !important;
-  justify-content:flex-end !important;
-  flex-wrap:nowrap !important;
-  margin:0 !important;
-  max-width:min(70vw,720px) !important}
-
-@media(max-width:820px){
-  #kx-orbnav{width:86px !important;height:86px !important;top:4px !important}
-  #kx-orbnav > div:last-child{width:86px !important;height:86px !important}
-  #kx-orbtray{
-    top:96px !important;right:0 !important;
-    flex-direction:column !important;align-items:flex-end !important;
-    max-width:none !important;gap:8px !important}
-}
-@media(max-width:420px){
-  #kx-orbnav{width:74px !important;height:74px !important}
-  #kx-orbnav > div:last-child{width:74px !important;height:74px !important}
-  #kx-orbtray{top:84px !important}
-}
-</style>
 <meta content="Business events in every state, checked every week" name="twitter:title"/>
 <meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." name="twitter:description"/>
 <meta content="https://sidekixhq.com/assets/k-mark.png" name="twitter:image"/>
@@ -921,10 +726,9 @@ main{overflow-x:clip}
 <script>document.documentElement.className+=' kx-js';</script>
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
-<nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;">
-<a aria-label="SideKix home" href="index.html"><img alt="SideKix" decoding="async" fetchpriority="high" height="602" loading="eager" src="assets/sidekix-wordmark.png" style="height:32px;display:block;" width="2164"/></a>
-<a class="kx-mag kx-trace" href="join.html?intent=waitlist">Build the Future</a>
-</nav><div id="kx-orbnav" style="position:fixed;top:0;right:clamp(14px,2.6vw,34px);bottom:auto;left:auto;z-index:900;height:auto;display:flex;align-items:flex-start;justify-content:flex-end;padding-top:6px;">
+<nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
+<a aria-label="SideKix home" href="index.html" style="display:block;"><img alt="SideKix" decoding="async" fetchpriority="high" height="602" loading="eager" src="assets/sidekix-wordmark.png" style="height:30px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(212,168,86,.3));" width="2164"/></a>
+<button aria-expanded="false" aria-label="Menu" class="kx-burger" type="button"><i aria-hidden="true"></i><span>Menu</span></button><div class="kx-links"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="membership.html">Membership</a><a href="resources.html">Resources</a><span aria-current="page">Events</span><a href="partners.html">Partners</a></div></nav><div id="kx-orbnav" style="position:fixed;top:0;right:clamp(14px,2.6vw,34px);bottom:auto;left:auto;z-index:900;height:auto;display:flex;align-items:flex-start;justify-content:flex-end;padding-top:6px;">
 <div id="kx-orbtray" style="display:flex;align-items:center;gap:11px;margin-right:2px;"><a class="kx-tray-item" data-pagenav="1" href="index.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>Home</a><a class="kx-tray-item" data-pagenav="1" href="how-it-works.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>How it works</a><a class="kx-tray-item" data-pagenav="1" href="membership.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>Membership</a><a class="kx-tray-item" data-pagenav="1" href="resources.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;background:linear-gradient(180deg,#D7C582,#A1853E);border-color:#F3E4A8;color:#1B1400;font-weight:700;"><span style="font-size:10px;opacity:.8">●</span>Blog</a><a class="kx-tray-item" data-pagenav="1" href="faq.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>FAQs</a><a class="kx-tray-item" data-pagenav="1" href="become-an-advisor.html" style="flex:none;white-space:nowrap;cursor:pointer;border:1px solid rgba(212,168,86,.45);background:rgba(12,12,13,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#D4A856;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 18px;border-radius:999px;display:flex;align-items:center;gap:9px;opacity:0;transform:translateX(24px) scale(.7);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1),background .25s,border-color .25s,color .25s;pointer-events:none;text-decoration:none;"><span style="font-size:10px;opacity:.8">↗</span>Advisors</a></div>
 <div style="position:relative;width:104px;height:104px;flex:none;">
 <div aria-hidden="true" style="position:absolute;left:50%;top:50%;width:33%;height:33%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;animation:kxOrbGlow 2.8s ease-in-out infinite;"></div>
@@ -1044,7 +848,7 @@ main{overflow-x:clip}
 </section>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Business events for founders across the United States","description":"Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week.","url":"https://sidekixhq.com/events.html","numberOfItems":60,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Event","name":"Reach your business goals with Reels ads - Sep 1 | APAC | English","startDate":"2026-09-01T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/389031-reach-your-business-goals-with-reels"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/389031-reach-your-business-goals-with-reels","description":"Reach your business goals with Reels ads - Sep 1 | APAC | English Monday, Aug 31, 2026 at 11:00 PM to 12:30 AM EDT Location: APAC | Language: English Instructor: Su."}},{"@type":"ListItem","position":2,"item":{"@type":"Event","name":"Digital Marketing Associate Certification Prep - Sep 1 & 2 | NORAM | English","startDate":"2026-09-01T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/288464-digital-marketing-associate-certification-prep"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/288464-digital-marketing-associate-certification-prep","description":"Digital Marketing Associate Certification Prep - Sep 1 & 2 | NORAM | English Tuesday, Sep 1, 2026 at 2:00 PM to 5:00 PM EDT Location: NORAM Instructor: Brian."}},{"@type":"ListItem","position":3,"item":{"@type":"Event","name":"NETWORK WITH US IN NEWPORT","startDate":"2026-09-01T08:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Greater Newport Chamber of Commerce Innovate Newport","address":{"@type":"PostalAddress","name":"Greater Newport Chamber of Commerce Innovate Newport"}},"organizer":{"@type":"Organization","name":"Rhode Island SBDC"},"url":"https://www.risbdc.org/workshop.aspx?ekey=30460012","description":"Join us for an informational networking coffee hour with Paul Harden of the RI Small Business Development Center (RISBDC) and Lori Burke, Chamber Membership Sales Associate. Learn more about the no-charge, confidential business services available to assist new","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.risbdc.org/workshop.aspx?ekey=30460012","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":4,"item":{"@type":"Event","name":"Queen Creek Start Smart Series: In-Person | Session 5 of 5","startDate":"2026-09-01T08:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Queen Creek Chamber of Commerce","address":{"@type":"PostalAddress","name":"Queen Creek Chamber of Commerce"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460038","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Start Smart Series: In-Person Wrap Up Your Plan and Celebrate! Program Details Start Date: September 1st, 2026 | Session 5 of 5 Meeting Day & Time: Tuesdays, 8:30 AM – 10:30 AM Format: In-Person Milestone Celebration: September 1st No-Fee Light refreshments wi","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460038","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":5,"item":{"@type":"Event","name":"Hampton Roads Military Business Network","startDate":"2026-09-01T08:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"The HIVE by City of Virginia Beach","address":{"@type":"PostalAddress","name":"The HIVE by City of Virginia Beach"}},"organizer":{"@type":"Organization","name":"Virginia SBDC"},"url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460039","description":"Military Business Network – Breakfast Event Date: Tuesday, September 1st 2026 Time: 8:30 – 9:30 AM Location: THE HIVE, Town Center, Virginia Beach Join us for our Military Business Network breakfast, bringing together veterans, military spouses, and supporters","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460039","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":6,"item":{"@type":"Event","name":"BN1: DreamBuilder Session 5","startDate":"2026-09-01T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Ship Arizona","address":{"@type":"PostalAddress","name":"Ship Arizona"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460054","description":"Join us at Cochise College's SBDC for the kick-off of DreamBuilder, a FREE 6-week entrepreneurship boot camp. This week, we'll get to know each other and the DreamBuilder business plan generator. We'll explore your BIG PICTURE GOALS and begin the process of co","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460054","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":7,"item":{"@type":"Event","name":"Funding & Support for Louisiana Small Businesses: An Introduction to SSBCI","startDate":"2026-09-01T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460074"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460074","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Looking for funding to start or grow your business? Join us for an introduction to Louisiana's State Small Business Credit Initiative (SSBCI) and learn how the program helps connect small businesses with financing opportunities and no-cost technical assistance","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460074","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":8,"item":{"@type":"Event","name":"Government Contracting Essentials with The City of Yuma","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Small Business Development Center - Arizona Western College RTC Center","address":{"@type":"PostalAddress","name":"Small Business Development Center - Arizona Western College RTC Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460088","description":"Government Contracting Essentials Join us for the Government Contracting Essentials Workshop—a NO-COST event hosted in partnership with the Arizona APEX Accelerator, AWC SBDC, and the City of Yuma. Discover how to navigate federal, state, and defense contracti","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460088","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":9,"item":{"@type":"Event","name":"Tax Strategy for Small Business Owners","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460078"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460078","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=19460078","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":10,"item":{"@type":"Event","name":"SPANISH - Start Smart - Webinar via Zoom","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44260"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44260","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":11,"item":{"@type":"Event","name":"Reality Check- Impulso Empresarial","startDate":"2026-09-01T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2026 10:00am-12:00 1615 S 325th St, Federal Way WA 98003","address":{"@type":"PostalAddress","name":"2026 10:00am-12:00 1615 S 325th St, Federal Way WA 98003"}},"organizer":{"@type":"Organization","name":"Washington SBDC"},"url":"https://wsbdc.ecenterdirect.com/events/99273000","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://wsbdc.ecenterdirect.com/events/99273000","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":12,"item":{"@type":"Event","name":"Starting Your Business In Illinois","startDate":"2026-09-01T11:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://ilsbdc.ecenterdirect.com/events/42285"},"organizer":{"@type":"Organization","name":"Illinois SBDC"},"url":"https://ilsbdc.ecenterdirect.com/events/42285","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ilsbdc.ecenterdirect.com/events/42285","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":13,"item":{"@type":"Event","name":"SEBD Certification: A Certification to Grow Your Business","startDate":"2026-09-01T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=9460087"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=9460087","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=9460087","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":14,"item":{"@type":"Event","name":"Beyond the Micro-Purchase: Understanding Simplified Acquisitions","startDate":"2026-09-01T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://nbdc.ecenterdirect.com/events/10466"},"organizer":{"@type":"Organization","name":"Nebraska Business Development Center"},"url":"https://nbdc.ecenterdirect.com/events/10466","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":15,"item":{"@type":"Event","name":"Lunch and Learn, An Intro to AI in your Small Food Business","startDate":"2026-09-01T12:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://iowasbdc.org/event/lunch-and-learn-an-intro-to-ai-in-your-small-food-business/"},"organizer":{"@type":"Organization","name":"Iowa State University Extension and Outreach"},"url":"https://iowasbdc.org/event/lunch-and-learn-an-intro-to-ai-in-your-small-food-business/","description":"<p>Tuesday, September 1, 12:00 PM Lunch and Learn - An Intro to AI in your Small Food Business Join the Food Innovation and Business Hub to learn more about AI. AI."}},{"@type":"ListItem","position":16,"item":{"@type":"Event","name":"Hiring Employees, Contractors or Family, Avoid Costly Tax and Payroll Mistakes","startDate":"2026-09-01T12:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://iowasbdc.org/event/hiring-employees-contractors-or-family-avoid-costly-tax-and-payroll-mistakes/"},"organizer":{"@type":"Organization","name":"SCORE"},"url":"https://iowasbdc.org/event/hiring-employees-contractors-or-family-avoid-costly-tax-and-payroll-mistakes/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"<p>Format Online Live Event Date September 1, 2026 Time 1:00 pm EDT Duration 1 hour Price free Overview Hiring someone to work in your business comes with important."}},{"@type":"ListItem","position":17,"item":{"@type":"Event","name":"PNC: Obtaining Business Credit","startDate":"2026-09-01T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Cochise College SBDC Downtown Center","address":{"@type":"PostalAddress","name":"Cochise College SBDC Downtown Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460004","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=40460004","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":18,"item":{"@type":"Event","name":"Building a Business Plan with LivePlan - Webinar via Zoom","startDate":"2026-09-01T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44477"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44477","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":19,"item":{"@type":"Event","name":"First Step: Starting A Small Business in Pennsylvania","startDate":"2026-09-01T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"122 Carlson Library","address":{"@type":"PostalAddress","name":"122 Carlson Library"}},"organizer":{"@type":"Organization","name":"Cindy Nellis"},"url":"https://business.pa.gov/event/first-step-starting-a-small-business-in-pennsylvania-53/","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"<p>The First Step: How to Start and Finance Your Business. This monthly seminar provides an overview of the steps to starting a business along with an in-depth look."}},{"@type":"ListItem","position":20,"item":{"@type":"Event","name":"*Serie* Como Iniciar Su Propia Pequena Empresa","startDate":"2026-09-01T14:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44470"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44470","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://utsa.ecenterdirect.com/events/44470","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":21,"item":{"@type":"Event","name":"Finish the Year Strong: Your Q4 Plan","startDate":"2026-09-01T15:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460142"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460142","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"The businesses with the strongest fourth quarter don't get lucky. They plan for it. Build your Q4 marketing plan in just one hour. The businesses that win the fourth quarter plan it in September, and this session builds your plan in one hour. If you sell to co","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460142","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":22,"item":{"@type":"Event","name":"Always Ready: Getting Ready","startDate":"2026-09-01T15:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://iowasbdc.org/event/always-ready-getting-ready-15/"},"organizer":{"@type":"Organization","name":"Iowa Center for Economic Success"},"url":"https://iowasbdc.org/event/always-ready-getting-ready-15/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"<p>September 1 @ 3:00 pm - 4:00 pm CDT Presenter: The Iowa Center Staff Date: Tuesday, September 1, 2026 Time: 3:00 pm, 4:00 pm Location: Online Register: Here."}},{"@type":"ListItem","position":23,"item":{"@type":"Event","name":"How to do Business with City of San Luis","startDate":"2026-09-01T17:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Small Business Development Center - Arizona Western College RTC Center","address":{"@type":"PostalAddress","name":"Small Business Development Center - Arizona Western College RTC Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460085","description":"How to do Contracting Work with the City of San Luis Interested in doing business with the City of San Luis? Join us to learn about city contracting opportunities, the procurement process, how to review bid documents, use the procurement portal, and understand","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=80460085","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":24,"item":{"@type":"Event","name":"Surprise Start Smart Series: In Person | Session 2 of 5","startDate":"2026-09-01T17:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Spark Surprise Business Center Suite 143","address":{"@type":"PostalAddress","name":"Spark Surprise Business Center Suite 143"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460044","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Start Smart Series: In Person | Marketing and Pricing, Know your Value & Sell It! Program Details Start Date: September 1st, 2026 | Session 2 of 5 Meeting Day & Time: Tuesdays, 5:00 PM – 7:00 PM Format: In Person Celebration: September 22, 2026 No-Fee Light re","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=10460044","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":25,"item":{"@type":"Event","name":"Graham County Fall DreamBuilder - Kick Off","startDate":"2026-09-01T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Eastern Arizona College Academic Programs Building","address":{"@type":"PostalAddress","name":"Eastern Arizona College Academic Programs Building"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460067","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460067","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":26,"item":{"@type":"Event","name":"The First Step: Starting a Small Business in Pennsylvania (Webinar)","startDate":"2026-09-01T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://pasbdc.ecenterdirect.com/events/33080"},"organizer":{"@type":"Organization","name":"Pennsylvania SBDC"},"url":"https://pasbdc.ecenterdirect.com/events/33080","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://pasbdc.ecenterdirect.com/events/33080","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":27,"item":{"@type":"Event","name":"Start Smart: Starting A Business in Kentucky","startDate":"2026-09-01T19:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://kysbdc.ecenterdirect.com/events/10540"},"organizer":{"@type":"Organization","name":"Kentucky SBDC"},"url":"https://kysbdc.ecenterdirect.com/events/10540","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://kysbdc.ecenterdirect.com/events/10540","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":28,"item":{"@type":"Event","name":"Business Financials for Success - Orientation","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://ilsbdc.ecenterdirect.com/events/42298"},"organizer":{"@type":"Organization","name":"Illinois SBDC"},"url":"https://ilsbdc.ecenterdirect.com/events/42298","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ilsbdc.ecenterdirect.com/events/42298","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":29,"item":{"@type":"Event","name":"Exito Financiero para su Negocio","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://ilsbdc.ecenterdirect.com/events/42299"},"organizer":{"@type":"Organization","name":"Illinois SBDC"},"url":"https://ilsbdc.ecenterdirect.com/events/42299","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ilsbdc.ecenterdirect.com/events/42299","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":30,"item":{"@type":"Event","name":"First of Six-Part Flourishing Leadership Series","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2026 8am-9am 102 1st St W, Bemidji MN 56601","address":{"@type":"PostalAddress","name":"2026 8am-9am 102 1st St W, Bemidji MN 56601"}},"organizer":{"@type":"Organization","name":"Minnesota SBDC"},"url":"https://mnsbdc.ecenterdirect.com/events/11658","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Multi-session Course","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://mnsbdc.ecenterdirect.com/events/11658","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":31,"item":{"@type":"Event","name":"Solid Start - Legal, Tax and Capital Essentials When Starting Your Business","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Ohio SBDC at Lakeland Community College","address":{"@type":"PostalAddress","name":"Ohio SBDC at Lakeland Community College"}},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=82460008","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=82460008","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":32,"item":{"@type":"Event","name":"Build a YouTube Channel That Helps Customers Find, Understand, and Choose You","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44363"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44363","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://utsa.ecenterdirect.com/events/44363","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":33,"item":{"@type":"Event","name":"Cybersecurity Resources for Small Businesses (Virtual)","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44095"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44095","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://utsa.ecenterdirect.com/events/44095","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":34,"item":{"@type":"Event","name":"Certification Prep Virtual Training | Media Planning - Part 1 - Sep 2 | APAC (INDIA/SOUTH ASIA) | English","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/705417-certification-prep-virtual-training-media-planning-part-1"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/705417-certification-prep-virtual-training-media-planning-part-1","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Certification Prep Virtual Training | Media Planning - Part 1 - Sep 2 | APAC (INDIA/SOUTH ASIA) | English Wednesday, Sep 2, 2026 at 1:00 AM to 3:00 AM EDT Location."}},{"@type":"ListItem","position":35,"item":{"@type":"Event","name":"Optimize and Troubleshoot the Meta Pixel - Sep 2 | NORAM | English","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/251480-optimize-and-troubleshoot-the-meta-pixel"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/251480-optimize-and-troubleshoot-the-meta-pixel","description":"Optimize and Troubleshoot the Meta Pixel - Sep 2 | NORAM | English Wednesday, Sep 2, 2026 at 11:00 AM to 12:30 PM EDT Location: NORAM Instructor: Felipe Barrientos."}},{"@type":"ListItem","position":36,"item":{"@type":"Event","name":"Maximize performance with Advantage+ sales campaigns - Sep 2 | NORAM | English","startDate":"2026-09-02T00:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www.facebookblueprint.com/student/page/555762-maximize-performance-with-advantage-sales-campaigns"},"organizer":{"@type":"Organization","name":"Meta Blueprint"},"url":"https://www.facebookblueprint.com/student/page/555762-maximize-performance-with-advantage-sales-campaigns","description":"Maximize performance with Advantage+ sales campaigns - Sep 2 | NORAM | English Wednesday, Sep 2, 2026 at 3:00 PM to 4:00 PM EDT Location: NORAM Instructor: Martha."}},{"@type":"ListItem","position":37,"item":{"@type":"Event","name":"Coffee & Conversation (Chamberlain)","startDate":"2026-09-02T07:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"30 a.m. The Meeting Place 100 S Main St., Chamberlain SD 57325","address":{"@type":"PostalAddress","name":"30 a.m. The Meeting Place 100 S Main St., Chamberlain SD 57325"}},"organizer":{"@type":"Organization","name":"South Dakota SBDC"},"url":"https://sdceo.ecenterdirect.com/events/1019298","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://sdceo.ecenterdirect.com/events/1019298","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":38,"item":{"@type":"Event","name":"LV Meet the Buyers Expo","startDate":"2026-09-02T08:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"3311 Airport Rd","address":{"@type":"PostalAddress","name":"3311 Airport Rd"}},"organizer":{"@type":"Organization","name":"LV Meet the Buyers"},"url":"https://business.pa.gov/event/lv-meet-the-buyers-expo-2/","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"<p>The Lehigh Valley Meet the Buyers Expo is where major corporations and small businesses come together to explore shared opportunities. Engage with key."}},{"@type":"ListItem","position":39,"item":{"@type":"Event","name":"Intro to State, and Local Government Contracting","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2026 9:00 - 10:30 AM (CDT) 5752 Ames Ave, Omaha NE 68104","address":{"@type":"PostalAddress","name":"2026 9:00 - 10:30 AM (CDT) 5752 Ames Ave, Omaha NE 68104"}},"organizer":{"@type":"Organization","name":"Nebraska Business Development Center"},"url":"https://nbdc.ecenterdirect.com/events/10293","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://nbdc.ecenterdirect.com/events/10293","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":40,"item":{"@type":"Event","name":"INTELIGENCIA ARTIFICIAL SIN COMPLICACIONES: Automatiza, Ahorra Tiempo y Crece","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"BRRC (Business Response & Recovery Center) Centro de Creacion y Recuperacion de Negocios","address":{"@type":"PostalAddress","name":"BRRC (Business Response & Recovery Center) Centro de Creacion y Recuperacion de Negocios"}},"organizer":{"@type":"Organization","name":"Puerto Rico SBTDC"},"url":"https://ic.prsbtdc.org/workshop.aspx?ekey=12460007","description":"USTED SE ESTÁ REGISTRANDO PARA UN SEMINARIO PRESENCIAL. Por favor, siga las siguientes instrucciones para registrarse: Escriba su nombre con ambos apellidos en letra mayúscula sin acentos. No utilizar el mismo email para registrar varias personas. Recibirá ema","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=12460007","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":41,"item":{"@type":"Event","name":"Get the Right People in the Right Seats","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"The Farragut Community Center","address":{"@type":"PostalAddress","name":"The Farragut Community Center"}},"organizer":{"@type":"Organization","name":"Tennessee SBDC"},"url":"https://clients.tsbdc.org/workshop.aspx?ekey=21460027","description":"Most business challenges come down to people, but the real issue is usually a lack of clarity. In this session, learn how to attract the right team members, clearly define roles, and ensure everyone in your organization is rowing in the same direction and posi","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.tsbdc.org/workshop.aspx?ekey=21460027","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":42,"item":{"@type":"Event","name":"Starting Your Business 101 - Online-Zoom","startDate":"2026-09-02T09:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.utahsbdc.org/workshop.aspx?ekey=4460013"},"organizer":{"@type":"Organization","name":"Utah SBDC"},"url":"https://clients.utahsbdc.org/workshop.aspx?ekey=4460013","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.utahsbdc.org/workshop.aspx?ekey=4460013","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":43,"item":{"@type":"Event","name":"Greenlee Fall DreamBuilder - Kick Off","startDate":"2026-09-02T09:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Duncan Town Hall Town Hall","address":{"@type":"PostalAddress","name":"Duncan Town Hall Town Hall"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460068","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=30460068","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":44,"item":{"@type":"Event","name":"September Tech Talks with Rob - Getting Found Online: Google, AI Search and Your Digital Presence","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=60460016"},"organizer":{"@type":"Organization","name":"Massachusetts SBDC"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=60460016","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Join us for “Tech Talk with Rob” an enlightening webinar series designed specifically for small business owners looking to navigate the complex world of technology. Each session, hosted by tech expert Rob, will delve into critical topics that are essential for","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=60460016","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":45,"item":{"@type":"Event","name":"September 2026 Business First Wednesday","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://nysbdc.ecenterdirect.com/events/1020212"},"organizer":{"@type":"Organization","name":"New York SBDC"},"url":"https://nysbdc.ecenterdirect.com/events/1020212","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://nysbdc.ecenterdirect.com/events/1020212","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":46,"item":{"@type":"Event","name":"Smart Start #1 Launch and Legalize Your Business in Ohio","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"This is an introductory webinar that provides an overview of the critical steps and requirements needed whether you are starting a business in the State of Ohio OR already registered. Learn about creating a great business concept, the difference between busine","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=87460030","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":47,"item":{"@type":"Event","name":"Social Media for Small Businesses - Webinar via Zoom","startDate":"2026-09-02T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44312"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44312","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":48,"item":{"@type":"Event","name":"Introduction to Intellectual Property for Industry","startDate":"2026-09-02T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://asbdc.ecenterdirect.com/events/10722"},"organizer":{"@type":"Organization","name":"Alabama SBDC"},"url":"https://asbdc.ecenterdirect.com/events/10722","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://asbdc.ecenterdirect.com/events/10722","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":49,"item":{"@type":"Event","name":"Brand Identity & Intro to Social Media","startDate":"2026-09-02T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Not familiar with social media? We will be reviewing the basics of the most used social media platforms to utilize for small businesses. Learn basic tips and tricks on what content should be posted on what platform, the differentiating demographics, social med","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=85460037","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":50,"item":{"@type":"Event","name":"Setting Up Your Accounting System","startDate":"2026-09-02T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111"},"organizer":{"@type":"Organization","name":"Virginia SBDC"},"url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.virginiasbdc.org/workshop.aspx?ekey=50460111","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":51,"item":{"@type":"Event","name":"PAVE: Finding Your Customers and Market Opportunity","startDate":"2026-09-02T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460145"},"organizer":{"@type":"Organization","name":"Louisiana SBDC"},"url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460145","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Even the best products and services struggle without the right customers. This session helps you identify who is most likely to buy from you, understand what they value, and evaluate the competitive landscape before committing valuable time and money. You'll l","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www2.lsbdc.org/workshop.aspx?ekey=4460145","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":52,"item":{"@type":"Event","name":"Unlock the Path to Sustainable Business Growth — Virtual Preview Event - Webinar via Zoom","startDate":"2026-09-02T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://utsa.ecenterdirect.com/events/44474"},"organizer":{"@type":"Organization","name":"Texas SBDC at UTSA"},"url":"https://utsa.ecenterdirect.com/events/44474","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)"}},{"@type":"ListItem","position":53,"item":{"@type":"Event","name":"First Steps: Mapping the Business Concept","startDate":"2026-09-02T13:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://pasbdc.ecenterdirect.com/events/33510"},"organizer":{"@type":"Organization","name":"Pennsylvania SBDC"},"url":"https://pasbdc.ecenterdirect.com/events/33510","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Online Meeting (Live)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://pasbdc.ecenterdirect.com/events/33510","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":54,"item":{"@type":"Event","name":"Always Ready: Lending (In-Person)","startDate":"2026-09-02T15:00:00-05:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"2210 Grand Avenue","address":{"@type":"PostalAddress","name":"2210 Grand Avenue"}},"organizer":{"@type":"Organization","name":"Iowa SBDC"},"url":"https://iowasbdc.org/event/always-ready-lending-in-person-3/","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"<p>September 2 @ 3:00 pm - 4:00 pm CDT Presenter: The Iowa Center Staff Date: Wednesday, September 2, 2026 Time: 3:00, 4:00 pm Location: 2210 Grand Avenue, Des."}},{"@type":"ListItem","position":55,"item":{"@type":"Event","name":"Workshop: Launch Your Business (2-Part Session) [Online]","startDate":"2026-09-02T15:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://nysbdc.ecenterdirect.com/events/1020197"},"organizer":{"@type":"Organization","name":"New York SBDC"},"url":"https://nysbdc.ecenterdirect.com/events/1020197","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"Workshop/Seminar","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://nysbdc.ecenterdirect.com/events/1020197","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":56,"item":{"@type":"Event","name":"Business Basics 2 *In-Person*","startDate":"2026-09-02T15:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Ohio SBDC at Summit Medina Business Alliance Bounce Innovation Hub","address":{"@type":"PostalAddress","name":"Ohio SBDC at Summit Medina Business Alliance Bounce Innovation Hub"}},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=91460008","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=91460008","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":57,"item":{"@type":"Event","name":"Virtual Small Business Orientation","startDate":"2026-09-02T17:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=103460009","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":58,"item":{"@type":"Event","name":"Basis of a Successful Enterprise (B.A.S.E.) Business Startup Workshop","startDate":"2026-09-02T17:30:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","description":"About this Event: B.A.S.E. is the Basis of a Successful Enterprise. B.A.S.E. will help you discover what it will take for you to build a business around your dreams and passion. Not just any business but a business that will allow you to live, thrive and becom","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=11460009","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":59,"item":{"@type":"Event","name":"DreamBuilder Cohort- Springerville","startDate":"2026-09-02T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"NPC - Springerville Center","address":{"@type":"PostalAddress","name":"NPC - Springerville Center"}},"organizer":{"@type":"Organization","name":"Arizona SBDC"},"url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=70460027","description":"Join the NPC SBDC DreamBuilder Cohort — This NO‑COST hybrid business development program is designed to help you plan, build, and fund your business from start to finish! Whether you're just getting started or ready to expand, DreamBuilder provides the tools,","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.arizonasbdc.com/workshop.aspx?ekey=70460027","validFrom":"2026-09-01"}}},{"@type":"ListItem","position":60,"item":{"@type":"Event","name":"New Business Information Webinar - evening","startDate":"2026-09-02T18:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"VirtualLocation","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041"},"organizer":{"@type":"Organization","name":"Ohio SBDC"},"url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.ohiosbdc.ohio.gov/workshop.aspx?ekey=47460041","validFrom":"2026-09-01"}}}]}</script>
 <!-- kx:seo:end -->
-</main><footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="resources.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
+</main><footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="resources.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookies.html">Cookie Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
 </div>
 <script>
 /* ── ambient layers ──────────────────────────────────────────── */
@@ -1780,5 +1584,419 @@ try{
 })();
 </script>
 <!-- kx:browser:end -->
+
+<!-- shared header/navigation, matching the other pages -->
+<style id="kx-mainnav">
+/* ---- the menu lives in the bar ----
+   Replaces the floating orb and its tray. The orb had to be positioned against
+   the viewport and the tray against the orb, and every size change meant three
+   numbers had to agree. A row of links inside a bar that is already there has
+   none of that: the layout places them.
+
+   Below 760px the links collapse behind a button and open as a full-width
+   panel under the bar, so nothing floats over the content. */
+
+#kx-nav{gap:18px}
+
+.kx-links{display:flex;align-items:center;gap:clamp(14px,2vw,30px);margin-left:auto}
+.kx-links a,.kx-links span{
+  font-family:var(--util,'Space Grotesk',monospace);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:#BDB49F;white-space:nowrap;
+  padding:10px 2px;min-height:44px;display:inline-flex;align-items:center;
+  transition:color .25s}
+.kx-links a:hover{color:#FFF6DC}
+.kx-links a:focus-visible{outline:2px solid var(--gold,#D4A856);outline-offset:3px;border-radius:4px}
+/* the page you are on is text, not a link */
+.kx-links span{color:var(--gold,#D4A856);position:relative}
+.kx-links span::after{
+  content:"";position:absolute;left:2px;right:2px;bottom:6px;height:1px;
+  background:var(--gold,#D4A856);opacity:.7}
+
+/* the button that opens the panel on small screens */
+.kx-burger{
+  display:none;margin-left:auto;
+  min-width:44px;min-height:44px;padding:0 12px;
+  border:1px solid rgba(212,168,86,.42);border-radius:999px;
+  background:rgba(212,168,86,.06);cursor:pointer;
+  font-family:var(--util,'Space Grotesk',monospace);
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#E1D7BE;
+  align-items:center;gap:8px;
+  transition:background .25s,border-color .25s,color .25s}
+.kx-burger:hover{background:#D4A856;border-color:#F3E4A8;color:#1B1400}
+.kx-burger i{
+  display:inline-block;width:14px;height:1px;background:currentColor;position:relative}
+.kx-burger i::before,.kx-burger i::after{
+  content:"";position:absolute;left:0;width:14px;height:1px;background:currentColor}
+.kx-burger i::before{top:-4px} .kx-burger i::after{top:4px}
+.kx-burger[aria-expanded="true"] i{background:transparent}
+.kx-burger[aria-expanded="true"] i::before{top:0;transform:rotate(45deg)}
+.kx-burger[aria-expanded="true"] i::after{top:0;transform:rotate(-45deg)}
+
+@media(max-width:760px){
+  .kx-burger{display:inline-flex}
+  .kx-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    margin:0;padding:6px 0 10px;
+    background:#0A0806;
+    border-bottom:1px solid rgba(212,168,86,.28);
+    box-shadow:0 24px 50px rgba(0,0,0,.55);
+    max-height:0;overflow:hidden;
+    transition:max-height .32s ease}
+  .kx-links a,.kx-links span{
+    padding:0 clamp(20px,5vw,32px);min-height:52px;font-size:12px;
+    border-bottom:1px solid rgba(212,168,86,.10)}
+  .kx-links a:last-child,.kx-links span:last-child{border-bottom:none}
+  .kx-links span::after{display:none}
+  #kx-nav.kx-open .kx-links{max-height:70vh;overflow-y:auto}
+}
+
+/* the orb and its tray are gone */
+#kx-orbnav,#kx-orbcue{display:none !important}
+
+@media(prefers-reduced-motion:reduce){
+  .kx-links{transition:none}
+  .kx-burger,.kx-burger i::before,.kx-burger i::after{transition:none}
+}
+</style>
+<style id="kx-mainnav-hover">
+/* ---- hover: the word turns gold and a gold rule slides under it ----
+   As written, hover only changed the colour to cream and there was no
+   underline at all; the rule under the current page was a separate thing that
+   never appeared on hover. Both now happen.
+
+   The rule is drawn on the link itself with a scaled pseudo-element, so it is
+   exactly as wide as the word rather than a fixed length, and it grows from
+   the left rather than appearing all at once. */
+
+.kx-links a,.kx-links span{
+  position:relative;
+  transition:color .22s ease}
+
+.kx-links a::after{
+  content:"";
+  position:absolute;
+  left:2px;right:2px;
+  bottom:8px;
+  height:1px;
+  background:var(--gold,#D4A856);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s cubic-bezier(.16,1,.3,1);
+  pointer-events:none}
+
+.kx-links a:hover{color:var(--gold,#D4A856)}
+.kx-links a:hover::after{transform:scaleX(1)}
+
+/* keyboard users get the same feedback, not just the focus ring */
+.kx-links a:focus-visible{color:var(--gold,#D4A856)}
+.kx-links a:focus-visible::after{transform:scaleX(1)}
+
+/* the current page keeps its own rule, always on and slightly brighter */
+.kx-links span::after{
+  content:"";
+  position:absolute;
+  left:2px;right:2px;
+  bottom:8px;
+  height:1px;
+  background:var(--gold-pale,#F3E4A8);
+  opacity:.85;
+  transform:none}
+
+@media(max-width:760px){
+  /* in the stacked panel a full-width rule under a row reads as a divider,
+     so hover moves to a gold left edge and the colour change instead */
+  .kx-links a::after,.kx-links span::after{display:none}
+  .kx-links a,.kx-links span{
+    border-left:2px solid transparent;
+    transition:color .22s ease,border-color .22s ease,background .22s ease}
+  .kx-links a:hover,.kx-links a:focus-visible{
+    color:var(--gold,#D4A856);
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+  .kx-links span{
+    color:var(--gold,#D4A856);
+    border-left-color:var(--gold-pale,#F3E4A8);
+    background:rgba(212,168,86,.05)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .kx-links a::after{transition:none}
+  .kx-links a,.kx-links span{transition:none}
+}
+</style>
+<style id="kx-mainnav-current">
+/* ---- only the current page is highlighted ----
+   Three separate causes were making an item look permanently lit.
+
+   1. On a touch screen :hover sticks to whatever you last tapped, so after
+      tapping a menu item it stayed gold and underlined. Hover rules are now
+      inside @media(hover:hover), so they only apply on devices that really
+      hover. Touch gets :active instead, which clears itself.
+
+   2. The stacked panel gives every row a 2px transparent left border so the
+      hover edge does not shift the text. Written as a shorthand, the colour
+      resolved to currentColor in some engines, which drew a coloured edge on
+      every row. The colour is now set on its own line.
+
+   3. The gold treatment is keyed to [aria-current="page"] rather than to the
+      element being a span, so there is one condition deciding it. */
+
+/* nothing is lit unless it is the current page */
+.kx-links a{color:#BDB49F}
+.kx-links a::after{transform:scaleX(0)}
+
+@media(hover:hover){
+  .kx-links a:hover{color:var(--gold,#D4A856)}
+  .kx-links a:hover::after{transform:scaleX(1)}
+}
+.kx-links a:focus-visible{color:var(--gold,#D4A856)}
+.kx-links a:focus-visible::after{transform:scaleX(1)}
+/* a tap lights it for as long as the finger is down, then releases */
+.kx-links a:active{color:var(--gold,#D4A856)}
+
+/* the current page, and only the current page */
+.kx-links [aria-current="page"]{color:var(--gold,#D4A856)}
+.kx-links [aria-current="page"]::after{
+  content:"";position:absolute;left:2px;right:2px;bottom:8px;height:1px;
+  background:var(--gold-pale,#F3E4A8);opacity:.85;transform:none}
+
+@media(max-width:760px){
+  .kx-links a,.kx-links span{
+    border-left-style:solid;
+    border-left-width:2px;
+    border-left-color:transparent}
+
+  @media(hover:hover){
+    .kx-links a:hover{
+      border-left-color:var(--gold,#D4A856);
+      background:rgba(212,168,86,.06)}
+  }
+  .kx-links a:active{
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+  .kx-links a:focus-visible{
+    border-left-color:var(--gold,#D4A856);
+    background:rgba(212,168,86,.06)}
+
+  .kx-links [aria-current="page"]{
+    border-left-color:var(--gold-pale,#F3E4A8);
+    background:rgba(212,168,86,.05)}
+  /* a plain link must never carry the current-page tint */
+  .kx-links a:not([aria-current="page"]){background:transparent}
+}
+</style>
+<style id="kx-mainnav-states">
+/* ---- gold means "you are pointing at this", nothing else ----
+   The current page and the hover state were both gold with a gold rule, so on
+   the homepage Home looked lit permanently and pointing at another item just
+   produced a second lit item. Nothing distinguished the pointer.
+
+   Gold is now reserved for the pointer. The current page is marked in a
+   quieter way: brighter than a plain link so you can still see where you are,
+   with a dim rule underneath, but not gold. Only ever one gold item on screen. */
+
+/* where you are: cream, not gold */
+.kx-links [aria-current="page"]{
+  color:#E8DEC4 !important;
+  cursor:default}
+.kx-links [aria-current="page"]::after{
+  background:rgba(232,222,196,.42) !important;
+  opacity:1 !important;
+  transform:none !important}
+
+/* what you are pointing at: gold, and the only gold thing */
+@media(hover:hover){
+  .kx-links a:hover{color:var(--gold,#D4A856) !important}
+  .kx-links a:hover::after{
+    background:var(--gold,#D4A856) !important;
+    transform:scaleX(1) !important}
+}
+.kx-links a:active{color:var(--gold,#D4A856) !important}
+.kx-links a:focus-visible{color:var(--gold,#D4A856) !important}
+.kx-links a:focus-visible::after{
+  background:var(--gold,#D4A856) !important;
+  transform:scaleX(1) !important}
+
+@media(max-width:760px){
+  .kx-links [aria-current="page"]{
+    border-left-color:rgba(232,222,196,.5) !important;
+    background:rgba(255,255,255,.03) !important}
+  @media(hover:hover){
+    .kx-links a:hover{
+      border-left-color:var(--gold,#D4A856) !important;
+      background:rgba(212,168,86,.08) !important}
+  }
+  .kx-links a:active,.kx-links a:focus-visible{
+    border-left-color:var(--gold,#D4A856) !important;
+    background:rgba(212,168,86,.08) !important}
+}
+</style>
+<style id="kx-mainnav-final">
+/* ---- one rule for the underline, one colour for hover ----
+   Two things were still wrong.
+
+   The current page carried a permanent underline. Three earlier blocks each
+   drew an ::after on it, so removing one left the others. Every ::after on a
+   current item is switched off here, in one place.
+
+   Hover used #D4A856, which is the mid gold and sits close to the plain link
+   colour at small sizes. It is now the pale gold, which is brighter than the
+   current-page cream so the pointer is unmistakable. */
+
+/* the current page: cream, and no rule under it */
+.kx-links [aria-current="page"]{
+  color:#9C968D !important;
+  cursor:default}
+.kx-links [aria-current="page"]::after,
+.kx-links [aria-current="page"]::before{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  transform:none !important}
+
+/* the pointer: pale gold, with the rule sliding under it */
+.kx-links a::after{
+  background:#FFD166 !important;
+  height:1.5px !important;
+  bottom:7px !important}
+
+@media(hover:hover){
+  .kx-links a:hover{color:#FFD166 !important}
+  .kx-links a:hover::after{transform:scaleX(1) !important}
+}
+.kx-links a:active{color:#FFD166 !important}
+.kx-links a:focus-visible{color:#FFD166 !important}
+.kx-links a:focus-visible::after{transform:scaleX(1) !important}
+
+@media(max-width:760px){
+  /* no rule at all in the stacked panel; the left edge does the work */
+  .kx-links a::after,.kx-links span::after{display:none !important}
+
+  .kx-links [aria-current="page"]{
+    border-left-color:rgba(156,150,141,.55) !important;
+    background:rgba(255,255,255,.03) !important}
+
+  @media(hover:hover){
+    .kx-links a:hover{
+      color:#FFD166 !important;
+      border-left-color:#FFD166 !important;
+      background:rgba(212,168,86,.10) !important}
+  }
+  .kx-links a:active,.kx-links a:focus-visible{
+    color:#FFD166 !important;
+    border-left-color:#FFD166 !important;
+    background:rgba(212,168,86,.10) !important}
+}
+</style>
+<style id="kx-bar-clean">
+/* ---- one bar, the same on every page ----
+   It had drifted badly. Across the 14 pages: z-index was 100 on seven and 850
+   on seven, side padding was 56px on three and 0 on eleven, and the frosted
+   background was present on eleven and missing on three. Hence "bigger on some
+   pages, smaller on others".
+
+   Three specific faults, fixed here.
+
+   1. flex-wrap:wrap let the links panel wrap onto a second row INSIDE the bar
+      rather than dropping below it. That was the extra strip underneath.
+      The bar is nowrap; the panel is positioned, so it does not need to wrap.
+
+   2. z-index:850 put the bar above almost everything. A fixed element that
+      high spans the full width and intercepts touches near the top of the
+      screen, which is what the advisor carousel was losing its drags to.
+      100 is above the page and below the modals, which is where a bar belongs.
+
+   3. The bar and logo faded out as you scrolled down, so navigation vanished
+      exactly when someone was deep in a page. It stays put now. That also
+      removes the half-faded, blurred logo, because there is no transition to
+      catch mid-way. */
+
+#kx-nav{
+  position:fixed !important;
+  top:0 !important;left:0 !important;right:0 !important;
+  z-index:100 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  flex-wrap:nowrap !important;
+  gap:16px !important;
+  padding:14px clamp(16px,4vw,48px) !important;
+  background:rgba(6,5,2,.90) !important;
+  -webkit-backdrop-filter:blur(8px) !important;
+  backdrop-filter:blur(8px) !important;
+  border-bottom:1px solid rgba(212,168,86,.18) !important;
+  transition:none !important}
+
+/* the bar no longer fades, so neither does the wordmark */
+#kx-nav .wm,
+body.chrome-away #kx-nav,
+body.chrome-away #kx-nav .wm{
+  opacity:1 !important;
+  transform:none !important;
+  pointer-events:auto !important;
+  background:rgba(6,5,2,.90) !important;
+  border-bottom-color:rgba(212,168,86,.18) !important;
+  transition:none !important}
+body.chrome-away #kx-nav .wm,#kx-nav .wm{background:none !important}
+
+#kx-nav > a:first-child img{height:34px !important;width:auto !important;display:block}
+
+@media(max-width:760px){
+  #kx-nav{padding:11px 16px !important}
+  #kx-nav > a:first-child img{height:28px !important}
+}
+
+/* nothing sits under the bar */
+body{padding-top:0}
+</style>
+<style id="kx-nav-stack">
+/* ---- the bar has to sit above the page, below the modals ----
+   I lowered it from 850 to 100 to stop it intercepting touches over the
+   carousel. That fixed the carousel and broke the menu: the footer is at 200,
+   the cursor at 950, the old cue at 901, so the dropdown panel opened behind
+   page content and looked like nothing happened.
+
+   500 clears everything on the page (the highest is the footer at 200) and
+   stays below the modals: the film at 1000 and the support sheet at 1200. The
+   carousel and the page body have no z-index of their own, so the bar being
+   above them costs nothing; what caused the carousel problem was 850, which
+   put the bar above things that needed to receive touches.
+
+   The panel is given its own stacking so it is never trapped behind a sibling
+   inside the bar. */
+#kx-nav{z-index:500 !important}
+.kx-links{z-index:2}
+.kx-burger{position:relative;z-index:3}
+</style>
+<script id="kx-mainnav-js">
+/* opens and closes the small-screen panel. escape closes it, so does a tap
+   anywhere outside, and so does following a link. */
+(function(){
+  var nav=document.getElementById('kx-nav');
+  if(!nav) return;
+  var burger=nav.querySelector('.kx-burger');
+  if(!burger) return;
+
+  function setOpen(on){
+    nav.classList.toggle('kx-open', on);
+    burger.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  burger.addEventListener('click', function(e){
+    e.preventDefault();
+    setOpen(!nav.classList.contains('kx-open'));
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setOpen(false);
+  });
+  document.addEventListener('click', function(e){
+    if(!nav.contains(e.target)) setOpen(false);
+  });
+  nav.querySelectorAll('.kx-links a').forEach(function(a){
+    a.addEventListener('click', function(){ setOpen(false); });
+  });
+})();
+</script>
 </body>
 </html>
