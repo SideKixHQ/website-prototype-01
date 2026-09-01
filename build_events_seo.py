@@ -47,7 +47,7 @@ PAGE_URL = f"{SITE}/events.html"
 # How many events go into the static block and the structured data. The grid
 # still shows everything; this is the slice worth handing a crawler, and it
 # keeps the page from doubling in weight.
-SEO_LIMIT = 200
+SEO_LIMIT = 60
 
 START = "<!-- kx:seo:start -->"
 END = "<!-- kx:seo:end -->"
@@ -307,6 +307,8 @@ BROWSER_CSS = r"""
 .kx-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#D6B266;text-decoration:none;border-bottom:1px solid rgba(214,178,102,.35);padding-bottom:2px}
 .kx-go:hover{color:#EFE9DF;border-bottom-color:#EFE9DF}
 .kx-hits{text-align:center;color:#9B958B;font-size:13px;margin:0 0 22px}
+.kx-more{grid-column:1/-1;justify-self:center;margin-top:6px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#EFE9DF;background:rgba(239,233,223,.05);border:1px solid rgba(239,233,223,.22);border-radius:999px;padding:14px 26px;cursor:pointer;min-height:44px}
+.kx-more:hover{background:#D6B266;border-color:#D6B266;color:#14120F}
 
 /* Phones.
 
@@ -347,6 +349,15 @@ BROWSER_JS = r"""
   var FULL=['January','February','March','April','May','June','July','August','September','October','November','December'];
   var STROKE=['#D6B266','#8FD4B6','#C48E7A'];
   var all=[],view=[],topic='All';
+  var PAGE=60, shown=PAGE;
+
+  /* The page's own script renders every one of the 842 cards and rebuilds the
+     topic chips the moment events.json lands. This block replaces both. Doing
+     that work first cost about half a second of blocked main thread and a
+     second parse of a 500KB file to produce a result nobody ever saw, which is
+     why the page felt slow arriving from anywhere else. These stubs are
+     installed while that fetch is still in flight. */
+  try{ window.renderGrid=function(){}; window.renderFilters=function(){}; }catch(e){}
 
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -417,16 +428,29 @@ BROWSER_JS = r"""
       return true;
     });
 
+    shown=PAGE;
+    draw();
+  }
+
+  function draw(){
+    /* Only the first screenful is built. Writing 300 cards at once was 197ms
+       of main-thread work before anyone had scrolled past the third one. */
     var grid=document.getElementById('kx-grid');
+    var left=view.length-shown;
     grid.innerHTML=view.length
-      ? view.slice(0,300).map(card).join('')
+      ? view.slice(0,shown).map(card).join('') +
+        (left>0 ? '<button type="button" id="kx-more" class="kx-more">Show '+
+          Math.min(PAGE,left)+' more of '+view.length+'</button>' : '')
       : '<p style="grid-column:1/-1;text-align:center;color:#9B958B;font-size:15px;">Nothing matches those filters yet. Clearing one of them usually helps.</p>';
+
+    var more=document.getElementById('kx-more');
+    if(more) more.addEventListener('click',function(){ shown+=PAGE; draw(); });
 
     var hits=document.getElementById('kx-hits');
     if(hits){
       hits.textContent=view.length===0?'No events match'
         :(view.length===1?'1 event':view.length+' events')+
-         (view.length>300?', showing the first 300':'');
+         (left>0?', showing '+shown:'');
     }
     var c=document.getElementById('kx-count');
     if(c) c.textContent=view.length;
@@ -518,9 +542,22 @@ BROWSER_JS = r"""
   }
 
   function start(){
-    fetch('events.json',{cache:'no-store'}).then(function(r){return r.json();})
-      .then(function(j){ boot(j.events||[]); })
-      .catch(function(){ /* the plain list stays on screen, which is the point of it */ });
+    /* The page has already fetched events.json and put it in EVENTS. Fetching
+       it again, with no-store on top, meant a second 500KB download and a
+       second parse of the same file on every single visit. Wait for the one
+       that is already coming, and only fetch if it never arrives. */
+    var waited=0;
+    (function poll(){
+      if (window.EVENTS && window.EVENTS.length){ boot(window.EVENTS); return; }
+      waited+=40;
+      if (waited>9000){
+        fetch('events.json').then(function(r){return r.json();})
+          .then(function(j){ boot(j.events||[]); })
+          .catch(function(){ /* the plain list stays up, which is the point of it */ });
+        return;
+      }
+      setTimeout(poll,40);
+    })();
   }
 
   if(document.readyState==='loading'){
