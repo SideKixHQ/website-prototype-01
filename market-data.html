@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-02 22:24:56 release -->
+<!-- kx-build 2026-09-02 22:55:23 faq-repaired -->
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -2362,6 +2362,13 @@ html.kx-idle *::after{
    one rule, since the previous version only existed on index.html. */
 #kx-cursor{width:24px !important;height:24px !important}
 #kx-ring{width:160px !important;height:160px !important}
+</style>
+<style id="kx-disc-height">
+/* aspect-ratio gives the disc its height in a current browser. This is the
+   same value written out, for engines that ignore it and would otherwise
+   collapse the disc to a line of text. */
+.hd-disc{height:clamp(76px,8.4vw,104px)}
+@media(max-width:560px){ .hd-disc{height:76px;width:76px} }
 </style>
 </head>
 <body>

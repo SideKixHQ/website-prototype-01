@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-02 22:24:56 release -->
+<!-- kx-build 2026-09-02 22:55:23 faq-repaired -->
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -1967,6 +1967,149 @@ html.kx-idle *::after{
 #kx-cursor{width:24px !important;height:24px !important}
 #kx-ring{width:160px !important;height:160px !important}
 </style>
+<style id="kx-spoke-orbs">
+/* the same disc rules resources and library use, copied so all six
+   pages in this group are drawn by identical declarations */
+
+
+
+/* ---- the four tools, as discs ----
+   they were boxed cards with the same border, radius and padding as the 63
+   article cards below, so they read as four more articles. these borrow the
+   barrier orb from how-it-works instead: a disc with a soft inner glow, eyes,
+   and the name underneath. same geometry, but in the site gold rather than
+   the barrier violet, because these are destinations not moods. */
+.res .hubdiscs{
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:clamp(22px,4vw,52px);
+  margin:30px auto 34px;
+  max-width:820px;
+  flex-wrap:wrap}
+
+.res .hubdisc{
+  /* the anchor styles its children but never itself, so it fell back to the
+     browser default #0000EE underneath. same bug as the glossary hub links. */
+  color:#9C968D;
+  display:flex;flex-direction:column;align-items:center;gap:13px;
+  width:clamp(88px,9vw,116px);
+  text-decoration:none;flex:none}
+
+.res .hd-disc{
+  position:relative;
+  width:clamp(76px,8.4vw,104px);
+  aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 38% 30%,#221A0B,#0B0805 70%);
+  /* .42 gave a 2.32:1 rim, under the 3:1 a control boundary needs to be
+     perceivable. .62 clears it while staying quiet. */
+  border:1px solid rgba(212,168,86,.62);
+  box-shadow:inset 0 0 30px rgba(212,168,86,.20), 0 0 24px rgba(212,168,86,.10);
+  transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .5s,box-shadow .5s}
+
+/* the eyes */
+.res .hd-disc::before,.res .hd-disc::after{
+  content:'';position:absolute;top:42%;
+  width:11%;height:5.5%;border-radius:99px;
+  background:#F3E4A8;box-shadow:0 0 10px #D4A856;
+  opacity:.85;transition:opacity .5s,background .5s,box-shadow .5s}
+.res .hd-disc::before{left:33%}
+.res .hd-disc::after{right:33%}
+
+/* the smile, which only appears on hover */
+.res .hd-mouth{
+  position:absolute;left:50%;top:55%;transform:translateX(-50%);
+  width:32%;height:17%;
+  border-bottom:2px solid #F7E3AC;border-radius:0 0 99px 99px;
+  opacity:0;transition:opacity .35s ease .12s}
+
+.res .hd-nm{
+  font-family:var(--util);font-size:9px;letter-spacing:.18em;
+  text-align:center;line-height:1.4;text-transform:uppercase;
+  color:#9C968D;transition:color .45s}
+
+.res .hubdisc:hover .hd-disc,
+.res .hubdisc:focus-visible .hd-disc{
+  transform:translateY(-4px);
+  border-color:rgba(212,168,86,.9);
+  box-shadow:inset 0 0 34px rgba(212,168,86,.30), 0 0 40px rgba(212,168,86,.28)}
+.res .hubdisc:hover .hd-mouth,
+.res .hubdisc:focus-visible .hd-mouth{opacity:1}
+.res .hubdisc:hover .hd-nm,
+.res .hubdisc:focus-visible .hd-nm{color:#F3E4A8}
+.res .hubdisc:focus-visible{outline:3px solid #F3E4A8;outline-offset:6px;border-radius:14px}@media(max-width:560px){
+  /* three across then one alone looked unbalanced. capping the row at two
+     discs gives a tidy 2x2 on a phone. */
+  .res .hubdiscs{gap:20px 26px;max-width:240px;margin:24px auto 28px}
+  .res .hubdisc{width:88px}
+  .res .hd-disc{width:72px}
+  .res .hd-nm{font-size:8.5px;letter-spacing:.14em}
+}@media(prefers-reduced-motion:reduce){
+  .res .hd-disc,.res .hd-mouth,.res .hd-nm{transition:none}
+  .res .hubdisc:hover .hd-disc{transform:none}
+}
+
+
+/* Five discs rather than the original four, kept on a single line. On a narrow
+   screen the row scrolls sideways rather than wrapping, which is what the
+   original 560px rule did when it capped the row at two. */
+.res .hubdiscs{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  align-items:flex-start;
+  justify-content:center;
+  gap:clamp(14px,3.4vw,44px) !important;
+  max-width:none !important;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  padding:4px 10px 12px}
+.res .hubdiscs::-webkit-scrollbar{display:none}
+.res .hubdisc{flex:none}@media(max-width:560px){
+  .res .hubdiscs{
+    justify-content:flex-start;
+    gap:16px !important;
+    scroll-snap-type:x proximity}
+  .res .hubdisc{scroll-snap-align:center}
+}
+
+.res .hubdiscs{margin:30px auto 40px !important}@media(max-width:760px){
+  .res .hubdiscs{margin:24px auto 30px !important}
+  .res .rsearch{margin:0 auto 16px !important}
+  .res .rfilters{margin:0 auto 22px !important}
+  .res .rgrid{margin:0 auto !important}
+}
+</style>
+<style id="kx-res-oneline">
+/* Five discs rather than the original four, kept on a single line. On a narrow
+   screen the row scrolls sideways rather than wrapping, which is what the
+   original 560px rule did when it capped the row at two. */
+.res .hubdiscs{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  align-items:flex-start;
+  justify-content:center;
+  gap:clamp(14px,3.4vw,44px) !important;
+  max-width:none !important;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  padding:4px 10px 12px}
+.res .hubdiscs::-webkit-scrollbar{display:none}
+.res .hubdisc{flex:none}
+
+@media(max-width:560px){
+  .res .hubdiscs{
+    justify-content:flex-start;
+    gap:16px !important;
+    scroll-snap-type:x proximity}
+  .res .hubdisc{scroll-snap-align:center}
+}
+</style><style id="kx-disc-height">
+/* aspect-ratio gives the disc its height in a current browser. This is the
+   same value written out, for engines that ignore it and would otherwise
+   collapse the disc to a line of text. */
+.hd-disc{height:clamp(76px,8.4vw,104px)}
+@media(max-width:560px){ .hd-disc{height:76px;width:76px} }
+</style>
 </head>
 <body>
 <div aria-hidden="true" id="kx-desat"></div>
@@ -1989,7 +2132,7 @@ html.kx-idle *::after{
 <span class="eyebrow">Business glossary</span>
 <h1>The words, without the <span class="fog" data-word="fog."><span class="fogw">fog.</span></span></h1>
 <p class="lede">59 terms you will meet while starting something, each explained in one sentence.
-  Copy any definition, or take the whole thing offline.</p>
+  Copy any definition, or take the whole thing offline.</p><div class="hubdiscs"><a class="hubdisc" href="library.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Library</span></a><a class="hubdisc" href="resources.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Resources</span></a><a class="hubdisc" href="tools.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Calculators</span></a><a class="hubdisc" href="faq.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">FAQs</span></a><a class="hubdisc" href="market-data.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Market data</span></a></div>
 <div class="gsearch">
 <label class="sr-only" for="gq">Search the glossary</label>
 <input autocomplete="off" id="gq" placeholder="Search terms, for example runway or EIN" type="search"/>
