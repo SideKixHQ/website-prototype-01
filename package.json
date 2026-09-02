@@ -1,0 +1,21 @@
+{
+  "name": "sidekix-site",
+  "private": true,
+  "description": "SideKix static site. No build step; the repository root is what deploys.",
+  "scripts": {
+    "audit": "node audit/wcag.js && node audit/wcag2.js && node audit/pour.js && node audit/seo.js",
+    "audit:a11y": "node audit/wcag.js && node audit/wcag2.js && node audit/pour.js",
+    "audit:seo": "node audit/seo.js",
+    "audit:mobile": "node audit/mobile.js",
+    "audit:contrast": "node audit/contrast3.js",
+    "audit:images": "node audit/imgaudit.js",
+    "audit:nav": "node audit/navclear.js",
+    "test": "node audit/func.js && python3 selftest.py",
+    "events:probe": "python3 scrape_events.py --probe",
+    "events:dry": "python3 scrape_events.py --dry-run",
+    "events": "python3 scrape_events.py"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}

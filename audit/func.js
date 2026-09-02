@@ -14,32 +14,33 @@ const ok=(c,m)=>console.log(`   ${c?"PASS":"FAIL"}  ${m}`);
 
 console.log("== market-data.html ==");
 {const {d,w,errs}=await load(ROOT+"/market-data.html");
- const vis=()=>[...d.querySelectorAll(".rcard")].filter(c=>!c.hidden).length;
- ok(d.querySelectorAll(".rcard").length===29,"29 resource cards render");
- const q=d.getElementById("rq");
- q.value="ein";q.dispatchEvent(new w.Event("input",{bubbles:true}));
+const rq=await load(ROOT+"/resources.html"), rd=rq.d, rw=rq.w;
+ const vis=()=>[...rd.querySelectorAll(".rcard")].filter(c=>!c.hidden).length;
+ ok(rd.querySelectorAll(".rcard").length===29,"29 resource cards render");
+ const q=rd.getElementById("rq");
+ q.value="ein";q.dispatchEvent(new rw.Event("input",{bubbles:true}));
  ok(vis()===3,"search narrows to 3 for 'ein'");
- ok(d.getElementById("rcount").textContent==="3 matches","count reads '3 matches'");
- q.value="zzzz";q.dispatchEvent(new w.Event("input",{bubbles:true}));
- ok(vis()===0&&!d.getElementById("rnone").hidden,"empty state shows when nothing matches");
- q.value="";q.dispatchEvent(new w.Event("input",{bubbles:true}));
+ ok(rd.getElementById("rcount").textContent==="3 matches","count reads '3 matches'");
+ q.value="zzzz";q.dispatchEvent(new rw.Event("input",{bubbles:true}));
+ ok(vis()===0&&!rd.getElementById("rnone").hidden,"empty state shows when nothing matches");
+ q.value="";q.dispatchEvent(new rw.Event("input",{bubbles:true}));
  const counts={Advice:8,Registration:5,Money:6,Data:6,"North Carolina":4};
  let allf=true;
  for(const [t,n] of Object.entries(counts)){
-   d.querySelector(`.rfilt[data-type="${t}"]`).dispatchEvent(new w.MouseEvent("click",{bubbles:true}));
+   rd.querySelector(`.rfilt[data-type="${t}"]`).dispatchEvent(new rw.MouseEvent("click",{bubbles:true}));
    if(vis()!==n) allf=false;}
  ok(allf,"all five category filters return the right count");
- d.querySelector('.rfilt[data-type="all"]').dispatchEvent(new w.MouseEvent("click",{bubbles:true}));
+ rd.querySelector('.rfilt[data-type="all"]').dispatchEvent(new rw.MouseEvent("click",{bubbles:true}));
  ok(vis()===29,"Everything restores all 29");
- ok(d.querySelector("h1").textContent==="Help yourself.","heading is back");
+ ok(/what the numbers/i.test(d.querySelector("h1").textContent),"heading describes the statistics");
  ok(d.querySelectorAll(".msec").length===3,"three sections, all open");
  ok([...d.querySelectorAll(".msec")].map(x=>x.dataset.t).join(",")==="apps,surv,who","sections in the right order");
- const b=d.querySelector(".rmore"),p=d.getElementById(b.getAttribute("aria-controls"));
+ const b=rd.querySelector(".rmore"),p=rd.getElementById(b.getAttribute("aria-controls"));
  b.dispatchEvent(new w.MouseEvent("click",{bubbles:true}));
  const opened=!p.hidden&&b.getAttribute("aria-expanded")==="true";
  b.dispatchEvent(new w.MouseEvent("click",{bubbles:true}));
  ok(opened&&p.hidden&&b.getAttribute("aria-expanded")==="false","Details opens and closes with correct aria");
- ok(d.querySelectorAll(".rsave").length===0&&!d.getElementById("rtray"),"save feature fully removed");
+ ok(rd.querySelectorAll(".rsave").length===0&&!rd.getElementById("rtray"),"save feature fully removed");
  const exp={1:["79.6%",80],2:["69.1%",69],5:["50.2%",50],10:["34.7%",35]};
  let allm=true;
  for(const [y,[pct,lit]] of Object.entries(exp)){
@@ -102,8 +103,8 @@ console.log("\n== a template article (worksheet strip) ==");
  ok(d.querySelectorAll("#toc-list li").length===d.querySelectorAll(".body h2").length,"contents rail matches headings");
  ok(errs.length===0,"no JS errors");}
 
-console.log("\n== resources.html ==");
-{const {d,w,errs}=await load(ROOT+"/resources.html");
+console.log("\n== library.html ==");
+{const {d,w,errs}=await load(ROOT+"/library.html");
  const cards=d.querySelectorAll("article.card").length;
  ok(cards===63,`grid holds ${cards} cards`);
  ok(/Showing all 63 pieces/.test(d.body.innerHTML),"the count line matches the grid");
