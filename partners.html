@@ -898,7 +898,7 @@ body{background:#050403 !important}
 .pfcard .opt{font-size:9.5px;letter-spacing:.14em;color:#8A8378;
   text-transform:none;margin-left:6px}
 
-.pfcard input[type=text],.pfcard input[type=url],
+.pfcard input[type=text],.pfcard input[type=url],.pfcard input[type=email],
 .pfcard select,.pfcard textarea{
   width:100%;box-sizing:border-box;
   background:#0C0B08;border:1px solid rgba(212,168,86,.3);border-radius:12px;
@@ -1902,7 +1902,7 @@ try{
   var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
   var TOUCH=!!(window.matchMedia&&matchMedia('(hover:none)').matches);
   if(RM||TOUCH) return;
-  var SEL = '.kx-mag,.cta,.go,.wait,.btn,.sk-social a,.kx-tray-item,.prtdisc,.prtgo,.prtcta,.prtname,.pfpill,.pfclose,.joinbtn,.kx-bk';
+  var SEL = '.kx-mag,.cta,.go,.wait,.btn,.sk-social a,.kx-tray-item,.prtdisc,.prtgo,.prtcta,.prtname,.pfpill,.pfclose,.kx-bk';
   function wire(root){
     [].slice.call((root||document).querySelectorAll(SEL)).forEach(function(el){
       if(el.dataset.mag) return;
@@ -2067,8 +2067,11 @@ try{
 <label for="pbname">Business name<span aria-hidden="true" class="req">*</span></label>
 <input aria-required="true" autocomplete="organization" id="pbname" name="business" placeholder="Your business name" required="" type="text"/>
 </div><div class="fld">
+<label for="pemail">Your email<span aria-hidden="true" class="req">*</span></label>
+<input aria-required="true" autocomplete="email" id="pemail" name="email" placeholder="you@yourbusiness.com" required="" type="email"/>
+</div><div class="fld">
 <label for="pburl">Website</label>
-<label class="pf-l" for="pemail">Your email <span aria-hidden="true">*</span><input type="email" id="pemail" name="email" required placeholder="you@yourbusiness.com" autocomplete="email"></label>
+
 
 <input autocomplete="url" id="pburl" inputmode="url" name="website" placeholder="https://yourbusiness.com" type="url"/>
 </div>
@@ -2211,8 +2214,8 @@ try{
       '','Sponsorship budget: '+v('pbudget'),
       'Happy to receive email: '+(document.getElementById('pmail').checked?'yes':'no')
     ].join('\n');
-    var mailFallback=function(){
-        window.location.href='mailto:joinus@sidekixhq.com'
+    var mailtoHref=function(){
+        return 'mailto:joinus@sidekixhq.com'
           +'?subject='+encodeURIComponent(join.value+' enquiry: '+v('pbname'))
           +'&body='+encodeURIComponent(body);
       };
@@ -2236,8 +2239,7 @@ try{
       }).catch(function(){
         if(btn){btn.disabled=false;btn.textContent=lbl;}
         err.style.color='#C8BFA9';
-        err.textContent='We could not send that automatically, so your email app is opening instead.';
-        mailFallback();
+        err.innerHTML='We could not send that just now. <a href="'+mailtoHref()+'" style="color:inherit;text-decoration:underline">Send it by email instead</a> and we will pick it up from there.';
       });
   });
 })();
