@@ -26,7 +26,7 @@ app.use(cors({
   methods: ["GET","POST","PATCH","DELETE","OPTIONS"],
   allowedHeaders: ["Content-Type","X-SideKix-Secret"],
 }));
-app.use(express.json());
+app.use(express.json({ limit: "12mb" }));   // base64 CVs and photos ride in the body
 app.options("*", cors());
 
 // ── Unsubscribe list (persisted to disk) ──────────────────────────────────────
@@ -619,7 +619,7 @@ app.post("/webhook", requireSecret, async (req, res) => {
 // Protection is three layers: the CORS allowlist above, a honeypot field that
 // real people never fill in, and a per-IP rate limit.
 
-const PUBLIC_FORM_TYPES = ["waitlist", "contact", "partner", "subscriber"];
+const PUBLIC_FORM_TYPES = ["waitlist", "contact", "partner", "subscriber", "application"];
 const RATE = new Map();               // ip -> [timestamps]
 const RATE_MAX = 8;                   // submissions (shared office/home IPs)
 const RATE_WINDOW = 10 * 60 * 1000;   // per 10 minutes
@@ -633,7 +633,32 @@ function rateLimited(ip) {
   return hits.length > RATE_MAX;
 }
 
-async function notifyTeam(formType, email, fields) {
+// Attachment limits. Files are never written to disk - they go straight out on
+// the notification email, because /tmp on Render is not storage.
+const MAX_FILES       = 2;
+const MAX_FILE_B64    = 6 * 1024 * 1024;
+const MAX_TOTAL_B64   = 9 * 1024 * 1024;
+
+function cleanAttachments(list) {
+  if (!Array.isArray(list)) return [];
+  const out = [];
+  let total = 0;
+  for (const f of list.slice(0, MAX_FILES)) {
+    if (!f || typeof f.content !== "string" || !f.filename) continue;
+    if (f.content.length > MAX_FILE_B64) { console.log("Attachment too large, skipped:", f.filename); continue; }
+    total += f.content.length;
+    if (total > MAX_TOTAL_B64) { console.log("Attachment total exceeded, skipped:", f.filename); break; }
+    out.push({
+      content:     f.content,
+      filename:    String(f.filename).replace(/[^\w.\- ]/g, "_").slice(0, 120),
+      type:        String(f.type || "application/octet-stream").slice(0, 100),
+      disposition: "attachment",
+    });
+  }
+  return out;
+}
+
+async function notifyTeam(formType, email, fields, attachments) {
   const apiKey = process.env.SENDGRID_API_KEY;
   if (!apiKey) return;
   const to = process.env.TEAM_NOTIFY_EMAIL || "joinus@sidekixhq.com";
@@ -653,6 +678,7 @@ async function notifyTeam(formType, email, fields) {
         reply_to: { email: email, name: fields.first_name || email },
         subject:  "New " + formType + " submission - " + email,
         content:  [{ type: "text/plain", value: "New " + formType + " submission from the website.\n\n" + lines + "\n\nReceived " + new Date().toISOString() }],
+        ...(attachments && attachments.length ? { attachments } : {}),
       }),
     });
   } catch (err) {
@@ -691,14 +717,23 @@ app.post("/public/form", async (req, res) => {
 
   const firstName = String(d.first_name || d.name || "").trim().slice(0, 80);
 
+  const files = cleanAttachments(d.attachments);
+
   try {
     upsertContact({
       email,
       first_name: firstName,
       source:     formType,
+      linkedin:   String(d.linkedin   || "").slice(0, 200),
+      expertise:  String(d.expertise  || "").slice(0, 500),
+      background: String(d.background || "").slice(0, 500),
+      strengths:  String(d.strengths  || "").slice(0, 500),
+      languages:  String(d.languages  || "").slice(0, 200),
+      years_owner: String(d.years_owner || "").slice(0, 60),
+      business_types: String(d.business_types || "").slice(0, 300),
       zip_code:   String(d.zip || d.zip_code || "").slice(0, 12),
       website:    String(d.website || "").slice(0, 200),
-      notes:      String(d.message || d.offerings || "").slice(0, 2000),
+      notes:      String(d.details || d.message || d.offerings || "").slice(0, 6000),
       tags:       formType === "partner" ? ["partner"] : [],
     });
   } catch (err) {
@@ -719,7 +754,7 @@ app.post("/public/form", async (req, res) => {
     console.error("Confirmation email failed:", err.message);
   }
 
-  await notifyTeam(formType, email, d);
+  await notifyTeam(formType, email, d, files);
 
   // The submission is recorded either way - never fail the visitor over email.
   return res.json({ success: true, confirmed });
