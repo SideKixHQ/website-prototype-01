@@ -1776,6 +1776,20 @@ input[type="file"]{min-height:24px}
 #kx-ring{width:160px !important;height:160px !important}
 </style>
   <link rel="stylesheet" href="assets/site-wide.css">
+<script>
+/* One place that talks to the SideKix backend. Write-only public endpoint:
+   it records the contact and sends the confirmation. Nothing secret here. */
+window.SIDEKIX_SUBMIT = function (payload) {
+  return fetch('https://sidekix-email-server.onrender.com/public/form', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  });
+};
+</script>
 </head>
 <body>
 <div aria-hidden="true" id="kx-desat"></div>
@@ -1797,7 +1811,7 @@ input[type="file"]{min-height:24px}
 <p class="kx-backrow"><a class="kx-bk" href="membership.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to Membership</a></p><h1>Be first through<br/>the <em>door</em>.</h1>
 <p class="lede">Leave your details and we will tell you the moment SideKix™ opens, along with your member discount.</p>
 <div class="card">
-<form id="joinform" novalidate="">
+<form id="joinform" novalidate=""><div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden"><label>Company website<input type="text" name="company_website" id="jhp" tabindex="-1" autocomplete="off"></label></div>
 <div class="fld">
 <label for="jname">Name<span aria-hidden="true" class="req">*</span></label>
 <input aria-required="true" autocomplete="name" id="jname" name="name" placeholder="Your name" required="" type="text"/>
@@ -2160,9 +2174,20 @@ try{
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())){ err.textContent='Please add an email we can reach you on.'; em.focus(); return; }
     if(!tc.checked){ err.textContent='Please agree to the Terms of Use and Privacy Policy.'; tc.focus(); return; }
     err.textContent='';
-    f.style.display='none';
-    var t=document.getElementById('thanks');
-    t.classList.add('on'); t.focus();
+      var btn=f.querySelector('button[type="submit"]')||f.querySelector('button');
+      var lbl=btn?btn.textContent:''; if(btn){btn.disabled=true;btn.textContent='Sending...';}
+      var reveal=function(){ f.style.display='none'; var t=document.getElementById('thanks'); t.classList.add('on'); t.focus(); };
+      var zipEl=document.getElementById('jzip'), hp=document.getElementById('jhp');
+      window.SIDEKIX_SUBMIT({
+        form_type:'waitlist',
+        email:em.value.trim(),
+        name:nm.value.trim(),
+        zip:zipEl?zipEl.value.trim():'',
+        company_website:hp?hp.value:''
+      }).then(reveal).catch(function(){
+        if(btn){btn.disabled=false;btn.textContent=lbl;}
+        err.innerHTML='Something went wrong sending that. Please email <a href="mailto:joinus@sidekixhq.com" style="color:inherit">joinus@sidekixhq.com</a> and we will add you by hand.';
+      });
   });
 })();
 }catch(e){console.error("SideKix [join] failed:",e);}
@@ -2368,7 +2393,7 @@ try{
   /* Paste a form endpoint here and the message posts straight through.
      Until then it opens the visitor's mail app with everything filled in,
      so the Support link always does something. */
-  var ENDPOINT = '';            /* e.g. 'https://formspree.io/f/xxxxxxx' */
+  var ENDPOINT = 'https://sidekix-email-server.onrender.com/public/form';            /* e.g. 'https://formspree.io/f/xxxxxxx' */
   var TO = 'support@sidekixhq.com';
 
   var box, lastFocus=null;
@@ -2398,7 +2423,7 @@ try{
     }
     if(ENDPOINT){
       fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({name:name,email:mail,message:msg})})
+        body:JSON.stringify({form_type:'contact',name:name,email:mail,message:msg})})
         .then(function(){ el('kx-support-form').hidden=true; el('kx-support-done').hidden=false; })
         .catch(function(){ mailtoFallback(name,mail,msg); });
     } else {

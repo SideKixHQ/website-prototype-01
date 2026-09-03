@@ -1718,6 +1718,16 @@ input[type="file"]{min-height:24px}
 #kx-ring{width:160px !important;height:160px !important}
 </style>
   <link rel="stylesheet" href="assets/site-wide.css">
+<script>
+/* One place that talks to the SideKix backend. Write-only public endpoint. */
+window.SIDEKIX_SUBMIT = function (payload) {
+  return fetch('https://sidekix-email-server.onrender.com/public/form', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+};
+</script>
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
 <nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
@@ -2042,7 +2052,7 @@ try{
 </button>
 <h2 id="pftitle">Tell us what you are thinking</h2>
 <p class="pfsub">Nothing here is binding. Send us the shape of it and we will reply.</p>
-<form id="prtformform" novalidate="">
+<form id="prtformform" novalidate=""><div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden"><label>Company website<input type="text" name="company_website" id="php" tabindex="-1" autocomplete="off"></label></div>
 <div class="fld">
 <label for="pjoin">Which part do you want to join<span aria-hidden="true" class="req">*</span></label>
 <select aria-required="true" id="pjoin" name="join" required="">
@@ -2058,6 +2068,8 @@ try{
 <input aria-required="true" autocomplete="organization" id="pbname" name="business" placeholder="Your business name" required="" type="text"/>
 </div><div class="fld">
 <label for="pburl">Website</label>
+<label class="pf-l" for="pemail">Your email <span aria-hidden="true">*</span><input type="email" id="pemail" name="email" required placeholder="you@yourbusiness.com" autocomplete="email"></label>
+
 <input autocomplete="url" id="pburl" inputmode="url" name="website" placeholder="https://yourbusiness.com" type="url"/>
 </div>
 <div class="fld">
@@ -2199,11 +2211,34 @@ try{
       '','Sponsorship budget: '+v('pbudget'),
       'Happy to receive email: '+(document.getElementById('pmail').checked?'yes':'no')
     ].join('\n');
-    window.location.href='mailto:joinus@sidekixhq.com'+
-      '?subject='+encodeURIComponent(join.value+' enquiry: '+v('pbname'))+
-      '&body='+encodeURIComponent(body);
-    err.hidden=false; err.style.color='#C8BFA9';
-    err.textContent='Opening your email app. If nothing happens, write to joinus@sidekixhq.com.';
+    var mailFallback=function(){
+        window.location.href='mailto:joinus@sidekixhq.com'
+          +'?subject='+encodeURIComponent(join.value+' enquiry: '+v('pbname'))
+          +'&body='+encodeURIComponent(body);
+      };
+      var em=document.getElementById('pemail');
+      if(!em || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) return fail('Please add an email we can reply to.', em);
+      var btn=form.querySelector('button[type="submit"]')||form.querySelector('button');
+      var lbl=btn?btn.textContent:''; if(btn){btn.disabled=true;btn.textContent='Sending...';}
+      err.hidden=false; err.style.color='#C8BFA9'; err.textContent='Sending your enquiry...';
+      window.SIDEKIX_SUBMIT({
+        form_type:'partner',
+        email:em.value.trim(),
+        name:v('pbname'),
+        business:v('pbname'),
+        website:v('pburl'),
+        offerings:body,
+        company_website:(document.getElementById('php')||{}).value||''
+      }).then(function(){
+        if(btn){btn.textContent='Sent';}
+        err.style.color='#C8BFA9';
+        err.textContent='Thanks - your enquiry is with us and a confirmation is on its way to '+em.value.trim()+'.';
+      }).catch(function(){
+        if(btn){btn.disabled=false;btn.textContent=lbl;}
+        err.style.color='#C8BFA9';
+        err.textContent='We could not send that automatically, so your email app is opening instead.';
+        mailFallback();
+      });
   });
 })();
 </script>
