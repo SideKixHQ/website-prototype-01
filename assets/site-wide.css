@@ -26,7 +26,7 @@
   .res .rgrid,
   .sk-base,
   .sk-inner,
-  .wrap { max-width: clamp(1180px, 74vw, 1560px); }
+  .wrap { max-width: clamp(1180px, 74vw, 1560px); margin-inline: auto; }
 
   #kx-seo,
   .kx-controls,
@@ -37,9 +37,9 @@
   .mem .perks,
   .mem .phases,
   .mem .tiers,
-  .next { max-width: clamp(1100px, 69vw, 1460px); }
+  .next { max-width: clamp(1100px, 69vw, 1460px); margin-inline: auto; }
 
-  .mem .phasechips { max-width: clamp(1000px, 63vw, 1330px); }
+  .mem .phasechips { max-width: clamp(1000px, 63vw, 1330px); margin-inline: auto; }
 
   /* --- type and spacing keep scaling past their original ceilings --- */
   .nfbar { padding: 16px clamp(18px, 4vw, 69.6px); }
@@ -115,4 +115,24 @@
   .res .rhead { font-size: clamp(32px, 5.2vw, 81.2px); }
   .calcs .calc h2 { font-size: clamp(24px, 3.1vw, 49.3px); }
   .calcs .cov { font-size: clamp(30px, 4vw, 60.9px); }
+}
+
+/* ---------------------------------------------------------------------------
+   Collapsed mobile nav leaves a visible strip
+
+   At 760px and below the nav collapses .kx-links with max-height:0 and
+   overflow:hidden. But max-height only clips the content box - it does not
+   clip padding or borders. The panel keeps 6px of top padding, 10px of bottom
+   padding and a 1px bottom border, so 17px of background stays on screen as a
+   bar under the header. Present on every page carrying this nav.
+
+   Only the padding is zeroed. The 1px bottom border is the gold rule under
+   the header and is deliberately kept - removing it takes away the line.
+   Scoped to the closed state so the open panel is unchanged.
+--------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  #kx-nav:not(.kx-open) .kx-links {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
 }
