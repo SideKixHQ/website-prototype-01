@@ -2218,9 +2218,7 @@ body{padding-top:0}
   margin-left:auto;margin-right:auto}
 
 /* one column on a phone, where 300px does not fit twice */
-@media(max-width:700px){
-  #kx-grid{grid-template-columns:1fr !important}
-}
+@media(max-width:700px){ #kx-grid{grid-template-columns:minmax(0,1fr) !important} #kx-grid>*{min-width:0} .kx-ev,.kx-ev *{min-width:0; overflow-wrap:anywhere} }
 </style>
 </body>
 </html>
