@@ -4632,7 +4632,7 @@ try{
   /* Paste a form endpoint here and the message posts straight through.
      Until then it opens the visitor's mail app with everything filled in,
      so the Support link always does something. */
-  var ENDPOINT = '';            /* e.g. 'https://formspree.io/f/xxxxxxx' */
+  var ENDPOINT = 'https://sidekix-email-server.onrender.com/public/form';            /* e.g. 'https://formspree.io/f/xxxxxxx' */
   var TO = 'support@sidekixhq.com';
 
   var box, lastFocus=null;
@@ -4662,7 +4662,7 @@ try{
     }
     if(ENDPOINT){
       fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({name:name,email:mail,message:msg})})
+        body:JSON.stringify({form_type:'contact',name:name,email:mail,message:msg})})
         .then(function(){ el('kx-support-form').hidden=true; el('kx-support-done').hidden=false; })
         .catch(function(){ mailtoFallback(name,mail,msg); });
     } else {

@@ -1829,6 +1829,30 @@ input[type="file"]{min-height:24px}
 #kx-ring{width:160px !important;height:160px !important}
 </style>
   <link rel="stylesheet" href="assets/site-wide.css">
+<script>
+/* Talks to the SideKix backend. Write-only public endpoint. */
+window.SIDEKIX_SUBMIT = function (payload) {
+  return fetch('https://sidekix-email-server.onrender.com/public/form', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+};
+/* Reads a file input into base64 for the notification email. */
+window.SIDEKIX_FILE = function (input) {
+  return new Promise(function (resolve) {
+    var f = input && input.files && input.files[0];
+    if (!f) return resolve(null);
+    if (f.size > 4 * 1024 * 1024) return resolve(null);   // too big to email
+    var fr = new FileReader();
+    fr.onload = function () {
+      resolve({ filename: f.name, type: f.type || 'application/octet-stream',
+                content: String(fr.result).split(',')[1] });
+    };
+    fr.onerror = function () { resolve(null); };
+    fr.readAsDataURL(f);
+  });
+};
+</script>
 </head>
 <body>
 <div aria-hidden="true" id="kx-desat"></div>
@@ -1853,7 +1877,7 @@ input[type="file"]{min-height:24px}
 <span class="now"><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span>
 </div>
 <p aria-live="polite" class="stepnote" id="stepnote">Step 1 of 4 · Your business</p>
-<form class="appform" id="appform" novalidate="">
+<form class="appform" id="appform" novalidate=""><div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden"><label>Company website<input type="text" name="company_website" id="ahp" tabindex="-1" autocomplete="off"></label></div>
 <!-- 1 -->
 <div class="panel on" data-panel="0">
 <fieldset>
@@ -2392,15 +2416,45 @@ try{
       ['Photo',(document.getElementById('photo').files[0]||{}).name||''],
       ['Resume',(document.getElementById('cv').files[0]||{}).name||'none']
     ].filter(function(r){ return r[1]; });
-    document.getElementById('summary').innerHTML=rows.map(function(r){
-      return '<dt>'+r[0]+'</dt><dd>'+r[1].replace(/</g,'&lt;')+'</dd>';
-    }).join('');
-    form.style.display='none';
-    document.querySelector('.steps').style.display='none';
-    note.style.display='none';
-    var done=document.getElementById('done');
-    done.classList.add('on'); done.focus();
-    window.scrollTo({top:document.querySelector('.app').offsetTop-90,behavior:'smooth'});
+    document.getElementById('summary').innerHTML=rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1].replace(/</g,'&lt;')+'</dd>'; }).join('');
+
+      var reveal=function(){
+        form.style.display='none';
+        document.querySelector('.steps').style.display='none';
+        note.style.display='none';
+        var done=document.getElementById('done');
+        done.classList.add('on'); done.focus();
+        window.scrollTo({top:document.querySelector('.app').offsetTop-90,behavior:'smooth'});
+      };
+
+      var sendBtn=form.querySelector('button[type="submit"]');
+      var sendLbl=sendBtn?sendBtn.textContent:'';
+      if(sendBtn){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; }
+
+      Promise.all([
+        window.SIDEKIX_FILE(document.getElementById('cv')),
+        window.SIDEKIX_FILE(document.getElementById('photo'))
+      ]).then(function(files){
+        return window.SIDEKIX_SUBMIT({
+          form_type:'application',
+          email:v('email'),
+          name:v('fullname'),
+          linkedin:v('linkedin'),
+          languages:v('languages'),
+          years_owner:String(years.value>=20?'20+':years.value),
+          business_types:checked('biztype').join(', '),
+          background:checked('background').join(', '),
+          strengths:checked('strengths').join(', '),
+          expertise:checked('expertise').join(', '),
+          details:rows.map(function(r){ return r[0]+': '+r[1]; }).join('\n'),
+          company_website:(document.getElementById('ahp')||{}).value||'',
+          attachments:files.filter(Boolean)
+        });
+      }).then(reveal).catch(function(){
+        if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent=sendLbl; }
+        note.style.display='';
+        note.innerHTML='We could not send that automatically. Please email your application to <a href="mailto:Advisors@sidekixhq.com" style="color:inherit">Advisors@sidekixhq.com</a> and we will pick it up from there.';
+      });
   });
 })();
 }catch(e){console.error("SideKix [advisor application] failed:",e);}
@@ -2583,7 +2637,7 @@ try{
   /* Paste a form endpoint here and the message posts straight through.
      Until then it opens the visitor's mail app with everything filled in,
      so the Support link always does something. */
-  var ENDPOINT = '';            /* e.g. 'https://formspree.io/f/xxxxxxx' */
+  var ENDPOINT = 'https://sidekix-email-server.onrender.com/public/form';            /* e.g. 'https://formspree.io/f/xxxxxxx' */
   var TO = 'support@sidekixhq.com';
 
   var box, lastFocus=null;
@@ -2613,7 +2667,7 @@ try{
     }
     if(ENDPOINT){
       fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({name:name,email:mail,message:msg})})
+        body:JSON.stringify({form_type:'contact',name:name,email:mail,message:msg})})
         .then(function(){ el('kx-support-form').hidden=true; el('kx-support-done').hidden=false; })
         .catch(function(){ mailtoFallback(name,mail,msg); });
     } else {
