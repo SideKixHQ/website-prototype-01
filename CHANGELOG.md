@@ -11,6 +11,30 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-03
 
+### Wide-screen type scaling removed
+
+An earlier version of `site-wide.css` raised the ceiling on 73 font-size,
+padding and gap values by 1.45x above 1600px. Two problems.
+
+It was too much: the membership hero went from 56px to 81.2px, which pushed it
+from two lines to three.
+
+Worse, it was a step rather than a scale-up. Each rule kept the vw growth rate
+the page already used, and those rates had passed their old ceilings well
+before 1600px — so crossing 1600px by a single pixel jumped that heading 31%
+at once, 56px to 73.6px. All 73 rules shared the flaw.
+
+The three `max-width` rules stay. Shells still widen from 1180px to 1560px and
+stay centred, which is what actually fixed the site looking small on a wide
+monitor. Type and spacing return to exactly what the pages define.
+
+Verified at 2303px across 8 pages, 3,758 elements compared against the build
+from before this stylesheet existed: zero differences in font-size,
+line-height, padding or gap. `.wrap` still measures 1560px where the pages
+alone give it 1180px.
+
+`assets/site-wide.css`
+
 ### Events listings printed raw markup and drifted a day outside Eastern time
 
 Audited all 761 cards the events page renders. Four defects:
