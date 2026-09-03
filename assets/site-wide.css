@@ -9,10 +9,14 @@
    On a 1900px+ monitor everything is therefore frozen at laptop size, sitting
    in the middle of the screen with wide empty margins.
 
-   Above 1600px this file lets the site's own scaling curve keep running: the
-   same vw values it already uses, just with higher ceilings, plus shells that
-   widen with the window. Reading columns of 900px and below are deliberately
-   untouched - those are line-length limits, and widening them hurts legibility.
+   Above 1600px this file widens the layout shells with the window and keeps
+   them centred, so the page uses the screen instead of sitting in a narrow
+   column. Type and spacing are deliberately left alone: an earlier version
+   raised every size ceiling by 1.45x, which made display headings 45% larger
+   and, because the growth rate was unchanged, made them jump 31% the instant
+   the window crossed 1600px. Reading columns of 900px and below are also
+   untouched - those are line-length limits, and widening them hurts
+   legibility.
 
    To undo all of it, delete the stylesheet link from the pages. */
 
@@ -40,81 +44,6 @@
   .next { max-width: clamp(1100px, 69vw, 1460px); margin-inline: auto; }
 
   .mem .phasechips { max-width: clamp(1000px, 63vw, 1330px); margin-inline: auto; }
-
-  /* --- type and spacing keep scaling past their original ceilings --- */
-  .nfbar { padding: 16px clamp(18px, 4vw, 69.6px); }
-  .nffoot { padding: 26px clamp(18px, 4vw, 69.6px) 34px; }
-  h1 { font-size: clamp(30px, 6vw, 69.6px); }
-  .display { font-size: clamp(36px, 6vw, 104.4px); }
-  .beat h2 { font-size: clamp(32px, 3.8vw, 72.5px); }
-  .tryit h2 { font-size: clamp(30px, 4vw, 75.4px); }
-  .loop-grid { gap: clamp(36px, 5vw, 116px); }
-  .loop-centre b { font-size: clamp(44px, 5.6vw, 92.8px); }
-  .loop-copy h2 { font-size: clamp(30px, 4.2vw, 75.4px); }
-  .mem h1 { font-size: clamp(30px, 4.4vw, 81.2px); }
-  .mem h2 { font-size: clamp(30px, 4.4vw, 81.2px); }
-  .tier .pr b { font-size: clamp(38px, 4.4vw, 75.4px); }
-  .barriers h2 { font-size: clamp(32px, 4.6vw, 87px); }
-  .orbs { gap: clamp(18px, 3vw, 58px); }
-  .bpanel .hint { font-size: clamp(20px, 2.4vw, 37.7px); }
-  .bpanel .q { font-size: clamp(26px, 3.3vw, 58px); }
-  .bpanel h4 { font-size: clamp(19px, 2.1vw, 36.2px); }
-  .after h2 { font-size: clamp(28px, 3.8vw, 63.8px); }
-  .app h1 { font-size: clamp(30px, 4.4vw, 78.3px); }
-  legend { font-size: clamp(18px, 2.2vw, 31.9px); }
-  .done h2 { font-size: clamp(28px, 4vw, 63.8px); }
-  .kx-links { gap: clamp(14px, 2vw, 43.5px); }
-  #kx-nav { padding: 14px clamp(16px, 4vw, 69.6px) !important; }
-  .legal h1 { font-size: clamp(32px, 4.6vw, 81.2px); }
-  .legal h2.sec { font-size: clamp(19px, 2.2vw, 34.8px); }
-  .kx-h2 { font-size: clamp(38px, 4.6vw, 87px); }
-  .evkicker { font-size: clamp(20px, 2.4vw, 37.7px); }
-  .faq h1 { font-size: clamp(30px, 4.4vw, 78.3px); }
-  .faqsec h2 { font-size: clamp(19px, 2.3vw, 36.2px); }
-  .faq .hubdiscs { gap: clamp(14px, 3.4vw, 63.8px); }
-  .res h1 { font-size: clamp(30px, 4.4vw, 78.3px); }
-  .feat h2 { font-size: clamp(20px, 2.6vw, 40.6px); }
-  .res .hubdiscs { gap: clamp(14px, 3.4vw, 63.8px) !important; }
-  .pin { padding: 0 40px 0 clamp(74px, 7vw, 171.1px); }
-  #kx-film { padding: clamp(10px, 3vw, 63.8px); }
-  #kx-headline { font-size: clamp(32px, 7.2vw, 158px) !important; }
-  .join h1 { font-size: clamp(30px, 4.4vw, 78.3px); }
-  .thanks h2 { font-size: clamp(26px, 3.6vw, 58px); }
-  .mkt .pfaq h2 { font-size: clamp(24px, 3.2vw, 49.3px); }
-  .mkt .msec h2 { font-size: clamp(24px, 3.2vw, 49.3px); }
-  .mkt .unum { font-size: clamp(56px, 10vw, 191.4px); }
-  .mkt .ulab { font-size: clamp(18px, 2.2vw, 34.8px); }
-  .mkt .gnum { font-size: clamp(34px, 5vw, 84.1px); }
-  .mkt .closer { font-size: clamp(22px, 2.8vw, 46.4px); }
-  .mkt .odds { gap: clamp(30px, 3.4vw, 69.6px); }
-  .mkt .oddspct { font-size: clamp(64px, 9vw, 179.8px); }
-  .mkt .turn h3 { font-size: clamp(32px, 5.4vw, 87px); }
-  .mkt .rhead { font-size: clamp(32px, 5.2vw, 81.2px); }
-  .mkt .mnum { font-size: clamp(24px, 2.5vw, 46.4px); }
-  .mkt .hubdiscs { gap: clamp(14px, 3.4vw, 63.8px) !important; }
-  .credits h2 { font-size: clamp(26px, 3.4vw, 58px); }
-  .credprice { font-size: clamp(44px, 6vw, 95.7px); }
-  .memhead h1 { font-size: clamp(32px, 4.6vw, 81.2px); }
-  .now h2 { font-size: clamp(26px, 3.3vw, 55.1px); }
-  .now .price { font-size: clamp(46px, 6vw, 92.8px); }
-  .nexthead h2 { font-size: clamp(26px, 3.4vw, 58px); }
-  .mem .now h2 { font-size: clamp(25px, 3vw, 49.3px); }
-  .mem .nexthead h2 { font-size: clamp(38px, 5.4vw, 92.8px); }
-  .mem .fi-h { font-size: clamp(34px, 5.6vw, 87px); }
-  .mem .fi-b { font-size: clamp(17px, 2vw, 29px); }
-  #mreward { padding: clamp(12px, 3vw, 34.8px); }
-  #mreward-card { padding: clamp(26px, 4vw, 58px); }
-  #mreward-title { font-size: clamp(28px, 4.6vw, 60.9px); }
-  .prt h1 { font-size: clamp(32px, 5.2vw, 84.1px); }
-  .prtdiscs { gap: clamp(26px, 5vw, 104.4px); }
-  .prtp h2 { font-size: clamp(21px, 2.6vw, 39.1px); }
-  .prtroster h2 { font-size: clamp(22px, 3vw, 43.5px); }
-  .prtend h2 { font-size: clamp(22px, 3vw, 43.5px); }
-  .pfcard { padding: clamp(30px, 4vw, 69.6px); }
-  .pfcard h2 { font-size: clamp(24px, 3.2vw, 46.4px); }
-  .res .rhead { font-size: clamp(32px, 5.2vw, 81.2px); }
-  .calcs .calc h2 { font-size: clamp(24px, 3.1vw, 49.3px); }
-  .calcs .cov { font-size: clamp(30px, 4vw, 60.9px); }
 }
 
 /* ---------------------------------------------------------------------------
