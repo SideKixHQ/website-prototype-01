@@ -9,6 +9,92 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-04, night
+
+### Advisors, on a phone
+
+**The hero artwork was there and could not be seen.** It sits behind the copy
+as a backdrop at .26 opacity under a scrim running to .9, which works on a wide
+screen where the art has its own column to the right of the words. A phone has
+no such column: the art was directly underneath the text, so the scrim had to
+be that heavy, and what was left was invisible. Below 760px it stops being a
+backdrop and becomes a picture: out of absolute positioning, under the copy, in
+full colour, scrim off.
+
+The plate carries a baked alpha vignette so the artwork can rise out of the
+dark on desktop. Standing alone that fade is empty space, so the box is sized
+to what is actually drawn. Measured from the alpha channel: opaque from 6.6% to
+87.8% down and 10.7% to 89.6% across, an aspect of 0.66. The box is set to that
+and the plate scaled 1.26 to fill it.
+
+**The clock was above the words.** In one column it came first in source, so a
+phone opened on a red countdown with nothing to say what it was counting. Copy
+first now, clock underneath, centred rather than pinned left. It still stops at
+00:15.
+
+**The responsibilities list had uneven spacing.** Rows were as tall as their
+text, so one line and two lines produced different gaps and the rules beneath
+them fell at uneven intervals. A 92px minimum row height puts every rule on the
+same spacing, and the number is centred against the row rather than pinned to
+its top, so it sits in the middle of a two line row instead of riding above it.
+Measured: all six rows 92px, number centre 46px, row centre 46px.
+
+**The support heading stretched.** "We do not just ask you to show up." broke
+after "show" and left "up." alone. It is a block with `text-wrap: balance` and
+a 15ch measure on a phone now, so it stacks evenly beside the sticker.
+
+### The poster, on the partners page
+
+Left of the hero. It rests gold: desaturated, sepia shifted toward the site
+gold, dimmed to .6, so it belongs on the page rather than shouting off it.
+Hover restores full colour and lifts brightness past 1, with a gold sheen that
+sweeps across once and a gold rim that ignites. The filter is the same function
+list in the same order in both states, so the browser interpolates rather than
+snapping. Touch devices get no hover, so they rest in a brighter middle state.
+
+`.wrap` on this page is full bleed, unlike the hub pages, because every section
+below sets its own measure. The hero row had to do the same or the poster sat
+flat against the left edge of the window.
+
+---
+
+## 2026-09-04, evening
+
+### The Resources hub pages did not line up with each other
+
+Going from one to the next, the whole hero moved. Measured across the six at
+1440, 1200, 1024, 820, 640, 480, 390 and 360.
+
+The largest cause was source order. Three pages opened with the eyebrow and
+then the back link, three with the back link and then the eyebrow, which put
+the heading 66px lower on half of them. `market-data.html` was further out
+again: no eyebrow at all, an `h1` two pixels larger with a 40px bottom margin
+instead of 14, and its disc row four thousand pixels down the page rather than
+under the lede. On top of that the eyebrow carried 14px or 18px depending on
+the page, the lede 30px or 34px and 52ch or 54ch, and the disc row 34px or
+40px.
+
+Order is now fixed in the markup, one sequence everywhere: back link, eyebrow,
+heading, lede, discs. The rhythm is set once in `site-wide.css` rather than six
+times, so the next page added to the hub inherits it. Every value chosen is the
+one the majority of the six already used.
+
+That left copy length. Two of the six headings run to two lines and two of the
+ledes to three, so the disc row still landed anywhere in a 57px band, and that
+row is exactly what the eye tracks between pages. Above 600px the taller case
+is now reserved for both, 2.12em on the heading and 5.17em on the lede, being
+two and three lines at their own line heights. Disc row spread from 1440 down
+to 640: **0px at every width**, from 57, 56, 48, 38 and 32.
+
+Phones are left alone deliberately. The ledes run to five and six lines at 390
+and 360, so reserving the tallest would spend 175px of dead space to close a
+32px gap. The residual spread there is 31 to 58px.
+
+CLS after the change: 0.0000 to 0.0271 across the six, well inside the
+threshold.
+
+---
+
 ## 2026-09-04, later
 
 ### Core Web Vitals: two pages were failing CLS

@@ -1896,7 +1896,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 /* your responsibilities */
 .adv-list{list-style:none;margin:0;padding:0;display:grid;gap:2px;
   grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
-.adv-list li{position:relative;display:flex;gap:16px;align-items:flex-start;padding:20px 22px 22px 0}
+.adv-list li{position:relative;display:flex;gap:16px;align-items:center;padding:20px 22px 22px 0}
 .adv-list i{position:relative;font-family:var(--display);font-style:normal;font-weight:600;font-size:23px;
   color:var(--gold);opacity:.8;line-height:1.15;min-width:34px;
   transition:opacity .7s ease}
@@ -1905,16 +1905,16 @@ window.SIDEKIX_SUBMIT = function (payload) {
 /* Each step arrives with a hairline ring drawn around its number and a rule
    that sweeps out beneath it. No colour behind the digits: on this palette a
    tinted glow reads as a smudge rather than an accent. */
-.adv-list li::before{content:"";position:absolute;left:-9px;top:15px;width:42px;height:42px;
+.adv-list li::before{content:"";position:absolute;left:-9px;top:50%;width:42px;height:42px;
   border-radius:999px;pointer-events:none;z-index:0;box-sizing:border-box;
   border:1px solid rgba(212,168,86,.42);background:rgba(212,168,86,.05);
-  opacity:0;transform:scale(.72) rotate(-25deg);
+  opacity:0;transform:translateY(-50%) scale(.72) rotate(-25deg);
   transition:opacity .7s ease,transform .9s cubic-bezier(.16,1,.3,1)}
 .adv-list li::after{content:"";position:absolute;left:0;right:22px;bottom:0;height:1px;
   background:linear-gradient(90deg,rgba(212,168,86,.75),rgba(212,168,86,0) 88%);
   transform:scaleX(0);transform-origin:0 50%;
   transition:transform 1s cubic-bezier(.16,1,.3,1)}
-.adv-list li.lit::before{opacity:1;transform:scale(1) rotate(0)}
+.adv-list li.lit::before{opacity:1;transform:translateY(-50%) scale(1) rotate(0)}
 .adv-list li.lit::after{transform:scaleX(1)}
 .adv-list li.lit i{opacity:1}
 .adv-list li:hover::before{border-color:rgba(212,168,86,.8);background:rgba(212,168,86,.1)}
@@ -2069,6 +2069,64 @@ window.SIDEKIX_SUBMIT = function (payload) {
   .adv-playbtn{width:64px;height:64px}
   .adv-playbtn::after{border-width:12px 0 12px 20px}
 }
+/* ═══════════ mobile corrections ═══════════ */
+@media (max-width:760px){
+
+  /* ---- the hero artwork was there and invisible ----
+     It sits behind the copy as a backdrop at .26 opacity under a scrim that
+     runs to .9, which works on a wide screen where the art has its own column
+     to the right of the text. On a phone there is no such column: the art was
+     underneath the words, so the scrim had to be that heavy, and what was left
+     could not be seen. Below 760 it stops being a backdrop and becomes a
+     picture: out of absolute positioning, under the copy, in full colour, at
+     the size the poster was drawn to be seen at. Nothing sits on top of it, so
+     the scrim comes off and the colour plate replaces the gold one. */
+  .adv-hero{display:flex;flex-direction:column}
+  .adv-inner{order:1}
+  .adv-hero-artwrap{
+    position:relative !important;order:2;
+    right:auto;top:auto;transform:none;
+    /* The plate carries a baked alpha vignette so the artwork can rise out of
+       the dark on a wide screen. Standing on its own here, that fade is empty
+       space: the opaque part runs 6.6% to 87.8% down and 10.7% to 89.6%
+       across, so the box is sized to what is actually drawn, 0.66 wide to
+       tall, and the plate is scaled and nudged to put that region in it. */
+    width:min(300px,76%);height:auto;aspect-ratio:.66;
+    overflow:hidden;
+    margin:26px auto 0}
+  .adv-hero-art{transform:scale(1.26) translateY(-1.4%)}
+  .adv-hero-art{animation:none;object-position:center;transition:none}
+  .adv-hero-duo{opacity:0}
+  .adv-hero-colour{opacity:1}
+  .adv-hero-scrim,.adv-hero-light{display:none}
+
+  /* ---- the clock belongs under the sentence it illustrates ----
+     The grid is one column here, and the clock is first in source, so a phone
+     opened on a red countdown with no idea what it was counting. Copy first,
+     clock under it, centred rather than pinned to the left edge. */
+  .adv-timegrid{display:flex;flex-direction:column;align-items:center}
+  .adv-timecopy{order:1}
+  .adv-clock{order:2;justify-self:auto;align-self:center;width:100%;align-items:center}
+  .adv-clockface{align-self:center}
+
+  /* ---- even rhythm down the responsibilities ----
+     Rows were as tall as their text, so one line and two lines gave different
+     gaps and the rules beneath them fell at uneven intervals. A minimum row
+     height puts every rule on the same spacing; the number is centred against
+     the row rather than pinned to its top, so it sits in the middle of a two
+     line row instead of riding above it. */
+  .adv-list{gap:0}
+  .adv-list li{min-height:92px;padding:16px 18px 16px 0}
+  .adv-list li::after{right:0}
+
+  /* ---- the support heading stops stretching ----
+     "We do not just ask you to show up." was breaking after "show" and leaving
+     "up." alone on the second line. Balanced, it splits evenly instead. */
+  .adv-sup-a{max-width:15ch}
+}
+
+.adv-sup-a{display:block;text-wrap:balance}
+
 @media (prefers-reduced-motion:reduce){
   .adv-card,.adv-play img,.adv-playbtn,.adv-hero-art{transition:none}
   .adv-hero-art{animation:none}
@@ -2244,7 +2302,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <section class="adv adv-support">
   <div class="adv-inner">
     <span class="eyebrow">How we support you</span>
-    <h2>We do not just ask you to show up.<br/><em>We show up too</em>.</h2>
+    <h2><span class="adv-sup-a">We do not just ask you to show up.</span><em>We show up too</em>.</h2>
     <div class="adv-grid">
     <div aria-hidden="true" class="adv-sticker" id="adv-sticker">
       <span class="adv-sticker-ghost"></span>
