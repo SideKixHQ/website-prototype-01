@@ -168,17 +168,16 @@
    hub now shows all six and lights its own. .hubdisc.on is (0,3,0),
    which outranks the per-page .res/.faq base rules at (0,2,0)
    without needing !important. The lit state is carried by three
-   things, not just colour: a brighter rim, the smile that hover
-   normally reveals, and a halo ring offset from the disc, so the
-   current page reads as current in greyscale too. aria-current on
-   the anchor carries it to a screen reader.
+   things, not just colour: a brighter rim, a warmer inner glow, and
+   the smile that hover normally reveals, which is a shape cue rather
+   than a colour one. aria-current on the anchor carries it to a
+   screen reader. Nothing here changes the disc's box, so the lit one
+   is the same size as the other five.
    --------------------------------------------------------------- */
 .hubdisc.on .hd-disc{
   border-color:#F3E4A8;
   background:radial-gradient(circle at 38% 30%,#3A2C11,#120C05 72%);
   box-shadow:inset 0 0 34px rgba(212,168,86,.42), 0 0 42px rgba(231,182,70,.32);
-  outline:1px solid rgba(212,168,86,.5);
-  outline-offset:5px;
 }
 .hubdisc.on .hd-disc::before,
 .hubdisc.on .hd-disc::after{opacity:1;box-shadow:0 0 14px #F3E4A8}
@@ -193,11 +192,25 @@
    viewport. The selectors are tripled to (0,3,0) because the per-page
    blocks declare nowrap and their gaps with !important at (0,2,0);
    among !important declarations specificity still decides. */
+/* The row was declared overflow-x:auto so five discs could scroll on a
+   phone. Per spec an overflow-x of auto forces overflow-y to auto as well,
+   so the row became a clipping box in both directions and cut the lit
+   disc's 42px glow off into a rectangle. Six discs always fit on one line
+   above 600px: at 1000px that is 696px of disc plus 170px of gap, at 700px
+   it is 528 plus 119. So there is nothing to scroll, and the row can let
+   the glow out. Padding gives the glow room inside the section either way.
+   --------------------------------------------------------------- */
+@media(min-width:601px){
+  .hubdiscs.hubdiscs.hubdiscs{
+    overflow:visible !important;
+    padding-top:26px;padding-bottom:26px}
+}
+
 @media(max-width:600px){
   .hubdiscs.hubdiscs.hubdiscs{
     flex-wrap:wrap !important;
     justify-content:center !important;
-    overflow-x:visible !important;
+    overflow:visible !important;
     gap:20px 14px !important;
     max-width:330px !important;
     margin-left:auto !important;margin-right:auto !important;
