@@ -1796,35 +1796,34 @@ window.SIDEKIX_SUBMIT = function (payload) {
    Only opacity is animated. Filters and masks on an element this large are what
    cost the site its frame rate elsewhere, so the mask is static and the reveal
    is a single compositor friendly property. */
-.adv-hero-artwrap{position:absolute;right:-2%;top:50%;transform:translateY(-50%);
-  width:min(47%,640px);height:114%;z-index:1;pointer-events:none;overflow:hidden;
-  -webkit-mask-image:radial-gradient(78% 84% at 61% 38%,#000 44%,transparent 88%);
-  mask-image:radial-gradient(78% 84% at 61% 38%,#000 44%,transparent 88%)}
+/* No mask, no clipping box. The falloff is baked into the artwork's own alpha
+   channel, so the panel has no rectangle to give away: it fades to nothing on
+   every edge and the page's darkness is what is left. */
+.adv-hero-artwrap{position:absolute;right:1%;top:50%;transform:translateY(-50%);
+  width:min(46%,620px);height:118%;z-index:1;pointer-events:none;overflow:visible}
 /* Two prints of the same panel. The gold duotone is what shows at rest, so the
    comic belongs to the palette instead of sitting on top of it, and the full
    colour arrives with the pointer. Cross fading two opacities is compositor
    work; a filter on an element this size would not be. Framed high enough that
    HELP SIDEKIX stays inside the clear part of the mask. */
-.adv-hero-art{position:absolute;left:-5%;top:-5%;width:110%;height:110%;
-  object-fit:cover;object-position:50% 20%;
+.adv-hero-art{position:absolute;left:0;top:0;width:100%;height:100%;
+  object-fit:contain;object-position:60% 42%;
   animation:advDrift 46s ease-in-out infinite alternate;will-change:transform;
   transition:opacity .75s cubic-bezier(.16,1,.3,1)}
 .adv-hero-duo{opacity:.34}
 .adv-hero-colour{opacity:0}
 .adv-hero:hover .adv-hero-duo{opacity:0}
 .adv-hero:hover .adv-hero-colour{opacity:.96}
-/* comic halftone, so the panel reads as print rather than a pasted jpeg */
-.adv-hero-artwrap::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
-  opacity:.45;mix-blend-mode:overlay;
-  background-image:radial-gradient(rgba(0,0,0,.55) 1px,transparent 1.6px);
-  background-size:5px 5px}
+
 /* A pool of light that follows the pointer, so the panel lights up where you
    actually are instead of switching on all at once. Painted as a gradient, the
    same approach the cursor spotlight uses site wide, because a mask or a
    backdrop-filter animated per frame is what cost the site its frame rate. */
-.adv-hero-light{position:absolute;inset:0;
-  background:radial-gradient(ellipse 46% 32% at var(--ax,50%) var(--ay,42%),
-    rgba(6,5,4,0) 0%,rgba(6,5,4,0) 36%,rgba(6,5,4,.55) 74%,rgba(6,5,4,.8) 100%);
+.adv-hero-light{position:absolute;inset:-6%;
+  background:radial-gradient(ellipse 44% 30% at var(--ax,50%) var(--ay,42%),
+    rgba(6,5,4,0) 0%,rgba(6,5,4,0) 34%,rgba(6,5,4,.5) 70%,rgba(6,5,4,.72) 100%);
+  -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
+  mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
   opacity:0;transition:opacity .6s ease;will-change:background}
 .adv-hero:hover .adv-hero-light{opacity:1}
 @keyframes advDrift{
@@ -1832,7 +1831,9 @@ window.SIDEKIX_SUBMIT = function (payload) {
   to{transform:translate3d(-2.4%,1.8%,0) scale(1.08)}
 }
 .adv-hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(90deg,#0B0A06 28%,rgba(11,10,6,.45) 60%,transparent 84%)}
+  background:linear-gradient(90deg,#0B0A06 26%,rgba(11,10,6,.5) 56%,rgba(11,10,6,0) 74%,
+    rgba(11,10,6,.45) 95%,#0B0A06 100%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 22%,rgba(11,10,6,0) 84%,#0B0A06 100%)}
 @media (hover:none){.adv-hero-duo{opacity:0}.adv-hero-colour{opacity:.5}.adv-hero-light{display:none}}
 /* Lifted from the homepage hero buttons, value for value: same gradient,
    weights, sizes, padding, radius and shadow, plus the same traced border and
@@ -2042,9 +2043,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 
 @media (max-width:980px){
   .adv-hero{min-height:0;padding-top:clamp(110px,14vh,150px)}
-  .adv-hero-artwrap{width:74%;right:-16%;
-    -webkit-mask-image:radial-gradient(66% 62% at 60% 46%,#000 34%,transparent 78%);
-    mask-image:radial-gradient(66% 62% at 60% 46%,#000 34%,transparent 78%)}
+  .adv-hero-artwrap{width:96%;right:-8%;height:96%}
   .adv-hero-duo{opacity:.26}
   .adv-hero-colour{opacity:0}
   .adv-hero-scrim{background:linear-gradient(180deg,rgba(11,10,6,.72) 30%,rgba(11,10,6,.9) 100%)}
@@ -2103,7 +2102,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 
 <!-- ════════ HERO ════════ -->
 <section class="adv adv-hero">
-  <div aria-hidden="true" class="adv-hero-artwrap"><img alt="" class="adv-hero-art adv-hero-duo" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/9640f533f3e5.webp" width="665"/><img alt="" class="adv-hero-art adv-hero-colour" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/3c4841d185f2.webp" width="665"/><span class="adv-hero-light"></span></div>
+  <div aria-hidden="true" class="adv-hero-artwrap"><img alt="" class="adv-hero-art adv-hero-duo" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/2917c03071fa.webp" width="665"/><img alt="" class="adv-hero-art adv-hero-colour" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/7dcebcae6e26.webp" width="665"/><span class="adv-hero-light"></span></div>
   <div aria-hidden="true" class="adv-hero-scrim"></div>
   <div class="adv-inner">
     <span class="eyebrow">Become an Advisor</span>
@@ -2950,8 +2949,7 @@ try{
   var el=document.getElementById('adv-digits');
   if(!el) return;
   var tag=el.parentNode.querySelector('.adv-clocktag');
-  var SEQ=[['01','00','HRS'],['00','45','MIN'],['00','30','MIN'],['00','15','MIN'],
-           ['00','05','MIN'],['00','00','MIN']];
+  var SEQ=[['01','00','HRS'],['00','30','MIN'],['00','15','MIN'],['00','00','MIN']];
   function paint(i){
     var f=SEQ[i];
     el.innerHTML='<b>'+f[0]+'</b><i>:</i><b>'+f[1]+'</b>';
@@ -2961,7 +2959,7 @@ try{
     var i=0;
     (function step(){
       paint(i);
-      if(++i<SEQ.length) setTimeout(step, 240);
+      if(++i<SEQ.length) setTimeout(step, 950);
     })();
   }
   if(!('IntersectionObserver' in window)){ paint(SEQ.length-1); return; }
