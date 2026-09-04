@@ -1736,12 +1736,24 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv{position:relative;z-index:6;padding:clamp(72px,10vh,124px) clamp(20px,4vw,56px)}
 .adv-inner{max-width:1180px;margin:0 auto}
 .adv h1,.adv h2{font-family:var(--display);font-weight:600;line-height:1.04;color:#FFF8D8;margin:0 0 20px;letter-spacing:-.006em}
-.adv h1{font-size:clamp(38px,5.4vw,66px)}
+.adv h1{font-size:clamp(38px,5.4vw,66px);text-wrap:balance}
 .adv h2{font-size:clamp(30px,3.9vw,50px)}
 .adv h1 em,.adv h2 em,.adv-quote em{font-style:italic;color:var(--gold)}
 .adv h3{font-family:var(--body);font-size:18px;font-weight:700;color:#FFF3C6;margin:0 0 9px;line-height:1.3}
 .adv p{color:#CEC9BC;font-size:16px;line-height:1.7}
 .adv .lede{max-width:660px;margin:0 0 34px}
+/* The one sentence that has to carry the whole pitch. On hover it runs through
+   the brand palette, gold into the advisor blue into the partner green, using
+   the same shimmer the site already uses on gold text. Clipped background, so
+   nothing but background-position animates. */
+.adv-hero .lede{transition:color .35s ease;cursor:default}
+.adv-hero .lede:hover{color:transparent;
+  background-image:linear-gradient(100deg,#F3E4A8 0%,#D4A856 20%,#95B4BC 46%,#95C99A 68%,#F3E4A8 92%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;
+  animation:kxShimmer 7s linear infinite}
+@media (prefers-reduced-motion:reduce){
+  .adv-hero .lede:hover{animation:none;background-position:0 0}
+}
 .adv .eyebrow{display:block;font-family:var(--util);font-size:11px;letter-spacing:.24em;
   text-transform:uppercase;color:#9C968D;margin:0 0 16px}
 .adv-note{font-size:14.5px;color:#9C968D;margin:26px 0 0}
@@ -1784,18 +1796,28 @@ window.SIDEKIX_SUBMIT = function (payload) {
    Only opacity is animated. Filters and masks on an element this large are what
    cost the site its frame rate elsewhere, so the mask is static and the reveal
    is a single compositor friendly property. */
-.adv-hero-artwrap{position:absolute;right:-3%;top:50%;transform:translateY(-50%);
-  width:min(46%,620px);height:112%;z-index:1;pointer-events:none;overflow:hidden;
-  -webkit-mask-image:radial-gradient(70% 70% at 58% 50%,#000 40%,transparent 80%);
-  mask-image:radial-gradient(70% 70% at 58% 50%,#000 40%,transparent 80%)}
+.adv-hero-artwrap{position:absolute;right:-2%;top:50%;transform:translateY(-50%);
+  width:min(47%,640px);height:114%;z-index:1;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:radial-gradient(78% 84% at 61% 38%,#000 44%,transparent 88%);
+  mask-image:radial-gradient(78% 84% at 61% 38%,#000 44%,transparent 88%)}
+/* Two prints of the same panel. The gold duotone is what shows at rest, so the
+   comic belongs to the palette instead of sitting on top of it, and the full
+   colour arrives with the pointer. Cross fading two opacities is compositor
+   work; a filter on an element this size would not be. Framed high enough that
+   HELP SIDEKIX stays inside the clear part of the mask. */
 .adv-hero-art{position:absolute;left:-5%;top:-5%;width:110%;height:110%;
-  object-fit:cover;object-position:50% 38%;
-  filter:saturate(.62);opacity:.13;
-  transition:opacity .75s cubic-bezier(.16,1,.3,1);
-  animation:advDrift 46s ease-in-out infinite alternate;
-  will-change:transform}
-/* the copy column sits above the art, so the section carries the hover */
-.adv-hero:hover .adv-hero-art{opacity:.94}
+  object-fit:cover;object-position:50% 20%;
+  animation:advDrift 46s ease-in-out infinite alternate;will-change:transform;
+  transition:opacity .75s cubic-bezier(.16,1,.3,1)}
+.adv-hero-duo{opacity:.34}
+.adv-hero-colour{opacity:0}
+.adv-hero:hover .adv-hero-duo{opacity:0}
+.adv-hero:hover .adv-hero-colour{opacity:.96}
+/* comic halftone, so the panel reads as print rather than a pasted jpeg */
+.adv-hero-artwrap::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  opacity:.45;mix-blend-mode:overlay;
+  background-image:radial-gradient(rgba(0,0,0,.55) 1px,transparent 1.6px);
+  background-size:5px 5px}
 /* A pool of light that follows the pointer, so the panel lights up where you
    actually are instead of switching on all at once. Painted as a gradient, the
    same approach the cursor spotlight uses site wide, because a mask or a
@@ -1811,7 +1833,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 }
 .adv-hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(90deg,#0B0A06 28%,rgba(11,10,6,.45) 60%,transparent 84%)}
-@media (hover:none){.adv-hero-art{opacity:.4}.adv-hero-light{display:none}}
+@media (hover:none){.adv-hero-duo{opacity:0}.adv-hero-colour{opacity:.5}.adv-hero-light{display:none}}
 /* Lifted from the homepage hero buttons, value for value: same gradient,
    weights, sizes, padding, radius and shadow, plus the same traced border and
    the same magnetic pull, so the two pages read as one system.
@@ -1867,10 +1889,35 @@ window.SIDEKIX_SUBMIT = function (payload) {
 /* your role */
 .adv-list{list-style:none;margin:0;padding:0;display:grid;gap:2px;
   grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
-.adv-list li{display:flex;gap:16px;align-items:flex-start;padding:20px 22px 20px 0}
-.adv-list i{font-family:var(--display);font-style:normal;font-weight:600;font-size:23px;
-  color:var(--gold);opacity:.85;line-height:1.15;min-width:34px}
+.adv-list li{position:relative;display:flex;gap:16px;align-items:flex-start;padding:20px 22px 22px 0}
+.adv-list i{position:relative;font-family:var(--display);font-style:normal;font-weight:600;font-size:23px;
+  color:var(--acc,#D4A856);opacity:.85;line-height:1.15;min-width:34px;
+  transition:opacity .7s ease,text-shadow .8s ease}
 .adv-list span{color:#CEC9BC;font-size:16px;line-height:1.62}
+
+/* Each step lights as it arrives, and the colour walks from gold through the
+   advisor blue into the partner green across the six, which is the arc the
+   copy itself describes: advise, then teach, then support, then partner.
+   A class toggled once by an observer, no work per frame. */
+.adv-list li{--acc:#D4A856;--glow:rgba(212,168,86,.55)}
+.adv-list li:nth-child(3),.adv-list li:nth-child(4){--acc:#95B4BC;--glow:rgba(149,180,188,.5)}
+.adv-list li:nth-child(5),.adv-list li:nth-child(6){--acc:#95C99A;--glow:rgba(149,201,154,.5)}
+.adv-list li::before{content:"";position:absolute;left:-6px;top:14px;width:52px;height:52px;
+  border-radius:999px;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,var(--glow) 0%,transparent 68%);
+  opacity:0;transform:scale(.6);
+  transition:opacity .9s ease,transform 1s cubic-bezier(.16,1,.3,1)}
+.adv-list li::after{content:"";position:absolute;left:0;right:22px;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--acc),rgba(212,168,86,0) 88%);
+  opacity:.5;transform:scaleX(0);transform-origin:0 50%;
+  transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.adv-list li.lit::before{opacity:.5;transform:scale(1)}
+.adv-list li.lit::after{transform:scaleX(1)}
+.adv-list li.lit i{opacity:1;text-shadow:0 0 24px var(--glow)}
+@media (prefers-reduced-motion:reduce){
+  .adv-list li::before,.adv-list li::after,.adv-list i{transition:none}
+  .adv-list li::after{transform:scaleX(1)}
+}
 
 /* three ways to earn */
 .adv-cards{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
@@ -1900,7 +1947,37 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-film iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
 
 /* time */
-.adv-time .adv-inner{max-width:900px}
+.adv-time .adv-inner{max-width:1060px}
+.adv-timegrid{display:grid;gap:clamp(30px,4vw,58px);grid-template-columns:minmax(0,1fr);align-items:center}
+@media (min-width:860px){.adv-timegrid{grid-template-columns:auto minmax(0,1fr)}}
+.adv-timecopy .lede{max-width:600px}
+.adv-timecopy .lede b{color:#FFF3C6;font-weight:700}
+
+/* An 80s bedside clock, because the honest answer to "how much time?" is a
+   readout that lands on zero. It counts down to 00:00 the first time it comes
+   into view, then holds. Red neon is the one colour on this page that is not
+   in the brand palette, which is the point: it is a prop, not a UI element. */
+.adv-clock{justify-self:start;display:flex;flex-direction:column;align-items:center;gap:14px}
+.adv-clockface{position:relative;display:flex;align-items:baseline;gap:12px;
+  padding:26px 30px 24px;border-radius:14px;
+  background:linear-gradient(180deg,#161314,#0B0A0A 65%,#141112);
+  box-shadow:0 0 0 1px rgba(255,90,80,.16) inset,0 0 0 6px #0D0B0B,0 0 0 7px rgba(255,90,80,.14),
+             0 22px 60px rgba(0,0,0,.7),0 0 70px rgba(255,60,50,.13)}
+.adv-clockface::after{content:"";position:absolute;inset:6px;border-radius:9px;pointer-events:none;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px)}
+.adv-digits{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:clamp(44px,5.4vw,62px);font-weight:700;line-height:1;letter-spacing:.02em;
+  color:#FF4438;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 6px rgba(255,70,58,.95),0 0 18px rgba(255,60,48,.75),
+              0 0 42px rgba(255,45,35,.5),0 0 80px rgba(255,40,30,.3)}
+.adv-digits i{font-style:normal;animation:advTick 1.1s steps(1,end) infinite}
+.adv-clocktag{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:700;
+  letter-spacing:.18em;color:#FF4438;opacity:.82;
+  text-shadow:0 0 8px rgba(255,60,48,.8),0 0 22px rgba(255,45,35,.45)}
+.adv-clockcap{font-family:var(--util);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:#8C8478}
+@keyframes advTick{0%,49%{opacity:1}50%,100%{opacity:.12}}
+@media (prefers-reduced-motion:reduce){.adv-digits i{animation:none;opacity:1}}
 .adv-quote{font-family:var(--display);font-weight:600;font-size:clamp(28px,3.6vw,46px);line-height:1.14;
   color:#FFF8D8;margin:0 0 26px;border:0;padding:0;letter-spacing:-.005em}
 
@@ -1912,9 +1989,33 @@ window.SIDEKIX_SUBMIT = function (payload) {
   background:rgba(255,255,255,.022);transition:border-color .3s,background .3s}
 .adv-tile:hover{border-color:rgba(212,168,86,.35);background:rgba(255,255,255,.04)}
 .adv-tile p{font-size:15px;color:#A8A296}
-.adv-tile-mark{display:flex;flex-direction:column;align-items:flex-start;gap:0}
-.adv-tile-mark img{width:104px;height:auto;margin-bottom:18px;
-  filter:drop-shadow(0 6px 22px rgba(0,0,0,.55))}
+/* The sticker was boxed in with the copy, which made it read as an icon.
+   Sitting proud of the grid's top right corner and turning, it reads as a
+   thing rather than a bullet point. Transform only, so the compositor owns it
+   and the page keeps its frame rate; still under prefers-reduced-motion. */
+.adv-support .adv-grid{position:relative}
+.adv-coin{position:absolute;right:-10px;top:-96px;width:158px;height:158px;z-index:4;
+  pointer-events:none;perspective:900px}
+.adv-coin-spin{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  animation:advCoin 9s cubic-bezier(.42,0,.35,1) infinite;will-change:transform}
+.adv-coin-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden}
+.adv-coin-front img{width:100%;height:auto;filter:drop-shadow(0 10px 26px rgba(0,0,0,.6))}
+.adv-coin-back{transform:rotateY(180deg);border-radius:999px;
+  background:radial-gradient(120% 120% at 50% 22%,#241C0C,#0E0C08 70%);
+  box-shadow:0 0 0 2px rgba(212,168,86,.55) inset,0 10px 26px rgba(0,0,0,.6),
+             0 0 34px rgba(212,168,86,.22)}
+.adv-coin-back img{width:46%;height:auto}
+@keyframes advCoin{
+  0%,22%   {transform:rotateX(16deg) rotateY(0deg)}
+  100%     {transform:rotateX(16deg) rotateY(1080deg)}
+}
+@media (max-width:980px){
+  .adv-coin{width:108px;height:108px;top:-62px;right:-4px}
+}
+@media (prefers-reduced-motion:reduce){
+  .adv-coin-spin{animation:none;transform:rotateX(10deg)}
+}
 
 /* faq */
 .adv-faq .adv-inner{max-width:860px}
@@ -1932,16 +2033,19 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-faq details p{margin:0;font-size:15.5px;color:#A8A296}
 
 /* closing */
-.adv-close{text-align:center;padding-bottom:clamp(90px,13vh,150px)}
+.adv-close{text-align:center;padding-bottom:clamp(74px,10vh,118px)}
 .adv-close .adv-inner{max-width:780px}
-.adv-close .lede{margin-left:auto;margin-right:auto}
+.adv-close .lede{margin:0 auto 30px}
+.adv-close h2{margin-bottom:16px}
+.adv-close .adv-cta{justify-content:center;margin-top:0}
 
 @media (max-width:980px){
   .adv-hero{min-height:0;padding-top:clamp(110px,14vh,150px)}
   .adv-hero-artwrap{width:74%;right:-16%;
     -webkit-mask-image:radial-gradient(66% 62% at 60% 46%,#000 34%,transparent 78%);
     mask-image:radial-gradient(66% 62% at 60% 46%,#000 34%,transparent 78%)}
-  .adv-hero-art{opacity:.1}
+  .adv-hero-duo{opacity:.26}
+  .adv-hero-colour{opacity:0}
   .adv-hero-scrim{background:linear-gradient(180deg,rgba(11,10,6,.72) 30%,rgba(11,10,6,.9) 100%)}
 }
 @media (max-width:760px){
@@ -1957,7 +2061,9 @@ window.SIDEKIX_SUBMIT = function (payload) {
 }
 @media (prefers-reduced-motion:reduce){
   .adv-card,.adv-play img,.adv-playbtn,.adv-hero-art{transition:none}
-  .adv-hero-art{opacity:.34;animation:none}
+  .adv-hero-art{animation:none}
+  .adv-hero-duo{opacity:.34}
+  .adv-hero-colour{opacity:0}
   .adv-hero-light{display:none}
   .adv-card:hover{transform:none}
 }
@@ -1996,11 +2102,11 @@ window.SIDEKIX_SUBMIT = function (payload) {
 
 <!-- ════════ HERO ════════ -->
 <section class="adv adv-hero">
-  <div aria-hidden="true" class="adv-hero-artwrap"><img alt="" class="adv-hero-art" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/3c4841d185f2.webp" width="665"/><span class="adv-hero-light"></span></div>
+  <div aria-hidden="true" class="adv-hero-artwrap"><img alt="" class="adv-hero-art adv-hero-duo" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/9640f533f3e5.webp" width="665"/><img alt="" class="adv-hero-art adv-hero-colour" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/3c4841d185f2.webp" width="665"/><span class="adv-hero-light"></span></div>
   <div aria-hidden="true" class="adv-hero-scrim"></div>
   <div class="adv-inner">
     <span class="eyebrow">Become an Advisor</span>
-    <h1>You already know<br/>what they are <em>about to learn</em>.</h1>
+    <h1>You already know what they are <em>about to learn</em>.</h1>
     <p class="lede">SideKix Advisors bring been there, done that experience to people building something. You choose how much time you give, and you are paid for what you know.</p>
     <div class="adv-cta">
       <a class="adv-btn adv-btn-gold kx-mag kx-trace" href="become-an-advisor.html">Apply as an Advisor <span aria-hidden="true">&rarr;</span></a>
@@ -2052,7 +2158,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
   <div class="adv-inner">
     <span class="eyebrow">Your role</span>
     <h2>What an Advisor <em>actually does</em>.</h2>
-    <p class="lede">Advisors share experience based knowledge through in app messaging sessions, live events and content. Users choose an Advisor by expertise, skills and availability, then bring a focused question.</p>
+    <p class="lede">Advisors share experience based knowledge through in app sessions, messaging or video, plus live events and content. Users choose an Advisor by expertise, skills and availability, then bring a focused question.</p>
     <ol class="adv-list">
       <li><i>01</i><span>Provide personalized suggestions based on each situation</span></li>
       <li><i>02</i><span>Clarify next steps</span></li>
@@ -2072,8 +2178,8 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <div class="adv-cards">
       <article class="adv-card">
         <span class="adv-num">01</span>
-        <h3>1:1 Messaging Sessions</h3>
-        <p>Personalized support through scheduled in app chat sessions. You set your availability and your rate.</p>
+        <h3>1:1 Sessions</h3>
+        <p>Messaging or video, scheduled in the app. Personalized support, on your availability, at your rate.</p>
       </article>
       <article class="adv-card">
         <span class="adv-num">02</span>
@@ -2107,11 +2213,20 @@ window.SIDEKIX_SUBMIT = function (payload) {
 
 <!-- ════════ TIME ════════ -->
 <section class="adv adv-time">
-  <div class="adv-inner">
-    <span class="eyebrow">Your time</span>
-    <blockquote class="adv-quote">You do not need to be available all the time, <em>just when it works for you</em>.</blockquote>
-    <p class="lede">As a business owner your time is valuable. As a SideKix Advisor you choose how much of it you spend with users, with no minimum required. Every day, once a week, once a month. It is entirely up to you.</p>
-    <p class="adv-note">This is not a full time job. It is a flexible way to give back, grow your influence and earn on your own terms.</p>
+  <div class="adv-inner adv-timegrid">
+    <div aria-hidden="true" class="adv-clock">
+      <div class="adv-clockface">
+        <span class="adv-digits" id="adv-digits"><b>01</b><i>:</i><b>00</b></span>
+        <span class="adv-clocktag">HRS</span>
+      </div>
+      <span class="adv-clockcap">Minimum required</span>
+    </div>
+    <div class="adv-timecopy">
+      <span class="eyebrow">Your time</span>
+      <blockquote class="adv-quote">You do not need to be available all the time, <em>just when it works for you</em>.</blockquote>
+      <p class="lede">As a business owner your time is valuable. As a SideKix Advisor you choose how much of it you spend with users, with <b>no minimum required</b>. Every day, once a week, once a month. It is entirely up to you.</p>
+      <p class="adv-note">This is not a full time job. It is a flexible way to give back, grow your influence and earn on your own terms.</p>
+    </div>
   </div>
 </section>
 
@@ -2121,15 +2236,21 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <span class="eyebrow">How we support you</span>
     <h2>We do not just ask you to show up.<br/><em>We show up too</em>.</h2>
     <div class="adv-grid">
+    <div aria-hidden="true" class="adv-coin">
+      <div class="adv-coin-spin">
+        <img alt="" class="adv-coin-face adv-coin-front" decoding="async" height="728" loading="lazy" src="assets/img/80403c2df24e.webp" width="620"/>
+        <span class="adv-coin-face adv-coin-back">
+          <img alt="" decoding="async" height="268" loading="lazy" src="assets/img/28130e46f4c9.png?v=2" width="260"/>
+        </span>
+      </div>
+    </div>
+
       <div class="adv-tile"><h3>In app scheduling and messaging</h3><p>Sessions, availability and conversations in one place. No extra apps.</p></div>
       <div class="adv-tile"><h3>Simple onboarding and tools</h3><p>A clear guide, training resources and templates so setup is quick.</p></div>
       <div class="adv-tile"><h3>Promotional support</h3><p>Advisors and their content are featured through in app placements, social, newsletters, emails and events.</p></div>
       <div class="adv-tile"><h3>Ongoing optional trainings</h3><p>Sharpen your events, content and messaging, and build your ratings as you go.</p></div>
       <div class="adv-tile"><h3>A community of Advisors</h3><p>Connect with peers, share ideas and learn from each other at Advisor only events.</p></div>
-      <div class="adv-tile adv-tile-mark">
-        <img alt="Supported by SideKix" decoding="async" height="728" loading="lazy" src="assets/img/80403c2df24e.webp" width="620"/>
-        <h3>Grow your personal brand</h3><p>Build visibility with new audiences, in the app and across SideKix promotions.</p>
-      </div>
+      <div class="adv-tile"><h3>Grow your personal brand</h3><p>Build visibility with new audiences, in the app and across SideKix promotions.</p></div>
     </div>
     <p class="adv-note">Advisors can be SideKix users too. Buy time with other Advisors, use the Journey Map, use everything in the app.</p>
   </div>
@@ -2144,7 +2265,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <details><summary>Are Advisors employees?</summary><div><p>No. Advisors are independent contractors.</p></div></details>
     <details><summary>How are Advisors paid?</summary><div><p>Up to the Advisor. You determine your services and what to charge. If you are looking to give back to the community pro bono, you can set available office hours and provide advice and expertise without charging any fees. It is entirely up to you, and SideKix is here with assistance or suggestions if you want them.</p></div></details>
     <details><summary>Do I need an LLC?</summary><div><p>Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one.</p></div></details>
-    <details><summary>What about video sessions?</summary><div><p>A survey indicated that 62% of respondents preferred messaging support. As an option, video sessions can be started during a messaging session by the Advisor.</p></div></details>
+    <details><summary>Messaging or video?</summary><div><p>Both. A survey indicated that 62% of respondents preferred messaging support, so sessions start there, and the Advisor can move a session to video at any point.</p></div></details>
   </div>
 </section>
 
@@ -2799,6 +2920,62 @@ try{
   });
 })();
 }catch(e){console.error('SideKix [advisor fit] failed:',e);}
+</script>
+
+<script>
+try{
+/* The steps light as they arrive. Everything is readable before the observer
+   runs, so nothing is hidden waiting on JavaScript; this only adds the glow. */
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.adv-list li'));
+  if(!items.length) return;
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){el.classList.add('lit');}); return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el=en.target;
+      var i=items.indexOf(el);
+      setTimeout(function(){ el.classList.add('lit'); }, Math.max(0,i%2)*110);
+      io.unobserve(el);
+    });
+  },{threshold:.35,rootMargin:'0px 0px -12% 0px'});
+  items.forEach(function(el){io.observe(el);});
+})();
+}catch(e){console.error('SideKix [advisor steps] failed:',e);}
+</script>
+
+<script>
+try{
+/* The clock runs down to zero once, the first time it is seen. */
+(function(){
+  var el=document.getElementById('adv-digits');
+  if(!el) return;
+  var tag=el.parentNode.querySelector('.adv-clocktag');
+  var SEQ=[['01','00','HRS'],['00','45','MIN'],['00','30','MIN'],['00','15','MIN'],
+           ['00','05','MIN'],['00','00','MIN']];
+  function paint(i){
+    var f=SEQ[i];
+    el.innerHTML='<b>'+f[0]+'</b><i>:</i><b>'+f[1]+'</b>';
+    if(tag) tag.textContent=f[2];
+  }
+  function run(){
+    var i=0;
+    (function step(){
+      paint(i);
+      if(++i<SEQ.length) setTimeout(step, 240);
+    })();
+  }
+  if(!('IntersectionObserver' in window)){ paint(SEQ.length-1); return; }
+  var io=new IntersectionObserver(function(en){
+    if(en[0].isIntersecting){ io.disconnect();
+      if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches){ paint(SEQ.length-1); }
+      else { run(); } }
+  },{threshold:.5});
+  io.observe(el);
+})();
+}catch(e){console.error('SideKix [advisor clock] failed:',e);}
 </script>
 </body>
 </html>
