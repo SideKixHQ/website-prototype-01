@@ -1891,31 +1891,29 @@ window.SIDEKIX_SUBMIT = function (payload) {
   grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
 .adv-list li{position:relative;display:flex;gap:16px;align-items:flex-start;padding:20px 22px 22px 0}
 .adv-list i{position:relative;font-family:var(--display);font-style:normal;font-weight:600;font-size:23px;
-  color:var(--acc,#D4A856);opacity:.85;line-height:1.15;min-width:34px;
-  transition:opacity .7s ease,text-shadow .8s ease}
+  color:var(--gold);opacity:.8;line-height:1.15;min-width:34px;
+  transition:opacity .7s ease}
 .adv-list span{color:#CEC9BC;font-size:16px;line-height:1.62}
 
-/* Each step lights as it arrives, and the colour walks from gold through the
-   advisor blue into the partner green across the six, which is the arc the
-   copy itself describes: advise, then teach, then support, then partner.
-   A class toggled once by an observer, no work per frame. */
-.adv-list li{--acc:#D4A856;--glow:rgba(212,168,86,.55)}
-.adv-list li:nth-child(3),.adv-list li:nth-child(4){--acc:#95B4BC;--glow:rgba(149,180,188,.5)}
-.adv-list li:nth-child(5),.adv-list li:nth-child(6){--acc:#95C99A;--glow:rgba(149,201,154,.5)}
-.adv-list li::before{content:"";position:absolute;left:-6px;top:14px;width:52px;height:52px;
-  border-radius:999px;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,var(--glow) 0%,transparent 68%);
-  opacity:0;transform:scale(.6);
-  transition:opacity .9s ease,transform 1s cubic-bezier(.16,1,.3,1)}
+/* Each step arrives with a hairline ring drawn around its number and a rule
+   that sweeps out beneath it. No colour behind the digits: on this palette a
+   tinted glow reads as a smudge rather than an accent. */
+.adv-list li::before{content:"";position:absolute;left:-9px;top:15px;width:42px;height:42px;
+  border-radius:999px;pointer-events:none;z-index:0;box-sizing:border-box;
+  border:1px solid rgba(212,168,86,.42);background:rgba(212,168,86,.05);
+  opacity:0;transform:scale(.72) rotate(-25deg);
+  transition:opacity .7s ease,transform .9s cubic-bezier(.16,1,.3,1)}
 .adv-list li::after{content:"";position:absolute;left:0;right:22px;bottom:0;height:1px;
-  background:linear-gradient(90deg,var(--acc),rgba(212,168,86,0) 88%);
-  opacity:.5;transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,rgba(212,168,86,.75),rgba(212,168,86,0) 88%);
+  transform:scaleX(0);transform-origin:0 50%;
   transition:transform 1s cubic-bezier(.16,1,.3,1)}
-.adv-list li.lit::before{opacity:.5;transform:scale(1)}
+.adv-list li.lit::before{opacity:1;transform:scale(1) rotate(0)}
 .adv-list li.lit::after{transform:scaleX(1)}
-.adv-list li.lit i{opacity:1;text-shadow:0 0 24px var(--glow)}
+.adv-list li.lit i{opacity:1}
+.adv-list li:hover::before{border-color:rgba(212,168,86,.8);background:rgba(212,168,86,.1)}
 @media (prefers-reduced-motion:reduce){
   .adv-list li::before,.adv-list li::after,.adv-list i{transition:none}
+  .adv-list li::before{opacity:1;transform:none}
   .adv-list li::after{transform:scaleX(1)}
 }
 
@@ -1990,31 +1988,34 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-tile:hover{border-color:rgba(212,168,86,.35);background:rgba(255,255,255,.04)}
 .adv-tile p{font-size:15px;color:#A8A296}
 /* The sticker was boxed in with the copy, which made it read as an icon.
-   Sitting proud of the grid's top right corner and turning, it reads as a
-   thing rather than a bullet point. Transform only, so the compositor owns it
-   and the page keeps its frame rate; still under prefers-reduced-motion. */
+   It now sits proud of the grid's top right corner and peels away as the
+   section arrives, leaving its own outline stuck to the page behind it. The
+   outline is the same artwork used as a mask, so it is the real die cut shape
+   and not an approximation. Transform and opacity only. */
 .adv-support .adv-grid{position:relative}
-.adv-coin{position:absolute;right:-10px;top:-96px;width:158px;height:158px;z-index:4;
-  pointer-events:none;perspective:900px}
-.adv-coin-spin{position:relative;width:100%;height:100%;transform-style:preserve-3d;
-  animation:advCoin 9s cubic-bezier(.42,0,.35,1) infinite;will-change:transform}
-.adv-coin-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  -webkit-backface-visibility:hidden;backface-visibility:hidden}
-.adv-coin-front img{width:100%;height:auto;filter:drop-shadow(0 10px 26px rgba(0,0,0,.6))}
-.adv-coin-back{transform:rotateY(180deg);border-radius:999px;
-  background:radial-gradient(120% 120% at 50% 22%,#241C0C,#0E0C08 70%);
-  box-shadow:0 0 0 2px rgba(212,168,86,.55) inset,0 10px 26px rgba(0,0,0,.6),
-             0 0 34px rgba(212,168,86,.22)}
-.adv-coin-back img{width:46%;height:auto}
-@keyframes advCoin{
-  0%,22%   {transform:rotateX(16deg) rotateY(0deg)}
-  100%     {transform:rotateX(16deg) rotateY(1080deg)}
-}
+.adv-sticker{position:absolute;right:-10px;top:-104px;width:154px;height:181px;z-index:4;
+  pointer-events:none}
+.adv-sticker-ghost,.adv-sticker-img{position:absolute;inset:0;width:100%;height:100%}
+.adv-sticker-ghost{background:rgba(212,168,86,.16);
+  -webkit-mask-image:url("assets/img/80403c2df24e.webp");mask-image:url("assets/img/80403c2df24e.webp");
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  opacity:0;transition:opacity .7s ease .12s}
+.adv-sticker-img{object-fit:contain;transform-origin:14% 88%;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.55));
+  transition:transform 1.1s cubic-bezier(.22,1,.32,1),filter 1.1s ease}
+.adv-sticker.peeled .adv-sticker-ghost{opacity:1}
+.adv-sticker.peeled .adv-sticker-img{
+  transform:rotate(-13deg) translate(16px,-20px) scale(1.05);
+  filter:drop-shadow(0 26px 40px rgba(0,0,0,.72))}
 @media (max-width:980px){
-  .adv-coin{width:108px;height:108px;top:-62px;right:-4px}
+  .adv-sticker{width:104px;height:122px;top:-68px;right:-2px}
+  .adv-sticker.peeled .adv-sticker-img{transform:rotate(-11deg) translate(9px,-12px) scale(1.04)}
 }
 @media (prefers-reduced-motion:reduce){
-  .adv-coin-spin{animation:none;transform:rotateX(10deg)}
+  .adv-sticker-img,.adv-sticker-ghost{transition:none}
+  .adv-sticker.peeled .adv-sticker-img{transform:rotate(-8deg) translate(9px,-11px)}
 }
 
 /* faq */
@@ -2236,13 +2237,9 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <span class="eyebrow">How we support you</span>
     <h2>We do not just ask you to show up.<br/><em>We show up too</em>.</h2>
     <div class="adv-grid">
-    <div aria-hidden="true" class="adv-coin">
-      <div class="adv-coin-spin">
-        <img alt="" class="adv-coin-face adv-coin-front" decoding="async" height="728" loading="lazy" src="assets/img/80403c2df24e.webp" width="620"/>
-        <span class="adv-coin-face adv-coin-back">
-          <img alt="" decoding="async" height="268" loading="lazy" src="assets/img/28130e46f4c9.png?v=2" width="260"/>
-        </span>
-      </div>
+    <div aria-hidden="true" class="adv-sticker" id="adv-sticker">
+      <span class="adv-sticker-ghost"></span>
+      <img alt="" class="adv-sticker-img" decoding="async" height="728" loading="lazy" src="assets/img/80403c2df24e.webp" width="620"/>
     </div>
 
       <div class="adv-tile"><h3>In app scheduling and messaging</h3><p>Sessions, availability and conversations in one place. No extra apps.</p></div>
@@ -2976,6 +2973,20 @@ try{
   io.observe(el);
 })();
 }catch(e){console.error('SideKix [advisor clock] failed:',e);}
+</script>
+
+<script>
+try{
+/* The sticker lifts as the section arrives and settles back when it leaves. */
+(function(){
+  var el=document.getElementById('adv-sticker'); if(!el) return;
+  if(!('IntersectionObserver' in window)){ el.classList.add('peeled'); return; }
+  var io=new IntersectionObserver(function(en){
+    el.classList.toggle('peeled', en[0].isIntersecting);
+  },{threshold:.35,rootMargin:'0px 0px -8% 0px'});
+  io.observe(el.parentNode);
+})();
+}catch(e){console.error('SideKix [advisor sticker] failed:',e);}
 </script>
 </body>
 </html>
