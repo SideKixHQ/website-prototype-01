@@ -1,0 +1,831 @@
+{
+ "_meta": {
+  "what": "US state business entity filing reference for the SideKix state filing lookup",
+  "sourcing": "Every field was read from an official state government source in the session named in _checked. Nothing is interpolated from a neighbouring state or recalled. A null means it could not be confirmed from an official source; see _unconfirmed.",
+  "coverage": "30 of 50 states",
+  "checked": "2026-09-04"
+ },
+ "states": {
+  "Alabama": {
+   "agency": "Alabama Secretary of State, Business Entities Division",
+   "agency_url": "https://www.sos.alabama.gov/business-entities",
+   "llc_filing_name": "Certificate of Formation",
+   "llc_filing_url": "https://www.sos.alabama.gov/business-entities/llcs",
+   "llc_fee_usd": 200,
+   "name_search_url": "https://arc-sos.state.al.us/CGI/CORPNAME.MBR/INPUT",
+   "registered_agent_required": true,
+   "registered_agent_note": "One registered agent must be named, with a street address (no PO boxes) inside Alabama; the county of that registered office also determines how the county portion of the filing fee is distributed.",
+   "annual_report": {
+    "required": true,
+    "name": "Alabama Business Privilege Tax Return and Annual Report (Form PPT)",
+    "cadence": "annual",
+    "due": "Filed with the Department of Revenue on the same date as the entity's federal income tax return; for 2024 and later, an LLC that would owe only the $100 minimum privilege tax has no filing requirement.",
+    "fee_usd": null,
+    "url": "https://www.revenue.alabama.gov/tax-types/business-privilege-tax/"
+   },
+   "sources": [
+    "https://www.sos.alabama.gov/business-entities",
+    "https://www.sos.alabama.gov/business-entities/llcs",
+    "https://www.sos.alabama.gov/sites/default/files/form-files/FeeSchedule.pdf",
+    "https://www.sos.alabama.gov/sites/default/files/2022-09/DomesticLLCFormation.pdf",
+    "https://www.sos.alabama.gov/government-records/business-entity-records",
+    "https://www.revenue.alabama.gov/faqs/what-taxpayers-must-file-an-alabama-business-privilege-tax-return/",
+    "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/26quickrefcptpptinst.pdf"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Alaska": {
+   "agency": "Alaska Department of Commerce, Community, and Economic Development, Division of Corporations, Business and Professional Licensing (Corporations Section)",
+   "agency_url": "https://www.commerce.alaska.gov/web/cbpl/corporations",
+   "llc_filing_name": "Articles of Organization (Form 08-484)",
+   "llc_filing_url": "https://www.commerce.alaska.gov/web/cbpl/Corporations/CorporationFormsFees",
+   "llc_fee_usd": 250,
+   "name_search_url": "https://www.commerce.alaska.gov/cbp/main/search/entities",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must be a full-time Alaska resident (or a corporation authorized in Alaska) who is physically reachable at a real Alaska street address; an LLC may not act as its own agent and mail-forwarding or virtual addresses are not accepted.",
+   "annual_report": {
+    "required": true,
+    "name": "Biennial Report",
+    "cadence": "biennial",
+    "due": "Due January 2 every two years, in even or odd years matching the year the LLC was formed; filing opens three months early and a late fee applies after February 1.",
+    "fee_usd": 100,
+    "url": "https://www.commerce.alaska.gov/web/cbpl/Corporations/BiennialReportsFAQs"
+   },
+   "sources": [
+    "https://www.commerce.alaska.gov/web/cbpl/corporations",
+    "https://www.commerce.alaska.gov/web/cbpl/Corporations/CorporationFormsFees",
+    "https://www.commerce.alaska.gov/web/cbpl/Corporations/BiennialReportsFAQs",
+    "https://www.commerce.alaska.gov/web/cbpl/Corporations/RegisteredAgentsFAQs",
+    "https://www.commerce.alaska.gov/web/cbpl/Corporations/CreateFileNewEntity"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Arizona": {
+   "agency": "Arizona Corporation Commission, Corporations Division",
+   "agency_url": "https://azcc.gov/corporations/home",
+   "llc_filing_name": "Articles of Organization (Form L010)",
+   "llc_filing_url": "https://www.azcc.gov/corporations/forms/llc-forms",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://ArizonaBusinessCenter.azcc.gov/businesssearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "Arizona calls this a statutory agent, which every LLC must appoint and keep in place continuously; it may be an Arizona resident aged 18 or older or a qualifying entity with an Arizona address.",
+   "annual_report": {
+    "required": false,
+    "name": null,
+    "cadence": "none",
+    "due": null,
+    "fee_usd": null,
+    "url": "https://azcc.gov/faqs/BusinessServicesFAQs"
+   },
+   "sources": [
+    "https://azcc.gov/corporations/home",
+    "https://www.azcc.gov/corporations/forms/llc-forms",
+    "https://azcc.gov/docs/default-source/corps-files/fee-schedules/fee-schedule-llcs.pdf",
+    "https://azcc.gov/faqs/BusinessServicesFAQs",
+    "https://azcc.gov/corporations/determining-distinguishability"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Arkansas": {
+   "agency": "Arkansas Secretary of State, Business and Commercial Services Division",
+   "agency_url": "https://www.sos.arkansas.gov/business-commercial-services-bcs/",
+   "llc_filing_name": "Certificate of Organization for a Domestic Limited Liability Company (Form LL-01)",
+   "llc_filing_url": "https://www.sos.arkansas.gov/business-commercial-services-bcs/forms-fees/llc",
+   "llc_fee_usd": 45,
+   "name_search_url": "https://www.sos.arkansas.gov/corps/search_all.php",
+   "registered_agent_required": true,
+   "registered_agent_note": "The Certificate of Organization must name a registered agent together with a physical street address, so a PO box alone will not satisfy the requirement.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual LLC Franchise Tax Report",
+    "cadence": "annual",
+    "due": "Due on or before May 1 each year, covering the preceding calendar year; penalties and interest accrue on late filings.",
+    "fee_usd": 150,
+    "url": "https://www.sos.arkansas.gov/business-commercial-services-bcs/franchise-tax-report-forms/"
+   },
+   "sources": [
+    "https://www.sos.arkansas.gov/business-commercial-services-bcs/forms-fees/llc",
+    "https://www.sos.arkansas.gov/business-commercial-services-bcs/franchise-tax-report-forms/",
+    "https://www.sos.arkansas.gov/uploads/bcs/LLC1_FT_2026.pdf",
+    "https://www.sos.arkansas.gov/uploads/bcs/LL-01_1.pdf",
+    "https://www.sos.arkansas.gov/business-commercial-services-bcs/frequently-asked-questions-faqs/business-services-faq"
+   ],
+   "checked": "2026-09-04"
+  },
+  "California": {
+   "agency": "California Secretary of State, Business Programs Division, Business Entities Section",
+   "agency_url": "https://www.sos.ca.gov/business-programs/business-entities",
+   "llc_filing_name": "Articles of Organization (Form LLC-1)",
+   "llc_filing_url": "https://www.sos.ca.gov/business-programs/business-entities/forms/limited-liability-companies-california-domestic",
+   "llc_fee_usd": 70,
+   "name_search_url": "https://bizfileonline.sos.ca.gov/",
+   "registered_agent_required": true,
+   "registered_agent_note": "California requires an agent for service of process, who must either live in California or be a corporate agent registered with the Secretary of State under Corporations Code section 1505.",
+   "annual_report": {
+    "required": true,
+    "name": "Statement of Information (Form LLC-12)",
+    "cadence": "biennial",
+    "due": "The first statement is due within 90 days of registering the LLC, and thereafter every two years during the six-month window ending with the anniversary month of registration.",
+    "fee_usd": 20,
+    "url": "https://www.sos.ca.gov/business-programs/business-entities/statements"
+   },
+   "sources": [
+    "https://www.sos.ca.gov/business-programs/business-entities",
+    "https://www.sos.ca.gov/business-programs/business-entities/forms",
+    "https://www.sos.ca.gov/business-programs/business-entities/forms/limited-liability-companies-california-domestic",
+    "https://www.sos.ca.gov/business-programs/business-entities/forms/limited-liability-companies-statement-information",
+    "https://www.sos.ca.gov/business-programs/business-entities/statements",
+    "https://www.sos.ca.gov/business-programs/business-entities/faqs"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Colorado": {
+   "agency": "Colorado Secretary of State, Business and Licensing Division (Business Organizations)",
+   "agency_url": "https://www.coloradosos.gov/pubs/business/businessHome.html",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://www.coloradosos.gov/pubs/business/fileAForm.html",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://www.coloradosos.gov/biz/BusinessEntityCriteriaExt.do",
+   "registered_agent_required": true,
+   "registered_agent_note": "An LLC must list a registered agent with a Colorado street address who has consented to serve; since July 1, 2025 an individual agent must be 18 or older and verified by a current Colorado driver's license or state ID (or an agent passcode), and an entity agent must be in good standing with a Colorado place of business.",
+   "annual_report": {
+    "required": true,
+    "name": "Periodic Report",
+    "cadence": "annual",
+    "due": "Due in the LLC's assigned periodic report month, with a penalty-free window running from two months before through two months after that month.",
+    "fee_usd": 25,
+    "url": "https://www.coloradosos.gov/pubs/business/FAQs/reports.html"
+   },
+   "sources": [
+    "https://www.coloradosos.gov/pubs/info_center/fees/business.html",
+    "https://www.coloradosos.gov/pubs/business/FAQs/reports.html",
+    "https://www.coloradosos.gov/pubs/business/RAchanges.html",
+    "https://www.coloradosos.gov/pubs/business/helpFiles/LLCChecklist.pdf",
+    "https://www.coloradosos.gov/pubs/business/fileAForm.html"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Connecticut": {
+   "agency": "Connecticut Secretary of the State, Business Services Division",
+   "agency_url": "https://business.ct.gov/business-services",
+   "llc_filing_name": "Certificate of Organization",
+   "llc_filing_url": "https://business.ct.gov/business-services/business-forms-and-fees",
+   "llc_fee_usd": 120,
+   "name_search_url": "https://service.ct.gov/business/s/onlinebusinesssearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "The Certificate of Organization must appoint an agent, separate from the LLC itself, to receive legal process; an individual agent has to be a Connecticut resident and an entity agent must already be on record in Connecticut with a Connecticut address.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Due each year during the window that runs from January 1 through March 31.",
+    "fee_usd": 80,
+    "url": "https://business.ct.gov/business-services/file-annual-report"
+   },
+   "sources": [
+    "https://business.ct.gov/business-services",
+    "https://business.ct.gov/knowledge-base/articles/domestic-limited-liability-companies-forms-and-fees",
+    "https://business.ct.gov/knowledge-base/articles/domestic-annual-report-forms-and-fees",
+    "https://business.ct.gov/business-services/file-annual-report",
+    "https://business.ct.gov/-/media/BusinessOneStop/BSD_Forms/LLC---20211221/CERTIFICATE_OF_ORGANIZATION-fillable.pdf",
+    "https://portal.ct.gov/-/media/SOTS/Business-Services/BSD-Forms/llc-2017/ANNUAL-REPORT-FREQUENTLY-ASKED-QUESTIONS.pdf"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Delaware": {
+   "agency": "Delaware Department of State, Division of Corporations",
+   "agency_url": "https://corp.delaware.gov/",
+   "llc_filing_name": "Certificate of Formation",
+   "llc_filing_url": "https://corp.delaware.gov/newentit09/",
+   "llc_fee_usd": 110,
+   "name_search_url": "https://icis.corp.delaware.gov/eCorp/EntitySearch/NameSearch.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "Every Delaware entity must appoint and continuously maintain a registered agent with a physical Delaware street address.",
+   "annual_report": {
+    "required": false,
+    "name": "Annual LLC Tax (Delaware LLCs file no annual report, only the flat annual tax)",
+    "cadence": "annual",
+    "due": "The flat annual tax is payable on or before June 1 each year; late payment triggers a $200 penalty plus 1.5% monthly interest. Note: the Division's LLC/LP/GP tax instructions page states $400 following House Bill 400 (signed May 21, 2026), while the older summary page at corp.delaware.gov/frtax/ still shows the previous $300 figure, so confirm the amount at payment time.",
+    "fee_usd": 400,
+    "url": "https://corp.delaware.gov/alt-entitytaxinstructions/"
+   },
+   "sources": [
+    "https://corp.delaware.gov/fee/",
+    "https://corpfiles.delaware.gov/Fee_Schedule/AugustFee2026.pdf",
+    "https://corp.delaware.gov/alt-entitytaxinstructions/",
+    "https://corp.delaware.gov/frtax/",
+    "https://corp.delaware.gov/howtoform/",
+    "https://corp.delaware.gov/newentit09/",
+    "https://legis.delaware.gov/BillDetail/143069"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Florida": {
+   "agency": "Florida Department of State, Division of Corporations (Sunbiz)",
+   "agency_url": "https://dos.fl.gov/sunbiz/",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://dos.fl.gov/sunbiz/start-business/efile/fl-llc/",
+   "llc_fee_usd": 125,
+   "name_search_url": "https://dos.fl.gov/sunbiz/search/",
+   "registered_agent_required": true,
+   "registered_agent_note": "A registered agent designation is mandatory and is billed as a separate required $25 line item on top of the $100 Articles of Organization fee.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Due by May 1 each year; filing after that date adds a $400 late fee, and an entity still unfiled by the third Friday in September is administratively dissolved.",
+    "fee_usd": 138.75,
+    "url": "https://dos.fl.gov/sunbiz/manage-business/efile/annual-report/"
+   },
+   "sources": [
+    "https://dos.fl.gov/sunbiz/",
+    "https://dos.fl.gov/sunbiz/forms/fees/llc-fees/",
+    "https://dos.fl.gov/sunbiz/start-business/efile/fl-llc/",
+    "https://dos.fl.gov/sunbiz/manage-business/efile/annual-report/"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Georgia": {
+   "agency": "Georgia Secretary of State, Corporations Division",
+   "agency_url": "https://sos.ga.gov/corporations-division-georgia-secretary-states-office",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://ecorp.sos.ga.gov/",
+   "llc_fee_usd": 110,
+   "name_search_url": "https://ecorp.sos.ga.gov/BusinessSearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "Every LLC must name a registered agent located in Georgia to accept service of process and official correspondence.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Registration",
+    "cadence": "annual",
+    "due": "Due by April 1 each year and accepted from January 1; up to three consecutive years may be filed at once.",
+    "fee_usd": 60,
+    "url": "https://sos.ga.gov/how-to-guide/how-file-annual-registration"
+   },
+   "sources": [
+    "https://sos.ga.gov/sites/default/files/forms/Reference%20-%20Filing%20Fees_0.pdf",
+    "https://sos.ga.gov/how-to-guide/how-guide-register-domestic-entity",
+    "https://sos.ga.gov/how-to-guide/how-file-annual-registration",
+    "https://ecorp.sos.ga.gov/"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Hawaii": {
+   "agency": "Department of Commerce and Consumer Affairs, Business Registration Division (BREG)",
+   "agency_url": "https://cca.hawaii.gov/breg/",
+   "llc_filing_name": "Articles of Organization for Limited Liability Company (Form LLC-1)",
+   "llc_filing_url": "https://files.hawaii.gov/dcca/breg/registration/forms/llc-1.pdf",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://hbe.dcca.hawaii.gov/search-and-buy",
+   "registered_agent_required": true,
+   "registered_agent_note": "The LLC may not act as its own registered agent, and the agent must have a full Hawaii street address where documents can be delivered.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Filed once a year during the calendar quarter that matches the quarter in which the LLC was originally registered; the standard fee is $15, reduced to $12.50 when filed online.",
+    "fee_usd": 15,
+    "url": "https://hbe.dcca.hawaii.gov/manage"
+   },
+   "sources": [
+    "https://cca.hawaii.gov/breg/registration/dllc/",
+    "https://cca.hawaii.gov/breg/registration/dllc/fees/",
+    "https://files.hawaii.gov/dcca/breg/registration/forms/llc-1-instr.pdf",
+    "https://cca.hawaii.gov/breg/",
+    "https://cca.hawaii.gov/breg/third-quarter-hawaii-annual-business-reports-due-2026/"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Idaho": {
+   "agency": "Idaho Secretary of State, Business Services Division",
+   "agency_url": "https://sos.idaho.gov/business-forms/",
+   "llc_filing_name": "Certificate of Organization - Limited Liability Company",
+   "llc_filing_url": "https://sosbiz.idaho.gov/forms/business/",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://sosbiz.idaho.gov/search/business",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent needs a physical Idaho street address rather than a PO box, and an owner with an Idaho address may serve as their own agent.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Each year by the close of business on the last day of the month in which the LLC's certificate of organization took effect.",
+    "fee_usd": null,
+    "url": "https://sos.idaho.gov/annual-report-help/"
+   },
+   "sources": [
+    "https://sos.idaho.gov/business-forms/",
+    "https://sos.idaho.gov/business-resources/",
+    "https://sos.idaho.gov/business-resources/business-faq/",
+    "https://sos.idaho.gov/annual-report-help/",
+    "https://legislature.idaho.gov/statutesrules/idstat/title30/t30ch21/sect30-21-213/"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Illinois": {
+   "agency": "Illinois Secretary of State, Department of Business Services",
+   "agency_url": "https://www.ilsos.gov/departments/business-services/limited-liability-companies.html",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://www.ilsos.gov/publications/business-services/llc.html",
+   "llc_fee_usd": 150,
+   "name_search_url": "https://apps.ilsos.gov/businessentitysearch/",
+   "registered_agent_required": true,
+   "registered_agent_note": "An LLC must keep both a registered agent and a registered office in Illinois at all times, and the agent must be an Illinois resident or an entity authorized to do business in the state.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Must reach the Secretary of State within the 60 days immediately before the first day of the LLC's anniversary month each year.",
+    "fee_usd": 75,
+    "url": "https://www.ilsos.gov/departments/business-services/annual-reports.html"
+   },
+   "sources": [
+    "https://ilga.gov/Documents/legislation/ilcs/documents/080501800K50-10.htm",
+    "https://ilga.gov/legislation/ilcs/documents/080501800K50-1.htm",
+    "https://www.ilga.gov/documents/legislation/ilcs/documents/080501800K1-35.htm"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Indiana": {
+   "agency": "Indiana Secretary of State, Business Services Division",
+   "agency_url": "https://inbiz.in.gov/business-filings",
+   "llc_filing_name": "Articles of Organization (State Form 49459)",
+   "llc_filing_url": "https://forms.in.gov/Download.aspx?id=16989",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://bsd.sos.in.gov/publicbusinesssearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "The registered office must be a street address in Indiana (a PO box only works alongside a rural route reference), the business cannot serve as its own agent, and the agent must consent to the appointment.",
+   "annual_report": {
+    "required": true,
+    "name": "Business Entity Report",
+    "cadence": "biennial",
+    "due": "Every two years during the LLC's anniversary month, with a grace period to the end of that month; $32 filed online through INBiz or $50 on paper.",
+    "fee_usd": 32,
+    "url": "https://inbiz.in.gov/business-filings/business-entityreport"
+   },
+   "sources": [
+    "https://forms.in.gov/Download.aspx?id=16989",
+    "https://inbiz.in.gov/business-filings",
+    "https://inbiz.in.gov/business-filings/registration",
+    "https://inbiz.in.gov/business-filings/business-entityreport",
+    "https://www.in.gov/sos/business/division-forms/business-forms/"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Iowa": {
+   "agency": "Iowa Secretary of State, Business Services Division",
+   "agency_url": "https://sos.iowa.gov/business/formsandfees.html",
+   "llc_filing_name": "Certificate of Organization",
+   "llc_filing_url": "https://filings.sos.iowa.gov/",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://sos.iowa.gov/search/business/search.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "The certificate must name a registered agent along with that agent's Iowa street address for service of process and official notices.",
+   "annual_report": {
+    "required": true,
+    "name": "Biennial Report",
+    "cadence": "biennial",
+    "due": "In every odd-numbered year, filing opens January 1 and closes April 1; $30 online or $45 on paper.",
+    "fee_usd": 30,
+    "url": "https://help.sos.iowa.gov/how-do-i-file-biennial-report"
+   },
+   "sources": [
+    "https://sos.iowa.gov/business/formsandfees.html",
+    "https://help.sos.iowa.gov/how-do-i-form-llc",
+    "https://help.sos.iowa.gov/how-do-i-file-biennial-report"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Kansas": {
+   "agency": "Kansas Secretary of State, Business Services Division",
+   "agency_url": "https://sos.ks.gov/businesses/register-a-business.html",
+   "llc_filing_name": "Articles of Organization (Form DL)",
+   "llc_filing_url": "https://www.sos.ks.gov/forms/business_services/dl.pdf",
+   "llc_fee_usd": 85,
+   "name_search_url": "https://www.sos.ks.gov/eforms/BusinessEntity/NameAvailability.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "Kansas calls this a resident agent; it can be an individual, a business registered in Kansas, or the LLC itself, but the registered office must be a Kansas street address where the agent is regularly present.",
+   "annual_report": {
+    "required": true,
+    "name": "Information Report",
+    "cadence": "biennial",
+    "due": "April 15 of every second year, matching whether the LLC formed in an odd or even year, with roughly a three-month grace period before forfeiture; $90 online or $110 on paper.",
+    "fee_usd": 90,
+    "url": "https://sos.ks.gov/businesses/information-reports.html"
+   },
+   "sources": [
+    "https://sos.ks.gov/businesses/register-a-business.html",
+    "https://www.sos.ks.gov/forms/business_services/dl.pdf",
+    "https://sos.ks.gov/forms/business_services/LAO.pdf",
+    "https://sos.ks.gov/businesses/information-reports.html",
+    "https://sos.ks.gov/forms/business_services/ILC.pdf"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Kentucky": {
+   "agency": "Office of the Kentucky Secretary of State, Business Filings",
+   "agency_url": "https://www.sos.ky.gov/bus/Pages/default.aspx",
+   "llc_filing_name": "Articles of Organization (Form KLC)",
+   "llc_filing_url": "https://web.sos.ky.gov/forms/corp/KLC-Articles%20of%20Organization-Profit%20Limited%20Liability%20Company.pdf",
+   "llc_fee_usd": 40,
+   "name_search_url": "https://sosbes.sos.ky.gov/BusSearchNProfile/search.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must be a Kentucky resident, a Kentucky entity, or a foreign entity authorized in Kentucky, must sign the articles to consent, and must have a Kentucky street address.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Filing window runs January 1 through June 30 each year; late filings must arrive by August 31 to avoid administrative dissolution.",
+    "fee_usd": 15,
+    "url": "https://onestop.ky.gov/manage/Pages/annualreports.aspx"
+   },
+   "sources": [
+    "https://www.sos.ky.gov/bus/Pages/default.aspx",
+    "https://www.sos.ky.gov/bus/business-filings/Pages/Fees.aspx",
+    "https://web.sos.ky.gov/forms/corp/KLC-Articles%20of%20Organization-Profit%20Limited%20Liability%20Company.pdf",
+    "https://onestop.ky.gov/manage/Pages/annualreports.aspx"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Louisiana": {
+   "agency": "Louisiana Secretary of State, Commercial Division",
+   "agency_url": "https://www.sos.la.gov/business-services",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://geauxbiz.sos.la.gov/",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://coraweb.sos.la.gov/CommercialSearch/CommercialSearch.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "The LLC must continuously keep a registered office in Louisiana plus at least one agent who is either a Louisiana resident or a qualified entity that has filed a certificate naming at least two people authorized to accept service.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "On or before the anniversary date of the LLC's organization each year.",
+    "fee_usd": 30,
+    "url": "https://www.sos.la.gov/BusinessServices/HTMLPages/AnnualReportFilingInstructions.htm"
+   },
+   "sources": [
+    "https://legis.la.gov/legis/Law.aspx?d=103670",
+    "https://legis.la.gov/legis/Law.aspx?d=76256",
+    "https://legis.la.gov/Legis/Law.aspx?d=76255",
+    "https://coraweb.sos.la.gov/CommercialSearch/CommercialSearch.aspx"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Maine": {
+   "agency": "Maine Secretary of State, Division of Corporations, UCC and Commissions",
+   "agency_url": "https://www.maine.gov/sos/corporations-commissions/corporations-business-services",
+   "llc_filing_name": "Certificate of Formation (Form MLLC-6)",
+   "llc_filing_url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/mllc6.pdf",
+   "llc_fee_usd": 175,
+   "name_search_url": "https://apps3.web.maine.gov/nei-sos-icrs/ICRS",
+   "registered_agent_required": true,
+   "registered_agent_note": "Maine distinguishes commercial agents (identified by a CRA public number) from noncommercial agents, who need a physical street address rather than a PO box, and the agent must have consented to serve.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report (Form MLLC-13)",
+    "cadence": "annual",
+    "due": "June 1 each year; the first report is filed between January 1 and June 1 of the year after formation.",
+    "fee_usd": 85,
+    "url": "https://www.maine.gov/sos/corporations-commissions/filing-an-annual-report"
+   },
+   "sources": [
+    "https://www.maine.gov/sos/corporations-commissions/i-need-a-business-form/limited-liability-company-forms",
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/mllc6.pdf",
+    "https://www.maine.gov/sos/corporations-commissions/filing-an-annual-report",
+    "https://www.maine.gov/sos/cec/corp/helpful.html"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Maryland": {
+   "agency": "Maryland State Department of Assessments and Taxation (SDAT), Charter Division",
+   "agency_url": "https://dat.maryland.gov/businesses/Pages/default.aspx",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://dat.maryland.gov/Documents/Accessible%20Documents/Charter%20-%20Create%20or%20Start%20a%20Business/Articles%20of%20Organization%20for%20a%20Limited%20Liability%20Company_0526-A.pdf",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://egov.maryland.gov/BusinessExpress/EntitySearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "Maryland calls this a resident agent, who must sign the articles to consent and must list a complete physical Maryland address, as PO boxes are not accepted.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report and Business Personal Property Return (Form 1)",
+    "cadence": "annual",
+    "due": "April 15 each year, with a 60-day extension available on request.",
+    "fee_usd": 300,
+    "url": "https://egov.maryland.gov/BusinessExpress"
+   },
+   "sources": [
+    "https://dat.maryland.gov/businesses/Pages/default.aspx",
+    "https://dat.maryland.gov/Documents/Accessible%20Documents/Charter%20-%20Create%20or%20Start%20a%20Business/Articles%20of%20Organization%20for%20a%20Limited%20Liability%20Company_0526-A.pdf",
+    "https://dat.maryland.gov/SDAT%20Forms/PPR_Forms/2026_Form1.pdf"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Massachusetts": {
+   "agency": "Corporations Division, Office of the Secretary of the Commonwealth of Massachusetts",
+   "agency_url": "https://www.sec.state.ma.us/divisions/corporations/corporations.htm",
+   "llc_filing_name": "Certificate of Organization (G.L. c. 156C, s. 12)",
+   "llc_filing_url": "https://corp.sec.state.ma.us/corpweb/loginsystem/externallogin.aspx",
+   "llc_fee_usd": 520,
+   "name_search_url": "https://corp.sec.state.ma.us/corpweb/CorpSearch/CorpSearch.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "The certificate must name a resident agent with a street address in Massachusetts, and that agent has to sign a consent to the appointment either on the form or on an attachment.",
+   "annual_report": {
+    "required": true,
+    "name": "Limited Liability Company Annual Report",
+    "cadence": "annual",
+    "due": "On or before the anniversary of the date the original certificate of organization was filed; the published fee is $500 by mail or hand delivery and $500 plus a mandatory $20 expedite charge when filed by fax or electronically.",
+    "fee_usd": 520,
+    "url": "https://corp.sec.state.ma.us/corpweb/loginsystem/externallogin.aspx"
+   },
+   "sources": [
+    "https://www.sec.state.ma.us/divisions/corporations/general-information/corporations-filing-fees.htm",
+    "https://www.sec.state.ma.us/divisions/corporations/download/Fee_Schedule.pdf",
+    "https://www.sec.state.ma.us/divisions/corporations/filing-by-subject/limited-liability/corporations-limited-liability-company.htm",
+    "https://www.sec.state.ma.us/divisions/corporations/download/c156c512dllccert.pdf",
+    "https://www.mass.gov/info-details/starting-a-limited-liability-company-llc-in-massachusetts"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Michigan": {
+   "agency": "Corporations Division, Corporations, Securities & Commercial Licensing Bureau, Michigan Department of Licensing and Regulatory Affairs (LARA)",
+   "agency_url": "https://www.michigan.gov/lara/bureau-list/cscl/corps",
+   "llc_filing_name": "Articles of Organization (form CSCL/CD-700)",
+   "llc_filing_url": "https://www.michigan.gov/lara/-/media/Project/Websites/lara/cscl/NonImages_new/Corps/forms/llc/700-0725.pdf",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://mibusinessregistry.lara.state.mi.us/search/business",
+   "registered_agent_required": true,
+   "registered_agent_note": "Every LLC must name a resident agent and give the street address of a registered office physically located in Michigan, since that address is where service of process and state mail is delivered.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Statement (form CSCL/CD-2700)",
+    "cadence": "annual",
+    "due": "February 15 of each year after the year of organization, though an LLC formed after September 30 skips the February 15 date immediately following formation; filing late adds a $50 penalty and the state now takes these only through its online portal.",
+    "fee_usd": 25,
+    "url": "https://www.michigan.gov/lara/bureau-list/cscl/corps/michigan-business-roadmap/annual-reports-and-annual-statements"
+   },
+   "sources": [
+    "https://www.michigan.gov/lara/bureau-list/cscl/corps",
+    "https://www.michigan.gov/-/media/Project/Websites/lara/cscl/Folder6/Filing_Fees.pdf",
+    "https://www.michigan.gov/lara/bureau-list/cscl/corps/limited-liability-co/filling-requirements-continued/annual-filings",
+    "https://www.michigan.gov/lara/bureau-list/cscl/corps/michigan-business-roadmap/annual-reports-and-annual-statements",
+    "https://www.michigan.gov/lara/bureau-list/cscl/corps/forms/limited-liability-company-forms",
+    "https://www.michigan.gov/lara/-/media/Project/Websites/lara/cscl/NonImages_new/Corps/forms/llc/700-0725.pdf",
+    "https://www.michigan.gov/lara/bureau-list/cscl/corps/frequently-asked-questions"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Minnesota": {
+   "agency": "Minnesota Secretary of State, Business Services",
+   "agency_url": "https://www.sos.mn.gov/business-liens/",
+   "llc_filing_name": "Articles of Organization (Chapter 322C)",
+   "llc_filing_url": "https://www.sos.mn.gov/media/1824/llcarticlesoforganization.pdf",
+   "llc_fee_usd": 155,
+   "name_search_url": "https://mblsportal.sos.state.mn.us/Business/Search",
+   "registered_agent_required": false,
+   "registered_agent_note": "Minnesota is unusual in that an LLC must list a registered office address in the state but naming an agent at that office is optional, so the state treats the agent as a choice rather than a requirement.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Renewal",
+    "cadence": "annual",
+    "due": "By December 31 of every calendar year beginning the year after the articles are filed; there is no charge while the LLC is active and in good standing, and missing it triggers administrative termination.",
+    "fee_usd": 0,
+    "url": "https://www.sos.mn.gov/business-liens/business-help/how-to-renew-your-business-filing/"
+   },
+   "sources": [
+    "https://www.sos.mn.gov/business-liens/business-forms-fees/minnesota-limited-liability-company-forms/",
+    "https://www.sos.mn.gov/business-liens/business-filing-and-certification-fee-schedule/",
+    "https://www.sos.mn.gov/business-liens/start-a-business/how-to-renew-or-amend-your-business-filing/",
+    "https://www.revisor.mn.gov/statutes/cite/322C.0208"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Mississippi": {
+   "agency": "Mississippi Secretary of State, Business Services Division",
+   "agency_url": "https://www.sos.ms.gov/business-services",
+   "llc_filing_name": "Certificate of Formation (form F0100)",
+   "llc_filing_url": "https://corp.sos.ms.gov/corp/portal/c/page/corpnewfilings/portal.aspx",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://corp.sos.ms.gov/corp/portal/c/page/corpBusinessIdSearch/portal.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "Under Miss. Code s. 79-29-113 the LLC must keep a registered office in Mississippi plus an agent who is either a state resident or a business entity authorized to operate here, and the agent's office has to be the registered office.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report (form F0108)",
+    "cadence": "annual",
+    "due": "Filing opens January 1 and closes April 15 each year; the state charges nothing for an LLC annual report, but skipping it can lead to administrative dissolution. All Mississippi business documents must be submitted through the online filing system.",
+    "fee_usd": 0,
+    "url": "https://corp.sos.ms.gov/corp/portal/c/page/corpnewfilings/portal.aspx"
+   },
+   "sources": [
+    "https://www.sos.ms.gov/content/documents/Business/FeeSchedule.pdf",
+    "https://www.sos.ms.gov/business-services/annual-reports",
+    "https://www.sos.ms.gov/online-services-directory",
+    "https://corp.sos.ms.gov/corp/",
+    "https://www.sos.ms.gov/content/documents/pol_res/llcs/1revisedLLCact.pdf"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Missouri": {
+   "agency": "Missouri Secretary of State, Corporations Division",
+   "agency_url": "https://www.sos.mo.gov/business/corporations/generalinfo",
+   "llc_filing_name": "Articles of Organization (form LLC 1)",
+   "llc_filing_url": "https://bsd.sos.mo.gov/",
+   "llc_fee_usd": 50,
+   "name_search_url": "https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx?SearchType=0",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must be either a Missouri resident or an entity authorized to do business here, and the registered office has to be a real street address in the state rather than a PO box or a mailbox rental storefront.",
+   "annual_report": {
+    "required": false,
+    "name": null,
+    "cadence": "none",
+    "due": "Missouri LLCs have no periodic report obligation with the Secretary of State; the Corporations FAQ answers the question of whether LLCs file an annual report with a flat no.",
+    "fee_usd": null,
+    "url": "https://www.sos.mo.gov/business/faqs.asp"
+   },
+   "sources": [
+    "https://www.sos.mo.gov/CMSImages/Business/fees.pdf",
+    "https://www.sos.mo.gov/business/corporations/forms",
+    "https://www.sos.mo.gov/business/faqs.asp",
+    "https://www.sos.mo.gov/business/corporations/generalinfo",
+    "https://s1.sos.mo.gov/CMSImages/Business/llc1.pdf"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Montana": {
+   "agency": "Montana Secretary of State, Business Services (Business Entity & UCC)",
+   "agency_url": "https://sosmt.gov/business/",
+   "llc_filing_name": "Articles of Organization for Domestic Limited Liability Company",
+   "llc_filing_url": "https://biz.sosmt.gov/",
+   "llc_fee_usd": 35,
+   "name_search_url": "https://biz.sosmt.gov/search/business",
+   "registered_agent_required": true,
+   "registered_agent_note": "Montana law obliges every LLC to keep a registered agent so state notices and legal papers have a reliable delivery point, and the state maintains separate rosters of commercial and noncommercial agents.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Due by April 15. The Secretary of State currently waives the fee for reports filed between January 1 and April 15, and charges $35 for reports filed after April 15.",
+    "fee_usd": 0,
+    "url": "https://help.sosmt.gov/en/articles/13265408-how-do-i-file-my-annual-report"
+   },
+   "sources": [
+    "https://sosmt.gov/business/fees/",
+    "https://sosmt.gov/wp-content/uploads/business_filing_fees.pdf",
+    "https://sosmt.gov/business/",
+    "https://help.sosmt.gov/en/articles/13265408-how-do-i-file-my-annual-report",
+    "https://help.sosmt.gov/en/articles/12549058-why-do-i-need-a-registered-agent"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Nebraska": {
+   "agency": "Nebraska Secretary of State, Business Services Division",
+   "agency_url": "https://sos.nebraska.gov/business-services/corporate-and-business",
+   "llc_filing_name": "Certificate of Organization",
+   "llc_filing_url": "https://sos.nebraska.gov/sites/default/files/doc/business-services/Corporations/Forms/CertificateOfOrganization.pdf",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://www.nebraska.gov/sos/corp/corpsearch.cgi?nav=search",
+   "registered_agent_required": true,
+   "registered_agent_note": "The certificate must give a Nebraska street address for the initial designated office plus the name and address of an agent for service of process; separately, Neb. Rev. Stat. s. 21-193 makes a new LLC run a notice of organization in a legal newspaper for three consecutive weeks and file proof of that publication with the state.",
+   "annual_report": {
+    "required": true,
+    "name": "Biennial Report",
+    "cadence": "biennial",
+    "due": "Due April 1 in odd-numbered years and delinquent after June 15; the state charges $25 for an electronic filing and $30 for a paper one.",
+    "fee_usd": 25,
+    "url": "https://sos.nebraska.gov/business-services/annualbiennial-reporting"
+   },
+   "sources": [
+    "https://sos.nebraska.gov/business-services/forms-and-fee-information",
+    "https://sos.nebraska.gov/business-services/annualbiennial-reporting",
+    "https://sos.nebraska.gov/sites/default/files/doc/business-services/Corporations/Forms/CertificateOfOrganization.pdf",
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=21-192",
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=21-193",
+    "https://sos.nebraska.gov/business-services/name-procedures"
+   ],
+   "checked": "2026-09-04"
+  },
+  "Nevada": {
+   "agency": "Nevada Secretary of State, Commercial Recordings Division",
+   "agency_url": "https://www.nvsos.gov/businesses",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://www.nvsilverflume.gov/home",
+   "llc_fee_usd": 75,
+   "name_search_url": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "NRS 86.231 requires every LLC to have a registered agent with a street address in Nevada for service of process; note that forming an LLC costs more than the articles fee alone, because the Initial List of Managers or Managing Members ($150) and the State Business License ($200) are both filed at the same time.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual List of Managers or Managing Members and State Business License renewal",
+    "cadence": "annual",
+    "due": "Due by the last day of the month in which the LLC's organization anniversary falls; the $350 total is the $150 annual list fee under NRS 86.263 plus the $200 LLC state business license fee under NRS 76.100.",
+    "fee_usd": 350,
+    "url": "https://www.nvsilverflume.gov/home"
+   },
+   "sources": [
+    "https://www.leg.state.nv.us/nrs/nrs-086.html",
+    "https://www.leg.state.nv.us/nrs/nrs-076.html",
+    "https://archive.leg.state.nv.us/Session/26th2010Special/Bills/AB/AB6_EN.pdf",
+    "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
+   ],
+   "checked": "2026-09-04"
+  },
+  "New Hampshire": {
+   "agency": "Corporation Division, New Hampshire Department of State (Secretary of State)",
+   "agency_url": "https://www.sos.nh.gov/corporations-0",
+   "llc_filing_name": "Certificate of Formation (form LLC-1)",
+   "llc_filing_url": "https://quickstart.sos.nh.gov/online/Account/LandingPage",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://quickstart.sos.nh.gov/online/BusinessInquire",
+   "registered_agent_required": true,
+   "registered_agent_note": "An LLC has to appoint and continuously maintain a registered agent authorized to accept legal service on the company's behalf.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Due by April 1 each year after the year of registration; RSA 304-C:191 sets the fee at $100 and adds a $50 late charge for reports filed after the deadline.",
+    "fee_usd": 100,
+    "url": "https://www.sos.nh.gov/corporations-0/file-annual-report"
+   },
+   "sources": [
+    "https://gc.nh.gov/rsa/html/XXVIII/304-C/304-C-191.htm",
+    "https://www.sos.nh.gov/corporations-0/forms-and-fees/limited-liability-companies",
+    "https://www.sos.nh.gov/corporations-0/business-faqs",
+    "https://www.sos.nh.gov/corporations-0/file-annual-report",
+    "https://www.sos.nh.gov/corporations-0/forms-and-fees",
+    "https://quickstart.sos.nh.gov/online/BusinessInquire"
+   ],
+   "checked": "2026-09-04"
+  },
+  "New Jersey": {
+   "agency": "New Jersey Division of Revenue and Enterprise Services, Department of the Treasury",
+   "agency_url": "https://www.nj.gov/treasury/revenue/",
+   "llc_filing_name": "Certificate of Formation (Business Entity Public Record Filing)",
+   "llc_filing_url": "https://www.njportal.com/DOR/BusinessFormation/Home/Welcome",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://www.njportal.com/DOR/BusinessNameSearch/Search/Availability",
+   "registered_agent_required": true,
+   "registered_agent_note": "One registered agent is required per filing, and it can be an individual or a corporation that is registered and in good standing with the State Treasurer.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Due by the last day of the month in which the business originally filed its formation documents; the $75 rate has applied to for-profit entities for reports due on or after July 1, 2019.",
+    "fee_usd": 75,
+    "url": "https://www.njportal.com/DOR/AnnualReports/"
+   },
+   "sources": [
+    "https://www.nj.gov/treasury/revenue/fees.shtml",
+    "https://www.nj.gov/treasury/revenue/gettingregistered.shtml",
+    "https://www.nj.gov/treasury/revenue/pdf/Notice-Filing-Fees7-1-19-r4.pdf",
+    "https://www.nj.gov/treasury/revenue/pdf/NJ_Public_Records_Filing.pdf",
+    "https://business.nj.gov/pages/filings-and-accounting"
+   ],
+   "checked": "2026-09-04"
+  }
+ },
+ "_unconfirmed": [
+  {
+   "field": "Alabama.annual_report.fee_usd",
+   "reason": "The Business Privilege Tax is computed from net worth rather than charged as a flat fee, and no fixed amount is published for LLCs."
+  },
+  {
+   "field": "Arizona.annual_report.name",
+   "reason": "Arizona LLCs file no annual report at all, so the state publishes no report name."
+  },
+  {
+   "field": "Arizona.annual_report.due",
+   "reason": "No due date exists because Arizona exempts LLCs from annual reports."
+  },
+  {
+   "field": "Arizona.annual_report.fee_usd",
+   "reason": "No fee exists because Arizona exempts LLCs from annual reports."
+  },
+  "Idaho / annual_report.fee_usd — Idaho Code 30-21-213 sets the deadline but states no amount, and the Secretary of State's annual report help, business FAQ, and business-forms pages do not publish a fee for the annual report; left null rather than assumed to be zero.",
+  {
+   "state": "Missouri",
+   "field": "annual_report.name, annual_report.fee_usd",
+   "reason": "Left null on purpose: the Secretary of State's Corporations FAQ states that Missouri LLCs do not file an annual report, so no report name or fee exists."
+  },
+  {
+   "state": "Nevada",
+   "field": "llc_fee_usd (caveat, not null)",
+   "reason": "The $75 articles of organization fee comes from the enrolled text of NRS 86.561 in Nevada AB6 (26th Special Session, 2010) on the Legislature's own site; nvsos.gov, nvsilverflume.gov and esos.nv.gov all sit behind Incapsula bot protection and could not be read this session, and the current consolidated NRS Chapter 86 page truncates before section 86.561, so the figure could not be cross-checked against a present-day Secretary of State fee page."
+  },
+  {
+   "state": "New Jersey",
+   "field": "llc_fee_usd (caveat, not null)",
+   "reason": "Official New Jersey sources disagree. The DORES fee schedule at nj.gov/treasury/revenue/fees.shtml lists Certificate of Formation at $100.00 and the DORES Getting Registered page says the fee is $100 for all for-profit entities, so $100 is reported; however two other nj.gov documents (the Business Entity Public Record Filing instructions PDF and a NJ Film Commission registration guide) state $125. Worth reconfirming on the filing portal at payment time."
+  },
+  {
+   "state": "Massachusetts",
+   "field": "llc_fee_usd and annual_report.fee_usd (caveat, not null)",
+   "reason": "The base filing fee is $500 by mail or hand delivery; the Secretary of the Commonwealth's fee schedule adds a mandatory $20 expedite charge to fax and electronic filings, so the online rate of $520 is reported per the online-rate rule."
+  },
+  {
+   "state": "Minnesota",
+   "field": "registered_agent_required",
+   "reason": "Reported as false because Minnesota requires a registered office address but treats naming an agent at that office as optional under Chapter 322C; this is a state-specific quirk rather than a missing value."
+  }
+ ]
+}
