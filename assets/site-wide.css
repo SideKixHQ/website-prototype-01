@@ -219,3 +219,52 @@
   .hubdisc.hubdisc.hubdisc{width:92px !important}
   .hd-disc.hd-disc.hd-disc{width:74px !important}
 }
+
+/* ---------------------------------------------------------------
+   One hero rhythm across the Resources hub.
+   The six hub pages were each assembled separately and drifted:
+   three led with the eyebrow and three with the back link, so the
+   heading sat 66px lower on half of them; market-data had no
+   eyebrow at all, an h1 two pixels larger with a 40px bottom
+   margin instead of 14, and its disc row four thousand pixels down
+   the page instead of under the lede. Smaller differences on top:
+   the eyebrow 14px or 18px, the lede 30px or 34px and 52ch or
+   54ch, the disc row 34px or 40px.
+
+   Source order is fixed in the markup (back link, eyebrow, h1,
+   lede, discs). The rhythm is fixed here, in one place, so the
+   next page added to the hub inherits it rather than guessing.
+   Every value is the one the majority of the six already used.
+   --------------------------------------------------------------- */
+.res .eyebrow,
+.faq .eyebrow,
+.mkt .eyebrow{margin:0 0 18px}
+
+.res h1, .faq h1, .mkt .rhead{
+  font-size:clamp(30px,4.4vw,54px);
+  line-height:1.06;
+  margin:0 0 14px}
+
+.res .lede, .faq .lede, .mkt .lede{
+  margin:0 auto 34px;
+  max-width:54ch}
+
+.hubdiscs{margin-top:30px !important;margin-bottom:40px !important}
+@media(max-width:600px){
+  .hubdiscs.hubdiscs.hubdiscs{margin-top:24px !important;margin-bottom:30px !important}
+}
+
+/* Pin the disc row so it does not move between pages.
+   With the order and margins matched, what was left was copy length:
+   two of the six headings run to two lines and two of the ledes to
+   three, so the row landed anywhere in a 57px band and the eye, which
+   tracks that row from page to page, saw it jump. Reserving the taller
+   case for both means every hub page puts the row in the same place.
+   2.12em is two lines at the h1's 1.06 line-height, 5.17em is three at
+   the lede's 1.72. Phones are left alone: the ledes run to five and six
+   lines there, so reserving the tallest would cost 175px of dead space
+   to close a 32px gap. */
+@media(min-width:601px){
+  .res:not(.prt) h1, .faq h1, .mkt .rhead{min-height:2.12em}
+  .res:not(.prt) .lede, .faq .lede, .mkt .lede{min-height:5.17em}
+}
