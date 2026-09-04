@@ -268,3 +268,24 @@
   .res:not(.prt) h1, .faq h1, .mkt .rhead{min-height:2.12em}
   .res:not(.prt) .lede, .faq .lede, .mkt .lede{min-height:5.17em}
 }
+
+/* ---------------------------------------------------------------
+   The FAQ page is .faq, not .res, so it carried its own copy of the
+   disc styles and they had drifted. The anchor was a flat 88px
+   instead of clamp(88px, 9vw, 116px), which is 116 at 1440, so
+   "Resource library" wrapped to two lines there and only there: the
+   row came out 191px instead of 182 and everything below it started
+   10px lower than on the other five. On a phone its label was 9px at
+   .18em where the rest are 8.5 at .14.
+
+   Rather than patch the .faq copy, the disc sizing is settled here
+   for whatever wrapper the page uses. Doubled selectors put these at
+   (0,2,0) to match .res and .faq, and site-wide.css is last in the
+   head, so it wins the tie.
+   --------------------------------------------------------------- */
+.hubdisc.hubdisc{width:clamp(88px,9vw,116px);gap:13px}
+.hd-disc.hd-disc{width:clamp(76px,8.4vw,104px)}
+.hd-nm.hd-nm{font-size:9px;letter-spacing:.18em;line-height:1.4}
+@media(max-width:560px){
+  .hd-nm.hd-nm{font-size:8.5px;letter-spacing:.14em}
+}
