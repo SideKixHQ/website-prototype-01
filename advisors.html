@@ -1745,6 +1745,31 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv .eyebrow{display:block;font-family:var(--util);font-size:11px;letter-spacing:.24em;
   text-transform:uppercase;color:#9C968D;margin:0 0 16px}
 .adv-note{font-size:14.5px;color:#9C968D;margin:26px 0 0}
+/* The pro bono line was the quietest thing in the loudest section, which is
+   backwards: it is the point that makes the whole marketplace feel less
+   transactional. Given its own frame, a lit dot, and gold that runs when you
+   reach for it. The shimmer only animates on hover, so it costs nothing at
+   rest. */
+.adv-probono{display:inline-flex;align-items:flex-start;gap:13px;
+  margin:30px 0 0;padding:16px 24px 16px 20px;border-radius:14px;max-width:640px;
+  border:1px solid rgba(212,168,86,.3);color:#D8D2C4;font-size:16px;line-height:1.6;
+  background:linear-gradient(100deg,rgba(212,168,86,.10),rgba(212,168,86,.03) 60%,transparent);
+  transition:border-color .35s ease,background .35s ease,color .35s ease}
+.adv-probono::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;border-radius:999px;
+  background:var(--gold);box-shadow:0 0 14px rgba(212,168,86,.75);transition:box-shadow .35s ease}
+.adv-pbtext{min-width:0}
+.adv-probono b{font-weight:700;color:var(--gold-pale)}
+.adv-probono:hover{border-color:rgba(212,168,86,.7);color:#F4EEDF;
+  background:linear-gradient(100deg,rgba(212,168,86,.22),rgba(212,168,86,.07) 60%,rgba(212,168,86,.02))}
+.adv-probono:hover::before{box-shadow:0 0 24px rgba(212,168,86,1)}
+.adv-probono:hover b{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:kxShimmer 6s linear infinite}
+@media (prefers-reduced-motion:reduce){
+  .adv-probono,.adv-probono::before{transition:none}
+  .adv-probono:hover b{animation:none;color:var(--gold-pale);background:none;-webkit-text-fill-color:currentColor}
+}
+
 .adv-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,168,86,.4);
   display:inline-flex;align-items:center;min-height:44px}
 
@@ -1753,42 +1778,91 @@ window.SIDEKIX_SUBMIT = function (payload) {
   min-height:min(86vh,880px);padding-top:clamp(120px,15vh,170px);padding-bottom:clamp(70px,10vh,120px)}
 .adv-hero .adv-inner{position:relative;z-index:5;max-width:1180px;width:100%}
 .adv-hero .adv-inner>*{max-width:720px}
-.adv-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.adv-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
 
 /* The poster sits off in the corner, dark, and comes up when you reach for it.
    Only opacity is animated. Filters and masks on an element this large are what
    cost the site its frame rate elsewhere, so the mask is static and the reveal
    is a single compositor friendly property. */
-.adv-hero-art{position:absolute;right:-3%;top:50%;transform:translateY(-50%);
-  width:min(46%,620px);height:112%;object-fit:cover;object-position:50% 38%;z-index:1;
+.adv-hero-artwrap{position:absolute;right:-3%;top:50%;transform:translateY(-50%);
+  width:min(46%,620px);height:112%;z-index:1;pointer-events:none;overflow:hidden;
   -webkit-mask-image:radial-gradient(70% 70% at 58% 50%,#000 40%,transparent 80%);
-  mask-image:radial-gradient(70% 70% at 58% 50%,#000 40%,transparent 80%);
+  mask-image:radial-gradient(70% 70% at 58% 50%,#000 40%,transparent 80%)}
+.adv-hero-art{position:absolute;left:-5%;top:-5%;width:110%;height:110%;
+  object-fit:cover;object-position:50% 38%;
   filter:saturate(.62);opacity:.13;
-  transition:opacity .75s cubic-bezier(.16,1,.3,1)}
+  transition:opacity .75s cubic-bezier(.16,1,.3,1);
+  animation:advDrift 46s ease-in-out infinite alternate;
+  will-change:transform}
 /* the copy column sits above the art, so the section carries the hover */
-.adv-hero:hover .adv-hero-art,.adv-hero-art:hover{opacity:.94}
+.adv-hero:hover .adv-hero-art{opacity:.94}
+/* A pool of light that follows the pointer, so the panel lights up where you
+   actually are instead of switching on all at once. Painted as a gradient, the
+   same approach the cursor spotlight uses site wide, because a mask or a
+   backdrop-filter animated per frame is what cost the site its frame rate. */
+.adv-hero-light{position:absolute;inset:0;
+  background:radial-gradient(ellipse 46% 32% at var(--ax,50%) var(--ay,42%),
+    rgba(6,5,4,0) 0%,rgba(6,5,4,0) 36%,rgba(6,5,4,.55) 74%,rgba(6,5,4,.8) 100%);
+  opacity:0;transition:opacity .6s ease;will-change:background}
+.adv-hero:hover .adv-hero-light{opacity:1}
+@keyframes advDrift{
+  from{transform:translate3d(0,0,0) scale(1.01)}
+  to{transform:translate3d(-2.4%,1.8%,0) scale(1.08)}
+}
 .adv-hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(90deg,#0B0A06 28%,rgba(11,10,6,.45) 60%,transparent 84%)}
-@media (hover:none){.adv-hero-art{opacity:.4}}
-.adv-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;
-  border-radius:999px;font-family:var(--body);font-weight:700;font-size:16px;text-decoration:none;
-  transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s,background .25s,border-color .25s}
-.adv-btn:hover{transform:translateY(-2px)}
-.adv-btn-gold{background:linear-gradient(180deg,#D7C582,#A1853E);color:#1B1400;border:none;
-  box-shadow:0 12px 40px rgba(23,18,4,.55)}
-.adv-btn-ghost{background:rgba(255,255,255,.04);color:var(--gold-pale);border:1px solid rgba(212,168,86,.45)}
-.adv-btn-ghost:hover{border-color:var(--gold)}
+@media (hover:none){.adv-hero-art{opacity:.4}.adv-hero-light{display:none}}
+/* Lifted from the homepage hero buttons, value for value: same gradient,
+   weights, sizes, padding, radius and shadow, plus the same traced border and
+   the same magnetic pull, so the two pages read as one system.
+   .adv-btn.kx-mag outranks the page's smaller .kx-mag pill on specificity. */
+.adv-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;
+  font-family:'Poppins',system-ui,sans-serif;font-size:17px;line-height:26px;border-radius:999px;
+  text-decoration:none;cursor:pointer}
+.adv-btn-gold span{margin-left:.42em}
+.adv-btn.adv-btn-gold{border:none;background:linear-gradient(180deg,#D7C582,#A1853E);
+  color:#1B1400;font-weight:700;padding:18px 40px;
+  box-shadow:0 10px 44px rgba(231,182,70,.35)}
+.adv-btn.adv-btn-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(212,168,86,.55);
+  color:#EBD08C;font-weight:600;padding:18px 32px}
 .adv-founding{font-family:var(--util);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
   color:#9C968D;margin:28px 0 0}
 .adv-founding b{color:var(--gold);font-weight:600}
 
 /* who it is for */
-.adv-fit{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:2px}
-.adv-fit li{padding:22px 4px;border-top:1px solid rgba(212,168,86,.16);display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:8px 40px;align-items:baseline}
-.adv-fit li:last-child{border-bottom:1px solid rgba(212,168,86,.16)}
-.adv-fit b{font-family:var(--body);font-size:17.5px;font-weight:700;color:#FFF3C6;line-height:1.4}
-.adv-fit span{color:#A8A296;font-size:15.5px;line-height:1.6}
+/* A list of requirements is something you skim. The same five points as a
+   thing you can tick against yourself is something you finish, and it makes
+   the reader decide they qualify before they reach the apply button. */
+.adv-fitcue{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:#8C8478;margin:0 0 20px}
+.adv-fit{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);margin:0}
+@media (min-width:820px){.adv-fit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .adv-fit .adv-fitcard:nth-child(5){grid-column:1 / -1}}
+.adv-fitcard{position:relative;min-width:0;text-align:left;cursor:pointer;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;
+  padding:22px 26px 22px 22px;border-radius:16px;font-family:var(--body);
+  border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.022);
+  transition:border-color .3s,background .3s,transform .3s cubic-bezier(.16,1,.3,1)}
+.adv-fitcard:hover{border-color:rgba(212,168,86,.42);background:rgba(255,255,255,.045);transform:translateY(-2px)}
+.adv-fitcard:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.adv-fitcard b{grid-column:2;font-size:17.5px;font-weight:700;color:#FFF3C6;line-height:1.35}
+.adv-fitsub{grid-column:2;color:#A8A296;font-size:15.5px;line-height:1.6}
+.adv-fitcard-soft b{color:#E6DCC4}
+.adv-tick{grid-row:1 / span 2;align-self:start;margin-top:2px;
+  width:26px;height:26px;border-radius:999px;box-sizing:border-box;
+  border:1.5px solid rgba(212,168,86,.5);background:transparent;
+  transition:background .28s,border-color .28s;position:relative}
+.adv-tick::after{content:"";position:absolute;left:8px;top:4px;width:6px;height:12px;
+  border-right:2px solid #1B1400;border-bottom:2px solid #1B1400;
+  transform:rotate(45deg) scale(.4);opacity:0;transition:opacity .22s,transform .28s cubic-bezier(.16,1,.3,1)}
+.adv-fitcard[aria-pressed="true"]{border-color:rgba(212,168,86,.62);background:rgba(212,168,86,.075)}
+.adv-fitcard[aria-pressed="true"] .adv-tick{background:linear-gradient(180deg,#D7C582,#A1853E);
+  border-color:#D7C582}
+.adv-fitcard[aria-pressed="true"] .adv-tick::after{opacity:1;transform:rotate(45deg) scale(1)}
+.adv-tally{min-height:1.6em;margin:26px 0 0;font-family:var(--display);font-style:italic;
+  font-size:clamp(21px,2.3vw,29px);line-height:1.3;color:var(--gold-pale);
+  opacity:0;transform:translateY(6px);transition:opacity .45s ease,transform .45s cubic-bezier(.16,1,.3,1)}
+.adv-tally.on{opacity:1;transform:none}
 
 /* your role */
 .adv-list{list-style:none;margin:0;padding:0;display:grid;gap:2px;
@@ -1864,9 +1938,10 @@ window.SIDEKIX_SUBMIT = function (payload) {
 
 @media (max-width:980px){
   .adv-hero{min-height:0;padding-top:clamp(110px,14vh,150px)}
-  .adv-hero-art{width:74%;right:-16%;opacity:.1;
+  .adv-hero-artwrap{width:74%;right:-16%;
     -webkit-mask-image:radial-gradient(66% 62% at 60% 46%,#000 34%,transparent 78%);
     mask-image:radial-gradient(66% 62% at 60% 46%,#000 34%,transparent 78%)}
+  .adv-hero-art{opacity:.1}
   .adv-hero-scrim{background:linear-gradient(180deg,rgba(11,10,6,.72) 30%,rgba(11,10,6,.9) 100%)}
 }
 @media (max-width:760px){
@@ -1874,16 +1949,17 @@ window.SIDEKIX_SUBMIT = function (payload) {
   .adv-note{font-size:15.5px}
   .adv-tile p,.adv-card p,.adv-faq details p{font-size:16px}
   .adv-fit span{font-size:16px}
-  .adv-fit li{grid-template-columns:minmax(0,1fr);gap:6px}
+  .adv-fitcard{padding:20px 20px 20px 18px;gap:4px 14px}
   .adv-list li{padding:16px 0}
   .adv-hero{padding-top:clamp(108px,14vh,150px)}
   .adv-playbtn{width:64px;height:64px}
   .adv-playbtn::after{border-width:12px 0 12px 20px}
 }
 @media (prefers-reduced-motion:reduce){
-  .adv-btn,.adv-card,.adv-play img,.adv-playbtn,.adv-hero-art{transition:none}
-  .adv-hero-art{opacity:.34}
-  .adv-btn:hover,.adv-card:hover{transform:none}
+  .adv-card,.adv-play img,.adv-playbtn,.adv-hero-art{transition:none}
+  .adv-hero-art{opacity:.34;animation:none}
+  .adv-hero-light{display:none}
+  .adv-card:hover{transform:none}
 }
 </style>
 
@@ -1920,15 +1996,15 @@ window.SIDEKIX_SUBMIT = function (payload) {
 
 <!-- ════════ HERO ════════ -->
 <section class="adv adv-hero">
-  <img alt="" class="adv-hero-art" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/3c4841d185f2.webp" width="665"/>
+  <div aria-hidden="true" class="adv-hero-artwrap"><img alt="" class="adv-hero-art" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/3c4841d185f2.webp" width="665"/><span class="adv-hero-light"></span></div>
   <div aria-hidden="true" class="adv-hero-scrim"></div>
   <div class="adv-inner">
     <span class="eyebrow">Become an Advisor</span>
     <h1>You already know<br/>what they are <em>about to learn</em>.</h1>
     <p class="lede">SideKix Advisors bring been there, done that experience to people building something. You choose how much time you give, and you are paid for what you know.</p>
     <div class="adv-cta">
-      <a class="adv-btn adv-btn-gold" href="become-an-advisor.html">Apply to advise</a>
-      <a class="adv-btn adv-btn-ghost" href="#adv-film">Watch the film</a>
+      <a class="adv-btn adv-btn-gold kx-mag kx-trace" href="become-an-advisor.html">Apply as an Advisor <span aria-hidden="true">&rarr;</span></a>
+      <a class="adv-btn adv-btn-ghost kx-mag kx-trace" href="#adv-film">Watch the film</a>
     </div>
     <p class="adv-founding"><b>Founding Advisors</b> retain a higher percentage and pay lower fees.</p>
   </div>
@@ -1939,13 +2015,35 @@ window.SIDEKIX_SUBMIT = function (payload) {
   <div class="adv-inner">
     <span class="eyebrow">Who this is for</span>
     <h2>Experienced owners and operators,<br/><em>from every industry</em>.</h2>
-    <ul class="adv-fit">
-      <li><b>You are a current or former business owner.</b><span>You have run the thing, not only studied it.</span></li>
-      <li><b>You have a strong desire to help others.</b><span>The kind of person people already come to for advice.</span></li>
-      <li><b>You want to share what you know.</b><span>Your experience, your knowledge, your hard won skills.</span></li>
-      <li><b>You are reliable, professional and self motivated.</b><span>You show up when you say you will.</span></li>
-      <li><b>Mentoring or coaching experience is a bonus.</b><span>Welcome, and not required.</span></li>
-    </ul>
+    <p class="adv-fitcue">Tick the ones that sound like you.</p>
+    <div class="adv-fit" id="adv-fit">
+      <button aria-pressed="false" class="adv-fitcard" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>You have run a business.</b>
+        <span class="adv-fitsub">Current or former owner. You have done the thing, not only studied it.</span>
+      </button>
+      <button aria-pressed="false" class="adv-fitcard" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>People already ask you for advice.</b>
+        <span class="adv-fitsub">You are the one they call when something is on fire.</span>
+      </button>
+      <button aria-pressed="false" class="adv-fitcard" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>You want to pass it on.</b>
+        <span class="adv-fitsub">Your experience, your knowledge, your hard won skills.</span>
+      </button>
+      <button aria-pressed="false" class="adv-fitcard" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>You show up when you say you will.</b>
+        <span class="adv-fitsub">Reliable, professional, and moving without being pushed.</span>
+      </button>
+      <button aria-pressed="false" class="adv-fitcard adv-fitcard-soft" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>You have mentored or coached before.</b>
+        <span class="adv-fitsub">A bonus, and not required.</span>
+      </button>
+    </div>
+    <p aria-live="polite" class="adv-tally" id="adv-tally"></p>
   </div>
 </section>
 
@@ -1988,7 +2086,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
         <p>Templates, tools, trainings and materials that help users take action. Sell what you have already built.</p>
       </article>
     </div>
-    <p class="adv-note">Pro bono works too. Advisors can set open office hours and charge nothing at all.</p>
+    <p class="adv-probono"><span class="adv-pbtext"><b>Pro bono works too.</b> Advisors can set open office hours and charge nothing at all.</span></p>
   </div>
 </section>
 
@@ -2056,7 +2154,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <h2>Put your experience <em>where it counts</em>.</h2>
     <p class="lede">The application takes a few minutes. It asks about your business, your expertise and how you would like to help.</p>
     <div class="adv-cta">
-      <a class="adv-btn adv-btn-gold" href="become-an-advisor.html">Apply to advise</a>
+      <a class="adv-btn adv-btn-gold kx-mag kx-trace" href="become-an-advisor.html">Apply as an Advisor <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2640,6 +2738,67 @@ try{
   });
 })();
 }catch(e){console.error('SideKix [advisor film] failed:',e);}
+</script>
+
+<script>
+try{
+/* The pool of light on the hero panel. Position is eased toward the pointer and
+   the loop stops as soon as it has caught up, so nothing runs while the mouse
+   is still. Only a background gradient changes; no mask, no filter. */
+(function(){
+  var hero=document.querySelector('.adv-hero');
+  var wrap=hero&&hero.querySelector('.adv-hero-artwrap');
+  var light=wrap&&wrap.querySelector('.adv-hero-light');
+  if(!hero||!wrap||!light) return;
+  if(window.matchMedia&&(matchMedia('(hover:none)').matches||
+     matchMedia('(prefers-reduced-motion:reduce)').matches)) return;
+  var tx=50,ty=42,cx=50,cy=42,raf=null;
+  hero.addEventListener('pointermove',function(e){
+    var r=wrap.getBoundingClientRect();
+    if(!r.width||!r.height) return;
+    tx=((e.clientX-r.left)/r.width)*100;
+    ty=((e.clientY-r.top)/r.height)*100;
+    if(raf===null) raf=requestAnimationFrame(loop);
+  },{passive:true});
+  function loop(){
+    cx+=(tx-cx)*0.13; cy+=(ty-cy)*0.13;
+    light.style.setProperty('--ax',cx.toFixed(2)+'%');
+    light.style.setProperty('--ay',cy.toFixed(2)+'%');
+    if(Math.abs(tx-cx)>0.06||Math.abs(ty-cy)>0.06){ raf=requestAnimationFrame(loop); }
+    else { raf=null; }
+  }
+})();
+}catch(e){console.error('SideKix [advisor hero light] failed:',e);}
+</script>
+
+<script>
+try{
+/* The self check. Plain buttons with aria-pressed, so it is keyboard operable
+   and reads correctly; with the script gone the five points are still there as
+   readable text. */
+(function(){
+  var box=document.getElementById('adv-fit'), out=document.getElementById('adv-tally');
+  if(!box||!out) return;
+  var cards=[].slice.call(box.querySelectorAll('.adv-fitcard'));
+  var LINES=['',
+    'One is a start.',
+    'Two of five. Worth reading on.',
+    'Three of five. That is the shape of an Advisor.',
+    'Four of five. This was written for you.',
+    'Five of five. That is a Founding Advisor.'];
+  function tally(){
+    var n=cards.filter(function(c){return c.getAttribute('aria-pressed')==='true';}).length;
+    out.textContent=LINES[n]||'';
+    out.classList.toggle('on', n>0);
+  }
+  cards.forEach(function(c){
+    c.addEventListener('click',function(){
+      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true' ? 'false':'true');
+      tally();
+    });
+  });
+})();
+}catch(e){console.error('SideKix [advisor fit] failed:',e);}
 </script>
 </body>
 </html>
