@@ -11,6 +11,29 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-03
 
+### Repository cleaned out
+
+Four files removed, about 11.3 MB. Each was checked for references across all
+154 text files in the repository first; only the changelog mentioned any of
+them.
+
+- `server.js`, the backend source. It belongs in `sidekix-email-server`, which
+  is what Render deploys, and the copy there was verified byte for byte
+  identical before deleting this one. Vercel serves this repository statically,
+  so it was publicly readable. No credentials in it, every key reads from
+  `process.env`, but it did publish the honeypot field name, the rate limits and
+  the CORS allowlist.
+- `sidekix-site.zip`, 10.9 MB, the old WordPress export.
+- `assets/img/3c4841d185f2.webp` and `assets/img/9640f533f3e5.webp`, the two
+  superseded versions of the Advisors hero artwork.
+
+The stray root-level `sitewide.css` was removed earlier the same day.
+
+Left in place: the ten `assets/worksheets/*.txt` files. Nothing links to them,
+but each one sits beside the PDF that is linked, so they read as the plain text
+source rather than as cruft. All eleven linked worksheet PDFs are present and
+accounted for.
+
 ### Wide-screen type scaling removed
 
 An earlier version of `site-wide.css` raised the ceiling on 73 font-size,
@@ -278,14 +301,6 @@ matching `glossary.html`.
 - **The homepage is slow.** ~50ms per frame on desktop and ~67ms on mobile even
   after the spotlight fix, from the hero artwork's drop-shadows and blend
   modes. Not yet addressed.
-- **`server.js` is in this repository.** It belongs in `sidekix-email-server`,
-  which is what Render deploys, and an identical copy is already there. Vercel
-  serves this repository statically, so it is publicly readable. It contains no
-  credentials — every key reads from `process.env` — but it does publish the
-  honeypot field name, the rate limits and the CORS allowlist.
-- **`sidekix-site.zip` is in this repository** — 11.1 MB, the old export.
-- **`sitewide.css` at the repository root** is a stray duplicate of
-  `assets/site-wide.css`. Nothing links to it.
 - **517 event cards have no description**, because the host published none.
 - **`partners.html` is missing from `sitemap.xml`.**
 - **Backend contacts are stored in `/tmp`** on Render, which is wiped on
