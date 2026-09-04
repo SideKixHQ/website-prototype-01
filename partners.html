@@ -1762,61 +1762,80 @@ window.SIDEKIX_SUBMIT = function (payload) {
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"SideKix film","description":"What SideKix is building, and how partners, affiliates and sponsors fit in.","thumbnailUrl":"https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/GsnBg1r40cg","contentUrl":"https://youtu.be/GsnBg1r40cg"}</script>
 <style id="kx-prt-poster">
-/* ---- the poster, on the left of the hero ----
-   It rests gold: desaturated, sepia-shifted toward the site's gold and dimmed
-   to .6, so it belongs on the page rather than shouting off it. Hover restores
-   the full colour and lifts the brightness past 1, which is the "really bright"
-   part, and a gold sheen sweeps across it once. The filter is the same function
-   list in both states, in the same order, so the browser interpolates between
-   them instead of snapping.
-   Touch devices never get hover, so they rest in a brighter middle state. */
-.prthero{display:grid;gap:clamp(26px,4vw,52px);align-items:center;
-  /* .wrap on this page is full bleed, unlike the hub pages, because every
-     section below sets its own measure. The hero has to do the same or the
-     poster sits flat against the left edge of the window. */
-  max-width:1040px;margin:0 auto 6px;padding:0 24px;box-sizing:border-box}
-.prthero-copy{min-width:0}
-@media (min-width:900px){
-  .prthero{grid-template-columns:minmax(220px,290px) minmax(0,1fr)}
-  .prthero-copy{text-align:left}
-  .prthero-copy h1,.prthero-copy .lede{text-align:left;margin-left:0;margin-right:0}
-  .prthero-copy .lede{max-width:56ch}
-}
-.prt-poster{position:relative;display:block;width:100%;max-width:290px;margin:0 auto;
-  border-radius:10px;overflow:hidden;isolation:isolate;
-  box-shadow:0 22px 60px rgba(0,0,0,.6);
-  transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s ease}
-.prt-poster img{display:block;width:100%;height:auto;
-  filter:saturate(.3) sepia(.55) hue-rotate(-12deg) brightness(.6) contrast(1.04);
-  transform:scale(1.004);
-  transition:filter .55s ease,transform .8s cubic-bezier(.16,1,.3,1)}
-.prt-poster::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  border-radius:10px;border:1px solid rgba(212,168,86,.45);
-  box-shadow:inset 0 0 44px rgba(212,168,86,.12);
-  transition:border-color .5s ease,box-shadow .5s ease}
-.prt-poster::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-55%;width:42%;
-  z-index:3;pointer-events:none;opacity:0;
-  transform:rotate(14deg) translateX(0);
-  background:linear-gradient(90deg,rgba(243,228,168,0),rgba(255,246,214,.55),rgba(243,228,168,0))}
-.prt-poster:hover{transform:translateY(-5px);
-  box-shadow:0 32px 74px rgba(0,0,0,.72),0 0 64px rgba(231,182,70,.38)}
-.prt-poster:hover img{filter:saturate(1.4) sepia(0) hue-rotate(0deg) brightness(1.18) contrast(1.08);
-  transform:scale(1.035)}
-.prt-poster:hover::before{border-color:#F3E4A8;box-shadow:inset 0 0 66px rgba(212,168,86,.26)}
-.prt-poster:hover::after{opacity:1;animation:prtSheen 1.05s cubic-bezier(.3,0,.2,1) forwards}
-@keyframes prtSheen{
-  from{transform:rotate(14deg) translateX(0)}
-  to{transform:rotate(14deg) translateX(400%)}}
-@media (hover:none){
-  .prt-poster img{filter:saturate(1) sepia(.14) hue-rotate(-6deg) brightness(.94) contrast(1.03)}
+/* ---- the poster gets the treatment the homepage and advisors hero use ----
+   Not a framed card on the page but artwork rising out of the ground: the red
+   border trimmed off, an elliptical alpha baked into both plates so the edges
+   dissolve rather than stopping, a gold duotone at rest and the full colour
+   underneath it. Mirrored from the advisors hero, which puts its art on the
+   right, because this one goes on the left.
+
+   Two plates rather than a CSS filter, because a filter cannot turn a gold
+   duotone back into the original reds and greens; crossfading opacity between
+   two images can, and the compositor does it without repainting either one. */
+.prthero{position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(560px,80vh,760px);
+  display:flex;align-items:center;
+  margin:0 0 10px}
+/* The advisors art is a figure, so letting it run past the top and bottom of
+   its section reads as a crop. This one is a poster with a caption box at its
+   foot, and cropping that just looks like the file is cut, so it is sized to
+   sit inside the section rather than overflow it. */
+.prthero-artwrap{position:absolute;left:3%;top:50%;transform:translateY(-50%);
+  width:min(40%,510px);height:96%;z-index:1;pointer-events:none;overflow:visible}
+.prthero-art{position:absolute;left:0;top:0;width:100%;height:100%;
+  object-fit:contain;object-position:42% 46%;
+  animation:prtDrift 52s ease-in-out infinite alternate;will-change:transform;
+  transition:opacity .75s cubic-bezier(.16,1,.3,1)}
+.prthero-duo{opacity:.36}
+.prthero-colour{opacity:0}
+.prthero:hover .prthero-duo{opacity:0}
+.prthero:hover .prthero-colour{opacity:1}
+.prthero-light{position:absolute;inset:-6%;
+  background:radial-gradient(ellipse 44% 30% at var(--px,50%) var(--py,46%),
+    rgba(6,5,4,0) 0%,rgba(6,5,4,0) 34%,rgba(6,5,4,.5) 70%,rgba(6,5,4,.72) 100%);
+  -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
+  mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
+  opacity:0;transition:opacity .6s ease;will-change:background}
+.prthero:hover .prthero-light{opacity:1}
+@keyframes prtDrift{
+  from{transform:translate3d(0,0,0) scale(1.01)}
+  to{transform:translate3d(2.4%,1.8%,0) scale(1.07)}}
+/* The advisors scrim mirrored exactly would have darkened this artwork's left
+   half, because there the art sits against the right edge of the window and is
+   meant to fade off it. This one stands clear of the edge, so the band is cut
+   for where it actually is: a touch of dark at the very edge so nothing stops
+   hard, fully open from 14% to 42% where the poster sits, and solid from 74%
+   across, behind the copy. */
+.prthero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(11,10,6,.5) 0%,rgba(11,10,6,0) 14%,
+      rgba(11,10,6,0) 42%,rgba(11,10,6,.55) 60%,#0B0A06 74%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 18%,rgba(11,10,6,0) 86%,#0B0A06 100%)}
+.prthero-copy{position:relative;z-index:3;
+  width:min(560px,92%);margin-left:auto;margin-right:clamp(24px,7vw,120px);
+  text-align:left}
+.prthero-copy h1,.prthero-copy .lede{text-align:left;margin-left:0;margin-right:0}
+.prthero-copy .lede{max-width:44ch}
+
+@media (max-width:900px){
+  /* One column, so the art stops being a backdrop and becomes a picture under
+     the copy, in colour, the same correction the advisors hero needed. */
+  .prthero{flex-direction:column;align-items:stretch;min-height:0;overflow:visible;
+    padding-bottom:6px}
+  .prthero-copy{order:1;width:100%;margin:0 auto;text-align:center}
+  .prthero-copy h1,.prthero-copy .lede{text-align:center;margin-left:auto;margin-right:auto}
+  .prthero-artwrap{position:relative;order:2;left:auto;top:auto;transform:none;
+    width:min(330px,80%);height:auto;aspect-ratio:.72;margin:24px auto 0}
+  .prthero-art{animation:none;object-position:center;transition:none}
+  .prthero-duo{opacity:0}
+  .prthero-colour{opacity:1}
+  .prthero-scrim,.prthero-light{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .prt-poster,.prt-poster img{transition:none}
-  .prt-poster:hover{transform:none}
-  .prt-poster:hover img{transform:none}
-  .prt-poster:hover::after{animation:none;opacity:0}
+  .prthero-art{animation:none;transition:none}
 }
 </style>
+
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
 <nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
@@ -1845,16 +1864,14 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <!-- CTA -->
 <!-- FOOTER -->
 <div aria-hidden="true" class="prt-ground"></div>
-<main id="maincontent"><section class="wrap res prt"><p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p><div class="prthero">
-  <div class="prthero-art">
-    <div class="prt-poster">
-      <img alt="A SideKix poster: a founder waving for help from a sea of green slime, captioned stuck in your entrepreneurship journey? Call SideKix." decoding="async" fetchpriority="high" height="1138" src="assets/img/31a891d18873.webp" width="640"/>
-    </div>
-  </div>
+<main id="maincontent"><section class="wrap res prt"><p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p><section class="prthero">
+  <div aria-hidden="true" class="prthero-artwrap"><img alt="" class="prthero-art prthero-duo" decoding="async" fetchpriority="high" height="1368" src="assets/img/7235ff7fdcf7.webp" width="760"/><img alt="" class="prthero-art prthero-colour" decoding="async" height="1368" loading="lazy" src="assets/img/72df091fa7ff.webp" width="760"/><span class="prthero-light"></span></div>
+  <div aria-hidden="true" class="prthero-scrim"></div>
   <div class="prthero-copy">
     <span class="eyebrow">Partners</span><h1>Collaboration is what<br/>builds <em>community</em>.</h1>
     <p class="lede">Three ways to work with us, each with a different shape. Pick the one that fits and we will take it from there.</p>
   </div>
+</section>
 </div><div aria-label="Ways to work with SideKix" class="prtdiscs" role="tablist"><button aria-controls="panel-affiliates" aria-selected="true" class="prtdisc" data-k="affiliates" id="tab-affiliates" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Affiliates</span><span class="pd-kick">Referral based</span></button><button aria-controls="panel-partners" aria-selected="false" class="prtdisc" data-k="partners" id="tab-partners" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Partners</span><span class="pd-kick">Co-create and collaborate</span></button><button aria-controls="panel-sponsors" aria-selected="false" class="prtdisc" data-k="sponsors" id="tab-sponsors" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Sponsors</span><span class="pd-kick">Brand visibility</span></button></div><div class="prtpanel" id="prtpanel"><div aria-labelledby="tab-affiliates" class="prtp" id="panel-affiliates" role="tabpanel"><h2>You get discovered by people who need exactly what you do.</h2><ul class="prtben"><li>Your business surfaces in Kix suggestions when a member's situation matches what you offer</li><li>An exclusive member discount listed in the community classifieds</li><li>Referral tracking, so you see what the relationship is actually worth</li><li>No cost to join and no exclusivity</li></ul><button class="prtgo" data-kind="affiliate" data-pfopen="" type="button">Talk to us about becoming an affiliate</button></div><div aria-labelledby="tab-partners" class="prtp" hidden="" id="panel-partners" role="tabpanel"><h2>You help build the thing, and the thing carries your name.</h2><ul class="prtben"><li>Co-created workshops, trainings and content, credited to you</li><li>Your offering integrated into the member journey rather than bolted on</li><li>A say in long-term programmes for entrepreneur education and access</li><li>Named on this page and in the product</li></ul><button class="prtgo" data-kind="partner" data-pfopen="" type="button">Talk to us about becoming a partner</button></div><div aria-labelledby="tab-sponsors" class="prtp" hidden="" id="panel-sponsors" role="tabpanel"><h2>You fund the work and get seen doing it.</h2><ul class="prtben"><li>Fund an event, a programme or a campaign and put your name on it</li><li>In-app and on-site placement where members are already looking</li><li>Co-branded experiences built with our team</li><li>Reporting on reach, not vanity numbers</li></ul><button class="prtgo" data-kind="sponsor" data-pfopen="" type="button">Talk to us about becoming a sponsor</button></div></div><section class="prtfilm" id="prt-film"><span class="prtfilm-eyebrow">The film</span><h2 class="prtfilm-h">What we are building, <em>in two minutes</em>.</h2><div class="prtfilm-box" data-yt="GsnBg1r40cg"><button class="prtfilm-play" type="button" aria-label="Play the SideKix film"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg" width="1280"/><span aria-hidden="true" class="prtfilm-btn"></span></button></div><p class="prtfilm-note"><a href="https://youtu.be/GsnBg1r40cg" rel="noopener" target="_blank">Watch on YouTube &rarr;</a></p></section><div class="prtroster"><h2>Who is already here</h2><h3>National affiliates</h3><div class="prtticker"><div aria-hidden="true" class="prtlane prtlane-a"><div class="prttrack"><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span></div></div><div aria-hidden="true" class="prtlane prtlane-b"><div class="prttrack"><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span></div></div><ul class="sr-only"><li>Amplemarket</li><li>Apollo</li><li>AspenTechLabs</li><li>BILL</li><li>Beehiiv</li><li>Capsule</li><li>Carta</li><li>Catalyst</li><li>Clearco</li><li>Contractor Foreman</li><li>ElevenLabs</li><li>FreshBooks</li><li>Google Workspace</li><li>Gusto</li><li>HealthRx</li><li>Housecall Pro</li><li>Instantly.AI</li><li>KrispCall</li><li>Leadpages</li><li>Make</li><li>Optery</li><li>Printify</li><li>ProDevs</li><li>Rewarx Studio AI</li><li>ShadowGPS</li><li>Shopify</li><li>Smart Tracking</li><li>Trainual</li><li>Unitel</li><li>WhatConverts</li><li>ZenBusiness</li><li>airSlate</li><li>folk</li><li>monday.com</li></ul></div><h3>Partners</h3><div class="prtnames"><span class="prtname">Right to Start</span><span class="prtname">Second Order Studio</span><span class="prtname">Self Help Credit Union</span><span class="prtname">Zapier</span></div><h3>Local, Wilmington NC</h3><div class="prtnames"><span class="prtname">BlueTone Media</span><span class="prtname">Bridge to Wilmington</span><span class="prtname">Cape Fear Community College</span><span class="prtname">K Starr Coaching</span><span class="prtname">UNCW</span></div></div><div class="prtend">
 <h2>Ready when you are.</h2>
 <p>Tell us which of the three fits and a little about what you do. We reply to every one.</p>
@@ -2434,6 +2451,34 @@ try{
   });
 })();
 }catch(e){console.error('SideKix [partners film] failed:',e);}
+</script>
+
+<script>
+try{
+/* The light that follows the pointer across the artwork, the same driver the
+   advisors hero uses: a rAF loop that eases toward the cursor and stops
+   scheduling frames once it has settled, rather than running forever. */
+(function(){
+  var hero=document.querySelector('.prthero');
+  if(!hero) return;
+  var wrap=hero.querySelector('.prthero-artwrap'), light=hero.querySelector('.prthero-light');
+  if(!wrap||!light) return;
+  if(!window.matchMedia||!matchMedia('(hover:hover)').matches) return;
+  var cx=50, cy=46, tx=50, ty=46, raf=null;
+  function loop(){
+    cx+=(tx-cx)*0.13; cy+=(ty-cy)*0.13;
+    light.style.setProperty('--px',cx.toFixed(2)+'%');
+    light.style.setProperty('--py',cy.toFixed(2)+'%');
+    if(Math.abs(tx-cx)>0.06||Math.abs(ty-cy)>0.06){ raf=requestAnimationFrame(loop); }
+    else { raf=null; }
+  }
+  hero.addEventListener('pointermove',function(e){
+    var r=wrap.getBoundingClientRect();
+    tx=((e.clientX-r.left)/r.width)*100; ty=((e.clientY-r.top)/r.height)*100;
+    if(raf===null) raf=requestAnimationFrame(loop);
+  },{passive:true});
+})();
+}catch(e){console.error('SideKix [partners hero light] failed:',e);}
 </script>
 </body>
 </html>
