@@ -9,6 +9,75 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-04, later
+
+### Core Web Vitals: two pages were failing CLS
+
+Measured with Playwright, layout-shift observer, buffered, at 390x844 and
+1440x900.
+
+**events.html was at 0.2481 desktop and 0.2095 mobile.** Google's threshold is
+0.1. `#kx-filters`, `#kx-next` and `#kx-grid` are all empty on first paint and
+get filled once `events.json` parses, about 350ms in. The "every Monday" panel
+below them was drawn inside the first viewport and then shoved out of it. That
+one push was the whole score.
+
+Fixed by reserving the space each block is about to occupy. Settled heights,
+measured after render: filters 97px at 1024 and up, 256px on a phone; the
+next-up panel 389 to 404 desktop, 574 mobile; the grid runs past nine thousand
+pixels, so all that matters there is "taller than the fold". The reservations
+are scoped to `html:not(.kx-ready)` and the class goes on in the same frame the
+content does, so a week with no upcoming event does not leave a 404px hole.
+`#kx-stamp`, empty until the JSON lands and then one 14px line, got a
+`min-height` too.
+
+Now 0.0000 desktop. Mobile alternates between 0.0000 and 0.0469 across runs;
+the residue is the Google Fonts swap reflowing the hero, which is the same
+root cause as the Poppins loading problem already on the known issues list.
+Both numbers are inside the "good" band.
+
+**library.html was at 0.0955 desktop**, a hair under the threshold. The
+sixty-three article counts on the filter chips were computed in JavaScript from
+cards that are already in the HTML, then appended, widening every chip and
+reflowing the row. The counts are now baked into the markup at build time. The
+script keeps its `if(!b.querySelector('.n'))` guard, so it is a no-op when they
+are already there. Now 0.0000 at both widths.
+
+Everything else measured clean: LCP between 92 and 552ms locally, total
+blocking time 0 on every page.
+
+### Metadata
+
+An audit of all eighteen pages. Sitemap and robots.txt came back clean:
+seventy-nine URLs, no duplicates, no orphans, every HTML file present, every
+blog post present, all https, and the sitemap declared in robots.txt with
+sixteen AI crawlers named and allowed. Canonicals are self-referential and
+correct on every page. Every JSON-LD block parses. One `h1` per page.
+
+Fixed:
+
+- Three titles ran past the roughly sixty characters a result shows.
+  `events.html` 68 to 53, `partners.html` 62 to 55, `advisors.html` 61 to 53.
+- Four descriptions truncated, five were short enough that Google would write
+  its own. All eighteen now sit between 130 and 156 characters. The homepage
+  was the worst of them at 83.
+- `max-image-preview:large` was on three pages. It is now on all seventeen
+  indexable ones, which is what lets a result carry a large image and what
+  several answer engines read. `404.html` keeps `noindex`.
+- Four pages carried the same `og:description` twice.
+
+### Known, not fixed
+
+- `404.html` has no `og:url`. It is `noindex`, so nothing reads it.
+- The homepage title uses an em dash, which the SideKix copy rules exclude.
+  Left alone because it is the brand lockup rather than generated copy.
+- `library.html` has a card categorised Legal but no Legal filter chip, so
+  that piece is only reachable under Everything.
+- `index.html` transfers 1.56 MB and `how-it-works.html` 1.12 MB, almost all
+  images.
+
+---
+
 ## 2026-09-04
 
 ### Library became Resources, and the hub discs say where you are

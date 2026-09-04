@@ -17,10 +17,10 @@
 </style>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Free Business Events Near You, Every State, Updated Weekly | SideKix</title>
-<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." property="og:description"/>
+<title>Free Business Events in Every State, Weekly | SideKix</title>
+<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits and banks. Online, livestreamed and in person, checked at the source weekly." property="og:description"/>
 <meta content="Business events in every state, checked every week" property="og:title"/>
-<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." name="description"/>
+<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits and banks. Online, livestreamed and in person, checked at the source weekly." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;family=Cormorant+Garamond:wght@600&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
@@ -677,7 +677,7 @@ main{overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
 <meta content="Business events in every state, checked every week" name="twitter:title"/>
-<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person. Checked at the source every week." name="twitter:description"/>
+<meta content="Business events for founders in every state, from SBDCs, colleges, nonprofits and banks. Online, livestreamed and in person, checked at the source weekly." name="twitter:description"/>
 <meta content="https://sidekixhq.com/assets/k-mark.png" name="twitter:image"/>
 <style>
 #kx-seo{max-width:1100px;margin:0 auto;padding:0 56px 60px;color:#9B958B;font-size:14px;line-height:1.7}
@@ -859,6 +859,32 @@ html.kx-idle *::after{
    them, so a line break landed inside "Tuesday, SEP 8" rather than between the
    items. A wrapping flex row breaks only at the gaps, and carries its own
    separators so the parts stay readable when they do wrap. */
+/* ---- reserve the space JavaScript is about to fill ----
+   #kx-filters, #kx-next and #kx-grid are all empty on first paint and get
+   their contents once events.json parses, roughly 350ms in. Everything
+   below them, starting with the "every Monday" panel, was drawn inside the
+   first viewport and then shoved out of it. Measured CLS on this page was
+   0.2481 on desktop and 0.2095 on mobile, both past Google's 0.1 threshold,
+   and the whole of it came from that one push.
+
+   The settled heights, measured after render: filters 97px at 1024 and
+   above, 256px on a phone; the next-up panel 389 to 404 desktop, 574 mobile;
+   the grid runs to nine thousand pixels and more, so the only number that
+   matters there is "taller than the fold". Reserving these means the panel
+   below starts off-screen on the first paint and never moves into view.
+   min-height, not height, so a week with fewer events still collapses
+   correctly rather than leaving a hole. */
+/* The "updated" stamp is empty until the JSON parses and then becomes one
+   14px line, which was the last 14px of movement on the page and, because
+   the next-up panel sat right at the fold, worth 0.047 of CLS on a phone. */
+#kx-stamp{min-height:14px;line-height:14px}
+html:not(.kx-ready) #kx-filters{min-height:97px}
+html:not(.kx-ready) #kx-next[hidden]{display:block !important;visibility:hidden;min-height:404px}
+html:not(.kx-ready) #kx-grid{min-height:100vh}
+@media(max-width:1023px){
+  html:not(.kx-ready) #kx-filters{min-height:256px}
+  html:not(.kx-ready) #kx-next[hidden]{min-height:574px}
+}
 #kx-next-meta{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;
   gap:2px 9px}
 #kx-next-meta > span{white-space:nowrap}
@@ -1190,6 +1216,10 @@ fetch('events.json').then(function(r){return r.json();}).then(function(data){
   var u=new Date(data.updated+'T12:00:00');
   document.getElementById('kx-stamp').textContent='UPDATED '+MONTHS[u.getMonth()]+' '+u.getDate()+', '+u.getFullYear();
   renderNext();renderFilters();renderGrid();
+  /* the reserved heights come off in the same frame the real content goes
+     in, so a week with no upcoming event does not leave a 404px hole where
+     the next-up panel would have been. */
+  document.documentElement.classList.add('kx-ready');
   /* a deep link like events.html?topic=Finance should land on that filter.
      how-it-works sends people here with a topic, and the parameter was being
      ignored, so they arrived at the unfiltered list. */
