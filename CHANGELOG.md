@@ -9,6 +9,106 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-04
+
+### Library became Resources, and the hub discs say where you are
+
+The top level nav item read **Library** and pointed at `library.html`, while the
+floating orb tray built its own list in JavaScript and pointed **Resources** at
+`resources.html`. Two names, two destinations, one idea. Both now read
+**Resources** and both go to `library.html`, which is the hub: the blog index
+with its topic filters, and the row of discs leading to everything else.
+
+`resources.html`, the directory of twenty nine public agencies, lenders and
+registries, is now the **Resource library** and sits under that hub.
+
+The disc row itself worked backwards. Each page showed the *other* five
+destinations and omitted its own, so landing anywhere in the hub gave no sense
+of place: five discs, none of them you. Every hub page now carries the same six
+discs in the same order, and lights its own:
+
+    Blogs · Resource library · Calculators · Glossary · FAQs · Market data
+
+The lit state is carried by three things rather than colour alone, so it still
+reads in greyscale: a brighter rim, the smile that hover normally reveals, and a
+halo ring offset from the disc. `aria-current="page"` carries it to a screen
+reader.
+
+**Mobile.** Six discs would not fit the single line the row used, so on a phone
+it had become a sideways scroller with two discs past the edge and no
+affordance saying so. On `market-data.html` the lit disc was the hidden sixth.
+Below 600px the row is now a wrapping 3x2 grid: 92px discs, two 14px gaps,
+304px inside a 320px viewport. Measured `scrollWidth - clientWidth` at 390px
+across all six pages: was 274px, now 0.
+
+The grid rules are written as `.hubdiscs.hubdiscs.hubdiscs` because the
+per-page blocks declare `flex-wrap:nowrap` and their gaps with `!important` at
+(0,2,0); among `!important` declarations specificity still decides the winner.
+
+**Also fixed while in these files.**
+
+- `library.html` declared `"@id"` and `"url"` of `resources.html` in its
+  `CollectionPage` node, and both pages pointed breadcrumb position 2 at
+  `resources.html`. The fourth instance of this inherited copy-and-paste in the
+  original export. Both now describe themselves; `resources.html` gained a third
+  breadcrumb level under Resources.
+- Both pages carried two `og:description` tags with different text, the second
+  being the other page's. The wrong one is gone from each.
+- `library.html` was in neither `sitemap.xml` nor `llms.txt`, despite being the
+  index for all sixty three blog posts. So was `partners.html`. Both added.
+- `llms.txt` described `resources.html` as "Blog and resources" with the blog's
+  own summary. Both entries now describe the page they point at.
+- The orb tray had no Advisors entry, so `advisors.html` lit **Partners**
+  instead. The tray list now mirrors the nav, and `KXHERE` is set correctly on
+  `advisors.html`, `become-an-advisor.html`, `faq.html`, `glossary.html`,
+  `tools.html` and `market-data.html`, which were empty or wrong.
+
+### Advisors page
+
+- The countdown stops at **00:15 MIN** rather than running to zero. The caption
+  under it reads "Shortest session" instead of "Minimum required"; the body copy
+  still says there is no minimum overall commitment, which is a different claim
+  and still true.
+- The hero's second sentence starts its own line. A `<br/>` would have done it
+  at one width and left a two word orphan at every other, so the sentence is a
+  block instead: it always begins on a new line and still wraps on its own
+  terms. It sets no colour, so the hover gradient on the parent still clips
+  through it.
+- "Your role" is now "Your responsibilities". "Generate revenue" is now "Work
+  from anywhere".
+
+### Membership: the reserve note
+
+The sentence under the tier cards was capped twice, at 60ch on the line and
+62ch on the paragraph, which put it on four lines and made a footnote read as
+a wall. Both caps lifted; the paragraph now runs to 960px and settles on two
+lines at 1440. Phones are already narrower than the cap, so nothing changes
+there.
+
+The **Sign up for notifications** button warmed by one shade on hover, which
+was easy to miss next to the three tier buttons above it. It now fills with the
+gold gradient the site uses elsewhere, ink text on gold, with the same glow.
+Contrast on hover is `#151000` on `#F3E4A8` to `#D4A856`. The rule covers
+`:focus-visible` as well, so keyboard users get the same signal.
+
+### Checked
+
+Playwright, 14 pages, at 390x844 and 1440x900, scrolled to the bottom and back
+so lazy sections had rendered.
+
+- Six discs on every hub page, exactly one lit, `aria-current="page"` on it,
+  computed rim `rgb(243, 228, 168)`, mouth opacity 1.
+- Horizontal document overflow: 0 on every page at both widths.
+- Text overlap, measured as intersecting rectangles of leaf text nodes covering
+  more than 30% of the smaller box, ignoring fixed and sticky layers: 0 pairs on
+  all six hub pages and on `advisors.html`, `events.html`, `how-it-works.html`
+  and `partners.html`. What remains is the intentional crossfade on
+  `index.html` and `membership.html`, plus wrapped inline links whose multi-line
+  bounding boxes overlap by definition.
+- Clock reads `00:15 MIN` at rest at both widths.
+
+---
+
 ## 2026-09-03
 
 ### Repository cleaned out

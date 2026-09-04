@@ -39,7 +39,8 @@ email address.
 - [Small Business Help & Data: US and North Carolina | SideKix](https://sidekixhq.com/market-data.html): About 5,000 business ideas are buried in the US every day. The data behind that number, and the free federal help most people never use.
 - [Membership | SideKix](https://sidekixhq.com/membership.html): Three memberships and a free way in. Access at $39, Core at $99 with grants and an Advisor session, Premium at $299 with investor matching. Start...
 - [Privacy Policy | SideKix](https://sidekixhq.com/privacy.html): How SideKix collects, uses, discloses, retains and protects personal information, including Kix conversations, voice, transcripts and device...
-- [Blog and resources | SideKix](https://sidekixhq.com/resources.html): Free guides, templates and answers for people building something. Fifty-one pieces on starting, funding, growing and staying with it. No account...
+- [Resources: Blogs, Guides and Answers | SideKix](https://sidekixhq.com/library.html): The SideKix resource hub. Sixty-three blog posts on starting, funding, growing and staying with it, filterable by topic, plus the resource library, calculators, glossary, FAQs and market data. No account required.
+- [Resource Library: Agencies, Lenders and Registries | SideKix](https://sidekixhq.com/resources.html): Twenty nine agencies, lenders, advisors and registries that help people start and run a business in the United States. Every one is public, no cost to use, and linked straight to the page you need.
 - [Terms of Use | SideKix](https://sidekixhq.com/terms.html): The terms governing the SideKix platform, including Kix, Journey Maps, Community, Advisors, events, subscriptions and Kix Credits.
 - [Free Business Calculators: Startup Cost, Breakeven | SideKix](https://sidekixhq.com/tools.html): Four free calculators for people starting something: startup costs, breakeven point, hourly rate and product pricing. Nothing saved, nothing sent.
 
