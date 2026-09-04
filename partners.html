@@ -1776,17 +1776,19 @@ window.SIDEKIX_SUBMIT = function (payload) {
   min-height:clamp(560px,80vh,760px);
   display:flex;align-items:center;
   margin:0 0 10px}
-/* The advisors art is a figure, so letting it run past the top and bottom of
-   its section reads as a crop. This one is a poster with a caption box at its
-   foot, and cropping that just looks like the file is cut, so it is sized to
-   sit inside the section rather than overflow it. */
-.prthero-artwrap{position:absolute;left:3%;top:50%;transform:translateY(-50%);
-  width:min(40%,510px);height:96%;z-index:1;pointer-events:none;overflow:visible}
+/* Fitted inside its box, the plate read as an oval floating on the page: you
+   could see where the artwork stopped, which is the one thing the advisors
+   hero never does. It works there because the art is cropped and runs off the
+   window edge, so the fade is never seen as a shape. Same geometry here,
+   mirrored: wider than its column, taller than the section, hanging off the
+   left edge, and covering rather than fitting. */
+.prthero-artwrap{position:absolute;left:-5%;top:50%;transform:translateY(-50%);
+  width:min(46%,620px);height:118%;z-index:1;pointer-events:none;overflow:visible}
 .prthero-art{position:absolute;left:0;top:0;width:100%;height:100%;
-  object-fit:contain;object-position:42% 46%;
+  object-fit:cover;object-position:52% 44%;
   animation:prtDrift 52s ease-in-out infinite alternate;will-change:transform;
   transition:opacity .75s cubic-bezier(.16,1,.3,1)}
-.prthero-duo{opacity:.36}
+.prthero-duo{opacity:.42}
 .prthero-colour{opacity:0}
 .prthero:hover .prthero-duo{opacity:0}
 .prthero:hover .prthero-colour{opacity:1}
@@ -1808,9 +1810,10 @@ window.SIDEKIX_SUBMIT = function (payload) {
    across, behind the copy. */
 .prthero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(11,10,6,.5) 0%,rgba(11,10,6,0) 14%,
-      rgba(11,10,6,0) 42%,rgba(11,10,6,.55) 60%,#0B0A06 74%),
-    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 18%,rgba(11,10,6,0) 86%,#0B0A06 100%)}
+    linear-gradient(90deg,rgba(11,10,6,.6) 0%,rgba(11,10,6,0) 11%,
+      rgba(11,10,6,0) 28%,rgba(11,10,6,.55) 43%,#0B0A06 57%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 21%,
+      rgba(11,10,6,0) 80%,#0B0A06 100%)}
 .prthero-copy{position:relative;z-index:3;
   width:min(560px,92%);margin-left:auto;margin-right:clamp(24px,7vw,120px);
   text-align:left}
@@ -1825,8 +1828,11 @@ window.SIDEKIX_SUBMIT = function (payload) {
   .prthero-copy{order:1;width:100%;margin:0 auto;text-align:center}
   .prthero-copy h1,.prthero-copy .lede{text-align:center;margin-left:auto;margin-right:auto}
   .prthero-artwrap{position:relative;order:2;left:auto;top:auto;transform:none;
-    width:min(330px,80%);height:auto;aspect-ratio:.72;margin:24px auto 0}
-  .prthero-art{animation:none;object-position:center;transition:none}
+    /* The poster's own proportions, so contain shows all of it. Cover, which
+       is right when it is a backdrop bleeding off the window edge, crops the
+       title and the caption off when it is a picture standing on its own. */
+    width:min(330px,80%);height:auto;aspect-ratio:648/1166;margin:24px auto 0}
+  .prthero-art{animation:none;object-fit:contain;object-position:center;transition:none}
   .prthero-duo{opacity:0}
   .prthero-colour{opacity:1}
   .prthero-scrim,.prthero-light{display:none}
@@ -1865,7 +1871,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <!-- FOOTER -->
 <div aria-hidden="true" class="prt-ground"></div>
 <main id="maincontent"><section class="wrap res prt"><p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p><section class="prthero">
-  <div aria-hidden="true" class="prthero-artwrap"><img alt="" class="prthero-art prthero-duo" decoding="async" fetchpriority="high" height="1368" src="assets/img/7235ff7fdcf7.webp" width="760"/><img alt="" class="prthero-art prthero-colour" decoding="async" height="1368" loading="lazy" src="assets/img/72df091fa7ff.webp" width="760"/><span class="prthero-light"></span></div>
+  <div aria-hidden="true" class="prthero-artwrap"><img alt="" class="prthero-art prthero-duo" decoding="async" fetchpriority="high" height="1475" src="assets/img/bffe23e7fabc.webp" width="820"/><img alt="" class="prthero-art prthero-colour" decoding="async" height="1475" loading="lazy" src="assets/img/9756f93332d7.webp" width="820"/><span class="prthero-light"></span></div>
   <div aria-hidden="true" class="prthero-scrim"></div>
   <div class="prthero-copy">
     <span class="eyebrow">Partners</span><h1>Collaboration is what<br/>builds <em>community</em>.</h1>
