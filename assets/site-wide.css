@@ -323,3 +323,30 @@
    default. Nothing about it looks different. */
 .kx-hc-btn{display:block;box-sizing:border-box;text-align:center;
   -webkit-appearance:none;appearance:none;margin:0;text-decoration:none}
+
+/* ---------------------------------------------------------------
+   2.4.7 Focus Visible. The shared rule covered a, button and input,
+   which left select, textarea, summary and anything made focusable
+   with tabindex showing nothing at all when tabbed to. The events
+   filters and the homepage card stage were the visible cases: both
+   set outline:none of their own, the stage inline.
+   --------------------------------------------------------------- */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,
+textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible,
+[role="button"]:focus-visible{
+  outline:3px solid #F3E4A8 !important;outline-offset:3px !important}
+#kx-hc-stage:focus-visible{outline:3px solid #F3E4A8 !important;outline-offset:-3px !important}
+
+/* ---------------------------------------------------------------
+   1.4.11 Non-text Contrast. A form field's visual boundary is what
+   tells you a control is there, so it has to reach 3:1 against the
+   page. The borders ran from .18 to .40 alpha, which measures 1.46
+   to 2.30 against #0B0A06. Gold needs .55 to clear 3:1 and cream
+   needs .40, so both are set above that with a little headroom.
+   Only the resting border changes; focus, hover and filled states
+   keep whatever they already had.
+   --------------------------------------------------------------- */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+select,textarea{border-color:rgba(212,168,86,.6) !important}
+#kx-filters input,#kx-filters select,
+#kx-q,#kx-f-type,#kx-f-cost,#kx-f-state{border-color:rgba(239,233,223,.45) !important}
