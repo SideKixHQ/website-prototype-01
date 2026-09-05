@@ -45,7 +45,7 @@
   @keyframes kxDot{0%,100%{opacity:1}50%{opacity:.25}}
 
   .kx-trace::before{content:"";position:absolute;inset:-2.5px;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--kxa),transparent 0 58%,#F3E4A8 72%,#FFFFEF 80%,#D4A856 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:kxTrace 6.5s linear infinite;pointer-events:none;}
-  .kx-gold-text{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
+  .kx-gold-text{background:linear-gradient(100deg,#EEDCFF,#B07FE0 40%,#7B52A8 72%,#EEDCFF);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
   .kx-link{position:relative;transition:color .2s}
   .kx-link:hover{color:#fff}
   .kx-link::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:#D4A856;transition:width .28s cubic-bezier(.16,1,.3,1)}
@@ -1765,20 +1765,20 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-note{font-size:14.5px;color:#9C968D;margin:26px 0 0}
 /* The pro bono line was the quietest thing in the loudest section, which is
    backwards: it is the point that makes the whole marketplace feel less
-   transactional. Given its own frame, a lit dot, and gold that runs when you
-   reach for it. The shimmer only animates on hover, so it costs nothing at
+   transactional. Given its own frame, a lit dot, and the one violet on a site
+   that is otherwise black and gold, so the eye lands on it. The shimmer only animates on hover, so it costs nothing at
    rest. */
 .adv-probono{display:flex;width:fit-content;align-items:flex-start;gap:13px;
   margin:30px auto 0;padding:16px 24px 16px 20px;border-radius:14px;max-width:640px;
-  border:1px solid rgba(212,168,86,.3);color:#D8D2C4;font-size:16px;line-height:1.6;
-  background:linear-gradient(100deg,rgba(212,168,86,.10),rgba(212,168,86,.03) 60%,transparent);
+  border:1px solid rgba(176,127,224,.34);color:#D6CFE0;font-size:16px;line-height:1.6;
+  background:linear-gradient(100deg,rgba(176,127,224,.13),rgba(176,127,224,.04) 60%,transparent);
   transition:border-color .35s ease,background .35s ease,color .35s ease}
 .adv-probono::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;border-radius:999px;
-  background:var(--gold);box-shadow:0 0 14px rgba(212,168,86,.75);transition:box-shadow .35s ease}
+  background:#B07FE0;box-shadow:0 0 14px rgba(176,127,224,.8);transition:box-shadow .35s ease}
 .adv-pbtext{min-width:0}
-.adv-probono b{font-weight:700;color:var(--gold-pale)}
-.adv-probono:hover{border-color:rgba(212,168,86,.7);color:#F4EEDF;
-  background:linear-gradient(100deg,rgba(212,168,86,.22),rgba(212,168,86,.07) 60%,rgba(212,168,86,.02))}
+.adv-probono b{font-weight:700;color:#DEC4F7}
+.adv-probono:hover{border-color:rgba(176,127,224,.85);color:#F1EAFA;
+  background:linear-gradient(100deg,rgba(176,127,224,.26),rgba(176,127,224,.09) 60%,rgba(176,127,224,.03))}
 
 /* ---- the pro bono line has to be found, not read past ----
    It sits under three cards that all say "charge for this", and it is the
@@ -1790,14 +1790,14 @@ window.SIDEKIX_SUBMIT = function (payload) {
    colour and two shadows change, which the compositor handles on its own
    layer. Stops entirely under prefers-reduced-motion, below. */
 @keyframes advPbBreathe{
-  0%,100%{border-color:rgba(212,168,86,.22);
-    box-shadow:0 0 0 0 rgba(212,168,86,0), inset 0 0 22px rgba(212,168,86,.02)}
-  50%    {border-color:rgba(212,168,86,.90);
-    box-shadow:0 0 38px 4px rgba(212,168,86,.30), inset 0 0 30px rgba(212,168,86,.13)}
+  0%,100%{border-color:rgba(176,127,224,.24);
+    box-shadow:0 0 0 0 rgba(176,127,224,0), inset 0 0 22px rgba(176,127,224,.03)}
+  50%    {border-color:rgba(176,127,224,.95);
+    box-shadow:0 0 38px 4px rgba(176,127,224,.34), inset 0 0 30px rgba(176,127,224,.15)}
 }
 @keyframes advPbDot{
-  0%,100%{box-shadow:0 0 8px rgba(212,168,86,.45);transform:scale(.9)}
-  50%    {box-shadow:0 0 26px 3px rgba(212,168,86,1);transform:scale(1.4)}
+  0%,100%{box-shadow:0 0 8px rgba(176,127,224,.5);transform:scale(.9)}
+  50%    {box-shadow:0 0 26px 3px rgba(190,150,235,1);transform:scale(1.4)}
 }
 .adv-probono{animation:advPbBreathe 4.5s ease-in-out infinite}
 .adv-probono::before{animation:advPbDot 4.5s ease-in-out infinite}
@@ -1809,7 +1809,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
   animation:kxShimmer 6s linear infinite}
 @media (prefers-reduced-motion:reduce){
   .adv-probono,.adv-probono::before{transition:none}
-  .adv-probono:hover b{animation:none;color:var(--gold-pale);background:none;-webkit-text-fill-color:currentColor}
+  .adv-probono:hover b{animation:none;color:#DEC4F7;background:none;-webkit-text-fill-color:currentColor}
 }
 
 .adv-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,168,86,.4);
@@ -2165,7 +2165,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 }
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://sidekixhq.com/advisors.html#page","url":"https://sidekixhq.com/advisors.html","name":"Become a SideKix Advisor","description":"Become a SideKix Advisor. Share your been there, done that experience with people building a business, choose your own hours with no minimum, and earn through 1:1 messaging sessions, live events and expert content.","isPartOf":{"@type":"WebSite","name":"SideKix","url":"https://sidekixhq.com/"},"about":{"@type":"Organization","name":"SideKix","url":"https://sidekixhq.com/"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://sidekixhq.com/assets/k-mark.png"},"significantLink":"https://sidekixhq.com/become-an-advisor.html"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Advisors","item":"https://sidekixhq.com/advisors.html"}]},{"@type":"FAQPage","@id":"https://sidekixhq.com/advisors.html#faq","mainEntity":[{"@type":"Question","name":"What is the time commitment?","acceptedAnswer":{"@type":"Answer","text":"This is up to each Advisor, based on how active they wish to be on the SideKix app. A minimum of one to two hours per week works well, and some Advisors choose to do far more, taking on daily meetings, working closer with entrepreneurs, or offering various services."}},{"@type":"Question","name":"Are Advisors employees?","acceptedAnswer":{"@type":"Answer","text":"No. Advisors are independent contractors."}},{"@type":"Question","name":"How are Advisors paid?","acceptedAnswer":{"@type":"Answer","text":"Up to the Advisor. You determine your services and what to charge. If you are looking to give back to the community pro bono, you can set available office hours and provide advice and expertise without charging any fees. It is entirely up to you, and SideKix is here with assistance or suggestions if you want them."}},{"@type":"Question","name":"Do I need an LLC?","acceptedAnswer":{"@type":"Answer","text":"Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one."}},{"@type":"Question","name":"What about video sessions?","acceptedAnswer":{"@type":"Answer","text":"A survey indicated that 62% of respondents preferred messaging support. As an option, video sessions can be started during a messaging session by the Advisor."}}]},{"@type":"VideoObject","name":"SideKix Advisor film","description":"What a SideKix Advisor is, and how the role works.","thumbnailUrl":"https://i.ytimg.com/vi/Sr0EUw0cDhE/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/Sr0EUw0cDhE","contentUrl":"https://youtu.be/Sr0EUw0cDhE"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://sidekixhq.com/advisors.html#page","url":"https://sidekixhq.com/advisors.html","name":"Become a SideKix Advisor","description":"Become a SideKix Advisor. Share your been there, done that experience with people building a business, choose your own hours with no minimum, and earn through 1:1 messaging sessions, live events and expert content.","isPartOf":{"@type":"WebSite","name":"SideKix","url":"https://sidekixhq.com/"},"about":{"@type":"Organization","name":"SideKix","url":"https://sidekixhq.com/"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://sidekixhq.com/assets/k-mark.png"},"significantLink":"https://sidekixhq.com/become-an-advisor.html"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Advisors","item":"https://sidekixhq.com/advisors.html"}]},{"@type":"FAQPage","@id":"https://sidekixhq.com/advisors.html#faq","mainEntity":[{"@type":"Question","name":"What is the time commitment?","acceptedAnswer":{"@type":"Answer","text":"This is up to each Advisor, based on how active they wish to be on the SideKix app. A minimum of one to two hours per week works well, and some Advisors choose to do far more, taking on daily meetings, working closer with entrepreneurs, or offering various services."}},{"@type":"Question","name":"Are Advisors employees?","acceptedAnswer":{"@type":"Answer","text":"No. Advisors are independent contractors."}},{"@type":"Question","name":"How are Advisors paid?","acceptedAnswer":{"@type":"Answer","text":"It depends on the format. Sessions are a fixed price set by SideKix so that support stays within reach of the people who need it. Live Events and Expert Content are yours to shape: you determine what you offer and what it costs, including offering it at no charge if you want to give back to the community. SideKix is here with assistance or suggestions if you want them."}},{"@type":"Question","name":"Do I need an LLC?","acceptedAnswer":{"@type":"Answer","text":"Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one."}},{"@type":"Question","name":"What about video sessions?","acceptedAnswer":{"@type":"Answer","text":"A survey indicated that 62% of respondents preferred messaging support. As an option, video sessions can be started during a messaging session by the Advisor."}}]},{"@type":"VideoObject","name":"SideKix Advisor film","description":"What a SideKix Advisor is, and how the role works.","thumbnailUrl":"https://i.ytimg.com/vi/Sr0EUw0cDhE/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/Sr0EUw0cDhE","contentUrl":"https://youtu.be/Sr0EUw0cDhE"}]}</script>
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
 <nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
@@ -2270,12 +2270,12 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <section class="adv adv-earn">
   <div class="adv-inner">
     <span class="eyebrow">Work from anywhere</span>
-    <h2>Three ways to <em>get paid</em> for what you know.</h2>
+    <h2>Three ways to turn your experience into <em>impact</em>.</h2>
     <div class="adv-cards">
       <article class="adv-card">
         <span class="adv-num">01</span>
         <h3>1:1 Sessions</h3>
-        <p>Messaging or video, scheduled in the app. Personalized support, on your availability, at your rate.</p>
+        <p>Messaging or video, scheduled in the app. Personalized support on your availability, at a fixed price that keeps it within reach.</p>
       </article>
       <article class="adv-card">
         <span class="adv-num">02</span>
@@ -2288,7 +2288,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
         <p>Templates, tools, trainings and materials that help users take action. Sell what you have already built.</p>
       </article>
     </div>
-    <p class="adv-probono"><span class="adv-pbtext"><b>Pro bono works too.</b> Advisors can set open office hours and charge nothing at all.</span></p>
+    <p class="adv-probono"><span class="adv-pbtext"><b>Pro bono works too.</b> Events and content can be offered at no charge, so your experience reaches people who cannot pay for it yet.</span></p>
   </div>
 </section>
 
@@ -2355,7 +2355,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <h2>The questions <em>people ask first</em>.</h2>
     <details><summary>What is the time commitment?</summary><div><p>This is up to each Advisor, based on how active they wish to be on the SideKix app. A minimum of one to two hours per week works well, and some Advisors choose to do far more, taking on daily meetings, working closer with entrepreneurs, or offering various services.</p></div></details>
     <details><summary>Are Advisors employees?</summary><div><p>No. Advisors are independent contractors.</p></div></details>
-    <details><summary>How are Advisors paid?</summary><div><p>Up to the Advisor. You determine your services and what to charge. If you are looking to give back to the community pro bono, you can set available office hours and provide advice and expertise without charging any fees. It is entirely up to you, and SideKix is here with assistance or suggestions if you want them.</p></div></details>
+    <details><summary>How are Advisors paid?</summary><div><p>It depends on the format. Sessions are a fixed price set by SideKix so that support stays within reach of the people who need it. Live Events and Expert Content are yours to shape: you determine what you offer and what it costs, including offering it at no charge if you want to give back to the community. SideKix is here with assistance or suggestions if you want them.</p></div></details>
     <details><summary>Do I need an LLC?</summary><div><p>Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one.</p></div></details>
     <details><summary>Messaging or video?</summary><div><p>Both. A survey indicated that 62% of respondents preferred messaging support, so sessions start there, and the Advisor can move a session to video at any point.</p></div></details>
   </div>
