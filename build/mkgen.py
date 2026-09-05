@@ -131,7 +131,7 @@ POS_JS = r"""
 """
 n = page("positioning-statement.html",
  "Positioning Statement Generator | SideKix",
- "Answer five questions and get a positioning statement you can edit, plus a bio line and a one-sentence answer for when somebody asks what you do. Nothing sent anywhere.",
+ "Answer five questions and get a positioning statement you can edit, plus a bio line and a one sentence answer for when somebody asks what you do.",
  "Positioning",
  "Say what you do <em>in one sentence</em>.",
  "Five questions, three drafts: the full statement, a bio line, and the version for when somebody asks at a party. Everything is assembled in your browser and the draft is yours to edit.",
@@ -188,7 +188,7 @@ OUT_JS = r"""
 """
 n = page("outreach-email.html",
  "Outreach Email Generator: Reach Out Without the Cringe | SideKix",
- "Six questions and you have a short outreach email that sounds like a person: how you found them, the specific thing you noticed, who you are and one clear ask. Nothing sent anywhere.",
+ "Six questions and you have a short outreach email that sounds like a person: how you found them, what you noticed, who you are and one clear ask.",
  "Outreach",
  "Reach out <em>without the cringe</em>.",
  "The reason cold outreach reads badly is almost always that it could have been sent to anybody. Six questions, one of which is a real detail about them, and you have a draft that could only have been sent to one person.",

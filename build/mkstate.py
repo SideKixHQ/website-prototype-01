@@ -14,9 +14,7 @@ for k, v in states.items():
     r["sources"] = (v.get("sources") or [])[:2]
     slim[k] = r
 
-DESC = ("What you file to start an LLC in any US state: the office, the form, the fee, "
-        "the name search, the registered agent rule and the annual report. Every figure "
-        "linked to the state's own page.")
+DESC = ("What you file to start an LLC in any US state: the office, the form, the fee, the name search and the annual report. Every figure linked to its source.")
 
 CSS = """
 /* ---- state filing lookup ----

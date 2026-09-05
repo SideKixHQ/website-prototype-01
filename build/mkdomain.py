@@ -2,9 +2,7 @@ import os, sys, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from toolgen import page, crumbs, webapp, faqpage
 
-DESC = ("Check a business name across a dozen domain endings at once. Runs against the "
-        "registries themselves through RDAP, so the answer is the register's answer. "
-        "No account and nothing stored.")
+DESC = ("Check a business name across a dozen domain endings at once. Runs against the registries through RDAP, so the answer is the register's own. Nothing stored.")
 
 CSS = """
 /* ---- domain search ----

@@ -114,7 +114,7 @@ BS_FAQ = [
 ]
 n = page("business-structures.html",
   "Sole Proprietor vs LLC vs S Corp: Side by Side | SideKix",
-  "Sole proprietor, LLC and S corporation compared on what actually differs: liability, how each is taxed, ownership limits, cost and ongoing work. Reference, not advice.",
+  "Sole proprietor, LLC and S corporation compared on what differs: liability, taxes, ownership limits, cost and ongoing work. Reference, not advice.",
   "Business structures",
   "Sole proprietor, LLC, <em>S corp</em>.",
   "Seven rows on what actually differs between them. No recommendation, because which one fits turns on facts about your business and your state that this page does not have.",

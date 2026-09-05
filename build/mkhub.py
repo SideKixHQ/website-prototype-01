@@ -29,6 +29,34 @@ CSS = """
 .th-g.g2{--a:#6FB3A6;--aq:111,179,166}
 .th-g.g3{--a:#B07FE0;--aq:176,127,224}
 .th-g.g4{--a:#DA9367;--aq:218,147,103}
+.th-g.g5{--a:#8FA9D8;--aq:143,169,216}
+
+/* ---- the first group is the front door ----
+   The assessment is the only thing here that reads you rather than a figure,
+   so it takes a wider card and carries the twelve animals across the top. The
+   strip is decorative and marked as such: the card's own words say what it is.
+   Nothing about it moves until a pointer is on it, and even then only the
+   opacity, so it costs nothing at rest and stops under reduced motion. */
+.th-g.n2 .th-c{grid-column:span 3}
+.th-g.g1 .th-c:first-child{grid-column:span 4}
+.th-g.g1 .th-c:last-child{grid-column:span 2}
+.th-hero{border-color:rgba(243,228,168,.34) !important;
+  background:
+    radial-gradient(120% 130% at 12% 0,rgba(212,168,86,.14),transparent 58%),
+    linear-gradient(180deg,rgba(26,22,14,.94),rgba(12,11,8,.94)) !important}
+.th-hero:hover{border-color:rgba(243,228,168,.75) !important}
+.th-hero b{color:#FFF6DC}
+.th-zoo{display:flex;gap:6px;align-items:flex-end;margin:0 0 16px;
+  height:52px;overflow:hidden}
+.th-zoo img{height:100%;width:auto;object-fit:contain;opacity:.55;
+  filter:saturate(.75);transition:opacity .45s ease,filter .45s ease,transform .45s ease}
+.th-hero:hover .th-zoo img{opacity:1;filter:saturate(1)}
+.th-hero:hover .th-zoo img:nth-child(2n){transform:translateY(-3px)}
+.th-hero:hover .th-zoo img:nth-child(3n){transform:translateY(2px)}
+@media(prefers-reduced-motion:reduce){
+  .th-zoo img{transition:none}
+  .th-hero:hover .th-zoo img{transform:none}
+}
 .th-g > h2{display:flex;align-items:center;gap:14px;
   font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--a);margin:0 0 6px;font-weight:400}
@@ -74,11 +102,14 @@ CSS = """
 .th-note b{color:#E8DEC4;font-weight:600}
 
 @media(max-width:900px){
-  .th-g.n4 .th-c,.th-g.n3 .th-c{grid-column:span 3}
+  .th-g.n4 .th-c,.th-g.n3 .th-c,
+  .th-g.g1 .th-c:first-child,.th-g.g1 .th-c:last-child{grid-column:span 3}
 }
 @media(max-width:620px){
   .th-cards{grid-template-columns:1fr;gap:13px}
-  .th-g.n4 .th-c,.th-g.n3 .th-c{grid-column:span 1}
+  .th-g.n4 .th-c,.th-g.n3 .th-c,.th-g.n2 .th-c,
+  .th-g.g1 .th-c:first-child,.th-g.g1 .th-c:last-child{grid-column:span 1}
+  .th-zoo{height:44px;gap:4px}
   .th-g{margin-bottom:44px}
   .th-c{padding:22px 20px 18px}
   .th-c b{font-size:21px;margin-right:38px}
@@ -87,7 +118,14 @@ CSS = """
 }
 """
 
+ZOO = ["lion","dragon","phoenix","octopus","dolphin","unicorn",
+       "gorilla","panda","cat","goat","highland","possum"]
+
 GROUPS = [
+ ("Work out where you are",
+  "Two ways to get a reading on yourself rather than on a number. Both run in the browser and neither keeps anything.",
+  [("assessment.html","The Twelve Energies","Forty eight statements on how you actually behave, and a distribution across all twelve rather than a label. Everyone runs on all of them; the question is the proportions.","12","energies"),
+   ("founder-diagnostic.html","Where are you, actually?","Five questions and a straight read on the stage you are at, plus what fits it.","5","questions")]),
  ("Work out a number",
   "Four calculators. Change a figure and the answer moves. Nothing is saved and nothing is sent.",
   [("startup-cost-calculator.html","What will it cost to start?","One-off costs to open plus the months of running costs you need behind you.","11","inputs"),
@@ -101,8 +139,7 @@ GROUPS = [
    ("domain-search.html","Is the name still available?","Checked at once against the registries themselves, so the answer is the register's own.","12","endings")]),
  ("Work something out about yourself",
   "Answer a few questions, get something back you can use.",
-  [("founder-diagnostic.html","Where are you, actually?","Five questions and a straight read on the stage you are at, plus what fits it.","5","questions"),
-   ("positioning-statement.html","Say what you do in one sentence","The full statement, a bio line, and the version for when somebody asks at a party.","3","drafts"),
+  [("positioning-statement.html","Say what you do in one sentence","The full statement, a bio line, and the version for when somebody asks at a party.","3","drafts"),
    ("outreach-email.html","Reach out without the cringe","Six questions and a draft that could only have been sent to one person.","1","email that sounds like you")]),
  ("Fill it in and keep it",
   "The paper worksheets, made fillable. Everything stays in your own browser, so you can close the tab and come back to it.",
@@ -126,9 +163,16 @@ for gi, (name, blurb, cards) in enumerate(GROUPS):
                 % (cls, e(name), e(blurb)))
     for href, title, desc, fig, unit in cards:
         n += 1
-        body.append('<a class="th-c" data-n="%02d" href="%s"><b>%s</b><span>%s</span>'
+        zoo = ""
+        if href == "assessment.html":
+            zoo = ('<span aria-hidden="true" class="th-zoo">'
+                   + "".join('<img alt="" decoding="async" height="200" loading="lazy" '
+                             'src="assets/energies/%s-sm.webp" width="200"/>' % a for a in ZOO)
+                   + '</span>')
+        body.append('<a class="th-c%s" data-n="%02d" href="%s">%s<b>%s</b><span>%s</span>'
                     '<span class="th-s"><em>%s</em><i>%s</i></span></a>'
-                    % (n, e(href), e(title), e(desc), e(fig), e(unit)))
+                    % (" th-hero" if zoo else "", n, e(href), zoo,
+                       e(title), e(desc), e(fig), e(unit)))
     body.append("</div></section>")
 body.append("</div>")
 

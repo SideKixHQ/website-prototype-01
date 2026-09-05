@@ -177,7 +177,7 @@ JS = r"""
 
 n = page("founder-diagnostic.html",
  "Founder Diagnostic: Where Are You Actually? | SideKix",
- "Five questions and a straight read on where your business actually is, plus the three or four things on this site that fit that stage. No score, no email, nothing stored.",
+ "Five questions and a straight read on where your business actually is, plus the things on this site that fit that stage. No score, no email, nothing stored.",
  "Diagnostic",
  "Where <em>are</em> you, actually?",
  "Five questions. At the end you get a read on the stage you are at and what tends to matter there, plus the handful of things on this site that fit. No score out of ten, because five questions do not earn that kind of precision.",
