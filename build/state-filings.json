@@ -2,8 +2,8 @@
  "_meta": {
   "what": "US state business entity filing reference for the SideKix state filing lookup",
   "sourcing": "Every field was read from an official state government source in the session named in _checked. Nothing is interpolated from a neighbouring state or recalled. A null means it could not be confirmed from an official source; see _unconfirmed.",
-  "coverage": "30 of 50 states",
-  "checked": "2026-09-04"
+  "coverage": "50 states",
+  "checked": "2026-09-04 to 2026-09-05"
  },
  "states": {
   "Alabama": {
@@ -782,6 +782,529 @@
     "https://business.nj.gov/pages/filings-and-accounting"
    ],
    "checked": "2026-09-04"
+  },
+  "New Mexico": {
+   "agency": "New Mexico Secretary of State, Business Services Division",
+   "agency_url": "https://www.sos.nm.gov/business-services/",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://enterprise.sos.nm.gov/forms/business",
+   "llc_fee_usd": null,
+   "name_search_url": "https://enterprise.sos.nm.gov/search/business",
+   "registered_agent_required": true,
+   "registered_agent_note": "An LLC must name a registered agent and registered office when it organizes and keep both on file continuously, per the Secretary of State rule at 12.3.4 NMAC implementing NMSA 1978 Section 53-19-5.",
+   "annual_report": {
+    "required": false,
+    "name": null,
+    "cadence": "none",
+    "due": "No periodic report is imposed on LLCs: the Secretary of State's corporation rule (12.3.2 NMAC) sets a biennial report for profit corporations, while the parallel LLC rule (12.3.4 NMAC) contains no reporting obligation. All NM business filings now go through the online enterprise portal.",
+    "fee_usd": null,
+    "url": null
+   },
+   "sources": [
+    "https://www.sos.nm.gov/business-services/",
+    "https://www.sos.nm.gov/business-services/resources/",
+    "https://www.sos.nm.gov/online-services/",
+    "https://sos.nm.gov/business-services/resources/statutes-governing-business-in-nm",
+    "https://www.srca.nm.gov/wp-content/uploads/attachments/12.003.0004.pdf",
+    "https://www.srca.nm.gov/parts/title12/12.003.0002.html",
+    "https://www.srca.nm.gov/parts/title12/12.003.0004.html"
+   ],
+   "checked": "2026-09-05"
+  },
+  "New York": {
+   "agency": "New York Department of State, Division of Corporations, State Records and Uniform Commercial Code",
+   "agency_url": "https://dos.ny.gov/form-corporation-or-business",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://dos.ny.gov/articles-organization-domestic-limited-liability-company-0",
+   "llc_fee_usd": 200,
+   "name_search_url": "https://dos.ny.gov/corporation-and-business-entity-database",
+   "registered_agent_required": false,
+   "registered_agent_note": "New York does not require a separate registered agent; the Secretary of State is the statutory agent for service of process and forwards process to the address the LLC keeps on file, though an LLC may optionally designate its own agent as well. Budget separately for the publication rule: within 120 days of formation the LLC must run notice in two county-designated newspapers and then file a Certificate of Publication with affidavits for a $50 state fee, and missing that window suspends its authority to do business until it is filed.",
+   "annual_report": {
+    "required": true,
+    "name": "Biennial Statement",
+    "cadence": "biennial",
+    "due": "Every two years, in the calendar month in which the original Articles of Organization were filed. Note this is separate from the one-time newspaper publication requirement, which must be completed within 120 days of formation and closed out with a $50 Certificate of Publication filing.",
+    "fee_usd": 9,
+    "url": "https://filing.dos.ny.gov/eBiennialWeb/"
+   },
+   "sources": [
+    "https://dos.ny.gov/form-corporation-or-business",
+    "https://dos.ny.gov/articles-organization-domestic-limited-liability-company-0",
+    "https://dos.ny.gov/biennial-statements-business-corporations-and-limited-liability-companies",
+    "https://dos.ny.gov/certificate-publication-domestic-limited-liability-company-0",
+    "https://dos.ny.gov/faqs-corporations-business-entities"
+   ],
+   "checked": "2026-09-05"
+  },
+  "North Carolina": {
+   "agency": "North Carolina Department of the Secretary of State, Business Registration Division",
+   "agency_url": "https://www.sosnc.gov/divisions/business_registration",
+   "llc_filing_name": "Articles of Organization (Form L-01)",
+   "llc_filing_url": "https://www.sosnc.gov/online_filing/filing/creation",
+   "llc_fee_usd": 125,
+   "name_search_url": "https://www.sosnc.gov/online_services/search/by_title/_Business_Registration",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must be an individual resident of North Carolina or a business entity already registered to do business there, and must keep a continuously staffed physical registered office in the state; a P.O. box is acceptable only as an additional mailing address, never as the registered office itself.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "April 15 each year, starting the year after the LLC is created. The paper rate is $200; filing online costs $203 because of a $3 electronic transaction fee.",
+    "fee_usd": 203,
+    "url": "https://sosnc.gov/divisions/business_registration/annual_report"
+   },
+   "sources": [
+    "https://www.sosnc.gov/divisions/business_registration",
+    "https://www.sosnc.gov/forms/by_title/_Business_Registration",
+    "https://sosnc.gov/divisions/business_registration/annual_report",
+    "https://sosnc.gov/divisions/business_registration/annual_report_due_dates",
+    "https://www.sosnc.gov/manual/assets/sos/pdf/business_registration.pdf"
+   ],
+   "checked": "2026-09-05"
+  },
+  "North Dakota": {
+   "agency": "North Dakota Office of the Secretary of State, Business Services",
+   "agency_url": "https://www.sos.nd.gov/business/business-services",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://firststop.sos.nd.gov/",
+   "llc_fee_usd": 135,
+   "name_search_url": "https://firststop.sos.nd.gov/search/business",
+   "registered_agent_required": true,
+   "registered_agent_note": "A North Dakota registered agent must be named on the articles of organization themselves, so the agent has to be lined up before the LLC can be filed through the FirstStop portal.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "November 15 each year for a standard business LLC or PLLC; April 15 instead for a farming or ranching LLC.",
+    "fee_usd": 50,
+    "url": "https://www.sos.nd.gov/business/business-services/maintain-registration"
+   },
+   "sources": [
+    "https://www.sos.nd.gov/business/business-services",
+    "https://www.sos.nd.gov/business/business-services/business-structures/limited-liability-company-llc"
+   ],
+   "checked": "2026-09-05"
+  },
+  "Ohio": {
+   "agency": "Ohio Secretary of State, Business Services Division",
+   "agency_url": "https://www.ohiosos.gov/business",
+   "llc_filing_name": "Articles of Organization for a Domestic Limited Liability Company (Form 533A)",
+   "llc_filing_url": "https://www.ohiosos.gov/globalassets/business/forms/533a.pdf",
+   "llc_fee_usd": 99,
+   "name_search_url": "https://businesssearch.ohiosos.gov/",
+   "registered_agent_required": true,
+   "registered_agent_note": "Ohio calls it a statutory agent, and the Secretary of State will not accept articles of organization without both the appointment and the agent's signed acceptance; the agent must be an Ohio resident or an entity with an Ohio street address, and losing the agent for 30 days after notice cancels the LLC's articles.",
+   "annual_report": {
+    "required": false,
+    "name": null,
+    "cadence": "none",
+    "due": "Ohio imposes no annual or biennial report on LLCs. The Revised Limited Liability Company Act (ORC Chapter 1706) contains no periodic reporting section, and the Secretary of State fee statute (ORC 111.16) lists no LLC report fee. The ongoing obligation is simply keeping a statutory agent on file.",
+    "fee_usd": null,
+    "url": null
+   },
+   "sources": [
+    "https://codes.ohio.gov/ohio-revised-code/section-111.16",
+    "https://codes.ohio.gov/ohio-revised-code/section-1706.09",
+    "https://codes.ohio.gov/ohio-revised-code/chapter-1706"
+   ],
+   "checked": "2026-09-05"
+  },
+  "Oklahoma": {
+   "agency": "Oklahoma Secretary of State, Business Filing Department",
+   "agency_url": "https://www.sos.ok.gov/business/default.aspx",
+   "llc_filing_name": "Articles of Organization (SOS Form 0074)",
+   "llc_filing_url": "https://www.sos.ok.gov/corp/filing.aspx",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://www.sos.ok.gov/corp/corpNameAvailability.aspx",
+   "registered_agent_required": null,
+   "registered_agent_note": "The Secretary of State's own site blocks automated retrieval, and no reachable official Oklahoma page stated the registered agent rule for LLCs, so this is left unconfirmed rather than assumed; a related Tax Commission form does show that foreign corporations owe a separate $100 annual registered agents fee, which is a corporation-only charge and not an LLC cost.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Certificate",
+    "cadence": "annual",
+    "due": "Once a year, to keep the LLC's registration active and in good standing with the Secretary of State.",
+    "fee_usd": 25,
+    "url": "https://www.sos.ok.gov/corp/filing.aspx"
+   },
+   "sources": [
+    "https://oklahoma.gov/business/launch/register-your-business.html",
+    "https://oklahoma.gov/business/help/faq.html",
+    "https://oklahoma.gov/business/operate/entity-changes.html",
+    "https://oklahoma.gov/business/operate/out-of-state-requirements.html",
+    "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/businesses/general/FRX-200-R-25-26.pdf"
+   ],
+   "checked": "2026-09-05"
+  },
+  "Oregon": {
+   "agency": "Oregon Secretary of State, Corporation Division",
+   "agency_url": "https://sos.oregon.gov/business/Pages/default.aspx",
+   "llc_filing_name": "Articles of Organization - Limited Liability Company",
+   "llc_filing_url": "https://sos.oregon.gov/business/Pages/obr-dllc-registration.aspx",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://egov.sos.state.or.us/br/pkg_web_name_srch_inq.login",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent's registered office has to be a real Oregon street address staffed well enough to sign for legal service, a P.O. box will not do, the person or company named must have agreed to the role, and an LLC cannot act as its own registered agent.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report (renewal)",
+    "cadence": "annual",
+    "due": "On the anniversary of the original registration date; the Corporation Division mails a renewal notice roughly 45 days ahead.",
+    "fee_usd": 100,
+    "url": "https://sos.oregon.gov/business/Pages/obr-annual-report-renewal.aspx"
+   },
+   "sources": [
+    "https://sos.oregon.gov/business/Documents/business-registry-forms/br-fee-schedule.pdf",
+    "https://sos.oregon.gov/business/Pages/obr-annual-report-renewal.aspx",
+    "https://sos.oregon.gov/business/pages/registered-agents-service-of-process.aspx",
+    "https://sos.oregon.gov/business/Pages/find.aspx",
+    "https://sos.oregon.gov/business/pages/domestic-limited-liability-companies-forms.aspx"
+   ],
+   "checked": "2026-09-05"
+  },
+  "Pennsylvania": {
+   "agency": "Pennsylvania Department of State, Bureau of Corporations and Charitable Organizations",
+   "agency_url": "https://www.pa.gov/agencies/dos/department-and-offices/bcco",
+   "llc_filing_name": "Certificate of Organization (Form DSCB:15-8821), filed with a Docketing Statement (Form DSCB:15-134A)",
+   "llc_filing_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/programs/business/forms/offsite-forms/15-8821-Cert-of-Org-Dom-LLC.pdf",
+   "llc_fee_usd": 125,
+   "name_search_url": "https://file.dos.pa.gov/search/business",
+   "registered_agent_required": false,
+   "registered_agent_note": "Pennsylvania is unusual in not using registered agents at all: what the state records is a registered office address in Pennsylvania, and service of process goes to whatever registered address appears in the Bureau's records.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Filed in the window from January 1 to September 30 each year for LLCs. Separately, restricted professional LLCs owe a Certificate of Annual Registration with a fee starting at $500, which does not apply to ordinary LLCs.",
+    "fee_usd": 7,
+    "url": "https://www.pa.gov/agencies/dos/programs/business/types-of-filings-and-registrations/annual-reports"
+   },
+   "sources": [
+    "https://www.pa.gov/agencies/dos/programs/business/fees-and-payments",
+    "https://www.pa.gov/agencies/dos/programs/business/types-of-filings-and-registrations/annual-reports",
+    "https://www.pa.gov/agencies/dos/programs/business/types-of-filings-and-registrations/pennsylvania-limited-liability-company",
+    "https://www.pa.gov/agencies/dos/resources/business-resources/frequently-asked-questions"
+   ],
+   "checked": "2026-09-05"
+  },
+  "Rhode Island": {
+   "agency": "Rhode Island Department of State, Business Services Division",
+   "agency_url": "https://www.sos.ri.gov/divisions/business-services",
+   "llc_filing_name": "Articles of Organization (Form 400)",
+   "llc_filing_url": "https://docs.sos.ri.gov/documents/BusinessServices/400-articles-of-organization.pdf",
+   "llc_fee_usd": 150,
+   "name_search_url": "https://business.sos.ri.gov/corpweb/corpsearch/corpsearch.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "Rhode Island calls the role a Resident Agent and requires every LLC to keep one on file at a Rhode Island street address, the Resident Office, where the agent can actually be reached during ordinary business hours.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Filed in the February 1 to May 1 window each year; a $25 late penalty attaches on June 1. Online filing adds a small enhanced-access surcharge of about $2.50 on top of the $50 fee. Note that RI LLCs also owe a minimum $400 annual tax to the Division of Taxation, which is a separate obligation from this filing.",
+    "fee_usd": 50,
+    "url": "https://www.sos.ri.gov/divisions/business-services/ri-business/file-your-annual-report"
+   },
+   "sources": [
+    "https://www.sos.ri.gov/divisions/business-services/business-basics/costs-and-fees",
+    "https://www.sos.ri.gov/divisions/business-services/ri-business/file-your-annual-report",
+    "https://docs.sos.ri.gov/documents/BusinessServices/LLCArticlesOfOrganizationFilingGuide.pdf"
+   ],
+   "checked": "2026-09-05"
+  },
+  "South Carolina": {
+   "agency": "South Carolina Secretary of State's Office, Business Filings Division",
+   "agency_url": "https://sos.sc.gov/online-filings/business-entities",
+   "llc_filing_name": "Articles of Organization (Form F0006)",
+   "llc_filing_url": "https://businessfilings.sc.gov/BusinessFiling/Home/DownloadForms?pdfCategoryId=1",
+   "llc_fee_usd": 110,
+   "name_search_url": "https://businessfilings.sc.gov/BusinessFiling/Entity/Search",
+   "registered_agent_required": true,
+   "registered_agent_note": "The articles of organization will not be accepted unless they carry the name and a South Carolina address for the registered agent, and the state runs a public registered agent lookup alongside its entity search.",
+   "annual_report": {
+    "required": false,
+    "name": null,
+    "cadence": "none",
+    "due": "An ordinary South Carolina LLC files no annual report with the Secretary of State. An LLC that elects to be taxed as a corporation is the exception: it must submit an initial report on Form CL-1 within 60 days of starting business, and its recurring corporate annual report then travels with the corporate tax return rather than being filed on its own.",
+    "fee_usd": null,
+    "url": null
+   },
+   "sources": [
+    "https://sos.sc.gov/online-filings/business-entities",
+    "https://sos.sc.gov/faqs-about-business-entities",
+    "https://businessfilings.sc.gov/BusinessFiling/Home/DownloadForms?pdfCategoryId=1",
+    "https://businessfilings.sc.gov/",
+    "https://dor.sc.gov/business-income-taxes/corporate/corporate-faqs"
+   ],
+   "checked": "2026-09-05"
+  },
+  "South Dakota": {
+   "agency": "South Dakota Secretary of State, Division of Business Services",
+   "agency_url": "https://sdsos.gov/business-services/default.aspx",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://sosenterprise.sd.gov/BusinessServices/Business/RegistrationInstr.aspx",
+   "llc_fee_usd": 150,
+   "name_search_url": "https://sosenterprise.sd.gov/BusinessServices/Business/NameAvailability.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must sit in South Dakota with both a street address and a mailing address in-state, and may be either a noncommercial agent or a registered commercial agent identified by CRA number.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "The first day of the anniversary month of the original filing, every year; filing opens two months early, and a late report adds a $50 penalty.",
+    "fee_usd": 55,
+    "url": "https://sosenterprise.sd.gov/BusinessServices/Business/AnnualReportInstr.aspx"
+   },
+   "sources": [
+    "https://sdsos.gov/general-information/filing-fees.aspx",
+    "https://sdsos.gov/business-services/corporations/corporate-forms/limited-liability-companies.aspx",
+    "https://sdsos.gov/business-services/default.aspx",
+    "https://sdsos.gov/docs/business/llc-domestic-articlesoforganization.pdf",
+    "https://sdsos.gov/Division%20of%20Business%20Services/FAQs/default.aspx",
+    "https://sosenterprise.sd.gov/BusinessServices/Business/AnnualReportInstr.aspx"
+   ],
+   "checked": "2026-09-05",
+   "notes": "Filing on paper costs $15 more across the board: $165 for the Articles of Organization and $70 for the annual report."
+  },
+  "Tennessee": {
+   "agency": "Tennessee Secretary of State, Division of Business Services",
+   "agency_url": "https://sos.tn.gov/businesses",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://tnbear.tn.gov/NewBiz",
+   "llc_fee_usd": null,
+   "name_search_url": "https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "Every entity except a general partnership has to keep a registered agent and office in Tennessee at all times, and the registered office must be a real Tennessee street address rather than a post office or route box.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": null,
+    "fee_usd": 300,
+    "url": "https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx"
+   },
+   "sources": [
+    "https://sos.tn.gov/businesses",
+    "https://sos.tn.gov/businesses/services",
+    "https://sos.tn.gov/businesses/faqs",
+    "https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx"
+   ],
+   "checked": "2026-09-05",
+   "notes": "The annual report fee is a floor, not a flat rate: $300 minimum, rising by $50 for each member above six, capped at $3,000. Most of the Secretary of State's fee and due-date pages refused automated retrieval during this check."
+  },
+  "Texas": {
+   "agency": "Texas Secretary of State, Business and Public Filings Division",
+   "agency_url": "https://www.sos.state.tx.us/corp/index.shtml",
+   "llc_filing_name": "Certificate of Formation - Limited Liability Company (Form 205)",
+   "llc_filing_url": "https://www.sos.state.tx.us/corp/forms/205_boc.pdf",
+   "llc_fee_usd": 300,
+   "name_search_url": "https://direct.sos.state.tx.us",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent has to consent in writing or electronically before being named (the consent is kept, not filed), must have a Texas street address where process can be served in person rather than a mailbox or answering service, and the LLC cannot name itself.",
+   "annual_report": {
+    "required": true,
+    "name": "Public Information Report (Form 05-102), filed with the franchise tax report",
+    "cadence": "annual",
+    "due": "May 15 each year, filed with the Texas Comptroller rather than the Secretary of State. There is no Secretary of State annual report for LLCs. An LLC whose annualized total revenue is at or under the no-tax-due threshold ($2,650,000 for the 2026 report year) owes no franchise tax but must still file the Public Information Report.",
+    "fee_usd": 0,
+    "url": "https://comptroller.texas.gov/taxes/franchise/pir-oir-filing-req.php"
+   },
+   "sources": [
+    "https://www.sos.state.tx.us/corp/instructions/205.shtml",
+    "https://www.sos.state.tx.us/corp/index.shtml",
+    "https://www.sos.state.tx.us/corp/searches.shtml",
+    "https://www.sos.state.tx.us/corp/sosda/index.shtml",
+    "https://www.sos.state.tx.us/corp/formationfaqs.shtml",
+    "https://comptroller.texas.gov/taxes/franchise/",
+    "https://comptroller.texas.gov/taxes/franchise/pir-oir-filing-req.php",
+    "https://comptroller.texas.gov/taxes/franchise/ntd-rpt-updates-2024.php"
+   ],
+   "checked": "2026-09-05",
+   "notes": "Name availability searching runs through SOSDirect, which requires a funded account and charges $1 per search. The Secretary of State says SOSDirect and SOSUpload are being folded into a replacement called SOSPortal."
+  },
+  "Utah": {
+   "agency": "Utah Department of Commerce, Division of Corporations and Commercial Code",
+   "agency_url": "https://commerce.utah.gov/corporations/",
+   "llc_filing_name": "Certificate of Organization",
+   "llc_filing_url": "https://businessregistration.utah.gov/",
+   "llc_fee_usd": 59,
+   "name_search_url": "https://businessregistration.utah.gov/",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent, whether a person or a business, needs a Utah street address, and the Division sends all of its official mail to that address rather than to the company.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report (renewal)",
+    "cadence": "annual",
+    "due": "On the entity's anniversary date each year; filing late triggers an additional penalty.",
+    "fee_usd": 18,
+    "url": "https://commerce.utah.gov/corporations/renewal-process/"
+   },
+   "sources": [
+    "https://commerce.utah.gov/wp-content/uploads/2023/04/currentfees.pdf",
+    "https://commerce.utah.gov/corporations/",
+    "https://commerce.utah.gov/corporations/renewal-process/",
+    "https://commerce.utah.gov/corporations/business-entities/considerations-in-forming-a-limited-liability-company/"
+   ],
+   "checked": "2026-09-05",
+   "notes": "Fees come from the FY2026 schedule effective July 1, 2025; the $18 renewal includes a $5 state portal surcharge. An older renewal handout still posted on the Commerce site quotes $10, which the current schedule supersedes."
+  },
+  "Vermont": {
+   "agency": "Vermont Secretary of State, Business Services Division",
+   "agency_url": "https://sos.vermont.gov/business-services/business-filings",
+   "llc_filing_name": "Articles of Organization",
+   "llc_filing_url": "https://bizfilings.vermont.gov/homepage",
+   "llc_fee_usd": 155,
+   "name_search_url": "https://bizfilings.vermont.gov/business/businesssearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "State law requires an LLC to designate and continuously maintain an agent and registered office for service of process in Vermont, and the agent's physical and mailing addresses have to stay current for the company to remain in good standing.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Within three months after the close of the fiscal year the state has on record for the LLC.",
+    "fee_usd": 45,
+    "url": "https://sos.vermont.gov/business-services/business-filings/annualbiennial-reports"
+   },
+   "sources": [
+    "https://sos.vermont.gov/business-services/fees-statutes",
+    "https://sos.vermont.gov/business-services/business-filings",
+    "https://sos.vermont.gov/business-services/business-filings/annualbiennial-reports",
+    "https://legislature.vermont.gov/statutes/section/11/025/04007"
+   ],
+   "checked": "2026-09-05",
+   "notes": "The published fee schedule lists a single rate for each filing, with no separate paper price."
+  },
+  "Virginia": {
+   "agency": "Virginia State Corporation Commission, Office of the Clerk",
+   "agency_url": "https://www.scc.virginia.gov/businesses/",
+   "llc_filing_name": "Articles of Organization of a Virginia Limited Liability Company (Form LLC1011)",
+   "llc_filing_url": "https://cis.scc.virginia.gov/",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://cis.scc.virginia.gov/EntitySearch/Index",
+   "registered_agent_required": true,
+   "registered_agent_note": "Virginia narrows the field unusually far: an individual agent must be a Virginia resident who is either a member or manager of the LLC (or of a related entity) or a member of the Virginia State Bar, and a business serving as agent must be authorized to transact business in Virginia and cannot be the LLC itself.",
+   "annual_report": {
+    "required": false,
+    "name": "Annual registration fee (Virginia LLCs pay a fee but file no annual report)",
+    "cadence": "annual",
+    "due": "Payment is due on or before the last day of the twelfth month after the month of organization, and on that same date every year afterward; entities created by conversion or domestication can inherit a different date.",
+    "fee_usd": 50,
+    "url": "https://www.scc.virginia.gov/businesses/business-faqs/annual-registration-fees/"
+   },
+   "sources": [
+    "https://law.lis.virginia.gov/vacode/title13.1/chapter12/section13.1-1005/",
+    "https://law.lis.virginia.gov/vacode/title13.1/chapter12/section13.1-1015/",
+    "https://law.lis.virginia.gov/vacode/title13.1/chapter12/section13.1-1062/"
+   ],
+   "checked": "2026-09-05",
+   "notes": "The SCC's own web pages block automated retrieval, so the fee figures here come from the statutes published on Virginia's Law Portal (law.lis.virginia.gov). Unlike corporations, Virginia LLCs owe only the annual registration fee - there is no annual report document."
+  },
+  "Washington": {
+   "agency": "Washington Secretary of State, Corporations and Charities Division",
+   "agency_url": "https://www.sos.wa.gov/corporations-charities",
+   "llc_filing_name": "Certificate of Formation",
+   "llc_filing_url": "https://www.sos.wa.gov/corporations-charities/business-entities/online-filing-instructions/start-domestic-wa-limited-liability-company-llc-online",
+   "llc_fee_usd": 180,
+   "name_search_url": "https://ccfs.sos.wa.gov/#/AdvancedSearch",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must sign and date a consent to serve and give a physical Washington address - no PO boxes or private mailboxes - and anyone named without agreeing can have their name struck from the record by sending in a notarized statement.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "By the last day of the month in which the LLC was originally formed; the report can be filed up to 180 days ahead, and a late one carries a $25 delinquency charge on top of the fee.",
+    "fee_usd": 70,
+    "url": "https://ccfs.sos.wa.gov/#/expressAnnualReportSearch/BusinessSearch"
+   },
+   "sources": [
+    "https://www.sos.wa.gov/corporations-charities/frequently-asked-questions-faqs/fee-scheduleexpedited-service",
+    "https://www.sos.wa.gov/corporations-charities/business-entities/limited-liability-company-llc-professional-llc-pllc-filing-resource-page",
+    "https://www.sos.wa.gov/corporations-charities/business-entities/online-filing-instructions/start-domestic-wa-limited-liability-company-llc-online",
+    "https://www.sos.wa.gov/corporations-charities/business-entities/maintain-business-compliance/annual-reports",
+    "https://www.sos.wa.gov/corporations-charities/business-entities/maintain-business-compliance/registered-agents",
+    "https://www.sos.wa.gov/corporations-charities"
+   ],
+   "checked": "2026-09-05",
+   "notes": "The $180 formation fee is the same whether filed online or on paper, but the online instructions add an unstated online processing charge on top. A new domestic entity also files an Initial Report ($10) within its first 120 days."
+  },
+  "West Virginia": {
+   "agency": "West Virginia Secretary of State, Business and Licensing Division",
+   "agency_url": "https://sos.wv.gov/business",
+   "llc_filing_name": "Articles of Organization of Limited Liability Company (Form LLD-1)",
+   "llc_filing_url": "https://business4.wv.gov/",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://apps.sos.wv.gov/business/corporations/",
+   "registered_agent_required": true,
+   "registered_agent_note": "The filing names a person or company in West Virginia to receive service of a summons or complaint; the agent can be an individual, a corporation or another LLC, and changing the designation later costs $15 on Form AAO.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": "Filed between January 1 and June 30 each year following the calendar year of registration; missing June 30 adds a $50 late fee and can lead to administrative dissolution.",
+    "fee_usd": 25,
+    "url": "https://business4.wv.gov/operatemybusiness/Pages/Annual-Reporting.aspx"
+   },
+   "sources": [
+    "https://sos.wv.gov/limited-liability-companies",
+    "https://sos.wv.gov/business",
+    "https://sos.wv.gov/document-search/west-virginia-articles-organization-limited-liability-company",
+    "https://sos.wv.gov/sites/default/files/2026-07/lld-1_0.pdf",
+    "https://sos.wv.gov/business/updates-and-changes/annual-reports"
+   ],
+   "checked": "2026-09-05",
+   "notes": "Online filings pick up an extra $1 processing charge. The $100 registration fee is waived for veteran-owned organizations under WV Code 59-1-2(j), which also waives the annual report fee for the first four years."
+  },
+  "Wisconsin": {
+   "agency": "Wisconsin Department of Financial Institutions, Division of Corporate and Consumer Services (Corporation Section)",
+   "agency_url": "https://www.wdfi.org/corporations/",
+   "llc_filing_name": "Articles of Organization (Form 502)",
+   "llc_filing_url": "https://www.wdfi.org/apps/CorpFormation/directions.aspx?type=12",
+   "llc_fee_usd": 130,
+   "name_search_url": "https://www.wdfi.org/apps/CorpSearch/NameAvailability.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "The agent must keep a business office at a registered office address inside Wisconsin given as a real street address rather than a PO box alone, and the LLC is not allowed to name itself as its own agent.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report",
+    "cadence": "annual",
+    "due": null,
+    "fee_usd": 25,
+    "url": "https://www.wdfi.org/apps/corpar/"
+   },
+   "sources": [
+    "https://www.wdfi.org/corporations/forms/corp183forms.htm",
+    "https://www.wdfi.org/corporations/fees/ltd.htm",
+    "https://www.wdfi.org/corporations/faqs.htm",
+    "https://www.wdfi.org/corporations/default.htm",
+    "https://www.wdfi.org/_resources/indexed/site/corporations/dfi-corp-502SE.pdf"
+   ],
+   "checked": "2026-09-05",
+   "notes": "Filing the Articles on paper costs $170 instead of the $130 electronic QuickStart rate. A foreign LLC's annual report is $80 rather than $25. Wisconsin also waives the formation fee entirely for a qualifying student entrepreneur filing Form 502SE."
+  },
+  "Wyoming": {
+   "agency": "Wyoming Secretary of State, Business Division",
+   "agency_url": "https://sos.wyo.gov/business/default.aspx",
+   "llc_filing_name": "Limited Liability Company Articles of Organization",
+   "llc_filing_url": "https://wyobiz.wyo.gov/Business/RegistrationInstr.aspx",
+   "llc_fee_usd": 100,
+   "name_search_url": "https://wyobiz.wyo.gov/Business/FilingSearch.aspx",
+   "registered_agent_required": true,
+   "registered_agent_note": "Wyoming requires a continuously maintained in-state agent at a genuine physical street address - no PO box, drop box, mail forwarding service or pack-and-ship counter - and the agent must sign a Consent to Appointment that is filed with a paper formation or retained on file when filing online.",
+   "annual_report": {
+    "required": true,
+    "name": "Annual Report (annual report license tax)",
+    "cadence": "annual",
+    "due": "The first day of the anniversary month of formation each year; the report may be filed up to 120 days early.",
+    "fee_usd": 60,
+    "url": "https://wyobiz.wyo.gov/Business/AnnualReport.aspx"
+   },
+   "sources": [
+    "https://sos.wyo.gov/business/docs/businessfees.pdf",
+    "https://sos.wyo.gov/faqs.aspx?root=BUS",
+    "https://sos.wyo.gov/forms/business/llc/llc-articlesorganization.pdf",
+    "https://sos.wyo.gov/Business/Docs/HowToFindOrBecomeARegisteredAgent.pdf"
+   ],
+   "checked": "2026-09-05",
+   "notes": "The $60 is a minimum, not a flat fee: the annual report license tax is the greater of $60 or $.0002 on the dollar of assets located and employed in Wyoming, so an LLC with $300,000 or less in Wyoming assets pays $60."
   }
  },
  "_unconfirmed": [
@@ -826,6 +1349,26 @@
    "state": "Minnesota",
    "field": "registered_agent_required",
    "reason": "Reported as false because Minnesota requires a registered office address but treats naming an agent at that office as optional under Chapter 322C; this is a state-specific quirk rather than a missing value."
+  },
+  "New Mexico / llc_fee_usd - the NM Secretary of State's filing portal is a JavaScript app that returns no readable fee text, the SOS website publishes no fee schedule page, and the official statute host (nmonesource.com, which the SOS itself links to for NMSA 53-19-63) returns 403 to automated requests. No official page in this session stated the amount.",
+  "Oklahoma / registered_agent_required - sos.ok.gov blocks automated fetching entirely (robots/TLS failure on every path including the PDF forms), and the oklahoma.gov business pages that were readable do not state the registered agent rule for LLCs. Left null rather than assumed.",
+  "Ohio / annual_report.fee_usd and annual_report.url - null because Ohio requires no LLC report at all, not because a figure was unavailable.",
+  "New Mexico / annual_report.fee_usd and annual_report.url - null because no periodic LLC report exists in New Mexico.",
+  "South Carolina / annual_report.fee_usd and annual_report.url - null because South Carolina LLCs file no Secretary of State annual report.",
+  {
+   "state": "Tennessee",
+   "field": "llc_fee_usd",
+   "reason": "Every Secretary of State page carrying the Articles of Organization fee (business-forms-fees, the LLC division page, the required-filing-fee FAQ answer) returned HTTP 403 to automated requests, and the TNCaB/TNBear filing portal blocked retrieval, so no official figure was read this session."
+  },
+  {
+   "state": "Tennessee",
+   "field": "annual_report.due",
+   "reason": "The Secretary of State's annual report due date calendar page returned HTTP 403 and no other official page read this session stated the deadline rule."
+  },
+  {
+   "state": "Wisconsin",
+   "field": "annual_report.due",
+   "reason": "DFI's annual report filing application and revocations pages were unreachable to automated requests, and neither the fee schedule nor the corporations FAQ stated the due date rule."
   }
  ]
 }
