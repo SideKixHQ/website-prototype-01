@@ -287,7 +287,7 @@
 .hd-disc.hd-disc{width:clamp(76px,8.4vw,104px)}
 .hd-nm.hd-nm{font-size:9px;letter-spacing:.18em;line-height:1.4}
 @media(max-width:560px){
-  .hd-nm.hd-nm{font-size:8.5px;letter-spacing:.14em}
+  .hd-nm.hd-nm{font-size:9.5px;letter-spacing:.1em}
 }
 
 /* tools: tap targets */
@@ -296,3 +296,30 @@
   .bs-ref a{display:inline-block;padding:3px 0;line-height:1.5}
   .sf-checked a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}
 }
+
+/* the little count inside an active filter chip sat at .65 opacity over the
+   gold fill, which composites to #574728 on #D4A856: 4.07:1 against the 4.5
+   that 9.5px bold text needs. Raising the opacity darkens it to about 7:1. */
+[aria-pressed="true"] .kx-n,
+[aria-pressed="true"] .n{opacity:.92 !important}
+/* the unpressed chips tint their count by category, and at .65 the
+   cooler tints landed between 3.6 and 4.1 against the page ground. */
+.filters button .n,.gloss .gfilt .n,.kx-store .kx-n{opacity:.92 !important}
+
+/* the carousel dots draw as 8px but WCAG 2.2 asks for a 24px target, so the
+   hit area grows around the dot rather than the dot growing. Nothing moves:
+   the box is centred on the dot and the flex gap already leaves room. */
+/* the carousel dots paint as an 8px pill but WCAG 2.2 wants a 24px target.
+   Padding grows the box to 24 square while background-clip keeps the paint
+   inside the original 8px content area, so the dots look exactly as before
+   and the gap is dropped to hold the row at its old width. */
+#kx-hc-dots{gap:0 !important}
+.kx-hc-dot{box-sizing:content-box !important;padding:8px !important;
+  background-clip:content-box !important}
+
+/* the flip card's gold pill was a <button> inside a card that is itself
+   role="button", which is a nested control no matter what tabindex says. It is
+   a span now, so it needs the block layout and centring a button had by
+   default. Nothing about it looks different. */
+.kx-hc-btn{display:block;box-sizing:border-box;text-align:center;
+  -webkit-appearance:none;appearance:none;margin:0;text-decoration:none}
