@@ -26,7 +26,7 @@
    "title": "Risk Calibration & Energy Protection",
    "items": [
     "I pause action when the environment feels uncertain or unstable.",
-    "I conserve energy until I am confident the timing is right.",
+    "I hold back effort until I am confident the timing is right.",
     "I prefer to assess risk before committing effort.",
     "I slow down rather than push forward when signals are unclear."
    ],
@@ -146,7 +146,7 @@
     "I keep going at something after the early enthusiasm has worn off.",
     "I choose the harder route when I judge it gets me further.",
     "I return to a problem that has already beaten me more than once.",
-    "I make progress in conditions most people would call unfavourable."
+    "I make progress in conditions most people would call bad."
    ],
    "short": "You keep climbing after the easy part ends.",
    "work": "You finish things other people abandoned at the halfway point. Difficulty reads to you as ordinary rather than as a signal to stop.",
@@ -264,7 +264,7 @@
     "I start something before anyone has told me to.",
     "I teach myself what I need rather than waiting for it to be taught.",
     "I set my own order of work when nobody has set one.",
-    "I leave an arrangement that is not working for me."
+    "I walk away from a setup that is not working for me."
    ],
    "short": "You start before anyone tells you to.",
    "work": "You do not need the brief. You will have taught yourself most of what you needed by the time permission arrives.",
@@ -323,7 +323,7 @@
     "I make the call when a decision has been sitting unmade.",
     "I say the thing in the room that others are avoiding.",
     "I commit to a direction while some of the information is still missing.",
-    "I take the consequence of a decision publicly rather than distribute it."
+    "I take the blame for a decision publicly rather than let it land on other people."
    ],
    "short": "You make the call that has been sitting unmade.",
    "work": "Decisions stop circling when you are in the room. You will act on partial information and own what follows.",
@@ -438,7 +438,7 @@
    "group": "Recovery & Growth",
    "title": "Learning Agility & Complexity Navigation",
    "items": [
-    "I hold several moving parts at once without simplifying them away.",
+    "I keep several moving parts in play without cutting them down to something simpler.",
     "I pick up an unfamiliar field quickly enough to act in it.",
     "I change tactics partway through when the situation shifts.",
     "I find a route through when the obvious one is blocked."
@@ -499,7 +499,7 @@
    "items": [
     "I read what someone is feeling before they have said it.",
     "I adjust how I say something based on who is hearing it.",
-    "I am told things people have not told others.",
+    "People tell me things they have not told anyone else.",
     "I repair a relationship after a difficult exchange."
    ],
    "short": "You read the room before anyone says anything.",
@@ -557,7 +557,7 @@
    "title": "Collective Intelligence & Adaptive Collaboration",
    "items": [
     "I get a group to a decision it can actually act on.",
-    "I put the group's outcome ahead of my own position in it.",
+    "I put the group getting it right ahead of me being right.",
     "I notice who has not spoken and make room for them.",
     "I take on the part of the work nobody else has picked up."
    ],

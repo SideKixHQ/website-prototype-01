@@ -28,7 +28,7 @@ email address.
 
 ## Key pages
 
-- [The Twelve Energies Assessment](https://sidekixhq.com/assessment.html): Forty eight statements, about six minutes, and a distribution across twelve energies rather than a type. A self-report reflection tool, not a validated psychometric instrument. Runs in the browser and stores nothing.
+- [The Energy Discovery](https://sidekixhq.com/assessment.html): Forty eight statements, about six minutes, and a distribution across twelve energies rather than a type. A self-report reflection tool, not a validated psychometric instrument. Runs in the browser and stores nothing.
 - [SideKix](https://sidekixhq.com/): The home page. What SideKix is, who it is for, and the three ways it helps: guided planning, human Advisors and a community.
 - [Partner with SideKix](https://sidekixhq.com/partners.html): Three ways to work with SideKix as an affiliate, partner or sponsor, what each one involves, and the companies already in the network.
 - [Cookie Policy](https://sidekixhq.com/cookies.html): What SideKix stores in a browser, why, and how to control it.
