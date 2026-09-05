@@ -2073,32 +2073,36 @@ window.SIDEKIX_SUBMIT = function (payload) {
 @media (max-width:760px){
 
   /* ---- the hero artwork was there and invisible ----
-     It sits behind the copy as a backdrop at .26 opacity under a scrim that
-     runs to .9, which works on a wide screen where the art has its own column
-     to the right of the text. On a phone there is no such column: the art was
-     underneath the words, so the scrim had to be that heavy, and what was left
-     could not be seen. Below 760 it stops being a backdrop and becomes a
-     picture: out of absolute positioning, under the copy, in full colour, at
-     the size the poster was drawn to be seen at. Nothing sits on top of it, so
-     the scrim comes off and the colour plate replaces the gold one. */
-  .adv-hero{display:flex;flex-direction:column}
-  .adv-inner{order:1}
-  .adv-hero-artwrap{
-    position:relative !important;order:2;
-    right:auto;top:auto;transform:none;
-    /* The plate carries a baked alpha vignette so the artwork can rise out of
-       the dark on a wide screen. Standing on its own here, that fade is empty
-       space: the opaque part runs 6.6% to 87.8% down and 10.7% to 89.6%
-       across, so the box is sized to what is actually drawn, 0.66 wide to
-       tall, and the plate is scaled and nudged to put that region in it. */
-    width:min(300px,76%);height:auto;aspect-ratio:.66;
-    overflow:hidden;
-    margin:26px auto 0}
-  .adv-hero-art{transform:scale(1.26) translateY(-1.4%)}
-  .adv-hero-art{animation:none;object-position:center;transition:none}
-  .adv-hero-duo{opacity:0}
-  .adv-hero-colour{opacity:1}
-  .adv-hero-scrim,.adv-hero-light{display:none}
+     It sits behind the copy at .26 opacity under a scrim running to .9, which
+     works on a wide screen where the art has its own column beside the text.
+     On a phone there is no such column, so the scrim had to be that heavy and
+     nothing was left to see.
+
+     An earlier fix pulled the art out of the flow and set it under the copy as
+     a picture of its own. That solved the visibility and broke something more
+     important: these hero images are part of the background, not illustrations
+     placed next to the words, and separating them on a phone makes the page
+     stop reading as one thing. The homepage never does it, so this does not
+     either.
+
+     The homepage's own phone treatment instead, value for value: the art stays
+     exactly where it is and gets wider, further off the edge and quiet enough
+     to read through. Wider because the plate then covers the column the text
+     does not use; further off the edge because the subject sits right of
+     centre; quiet because the words have to win. The scrim lightens rather
+     than disappearing, since it is what holds the left side dark under the
+     heading. */
+  .adv-hero-artwrap{width:118%;right:-30%;height:104%}
+  .adv-hero-art{animation:none;transition:none;object-position:56% 44%}
+  /* The gold plate, not the colour one. A phone has no hover, so whatever it
+     shows is the only state it will ever show, and the muted version is the
+     one that behaves like a background rather than competing with the words. */
+  .adv-hero-duo{opacity:.34}
+  .adv-hero-colour{opacity:0}
+  .adv-hero-light{display:none}
+  .adv-hero-scrim{background:
+    linear-gradient(90deg,#0B0A06 22%,rgba(11,10,6,.55) 52%,rgba(11,10,6,.2) 78%,rgba(11,10,6,.5) 100%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 20%,rgba(11,10,6,0) 84%,#0B0A06 100%)}
 
   /* ---- the clock belongs under the sentence it illustrates ----
      The grid is one column here, and the clock is first in source, so a phone
