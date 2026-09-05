@@ -1776,11 +1776,24 @@ window.SIDEKIX_SUBMIT = function (payload) {
    into a picture and the page stops reading as one thing. */
 #prt-home{position:relative;height:100vh;min-height:720px;overflow:hidden;
   display:flex;align-items:center;z-index:2;padding-bottom:11vh}
+/* The homepage's 52% is uncapped, and on a wide monitor that made this
+   plate 899x1078 against the advisors hero's 620x995: 157% of it by area at
+   1728. Capped at 600 so it stays a shade under the advisors art at every
+   width, and shortened from 110% to 92% because the poster is a tall format
+   and at full height it ran the whole section.
+
+   The mask centre moves right, from 60% to 68%, and the opaque core tightens
+   from 42% to 30%. That pulls the solid part of the mask away from the upper
+   left corner, which is where the QR code sits, so it fades out with the rest
+   of the edge instead of reading as a hard graphic floating in the dark.
+   Vertically the radius is set to 62% against a centre at 50%, which puts
+   both the top and bottom edges of the box at 0.81 of the mask radius, past
+   the 0.76 transparent stop, so neither one ends on a straight cut. */
 .prt-homeart{position:absolute;right:-4%;top:50%;transform:translateY(-50%);
-  width:52%;height:110%;object-fit:cover;object-position:50% 42%;z-index:1;
-  -webkit-mask-image:radial-gradient(70% 70% at 60% 50%,#000 42%,transparent 80%);
-  mask-image:radial-gradient(70% 70% at 60% 50%,#000 42%,transparent 80%);
-  opacity:.62;
+  width:min(46%,600px);height:92%;object-fit:cover;object-position:52% 44%;z-index:1;
+  -webkit-mask-image:radial-gradient(64% 62% at 68% 50%,#000 30%,transparent 76%);
+  mask-image:radial-gradient(64% 62% at 68% 50%,#000 30%,transparent 76%);
+  opacity:.66;
   /* The homepage photograph is already dark and sits at .9 untouched. This
      plate is a bright yellow poster, so it is pulled toward the site gold at
      rest and released to its own colour on hover. Same filter functions in the
@@ -1805,7 +1818,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
      to read through. */
   #prt-home{height:auto;min-height:0;padding:116px 0 64px}
   .prt-homecopy{padding-left:20px;padding-right:20px;max-width:100%}
-  .prt-homeart{width:118%;right:-26%;opacity:.32;
+  .prt-homeart{width:118%;height:100%;right:-26%;opacity:.32;
     filter:saturate(.7) sepia(.2) hue-rotate(-5deg) brightness(.9) contrast(1.02)}
   .prt-homecopy .kx-backrow{justify-content:flex-start}
 }
