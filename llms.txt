@@ -6,7 +6,7 @@
 > as SideKix, from Wilmington, North Carolina.
 
 SideKix is pre-launch. The public site is a research and resource library:
-free market data on US business formation, a plain-language glossary, working
+open market data on US business formation, a plain-language glossary, working
 calculators, a weekly listing of no-cost online business events, and long-form
 guides for people starting, growing, scaling or leading a small business.
 
@@ -28,6 +28,9 @@ email address.
 
 ## Key pages
 
+- [SideKix](https://sidekixhq.com/): The home page. What SideKix is, who it is for, and the three ways it helps: guided planning, human Advisors and a community.
+- [Partner with SideKix](https://sidekixhq.com/partners.html): Three ways to work with SideKix as an affiliate, partner or sponsor, what each one involves, and the companies already in the network.
+- [Cookie Policy](https://sidekixhq.com/cookies.html): What SideKix stores in a browser, why, and how to control it.
 - [Become a SideKix Advisor](https://sidekixhq.com/advisors.html): What a SideKix Advisor is, who it suits, and how the role works. Experienced business owners and fractional leaders share been there, done that expertise through 1:1 messaging sessions, live events and content. No minimum hours, you set your own rates, Founding Advisors keep a higher percentage.
 - [Become an Advisor | SideKix](https://sidekixhq.com/become-an-advisor.html): Advisors on SideKix have already stood where our members are standing. Tell us about your work, your expertise and your strengths, and we will be...
 - [Events · SideKix](https://sidekixhq.com/events.html): Online business events that cost nothing to attend, checked at the source each week. No filler, no hidden sales pitches.
@@ -42,7 +45,7 @@ email address.
 - [Resources: Blogs, Guides and Answers | SideKix](https://sidekixhq.com/library.html): The SideKix resource hub. Sixty-three blog posts on starting, funding, growing and staying with it, filterable by topic, plus the resource library, calculators, glossary, FAQs and market data. No account required.
 - [Resource Library: Agencies, Lenders and Registries | SideKix](https://sidekixhq.com/resources.html): Twenty nine agencies, lenders, advisors and registries that help people start and run a business in the United States. Every one is public, no cost to use, and linked straight to the page you need.
 - [Terms of Use | SideKix](https://sidekixhq.com/terms.html): The terms governing the SideKix platform, including Kix, Journey Maps, Community, Advisors, events, subscriptions and Kix Credits.
-- [Free Business Tools: Calculators, Worksheets, Lookups | SideKix](https://sidekixhq.com/tools.html): Fourteen free tools for people starting something: calculators, a fifty state filing lookup, a domain checker, fillable worksheets and checklists that remember your progress. No account and no email.
+- [Business Tools: Calculators, Worksheets and Lookups | SideKix](https://sidekixhq.com/tools.html): Fourteen free tools for people starting something: calculators, a fifty state filing lookup, a domain checker, fillable worksheets and checklists that remember your progress. No account and no email.
 - [Startup Cost Calculator: What It Costs to Start | SideKix](https://sidekixhq.com/startup-cost-calculator.html): Add your one-off costs and monthly running costs and see what you need before you open. Nothing saved, nothing sent, no account.
 - [Breakeven Calculator: Units and Revenue | SideKix](https://sidekixhq.com/breakeven-calculator.html): Enter fixed costs, price and variable cost per sale to see the units and the revenue you need to cover them.
 - [Hourly Rate Calculator for Freelancers | SideKix](https://sidekixhq.com/hourly-rate-calculator.html): Works back from the income you want and the hours you can actually bill, not the hours you work.

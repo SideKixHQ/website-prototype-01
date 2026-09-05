@@ -2063,35 +2063,15 @@ html.kx-idle *::after{
 
 
 
-<style id="kx-tool">
 
-/* ---- the tools hub ----
-   A card per tool, grouped by what you are trying to do rather than by what
-   kind of thing it is, because somebody arriving here knows their problem and
-   not our taxonomy. */
-.th{max-width:1060px;margin:0 auto}
-.th-g{margin:0 0 52px}
-.th-g > h2{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold);margin:0 0 4px}
-.th-g > p{color:#9C968D;font-size:15px;margin:0 0 20px;max-width:60ch}
-.th-cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
-.th-c{position:relative;display:block;min-width:0;text-decoration:none;
-  border:1px solid rgba(212,168,86,.22);border-radius:16px;padding:24px 22px 22px;
-  background:radial-gradient(120% 120% at 50% 0,rgba(33,26,10,.5),rgba(12,11,8,.72));
-  transition:border-color .3s,transform .3s}
-.th-c:hover{border-color:rgba(212,168,86,.6);transform:translateY(-3px)}
-.th-c:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px}
-.th-c b{display:block;font-family:var(--display);font-size:23px;line-height:1.15;
-  color:#FFF8E8;margin:0 0 8px}
-.th-c span{display:block;font-size:15px;line-height:1.65;color:#9C968D}
-.th-c i{display:inline-block;font-style:normal;font-family:var(--util);font-size:9.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
-  border:1px solid rgba(212,168,86,.3);border-radius:99px;padding:4px 10px;margin:14px 0 0}
-.th-note{border:1px solid rgba(212,168,86,.2);border-radius:13px;padding:18px 20px;
-  font-size:14.5px;line-height:1.75;color:#9C968D;margin:0 0 46px}
-.th-note b{color:#E8DEC4;font-weight:600}
 
-</style>
+
+
+
+
+
+
+
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Weekly Business Check-In", "url": "https://sidekixhq.com/weekly-check-in.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "description": "A fillable weekly business check-in. Wins, key numbers, progress, what got in the way and next week's top three. Saves in your browser, prints, downloads.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://sidekixhq.com/#organization"}, "featureList": ["Fillable in the browser", "Saved between visits", "Printable", "Downloads as a text file"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where is my worksheet saved?", "acceptedAnswer": {"@type": "Answer", "text": "In your own browser, on the device you filled it in on. Nothing is sent anywhere and nobody else can see it, which also means it will not follow you to another device."}}, {"@type": "Question", "name": "How long should a weekly check-in take?", "acceptedAnswer": {"@type": "Answer", "text": "Fifteen minutes is the point. It is short enough to actually happen every week, which matters far more than doing a thorough one occasionally."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sidekixhq.com/"}, {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://sidekixhq.com/library.html"}, {"@type": "ListItem", "position": 3, "name": "Tools", "item": "https://sidekixhq.com/tools.html"}, {"@type": "ListItem", "position": 4, "name": "Weekly Business Check-In", "item": "https://sidekixhq.com/weekly-check-in.html"}]}</script>
@@ -2169,6 +2149,30 @@ html.kx-idle *::after{
   h1,.lede{color:#000 !important}
   .ws-sec{break-inside:avoid}
 }
+
+</style>
+<style id="kx-faq">
+
+/* Google asks that FAQPage markup describe content a visitor can actually
+   read on the page. These pages carried the schema and nothing visible, so
+   the questions are rendered from the same list the schema is built from and
+   the two cannot drift apart. */
+.tfaq{max-width:1120px;margin:56px auto 0;padding-top:34px;
+  border-top:1px solid rgba(212,168,86,.16)}
+.tfaq > h2{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 14px;font-weight:400}
+.tfaq details{border-top:1px solid rgba(212,168,86,.14)}
+.tfaq details:last-of-type{border-bottom:1px solid rgba(212,168,86,.14)}
+.tfaq summary{list-style:none;cursor:pointer;padding:19px 40px 19px 0;position:relative;
+  font-size:16.5px;color:#EFE7D4}
+.tfaq summary::-webkit-details-marker{display:none}
+.tfaq summary::after{content:"";position:absolute;right:6px;top:50%;width:8px;height:8px;
+  border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s}
+.tfaq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.tfaq summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+.tfaq details > div{padding:0 40px 22px 0}
+.tfaq details p{margin:0;font-size:15.5px;line-height:1.75;color:#A8A296}
 
 </style>
 </head>
@@ -2300,6 +2304,7 @@ html.kx-idle *::after{
 </div>
 </section>
 </div>
+<section class="tfaq"><h2>Questions people ask</h2><details><summary>Where is my worksheet saved?</summary><div><p>In your own browser, on the device you filled it in on. Nothing is sent anywhere and nobody else can see it, which also means it will not follow you to another device.</p></div></details><details><summary>How long should a weekly check-in take?</summary><div><p>Fifteen minutes is the point. It is short enough to actually happen every week, which matters far more than doing a thorough one occasionally.</p></div></details></section>
 </section>
 </main>
 <script>
