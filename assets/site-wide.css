@@ -350,3 +350,15 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type=
 select,textarea{border-color:rgba(212,168,86,.6) !important}
 #kx-filters input,#kx-filters select,
 #kx-q,#kx-f-type,#kx-f-cost,#kx-f-state{border-color:rgba(239,233,223,.45) !important}
+
+/* ---------------------------------------------------------------
+   The back link is the only way up the hierarchy on a page that is
+   not the home page, and it was the quietest element on the screen:
+   10.5px, and a grey that measured 4.99:1 on some pages and 6.75:1
+   on others because two different colours were in use. One colour
+   everywhere, a size up, and the chevron given its own weight.
+   --------------------------------------------------------------- */
+.kx-bk{font-size:11.5px !important;color:#BDB4A4 !important;letter-spacing:.16em !important}
+.kx-bk svg{opacity:.9;stroke-width:2.2}
+.kx-bk:hover{color:#F3E4A8 !important}
+.kx-bk:hover svg{opacity:1}
