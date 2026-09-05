@@ -289,3 +289,10 @@
 @media(max-width:560px){
   .hd-nm.hd-nm{font-size:8.5px;letter-spacing:.14em}
 }
+
+/* tools: tap targets */
+@media(max-width:600px){
+  .ws-check input{width:24px !important;height:24px !important;margin-top:0 !important}
+  .bs-ref a{display:inline-block;padding:3px 0;line-height:1.5}
+  .sf-checked a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}
+}
