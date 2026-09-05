@@ -1,0 +1,10 @@
+<div class="calc" id="breakeven">
+<div><h2>When do you break even?</h2>
+<p class="cdek">The number of sales a month that covers your fixed costs. Contribution is what each
+    sale leaves behind once the cost of delivering it is paid.</p>
+<div class="crow"><label for="b_fixed">Fixed costs<span class="chint">per month, regardless of sales</span></label><span class="cin"><span class="cu">$</span><input id="b_fixed" inputmode="decimal" min="0" step="any" type="number" value="3000"/></span></div>
+<div class="crow"><label for="b_price">Price per sale</label><span class="cin"><span class="cu">$</span><input id="b_price" inputmode="decimal" min="0" step="any" type="number" value="150"/></span></div>
+<div class="crow"><label for="b_var">Variable cost per sale<span class="chint">materials, fees, delivery</span></label><span class="cin"><span class="cu">$</span><input id="b_var" inputmode="decimal" min="0" step="any" type="number" value="45"/></span></div>
+</div>
+<aside class="cout"><p class="col">Breakeven</p><p class="cov" id="b_out"></p><p class="cos" id="b_sub"></p><dl><dt>Sales needed each month</dt><dd id="b_units"></dd><dt>Revenue at that point</dt><dd id="b_rev"></dd><dt>Contribution margin</dt><dd id="b_margin"></dd></dl><button class="ccopy" data-k="b" type="button">Copy this result</button></aside>
+</div>

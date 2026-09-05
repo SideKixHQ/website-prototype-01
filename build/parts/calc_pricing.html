@@ -1,0 +1,12 @@
+<div class="calc" id="pricing">
+<div><h2>What should you price a product at?</h2>
+<p class="cdek">Works back from the margin you want rather than guessing a number. Payment fees are
+    added on top so the margin survives the checkout.</p>
+<div class="crow"><label for="p_mat">Materials per unit</label><span class="cin"><span class="cu">$</span><input id="p_mat" inputmode="decimal" min="0" step="any" type="number" value="12"/></span></div>
+<div class="crow"><label for="p_lab">Labor per unit</label><span class="cin"><span class="cu">$</span><input id="p_lab" inputmode="decimal" min="0" step="any" type="number" value="18"/></span></div>
+<div class="crow"><label for="p_over">Overhead per unit</label><span class="cin"><span class="cu">$</span><input id="p_over" inputmode="decimal" min="0" step="any" type="number" value="6"/></span></div>
+<div class="crow"><label for="p_margin">Target gross margin</label><span class="cin"><span class="cu">%</span><input id="p_margin" inputmode="decimal" min="0" step="any" type="number" value="55"/></span></div>
+<div class="crow"><label for="p_fee">Payment processing fees</label><span class="cin"><span class="cu">%</span><input id="p_fee" inputmode="decimal" min="0" step="any" type="number" value="3"/></span></div>
+</div>
+<aside class="cout"><p class="col">Suggested price</p><p class="cov" id="p_out"></p><p class="cos" id="p_sub"></p><dl><dt>Cost per unit</dt><dd id="p_unit"></dd><dt>Profit per sale</dt><dd id="p_profit"></dd><dt>Margin after fees</dt><dd id="p_net"></dd></dl><button class="ccopy" data-k="p" type="button">Copy this result</button></aside>
+</div>
