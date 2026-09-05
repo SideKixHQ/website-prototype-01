@@ -1,0 +1,731 @@
+{
+ "note": "Twelve energies, four observable-behaviour items each, on a four point scale with no neutral. Everyone has all twelve; the result is a distribution, not a label.",
+ "scale": [
+  {
+   "value": 1,
+   "label": "Very unlike me"
+  },
+  {
+   "value": 2,
+   "label": "Occasionally true"
+  },
+  {
+   "value": 3,
+   "label": "Often true"
+  },
+  {
+   "value": 4,
+   "label": "Strongly true"
+  }
+ ],
+ "energies": [
+  {
+   "key": "possum",
+   "name": "Possum",
+   "group": "Survival & Regulation",
+   "title": "Risk Calibration & Energy Protection",
+   "items": [
+    "I pause action when the environment feels uncertain or unstable.",
+    "I conserve energy until I am confident the timing is right.",
+    "I prefer to assess risk before committing effort.",
+    "I slow down rather than push forward when signals are unclear."
+   ],
+   "short": "You wait for the ground to feel solid before you move.",
+   "work": "You are the one who asks what happens if this goes wrong, and you ask it before the money is spent. Plans you have looked at tend to survive contact with reality.",
+   "relationships": "You commit slowly and stay once you have. People find you steady rather than eager, and read that as reliability once they know you.",
+   "life": "You keep reserves, of money, time and energy. Shocks that derail other people tend to find you already braced.",
+   "business": "Use it on due diligence, contracts and cash runway. Set yourself a decision date in advance, because the same instinct that avoids a bad move can hold a good one too long.",
+   "cost": "Waiting for certainty that was never going to arrive.",
+   "balances": {
+    "key": "lion",
+    "name": "Lion",
+    "why": "Your cost is waiting for certainty that never comes. Lion decides while information is still missing, which is the exact thing you will not do alone."
+   },
+   "amplifies": {
+    "key": "highland",
+    "name": "Highland Cow",
+    "why": "Both of you steady a room. Together you are the pair everyone else checks with before committing."
+   },
+   "art": "assets/energies/possum.webp",
+   "artSm": "assets/energies/possum-sm.webp",
+   "accent": "#E6323F",
+   "plans": [
+    {
+     "if": "I have been researching a decision for more than a week",
+     "then": "I will set a decision date and tell one person what it is."
+    },
+    {
+     "if": "I catch myself saying I need more information",
+     "then": "I will write down exactly what information, and what I would do differently with it."
+    },
+    {
+     "if": "A risk I named has not happened three times running",
+     "then": "I will stop raising it and say so out loud."
+    }
+   ],
+   "rehearse": {
+    "title": "Run one decision on a clock",
+    "body": "Take a decision you have been circling. Give it a deadline of four days and write down what you already know. On day four, decide with what you have and note what you would have done differently with a week more. Most of the time the answer is nothing, and that is the evidence."
+   },
+   "skilled": [
+    "Names the specific risk, not a general worry",
+    "Sets a decision date before the research starts",
+    "Keeps reserves that mean a bad month is not a crisis"
+   ],
+   "unskilled": [
+    "Asks for more information without saying what would change",
+    "Raises the same risk after it has failed to happen",
+    "Calls a decision premature until the option has closed"
+   ]
+  },
+  {
+   "key": "highland",
+   "name": "Highland Cow",
+   "group": "Survival & Regulation",
+   "title": "Emotional Regulation & Grounded Strength",
+   "items": [
+    "I stay level when the people around me are reacting strongly.",
+    "I take a beat before responding to news that lands hard.",
+    "I keep working at my usual pace through a stretch of bad weeks.",
+    "I notice my own state changing before it affects a decision."
+   ],
+   "short": "You hold your level when the temperature rises.",
+   "work": "You are who people come to in a bad week. Your pace barely changes, which lets everyone else's settle.",
+   "relationships": "You absorb without escalating, and you say the hard thing at normal volume. Conflict around you tends to stay a conversation.",
+   "life": "You notice your own state shifting before it drives a decision, which is rarer than it sounds.",
+   "business": "Use it in negotiation, difficult client calls and the first hour of anything going wrong. Say more than feels necessary, because calm can read as unbothered when people need to know you are engaged.",
+   "cost": "Being read as detached when what is wanted is urgency.",
+   "balances": {
+    "key": "unicorn",
+    "name": "Unicorn",
+    "why": "You hold the level; Unicorn disturbs it on purpose. Without that you can keep something calm that needed shaking."
+   },
+   "amplifies": {
+    "key": "panda",
+    "name": "Panda",
+    "why": "Steady temperament and a steady pace. Work built by the two of you rarely needs rescuing."
+   },
+   "art": "assets/energies/highland.webp",
+   "artSm": "assets/energies/highland-sm.webp",
+   "accent": "#3FAEBD",
+   "plans": [
+    {
+     "if": "Someone brings me news that lands hard",
+     "then": "I will say I need an hour, and answer after it."
+    },
+    {
+     "if": "A room is heating up",
+     "then": "I will ask a question rather than make a statement."
+    },
+    {
+     "if": "I notice my own state shifting mid conversation",
+     "then": "I will name it plainly rather than push through it."
+    }
+   ],
+   "rehearse": {
+    "title": "Take the difficult meeting on purpose",
+    "body": "Volunteer for one conversation this week you would normally route to someone else: the unhappy customer, the disagreement, the bad news. Say the hard part in the first two minutes. Afterwards write one line on what your steadiness did to the room."
+   },
+   "skilled": [
+    "Answers hard news at normal volume",
+    "Notices their own state shifting before it drives a decision",
+    "Keeps working at the same rate through a bad stretch"
+   ],
+   "unskilled": [
+    "Reads as indifferent when people need urgency",
+    "Absorbs so much that nobody knows anything is wrong",
+    "Mistakes staying calm for having addressed it"
+   ]
+  },
+  {
+   "key": "goat",
+   "name": "Goat",
+   "group": "Persistence & Execution",
+   "title": "Grit & Uphill Progress",
+   "items": [
+    "I keep going at something after the early enthusiasm has worn off.",
+    "I choose the harder route when I judge it gets me further.",
+    "I return to a problem that has already beaten me more than once.",
+    "I make progress in conditions most people would call unfavourable."
+   ],
+   "short": "You keep climbing after the easy part ends.",
+   "work": "You finish things other people abandoned at the halfway point. Difficulty reads to you as ordinary rather than as a signal to stop.",
+   "relationships": "You stay through the parts that are not fun. People know you will still be there, which is worth more than they usually say.",
+   "life": "You have a record of hard things completed, and it is where your confidence comes from.",
+   "business": "Use it on the long unglamorous build: the first hundred customers, the compliance, the rebuild. Schedule a review point, because grit applied to the wrong hill costs the most of anyone's.",
+   "cost": "Persisting past the point where the evidence changed.",
+   "balances": {
+    "key": "octopus",
+    "name": "Octopus",
+    "why": "Your cost is climbing after the evidence changed. Octopus changes route without treating it as defeat."
+   },
+   "amplifies": {
+    "key": "panda",
+    "name": "Panda",
+    "why": "Persistence plus a sustainable rate. This is the pair that finishes the two-year build."
+   },
+   "art": "assets/energies/goat.webp",
+   "artSm": "assets/energies/goat-sm.webp",
+   "accent": "#DE9E33",
+   "plans": [
+    {
+     "if": "Something I am working on stops being interesting",
+     "then": "I will do twenty minutes on it before anything new."
+    },
+    {
+     "if": "I hit the same wall a third time",
+     "then": "I will write down what I have already tried before trying again."
+    },
+    {
+     "if": "I have been pushing for a month with no movement",
+     "then": "I will show it to someone outside it and ask what they see."
+    }
+   ],
+   "rehearse": {
+    "title": "Finish one abandoned thing",
+    "body": "Find something you stopped at roughly halfway. Give it four sessions of forty minutes this week and finish it, at whatever quality. The point is not the artefact. The point is the evidence that the flat middle passes."
+   },
+   "skilled": [
+    "Keeps a steady pace through the unglamorous middle",
+    "Returns to a problem with a different approach",
+    "Finishes things other people abandoned"
+   ],
+   "unskilled": [
+    "Keeps climbing after the evidence changed",
+    "Treats stopping as failure rather than a decision",
+    "Confuses effort spent with progress made"
+   ]
+  },
+  {
+   "key": "panda",
+   "name": "Panda",
+   "group": "Persistence & Execution",
+   "title": "Consistency Without Burnout",
+   "items": [
+    "I work at a rate I could still hold in six months.",
+    "I stop at a planned point rather than when I run out.",
+    "I protect rest even when there is more that could be done.",
+    "I finish long pieces of work without a late scramble."
+   ],
+   "short": "You work at a rate you can still hold next year.",
+   "work": "Your output is predictable, which makes you plannable. You finish long work without the scramble at the end.",
+   "relationships": "You give steadily rather than in bursts, and you do not disappear after the intense stretch.",
+   "life": "You protect rest as a working part of the system rather than a reward for finishing.",
+   "business": "Use it on anything that compounds: content, relationships, savings, skills. Watch for moments that genuinely need a sprint, because a steady pace can miss a window.",
+   "cost": "Missing a short window that needed an unsustainable push.",
+   "balances": {
+    "key": "lion",
+    "name": "Lion",
+    "why": "You pace for next year; Lion moves on the window that closes Friday. You will miss it without them."
+   },
+   "amplifies": {
+    "key": "goat",
+    "name": "Goat",
+    "why": "Consistency and grit. Unglamorous work gets done and stays done."
+   },
+   "art": "assets/energies/panda.webp",
+   "artSm": "assets/energies/panda-sm.webp",
+   "accent": "#B950C2",
+   "plans": [
+    {
+     "if": "I plan a week of work",
+     "then": "I will book the rest first and fit the work around it."
+    },
+    {
+     "if": "I notice I am working past the point of usefulness",
+     "then": "I will stop at the end of the task rather than the end of the energy."
+    },
+    {
+     "if": "Something urgent lands",
+     "then": "I will ask whether it needs a sprint or only feels like it does."
+    }
+   ],
+   "rehearse": {
+    "title": "Set a pace you could hold in June",
+    "body": "Pick your most important piece of work and give it the same block, four days running. Same hour, same length, no catch-up. Note what got done. A rate you can repeat beats a burst you cannot."
+   },
+   "skilled": [
+    "Works at a rate they could still hold in six months",
+    "Stops at a planned point rather than at exhaustion",
+    "Delivers long work without a scramble at the end"
+   ],
+   "unskilled": [
+    "Misses a short window that needed a sprint",
+    "Treats every deadline as negotiable",
+    "Protects the routine past the point it is serving anything"
+   ]
+  },
+  {
+   "key": "cat",
+   "name": "Cat",
+   "group": "Agency & Independence",
+   "title": "Autonomous Action & Self-Directed Learning",
+   "items": [
+    "I start something before anyone has told me to.",
+    "I teach myself what I need rather than waiting for it to be taught.",
+    "I set my own order of work when nobody has set one.",
+    "I leave an arrangement that is not working for me."
+   ],
+   "short": "You start before anyone tells you to.",
+   "work": "You do not need the brief. You will have taught yourself most of what you needed by the time permission arrives.",
+   "relationships": "You need room, and you give it. People who need constant contact find you distant; people who value autonomy find you easy.",
+   "life": "You leave arrangements that stop working, usually earlier than others would.",
+   "business": "Use it to get a first version into the world without waiting for anyone. Bring someone in early, because self-direction and isolation look identical from the inside.",
+   "cost": "Solving alone what a conversation would have solved faster.",
+   "balances": {
+    "key": "gorilla",
+    "name": "Gorilla",
+    "why": "Your cost is solving alone what a conversation would have solved faster. Gorilla brings the room in."
+   },
+   "amplifies": {
+    "key": "unicorn",
+    "name": "Unicorn",
+    "why": "Two independents who go their own way. Between you, the answer arrives from somewhere nobody was looking."
+   },
+   "art": "assets/energies/cat.webp",
+   "artSm": "assets/energies/cat-sm.webp",
+   "accent": "#EB2745",
+   "plans": [
+    {
+     "if": "I am waiting for permission or a brief",
+     "then": "I will build the smallest version and show it instead."
+    },
+    {
+     "if": "I have been stuck alone for two days",
+     "then": "I will describe it to one person before day three."
+    },
+    {
+     "if": "An arrangement has stopped working",
+     "then": "I will say so within the week rather than wait for it to resolve itself."
+    }
+   ],
+   "rehearse": {
+    "title": "Ship something nobody asked for",
+    "body": "Build and release one small thing this week without clearing it first: a page, a tool, a note to customers. Keep it under four hours. Then ask one person what they made of it, which is the part self-direction usually skips."
+   },
+   "skilled": [
+    "Builds the small version instead of waiting for a brief",
+    "Teaches themselves what the work needs",
+    "Leaves an arrangement that has stopped working"
+   ],
+   "unskilled": [
+    "Solves alone what a ten minute conversation would have solved",
+    "Goes quiet when stuck rather than asking",
+    "Reads coordination as interference"
+   ]
+  },
+  {
+   "key": "lion",
+   "name": "Lion",
+   "group": "Agency & Independence",
+   "title": "Courageous Decision-Making",
+   "items": [
+    "I make the call when a decision has been sitting unmade.",
+    "I say the thing in the room that others are avoiding.",
+    "I commit to a direction while some of the information is still missing.",
+    "I take the consequence of a decision publicly rather than distribute it."
+   ],
+   "short": "You make the call that has been sitting unmade.",
+   "work": "Decisions stop circling when you are in the room. You will act on partial information and own what follows.",
+   "relationships": "You say the thing others are avoiding. It costs you sometimes and it is why people trust what you tell them.",
+   "life": "You take the consequence yourself rather than spread it around.",
+   "business": "Use it on pricing, hiring and ending things. Ask one more question first, because speed and haste look the same until afterwards.",
+   "cost": "Deciding before the cheap information had arrived.",
+   "balances": {
+    "key": "possum",
+    "name": "Possum",
+    "why": "Your cost is deciding before the cheap information arrived. Possum asks what happens if this goes wrong, and asks it early."
+   },
+   "amplifies": {
+    "key": "dragon",
+    "name": "Dragon",
+    "why": "Decisiveness pointed at a long horizon. Bold and aimed rather than bold and busy."
+   },
+   "art": "assets/energies/lion.webp",
+   "artSm": "assets/energies/lion-sm.webp",
+   "accent": "#E76A23",
+   "plans": [
+    {
+     "if": "A decision has been open more than a week",
+     "then": "I will make it by Friday or say plainly who else owns it."
+    },
+    {
+     "if": "I am about to decide fast",
+     "then": "I will ask what cheap information exists and whether it arrives before I need to move."
+    },
+    {
+     "if": "Something is going unsaid in a meeting",
+     "then": "I will say it before the meeting ends."
+    }
+   ],
+   "rehearse": {
+    "title": "Close one open loop",
+    "body": "Name the decision that has been sitting longest. Make it this week, tell the people it affects, and write down what you decided and why. Owning it in writing is the part that separates decisiveness from haste."
+   },
+   "skilled": [
+    "Closes decisions that have been sitting open",
+    "Says the thing the room is avoiding",
+    "Owns the outcome publicly rather than spreading it"
+   ],
+   "unskilled": [
+    "Decides before cheap information has arrived",
+    "Mistakes speed for judgement",
+    "Fills a silence that was somebody else's to fill"
+   ]
+  },
+  {
+   "key": "phoenix",
+   "name": "Phoenix",
+   "group": "Recovery & Growth",
+   "title": "Adaptive Recovery & Learning from Failure",
+   "items": [
+    "I go back over something that failed to find what actually caused it.",
+    "I start again in the same area after being set back in it.",
+    "I change my approach based on how the last attempt went.",
+    "I talk openly about work of mine that did not succeed."
+   ],
+   "short": "You go back in after it went wrong.",
+   "work": "You examine failures rather than move past them, and you change approach based on what you find. Your second attempt is measurably different from your first.",
+   "relationships": "You repair. You will name what happened rather than let it sit, and you can talk about your own failures without performing.",
+   "life": "Setbacks are data to you rather than verdicts.",
+   "business": "Use it after a launch that missed, a customer who left, a hire that did not work. Write the lesson down, because recovery without a record repeats the same loop.",
+   "cost": "Re-entering something that had already told you what it was.",
+   "balances": {
+    "key": "dragon",
+    "name": "Dragon",
+    "why": "You recover and re-enter. Dragon asks whether this is still the right thing to re-enter."
+   },
+   "amplifies": {
+    "key": "octopus",
+    "name": "Octopus",
+    "why": "Recovery plus adaptability. Very little takes the two of you out of the game for long."
+   },
+   "art": "assets/energies/phoenix.webp",
+   "artSm": "assets/energies/phoenix-sm.webp",
+   "accent": "#D64635",
+   "plans": [
+    {
+     "if": "Something I built does not work",
+     "then": "I will write down what caused it before I start again."
+    },
+    {
+     "if": "I am about to re-enter something that failed",
+     "then": "I will name what will be different this time in one sentence."
+    },
+    {
+     "if": "Someone asks how it went",
+     "then": "I will say what actually happened rather than the tidy version."
+    }
+   ],
+   "rehearse": {
+    "title": "Write the honest post-mortem",
+    "body": "Take your most recent thing that did not work. Write half a page: what you expected, what happened, what you now think caused it, and what you would change. Show it to one person. The record is what stops the loop repeating."
+   },
+   "skilled": [
+    "Finds what actually caused the failure, not who",
+    "Names what will be different before starting again",
+    "Talks about their own failures without performing"
+   ],
+   "unskilled": [
+    "Re-enters something that had already answered the question",
+    "Recovers without recording what was learned",
+    "Turns the post-mortem into a story about resilience"
+   ]
+  },
+  {
+   "key": "octopus",
+   "name": "Octopus",
+   "group": "Recovery & Growth",
+   "title": "Learning Agility & Complexity Navigation",
+   "items": [
+    "I hold several moving parts at once without simplifying them away.",
+    "I pick up an unfamiliar field quickly enough to act in it.",
+    "I change tactics partway through when the situation shifts.",
+    "I find a route through when the obvious one is blocked."
+   ],
+   "short": "You find the route through when the obvious one is blocked.",
+   "work": "You hold several moving parts without flattening them, and you pick up unfamiliar ground fast enough to act on it.",
+   "relationships": "You adapt to who you are with. Different people describe you differently, and all of them are right.",
+   "life": "Change is not a threat to you, which makes you useful in the middle of it.",
+   "business": "Use it on the messy problem nobody has scoped. Commit to one path long enough to test it, because agility without commitment is just motion.",
+   "cost": "Changing approach before the last one had a fair test.",
+   "balances": {
+    "key": "goat",
+    "name": "Goat",
+    "why": "Your cost is changing approach before the last one had a fair test. Goat stays with it long enough to know."
+   },
+   "amplifies": {
+    "key": "cat",
+    "name": "Cat",
+    "why": "Fast learners, both self-directed. New ground gets covered quickly."
+   },
+   "art": "assets/energies/octopus.webp",
+   "artSm": "assets/energies/octopus-sm.webp",
+   "accent": "#BD4FAF",
+   "plans": [
+    {
+     "if": "I want to change approach",
+     "then": "I will first say what the current one has actually been given."
+    },
+    {
+     "if": "A problem has more moving parts than I can hold",
+     "then": "I will write them down before deciding anything."
+    },
+    {
+     "if": "I am in unfamiliar territory",
+     "then": "I will find the one person who has been here and ask two questions."
+    }
+   ],
+   "rehearse": {
+    "title": "Give one approach a fair test",
+    "body": "Pick something you have already changed tack on twice. Commit to one approach for two weeks, write down in advance what would count as it working, and do not change until then. Agility means little without a completed test."
+   },
+   "skilled": [
+    "Holds several moving parts without flattening them",
+    "Picks up unfamiliar ground fast enough to act",
+    "Finds a route when the obvious one is blocked"
+   ],
+   "unskilled": [
+    "Changes approach before the last one had a fair test",
+    "Mistakes motion for adaptability",
+    "Leaves a trail of things that were nearly working"
+   ]
+  },
+  {
+   "key": "dolphin",
+   "name": "Dolphin",
+   "group": "Relational Intelligence",
+   "title": "Emotional Intelligence & Trust-Building",
+   "items": [
+    "I read what someone is feeling before they have said it.",
+    "I adjust how I say something based on who is hearing it.",
+    "I am told things people have not told others.",
+    "I repair a relationship after a difficult exchange."
+   ],
+   "short": "You read the room before anyone says anything.",
+   "work": "You know when a meeting has gone wrong before it shows. You adjust how you say things to who is hearing them.",
+   "relationships": "People tell you things they have not told others. That is earned rather than given.",
+   "life": "You repair after difficult exchanges rather than letting them harden.",
+   "business": "Use it in sales, hiring and any conversation where what is said is not the whole story. Say your own position plainly, because reading everyone else can leave your own needs unstated.",
+   "cost": "Carrying the room's weather and calling it your own.",
+   "balances": {
+    "key": "lion",
+    "name": "Lion",
+    "why": "Your cost is carrying the room and leaving your own position unstated. Lion says the thing out loud."
+   },
+   "amplifies": {
+    "key": "gorilla",
+    "name": "Gorilla",
+    "why": "Reading people and building groups. Teams around this pair tend to hold together."
+   },
+   "art": "assets/energies/dolphin.webp",
+   "artSm": "assets/energies/dolphin-sm.webp",
+   "accent": "#067FC8",
+   "plans": [
+    {
+     "if": "I sense someone is not saying something",
+     "then": "I will ask once, plainly, and then let it sit."
+    },
+    {
+     "if": "I have read the room and adjusted",
+     "then": "I will also say what I want before the conversation ends."
+    },
+    {
+     "if": "A conversation went badly",
+     "then": "I will go back to it within two days rather than let it harden."
+    }
+   ],
+   "rehearse": {
+    "title": "State your own position first",
+    "body": "In three conversations this week, say what you want before you read what they want. Note what changes. Reading everyone else is a strength that quietly costs you your own ask."
+   },
+   "skilled": [
+    "Reads what is happening before it is said",
+    "Adjusts how they say a thing to who is hearing it",
+    "Goes back to a conversation that went badly"
+   ],
+   "unskilled": [
+    "Carries the room's mood and calls it their own",
+    "Reads everyone and states nothing",
+    "Softens a message until it stops being the message"
+   ]
+  },
+  {
+   "key": "gorilla",
+   "name": "Gorilla",
+   "group": "Relational Intelligence",
+   "title": "Collective Intelligence & Adaptive Collaboration",
+   "items": [
+    "I get a group to a decision it can actually act on.",
+    "I put the group's outcome ahead of my own position in it.",
+    "I notice who has not spoken and make room for them.",
+    "I take on the part of the work nobody else has picked up."
+   ],
+   "short": "You get the group to something it can actually act on.",
+   "work": "You notice who has not spoken. You take the part of the work nobody picked up, and you put the group's outcome above your position in it.",
+   "relationships": "You build the group rather than your place in it, and people feel included around you without being able to say why.",
+   "life": "Your networks are wide and they hold, because you maintain them.",
+   "business": "Use it on partnerships, team building and community. Be explicit about what you want, because collective focus can leave your own contribution invisible at the point it matters.",
+   "cost": "Your own contribution going unrecorded.",
+   "balances": {
+    "key": "cat",
+    "name": "Cat",
+    "why": "Your cost is your own contribution going unrecorded. Cat is entirely comfortable acting alone and being seen doing it."
+   },
+   "amplifies": {
+    "key": "dolphin",
+    "name": "Dolphin",
+    "why": "Group outcomes and individual trust. This is how a culture is actually built."
+   },
+   "art": "assets/energies/gorilla.webp",
+   "artSm": "assets/energies/gorilla-sm.webp",
+   "accent": "#DF4036",
+   "plans": [
+    {
+     "if": "A group is going in circles",
+     "then": "I will propose the decision and ask who disagrees."
+    },
+    {
+     "if": "Someone has not spoken in twenty minutes",
+     "then": "I will ask them directly what they think."
+    },
+    {
+     "if": "I finish a piece of shared work",
+     "then": "I will write down what I contributed, by name."
+    }
+   ],
+   "rehearse": {
+    "title": "Take one thing to a decision",
+    "body": "Find a group conversation that has been open a while. Bring it to a decision this week, in writing, with who does what by when. Then record your own part in it, which is the thing collective focus usually leaves out."
+   },
+   "skilled": [
+    "Gets a group to a decision it can act on",
+    "Notices who has not spoken and makes room",
+    "Takes the part of the work nobody picked up"
+   ],
+   "unskilled": [
+    "Lets their own contribution go unrecorded",
+    "Keeps seeking consensus past the point of usefulness",
+    "Puts harmony ahead of the decision the group needs"
+   ]
+  },
+  {
+   "key": "dragon",
+   "name": "Dragon",
+   "group": "Vision & Creation",
+   "title": "Vision, Meaning, and Future Orientation",
+   "items": [
+    "I work towards something that will not pay off for years.",
+    "I describe where this is going in a way others can picture.",
+    "I connect a day's work to the reason it is being done.",
+    "I choose the longer path when it leads somewhere that matters more."
+   ],
+   "short": "You work towards something that will not pay off yet.",
+   "work": "You connect today's task to why it is being done, and you can describe where this goes in a way other people can picture.",
+   "relationships": "You are drawn to people building something. Conversations with you tend to go long and end somewhere neither of you expected.",
+   "life": "You choose the longer path when it leads somewhere that matters more.",
+   "business": "Use it on positioning, strategy and anything needing a two-year view. Name a milestone at ninety days, because a vision with no near marker cannot be tested.",
+   "cost": "A horizon so far out that this quarter never gets judged.",
+   "balances": {
+    "key": "panda",
+    "name": "Panda",
+    "why": "Your cost is a horizon so far out that this quarter never gets judged. Panda works to a rate you can check on Friday."
+   },
+   "amplifies": {
+    "key": "unicorn",
+    "name": "Unicorn",
+    "why": "Vision and originality. The direction is both long and genuinely different."
+   },
+   "art": "assets/energies/dragon.webp",
+   "artSm": "assets/energies/dragon-sm.webp",
+   "accent": "#4B7CC7",
+   "plans": [
+    {
+     "if": "I describe where this is going",
+     "then": "I will name one thing that must be true in ninety days."
+    },
+    {
+     "if": "I am choosing between a fast path and a longer one",
+     "then": "I will write what the longer one buys in plain numbers."
+    },
+    {
+     "if": "A quarter ends",
+     "then": "I will judge the vision against what actually happened in it."
+    }
+   ],
+   "rehearse": {
+    "title": "Put a marker at ninety days",
+    "body": "Write your two year picture in five sentences. Then write the single thing that must be true in ninety days for it to still be live. Put a date on it. A vision with no near marker cannot be tested, only believed."
+   },
+   "skilled": [
+    "Connects a day's work to why it is being done",
+    "Describes where this goes so others can picture it",
+    "Chooses the longer path when it leads somewhere better"
+   ],
+   "unskilled": [
+    "Holds a horizon so far out that this quarter is never judged",
+    "Describes the destination without the next step",
+    "Treats the vision as evidence that it is working"
+   ]
+  },
+  {
+   "key": "unicorn",
+   "name": "Unicorn",
+   "group": "Vision & Creation",
+   "title": "Creative Differentiation & Possibility Thinking",
+   "items": [
+    "I arrive at an answer other people did not consider.",
+    "I put together two things that are not usually combined.",
+    "I question whether the standard way is the right way here.",
+    "I keep an idea alive that most people have dismissed."
+   ],
+   "short": "You arrive at the answer nobody else considered.",
+   "work": "You combine things that do not usually go together, and you question whether the standard way is right here rather than in general.",
+   "relationships": "You bring an angle. People come to you when they are stuck rather than when they are fine.",
+   "life": "You keep ideas alive that others dismissed, and occasionally one of them turns out to matter.",
+   "business": "Use it on differentiation, brand and any crowded market. Test the odd idea small and early, because original and wrong feel the same at the start.",
+   "cost": "Novelty chosen over the thing that would have worked.",
+   "balances": {
+    "key": "possum",
+    "name": "Possum",
+    "why": "Your cost is novelty chosen over the thing that would have worked. Possum tests it before the money is spent."
+   },
+   "amplifies": {
+    "key": "dragon",
+    "name": "Dragon",
+    "why": "An original idea with somewhere to go. Neither of you is short of possibility."
+   },
+   "art": "assets/energies/unicorn.webp",
+   "artSm": "assets/energies/unicorn-sm.webp",
+   "accent": "#E62B68",
+   "plans": [
+    {
+     "if": "I have an idea nobody else is having",
+     "then": "I will find the cheapest way to test it this week."
+    },
+    {
+     "if": "I am about to reject the standard approach",
+     "then": "I will say what specifically is wrong with it here."
+    },
+    {
+     "if": "An idea of mine gets dismissed",
+     "then": "I will ask what would have to be true for it to work."
+    }
+   ],
+   "rehearse": {
+    "title": "Test the odd idea small",
+    "body": "Take the idea you keep coming back to that others have waved off. Spend under four hours and fifty pounds finding out whether anyone wants it: one landing page, ten conversations, a single prototype. Original and wrong feel identical until you check."
+   },
+   "skilled": [
+    "Arrives at the answer nobody else considered",
+    "Tests the odd idea small and early",
+    "Asks whether the standard way is right here specifically"
+   ],
+   "unskilled": [
+    "Chooses novelty over the thing that would have worked",
+    "Rejects the standard approach without saying what is wrong with it",
+    "Keeps an idea alive on conviction rather than evidence"
+   ]
+  }
+ ]
+}
