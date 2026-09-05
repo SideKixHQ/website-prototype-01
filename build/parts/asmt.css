@@ -1,0 +1,644 @@
+
+/* ---- the twelve energies assessment ----
+   Forty eight statements answered one thumb at a time, so every option is a
+   full-width row with a 44px hit area and the four sit in a grid that collapses
+   to one column on a phone.
+
+   The result is a distribution, so the chart shows all twelve rather than only
+   the top three. Nothing is coloured as good or bad; the top three are marked
+   in gold because they are the answer to the question, not because they are
+   better than the rest. */
+
+.asmt-intro{text-align:center;margin:10px auto 40px;max-width:60ch}
+.asmt-note{font-family:var(--body);font-size:14.5px;line-height:1.65;color:#BDB49F;margin:0 0 22px}
+.asmt-intro[hidden]{display:none}
+
+.aform{max-width:760px;margin:0 auto}
+.aform[hidden]{display:none}
+
+.aprog{height:3px;border-radius:3px;background:rgba(212,168,86,.16);overflow:hidden;margin:0 0 8px}
+.aprog-bar{height:100%;width:0;background:#D4A856;transition:width .25s ease}
+.aprog-txt{font-family:var(--util);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:#8A8378;margin:0 0 30px;text-align:right}
+
+.aitem{border:0;padding:0;margin:0 0 26px}
+.aitem legend{
+  font-family:var(--body);font-size:15.5px;line-height:1.5;color:#F4EACF;
+  padding:0;margin:0 0 11px;display:flex;gap:11px;align-items:baseline}
+.aitem-n{
+  font-family:var(--util);font-size:10px;color:#8A8378;flex:none;min-width:22px}
+.aitem.missing legend{color:#FF9E9E}
+
+.aitem-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.aitem-row label{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  min-height:52px;padding:8px 10px;text-align:center;
+  border-radius:10px;cursor:pointer;
+  font-family:var(--body);font-size:12.5px;line-height:1.3;color:#BDB49F;
+  background:rgba(212,168,86,.05);border:1px solid rgba(161,133,62,.3);
+  transition:background .16s ease,border-color .16s ease,color .16s ease}
+.aitem-row label:hover{background:rgba(212,168,86,.11);border-color:#A1853E;color:#E8DEC4}
+.aitem-row input{position:absolute;opacity:0;width:1px;height:1px}
+.aitem-row label:has(input:checked){
+  background:#D4A856;border-color:#F3E4A8;color:#1B1400;font-weight:600}
+.aitem-row label:has(input:focus-visible){outline:3px solid #FFD166;outline-offset:2px}
+.aitem.missing .aitem-row label{border-color:rgba(255,158,158,.45)}
+
+.aform-err{font-family:var(--body);font-size:14px;color:#FF9E9E;margin:0 0 16px}
+.aform-err[hidden]{display:none}
+
+/* ---- the result ---- */
+.ares{max-width:820px;margin:0 auto;text-align:center}
+.ares[hidden]{display:none}
+.ares-lead{font-family:var(--body);font-size:15px;line-height:1.7;
+  color:#BDB49F;margin:0 auto 34px;max-width:60ch}
+.ares-sub{font-family:var(--util);font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#D4A856;margin:44px 0 18px}
+.ares-note{font-family:var(--body);font-size:14.5px;line-height:1.7;
+  color:#BDB49F;margin:0 auto;max-width:60ch}
+
+.achart{text-align:left;margin:0 auto;max-width:600px}
+.abar{display:grid;grid-template-columns:112px 1fr 42px;gap:11px;
+  align-items:center;margin:0 0 9px}
+.abar-name{font-family:var(--body);font-size:13.5px;color:#BDB49F}
+.abar-track{height:9px;border-radius:9px;background:rgba(212,168,86,.1);overflow:hidden}
+.abar-fill{display:block;height:100%;border-radius:9px;background:rgba(161,133,62,.75)}
+.abar-pct{font-family:var(--util);font-size:11px;color:#8A8378;text-align:right;
+  font-variant-numeric:tabular-nums}
+.abar-top .abar-name{color:#FFF8E8;font-weight:600}
+.abar-top .abar-fill{background:linear-gradient(90deg,#A1853E,#F3E4A8)}
+.abar-top .abar-pct{color:#FFD166}
+
+.atop{display:grid;gap:16px;text-align:left}
+.acard{border:1px solid #1E1C18;border-radius:14px;
+  background:rgba(10,10,12,.6);padding:24px}
+.acard-pct{font-family:var(--display);font-size:30px;color:#D4A856;margin:0 0 2px;line-height:1}
+.acard-name{font-family:var(--display);font-weight:600;font-size:22px;
+  color:#FFF8E8;margin:0 0 3px}
+.acard-title{font-family:var(--util);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#D4A856;margin:0 0 14px}
+.acard-short{font-family:var(--body);font-size:15px;line-height:1.6;
+  color:#E8DEC4;margin:0 0 18px}
+.acard-dl{margin:0}
+.acard-dl dt{font-family:var(--util);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:#8A8378;margin:0 0 5px}
+.acard-dl dd{font-family:var(--body);font-size:14px;line-height:1.65;
+  color:#CFC5AC;margin:0 0 15px}
+.acard-dl dd:last-child{margin-bottom:0}
+
+.ares-acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:46px 0 0}
+
+@media(max-width:700px){
+  .aitem-row{grid-template-columns:1fr;gap:6px}
+  .aitem-row label{min-height:46px;justify-content:flex-start;text-align:left;padding:8px 14px}
+  .abar{grid-template-columns:96px 1fr 38px;gap:8px}
+  .abar-name{font-size:12.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .aprog-bar,.aitem-row label{transition:none}
+}
+
+
+/* works well with, and the quality notice */
+.ares-flag{
+  font-family:var(--body);font-size:14px;line-height:1.65;color:#FFD9A0;
+  background:rgba(212,168,86,.10);border:1px solid rgba(212,168,86,.4);
+  border-radius:12px;padding:16px 18px;margin:0 auto 26px;max-width:60ch;text-align:left}
+.ares-flag[hidden]{display:none}
+
+.acard-with{
+  margin:20px 0 0;padding:18px 0 0;border-top:1px solid rgba(212,168,86,.18)}
+.acard-withlab{
+  font-family:var(--util);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:#8A8378;margin:0 0 13px}
+.awith{margin:0 0 14px}
+.awith:last-child{margin-bottom:0}
+.awith-n{
+  font-family:var(--display);font-weight:600;font-size:16px;color:#FFF8E8;
+  margin:0 0 5px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.awith-tag{
+  font-family:var(--util);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 8px;border-radius:5px;font-weight:400}
+.awith-bal{color:#9FD6E8;background:rgba(111,176,224,.14);border:1px solid rgba(111,176,224,.4)}
+.awith-amp{color:#F3E4A8;background:rgba(212,168,86,.14);border:1px solid rgba(212,168,86,.45)}
+.awith-w{
+  font-family:var(--body);font-size:13.5px;line-height:1.6;color:#CFC5AC;margin:0}
+
+
+/* the art. Chart rows get a 34px mark, the top three get the full animal. */
+.abar{grid-template-columns:34px 112px 1fr 42px}
+.abar-ico{width:34px;height:34px;object-fit:contain;display:block}
+.abar-noico{display:block;width:34px;height:34px;border-radius:8px;
+  background:rgba(212,168,86,.08)}
+.abar-top .abar-ico{filter:drop-shadow(0 0 10px rgba(212,168,86,.45))}
+
+.acard-art{
+  display:flex;align-items:center;justify-content:center;
+  height:190px;margin:0 0 14px;
+  background:radial-gradient(circle at 50% 55%,rgba(212,168,86,.13),transparent 68%);
+  border-radius:12px}
+.acard-art img{
+  max-width:100%;max-height:190px;width:auto;height:auto;
+  object-fit:contain;display:block;
+  filter:drop-shadow(0 10px 26px rgba(0,0,0,.55))}
+
+@media(max-width:700px){
+  .abar{grid-template-columns:28px 96px 1fr 38px;gap:8px}
+  .abar-ico,.abar-noico{width:28px;height:28px}
+  .acard-art{height:160px}
+  .acard-art img{max-height:160px}
+}
+
+
+/* ---- made readable ----
+   Two things were wrong. The option labels were 12.5px, which is small for
+   text you read forty eight times, and all forty eight statements sat on one
+   page as an unbroken wall.
+
+   Type is up across the board, and the items are paged six at a time. Six fits
+   a phone screen without scrolling past the question you are answering, and it
+   turns "48 to go" into eight short steps. */
+
+.asmt .aitem{
+  margin:0 0 30px;
+  padding:0 0 26px;
+  border-bottom:1px solid rgba(212,168,86,.10)}
+.asmt .aitem:last-child{border-bottom:0;padding-bottom:6px}
+
+.asmt .aitem legend{
+  font-size:18px !important;
+  line-height:1.45 !important;
+  color:#FFF8E8 !important;
+  margin:0 0 15px !important;
+  font-weight:500}
+.asmt .aitem-n{
+  font-size:12px !important;
+  color:#D4A856 !important;
+  min-width:26px !important;
+  font-weight:600}
+
+.asmt .aitem-row{gap:9px !important}
+.asmt .aitem-row label{
+  font-size:14.5px !important;
+  line-height:1.35 !important;
+  min-height:58px !important;
+  padding:10px 12px !important;
+  color:#CFC5AC !important;
+  border-width:1px !important;
+  border-color:rgba(161,133,62,.45) !important}
+.asmt .aitem-row label:hover{
+  color:#FFF8E8 !important;
+  border-color:#A1853E !important}
+
+/* the page counter, so the end is visible from the start */
+.asmt .apage{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;margin:0 0 26px}
+.asmt .apage-n{
+  font-family:var(--util);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#8A8378;margin:0;white-space:nowrap}
+.asmt .aprog-txt{display:none}
+
+.asmt .anav{
+  display:flex;gap:12px;justify-content:space-between;align-items:center;
+  margin:34px 0 0;flex-wrap:wrap}
+.asmt .anav-side{display:flex;gap:12px}
+
+@media(max-width:700px){
+  .asmt .aitem legend{font-size:17px !important}
+  .asmt .aitem-row label{font-size:14px !important;min-height:52px !important}
+}
+
+
+/* The number sat flush against the statement: legend is not a flex container
+   in every engine, so the gap was ignored and it read as "1I notice...".
+   Spacing it explicitly rather than relying on the flex gap. */
+.asmt .aitem legend{display:block !important}
+.asmt .aitem-n{
+  display:inline-block !important;
+  margin-right:12px !important;
+  min-width:0 !important}
+
+
+/* ---- colour ----
+   Every accent is sampled from that animal's own artwork, then spread across
+   the wheel so twelve bars are twelve colours rather than seven reds, and
+   lifted until each clears 4.5:1 against the page. The hue is never changed,
+   only its lightness, so a bar is still the colour of the animal beside it.
+
+   The page keeps the site's gold for its own furniture; the colour arrives
+   with the result, which is where it means something. */
+
+.asmt .abar-fill{
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--e) 60%,transparent),
+    var(--e)) !important;
+  box-shadow:0 0 14px color-mix(in srgb,var(--e) 35%,transparent)}
+.asmt .abar-pct{color:var(--e) !important;font-weight:600}
+.asmt .abar-top .abar-name{color:var(--e) !important}
+.asmt .abar-top .abar-ico{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--e) 55%,transparent))}
+.asmt .abar-track{background:color-mix(in srgb,var(--e) 9%,transparent)}
+
+/* the top three cards take their animal's colour on the edge, the number,
+   the title and the glow behind the art */
+.asmt .acard{
+  border-color:color-mix(in srgb,var(--e) 42%,transparent) !important;
+  background:
+    radial-gradient(120% 80% at 50% 0%,
+      color-mix(in srgb,var(--e) 11%,transparent), transparent 62%),
+    rgba(10,10,12,.72) !important;
+  box-shadow:0 14px 40px color-mix(in srgb,var(--e) 14%,transparent)}
+.asmt .acard-pct{
+  color:var(--e) !important;
+  text-shadow:0 0 26px color-mix(in srgb,var(--e) 45%,transparent)}
+.asmt .acard-title{color:var(--e) !important}
+.asmt .acard-art{
+  background:radial-gradient(circle at 50% 55%,
+    color-mix(in srgb,var(--e) 22%,transparent), transparent 68%) !important}
+.asmt .acard-dl dt{color:color-mix(in srgb,var(--e) 74%,#8A8378) !important}
+.asmt .acard-with{border-top-color:color-mix(in srgb,var(--e) 26%,transparent) !important}
+
+/* the form itself warms up: a gold rail down the answered side, and the
+   chosen option in the site gold rather than flat */
+.asmt .aprog-bar{
+  background:linear-gradient(90deg,#A1853E,#D4A856,#FFD166) !important;
+  box-shadow:0 0 12px rgba(255,209,102,.4)}
+.asmt .aitem-row label:has(input:checked){
+  background:linear-gradient(180deg,#E7CC7E,#C89F45) !important;
+  border-color:#FFD166 !important;
+  box-shadow:0 4px 18px rgba(212,168,86,.3)}
+.asmt .aitem-n{
+  color:#FFD166 !important}
+
+@supports not (color: color-mix(in srgb,red 50%,blue)){
+  /* older engines: the accent still lands, just without the blends */
+  .asmt .abar-fill{background:var(--e) !important}
+  .asmt .acard{border-color:var(--e) !important}
+}
+
+
+/* ---- colour on the questions ----
+   Two sources, neither of which leaks what an item measures.
+
+   The page. Each of the eight takes one of the twelve accents, so moving
+   through the assessment moves through the palette. A page holds six different
+   energies, so its colour says nothing about any of them.
+
+   The answer. The four options are a scale, so they are coloured as one: cool
+   and quiet at "Very unlike me", warm and bright at "Strongly true". That is
+   the meaning of the scale made visible rather than decoration. */
+
+.asmt .aform{--p:#D4A856}
+
+/* the page's colour on its furniture */
+.asmt .aprog{background:color-mix(in srgb,var(--p) 14%,transparent)}
+.asmt .aprog-bar{
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--p) 55%,transparent), var(--p)) !important;
+  box-shadow:0 0 14px color-mix(in srgb,var(--p) 50%,transparent) !important}
+.asmt .apage-n{color:color-mix(in srgb,var(--p) 62%,#8A8378)}
+.asmt .aitem-n{color:var(--p) !important}
+.asmt .aitem{border-bottom-color:color-mix(in srgb,var(--p) 16%,transparent) !important}
+
+/* a soft wash behind the page, so the whole screen carries it */
+.asmt .aform::before{
+  content:"";position:absolute;left:50%;top:0;
+  width:min(900px,120vw);height:420px;
+  transform:translateX(-50%);
+  background:radial-gradient(60% 60% at 50% 0%,
+    color-mix(in srgb,var(--p) 13%,transparent), transparent 70%);
+  pointer-events:none;z-index:-1;
+  transition:background .5s ease}
+.asmt .aform{position:relative;z-index:0}
+
+/* ---- the four options, as a scale ---- */
+.asmt .aitem-row label{
+  gap:10px !important;
+  justify-content:flex-start !important;
+  text-align:left !important;
+  padding-left:14px !important}
+.asmt .opt-dot{
+  width:13px;height:13px;border-radius:50%;flex:none;
+  border:2px solid currentColor;
+  transition:background .18s ease,box-shadow .18s ease}
+.asmt .opt-t{flex:1}
+
+/* cool and quiet, through to warm and bright */
+.asmt .opt-1{color:#7FA9B8 !important;border-color:rgba(127,169,184,.36) !important}
+.asmt .opt-2{color:#9FBFA6 !important;border-color:rgba(159,191,166,.36) !important}
+.asmt .opt-3{color:#D9BE72 !important;border-color:rgba(217,190,114,.42) !important}
+
+.asmt .opt-4{color:#EFA24C !important;border-color:rgba(239,162,76,.5) !important}
+
+.asmt .aitem-row label:hover{
+  background:color-mix(in srgb,currentColor 10%,transparent) !important;
+  border-color:currentColor !important}
+
+/* the chosen one fills with its own step on the scale */
+.asmt .opt-1:has(input:checked){background:linear-gradient(180deg,#8FBACB,#5E8A9C) !important;
+  border-color:#AFD4E2 !important;color:#08131A !important}
+.asmt .opt-2:has(input:checked){background:linear-gradient(180deg,#AFD1B6,#7EA98A) !important;
+  border-color:#CFE7D5 !important;color:#0A1710 !important}
+
+.asmt .opt-3:has(input:checked){background:linear-gradient(180deg,#E7CE86,#C4A652) !important;
+  border-color:#FFE6A6 !important;color:#171200 !important}
+.asmt .opt-4:has(input:checked){background:linear-gradient(180deg,#F5B968,#DE8C2C) !important;
+  border-color:#FFD9A0 !important;color:#1B1000 !important}
+.asmt .aitem-row label:has(input:checked){
+  font-weight:600 !important;
+  box-shadow:0 4px 18px color-mix(in srgb,currentColor 22%,transparent) !important}
+.asmt .aitem-row label:has(input:checked) .opt-dot{
+  background:currentColor;box-shadow:0 0 0 3px rgba(255,255,255,.22) inset}
+
+@supports not (color: color-mix(in srgb,red 50%,blue)){
+  .asmt .aform::before{display:none}
+  .asmt .aitem-n{color:var(--p) !important}
+}
+@media(prefers-reduced-motion:reduce){
+  .asmt .aform::before,.asmt .opt-dot{transition:none}
+}
+
+
+/* the flex gap is ignored by some engines, the same way it was on the legend,
+   so the dot ran into the label. Spaced explicitly. */
+.asmt .opt-dot{margin-right:10px}
+
+
+/* ---- why the results could not be reached ----
+   The call to action rules set display:inline-flex !important, which beats the
+   browser's own [hidden]{display:none}. So Submit was on screen from page one
+   even though the script had marked it hidden. Clicking it validated all forty
+   eight statements, failed on the forty two not yet answered, and showed an
+   error instead of the result. Back had the same problem.
+
+   [hidden] now wins, which is what it was always meant to do. */
+.asmt [hidden],
+.asmt .kxcta[hidden],
+.asmt .aitem[hidden]{display:none !important}
+
+
+/* Small, quiet, present on every screen. Findable rather than prominent:
+   loud enough to be honest, not so loud it argues with the result. */
+.asmt .asmt-disc{
+  font-family:var(--body);
+  font-size:11.5px;line-height:1.6;color:#8A8378;
+  max-width:62ch;margin:28px auto 0;padding-top:16px;
+  border-top:1px solid rgba(212,168,86,.13);
+  text-align:center}
+
+
+/* ---- the practice step ---- */
+.asmt .apr{max-width:820px;margin:56px auto 0;text-align:left}
+.asmt .apr .ares-sub{text-align:center}
+.asmt .apr .ares-note{margin-bottom:30px}
+
+.asmt .pr-lab{
+  font-family:var(--util);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:#D4A856;margin:0 0 9px}
+.asmt .pr-note{
+  font-family:var(--body);font-size:14px;line-height:1.65;
+  color:#8A8378;margin:0 0 18px;max-width:60ch}
+
+/* choosing which energy */
+.asmt .pr-chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 8px}
+.asmt .pr-chip{
+  display:inline-flex;align-items:center;gap:9px;
+  min-height:46px;padding:6px 15px 6px 9px;border-radius:999px;cursor:pointer;
+  font-family:var(--body);font-size:14.5px;color:#CFC5AC;
+  background:rgba(212,168,86,.05);
+  border:1px solid color-mix(in srgb,var(--e) 34%,transparent);
+  transition:background .18s ease,color .18s ease,border-color .18s ease}
+.asmt .pr-chip img{width:26px;height:26px;object-fit:contain;flex:none}
+.asmt .pr-pct{font-family:var(--util);font-size:10px;color:#8A8378;margin-left:3px}
+.asmt .pr-chip:hover{
+  border-color:var(--e);color:#FFF8E8;
+  background:color-mix(in srgb,var(--e) 12%,transparent)}
+.asmt .pr-chip[aria-pressed="true"]{
+  background:color-mix(in srgb,var(--e) 20%,transparent);
+  border-color:var(--e);color:#FFF8E8;font-weight:600}
+.asmt .pr-chip[aria-pressed="true"] .pr-pct{color:var(--e)}
+.asmt .pr-chip:focus-visible{outline:3px solid #FFD166;outline-offset:3px}
+
+/* the opened panel */
+.asmt .pr-open{
+  margin:26px 0 0;padding:26px clamp(18px,3vw,30px);border-radius:16px;
+  border:1px solid color-mix(in srgb,var(--e) 38%,transparent);
+  background:
+    radial-gradient(110% 70% at 50% 0%, color-mix(in srgb,var(--e) 10%,transparent), transparent 62%),
+    rgba(10,10,12,.7)}
+.asmt .pr-h{
+  font-family:var(--display);font-weight:600;font-size:21px;
+  color:#FFF8E8;margin:0 0 10px}
+
+/* the three plans */
+.asmt .pr-plans{display:grid;gap:10px;margin:0 0 8px}
+.asmt .pr-plan{
+  display:block;text-align:left;cursor:pointer;
+  padding:15px 17px;border-radius:12px;
+  background:rgba(212,168,86,.05);
+  border:1px solid rgba(161,133,62,.34);
+  transition:background .18s ease,border-color .18s ease}
+.asmt .pr-plan:hover{background:color-mix(in srgb,var(--e) 11%,transparent);border-color:var(--e)}
+.asmt .pr-plan[aria-pressed="true"]{
+  background:color-mix(in srgb,var(--e) 16%,transparent);
+  border-color:var(--e)}
+.asmt .pr-plan:focus-visible{outline:3px solid #FFD166;outline-offset:2px}
+.asmt .pr-if{
+  display:block;font-family:var(--body);font-size:14.5px;line-height:1.5;
+  color:var(--e);font-weight:600;margin:0 0 4px}
+.asmt .pr-then{
+  display:block;font-family:var(--body);font-size:14.5px;line-height:1.55;
+  color:#CFC5AC}
+
+/* writing it out, which is the rehearsal */
+.asmt .pr-commit{margin:24px 0 0;padding-top:20px;
+  border-top:1px solid color-mix(in srgb,var(--e) 22%,transparent)}
+.asmt .pr-commit[hidden]{display:none}
+.asmt .pr-text{
+  width:100%;padding:13px 15px;border-radius:12px;
+  font-family:var(--body);font-size:15px;line-height:1.6;color:#F4EACF;
+  background:rgba(8,7,5,.75);
+  border:1px solid color-mix(in srgb,var(--e) 40%,transparent);
+  resize:vertical}
+.asmt .pr-text:focus{outline:3px solid #FFD166;outline-offset:2px}
+.asmt .pr-count{
+  font-family:var(--util);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:#8A8378;margin:9px 0 0;min-height:14px}
+
+/* the thing to do this week */
+.asmt .pr-reh{margin:26px 0 0;padding-top:20px;
+  border-top:1px solid color-mix(in srgb,var(--e) 22%,transparent)}
+.asmt .pr-rh{
+  font-family:var(--display);font-weight:600;font-size:18px;
+  color:#FFF8E8;margin:0 0 8px}
+.asmt .pr-rb{
+  font-family:var(--body);font-size:14.5px;line-height:1.7;
+  color:#CFC5AC;margin:0;max-width:62ch}
+
+.asmt .pr-acts{margin:26px 0 0}
+
+@media(max-width:700px){
+  .asmt .pr-chip{font-size:13.5px;min-height:44px}
+  .asmt .pr-open{padding:20px 16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .asmt .pr-chip,.asmt .pr-plan{transition:none}
+}
+
+
+/* ---- the twelve as a scene ----
+   Laid out in reading order, biggest first, so rank is carried by position as
+   well as size. Size does the job a bar length does; the number is always
+   printed beside it so nothing rests on judging an area, which people are bad
+   at. Each animal keeps its own colour in the glow behind it. */
+
+.asmt .ascene{max-width:900px;margin:0 auto 40px}
+
+.asmt .scene{
+  display:flex;flex-wrap:wrap;
+  align-items:flex-end;justify-content:center;
+  gap:clamp(10px,2.2vw,26px);
+  padding:18px 0 6px}
+
+.asmt .sc{
+  margin:0;text-align:center;cursor:default;
+  width:calc(58px + 96px * var(--s));
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),filter .3s ease}
+.asmt .sc:focus-visible{outline:3px solid #FFD166;outline-offset:6px;border-radius:14px}
+
+.asmt .sc-art{
+  display:flex;align-items:flex-end;justify-content:center;
+  height:calc(46px + 104px * var(--s));
+  position:relative}
+.asmt .sc-art::before{
+  content:"";position:absolute;left:50%;bottom:2px;
+  width:88%;height:52%;transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(ellipse at 50% 100%,
+    color-mix(in srgb,var(--e) 34%,transparent), transparent 72%);
+  filter:blur(6px);pointer-events:none}
+.asmt .sc-art img{
+  max-width:100%;max-height:100%;width:auto;height:auto;
+  object-fit:contain;display:block;position:relative;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.55))}
+
+/* the ones you go to first come forward; the rest recede rather than vanish */
+.asmt .sc{opacity:calc(.46 + .54 * var(--s))}
+.asmt .sc-top{opacity:1}
+.asmt .sc-top .sc-art img{
+  filter:drop-shadow(0 8px 22px rgba(0,0,0,.6))
+         drop-shadow(0 0 18px color-mix(in srgb,var(--e) 45%,transparent))}
+
+.asmt .sc:hover,.asmt .sc:focus-visible{transform:translateY(-6px);opacity:1}
+
+.asmt .sc-cap{margin:9px 0 0;display:block}
+.asmt .sc-n{
+  display:block;font-family:var(--body);
+  font-size:calc(10px + 3.5px * var(--s));
+  line-height:1.25;color:#BDB49F}
+.asmt .sc-top .sc-n{color:#FFF8E8;font-weight:600}
+.asmt .sc-p{
+  display:block;margin-top:2px;
+  font-family:var(--util);
+  font-size:calc(9px + 3px * var(--s));
+  color:var(--e);font-variant-numeric:tabular-nums}
+
+@media(max-width:700px){
+  .asmt .scene{gap:9px}
+  .asmt .sc{width:calc(48px + 62px * var(--s))}
+  .asmt .sc-art{height:calc(38px + 68px * var(--s))}
+}
+@media(prefers-reduced-motion:reduce){
+  .asmt .sc{transition:none}
+}
+
+
+/* ---- the card that opens on an animal ----
+   Skilled and unskilled side by side, because both are observable and the pair
+   is what makes a competency legible. It opens on hover, on keyboard focus and
+   on tap, so it is not a pointer-only feature. */
+
+.asmt .sc{position:relative}
+
+.asmt .sc-card{
+  position:absolute;left:50%;bottom:calc(100% + 12px);
+  transform:translateX(-50%) translateY(6px);
+  width:min(340px,86vw);
+  display:block;text-align:left;
+  padding:18px 19px;border-radius:14px;
+  background:linear-gradient(180deg,#141109,#0A0906);
+  border:1px solid var(--e);
+  box-shadow:0 18px 46px rgba(0,0,0,.75),
+             0 0 30px color-mix(in srgb,var(--e) 24%,transparent);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease,visibility .18s;
+  z-index:40}
+/* the little pointer down to the animal */
+.asmt .sc-card::after{
+  content:"";position:absolute;left:50%;top:100%;
+  transform:translateX(-50%);
+  border:7px solid transparent;border-top-color:var(--e)}
+
+.asmt .sc:hover .sc-card,
+.asmt .sc:focus-visible .sc-card,
+.asmt .sc.sc-open .sc-card{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+/* the row below opens downward instead, so it does not go off the top */
+.asmt .scene .sc:nth-child(n+7) .sc-card{
+  bottom:auto;top:calc(100% + 12px);
+  transform:translateX(-50%) translateY(-6px)}
+.asmt .scene .sc:nth-child(n+7) .sc-card::after{
+  top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--e)}
+.asmt .scene .sc:nth-child(n+7):hover .sc-card,
+.asmt .scene .sc:nth-child(n+7):focus-visible .sc-card,
+.asmt .scene .sc:nth-child(n+7).sc-open .sc-card{
+  transform:translateX(-50%) translateY(0)}
+
+.asmt .sc-card-h{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font-family:var(--display);font-weight:600;font-size:19px;
+  color:#FFF8E8;margin:0 0 3px}
+.asmt .sc-card-h em{
+  font-family:var(--util);font-size:12px;font-style:normal;color:var(--e)}
+.asmt .sc-card-t{
+  display:block;font-family:var(--util);font-size:8.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--e);margin:0 0 15px}
+
+.asmt .sc-col{display:block;margin:0 0 14px}
+.asmt .sc-col:last-child{margin-bottom:0}
+.asmt .sc-col-l{
+  display:block;font-family:var(--util);font-size:8.5px;letter-spacing:.18em;
+  text-transform:uppercase;margin:0 0 7px}
+.asmt .sc-good .sc-col-l{color:#9FD6A8}
+.asmt .sc-bad .sc-col-l{color:#E8A79F}
+.asmt .sc-bul{display:block}
+.asmt .sc-bul span{
+  display:block;position:relative;padding-left:15px;
+  font-family:var(--body);font-size:12.5px;line-height:1.5;
+  color:#CFC5AC;margin:0 0 5px}
+.asmt .sc-bul span::before{
+  content:"";position:absolute;left:0;top:.6em;
+  width:5px;height:5px;border-radius:50%}
+.asmt .sc-good .sc-bul span::before{background:#9FD6A8}
+.asmt .sc-bad .sc-bul span::before{background:#E8A79F}
+
+/* ---- the list, now optional ---- */
+.asmt .alist-toggle{
+  display:block;margin:6px auto 0;padding:9px 6px;
+  background:none;border:0;cursor:pointer;
+  font-family:var(--util);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:#9C968D;
+  border-bottom:1px solid rgba(212,168,86,.35)}
+.asmt .alist-toggle:hover{color:#F3E4A8;border-bottom-color:#F3E4A8}
+.asmt .alist-toggle:focus-visible{outline:3px solid #FFD166;outline-offset:3px}
+#alistwrap[hidden]{display:none}
+#alistwrap{margin-top:26px}
+
+@media(max-width:700px){
+  .asmt .sc-card{width:min(300px,90vw);padding:15px 16px}
+  .asmt .sc-bul span{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .asmt .sc-card{transition:none}
+}
