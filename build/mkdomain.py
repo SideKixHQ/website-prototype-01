@@ -156,7 +156,7 @@ sch = (webapp("Business Name and Domain Checker", "domain-search.html", DESC,
 n = page("domain-search.html",
          "Business Name Domain Checker: 12 Endings at Once | SideKix",
          DESC, "Domain search",
-         "Is the name <em>actually free</em>?",
+         "Is the name <em>still available</em>?",
          "Type a business name and this checks a dozen domain endings at the same time, against the registries themselves rather than a reseller's list. No account, nothing stored, and no upsell.",
          body, css=CSS, js=JS, schema=sch)
 print("domain-search.html %.0f KB" % (n/1024))

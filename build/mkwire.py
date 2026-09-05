@@ -5,7 +5,7 @@ os.chdir(ROOT)
 SITE = "https://sidekixhq.com"
 
 TOOLS = [
- ("tools.html","Free Business Tools: Calculators, Worksheets, Lookups | SideKix",
+ ("tools.html","Business Tools: Calculators, Worksheets and Lookups | SideKix",
   "Fourteen free tools for people starting something: calculators, a fifty state filing lookup, a domain checker, fillable worksheets and checklists that remember your progress. No account and no email.","weekly"),
  ("startup-cost-calculator.html","Startup Cost Calculator: What It Costs to Start | SideKix",
   "Add your one-off costs and monthly running costs and see what you need before you open. Nothing saved, nothing sent, no account.","monthly"),
