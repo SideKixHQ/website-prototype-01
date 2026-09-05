@@ -1761,98 +1761,58 @@ window.SIDEKIX_SUBMIT = function (payload) {
   .prtfilm-play:hover img{transform:none}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"SideKix film","description":"What SideKix is building, and how partners, affiliates and sponsors fit in.","thumbnailUrl":"https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/GsnBg1r40cg","contentUrl":"https://youtu.be/GsnBg1r40cg"}</script>
-<style id="kx-prt-poster">
-/* ---- the poster gets the treatment the homepage and advisors hero use ----
-   Not a framed card on the page but artwork rising out of the ground: the red
-   border trimmed off, an elliptical alpha baked into both plates so the edges
-   dissolve rather than stopping, a gold duotone at rest and the full colour
-   underneath it. Mirrored from the advisors hero, which puts its art on the
-   right, because this one goes on the left.
+<style id="kx-prt-home">
+/* ---- the partners hero, built on the homepage hero ----
+   Same three layers in the same order and the same geometry: one image pinned
+   to the right and bled off it, a radial mask on the image itself so it
+   dissolves into the ground rather than ending, a linear scrim over it that is
+   solid behind the copy and clear over the art, and the copy on top.
 
-   Two plates rather than a CSS filter, because a filter cannot turn a gold
-   duotone back into the original reds and greens; crossfading opacity between
-   two images can, and the compositor does it without repainting either one. */
-.prthero{position:relative;isolation:isolate;overflow:hidden;
-  min-height:clamp(560px,80vh,760px);
-  display:flex;align-items:center;
-  margin:0 0 10px}
-/* Fitted inside its box, the plate read as an oval floating on the page: you
-   could see where the artwork stopped, which is the one thing the advisors
-   hero never does. It works there because the art is cropped and runs off the
-   window edge, so the fade is never seen as a shape. Same geometry here,
-   mirrored: wider than its column, taller than the section, hanging off the
-   left edge, and covering rather than fitting. */
-/* The plate's own right-hand feather is a fixed share of the file, so once
-   the art is capped at 620px it covers a smaller and smaller slice of the
-   window as the window grows, and a scrim stop tuned at one width shows a
-   hard edge at another. The fade rides on the artwrap instead, where it is
-   always the same fraction of the artwork no matter how wide the window is. */
-.prthero-artwrap{position:absolute;left:-5%;top:50%;transform:translateY(-50%);
-  width:min(46%,620px);height:118%;z-index:1;pointer-events:none;overflow:visible;
-  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 46%,transparent 97%);
-  mask-image:linear-gradient(90deg,#000 0%,#000 46%,transparent 97%)}
-.prthero-art{position:absolute;left:0;top:0;width:100%;height:100%;
-  object-fit:cover;object-position:52% 44%;
-  animation:prtDrift 52s ease-in-out infinite alternate;will-change:transform;
-  transition:opacity .75s cubic-bezier(.16,1,.3,1)}
-.prthero-duo{opacity:.42}
-.prthero-colour{opacity:0}
-.prthero:hover .prthero-duo{opacity:0}
-.prthero:hover .prthero-colour{opacity:1}
-.prthero-light{position:absolute;inset:-6%;
-  background:radial-gradient(ellipse 44% 30% at var(--px,50%) var(--py,46%),
-    rgba(6,5,4,0) 0%,rgba(6,5,4,0) 34%,rgba(6,5,4,.5) 70%,rgba(6,5,4,.72) 100%);
-  -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
-  mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
-  opacity:0;transition:opacity .6s ease;will-change:background}
-.prthero:hover .prthero-light{opacity:1}
-@keyframes prtDrift{
-  from{transform:translate3d(0,0,0) scale(1.01)}
-  to{transform:translate3d(2.4%,1.8%,0) scale(1.07)}}
-/* The advisors scrim mirrored exactly would have darkened this artwork's left
-   half, because there the art sits against the right edge of the window and is
-   meant to fade off it. This one stands clear of the edge, so the band is cut
-   for where it actually is: a touch of dark at the very edge so nothing stops
-   hard, fully open from 14% to 42% where the poster sits, and solid from 74%
-   across, behind the copy. */
-.prthero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(11,10,6,.6) 0%,rgba(11,10,6,0) 11%,
-      rgba(11,10,6,0) 28%,rgba(11,10,6,.55) 43%,#0B0A06 57%),
-    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 21%,
-      rgba(11,10,6,0) 80%,#0B0A06 100%)}
-/* The hero is full bleed now, so the copy sets its own measure and sits where
-   the wrap's right edge would have been rather than against the window. */
-.prthero-copy{position:relative;z-index:3;
-  width:min(560px,86%);margin-left:auto;margin-right:clamp(24px,11vw,300px);
-  text-align:left}
-.prthero .prthero-copy .kx-backrow{justify-content:flex-start !important;margin:0 0 18px}
-.prthero-copy h1,.prthero-copy .lede{text-align:left;margin-left:0;margin-right:0}
-.prthero-copy .lede{max-width:44ch}
+   The image is part of the scene, not an illustration beside it. That is why
+   it is masked rather than cropped, why the copy sits over it rather than next
+   to it, and why on a phone it stays put and only gets wider, further right
+   and quieter, exactly as the homepage does. Pulling it out into its own block
+   under the copy, which is what an earlier attempt did, turns a background
+   into a picture and the page stops reading as one thing. */
+#prt-home{position:relative;height:100vh;min-height:720px;overflow:hidden;
+  display:flex;align-items:center;z-index:2;padding-bottom:11vh}
+.prt-homeart{position:absolute;right:-4%;top:50%;transform:translateY(-50%);
+  width:52%;height:110%;object-fit:cover;object-position:50% 42%;z-index:1;
+  -webkit-mask-image:radial-gradient(70% 70% at 60% 50%,#000 42%,transparent 80%);
+  mask-image:radial-gradient(70% 70% at 60% 50%,#000 42%,transparent 80%);
+  opacity:.62;
+  /* The homepage photograph is already dark and sits at .9 untouched. This
+     plate is a bright yellow poster, so it is pulled toward the site gold at
+     rest and released to its own colour on hover. Same filter functions in the
+     same order in both states, so the browser interpolates rather than snaps. */
+  filter:saturate(.55) sepia(.35) hue-rotate(-8deg) brightness(.82) contrast(1.02);
+  transition:opacity .7s ease,filter .7s ease}
+#prt-home:hover .prt-homeart{
+  opacity:.96;
+  filter:saturate(1.25) sepia(0) hue-rotate(0deg) brightness(1.1) contrast(1.05)}
+.prt-homescrim{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,#0B0A06 30%,rgba(10,10,10,.4) 60%,transparent 82%)}
+.prt-homecopy{position:relative;z-index:5;padding:0 56px;max-width:920px}
+.prt-homecopy .kx-backrow{justify-content:flex-start}
+.prt-homecopy .eyebrow,.prt-homecopy h1,.prt-homecopy .lede{
+  text-align:left;margin-left:0;margin-right:0}
+.prt-homecopy .lede{max-width:52ch}
 
-@media (max-width:900px){
-  /* One column, so the art stops being a backdrop and becomes a picture under
-     the copy, in colour, the same correction the advisors hero needed. */
-  .prthero{flex-direction:column;align-items:stretch;min-height:0;overflow:visible;
-    padding-bottom:6px}
-  .prthero-copy{order:1;width:min(100%,560px);margin:0 auto;text-align:center;padding:0 18px;box-sizing:border-box}
-  .prthero .prthero-copy .kx-backrow{justify-content:center !important}
-  .prthero-copy h1,.prthero-copy .lede{text-align:center;margin-left:auto;margin-right:auto}
-  .prthero-artwrap{position:relative;order:2;left:auto;top:auto;transform:none;
-    /* The poster's own proportions, so contain shows all of it. Cover, which
-       is right when it is a backdrop bleeding off the window edge, crops the
-       title and the caption off when it is a picture standing on its own. */
-    width:min(330px,80%);height:auto;aspect-ratio:648/1166;margin:24px auto 0}
-  .prthero-art{animation:none;object-fit:contain;object-position:center;transition:none}
-  .prthero-duo{opacity:0}
-  .prthero-colour{opacity:1}
-  .prthero-scrim,.prthero-light{display:none}
+@media (max-width:640px){
+  /* The homepage's own phone treatment, value for value: the section stops
+     being full height, the copy takes the full width, and the image stays
+     where it is, wider and pushed further off the right edge and quiet enough
+     to read through. */
+  #prt-home{height:auto;min-height:0;padding:116px 0 64px}
+  .prt-homecopy{padding-left:20px;padding-right:20px;max-width:100%}
+  .prt-homeart{width:118%;right:-26%;opacity:.32;
+    filter:saturate(.7) sepia(.2) hue-rotate(-5deg) brightness(.9) contrast(1.02)}
+  .prt-homecopy .kx-backrow{justify-content:flex-start}
 }
 @media (prefers-reduced-motion:reduce){
-  .prthero-art{animation:none;transition:none}
+  .prt-homeart{transition:none}
 }
 </style>
-
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
 <nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
@@ -1881,17 +1841,13 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <!-- CTA -->
 <!-- FOOTER -->
 <div aria-hidden="true" class="prt-ground"></div>
-<main id="maincontent"><section class="prthero">
-  <div aria-hidden="true" class="prthero-artwrap"><img alt="" class="prthero-art prthero-duo" decoding="async" fetchpriority="high" height="1475" src="assets/img/bffe23e7fabc.webp" width="820"/><img alt="" class="prthero-art prthero-colour" decoding="async" height="1475" loading="lazy" src="assets/img/9756f93332d7.webp" width="820"/><span class="prthero-light"></span></div>
-  <div aria-hidden="true" class="prthero-scrim"></div>
-  <div class="prthero-copy">
-    <p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p>
-    <span class="eyebrow">Partners</span><h1>Collaboration is what<br/>builds <em>community</em>.</h1>
-    <p class="lede">Three ways to work with us, each with a different shape. Pick the one that fits and we will take it from there.</p>
-  </div>
+<main id="maincontent">
+<section id="prt-home">
+<img alt="" class="prt-homeart" decoding="async" fetchpriority="high" height="1619" src="assets/img/d2ea54146634.webp" width="900"/>
+<div aria-hidden="true" class="prt-homescrim"></div>
+<div class="prt-homecopy"><p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p><span class="eyebrow">Partners</span><h1>Collaboration is what<br/>builds <em>community</em>.</h1><p class="lede">Three ways to work with us, each with a different shape. Pick the one that fits and we will take it from there.</p></div>
 </section>
-<section class="wrap res prt">
-</div><div aria-label="Ways to work with SideKix" class="prtdiscs" role="tablist"><button aria-controls="panel-affiliates" aria-selected="true" class="prtdisc" data-k="affiliates" id="tab-affiliates" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Affiliates</span><span class="pd-kick">Referral based</span></button><button aria-controls="panel-partners" aria-selected="false" class="prtdisc" data-k="partners" id="tab-partners" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Partners</span><span class="pd-kick">Co-create and collaborate</span></button><button aria-controls="panel-sponsors" aria-selected="false" class="prtdisc" data-k="sponsors" id="tab-sponsors" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Sponsors</span><span class="pd-kick">Brand visibility</span></button></div><div class="prtpanel" id="prtpanel"><div aria-labelledby="tab-affiliates" class="prtp" id="panel-affiliates" role="tabpanel"><h2>You get discovered by people who need exactly what you do.</h2><ul class="prtben"><li>Your business surfaces in Kix suggestions when a member's situation matches what you offer</li><li>An exclusive member discount listed in the community classifieds</li><li>Referral tracking, so you see what the relationship is actually worth</li><li>No cost to join and no exclusivity</li></ul><button class="prtgo" data-kind="affiliate" data-pfopen="" type="button">Talk to us about becoming an affiliate</button></div><div aria-labelledby="tab-partners" class="prtp" hidden="" id="panel-partners" role="tabpanel"><h2>You help build the thing, and the thing carries your name.</h2><ul class="prtben"><li>Co-created workshops, trainings and content, credited to you</li><li>Your offering integrated into the member journey rather than bolted on</li><li>A say in long-term programmes for entrepreneur education and access</li><li>Named on this page and in the product</li></ul><button class="prtgo" data-kind="partner" data-pfopen="" type="button">Talk to us about becoming a partner</button></div><div aria-labelledby="tab-sponsors" class="prtp" hidden="" id="panel-sponsors" role="tabpanel"><h2>You fund the work and get seen doing it.</h2><ul class="prtben"><li>Fund an event, a programme or a campaign and put your name on it</li><li>In-app and on-site placement where members are already looking</li><li>Co-branded experiences built with our team</li><li>Reporting on reach, not vanity numbers</li></ul><button class="prtgo" data-kind="sponsor" data-pfopen="" type="button">Talk to us about becoming a sponsor</button></div></div><section class="prtfilm" id="prt-film"><span class="prtfilm-eyebrow">The film</span><h2 class="prtfilm-h">What we are building, <em>in two minutes</em>.</h2><div class="prtfilm-box" data-yt="GsnBg1r40cg"><button class="prtfilm-play" type="button" aria-label="Play the SideKix film"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg" width="1280"/><span aria-hidden="true" class="prtfilm-btn"></span></button></div><p class="prtfilm-note"><a href="https://youtu.be/GsnBg1r40cg" rel="noopener" target="_blank">Watch on YouTube &rarr;</a></p></section><div class="prtroster"><h2>Who is already here</h2><h3>National affiliates</h3><div class="prtticker"><div aria-hidden="true" class="prtlane prtlane-a"><div class="prttrack"><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span></div></div><div aria-hidden="true" class="prtlane prtlane-b"><div class="prttrack"><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span></div></div><ul class="sr-only"><li>Amplemarket</li><li>Apollo</li><li>AspenTechLabs</li><li>BILL</li><li>Beehiiv</li><li>Capsule</li><li>Carta</li><li>Catalyst</li><li>Clearco</li><li>Contractor Foreman</li><li>ElevenLabs</li><li>FreshBooks</li><li>Google Workspace</li><li>Gusto</li><li>HealthRx</li><li>Housecall Pro</li><li>Instantly.AI</li><li>KrispCall</li><li>Leadpages</li><li>Make</li><li>Optery</li><li>Printify</li><li>ProDevs</li><li>Rewarx Studio AI</li><li>ShadowGPS</li><li>Shopify</li><li>Smart Tracking</li><li>Trainual</li><li>Unitel</li><li>WhatConverts</li><li>ZenBusiness</li><li>airSlate</li><li>folk</li><li>monday.com</li></ul></div><h3>Partners</h3><div class="prtnames"><span class="prtname">Right to Start</span><span class="prtname">Second Order Studio</span><span class="prtname">Self Help Credit Union</span><span class="prtname">Zapier</span></div><h3>Local, Wilmington NC</h3><div class="prtnames"><span class="prtname">BlueTone Media</span><span class="prtname">Bridge to Wilmington</span><span class="prtname">Cape Fear Community College</span><span class="prtname">K Starr Coaching</span><span class="prtname">UNCW</span></div></div><div class="prtend">
+<section class="wrap res prt"><div aria-label="Ways to work with SideKix" class="prtdiscs" role="tablist"><button aria-controls="panel-affiliates" aria-selected="true" class="prtdisc" data-k="affiliates" id="tab-affiliates" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Affiliates</span><span class="pd-kick">Referral based</span></button><button aria-controls="panel-partners" aria-selected="false" class="prtdisc" data-k="partners" id="tab-partners" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Partners</span><span class="pd-kick">Co-create and collaborate</span></button><button aria-controls="panel-sponsors" aria-selected="false" class="prtdisc" data-k="sponsors" id="tab-sponsors" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Sponsors</span><span class="pd-kick">Brand visibility</span></button></div><div class="prtpanel" id="prtpanel"><div aria-labelledby="tab-affiliates" class="prtp" id="panel-affiliates" role="tabpanel"><h2>You get discovered by people who need exactly what you do.</h2><ul class="prtben"><li>Your business surfaces in Kix suggestions when a member's situation matches what you offer</li><li>An exclusive member discount listed in the community classifieds</li><li>Referral tracking, so you see what the relationship is actually worth</li><li>No cost to join and no exclusivity</li></ul><button class="prtgo" data-kind="affiliate" data-pfopen="" type="button">Talk to us about becoming an affiliate</button></div><div aria-labelledby="tab-partners" class="prtp" hidden="" id="panel-partners" role="tabpanel"><h2>You help build the thing, and the thing carries your name.</h2><ul class="prtben"><li>Co-created workshops, trainings and content, credited to you</li><li>Your offering integrated into the member journey rather than bolted on</li><li>A say in long-term programmes for entrepreneur education and access</li><li>Named on this page and in the product</li></ul><button class="prtgo" data-kind="partner" data-pfopen="" type="button">Talk to us about becoming a partner</button></div><div aria-labelledby="tab-sponsors" class="prtp" hidden="" id="panel-sponsors" role="tabpanel"><h2>You fund the work and get seen doing it.</h2><ul class="prtben"><li>Fund an event, a programme or a campaign and put your name on it</li><li>In-app and on-site placement where members are already looking</li><li>Co-branded experiences built with our team</li><li>Reporting on reach, not vanity numbers</li></ul><button class="prtgo" data-kind="sponsor" data-pfopen="" type="button">Talk to us about becoming a sponsor</button></div></div><section class="prtfilm" id="prt-film"><span class="prtfilm-eyebrow">The film</span><h2 class="prtfilm-h">What we are building, <em>in two minutes</em>.</h2><div class="prtfilm-box" data-yt="GsnBg1r40cg"><button class="prtfilm-play" type="button" aria-label="Play the SideKix film"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg" width="1280"/><span aria-hidden="true" class="prtfilm-btn"></span></button></div><p class="prtfilm-note"><a href="https://youtu.be/GsnBg1r40cg" rel="noopener" target="_blank">Watch on YouTube &rarr;</a></p></section><div class="prtroster"><h2>Who is already here</h2><h3>National affiliates</h3><div class="prtticker"><div aria-hidden="true" class="prtlane prtlane-a"><div class="prttrack"><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span></div></div><div aria-hidden="true" class="prtlane prtlane-b"><div class="prttrack"><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span></div></div><ul class="sr-only"><li>Amplemarket</li><li>Apollo</li><li>AspenTechLabs</li><li>BILL</li><li>Beehiiv</li><li>Capsule</li><li>Carta</li><li>Catalyst</li><li>Clearco</li><li>Contractor Foreman</li><li>ElevenLabs</li><li>FreshBooks</li><li>Google Workspace</li><li>Gusto</li><li>HealthRx</li><li>Housecall Pro</li><li>Instantly.AI</li><li>KrispCall</li><li>Leadpages</li><li>Make</li><li>Optery</li><li>Printify</li><li>ProDevs</li><li>Rewarx Studio AI</li><li>ShadowGPS</li><li>Shopify</li><li>Smart Tracking</li><li>Trainual</li><li>Unitel</li><li>WhatConverts</li><li>ZenBusiness</li><li>airSlate</li><li>folk</li><li>monday.com</li></ul></div><h3>Partners</h3><div class="prtnames"><span class="prtname">Right to Start</span><span class="prtname">Second Order Studio</span><span class="prtname">Self Help Credit Union</span><span class="prtname">Zapier</span></div><h3>Local, Wilmington NC</h3><div class="prtnames"><span class="prtname">BlueTone Media</span><span class="prtname">Bridge to Wilmington</span><span class="prtname">Cape Fear Community College</span><span class="prtname">K Starr Coaching</span><span class="prtname">UNCW</span></div></div><div class="prtend">
 <h2>Ready when you are.</h2>
 <p>Tell us which of the three fits and a little about what you do. We reply to every one.</p>
 <button class="prtcta kx-trace kx-mag" data-pfopen="" type="button">Start an introduction <i>→</i></button>
@@ -2470,34 +2426,6 @@ try{
   });
 })();
 }catch(e){console.error('SideKix [partners film] failed:',e);}
-</script>
-
-<script>
-try{
-/* The light that follows the pointer across the artwork, the same driver the
-   advisors hero uses: a rAF loop that eases toward the cursor and stops
-   scheduling frames once it has settled, rather than running forever. */
-(function(){
-  var hero=document.querySelector('.prthero');
-  if(!hero) return;
-  var wrap=hero.querySelector('.prthero-artwrap'), light=hero.querySelector('.prthero-light');
-  if(!wrap||!light) return;
-  if(!window.matchMedia||!matchMedia('(hover:hover)').matches) return;
-  var cx=50, cy=46, tx=50, ty=46, raf=null;
-  function loop(){
-    cx+=(tx-cx)*0.13; cy+=(ty-cy)*0.13;
-    light.style.setProperty('--px',cx.toFixed(2)+'%');
-    light.style.setProperty('--py',cy.toFixed(2)+'%');
-    if(Math.abs(tx-cx)>0.06||Math.abs(ty-cy)>0.06){ raf=requestAnimationFrame(loop); }
-    else { raf=null; }
-  }
-  hero.addEventListener('pointermove',function(e){
-    var r=wrap.getBoundingClientRect();
-    tx=((e.clientX-r.left)/r.width)*100; ty=((e.clientY-r.top)/r.height)*100;
-    if(raf===null) raf=requestAnimationFrame(loop);
-  },{passive:true});
-})();
-}catch(e){console.error('SideKix [partners hero light] failed:',e);}
 </script>
 </body>
 </html>
