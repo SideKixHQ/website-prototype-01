@@ -113,7 +113,12 @@ CARDS = {
  "sidehours": ("blog/how-to-build-a-business-while-working-a-9-to-5/", "Building around a job", "How to build the other thing without walking away from the paycheque."),
  "erratic":   ("weekly-check-in.html", "Weekly check-in", "A small amount of regular attention beats a large amount of irregular attention."),
 }
-ALWAYS = ("library.html", "The resource library", "Sixty-three pieces, filterable by topic, on starting, funding, growing and staying with it.")
+ALWAYS = [
+ ("assessment.html", "The Energy Discovery",
+  "Five questions place the business. Forty eight place you: which of the twelve energies you lead with, and which come forward under pressure."),
+ ("library.html", "The resource library",
+  "Sixty-three pieces, filterable by topic, on starting, funding, growing and staying with it."),
+]
 
 qs_html = []
 for qi, (q, opts) in enumerate(QS):
@@ -161,8 +166,8 @@ JS = r"""
     document.getElementById('dg-l').innerHTML=read[1]+extra;
     var seen={}, out=[];
     answers.forEach(function(t){ var c=D.cards[t]; if(c&&!seen[c[0]]){ seen[c[0]]=1; out.push(c); } });
-    if(!seen[D.always[0]]) out.push(D.always);
-    document.getElementById('dg-n').innerHTML=out.slice(0,4).map(function(c){
+    D.always.forEach(function(a){ if(!seen[a[0]]) out.push(a); });
+    document.getElementById('dg-n').innerHTML=out.slice(0,5).map(function(c){
       return '<a class="dg-card" href="'+c[0]+'"><b>'+c[1]+'</b><span>'+c[2]+'</span></a>'; }).join('');
     show();
   }

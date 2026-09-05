@@ -124,7 +124,7 @@ ZOO = ["lion","dragon","phoenix","octopus","dolphin","unicorn",
 GROUPS = [
  ("Work out where you are",
   "Two ways to get a reading on yourself rather than on a number. Both run in the browser and neither keeps anything.",
-  [("assessment.html","The Twelve Energies","Forty eight statements on how you actually behave, and a distribution across all twelve rather than a label. Everyone runs on all of them; the question is the proportions.","12","energies"),
+  [("assessment.html","The Energy Discovery","Forty eight statements on how you actually behave, and a distribution across all twelve energies rather than a label. Everyone runs on all of them; the question is the proportions.","12","energies"),
    ("founder-diagnostic.html","Where are you, actually?","Five questions and a straight read on the stage you are at, plus what fits it.","5","questions")]),
  ("Work out a number",
   "Four calculators. Change a figure and the answer moves. Nothing is saved and nothing is sent.",

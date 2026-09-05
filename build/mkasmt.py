@@ -17,16 +17,16 @@ CSS  = io.open(os.path.join(PARTS, "asmt.css"), encoding="utf-8").read()
 JS   = io.open(os.path.join(PARTS, "asmt.js"),  encoding="utf-8").read()
 BODY = io.open(os.path.join(PARTS, "asmt.html"), encoding="utf-8").read()
 
-TITLE = "The Twelve Energies Assessment | SideKix"
+TITLE = "The Energy Discovery: Which of the Twelve Do You Run On? | SideKix"
 DESC  = ("Forty eight statements, about six minutes, and a read on which of the twelve "
-         "energies you run on at work. Nothing is stored and nothing is sent.")
+         "energies you run on. Nothing is stored and nothing is sent.")
 H1    = "Twelve energies.<br/>You have all of them."
 LEDE  = ("In about six minutes, discover how your 12 energies show up in the way you work, "
          "think, and respond. See which ones you rely on most, when others come forward, "
          "and the value each one brings.")
 
 FAQ = [
- ("How long does the assessment take?",
+ ("How long does the Energy Discovery take?",
   "About six minutes. It is forty eight statements over eight pages, four statements for each "
   "of the twelve energies, answered on a four point scale with no neutral option."),
  ("Is this a personality test?",
@@ -44,10 +44,10 @@ FAQ = [
 ]
 
 SCHEMA = (
-  crumbs("The Twelve Energies Assessment", "assessment.html"),
+  crumbs("The Energy Discovery", "assessment.html"),
   {"@context":"https://schema.org","@type":"WebApplication",
    "@id":f"{SITE}/assessment.html#app","url":f"{SITE}/assessment.html",
-   "name":"The Twelve Energies Assessment","applicationCategory":"BusinessApplication",
+   "name":"The Energy Discovery","applicationCategory":"BusinessApplication",
    "operatingSystem":"Any","browserRequirements":"Requires JavaScript",
    "description":DESC,
    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
@@ -57,6 +57,6 @@ SCHEMA = (
                   "acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQ]},
 )
 
-n = page("assessment.html", TITLE, DESC, "Assessment", H1, LEDE, BODY,
+n = page("assessment.html", TITLE, DESC, "Energy Discovery", H1, LEDE, BODY,
          css=CSS, js=JS, schema=SCHEMA, wrapcls="wrap res asmt")
 print(f"assessment.html {n//1024} KB")
