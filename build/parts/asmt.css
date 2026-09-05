@@ -642,3 +642,112 @@
 @media(prefers-reduced-motion:reduce){
   .asmt .sc-card{transition:none}
 }
+
+/* the share card button sits with the other two result actions */
+.acard-say{margin:12px 0 0;text-align:center;font-size:14px;color:#9C968D}
+
+/* the same call to action rules membership uses, so a button looks the
+   same wherever it appears on the site */
+.kxcta{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px;
+  min-height:48px !important;
+  padding:0 26px !important;
+  border-radius:999px !important;
+  font-family:var(--util) !important;
+  font-size:11px !important;
+  letter-spacing:.18em !important;
+  text-transform:uppercase !important;
+  text-decoration:none !important;
+  border-bottom:0 !important;
+  background:none !important;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background .22s ease,border-color .22s ease,color .22s ease}
+.kxcta-lead{
+  border:1px solid #A1853E !important;
+  color:#E8DEC4 !important;
+  margin:34px auto 0 !important}
+.kxcta-lead:hover{
+  background:#2F2613 !important;
+  border-color:#F3E4A8 !important;
+  color:#FFF8E8 !important}
+.kxcta-quiet{
+  border:1px solid rgba(161,133,62,.55) !important;
+  color:#BDB49F !important;
+  margin:14px auto 0 !important}
+.kxcta-quiet:hover{
+  background:rgba(212,168,86,.08) !important;
+  border-color:#A1853E !important;
+  color:#E8DEC4 !important}
+.kxcta:focus-visible{
+  outline:3px solid #FFD166 !important;
+  outline-offset:3px !important}
+@media(max-width:560px){
+  .kxcta{
+    white-space:normal;
+    min-height:52px !important;
+    padding:12px 20px !important;
+    letter-spacing:.12em !important;
+    line-height:1.35}
+}
+@media(prefers-reduced-motion:reduce){
+  .kxcta{transition:none}
+}
+
+
+/* ---- the scene had to stay readable as it dimmed ----
+   Rank fades each figure down to about .64 opacity, and that fade multiplied
+   the accent colour as well as the label, so the lower percentages were
+   reading at 2.55:1 where 10px text needs 4.5. Two changes, neither of which
+   touches the plates: the fade gets a floor, and the accent is lifted toward
+   cream for the number only, which keeps the hue that ties it to its animal
+   while putting the luminance where it needs to be. */
+.asmt .ascene figure.sc{opacity:calc(.82 + .18 * var(--s,1)) !important}
+.asmt .sc-p{color:#CFC7B4}
+@supports (color:color-mix(in srgb,#000 50%,#fff)){
+  .asmt .sc-p{color:color-mix(in srgb, var(--e) 58%, #F3E4A8)}
+}
+
+
+/* ---- the buttons match the rest of the site now ----
+   The site's primary action is a filled gold pill: 17px, sentence case, dark
+   ink on a gradient, the shape used on advisors, partners and the home page.
+   This page was using an 11px uppercase outline for its primary action, which
+   is the site's SECONDARY treatment, so the most important button on the page
+   was dressed as the least important one. Scoped to .asmt so nothing else
+   using .kxcta moves. */
+.asmt .kxcta{
+  font-family:var(--body) !important;
+  font-size:17px !important;
+  letter-spacing:normal !important;
+  text-transform:none !important;
+  min-height:60px !important;
+  padding:0 38px !important;
+  font-weight:700 !important}
+.asmt .kxcta-lead{
+  background:linear-gradient(180deg,#D7C582,#A1853E) !important;
+  border:none !important;
+  color:#1B1400 !important;
+  box-shadow:0 0 30px rgba(231,182,70,.22)}
+.asmt .kxcta-lead:hover{
+  background:linear-gradient(180deg,#E6D89A,#B8974A) !important;
+  color:#160F00 !important;
+  box-shadow:0 0 42px rgba(231,182,70,.4)}
+.asmt .kxcta-quiet{
+  border:1px solid rgba(212,168,86,.55) !important;
+  color:#EBD08C !important;
+  font-weight:600 !important}
+.asmt .kxcta-quiet:hover{
+  background:rgba(212,168,86,.1) !important;
+  border-color:#D4A856 !important;
+  color:#FFF6DC !important}
+/* the three result actions read as one row rather than a stack */
+.asmt .ares-acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.asmt .ares-acts .kxcta{margin:0 !important}
+@media(max-width:560px){
+  .asmt .kxcta{font-size:16px !important;padding:0 26px !important}
+  .asmt .ares-acts .kxcta{flex:1 1 100%}
+}

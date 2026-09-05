@@ -544,3 +544,177 @@
     });
   };
 })();
+
+
+/* ---- a card you can actually post ----
+   The result is a picture of twelve animals, which is the one thing here worth
+   sharing, and a screenshot of a web page is a poor version of it. This draws
+   the top three onto a canvas at 1200x630, the size LinkedIn and X read for a
+   link preview, and hands it over as a PNG.
+
+   Everything it needs is already on the page: the chart rows carry the name,
+   the percentage and the plate, in rank order. Reading the DOM rather than the
+   scoring means the card can never disagree with what the visitor is looking
+   at. The small plates are swapped for the 640px ones so the card is sharp.
+
+   No upload and no service. The canvas is same-origin so it is never tainted,
+   and the file is produced and downloaded on the device. */
+(function(){
+  var acts = document.querySelector('.ares-acts');
+  if(!acts || !document.getElementById('achart')) return;
+
+  var W = 1200, H = 630, GOLD = '#D4A856', CREAM = '#FFF6DC', INK = '#0B0A06';
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'kxcta kxcta-quiet';
+  btn.id = 'acard';
+  btn.textContent = 'Save a share card';
+  acts.appendChild(btn);
+
+  var say = document.createElement('p');
+  say.className = 'acard-say';
+  say.setAttribute('aria-live', 'polite');
+  say.hidden = true;
+  acts.parentNode.insertBefore(say, acts.nextSibling);
+
+  function top3(){
+    return [].slice.call(document.querySelectorAll('#achart .abar')).slice(0, 3)
+      .map(function(b){
+        var img = b.querySelector('img');
+        return {
+          name: (b.querySelector('.abar-name') || {}).textContent || '',
+          pct:  (b.querySelector('.abar-pct')  || {}).textContent || '',
+          /* the row uses the 200px plate; the card wants the 640px one */
+          src:  img ? img.getAttribute('src').replace('-sm.webp', '.webp') : null
+        };
+      });
+  }
+
+  function load(src){
+    return new Promise(function(res, rej){
+      var i = new Image();
+      i.onload = function(){ res(i); };
+      i.onerror = rej;
+      i.src = src;
+    });
+  }
+
+  function fonts(){
+    if(!document.fonts || !document.fonts.load) return Promise.resolve();
+    return Promise.all([
+      document.fonts.load('600 62px "Cormorant Garamond"'),
+      document.fonts.load('600 40px "Cormorant Garamond"'),
+      document.fonts.load('400 20px "Space Grotesk"')
+    ]).catch(function(){});
+  }
+
+  function draw(rows, imgs){
+    var c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    var x = c.getContext('2d');
+
+    x.fillStyle = INK; x.fillRect(0, 0, W, H);
+    var glow = x.createRadialGradient(210, 90, 0, 210, 90, 760);
+    glow.addColorStop(0, 'rgba(212,168,86,.17)');
+    glow.addColorStop(1, 'rgba(212,168,86,0)');
+    x.fillStyle = glow; x.fillRect(0, 0, W, H);
+
+    x.strokeStyle = 'rgba(212,168,86,.34)'; x.lineWidth = 1;
+    x.strokeRect(24.5, 24.5, W - 49, H - 49);
+
+    x.font = '400 19px "Space Grotesk", system-ui, sans-serif';
+    x.fillStyle = GOLD; x.textBaseline = 'alphabetic';
+    x.letterSpacing && (x.letterSpacing = '3px');
+    x.fillText('THE TWELVE ENERGIES', 62, 88);
+    x.textAlign = 'right';
+    x.fillStyle = 'rgba(189,180,164,.85)';
+    x.fillText('SIDEKIX', W - 62, 88);
+    x.textAlign = 'left';
+    x.letterSpacing && (x.letterSpacing = '0px');
+
+    /* three columns, animals sitting on one baseline */
+    var base = 400, colW = (W - 160) / 3;
+    imgs.forEach(function(im, i){
+      if(!im) return;
+      var maxH = 210, maxW = colW - 44;
+      var s = Math.min(maxH / im.naturalHeight, maxW / im.naturalWidth);
+      var w = im.naturalWidth * s, h = im.naturalHeight * s;
+      var cx = 80 + colW * i + colW / 2;
+      x.drawImage(im, cx - w / 2, base - h, w, h);
+    });
+
+    rows.forEach(function(r, i){
+      var cx = 80 + colW * i + colW / 2;
+      x.textAlign = 'center';
+      x.font = '600 40px "Cormorant Garamond", Georgia, serif';
+      x.fillStyle = CREAM;
+      x.fillText(r.name, cx, base + 56);
+      x.font = '400 22px "Space Grotesk", system-ui, sans-serif';
+      x.fillStyle = GOLD;
+      x.fillText(r.pct, cx, base + 90);
+    });
+
+    x.textAlign = 'left';
+    x.strokeStyle = 'rgba(212,168,86,.22)';
+    x.beginPath(); x.moveTo(62, H - 118); x.lineTo(W - 62, H - 118); x.stroke();
+
+    x.font = '600 30px "Cormorant Garamond", Georgia, serif';
+    x.fillStyle = CREAM;
+    x.fillText('Everyone runs on all twelve. These are the three I lead with.', 62, H - 74);
+    x.font = '400 18px "Space Grotesk", system-ui, sans-serif';
+    x.fillStyle = 'rgba(189,180,164,.8)';
+    x.fillText('sidekixhq.com/assessment.html', 62, H - 42);
+    return c;
+  }
+
+  btn.addEventListener('click', function(){
+    var rows = top3();
+    if(!rows.length) return;
+    btn.disabled = true;
+    var was = btn.textContent;
+    btn.textContent = 'Drawing it';
+    say.hidden = true;
+
+    fonts()
+      .then(function(){
+        return Promise.all(rows.map(function(r){
+          return r.src ? load(r.src).catch(function(){ return null; }) : null;
+        }));
+      })
+      .then(function(imgs){
+        var c = draw(rows, imgs);
+        return new Promise(function(res){ c.toBlob(res, 'image/png'); });
+      })
+      .then(function(blob){
+        if(!blob) throw new Error('no blob');
+        var name = 'sidekix-twelve-energies.png';
+        var file = null;
+        try { file = new File([blob], name, {type: 'image/png'}); } catch(e){}
+        /* a phone can hand it straight to the share sheet */
+        if(file && navigator.canShare && navigator.canShare({files: [file]})){
+          return navigator.share({files: [file], title: 'My twelve energies'})
+            .catch(function(){ download(blob, name); });
+        }
+        download(blob, name);
+      })
+      .catch(function(err){
+        say.hidden = false;
+        say.textContent = 'The card could not be drawn. The results above are still yours to copy.';
+        if(window.console) console.error('SideKix share card:', err);
+      })
+      .then(function(){
+        btn.disabled = false; btn.textContent = was;
+      });
+  });
+
+  function download(blob, name){
+    var u = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = u; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(u); }, 4000);
+    say.hidden = false;
+    say.textContent = 'Saved as ' + name + '.';
+  }
+})();
