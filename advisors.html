@@ -1890,7 +1890,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
   color:#8C8478;margin:0 0 20px}
 .adv-fit{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);margin:0}
 @media (min-width:820px){.adv-fit{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .adv-fit .adv-fitcard:nth-child(5){grid-column:1 / -1}}
+  }
 .adv-fitcard{position:relative;min-width:0;text-align:left;cursor:pointer;
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;
   padding:22px 26px 22px 22px;border-radius:16px;font-family:var(--body);
@@ -2242,6 +2242,11 @@ window.SIDEKIX_SUBMIT = function (payload) {
         <span aria-hidden="true" class="adv-tick"></span>
         <b>You can advise on a business unlike your own.</b>
         <span class="adv-fitsub">Most of the people you meet will not be on your path. The useful advice starts from theirs.</span>
+      </button>
+      <button aria-pressed="false" class="adv-fitcard" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>You know when your experience does not apply.</b>
+        <span class="adv-fitsub">Timing and luck did some of the work, and you can say which parts.</span>
       </button>
     </div>
     <p aria-live="polite" class="adv-tally" id="adv-tally"></p>
@@ -2995,10 +3000,11 @@ try{
   var cards=[].slice.call(box.querySelectorAll('.adv-fitcard'));
   var LINES=['',
     'One is a start.',
-    'Two of five. Worth reading on.',
-    'Three of five. That is the shape of an Advisor.',
-    'Four of five. This was written for you.',
-    'Five of five. That is a Founding Advisor.'];
+    'Two of six. Worth reading on.',
+    'Three of six. That is the shape of an Advisor.',
+    'Four of six. This was written for you.',
+    'Five of six. Very few people tick five.',
+    'Six of six. That is a Founding Advisor.'];
   function tally(){
     var n=cards.filter(function(c){return c.getAttribute('aria-pressed')==='true';}).length;
     out.textContent=LINES[n]||'';
