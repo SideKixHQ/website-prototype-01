@@ -19,7 +19,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Become a SideKix Advisor | Get Paid for What You Know</title>
 
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link as="style" href="assets/fonts.css" rel="preload"/><link as="font" crossorigin="" href="assets/Space-Grotesk-400-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Space-Grotesk-500-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-700-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-500-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-italic-5f682672.woff2" rel="preload" type="font/woff2"/><link href="assets/fonts.css" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;family=Cormorant+Garamond:wght@600&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -1768,8 +1768,8 @@ window.SIDEKIX_SUBMIT = function (payload) {
    transactional. Given its own frame, a lit dot, and gold that runs when you
    reach for it. The shimmer only animates on hover, so it costs nothing at
    rest. */
-.adv-probono{display:inline-flex;align-items:flex-start;gap:13px;
-  margin:30px 0 0;padding:16px 24px 16px 20px;border-radius:14px;max-width:640px;
+.adv-probono{display:flex;width:fit-content;align-items:flex-start;gap:13px;
+  margin:30px auto 0;padding:16px 24px 16px 20px;border-radius:14px;max-width:640px;
   border:1px solid rgba(212,168,86,.3);color:#D8D2C4;font-size:16px;line-height:1.6;
   background:linear-gradient(100deg,rgba(212,168,86,.10),rgba(212,168,86,.03) 60%,transparent);
   transition:border-color .35s ease,background .35s ease,color .35s ease}
@@ -1779,6 +1779,30 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-probono b{font-weight:700;color:var(--gold-pale)}
 .adv-probono:hover{border-color:rgba(212,168,86,.7);color:#F4EEDF;
   background:linear-gradient(100deg,rgba(212,168,86,.22),rgba(212,168,86,.07) 60%,rgba(212,168,86,.02))}
+
+/* ---- the pro bono line has to be found, not read past ----
+   It sits under three cards that all say "charge for this", and it is the
+   one line that says the opposite. Centred so it reads as its own statement
+   rather than a footnote to card 03, and given a slow breath so the eye
+   catches it on the way down the page.
+
+   Six seconds, glow only. Nothing moves and nothing reflows: the border
+   colour and two shadows change, which the compositor handles on its own
+   layer. Stops entirely under prefers-reduced-motion, below. */
+@keyframes advPbBreathe{
+  0%,100%{border-color:rgba(212,168,86,.22);
+    box-shadow:0 0 0 0 rgba(212,168,86,0), inset 0 0 22px rgba(212,168,86,.02)}
+  50%    {border-color:rgba(212,168,86,.90);
+    box-shadow:0 0 38px 4px rgba(212,168,86,.30), inset 0 0 30px rgba(212,168,86,.13)}
+}
+@keyframes advPbDot{
+  0%,100%{box-shadow:0 0 8px rgba(212,168,86,.45);transform:scale(.9)}
+  50%    {box-shadow:0 0 26px 3px rgba(212,168,86,1);transform:scale(1.4)}
+}
+.adv-probono{animation:advPbBreathe 4.5s ease-in-out infinite}
+.adv-probono::before{animation:advPbDot 4.5s ease-in-out infinite}
+/* hover takes over from the breath so the two never fight */
+.adv-probono:hover,.adv-probono:hover::before{animation:none}
 .adv-probono:hover::before{box-shadow:0 0 24px rgba(212,168,86,1)}
 .adv-probono:hover b{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);
   background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;

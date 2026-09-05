@@ -19,7 +19,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Partner with SideKix: Affiliates and Sponsors | SideKix</title>
 
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link as="style" href="assets/fonts.css" rel="preload"/><link as="font" crossorigin="" href="assets/Space-Grotesk-400-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Space-Grotesk-500-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-700-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-500-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-italic-5f682672.woff2" rel="preload" type="font/woff2"/><link href="assets/fonts.css" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;family=Cormorant+Garamond:wght@600&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -1775,7 +1775,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
    under the copy, which is what an earlier attempt did, turns a background
    into a picture and the page stops reading as one thing. */
 #prt-home{position:relative;height:100vh;min-height:720px;overflow:hidden;
-  display:flex;align-items:center;z-index:2;padding-bottom:11vh}
+  display:flex;align-items:center;z-index:2;padding-bottom:4vh}
 /* The homepage's 52% is uncapped, and on a wide monitor that made this
    plate 899x1078 against the advisors hero's 620x995: 157% of it by area at
    1728. Capped at 600 so it stays a shade under the advisors art at every
@@ -1790,10 +1790,10 @@ window.SIDEKIX_SUBMIT = function (payload) {
    both the top and bottom edges of the box at 0.81 of the mask radius, past
    the 0.76 transparent stop, so neither one ends on a straight cut. */
 .prt-homeart{position:absolute;right:-4%;top:50%;transform:translateY(-50%);
-  width:min(46%,600px);height:92%;object-fit:cover;object-position:52% 44%;z-index:1;
-  -webkit-mask-image:radial-gradient(64% 62% at 68% 50%,#000 30%,transparent 76%);
-  mask-image:radial-gradient(64% 62% at 68% 50%,#000 30%,transparent 76%);
-  opacity:.66;
+  width:min(46%,600px);height:114%;object-fit:cover;object-position:52% 54%;z-index:1;
+  -webkit-mask-image:radial-gradient(72% 70% at 66% 50%,#000 42%,transparent 84%);
+  mask-image:radial-gradient(72% 70% at 66% 50%,#000 42%,transparent 84%);
+  opacity:.80;
   /* The homepage photograph is already dark and sits at .9 untouched. This
      plate is a bright yellow poster, so it is pulled toward the site gold at
      rest and released to its own colour on hover. Same filter functions in the
@@ -1801,12 +1801,22 @@ window.SIDEKIX_SUBMIT = function (payload) {
   filter:saturate(.55) sepia(.35) hue-rotate(-8deg) brightness(.82) contrast(1.02);
   transition:opacity .7s ease,filter .7s ease}
 #prt-home:hover .prt-homeart{
-  opacity:.96;
+  opacity:1;
   filter:saturate(1.25) sepia(0) hue-rotate(0deg) brightness(1.1) contrast(1.05)}
 .prt-homescrim{position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(90deg,#0B0A06 30%,rgba(10,10,10,.4) 60%,transparent 82%)}
+  background:
+    linear-gradient(90deg,#0B0A06 30%,rgba(10,10,10,.4) 60%,transparent 82%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 18%,rgba(11,10,6,0) 78%,#0B0A06 100%)}
 .prt-homecopy{position:relative;z-index:5;padding:0 56px;max-width:920px}
 .prt-homecopy .kx-backrow{justify-content:flex-start}
+
+.prt-homecopy h1{font-family:var(--display);font-weight:600;
+  font-size:clamp(38px,5.4vw,66px);line-height:1.04;color:#FFFBEE;
+  letter-spacing:-.006em;margin:0 0 18px;text-wrap:balance}
+.prt-homecopy h1 em{font-style:italic;color:#F3E4A8}
+.prt-homecopy .eyebrow{font-family:var(--util);font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:#9C968D;display:block;margin-bottom:14px}
+.prt-homecopy .lede{color:#D6D2C8;font-size:16.5px;line-height:1.7;margin:0 0 8px}
 .prt-homecopy .eyebrow,.prt-homecopy h1,.prt-homecopy .lede{
   text-align:left;margin-left:0;margin-right:0}
 .prt-homecopy .lede{max-width:52ch}
@@ -1837,8 +1847,8 @@ window.SIDEKIX_SUBMIT = function (payload) {
 /* The section is sized to its content now rather than to a viewport. 100vh is
    right for the homepage, which fills it; here it left a third of the hero
    empty. */
-#prt-home{height:auto;min-height:clamp(560px,76vh,700px)}
-.wrap.res.prt{padding-top:64px}
+#prt-home{height:auto;min-height:clamp(540px,70vh,660px)}
+.wrap.res.prt{padding-top:36px}
 
 @media (max-width:640px){
   /* The homepage's own phone treatment, value for value: the section stops
