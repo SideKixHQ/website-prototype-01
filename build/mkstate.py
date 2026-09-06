@@ -117,13 +117,26 @@ JS = """
 
 opts = "".join('<option value="%s">%s</option>' % (html.escape(k, True), html.escape(k))
                for k in sorted(slim))
+SF_MORE_CSS = """
+.sf-more{margin:26px 0 0;font-size:15px;line-height:1.7;color:#BDB4A4}
+.sf-more a{color:#F3E4A8;text-decoration:underline;text-underline-offset:3px}
+.sf-more a:hover{color:#FFF6DC}
+"""
+
 body = ('<div class="sf">'
         '<div class="sf-pick"><label for="sf-state">Pick a state</label>'
         '<select id="sf-state">' + opts + '</select></div>'
         '<div class="sf-card" id="sf-card"></div>'
         '<script id="sf-data" type="application/json">'
         + json.dumps(slim, ensure_ascii=False).replace("</", "<\\/") +
-        '</script></div>')
+        '</script>'
+        # One state has a full walkthrough rather than a card. Linked here so
+        # it is reachable from the page people land on looking for it.
+        '<p class="sf-more">North Carolina has a longer version with the order '
+        'to do things in, what each step costs and the official pages: '
+        '<a href="start-a-business-in-north-carolina.html">starting a business '
+        'in North Carolina</a>.</p>'
+        '</div>')
 
 nofee = sorted(k for k, v in slim.items() if v.get("llc_fee_usd") is None)
 faqs = [
@@ -147,6 +160,6 @@ n = page("state-filing.html",
          DESC, "State filing",
          "What do you file <em>in your state</em>?",
          "Pick a state and see the office, the document, the fee, the name search, the registered agent rule and the annual report. Every figure came from that state's own pages and links back to them, because these change and the source is the only thing worth trusting on the day you file.",
-         body, css=CSS, js=JS, schema=sch)
+         body, css=CSS + SF_MORE_CSS, js=JS, schema=sch)
 print("state-filing.html %.0f KB, %d states, %d without a confirmed fee: %s"
       % (n/1024, len(slim), len(nofee), ", ".join(nofee)))

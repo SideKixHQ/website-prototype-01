@@ -25,7 +25,26 @@ GAME = "https://sidekixhq.github.io/runkixrun/"
 PANELS = json.load(io.open(os.path.join(ROOT, "assets", "comics", "panels.json"),
                            encoding="utf-8"))
 
-COMICS = [
+# The series runs in issue order. Issue 2 has not been drawn yet, so the
+# numbers skip rather than renumber: the issue number is printed inside the
+# artwork and cannot be changed after the fact.
+SERIES = [
+ (1, "the-first-step", "The First Step",
+  "Marcus has a notebook full of ideas and a shift that ends at 7:43. "
+  "The revolution does not begin with capital."),
+ (3, "built-together", "Built Together",
+  "The market is growing, and growth brings people who would rather it did not. "
+  "We are not competing. We are building."),
+ (4, "built-to-last", "Built to Last",
+  "Four questions every movement has to answer, and the difference between "
+  "something that works and something that matters."),
+ (5, "new-weapon-same-mission", "New Weapon. Same Mission.",
+  "Synth joins, Operation Blackout begins, and the counterattack is not the one "
+  "they were expecting."),
+]
+
+# One-shots. Same world, no running plot, readable in any order.
+STRIPS = [
  ("ideas-are-easy", "Ideas are easy. Next steps are hard.",
   "One person, a wall of questions, and the difference a plan makes."),
  ("real-people-real-moments", "Real people. Real moments.",
@@ -33,6 +52,8 @@ COMICS = [
  ("start-where-you-stand", "Start where you stand.",
   "Eight panels from a first idea to a coffee cart that opened."),
 ]
+
+COMICS = [(k, t, d) for _, k, t, d in SERIES] + STRIPS
 
 body = ['<div class="br">']
 
@@ -50,25 +71,45 @@ body.append(
  '</div></div></div></section>' % e(GAME))
 
 # ---- the comics
-cards = "".join(
- '<figure class="br-comic">'
- '<button aria-label="Read %s, %d panels" class="br-open" data-key="%s" type="button">'
- '<img alt="%s" decoding="async" height="840" loading="lazy" '
- 'src="assets/comics/%s-sm.webp" width="560"/>'
- '<span aria-hidden="true" class="br-read">Read it</span></button>'
- '<figcaption><b>%s</b><span>%s</span>'
- '<em>%d panels</em></figcaption></figure>'
- % (e(t), len(PANELS[k]), e(k), e(t + ". " + d), e(k), e(t), e(d), len(PANELS[k]))
- for k, t, d in COMICS)
-DATA = {k: {"title": t, "panels": PANELS[k]} for k, t, d in COMICS}
+def card(k, t, d, issue=None):
+    n = len(PANELS[k])
+    unit = "pages" if issue else "panels"
+    num = ('<b class="br-iss">Issue %d</b>' % issue) if issue else ""
+    return ('<figure class="br-comic%s">'
+            '<button aria-label="Read %s, %d %s" class="br-open" data-key="%s" type="button">'
+            '%s<img alt="%s" decoding="async" height="840" loading="lazy" '
+            'src="assets/comics/%s-sm.webp" width="560"/>'
+            '<span aria-hidden="true" class="br-read">Read it</span></button>'
+            '<figcaption><b>%s</b><span>%s</span>'
+            '<em>%d %s</em></figcaption></figure>'
+            % (" br-serial" if issue else "", e(t), n, unit, e(k), num,
+               e(t + ". " + d), e(k), e(t), e(d), n, unit))
+
+serial = "".join(card(k, t, d, i) for i, k, t, d in SERIES)
+strips = "".join(card(k, t, d) for k, t, d in STRIPS)
+
+DATA = {}
+for n, (i, k, t, d) in enumerate(SERIES):
+    DATA[k] = {"title": "Issue %d: %s" % (i, t), "panels": PANELS[k], "unit": "Page"}
+    if n + 1 < len(SERIES):
+        DATA[k]["next"] = SERIES[n + 1][1]
+for k, t, d in STRIPS:
+    DATA[k] = {"title": t, "panels": PANELS[k], "unit": "Panel"}
+
 body.append(
  '<section class="br-s br-comics"><h2>The comics</h2>'
- '<p class="br-b">Three pages. Open one and it walks you through panel by '
- 'panel, which is the only way a full page is readable on a phone. Arrow keys '
- 'or swipe to move, and the whole page is one tap away.</p>'
+ '<h3 class="br-h3">The series</h3>'
+ '<p class="br-b">One story, running across issues. Marcus starts with a notebook '
+ 'and ends up with a market, and the people who would rather he did not are paying '
+ 'attention. Read them in order. Issue 2 is still being drawn, which is why the '
+ 'numbers skip.</p>'
+ '<div class="br-cgrid br-cserial">%s</div>'
+ '<h3 class="br-h3">One-shots</h3>'
+ '<p class="br-b">Same world, no running plot. Read these in any order.</p>'
  '<div class="br-cgrid">%s</div>'
  '<script id="br-panels" type="application/json">%s</script>'
- '</section>' % (cards, json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")))
+ '</section>' % (serial, strips,
+                 json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")))
 
 # ---- the declaration
 body.append(
@@ -84,6 +125,18 @@ body.append(
 body.append("</div>")
 
 CSS = """
+.br-h3{font-family:var(--util,inherit);font-size:11.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:#D4A856;font-weight:700;margin:38px 0 10px}
+.br-h3:first-of-type{margin-top:8px}
+.br-iss{position:absolute;top:10px;left:10px;z-index:2;
+  font-family:var(--util,inherit);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;color:#1B1400;
+  background:linear-gradient(180deg,#D7C582,#A1853E);
+  padding:5px 10px;border-radius:999px}
+.br-comic.br-serial .br-open{position:relative}
+.br-view.at-end .br-ctl.br-next{border-color:#D4A856;color:#FFF6DC;
+  background:rgba(212,168,86,.18)}
+
 /* the same call to action rules membership uses, so a button looks the
    same wherever it appears on the site */
 .br-page .kxcta{
@@ -325,6 +378,7 @@ if(covers.length && dataEl){
 
   var key=null, panels=[], at=0, whole=false, last=null;
 
+  var unitWord='Panel', sheetWord='page', nextKey='';
   function frame(){
     if(!img.naturalWidth) return;
     var IW=img.naturalWidth, IH=img.naturalHeight;
@@ -339,23 +393,36 @@ if(covers.length && dataEl){
     clip.style.top =Math.round((VH-ch)/2)+'px';
     img.style.width=w+'px'; img.style.height=h+'px';
     img.style.left=(-box[0]*w)+'px'; img.style.top=(-box[1]*h)+'px';
-    countEl.textContent = whole ? 'Whole page' : (at+1)+' / '+panels.length;
+    countEl.textContent = whole ? ('Whole '+sheetWord) : (at+1)+' / '+panels.length;
     progEl.style.width = whole ? '100%' : (((at+1)/panels.length)*100)+'%';
     prevB.disabled = !whole && at===0;
-    nextB.disabled = !whole && at===panels.length-1;
-    wholeB.textContent = whole ? 'PANELS' : 'PAGE';
-    wholeB.setAttribute('aria-label', whole ? 'Back to panel by panel' : 'Show the whole page');
+    var atEnd = !whole && at===panels.length-1;
+    nextB.disabled = atEnd && !nextKey;
+    /* the last page of an issue hands you the next one rather than stopping */
+    view.classList.toggle('at-end', atEnd && !!nextKey);
+    nextB.setAttribute('aria-label', atEnd && nextKey ? 'Next issue' : 'Next '+unitWord.toLowerCase());
+    wholeB.textContent = whole ? unitWord.toUpperCase()+'S' : sheetWord.toUpperCase();
+    wholeB.setAttribute('aria-label', whole
+      ? ('Back to '+unitWord.toLowerCase()+' by '+unitWord.toLowerCase())
+      : ('Show the whole '+sheetWord));
     view.classList.add('zoomed');
   }
   function go(n){
+    if(!whole && n>=panels.length && nextKey){ openKey(nextKey); return; }
     if(whole){ whole=false; }
     at=Math.max(0, Math.min(panels.length-1, n));
     frame();
   }
   function open(btn){
-    last=btn; key=btn.getAttribute('data-key');
+    last=btn; openKey(btn.getAttribute('data-key'));
+  }
+  function openKey(k){
+    key=k;
     var d=DATA[key]; if(!d) return;
     panels=d.panels; at=0; whole=false;
+    unitWord  = d.unit || 'Panel';
+    sheetWord = unitWord==='Page' ? 'sheet' : 'page';
+    nextKey   = d.next || '';
     titleEl.textContent=d.title;
     view.hidden=false;
     document.documentElement.style.overflow='hidden';

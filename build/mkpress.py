@@ -24,8 +24,8 @@ BACK = ('<p class="kx-backrow"><a class="kx-bk" href="index.html">'
 # Each list below renders a section. Leave one empty and its heading does not
 # appear. Format is (title, outlet, date, url) with date as "March 2026".
 RELEASES = [
- ("177 million Americans have a business idea. Most never take the first step.",
-  "SideKix HQ", "5 September 2026", "assets/press/sidekix-launch-release.pdf"),
+ ("174 million Americans have a business idea. Most never take the first step.",
+  "SideKix HQ", "5 September 2026", "press-release-launch.html"),
 ]
 
 PODCASTS = []      # shows James has been a guest on
@@ -36,12 +36,12 @@ EVENTS   = []      # (name, date, place, url) company events coming up
 BOILER = ("SideKix is a business operating system for people building something. It blends "
           "AI guidance with human advisors, turning a person's goals and challenges into a "
           "path they can actually follow. SideKix is a product of Character Limit LLC, doing "
-          "business as SideKix, based in Wilmington, North Carolina. The company is pre-launch.")
+          "business as SideKix, based in Wilmington, North Carolina. The company is pre-launch, with memberships and Kix Credits available to prepay.")
 
 FACTS = [
  ("Legal entity", "Character Limit LLC, doing business as SideKix"),
  ("Headquarters", "Wilmington, North Carolina, United States"),
- ("Stage", "Pre-launch. Membership tiers are published but not yet selling."),
+ ("Stage", "Pre-launch. Memberships and Kix Credits can be prepaid now, ahead of the platform opening."),
  ("Trademark", "SideKix is a pending US federal trademark application."),
  ("Advertising", "The site publishes no sponsored content and runs no advertising."),
  ("Founder", "James Martucci, Founder and Chief Executive Officer"),
