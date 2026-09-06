@@ -77,8 +77,8 @@ def card(k, t, d, issue=None):
     num = ('<b class="br-iss">Issue %d</b>' % issue) if issue else ""
     return ('<figure class="br-comic%s">'
             '<button aria-label="Read %s, %d %s" class="br-open" data-key="%s" type="button">'
-            '%s<img alt="%s" decoding="async" height="840" loading="lazy" '
-            'src="assets/comics/%s-sm.webp" width="560"/>'
+            '%s<img alt="%s" decoding="async" height="1536" loading="lazy" '
+            'src="assets/comics/%s.webp" width="1024"/>'
             '<span aria-hidden="true" class="br-read">Read it</span></button>'
             '<figcaption><b>%s</b><span>%s</span>'
             '<em>%d %s</em></figcaption></figure>'
@@ -128,11 +128,11 @@ CSS = """
 .br-h3{font-family:var(--util,inherit);font-size:11.5px;letter-spacing:.18em;
   text-transform:uppercase;color:#D4A856;font-weight:700;margin:38px 0 10px}
 .br-h3:first-of-type{margin-top:8px}
-.br-iss{position:absolute;top:10px;left:10px;z-index:2;
-  font-family:var(--util,inherit);font-size:10.5px;letter-spacing:.14em;
-  text-transform:uppercase;font-weight:700;color:#1B1400;
-  background:linear-gradient(180deg,#D7C582,#A1853E);
-  padding:5px 10px;border-radius:999px}
+.br-iss{position:absolute;top:12px;left:12px;z-index:2;
+  font-family:var(--util,inherit);font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;font-weight:500;color:#F3E4A8;
+  background:rgba(8,7,4,.82);border:1px solid rgba(212,168,86,.55);
+  padding:6px 12px;border-radius:999px;backdrop-filter:blur(3px)}
 .br-comic.br-serial .br-open{position:relative}
 .br-view.at-end .br-ctl.br-next{border-color:#D4A856;color:#FFF6DC;
   background:rgba(212,168,86,.18)}
@@ -230,9 +230,9 @@ CSS = """
 .br-open:hover{border-color:rgba(212,168,86,.65);transform:translateY(-3px)}
 .br-open img{display:block;width:100%;height:auto}
 .br-comic figcaption{padding:14px 2px 0}
-.br-comic b{display:block;font-family:var(--display);font-size:19px;color:#FFF8E8;
+.br-comic figcaption b{display:block;font-family:var(--display);font-size:19px;color:#FFF8E8;
   line-height:1.25;margin:0 0 5px}
-.br-comic span{display:block;font-size:14px;line-height:1.6;color:#948D81}
+.br-comic figcaption span{display:block;font-size:14px;line-height:1.6;color:#948D81}
 
 /* ---- the reader ----
    A full comic page on a phone is 1024px of artwork in a 390px hole, which is
@@ -287,11 +287,14 @@ html.br-reading #kx-nav{display:none !important}
 
 /* the covers say what they are */
 .br-open{position:relative}
-.br-read{position:absolute;left:50%;bottom:14px;transform:translateX(-50%) translateY(6px);
-  font-family:var(--util);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  color:#1B1400;background:linear-gradient(180deg,#D7C582,#A1853E);
-  padding:9px 18px;border-radius:999px;opacity:0;transition:opacity .3s,transform .3s;
-  white-space:nowrap}
+.br-read{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(6px);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--util);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:700;line-height:1;
+  color:#1B1400 !important;background:linear-gradient(180deg,#D7C582,#A1853E);
+  min-height:44px;padding:0 26px;border-radius:999px;
+  box-shadow:0 10px 34px rgba(231,182,70,.34);
+  opacity:0;transition:opacity .3s,transform .3s;white-space:nowrap}
 .br-open:hover .br-read,.br-open:focus-visible .br-read{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(pointer:coarse){ .br-read{opacity:1;transform:translateX(-50%) translateY(0)} }
 .br-comic em{display:block;font-style:normal;font-family:var(--util);font-size:10px;
