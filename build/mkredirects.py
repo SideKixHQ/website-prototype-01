@@ -41,6 +41,12 @@ LEGACY = collections.OrderedDict([
     ("home",                 "/"),
     ("sponsors",             "/partners.html"),
     ("opt-in-accept",        "/join.html"),
+    # Still carrying internal links in Google's view of the old site, 69 each
+    ("advisor-faqs",         "/faq.html"),
+    ("general-faq",          "/faq.html"),
+    ("members",              "/membership.html"),
+    ("website-terms-conditions", "/terms.html"),
+    ("ai-app-policy",        "/terms.html"),
 ])
 
 # Wildcards, for URL shapes rather than single pages. Search Console's
