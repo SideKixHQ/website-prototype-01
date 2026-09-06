@@ -57,6 +57,17 @@ COMICS = [(k, t, d) for _, k, t, d in SERIES] + STRIPS
 
 body = ['<div class="br">']
 
+# ---- the declaration, first thing on the page
+body.append(
+ '<section class="br-s br-decl br-lead"><h2>The declaration</h2>'
+ '<a class="br-declcard" href="declaration.html">'
+ '<img alt="" decoding="async" height="960" fetchpriority="high" '
+ 'src="assets/declaration/declaration-640.webp" width="640"/>'
+ '<div><b>There is another way.</b>'
+ '<span>Written for anyone who has decided to stop waiting for permission. '
+ 'Read it, and if it says what you would have said, put your name to it.</span>'
+ '<em>Read and sign it &rarr;</em></div></a></section>')
+
 # ---- the game
 body.append(
  '<section class="br-s br-game"><h2>The game</h2>'
@@ -110,17 +121,6 @@ body.append(
  '<script id="br-panels" type="application/json">%s</script>'
  '</section>' % (serial, strips,
                  json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")))
-
-# ---- the declaration
-body.append(
- '<section class="br-s br-decl"><h2>The declaration</h2>'
- '<a class="br-declcard" href="declaration.html">'
- '<img alt="" decoding="async" height="960" loading="lazy" '
- 'src="assets/declaration/declaration-640.webp" width="640"/>'
- '<div><b>There is another way.</b>'
- '<span>Written for anyone who has decided to stop waiting for permission. '
- 'Read it, and if it says what you would have said, put your name to it.</span>'
- '<em>Read and sign it &rarr;</em></div></a></section>')
 
 body.append("</div>")
 
@@ -246,7 +246,15 @@ CSS = """
    out of the way entirely. */
 html.br-reading #kx-nav{display:none !important}
 .br-view[hidden]{display:none}
-.br-stagewrap{flex:1;position:relative;overflow:hidden;touch-action:pan-y pinch-zoom}
+.br-stagewrap{flex:1;position:relative;overflow:hidden;
+  touch-action:none;            /* the reader handles pan and pinch itself */
+  cursor:grab;user-select:none;-webkit-user-select:none}
+.br-stagewrap:active{cursor:grabbing}
+.br-img{position:absolute;left:0;top:0;transform-origin:0 0;
+  will-change:transform;image-rendering:auto;max-width:none;
+  -webkit-user-drag:none;user-select:none}
+.br-ctl.br-fit[aria-pressed="true"]{border-color:#D4A856;color:#FFF6DC;
+  background:rgba(212,168,86,.18)}
 .br-clip{position:absolute;overflow:hidden;border-radius:6px;
   box-shadow:0 18px 60px rgba(0,0,0,.6)}
 .br-clip img{position:absolute;left:0;top:0;max-width:none;display:block}
@@ -299,6 +307,29 @@ html.br-reading #kx-nav{display:none !important}
 @media(pointer:coarse){ .br-read{opacity:1;transform:translateX(-50%) translateY(0)} }
 .br-comic em{display:block;font-style:normal;font-family:var(--util);font-size:10px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:7px}
+
+/* ---- the declaration, leading the page ----
+   A slow glow rather than a flash: it draws the eye without competing with
+   the artwork inside the card, and it stops entirely for anyone who has asked
+   the system to reduce motion. */
+@keyframes brGlow{
+  0%,100%{box-shadow:0 0 0 1px rgba(212,168,86,.34), 0 0 30px -6px rgba(231,182,70,.30)}
+  50%    {box-shadow:0 0 0 1px rgba(212,168,86,.72), 0 0 66px -4px rgba(231,182,70,.62)}
+}
+.br-lead{margin:0 0 56px}
+.br-lead .br-declcard{
+  border-radius:18px;
+  animation:brGlow 3.4s ease-in-out infinite;
+  transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.br-lead .br-declcard:hover,
+.br-lead .br-declcard:focus-visible{
+  animation-play-state:paused;
+  box-shadow:0 0 0 1px #D4A856, 0 0 78px -4px rgba(231,182,70,.75);
+  transform:translateY(-3px)}
+@media(prefers-reduced-motion:reduce){
+  .br-lead .br-declcard{animation:none;
+    box-shadow:0 0 0 1px rgba(212,168,86,.6), 0 0 40px -8px rgba(231,182,70,.45)}
+}
 
 /* the declaration */
 .br-declcard{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;
@@ -362,59 +393,121 @@ if(covers.length && dataEl){
       '<button class="br-ctl br-whole" type="button" aria-label="Show the whole page">PAGE</button>'+
       '<button class="br-ctl br-close" type="button" aria-label="Close">&#10005;</button>'+
     '</div>'+
-    '<div class="br-stagewrap"><div class="br-clip"><img alt=""/></div>'+
-      '<p class="br-hint">Swipe or use the arrow keys</p>'+
+    '<div class="br-stagewrap"><img class="br-img" alt="" draggable="false"/>'+
+      '<p class="br-hint">Pinch or double tap to zoom, drag to move</p>'+
       '<div class="br-prog"><i></i></div>'+
     '</div>'+
     '<div class="br-nav">'+
-      '<button class="br-ctl br-prev" type="button" aria-label="Previous panel">&#8592;</button>'+
-      '<button class="br-ctl br-next" type="button" aria-label="Next panel">&#8594;</button>'+
+      '<button class="br-ctl br-prev" type="button" aria-label="Previous page">&#8592;</button>'+
+      '<button class="br-ctl br-fit" type="button" aria-label="Fit the whole sheet">FIT</button>'+
+      '<button class="br-ctl br-next" type="button" aria-label="Next page">&#8594;</button>'+
     '</div>';
   document.body.appendChild(view);
 
-  var img=view.querySelector('img'), clip=view.querySelector('.br-clip'),
+  var img=view.querySelector('.br-img'),
       stage=view.querySelector('.br-stagewrap'),
       titleEl=view.querySelector('.br-title'), countEl=view.querySelector('.br-count'),
       progEl=view.querySelector('.br-prog i'), hintEl=view.querySelector('.br-hint'),
       prevB=view.querySelector('.br-prev'), nextB=view.querySelector('.br-next'),
-      wholeB=view.querySelector('.br-whole'), closeB=view.querySelector('.br-close');
+      wholeB=view.querySelector('.br-whole'), closeB=view.querySelector('.br-close'),
+      fitB=view.querySelector('.br-fit');
 
   var key=null, panels=[], at=0, whole=false, last=null;
 
   var unitWord='Panel', sheetWord='page', nextKey='';
-  function frame(){
-    if(!img.naturalWidth) return;
-    var IW=img.naturalWidth, IH=img.naturalHeight;
-    var r=stage.getBoundingClientRect(), VW=r.width, VH=r.height;
-    var box = whole ? [0,0,1,1] : panels[at];
-    var pad = whole ? 0.94 : 0.98;
-    var sc = Math.min(VW/(box[2]*IW), VH/(box[3]*IH)) * pad;
-    var w=IW*sc, h=IH*sc;                       /* the whole page at this scale */
-    var cw=box[2]*w, ch=box[3]*h;               /* the panel's own box on screen */
-    clip.style.width=cw+'px'; clip.style.height=ch+'px';
-    clip.style.left=Math.round((VW-cw)/2)+'px';
-    clip.style.top =Math.round((VH-ch)/2)+'px';
-    img.style.width=w+'px'; img.style.height=h+'px';
-    img.style.left=(-box[0]*w)+'px'; img.style.top=(-box[1]*h)+'px';
+  /* ---- pan and zoom, rather than fit-a-page-to-the-screen ----
+     A page inside one of these sheets is about 315 by 364 pixels. Filling a
+     phone screen with it is a 3.7x upscale in device pixels, which is why the
+     old reader looked soft: it was magnifying, every time, by default.
+
+     So the default is the whole sheet fitted, which is a downscale and
+     therefore sharp, and moving to a page zooms only as far as MAXDEV device
+     pixels per source pixel. Past that the reader stops on its own. Anyone who
+     wants closer can pinch, and softness they chose reads completely
+     differently from softness the page imposed. */
+  var MAXDEV = 2.2;                 /* auto zoom ceiling, device px per source px */
+  var k=1, tx=0, ty=0;              /* current scale and translation */
+  var fitK=1;                       /* scale at which the whole sheet fits */
+  var dpr = window.devicePixelRatio || 1;
+
+  function metrics(){
+    var r = stage.getBoundingClientRect();
+    return {VW:r.width, VH:r.height, IW:img.naturalWidth, IH:img.naturalHeight};
+  }
+
+  function paint(){
+    img.style.transform = 'translate3d('+tx+'px,'+ty+'px,0) scale('+k+')';
+  }
+
+  function clamp(){
+    var m = metrics();
+    var w = m.IW*k, h = m.IH*k;
+    /* keep the sheet in view: centre it while it is smaller than the stage,
+       and stop it being dragged off screen once it is bigger */
+    if(w <= m.VW) tx = (m.VW - w)/2; else tx = Math.min(0, Math.max(m.VW - w, tx));
+    if(h <= m.VH) ty = (m.VH - h)/2; else ty = Math.min(0, Math.max(m.VH - h, ty));
+  }
+
+  function fit(){
+    var m = metrics();
+    if(!m.IW) return;
+    fitK = Math.min(m.VW/m.IW, m.VH/m.IH) * 0.96;
+    k = fitK; clamp(); paint();
+    whole = true; label();
+  }
+
+  /* centre the view on one page, at a scale that stays sharp */
+  function show(i){
+    var m = metrics();
+    if(!m.IW) return;
+    at = Math.max(0, Math.min(panels.length-1, i));
+    var b = panels[at];
+    var want = Math.min(m.VW/(b[2]*m.IW), m.VH/(b[3]*m.IH)) * 0.94;
+    k = Math.min(want, MAXDEV/dpr);          /* the ceiling that keeps it sharp */
+    k = Math.max(k, fitK);                   /* never end up smaller than fitting */
+    tx = m.VW/2 - (b[0] + b[2]/2) * m.IW * k;
+    ty = m.VH/2 - (b[1] + b[3]/2) * m.IH * k;
+    clamp(); paint();
+    whole = false; label();
+  }
+
+  function label(){
     countEl.textContent = whole ? ('Whole '+sheetWord) : (at+1)+' / '+panels.length;
     progEl.style.width = whole ? '100%' : (((at+1)/panels.length)*100)+'%';
     prevB.disabled = !whole && at===0;
     var atEnd = !whole && at===panels.length-1;
     nextB.disabled = atEnd && !nextKey;
-    /* the last page of an issue hands you the next one rather than stopping */
     view.classList.toggle('at-end', atEnd && !!nextKey);
-    nextB.setAttribute('aria-label', atEnd && nextKey ? 'Next issue' : 'Next '+unitWord.toLowerCase());
+    nextB.setAttribute('aria-label', atEnd && nextKey
+      ? 'Next issue' : 'Next '+unitWord.toLowerCase());
     wholeB.textContent = whole ? unitWord.toUpperCase()+'S' : sheetWord.toUpperCase();
     wholeB.setAttribute('aria-label', whole
-      ? ('Back to '+unitWord.toLowerCase()+' by '+unitWord.toLowerCase())
+      ? ('Go to the first '+unitWord.toLowerCase())
       : ('Show the whole '+sheetWord));
-    view.classList.add('zoomed');
+    fitB.setAttribute('aria-pressed', String(whole));
   }
+
+  function frame(){ if(whole) fit(); else show(at); }
+
   function go(n){
-    if(!whole && n>=panels.length && nextKey){ openKey(nextKey); return; }
-    if(whole){ whole=false; }
-    at=Math.max(0, Math.min(panels.length-1, n));
-    frame();
+    /* from the fitted sheet, forward means the first page rather than the
+       second: 'at' is still 0 because nothing has been visited yet */
+    if(whole){ show(n > at ? 0 : panels.length-1); return; }
+    if(n >= panels.length && nextKey){ openKey(nextKey); return; }
+    show(n);
+  }
+
+  /* ---- the user's own zoom, which is deliberately not capped ---- */
+  function zoomAt(cx, cy, factor){
+    var m = metrics();
+    var nk = Math.min(Math.max(k*factor, fitK), fitK*10);
+    if(nk === k) return;
+    /* keep the point under the fingers where it is */
+    tx = cx - (cx - tx) * (nk/k);
+    ty = cy - (cy - ty) * (nk/k);
+    k = nk;
+    whole = Math.abs(k - fitK) < 0.001;
+    clamp(); paint(); label();
   }
   function open(btn){
     last=btn; openKey(btn.getAttribute('data-key'));
@@ -422,7 +515,7 @@ if(covers.length && dataEl){
   function openKey(k){
     key=k;
     var d=DATA[key]; if(!d) return;
-    panels=d.panels; at=0; whole=false;
+    panels=d.panels; at=0; whole=true;
     unitWord  = d.unit || 'Panel';
     sheetWord = unitWord==='Page' ? 'sheet' : 'page';
     nextKey   = d.next || '';
@@ -432,10 +525,10 @@ if(covers.length && dataEl){
     document.documentElement.classList.add('br-reading');
     hintEl.hidden=false; hintEl.style.opacity='1';
     setTimeout(function(){ hintEl.style.opacity='0'; }, 2600);
-    img.onload=frame;
+    img.onload=fit;
     img.src='assets/comics/'+key+'.webp';
     img.alt=d.title;
-    if(img.complete) frame();
+    if(img.complete) fit();
     closeB.focus();
   }
   function close(){
@@ -449,27 +542,112 @@ if(covers.length && dataEl){
   covers.forEach(function(b){ b.addEventListener('click', function(){ open(b); }); });
   prevB.addEventListener('click', function(){ go(at-1); });
   nextB.addEventListener('click', function(){ go(at+1); });
-  wholeB.addEventListener('click', function(){ whole=!whole; frame(); });
+  wholeB.addEventListener('click', function(){ if(whole) show(0); else fit(); });
+  fitB.addEventListener('click', fit);
   closeB.addEventListener('click', close);
   window.addEventListener('resize', function(){ if(!view.hidden) frame(); });
 
-  /* a swipe moves a panel; a flick down closes */
-  var sx=0, sy=0, moved=false;
-  stage.addEventListener('touchstart', function(ev){
-    var t=ev.changedTouches[0]; sx=t.clientX; sy=t.clientY; moved=false;
-  }, {passive:true});
-  stage.addEventListener('touchend', function(ev){
-    var t=ev.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
-    if(Math.abs(dx)>44 && Math.abs(dx)>Math.abs(dy)){ go(at + (dx<0?1:-1)); moved=true; }
-    else if(dy>90 && Math.abs(dy)>Math.abs(dx)){ close(); moved=true; }
+  /* ---- gestures ----
+     One finger drags. Two fingers pinch. A short one finger swipe with no
+     movement of the image behind it still turns the page, so the old habit
+     keeps working. */
+  var pts = {}, startDist = 0, startK = 1, startMid = null;
+  var downX = 0, downY = 0, downT = 0, dragged = false, lastTap = 0;
+
+  function pointerList(){ var a=[]; for(var id in pts) a.push(pts[id]); return a; }
+  function localXY(ev){
+    var r = stage.getBoundingClientRect();
+    return {x: ev.clientX - r.left, y: ev.clientY - r.top};
+  }
+
+  stage.addEventListener('pointerdown', function(ev){
+    if(ev.pointerType === 'mouse' && ev.button !== 0) return;
+    stage.setPointerCapture(ev.pointerId);
+    pts[ev.pointerId] = localXY(ev);
+    var list = pointerList();
+    if(list.length === 1){
+      downX = list[0].x; downY = list[0].y; downT = Date.now(); dragged = false;
+    } else if(list.length === 2){
+      startDist = Math.hypot(list[0].x-list[1].x, list[0].y-list[1].y) || 1;
+      startK = k;
+      startMid = {x:(list[0].x+list[1].x)/2, y:(list[0].y+list[1].y)/2};
+    }
   });
-  /* tapping the right or left of the stage also moves, which is what a reader
-     expects and costs nothing to support */
-  stage.addEventListener('click', function(ev){
-    if(moved || whole) return;
-    var r=stage.getBoundingClientRect();
-    go(at + ((ev.clientX - r.left) > r.width*0.5 ? 1 : -1));
+
+  stage.addEventListener('pointermove', function(ev){
+    if(!pts[ev.pointerId]) return;
+    var prev = pts[ev.pointerId];
+    var now = localXY(ev);
+    pts[ev.pointerId] = now;
+    var list = pointerList();
+
+    if(list.length === 2 && startMid){
+      var d = Math.hypot(list[0].x-list[1].x, list[0].y-list[1].y) || 1;
+      var nk = Math.min(Math.max(startK * (d/startDist), fitK), fitK*10);
+      tx = startMid.x - (startMid.x - tx) * (nk/k);
+      ty = startMid.y - (startMid.y - ty) * (nk/k);
+      k = nk; whole = Math.abs(k - fitK) < 0.001;
+      clamp(); paint(); label();
+      dragged = true;
+      ev.preventDefault();
+      return;
+    }
+    if(list.length === 1){
+      var dx = now.x - prev.x, dy = now.y - prev.y;
+      if(Math.abs(now.x-downX) > 6 || Math.abs(now.y-downY) > 6) dragged = true;
+      tx += dx; ty += dy;
+      clamp(); paint();
+      ev.preventDefault();
+    }
   });
+
+  function endPointer(ev){
+    var had = pointerList().length;
+    delete pts[ev.pointerId];
+    if(pointerList().length < 2) startMid = null;
+    if(had !== 1) return;
+
+    var p = localXY(ev);
+    var dx = p.x - downX, dy = p.y - downY, dt = Date.now() - downT;
+
+    /* a flick down on the fitted sheet closes, the way a sheet dismisses */
+    if(whole && dy > 110 && Math.abs(dy) > Math.abs(dx)*1.6){ close(); return; }
+
+    if(!dragged && dt < 400){
+      var now = Date.now();
+      if(now - lastTap < 320){          /* double tap: into a page, or back out */
+        lastTap = 0;
+        if(whole){
+          var m = metrics();
+          var fx = (p.x - tx) / (m.IW * k), fy = (p.y - ty) / (m.IH * k);
+          var hit = 0;
+          for(var i=0;i<panels.length;i++){
+            var b = panels[i];
+            if(fx>=b[0] && fx<=b[0]+b[2] && fy>=b[1] && fy<=b[1]+b[3]){ hit=i; break; }
+          }
+          show(hit);
+        } else { fit(); }
+        return;
+      }
+      lastTap = now;
+      /* single tap on the left or right third turns the page */
+      if(!whole){
+        var r = stage.getBoundingClientRect();
+        if(p.x < r.width*0.33) { go(at-1); }
+        else if(p.x > r.width*0.67) { go(at+1); }
+      }
+    }
+  }
+  stage.addEventListener('pointerup', endPointer);
+  stage.addEventListener('pointercancel', endPointer);
+
+  /* desktop: wheel zooms, which is what people try first */
+  stage.addEventListener('wheel', function(ev){
+    if(view.hidden) return;
+    ev.preventDefault();
+    var p = localXY(ev);
+    zoomAt(p.x, p.y, ev.deltaY < 0 ? 1.12 : 1/1.12);
+  }, {passive:false});
 
   document.addEventListener('keydown', function(ev){
     if(view.hidden) return;
@@ -478,6 +656,11 @@ if(covers.length && dataEl){
     if(ev.key==='ArrowLeft'||ev.key==='PageUp'){ ev.preventDefault(); go(at-1); return; }
     if(ev.key==='Home'){ ev.preventDefault(); go(0); return; }
     if(ev.key==='End'){ ev.preventDefault(); go(panels.length-1); return; }
+    if(ev.key==='0'){ ev.preventDefault(); fit(); return; }
+    if(ev.key==='+'||ev.key==='='){ ev.preventDefault();
+      var m0=metrics(); zoomAt(m0.VW/2, m0.VH/2, 1.25); return; }
+    if(ev.key==='-'||ev.key==='_'){ ev.preventDefault();
+      var m1=metrics(); zoomAt(m1.VW/2, m1.VH/2, 1/1.25); return; }
     if(ev.key!=='Tab') return;
     /* keep focus inside the dialog */
     var f=[].slice.call(view.querySelectorAll('button')).filter(function(b){ return !b.disabled; });
@@ -491,8 +674,8 @@ if(covers.length && dataEl){
 TITLE = "The Back Room: A Game, Comics and a Declaration | SideKix"
 DESC  = ("Everything SideKix makes that will not help you run a business. Run Kix Run, "
          "three comics, and a declaration worth putting your name to.")
-LEDE  = ("Nothing in here will help you run a business. That is the point of it. A game, "
-         "three comics, and a declaration worth putting your name to.")
+LEDE  = ("Ideas come from curiosity. Perspective. Play. People. Sometimes from wandering "
+         "somewhere you didn't mean to go. That's what this room is for.")
 
 SCHEMA = (
   crumbs("The Back Room", "back-room.html"),
@@ -503,7 +686,7 @@ SCHEMA = (
 )
 
 n = page("back-room.html", TITLE, DESC, "The Back Room",
-         "Nothing in here will<br/>help you <em>run a business</em>.",
+         "Go ahead. <em>Get distracted.</em>",
          LEDE, "".join(body), css=CSS, js=JS, schema=SCHEMA,
          wrapcls="wrap res br-page", back=BACK)
 print(f"back-room.html {n//1024} KB")

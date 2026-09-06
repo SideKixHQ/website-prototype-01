@@ -5,6 +5,34 @@ from toolgen import page, crumbs, webapp, faqpage, SITE
 def e(s): return html.escape(str(s), quote=True)
 
 CSS = """
+/* ---- start here ---- */
+.th-start{margin:0 0 26px}
+.th-start h2{font-family:var(--util);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:#BDB4A4;font-weight:600;margin:0 0 12px}
+.th-startrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.th-startrow a{display:flex;flex-direction:column;gap:6px;padding:16px 18px;
+  border-radius:14px;text-decoration:none;border:1px solid rgba(212,168,86,.3);
+  background:rgba(212,168,86,.06);min-height:44px}
+.th-startrow a:hover{border-color:#D4A856;background:rgba(212,168,86,.13)}
+.th-startrow b{color:#FFF8E8;font-size:15.5px;line-height:1.3;font-weight:600}
+.th-startrow em{font-style:normal;font-family:var(--util);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:#D4A856}
+@media(max-width:720px){.th-startrow{grid-template-columns:1fr}}
+
+/* ---- filter ---- */
+.th-find{position:relative;margin:0 0 22px}
+.th-find input{width:100%;background:#0C0B08;border:1px solid rgba(212,168,86,.3);
+  border-radius:12px;color:#F5EACE;font-family:var(--body);font-size:16px;
+  padding:15px 16px;min-height:52px;outline:none;
+  transition:border-color .25s,box-shadow .25s}
+.th-find input::placeholder{color:#8A8378}
+.th-find input:focus{border-color:#D4A856;box-shadow:0 0 0 3px rgba(212,168,86,.16)}
+.th-find input:focus-visible{outline:3px solid #F3E4A8;outline-offset:2px}
+.th-count{margin:9px 0 0;font-family:var(--util);font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:#BDB4A4;min-height:16px}
+.th-c[hidden],.th-g[hidden]{display:none !important}
+.th-none{margin:18px 0 0;color:#BDB4A4;font-size:15.5px}
+
 /* ---- the tools hub ----
    Fourteen cards that were all the same box in the same three column grid, so
    the eye had nothing to catch on and a calculator looked exactly like a
@@ -121,38 +149,85 @@ CSS = """
 ZOO = ["lion","dragon","phoenix","octopus","dolphin","unicorn",
        "gorilla","panda","cat","goat","highland","possum"]
 
+# Named for the question the visitor already has, not for what the tool does
+# mechanically. The old names were "Work out where you are", "Work out a
+# number" and "Work something out about yourself", which is three openings out
+# of five that begin the same way and two that mean the same thing.
+#
+# Fields are (href, title, description, minutes, what you get).
 GROUPS = [
- ("Work out where you are",
-  "Two ways to get a reading on yourself rather than on a number. Both run in the browser and neither keeps anything.",
-  [("assessment.html","The Energy Discovery","Forty eight statements on how you actually behave, and a distribution across all twelve energies rather than a label. Everyone runs on all of them; the question is the proportions.","12","energies"),
-   ("founder-diagnostic.html","Where are you, actually?","Five questions and a straight read on the stage you are at, plus what fits it.","5","questions")]),
- ("Work out a number",
+ ("What will this cost me?",
   "Four calculators. Change a figure and the answer moves. Nothing is saved and nothing is sent.",
-  [("startup-cost-calculator.html","What will it cost to start?","One-off costs to open plus the months of running costs you need behind you.","11","inputs"),
-   ("breakeven-calculator.html","When do you break even?","Fixed costs divided by what each sale contributes, in units and in revenue.","3","inputs"),
-   ("hourly-rate-calculator.html","What should you charge an hour?","Worked back from the income you want and the hours you can actually bill.","5","inputs"),
-   ("product-pricing-calculator.html","What should you price a product at?","From the margin you want, with materials, labour, overhead and payment fees taken out.","5","inputs")]),
- ("Find out what applies to you",
+  [("startup-cost-calculator.html","What will it cost to start?","One-off costs to open plus the months of running costs you need behind you.","4","a number you can plan against"),
+   ("breakeven-calculator.html","When do you break even?","Fixed costs divided by what each sale contributes, in units and in revenue.","2","units and revenue"),
+   ("hourly-rate-calculator.html","What should you charge an hour?","Worked back from the income you want and the hours you can actually bill.","3","an hourly rate"),
+   ("product-pricing-calculator.html","What should you price a product at?","From the margin you want, with materials, labour, overhead and payment fees taken out.","3","a price and a margin")]),
+ ("What do I have to file?",
   "Reference built from primary sources, with a link back to every one of them.",
-  [("state-filing.html","What do you file in your state?","The office, the document, the fee, the name search, the registered agent rule and the annual report.","50","states"),
-   ("business-structures.html","Sole proprietor, LLC or S corp","What actually differs, side by side. No recommendation, because that turns on facts a web page does not have.","7","rows compared"),
-   ("domain-search.html","Is the name still available?","Checked at once against the registries themselves, so the answer is the register's own.","12","endings"),
-   ("business-idea-where-to-start.html","You have an idea. Now what?","Five steps in the order that costs least to be wrong about, and the four places people actually get stuck.","5","steps")]),
- ("Work something out about yourself",
+  [("state-filing.html","What do you file in your state?","The office, the document, the fee, the name search, the registered agent rule and the annual report. Every state also has its own page.","2","all 50 states"),
+   ("business-structures.html","Sole proprietor, LLC or S corp","What actually differs, side by side. No recommendation, because that turns on facts a web page does not have.","5","7 rows compared"),
+   ("domain-search.html","Is the name still available?","Checked at once against the registries themselves, so the answer is the register's own.","1","12 endings checked")]),
+ ("Where am I, and what is next?",
+  "Three readings on yourself rather than on a number. All run in the browser and none keep anything.",
+  [("assessment.html","The Energy Discovery","Forty eight statements on how you actually behave, and a distribution across all twelve energies rather than a label. Everyone runs on all of them; the question is the proportions.","10","your 12 energies"),
+   ("founder-diagnostic.html","Where are you, actually?","Five questions and a straight read on the stage you are at, plus what fits it.","2","your stage"),
+   ("business-idea-where-to-start.html","You have an idea. Now what?","Five steps in the order that costs least to be wrong about, and the four places people actually get stuck.","6","a first move")]),
+ ("How do I say it?",
   "Answer a few questions, get something back you can use.",
-  [("positioning-statement.html","Say what you do in one sentence","The full statement, a bio line, and the version for when somebody asks at a party.","3","drafts"),
-   ("outreach-email.html","Reach out without the cringe","Six questions and a draft that could only have been sent to one person.","1","email that sounds like you")]),
- ("Fill it in and keep it",
+  [("positioning-statement.html","Say what you do in one sentence","The full statement, a bio line, and the version for when somebody asks at a party.","4","3 drafts"),
+   ("outreach-email.html","Reach out without the cringe","Six questions and a draft that could only have been sent to one person.","5","an email in your voice")]),
+ ("How do I keep going?",
   "The paper worksheets, made fillable. Everything stays in your own browser, so you can close the tab and come back to it.",
-  [("weekly-check-in.html","Weekly check-in","Wins, key numbers, what got in the way, next week's top three. Fifteen minutes.","31","fields, saved as you type"),
-   ("90-day-goals.html","90-day goals","Reflect, set the vision, pick three priorities, build the weekly rhythm.","32","fields, saved as you type"),
-   ("startup-checklist.html","Startup checklist","Five phases ordered by risk, not by paperwork. Progress is remembered.","28","steps"),
-   ("support-system-checklist.html","Support system checklist","Five kinds of support, fifteen honest questions, and a plan for the gaps.","15","questions")]),
+  [("weekly-check-in.html","Weekly check-in","Wins, key numbers, what got in the way, next week's top three.","15","saved as you type"),
+   ("90-day-goals.html","90-day goals","Reflect, set the vision, pick three priorities, build the weekly rhythm.","25","saved as you type"),
+   ("startup-checklist.html","Startup checklist","Five phases ordered by risk, not by paperwork. Progress is remembered.","10","28 steps"),
+   ("support-system-checklist.html","Support system checklist","Five kinds of support, fifteen honest questions, and a plan for the gaps.","10","15 questions")]),
 ]
+
+
+# Words people type that are not in a title. Without these the filter only
+# matches text that happens to be on the card, so "price" finds one tool and
+# "tax" finds none.
+KEYWORDS = {
+ "startup-cost-calculator.html": "cost costs money budget start capital expenses savings how much",
+ "breakeven-calculator.html": "breakeven break even profit margin price pricing units volume sales",
+ "hourly-rate-calculator.html": "rate price pricing charge hourly freelance day rate salary income tax",
+ "product-pricing-calculator.html": "price pricing margin markup cost profit product",
+ "state-filing.html": "llc file filing state registration fee articles agent annual report incorporate",
+ "business-structures.html": "llc s corp corporation sole proprietor structure entity tax compare legal",
+ "domain-search.html": "name domain url website available trademark brand",
+ "assessment.html": "quiz test energy energies personality animals discovery strengths",
+ "founder-diagnostic.html": "quiz stage where start diagnostic assessment",
+ "business-idea-where-to-start.html": "idea start first step stuck beginning validate",
+ "positioning-statement.html": "positioning pitch elevator bio describe explain one liner brand",
+ "outreach-email.html": "email outreach cold message sales networking contact",
+ "weekly-check-in.html": "weekly review check in habit routine tracker",
+ "90-day-goals.html": "goals quarter 90 day planning priorities okr targets",
+ "startup-checklist.html": "checklist steps launch todo list start",
+ "support-system-checklist.html": "support help network people community mentor advisor lonely",
+}
+
+# Someone arriving for the first time faces sixteen equal doors. These three
+# are the ones that make sense before you know what you are looking for.
+START = ["founder-diagnostic.html", "startup-cost-calculator.html", "state-filing.html"]
 
 TRAY = '<div class="hubdiscs"><a class="hubdisc" href="library.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Blogs</span></a><a class="hubdisc" href="resources.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Resource library</span></a><a class="hubdisc on" aria-current="page" href="tools.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Tools</span></a><a class="hubdisc" href="glossary.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Glossary</span></a><a class="hubdisc" href="faq.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">FAQs</span></a><a class="hubdisc" href="market-data.html"><span aria-hidden="true" class="hd-disc"><i class="hd-mouth"></i></span><span class="hd-nm">Market data</span></a></div>'
 
 body = [TRAY, '<div class="th">']
+# Start here, for someone who has not been to the site before.
+_by_href = {c[0]: (c[1], c[3]) for g in GROUPS for c in g[2]}
+body.append('<section class="th-start"><h2>New here? Start with one of these</h2>'
+            '<div class="th-startrow">'
+            + "".join('<a href="%s"><b>%s</b><em>%s min</em></a>'
+                      % (e(h), e(_by_href[h][0]), e(_by_href[h][1])) for h in START)
+            + '</div></section>')
+
+# Sixteen tools is the point where typing beats scrolling.
+body.append('<div class="th-find"><label class="sr-only" for="thq">Filter the tools</label>'
+            '<input id="thq" type="search" autocomplete="off" '
+            'placeholder="Filter, for example price, LLC or goals"/>'
+            '<p class="th-count" id="thcount" role="status"></p></div>')
+
 body.append('<p class="th-note"><b>All of it is open and none of it asks for an email.</b> '
             'The calculators and generators keep nothing at all. The worksheets and checklists save '
             'what you type in your own browser so you can come back to them, which also means they '
@@ -170,16 +245,24 @@ for gi, (name, blurb, cards) in enumerate(GROUPS):
                    + "".join('<img alt="" decoding="async" height="200" loading="lazy" '
                              'src="assets/energies/%s-sm.webp" width="200"/>' % a for a in ZOO)
                    + '</span>')
-        body.append('<a class="th-c%s" data-n="%02d" href="%s">%s<b>%s</b><span>%s</span>'
-                    '<span class="th-s"><em>%s</em><i>%s</i></span></a>'
-                    % (" th-hero" if zoo else "", n, e(href), zoo,
+        body.append('<a class="th-c%s" data-n="%02d" href="%s" '
+                    'data-find="%s">%s<b>%s</b><span>%s</span>'
+                    '<span class="th-s"><em>%s min</em><i>%s</i></span></a>'
+                    % (" th-hero" if zoo else "", n, e(href),
+                       e((title + " " + desc + " " + name + " " + KEYWORDS.get(href, "")).lower()), zoo,
                        e(title), e(desc), e(fig), e(unit)))
     body.append("</div></section>")
 body.append("</div>")
 
 count = sum(len(g[2]) for g in GROUPS)
-DESC = ("Fourteen tools for people starting something: calculators, a fifty state filing lookup, "
-        "a domain checker, and worksheets that save your progress.")
+# Counted from GROUPS rather than typed, because a hand written count goes
+# wrong the first time a tool is added and nobody notices.
+WORDS = {11:"Eleven",12:"Twelve",13:"Thirteen",14:"Fourteen",15:"Fifteen",
+         16:"Sixteen",17:"Seventeen",18:"Eighteen",19:"Nineteen",20:"Twenty"}
+_n = sum(len(g[2]) for g in GROUPS)
+_word = WORDS.get(_n, str(_n))
+DESC = ("%s tools for people starting something: calculators, a fifty state filing "
+        "lookup, a domain checker, and worksheets that save your progress." % _word)
 items = [{"@type":"ListItem","position":i+1,"url":f"{SITE}/{h}","name":t}
          for i,(h,t,_,_,_) in enumerate([c for g in GROUPS for c in g[2]])]
 sch = ({"@context":"https://schema.org","@type":"CollectionPage",
@@ -195,13 +278,48 @@ sch = ({"@context":"https://schema.org","@type":"CollectionPage",
         {"@type":"ListItem","position":2,"name":"Resources","item":f"{SITE}/library.html"},
         {"@type":"ListItem","position":3,"name":"Tools","item":f"{SITE}/tools.html"}]})
 
+JS = r"""
+var q = document.getElementById('thq');
+var count = document.getElementById('thcount');
+if(q){
+  var cards = [].slice.call(document.querySelectorAll('.th-c'));
+  var groups = [].slice.call(document.querySelectorAll('.th-g'));
+  var start = document.querySelector('.th-start');
+  var total = cards.length;
+
+  function apply(){
+    var term = q.value.trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var hit = !term || (c.getAttribute('data-find') || '').indexOf(term) > -1;
+      c.hidden = !hit;
+      if(hit) shown++;
+    });
+    /* a group with nothing left in it should not leave its heading behind */
+    groups.forEach(function(g){
+      g.hidden = !g.querySelector('.th-c:not([hidden])');
+    });
+    if(start) start.hidden = !!term;
+    count.textContent = term
+      ? (shown ? shown + ' of ' + total + ' tools' : 'Nothing matches ' + term)
+      : '';
+  }
+  q.addEventListener('input', apply);
+  q.addEventListener('search', apply);
+  /* Escape clears, which is what the native search field implies */
+  q.addEventListener('keydown', function(ev){
+    if(ev.key === 'Escape'){ q.value = ''; apply(); }
+  });
+}
+"""
+
 BACK = ('<p class="kx-backrow"><a class="kx-bk" href="library.html">'
         '<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">'
         '<path d="M15 5l-7 7 7 7"></path></svg> Back to Resources</a></p>')
 
 n = page("tools.html", "Business Tools: Calculators, Worksheets and Lookups | SideKix",
-         DESC, "Tools", "Fourteen things that <em>do the work</em>.",
+         DESC, "Tools", "%s things that <em>do the work</em>." % _word,
          "Calculators that give you a number, lookups that tell you what applies where you are, "
          "and worksheets that remember what you wrote. No account, no email, nothing sent anywhere.",
-         "".join(body), css=CSS, schema=sch, back=BACK)
+         "".join(body), css=CSS, js=JS, schema=sch, back=BACK)
 print("tools.html %.0f KB, %d tools in %d groups" % (n/1024, count, len(GROUPS)))

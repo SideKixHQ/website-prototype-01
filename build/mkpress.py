@@ -30,7 +30,12 @@ RELEASES = [
 
 PODCASTS = []      # shows James has been a guest on
 ARTICLES = []      # pieces James has written elsewhere
-COVERAGE = []      # anyone writing about SideKix
+COVERAGE = [
+ ("Wilmington startup SideKix prepares for national launch",
+  "WilmingtonBiz", "9 July 2026",
+  "https://www.wilmingtonbiz.com/technology/2026/07/09/"
+  "wilmington_startup_sidekix_prepares_for_national_launch/27659"),
+]      # anyone writing about SideKix
 EVENTS   = []      # (name, date, place, url) company events coming up
 
 BOILER = ("SideKix is a business operating system for people building something. It blends "

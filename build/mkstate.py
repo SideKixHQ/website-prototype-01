@@ -1,4 +1,5 @@
 import io, os, sys, json, html
+import re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from toolgen import page, crumbs, webapp, faqpage, SITE
 
@@ -118,6 +119,14 @@ JS = """
 opts = "".join('<option value="%s">%s</option>' % (html.escape(k, True), html.escape(k))
                for k in sorted(slim))
 SF_MORE_CSS = """
+.sf-all{margin:40px 0 0;padding:26px 0 0;border-top:1px solid rgba(212,168,86,.2)}
+.sf-all h2{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:#BDB4A4;font-weight:700;margin:0 0 14px;width:100%}
+.sf-all{display:flex;flex-wrap:wrap;gap:8px}
+.sf-all a{font-size:14px;padding:8px 13px;border-radius:999px;
+  border:1px solid rgba(212,168,86,.24);color:#D9D0BC;text-decoration:none;
+  min-height:40px;display:inline-flex;align-items:center}
+.sf-all a:hover{border-color:#D4A856;color:#F3E4A8;background:rgba(212,168,86,.08)}
 .sf-more{margin:26px 0 0;font-size:15px;line-height:1.7;color:#BDB4A4}
 .sf-more a{color:#F3E4A8;text-decoration:underline;text-underline-offset:3px}
 .sf-more a:hover{color:#FFF6DC}
@@ -136,6 +145,14 @@ body = ('<div class="sf">'
         'to do things in, what each step costs and the official pages: '
         '<a href="start-a-business-in-north-carolina.html">starting a business '
         'in North Carolina</a>.</p>'
+        # Every state also has its own page. The picker above is faster once you
+        # are here; these are what a search engine can actually rank, and what
+        # gives each state somewhere to be linked to.
+        '<nav class="sf-all" aria-label="Every state"><h2>Every state, one page each</h2>'
+        + "".join('<a href="start-an-llc-in-%s.html">%s</a>'
+                  % (re.sub(r"[^a-z0-9]+", "-", k.lower()).strip("-"), html.escape(k))
+                  for k in sorted(slim))
+        + '</nav>'
         '</div>')
 
 nofee = sorted(k for k, v in slim.items() if v.get("llc_fee_usd") is None)
