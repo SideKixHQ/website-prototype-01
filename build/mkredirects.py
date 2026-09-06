@@ -39,7 +39,28 @@ LEGACY = collections.OrderedDict([
     ("signup",               "/join.html"),
     ("sign-up",              "/join.html"),
     ("home",                 "/"),
+    ("sponsors",             "/partners.html"),
+    ("opt-in-accept",        "/join.html"),
 ])
+
+# Wildcards, for URL shapes rather than single pages. Search Console's
+# "Not found (404)" report named all of these as live 404s with crawl history.
+#
+# /wp-content is deliberately absent: those are deleted media files, and a
+# 404 is the honest answer for a deleted image. Redirecting them to a page
+# would turn 13 clean 404s into soft 404s, which is worse.
+PATTERNS = [
+    # WordPress tag archives. The library is the list of posts they were.
+    ("/tag/:slug*",  "/library.html"),
+    ("/category/:slug*", "/library.html"),
+    # The Wix era put posts under /blog/f/. One is a clear match for a post
+    # that still exists; the rest go to the library rather than to a guess.
+    ("/blog/f/great-you-have-an-idea-no-what",
+     "/blog/what-to-do-after-having-your-business-idea/"),
+    ("/blog/f/:slug*", "/library.html"),
+    # Wix mobile routes
+    ("/m/:path*", "/"),
+]
 
 
 def main():
@@ -60,6 +81,11 @@ def main():
     for slug, dest in LEGACY.items():
         add("/" + slug, dest)
         add("/" + slug + "/", dest)
+
+    # Patterns Search Console reported as 404 that a per page list cannot
+    # cover. Tag archives and the old Wix blog shape both held many URLs.
+    for src, dest in PATTERNS:
+        add(src, dest)
     for p in pages:
         add("/" + p, "/%s.html" % p)
         add("/" + p + "/", "/%s.html" % p)
