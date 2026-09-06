@@ -10,9 +10,10 @@ The game is embedded on a click rather than on load, the same way the film is
 handled elsewhere: a poster and a button, so a page nobody plays on costs
 nothing to open.
 """
-import os, sys, html
+import os, sys, io, json, html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from toolgen import page, crumbs, SITE
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def e(s): return html.escape(str(s), quote=True)
 
 BACK = ('<p class="kx-backrow"><a class="kx-bk" href="index.html">'
@@ -20,6 +21,9 @@ BACK = ('<p class="kx-backrow"><a class="kx-bk" href="index.html">'
         '<path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p>')
 
 GAME = "https://sidekixhq.github.io/runkixrun/"
+
+PANELS = json.load(io.open(os.path.join(ROOT, "assets", "comics", "panels.json"),
+                           encoding="utf-8"))
 
 COMICS = [
  ("ideas-are-easy", "Ideas are easy. Next steps are hard.",
@@ -48,17 +52,23 @@ body.append(
 # ---- the comics
 cards = "".join(
  '<figure class="br-comic">'
- '<button aria-label="Open %s at full size" class="br-open" data-src="assets/comics/%s.webp" '
- 'data-title="%s" type="button">'
+ '<button aria-label="Read %s, %d panels" class="br-open" data-key="%s" type="button">'
  '<img alt="%s" decoding="async" height="840" loading="lazy" '
- 'src="assets/comics/%s-sm.webp" width="560"/></button>'
- '<figcaption><b>%s</b><span>%s</span></figcaption></figure>'
- % (e(t), e(k), e(t), e(t + ". " + d), e(k), e(t), e(d))
+ 'src="assets/comics/%s-sm.webp" width="560"/>'
+ '<span aria-hidden="true" class="br-read">Read it</span></button>'
+ '<figcaption><b>%s</b><span>%s</span>'
+ '<em>%d panels</em></figcaption></figure>'
+ % (e(t), len(PANELS[k]), e(k), e(t + ". " + d), e(k), e(t), e(d), len(PANELS[k]))
  for k, t, d in COMICS)
+DATA = {k: {"title": t, "panels": PANELS[k]} for k, t, d in COMICS}
 body.append(
  '<section class="br-s br-comics"><h2>The comics</h2>'
- '<p class="br-b">Three pages, drawn the way the story actually goes. Tap one to read it.</p>'
- '<div class="br-cgrid">%s</div></section>' % cards)
+ '<p class="br-b">Three pages. Open one and it walks you through panel by '
+ 'panel, which is the only way a full page is readable on a phone. Arrow keys '
+ 'or swipe to move, and the whole page is one tap away.</p>'
+ '<div class="br-cgrid">%s</div>'
+ '<script id="br-panels" type="application/json">%s</script>'
+ '</section>' % (cards, json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")))
 
 # ---- the declaration
 body.append(
@@ -171,16 +181,68 @@ CSS = """
   line-height:1.25;margin:0 0 5px}
 .br-comic span{display:block;font-size:14px;line-height:1.6;color:#948D81}
 
-/* the reader */
-.br-view{position:fixed;inset:0;z-index:400;background:rgba(6,5,3,.95);
-  display:flex;align-items:center;justify-content:center;padding:26px}
+/* ---- the reader ----
+   A full comic page on a phone is 1024px of artwork in a 390px hole, which is
+   not reading, it is squinting. The reader shows one panel at a time, scaled
+   to whatever room the screen has, and the whole page is one tap away for
+   anyone who wants to see the shape of it. */
+.br-view{position:fixed;inset:0;z-index:600;background:#070604;
+  display:flex;flex-direction:column}
+/* the site nav is fixed at z-index 500, so it sat on top of the reader's own
+   bar and swallowed taps meant for it. While the reader is open the nav is
+   out of the way entirely. */
+html.br-reading #kx-nav{display:none !important}
 .br-view[hidden]{display:none}
-.br-view img{max-width:min(1024px,94vw);max-height:92vh;width:auto;height:auto;
-  border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
-.br-close{position:absolute;top:18px;right:18px;min-width:48px;min-height:48px;
-  border:1px solid rgba(212,168,86,.5);border-radius:999px;background:rgba(11,10,6,.9);
-  color:#EBD08C;font-size:19px;cursor:pointer;line-height:1}
-.br-close:hover{border-color:var(--gold);color:#FFF6DC}
+.br-stagewrap{flex:1;position:relative;overflow:hidden;touch-action:pan-y pinch-zoom}
+.br-clip{position:absolute;overflow:hidden;border-radius:6px;
+  box-shadow:0 18px 60px rgba(0,0,0,.6)}
+.br-clip img{position:absolute;left:0;top:0;max-width:none;display:block}
+.br-view.zoomed .br-clip{transition:left .32s cubic-bezier(.4,0,.2,1),
+  top .32s cubic-bezier(.4,0,.2,1),width .32s cubic-bezier(.4,0,.2,1),
+  height .32s cubic-bezier(.4,0,.2,1)}
+.br-view.zoomed .br-clip img{transition:left .32s cubic-bezier(.4,0,.2,1),
+  top .32s cubic-bezier(.4,0,.2,1),width .32s cubic-bezier(.4,0,.2,1)}
+.br-bar{display:flex;align-items:center;gap:14px;padding:12px 16px;
+  border-bottom:1px solid rgba(212,168,86,.2);background:rgba(11,10,6,.9)}
+.br-bar b{font-family:var(--display);font-size:18px;color:#FFF8E8;font-weight:600;
+  margin-right:auto;line-height:1.2}
+.br-count{font-family:var(--util);font-size:11px;letter-spacing:.14em;color:#948D81;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.br-ctl{min-width:48px;min-height:48px;border:1px solid rgba(212,168,86,.45);
+  border-radius:999px;background:rgba(11,10,6,.85);color:#EBD08C;font-size:17px;
+  cursor:pointer;line-height:1;display:grid;place-items:center;padding:0 14px;
+  font-family:var(--util);letter-spacing:.1em}
+.br-ctl:hover:not(:disabled){border-color:var(--gold);color:#FFF6DC;
+  background:rgba(212,168,86,.12)}
+.br-ctl:disabled{opacity:.32;cursor:default}
+.br-nav{display:flex;align-items:center;gap:12px;justify-content:center;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid rgba(212,168,86,.2);background:rgba(11,10,6,.9)}
+.br-prog{position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:rgba(212,168,86,.16)}
+.br-prog i{display:block;height:100%;background:var(--gold);
+  transition:width .3s ease;width:0}
+.br-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  font-family:var(--util);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#8C867B;background:rgba(11,10,6,.72);padding:7px 13px;border-radius:999px;
+  pointer-events:none;transition:opacity .5s}
+.br-hint[hidden]{display:none}
+@media(max-width:560px){
+  .br-bar b{font-size:15px}
+  .br-ctl{padding:0 11px;font-size:15px}
+}
+
+/* the covers say what they are */
+.br-open{position:relative}
+.br-read{position:absolute;left:50%;bottom:14px;transform:translateX(-50%) translateY(6px);
+  font-family:var(--util);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:#1B1400;background:linear-gradient(180deg,#D7C582,#A1853E);
+  padding:9px 18px;border-radius:999px;opacity:0;transition:opacity .3s,transform .3s;
+  white-space:nowrap}
+.br-open:hover .br-read,.br-open:focus-visible .br-read{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(pointer:coarse){ .br-read{opacity:1;transform:translateX(-50%) translateY(0)} }
+.br-comic em{display:block;font-style:normal;font-family:var(--util);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:7px}
 
 /* the declaration */
 .br-declcard{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;
@@ -205,13 +267,13 @@ CSS = """
 }
 """
 
-JS = """
+JS = ("""
 /* the game arrives on a click, so a visitor who never plays never loads it */
 var stage=document.getElementById('br-stage'), play=document.getElementById('br-play');
 if(stage && play){
   play.addEventListener('click', function(){
     var f=document.createElement('iframe');
-    f.src=%(game)r;
+    f.src="__GAME_URL__";
     f.title='Run Kix Run';
     f.setAttribute('allow','fullscreen; autoplay');
     f.setAttribute('loading','lazy');
@@ -220,42 +282,141 @@ if(stage && play){
   });
 }
 
-/* the comic reader: one dialog, opened from any cover, closed by escape,
-   the backdrop or the button, and it hands focus back where it came from */
+/* ---- the comic reader ----
+   One dialog, driven by the panel map in the page. Each panel is framed by
+   scaling the whole page image so that panel fills the stage, which keeps one
+   decoded image in memory instead of thirty crops and makes the move between
+   panels a transform rather than a load.
+
+   Arrow keys, swipe, and the buttons all do the same thing. Escape closes it,
+   focus is trapped while it is open and handed back to the cover that opened
+   it. */
 var covers=[].slice.call(document.querySelectorAll('.br-open'));
-if(covers.length){
+var dataEl=document.getElementById('br-panels');
+if(covers.length && dataEl){
+  var DATA=JSON.parse(dataEl.textContent);
+
   var view=document.createElement('div');
   view.className='br-view'; view.hidden=true;
   view.setAttribute('role','dialog'); view.setAttribute('aria-modal','true');
-  view.innerHTML='<button class="br-close" type="button" aria-label="Close">&#10005;</button><img alt=""/>';
+  view.innerHTML=
+    '<div class="br-bar">'+
+      '<b class="br-title"></b>'+
+      '<span class="br-count"></span>'+
+      '<button class="br-ctl br-whole" type="button" aria-label="Show the whole page">PAGE</button>'+
+      '<button class="br-ctl br-close" type="button" aria-label="Close">&#10005;</button>'+
+    '</div>'+
+    '<div class="br-stagewrap"><div class="br-clip"><img alt=""/></div>'+
+      '<p class="br-hint">Swipe or use the arrow keys</p>'+
+      '<div class="br-prog"><i></i></div>'+
+    '</div>'+
+    '<div class="br-nav">'+
+      '<button class="br-ctl br-prev" type="button" aria-label="Previous panel">&#8592;</button>'+
+      '<button class="br-ctl br-next" type="button" aria-label="Next panel">&#8594;</button>'+
+    '</div>';
   document.body.appendChild(view);
-  var img=view.querySelector('img'), closeBtn=view.querySelector('.br-close'), last=null;
 
+  var img=view.querySelector('img'), clip=view.querySelector('.br-clip'),
+      stage=view.querySelector('.br-stagewrap'),
+      titleEl=view.querySelector('.br-title'), countEl=view.querySelector('.br-count'),
+      progEl=view.querySelector('.br-prog i'), hintEl=view.querySelector('.br-hint'),
+      prevB=view.querySelector('.br-prev'), nextB=view.querySelector('.br-next'),
+      wholeB=view.querySelector('.br-whole'), closeB=view.querySelector('.br-close');
+
+  var key=null, panels=[], at=0, whole=false, last=null;
+
+  function frame(){
+    if(!img.naturalWidth) return;
+    var IW=img.naturalWidth, IH=img.naturalHeight;
+    var r=stage.getBoundingClientRect(), VW=r.width, VH=r.height;
+    var box = whole ? [0,0,1,1] : panels[at];
+    var pad = whole ? 0.94 : 0.98;
+    var sc = Math.min(VW/(box[2]*IW), VH/(box[3]*IH)) * pad;
+    var w=IW*sc, h=IH*sc;                       /* the whole page at this scale */
+    var cw=box[2]*w, ch=box[3]*h;               /* the panel's own box on screen */
+    clip.style.width=cw+'px'; clip.style.height=ch+'px';
+    clip.style.left=Math.round((VW-cw)/2)+'px';
+    clip.style.top =Math.round((VH-ch)/2)+'px';
+    img.style.width=w+'px'; img.style.height=h+'px';
+    img.style.left=(-box[0]*w)+'px'; img.style.top=(-box[1]*h)+'px';
+    countEl.textContent = whole ? 'Whole page' : (at+1)+' / '+panels.length;
+    progEl.style.width = whole ? '100%' : (((at+1)/panels.length)*100)+'%';
+    prevB.disabled = whole || at===0;
+    nextB.disabled = whole || at===panels.length-1;
+    wholeB.textContent = whole ? 'PANELS' : 'PAGE';
+    wholeB.setAttribute('aria-label', whole ? 'Back to panel by panel' : 'Show the whole page');
+    view.classList.add('zoomed');
+  }
+  function go(n){
+    if(whole){ whole=false; }
+    at=Math.max(0, Math.min(panels.length-1, n));
+    frame();
+  }
   function open(btn){
-    last=btn;
-    img.src=btn.getAttribute('data-src');
-    img.alt=btn.getAttribute('data-title')||'';
-    view.setAttribute('aria-label', btn.getAttribute('data-title')||'Comic');
+    last=btn; key=btn.getAttribute('data-key');
+    var d=DATA[key]; if(!d) return;
+    panels=d.panels; at=0; whole=false;
+    titleEl.textContent=d.title;
     view.hidden=false;
     document.documentElement.style.overflow='hidden';
-    closeBtn.focus();
+    document.documentElement.classList.add('br-reading');
+    hintEl.hidden=false; hintEl.style.opacity='1';
+    setTimeout(function(){ hintEl.style.opacity='0'; }, 2600);
+    img.onload=frame;
+    img.src='assets/comics/'+key+'.webp';
+    img.alt=d.title;
+    if(img.complete) frame();
+    closeB.focus();
   }
   function close(){
-    view.hidden=true; img.removeAttribute('src');
+    view.hidden=true; view.classList.remove('zoomed');
+    img.removeAttribute('src');
     document.documentElement.style.overflow='';
+    document.documentElement.classList.remove('br-reading');
     if(last) last.focus();
   }
+
   covers.forEach(function(b){ b.addEventListener('click', function(){ open(b); }); });
-  closeBtn.addEventListener('click', close);
-  view.addEventListener('click', function(ev){ if(ev.target===view) close(); });
+  prevB.addEventListener('click', function(){ go(at-1); });
+  nextB.addEventListener('click', function(){ go(at+1); });
+  wholeB.addEventListener('click', function(){ whole=!whole; frame(); });
+  closeB.addEventListener('click', close);
+  window.addEventListener('resize', function(){ if(!view.hidden) frame(); });
+
+  /* a swipe moves a panel; a flick down closes */
+  var sx=0, sy=0, moved=false;
+  stage.addEventListener('touchstart', function(ev){
+    var t=ev.changedTouches[0]; sx=t.clientX; sy=t.clientY; moved=false;
+  }, {passive:true});
+  stage.addEventListener('touchend', function(ev){
+    var t=ev.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)>44 && Math.abs(dx)>Math.abs(dy)){ go(at + (dx<0?1:-1)); moved=true; }
+    else if(dy>90 && Math.abs(dy)>Math.abs(dx)){ close(); moved=true; }
+  });
+  /* tapping the right or left of the stage also moves, which is what a reader
+     expects and costs nothing to support */
+  stage.addEventListener('click', function(ev){
+    if(moved || whole) return;
+    var r=stage.getBoundingClientRect();
+    go(at + ((ev.clientX - r.left) > r.width*0.5 ? 1 : -1));
+  });
+
   document.addEventListener('keydown', function(ev){
     if(view.hidden) return;
     if(ev.key==='Escape'){ close(); return; }
-    /* only two things are focusable in here, so the trap is this small */
-    if(ev.key==='Tab'){ ev.preventDefault(); closeBtn.focus(); }
+    if(ev.key==='ArrowRight'||ev.key==='PageDown'){ ev.preventDefault(); go(at+1); return; }
+    if(ev.key==='ArrowLeft'||ev.key==='PageUp'){ ev.preventDefault(); go(at-1); return; }
+    if(ev.key==='Home'){ ev.preventDefault(); go(0); return; }
+    if(ev.key==='End'){ ev.preventDefault(); go(panels.length-1); return; }
+    if(ev.key!=='Tab') return;
+    /* keep focus inside the dialog */
+    var f=[].slice.call(view.querySelectorAll('button')).filter(function(b){ return !b.disabled; });
+    var i=f.indexOf(document.activeElement);
+    ev.preventDefault();
+    f[(i + (ev.shiftKey ? -1 : 1) + f.length) % f.length].focus();
   });
 }
-""" % {"game": GAME}
+""".replace("__GAME_URL__", GAME))
 
 TITLE = "The Back Room: A Game, Comics and a Declaration | SideKix"
 DESC  = ("Everything SideKix makes that will not help you run a business. Run Kix Run, "

@@ -23,6 +23,11 @@ BACK = ('<p class="kx-backrow"><a class="kx-bk" href="index.html">'
 # ---------------------------------------------------------------- the content
 # Each list below renders a section. Leave one empty and its heading does not
 # appear. Format is (title, outlet, date, url) with date as "March 2026".
+RELEASES = [
+ ("177 million Americans have a business idea. Most never take the first step.",
+  "SideKix HQ", "5 September 2026", "assets/press/sidekix-launch-release.pdf"),
+]
+
 PODCASTS = []      # shows James has been a guest on
 ARTICLES = []      # pieces James has written elsewhere
 COVERAGE = []      # anyone writing about SideKix
@@ -108,6 +113,13 @@ body.append(sec("pr-kit", "The press kit", "",
   '<a class="kxcta kxcta-lead" href="#kx-support">Request the press kit</a>'
   '<a class="kxcta kxcta-quiet" href="mailto:support@sidekixhq.com'
   '?subject=Press%20enquiry">Email us directly</a></div>'))
+
+if RELEASES:
+    rows = "".join(
+      '<li><a href="%s"><b>%s</b><span>%s &middot; %s &middot; PDF</span></a></li>'
+      % (e(u), e(t), e(o), e(d)) for t, o, d, u in RELEASES)
+    body.append(sec("pr-rel", "Releases", "",
+      '<ul class="pr-list">%s</ul>' % rows))
 
 if PODCASTS:
     body.append(sec("pr-pods", "Conversations", "Shows James has been a guest on.",
