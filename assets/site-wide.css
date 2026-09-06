@@ -362,3 +362,12 @@ select,textarea{border-color:rgba(212,168,86,.6) !important}
 .kx-bk svg{opacity:.9;stroke-width:2.2}
 .kx-bk:hover{color:#F3E4A8 !important}
 .kx-bk:hover svg{opacity:1}
+
+/* A heading given tabindex="-1" exists only so focus can be moved to it when
+   a step changes, which screen readers need. Chrome counts that programmatic
+   focus as :focus-visible and painted a ring around the question, which reads
+   as a stray box. Nothing with tabindex="-1" is reachable by Tab, so removing
+   the ring there costs a keyboard user nothing. Anything with tabindex="0"
+   keeps it. */
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible{outline:none !important}
