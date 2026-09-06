@@ -347,6 +347,56 @@
       "permanent": true
     },
     {
+      "source": "/advisor-faqs",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisor-faqs/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/general-faq",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/general-faq/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/members",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/members/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/website-terms-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/website-terms-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/ai-app-policy",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/ai-app-policy/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
       "source": "/tag/:slug(.*)",
       "destination": "/library.html",
       "permanent": true
