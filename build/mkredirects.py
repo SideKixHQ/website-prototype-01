@@ -49,17 +49,26 @@ LEGACY = collections.OrderedDict([
 # /wp-content is deliberately absent: those are deleted media files, and a
 # 404 is the honest answer for a deleted image. Redirecting them to a page
 # would turn 13 clean 404s into soft 404s, which is worse.
+# ":slug*" does not match once trailingSlash has put a slash on the end, which
+# is why the first attempt at these still 404ed. The explicit "(.*)" form
+# matches the remainder of the path whatever it looks like.
+#
+# Order matters: Vercel takes the first source that matches, so the one exact
+# post mapping has to sit above the catch all for its own directory.
 PATTERNS = [
-    # WordPress tag archives. The library is the list of posts they were.
-    ("/tag/:slug*",  "/library.html"),
-    ("/category/:slug*", "/library.html"),
-    # The Wix era put posts under /blog/f/. One is a clear match for a post
-    # that still exists; the rest go to the library rather than to a guess.
+    # WordPress tag and category archives. The library is the list of posts
+    # they used to be.
+    ("/tag/:slug(.*)",      "/library.html"),
+    ("/category/:slug(.*)", "/library.html"),
+    # The Wix era put posts under /blog/f/. This one is a clear match for a
+    # post that still exists; the rest go to the library rather than to a guess.
     ("/blog/f/great-you-have-an-idea-no-what",
      "/blog/what-to-do-after-having-your-business-idea/"),
-    ("/blog/f/:slug*", "/library.html"),
+    ("/blog/f/great-you-have-an-idea-no-what/",
+     "/blog/what-to-do-after-having-your-business-idea/"),
+    ("/blog/f/:slug(.*)",   "/library.html"),
     # Wix mobile routes
-    ("/m/:path*", "/"),
+    ("/m/:path(.*)",        "/"),
 ]
 
 
