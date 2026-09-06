@@ -28,6 +28,9 @@ email address.
 
 ## Key pages
 
+- [Press](https://sidekixhq.com/press.html): The boilerplate, fast facts, federal figures on US business formation that are free to quote, and who to ask for an interview.
+- [The Back Room](https://sidekixhq.com/back-room.html): Run Kix Run, three comics, and a declaration. The part of SideKix with no work in it.
+- [A Declaration of Independence](https://sidekixhq.com/declaration.html): Written for anyone who has decided to stop waiting for permission. Readable as text and signable.
 - [The Energy Discovery](https://sidekixhq.com/assessment.html): Forty eight statements, about six minutes, and a distribution across twelve energies rather than a type. A self-report reflection tool, not a validated psychometric instrument. Runs in the browser and stores nothing.
 - [SideKix](https://sidekixhq.com/): The home page. What SideKix is, who it is for, and the three ways it helps: guided planning, human Advisors and a community.
 - [Partner with SideKix](https://sidekixhq.com/partners.html): Three ways to work with SideKix as an affiliate, partner or sponsor, what each one involves, and the companies already in the network.
