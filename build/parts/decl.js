@@ -164,12 +164,11 @@
      exists the form says so plainly rather than pretending it worked. */
   function form(){
     box.innerHTML=
-      '<p class="sign-note">Signatures are added when someone joins SideKix. '+
-      'If you have already joined, add your name here.</p>'+
       '<div class="sign-row">'+
         '<input id="signname" type="text" maxlength="60" placeholder="Your name or company" '+
           'aria-label="Your name or company">'+
-        '<button type="button" class="kx-mag kx-trace kx-gold" id="signgo">Sign it</button>'+
+        '<button type="button" class="kxcta kxcta-lead kx-mag kx-trace" id="signgo">'+
+        'Add my name</button>'+
       '</div>'+
       '<p class="sign-msg" id="signmsg" role="status"></p>';
   }

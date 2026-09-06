@@ -168,7 +168,7 @@ body:has(.decl){background:#100C07}
    Applied to Sign it only, because a trace on every button stops meaning
    anything. */
 @property --kxa{syntax:'<angle>';inherits:false;initial-value:0deg}
-@keyframes kxTrace{to{--kxa:360deg}
+@keyframes kxTrace{to{--kxa:360deg}}
 .kx-trace::before{content:"";position:absolute;inset:-2.5px;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--kxa),transparent 0 58%,#F3E4A8 72%,#FFFFEF 80%,#D4A856 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:kxTrace 6.5s linear infinite;pointer-events:none;}
 .kx-trace::before{animation-duration:26s}
 /* the button has to establish a stacking context for the ring to sit on */
@@ -247,7 +247,7 @@ body:has(.decl){background:#100C07}
    The homepage carries this inline on Download Kix rather than as a class, so
    there was nothing to reuse. These are its exact declarations. kx-trace adds
    the turning gold ring, which is already defined above. */
-.decl .kx-gold{
+.decl .sign-row .kxcta{
   position:relative;
   border:none;
   cursor:pointer;
@@ -260,8 +260,8 @@ body:has(.decl){background:#100C07}
   box-shadow:0 10px 44px rgba(231,182,70,.35);
   font-family:var(--body);
   isolation:isolate}
-.decl .kx-gold:hover{filter:brightness(1.06)}
-.decl .kx-gold:focus-visible{outline:3px solid #FFD166;outline-offset:4px}
+.decl .decl .sign-row .kxcta:hover{filter:brightness(1.06)}
+.decl .decl .sign-row .kxcta:focus-visible{outline:3px solid #FFD166;outline-offset:4px}
 
 
 /* signing sits directly under the sheet, so the invitation is next to the
@@ -305,7 +305,7 @@ body:has(.decl){background:#100C07}
   align-items:center;justify-content:center;
   max-width:520px;margin:0 auto}
 .decl .sign-row input{flex:1 1 240px;min-width:0}
-.decl .sign-row .kx-gold{flex:0 0 auto}
+.decl .sign-row .kxcta{flex:0 0 auto}
 
 .decl .sign-msg{
   font-family:var(--body);font-size:13.5px;color:#D4A856;
@@ -337,5 +337,15 @@ body:has(.decl){background:#100C07}
 
 @media(max-width:560px){
   .decl .sign-row input{flex:1 1 100%}
-  .decl .sign-row .kx-gold{width:100%}
+  .decl .sign-row .kxcta{width:100%}
 }
+
+
+/* ---- the sign row, centred under the sheet ----
+   One field and one button, on one line on a desktop and stacked on a phone.
+   The heading above it was doing the explaining; the row explains itself. */
+.decl .signme{margin:34px auto 0;max-width:560px;text-align:center}
+.decl .signme .decl-lab{margin:0 0 14px}
+.decl .sign-row{align-items:center}
+.decl .sign-msg{min-height:22px;margin:12px 0 0;font-size:14.5px;color:#BDB4A4;text-align:center}
+.decl .sigs{margin:44px 0 0}
