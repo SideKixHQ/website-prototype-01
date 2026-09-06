@@ -341,8 +341,8 @@ if(covers.length && dataEl){
     img.style.left=(-box[0]*w)+'px'; img.style.top=(-box[1]*h)+'px';
     countEl.textContent = whole ? 'Whole page' : (at+1)+' / '+panels.length;
     progEl.style.width = whole ? '100%' : (((at+1)/panels.length)*100)+'%';
-    prevB.disabled = whole || at===0;
-    nextB.disabled = whole || at===panels.length-1;
+    prevB.disabled = !whole && at===0;
+    nextB.disabled = !whole && at===panels.length-1;
     wholeB.textContent = whole ? 'PANELS' : 'PAGE';
     wholeB.setAttribute('aria-label', whole ? 'Back to panel by panel' : 'Show the whole page');
     view.classList.add('zoomed');
