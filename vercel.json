@@ -4,35 +4,697 @@
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).css",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).woff2",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/img/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/js/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).html",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/about-us",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/company",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/company/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/our-story",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/our-story/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/support",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/support/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/careers",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/careers/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/jobs",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/jobs/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/app-terms-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/app-terms-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy/",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources.html",
+      "permanent": true
+    },
+    {
+      "source": "/resources/",
+      "destination": "/resources.html",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/plans",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/plans/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/get-started",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/get-started/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/signup",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/signup/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/sign-up",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/sign-up/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/90-day-goals",
+      "destination": "/90-day-goals.html",
+      "permanent": true
+    },
+    {
+      "source": "/90-day-goals/",
+      "destination": "/90-day-goals.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisors",
+      "destination": "/advisors.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisors/",
+      "destination": "/advisors.html",
+      "permanent": true
+    },
+    {
+      "source": "/assessment",
+      "destination": "/assessment.html",
+      "permanent": true
+    },
+    {
+      "source": "/assessment/",
+      "destination": "/assessment.html",
+      "permanent": true
+    },
+    {
+      "source": "/back-room",
+      "destination": "/back-room.html",
+      "permanent": true
+    },
+    {
+      "source": "/back-room/",
+      "destination": "/back-room.html",
+      "permanent": true
+    },
+    {
+      "source": "/become-an-advisor",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/become-an-advisor/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/breakeven-calculator",
+      "destination": "/breakeven-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/breakeven-calculator/",
+      "destination": "/breakeven-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-idea-where-to-start",
+      "destination": "/business-idea-where-to-start.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-idea-where-to-start/",
+      "destination": "/business-idea-where-to-start.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-structures",
+      "destination": "/business-structures.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-structures/",
+      "destination": "/business-structures.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookies",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookies/",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/declaration",
+      "destination": "/declaration.html",
+      "permanent": true
+    },
+    {
+      "source": "/declaration/",
+      "destination": "/declaration.html",
+      "permanent": true
+    },
+    {
+      "source": "/domain-search",
+      "destination": "/domain-search.html",
+      "permanent": true
+    },
+    {
+      "source": "/domain-search/",
+      "destination": "/domain-search.html",
+      "permanent": true
+    },
+    {
+      "source": "/events",
+      "destination": "/events.html",
+      "permanent": true
+    },
+    {
+      "source": "/events/",
+      "destination": "/events.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/founder-diagnostic",
+      "destination": "/founder-diagnostic.html",
+      "permanent": true
+    },
+    {
+      "source": "/founder-diagnostic/",
+      "destination": "/founder-diagnostic.html",
+      "permanent": true
+    },
+    {
+      "source": "/glossary",
+      "destination": "/glossary.html",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/",
+      "destination": "/glossary.html",
+      "permanent": true
+    },
+    {
+      "source": "/hourly-rate-calculator",
+      "destination": "/hourly-rate-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/hourly-rate-calculator/",
+      "destination": "/hourly-rate-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/join",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/join/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/library",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/library/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/market-data",
+      "destination": "/market-data.html",
+      "permanent": true
+    },
+    {
+      "source": "/market-data/",
+      "destination": "/market-data.html",
+      "permanent": true
+    },
+    {
+      "source": "/membership",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/membership/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/outreach-email",
+      "destination": "/outreach-email.html",
+      "permanent": true
+    },
+    {
+      "source": "/outreach-email/",
+      "destination": "/outreach-email.html",
+      "permanent": true
+    },
+    {
+      "source": "/partners",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/partners/",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/positioning-statement",
+      "destination": "/positioning-statement.html",
+      "permanent": true
+    },
+    {
+      "source": "/positioning-statement/",
+      "destination": "/positioning-statement.html",
+      "permanent": true
+    },
+    {
+      "source": "/press",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/press/",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/press-release-launch",
+      "destination": "/press-release-launch.html",
+      "permanent": true
+    },
+    {
+      "source": "/press-release-launch/",
+      "destination": "/press-release-launch.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy/",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/product-pricing-calculator",
+      "destination": "/product-pricing-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/product-pricing-calculator/",
+      "destination": "/product-pricing-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-a-business-in-north-carolina",
+      "destination": "/start-a-business-in-north-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-a-business-in-north-carolina/",
+      "destination": "/start-a-business-in-north-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-checklist",
+      "destination": "/startup-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-checklist/",
+      "destination": "/startup-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-cost-calculator",
+      "destination": "/startup-cost-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-cost-calculator/",
+      "destination": "/startup-cost-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/state-filing",
+      "destination": "/state-filing.html",
+      "permanent": true
+    },
+    {
+      "source": "/state-filing/",
+      "destination": "/state-filing.html",
+      "permanent": true
+    },
+    {
+      "source": "/support-system-checklist",
+      "destination": "/support-system-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/support-system-checklist/",
+      "destination": "/support-system-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools",
+      "destination": "/tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools/",
+      "destination": "/tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/weekly-check-in",
+      "destination": "/weekly-check-in.html",
+      "permanent": true
+    },
+    {
+      "source": "/weekly-check-in/",
+      "destination": "/weekly-check-in.html",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

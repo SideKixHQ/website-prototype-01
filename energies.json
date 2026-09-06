@@ -25,10 +25,10 @@
    "group": "Survival & Regulation",
    "title": "Risk Calibration & Energy Protection",
    "items": [
-    "I pause action when the environment feels uncertain or unstable.",
-    "I hold back effort until I am confident the timing is right.",
-    "I prefer to assess risk before committing effort.",
-    "I slow down rather than push forward when signals are unclear."
+    "When a situation feels unsettled, I wait before I act.",
+    "I look at what could go wrong before I commit money or time.",
+    "I save my energy for the things that will matter most.",
+    "When I am not sure what is going on, I slow down instead of pushing ahead."
    ],
    "short": "You wait for the ground to feel solid before you move.",
    "work": "You are the one who asks what happens if this goes wrong, and you ask it before the money is spent. Plans you have looked at tend to survive contact with reality.",
@@ -84,10 +84,10 @@
    "group": "Survival & Regulation",
    "title": "Emotional Regulation & Grounded Strength",
    "items": [
-    "I stay level when the people around me are reacting strongly.",
-    "I take a beat before responding to news that lands hard.",
-    "I keep working at my usual pace through a stretch of bad weeks.",
-    "I notice my own state changing before it affects a decision."
+    "When the people around me get worked up, I stay calm.",
+    "I think for a moment before I respond to bad news.",
+    "I keep working at my normal pace through a stressful stretch.",
+    "People come to me when they want someone steady."
    ],
    "short": "You hold your level when the temperature rises.",
    "work": "You are who people come to in a bad week. Your pace barely changes, which lets everyone else's settle.",
@@ -143,10 +143,10 @@
    "group": "Persistence & Execution",
    "title": "Grit & Uphill Progress",
    "items": [
-    "I keep going at something after the early enthusiasm has worn off.",
-    "I choose the harder route when I judge it gets me further.",
-    "I return to a problem that has already beaten me more than once.",
-    "I make progress in conditions most people would call bad."
+    "I keep working on something after it stops being exciting.",
+    "I break a big job into small steps and work through them.",
+    "I go back to a problem that has already beaten me once.",
+    "I keep making progress even when the work is hard going."
    ],
    "short": "You keep climbing after the easy part ends.",
    "work": "You finish things other people abandoned at the halfway point. Difficulty reads to you as ordinary rather than as a signal to stop.",
@@ -202,10 +202,10 @@
    "group": "Persistence & Execution",
    "title": "Consistency Without Burnout",
    "items": [
-    "I work at a rate I could still hold in six months.",
-    "I stop at a planned point rather than when I run out.",
-    "I protect rest even when there is more that could be done.",
-    "I finish long pieces of work without a late scramble."
+    "I work at a pace I could keep up for months, not days.",
+    "I stop for the day at a set point instead of working until I am empty.",
+    "I take breaks even when there is still work left to do.",
+    "I do a little every day rather than everything at once."
    ],
    "short": "You work at a rate you can still hold next year.",
    "work": "Your output is predictable, which makes you plannable. You finish long work without the scramble at the end.",
@@ -261,10 +261,10 @@
    "group": "Agency & Independence",
    "title": "Autonomous Action & Self-Directed Learning",
    "items": [
-    "I start something before anyone has told me to.",
-    "I teach myself what I need rather than waiting for it to be taught.",
-    "I set my own order of work when nobody has set one.",
-    "I walk away from a setup that is not working for me."
+    "I start things without waiting to be asked.",
+    "I teach myself what I need to know instead of waiting to be shown.",
+    "I decide my own order of work when nobody sets one.",
+    "I would rather work something out on my own than be handed the answer."
    ],
    "short": "You start before anyone tells you to.",
    "work": "You do not need the brief. You will have taught yourself most of what you needed by the time permission arrives.",
@@ -320,10 +320,10 @@
    "group": "Agency & Independence",
    "title": "Courageous Decision-Making",
    "items": [
-    "I make the call when a decision has been sitting unmade.",
-    "I say the thing in the room that others are avoiding.",
-    "I commit to a direction while some of the information is still missing.",
-    "I take the blame for a decision publicly rather than let it land on other people."
+    "I make the decision when everyone else is waiting.",
+    "I say the difficult thing out loud when it needs saying.",
+    "I pick a direction even when I do not have all the facts.",
+    "I take responsibility in front of others when a decision of mine goes wrong."
    ],
    "short": "You make the call that has been sitting unmade.",
    "work": "Decisions stop circling when you are in the room. You will act on partial information and own what follows.",
@@ -379,10 +379,10 @@
    "group": "Recovery & Growth",
    "title": "Adaptive Recovery & Learning from Failure",
    "items": [
-    "I go back over something that failed to find what actually caused it.",
-    "I start again in the same area after being set back in it.",
-    "I change my approach based on how the last attempt went.",
-    "I talk openly about work of mine that did not succeed."
+    "After something fails, I go back and work out why.",
+    "I try again in the same area after a setback.",
+    "I change how I do things based on what went wrong last time.",
+    "I talk openly about my own failures."
    ],
    "short": "You go back in after it went wrong.",
    "work": "You examine failures rather than move past them, and you change approach based on what you find. Your second attempt is measurably different from your first.",
@@ -438,10 +438,10 @@
    "group": "Recovery & Growth",
    "title": "Learning Agility & Complexity Navigation",
    "items": [
-    "I keep several moving parts in play without cutting them down to something simpler.",
-    "I pick up an unfamiliar field quickly enough to act in it.",
-    "I change tactics partway through when the situation shifts.",
-    "I find a route through when the obvious one is blocked."
+    "I handle several different problems at the same time.",
+    "I learn a new subject fast enough to start using it.",
+    "I change my plan partway through when the situation changes.",
+    "When the usual route is blocked, I look for another way in."
    ],
    "short": "You find the route through when the obvious one is blocked.",
    "work": "You hold several moving parts without flattening them, and you pick up unfamiliar ground fast enough to act on it.",
@@ -497,10 +497,10 @@
    "group": "Relational Intelligence",
    "title": "Emotional Intelligence & Trust-Building",
    "items": [
-    "I read what someone is feeling before they have said it.",
-    "I adjust how I say something based on who is hearing it.",
-    "People tell me things they have not told anyone else.",
-    "I repair a relationship after a difficult exchange."
+    "I can tell how someone is feeling before they say it.",
+    "I change how I explain something depending on who I am talking to.",
+    "People tell me things they do not tell other people.",
+    "I go back and repair a relationship after a difficult conversation."
    ],
    "short": "You read the room before anyone says anything.",
    "work": "You know when a meeting has gone wrong before it shows. You adjust how you say things to who is hearing them.",
@@ -556,10 +556,10 @@
    "group": "Relational Intelligence",
    "title": "Collective Intelligence & Adaptive Collaboration",
    "items": [
-    "I get a group to a decision it can actually act on.",
-    "I put the group getting it right ahead of me being right.",
-    "I notice who has not spoken and make room for them.",
-    "I take on the part of the work nobody else has picked up."
+    "I help a group reach a decision it can actually act on.",
+    "I would rather the group got it right than be right myself.",
+    "I notice when someone has not spoken and make room for them.",
+    "I pick up the work that nobody else has taken."
    ],
    "short": "You get the group to something it can actually act on.",
    "work": "You notice who has not spoken. You take the part of the work nobody picked up, and you put the group's outcome above your position in it.",
@@ -615,10 +615,10 @@
    "group": "Vision & Creation",
    "title": "Vision, Meaning, and Future Orientation",
    "items": [
-    "I work towards something that will not pay off for years.",
-    "I describe where this is going in a way others can picture.",
-    "I connect a day's work to the reason it is being done.",
-    "I choose the longer path when it leads somewhere that matters more."
+    "I work towards goals that are years away.",
+    "I can describe where we are heading so other people can picture it.",
+    "I explain how today's work connects to the bigger goal.",
+    "I take the slower path when it leads somewhere more important."
    ],
    "short": "You work towards something that will not pay off yet.",
    "work": "You connect today's task to why it is being done, and you can describe where this goes in a way other people can picture.",
@@ -674,10 +674,10 @@
    "group": "Vision & Creation",
    "title": "Creative Differentiation & Possibility Thinking",
    "items": [
-    "I arrive at an answer other people did not consider.",
-    "I put together two things that are not usually combined.",
-    "I question whether the standard way is the right way here.",
-    "I keep an idea alive that most people have dismissed."
+    "I come up with answers other people have not thought of.",
+    "I put together two ideas that do not usually go together.",
+    "I ask whether the normal way is the right way here.",
+    "I stay with an idea after other people have written it off."
    ],
    "short": "You arrive at the answer nobody else considered.",
    "work": "You combine things that do not usually go together, and you question whether the standard way is right here rather than in general.",
