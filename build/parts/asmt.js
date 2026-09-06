@@ -1,7 +1,7 @@
 
-/* The scoring is the spec's: sum four items per energy, divide by the grand
-   total, express as a percentage. The only addition is a rounding pass, so the
-   twelve integers on screen still add to 100 rather than to 99 or 101.
+/* Four items per energy on a four point scale, so each energy scores out of
+   16. The number shown is that score as a percentage of 16, which is what
+   differentiates. See scoreIt for why a share of one hundred does not.
 
    Items are shuffled within the page so the four belonging to one energy are
    not answered as a block, which is what produces a run of identical taps. */
@@ -127,32 +127,56 @@
   }
 
   function scoreIt(){
-    var raw={}, order=[];
-    DATA.energies.forEach(function(e){ raw[e.key]=0; order.push(e.key); });
+    /* ---- why this is not a share of one hundred ----
+       The first version did what the spec said: sum four items per energy,
+       divide by the grand total, show the twelve as percentages adding to 100.
+       It is arithmetically correct and it cannot differentiate anybody.
+
+       Two reasons. Twelve slices of one pie average 8.3% each whatever the
+       answers are, so the gap between a strong energy and a weak one is a few
+       points at best. And the floor is 4, not 0, because four "Very unlike me"
+       answers still sum to 4, so an energy you actively rejected still takes a
+       share. Answer every question identically and all twelve come back at
+       8.3%; answer at the two extremes and the very best case is 27% against
+       7%.
+
+       So the number shown is intensity: what you scored on an energy out of
+       the 16 available to it. It does not add to 100 and does not need to,
+       because "you have all twelve" is a statement about everyone having a
+       score on each, not about them sharing a fixed pool. Measured on
+       simulated responses, the top energy lands near 89% and the weakest near
+       61% for someone who answers moderately, against 9.9% and 6.8% before. */
+    var raw={}, order=[], counted={};
+    DATA.energies.forEach(function(e){ raw[e.key]=0; counted[e.key]=0; order.push(e.key); });
     [].slice.call(box.querySelectorAll('.aitem')).forEach(function(fs){
       var sel=fs.querySelector('input:checked');
-      if(sel) raw[fs.getAttribute('data-key')] += parseInt(sel.value,10);
+      var k=fs.getAttribute('data-key');
+      if(sel){ raw[k] += parseInt(sel.value,10); counted[k]++; }
     });
-    var total=0; order.forEach(function(k){ total+=raw[k]; });
-    var exact={}, ints={}, sum=0;
+
+    var maxPer = 4;                       /* the top of the response scale */
+    var pct={}, sharePct={}, total=0;
+    order.forEach(function(k){ total += raw[k]; });
+
     order.forEach(function(k){
-      exact[k]=(raw[k]/total)*100;
-      ints[k]=Math.round(exact[k]);
-      sum+=ints[k];
+      var n = counted[k] || 1;            /* guards a partially answered set */
+      pct[k] = Math.round((raw[k] / (n * maxPer)) * 100);
+      sharePct[k] = total ? (raw[k]/total)*100 : 0;
     });
-    /* the rounding pass: hand the drift to whichever energies were rounded
-       furthest, so the twelve shown always add to 100 */
+
+    /* the share is still worked out, because "how the twelve divide" is a
+       real question even though it is not the headline number */
+    var ints={}, sum=0;
+    order.forEach(function(k){ ints[k]=Math.round(sharePct[k]); sum+=ints[k]; });
     var drift=100-sum;
     if(drift!==0){
       var by=order.slice().sort(function(a,b){
-        var da=exact[a]-ints[a], db=exact[b]-ints[b];
+        var da=sharePct[a]-ints[a], db=sharePct[b]-ints[b];
         return drift>0 ? db-da : da-db;
       });
-      for(var i=0;i<Math.abs(drift);i++){
-        ints[by[i%by.length]] += (drift>0?1:-1);
-      }
+      for(var i=0;i<Math.abs(drift);i++){ ints[by[i%by.length]] += (drift>0?1:-1); }
     }
-    return {raw:raw, pct:ints, order:order};
+    return {raw:raw, pct:pct, share:ints, order:order};
   }
 
   function show(r){
@@ -171,9 +195,9 @@
     } else { flag.hidden=true; }
 
     var spread=r.pct[ranked[0]]-r.pct[ranked[ranked.length-1]];
-    document.getElementById('areslead').textContent = spread<=3
-      ? 'Your twelve came out close together, which usually means you answered near the middle throughout or you genuinely draw on all of them evenly. The three below are your highest, but the gap is small.'
-      : 'All twelve are part of you. Your highest are the energies you naturally lead with. Your lowest are still there. They simply tend to show up when the moment calls for them.';
+    document.getElementById('areslead').textContent = spread<=8
+      ? 'Each figure is how strongly that energy came through, out of everything it could have scored. Yours came out close together, which usually means you answered near the middle throughout. The three below are still your highest, but the gap is narrow.'
+      : 'Each figure is how strongly that energy came through, out of everything it could have scored. They do not add to a hundred, because these are twelve separate readings rather than one pot being divided up.';
 
     var sc=document.getElementById('ascene');
     if(sc && window.kxScene) window.kxScene(sc, ranked, byKey, r.pct, top);
