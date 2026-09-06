@@ -1,0 +1,341 @@
+
+/* ---- six real hands ----
+   The signatures were the site's serif and sans set in italic, which reads as
+   typeset rather than signed. These are six handwriting faces, pulled from
+   npm and served from assets/hand/ so the page still makes no external
+   request. 188 KB in total, loaded lazily since they only matter once the
+   wall is on screen.
+
+   They are deliberately different in character: two flowing scripts, a
+   pencil, a marker, a ballpoint and a scrawl. A wall of one handwriting face
+   looks as uniform as a wall of one typeface. */
+
+@font-face{font-family:'KX Hand 1';src:url('assets/hand/dancing-script.woff2') format('woff2');
+  font-display:swap;font-weight:600}
+@font-face{font-family:'KX Hand 2';src:url('assets/hand/caveat.woff2') format('woff2');
+  font-display:swap;font-weight:600}
+@font-face{font-family:'KX Hand 3';src:url('assets/hand/homemade-apple.woff2') format('woff2');
+  font-display:swap}
+@font-face{font-family:'KX Hand 4';src:url('assets/hand/shadows-into-light.woff2') format('woff2');
+  font-display:swap}
+@font-face{font-family:'KX Hand 5';src:url('assets/hand/kalam.woff2') format('woff2');
+  font-display:swap}
+@font-face{font-family:'KX Hand 6';src:url('assets/hand/reenie-beanie.woff2') format('woff2');
+  font-display:swap}
+
+/* each face needs its own size to look like it was written by a person of the
+   same height: Homemade Apple runs small, Reenie Beanie runs large */
+.sig-h1{font-family:'KX Hand 1',cursive !important;font-size:30px !important;
+  font-style:normal !important;font-weight:600 !important}
+.sig-h2{font-family:'KX Hand 2',cursive !important;font-size:34px !important;
+  font-style:normal !important;font-weight:600 !important;letter-spacing:.01em}
+.sig-h3{font-family:'KX Hand 3',cursive !important;font-size:19px !important;
+  font-style:normal !important;font-weight:400 !important}
+.sig-h4{font-family:'KX Hand 4',cursive !important;font-size:26px !important;
+  font-style:normal !important;font-weight:400 !important}
+.sig-h5{font-family:'KX Hand 5',cursive !important;font-size:23px !important;
+  font-style:normal !important;font-weight:400 !important}
+.sig-h6{font-family:'KX Hand 6',cursive !important;font-size:33px !important;
+  font-style:normal !important;font-weight:400 !important}
+
+/* ink rather than gold: a signature is written, not printed */
+.sig{color:#E3D3B0 !important}
+.sig:hover,.sig:focus-visible{color:#FFD166 !important}
+.sig-hit{color:#FFD166 !important}
+
+/* the place stays in the site's own face, small, so it reads as an annotation
+   rather than part of the signature */
+.sig-p{font-family:var(--util) !important;font-size:8px !important;letter-spacing:.16em !important}
+.sig-p{color:#9A8B6E !important}
+
+/* the hands sit on very different baselines, so the row needs breathing room */
+@media(max-width:760px){
+  .sig-h2{font-size:28px !important}
+  .sig-h6{font-size:27px !important}
+  .sig-h1{font-size:25px !important}
+  .sig-h3{font-size:17px !important}
+  }
+
+
+/* ---- the sheet is the artwork ----
+   I spent several passes rebuilding this in CSS and produced a beige rectangle
+   with the wrong typeface. The image is the design. The job here is to present
+   it well and make sure the words are still machine readable, which is the one
+   thing an image cannot do on its own.
+
+   The full text sits underneath, hidden but present in the markup, so search
+   engines index every word and a screen reader can reach it. */
+
+body:has(.decl){background:#100C07}
+.decl{max-width:1000px}
+.decl .eyebrow{color:#C09A5E}
+.decl .kx-backrow a{color:#D8BA88}
+.decl .kx-backrow a:hover{color:#F3E4A8}
+.decl h1{color:#F0DCB0;font-size:clamp(25px,3.8vw,38px)}
+.decl .lede{color:#BDB49F}
+
+.decl-sheet{margin:28px auto 0;text-align:center;max-width:880px}
+.decl-sheet img{
+  display:block;width:100%;height:auto;margin:0 auto;border-radius:2px;
+  box-shadow:0 34px 76px rgba(0,0,0,.7), 0 6px 18px rgba(0,0,0,.45)}
+
+.decl-cap{margin:22px 0 0}
+.decl-read{
+  background:none;border:0;cursor:pointer;padding:9px 6px;
+  font-family:var(--util);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:#C09A5E;
+  border-bottom:1px solid rgba(212,168,86,.4)}
+.decl-read:hover{color:#F3E4A8;border-bottom-color:#F3E4A8}
+.decl-read:focus-visible{outline:3px solid #FFD166;outline-offset:3px}
+
+.decl-text[hidden]{display:none}
+.decl-text{
+  max-width:820px;margin:30px auto 0;padding:30px clamp(18px,3vw,34px);
+  border-radius:14px;border:1px solid rgba(212,168,86,.24);
+  background:rgba(10,9,6,.72);text-align:left}
+.decl-text p,.decl-text li{
+  font-family:var(--body);font-size:14.5px;line-height:1.7;color:#CFC5AC;margin:0 0 12px}
+.decl-text em{color:#E8DEC4}
+.decl-text strong{color:#D4A856}
+.decl-text .decl-lab,.decl-text .decl-fh{
+  color:#D4A856 !important;font-family:var(--util);font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;margin:22px 0 10px !important}
+.decl-text .decl-drop{float:none;font-size:inherit;color:inherit;margin:0;font-family:inherit}
+.decl-text .decl-cols{display:grid;grid-template-columns:1fr;gap:0}
+.decl-text .decl-foot{display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  border-top:1px solid rgba(212,168,86,.2);padding-top:22px;margin-top:26px}
+.decl-text .decl-list{list-style:none;padding:0;margin:0 0 14px}
+.decl-text .decl-list li{position:relative;padding-left:18px}
+.decl-text .decl-list li::before{content:"°5";position:absolute;left:0;top:1px;color:#A1853E;font-size:10px}
+.decl-text .decl-rule{border:0;height:1px;margin:20px 0;width:100%;
+  background:linear-gradient(90deg,transparent,rgba(212,168,86,.4),transparent)}
+.decl-text .decl-sign{text-align:center;margin-top:26px;padding-top:20px;
+  border-top:1px solid rgba(212,168,86,.24);
+  font-family:var(--util);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:#BDB49F}
+.decl-text .decl-sign em{display:block;margin-top:8px;font-family:var(--display);
+  font-style:italic;font-size:30px;color:#F3E4A8;text-transform:none;letter-spacing:0}
+
+@media(max-width:760px){
+  .decl-sheet{max-width:94vw}
+  .decl-text .decl-foot{grid-template-columns:1fr}
+}
+
+
+/* ---- fields, matched to the rest of the site ----
+   Copied from the join form rather than written again: same background, same
+   border, same radius, same 52px, same 16px so iOS does not zoom. The focus
+   treatment is the site's too. */
+
+.decl .sign-row input{
+  width:100%;
+  background:#0C0B08;
+  border:1px solid rgba(212,168,86,.3);
+  border-radius:12px;
+  color:#F5EACE;
+  font-family:var(--body);
+  font-size:16px;
+  padding:15px;
+  min-height:52px;
+  transition:border-color .3s,box-shadow .3s;
+  outline:none}
+
+.decl .sign-row input::placeholder{color:#8A8378}
+
+.decl .sign-row input:focus{
+  border-color:#D4A856;
+  box-shadow:0 0 0 3px rgba(212,168,86,.16)}
+.decl .sign-row input:focus-visible{
+  outline:3px solid #FFD166;outline-offset:2px}
+
+.decl .sign-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+  max-width:620px;margin:0 auto}
+.decl .sign-row input{flex:1 1 210px}
+.decl .sign-row .kxcta{flex:0 0 auto}
+
+@media(max-width:560px){
+  .decl .sign-row input{flex:1 1 100%}
+  .decl .sign-row .kxcta{width:100%}
+}
+
+
+/* ---- the gold trace ----
+   Lifted from the homepage rather than rebuilt, so it is the same effect: a
+   conic gradient masked to the border, turning slowly. The @property is what
+   lets the angle animate at all, since a plain custom property cannot be
+   interpolated.
+
+   Applied to Sign it only, because a trace on every button stops meaning
+   anything. */
+@property --kxa{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes kxTrace{to{--kxa:360deg}
+.kx-trace::before{content:"";position:absolute;inset:-2.5px;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--kxa),transparent 0 58%,#F3E4A8 72%,#FFFFEF 80%,#D4A856 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:kxTrace 6.5s linear infinite;pointer-events:none;}
+.kx-trace::before{animation-duration:26s}
+/* the button has to establish a stacking context for the ring to sit on */
+.decl #signgo{position:relative;isolation:isolate;overflow:visible}
+.decl #signgo::before{
+  animation:kxTrace 6.5s linear infinite;
+  opacity:1;
+  z-index:-1}
+.decl #signgo:hover::before{animation-duration:2.6s}
+
+@media(prefers-reduced-motion:reduce){
+  .decl #signgo::before{animation:none;
+    background:conic-gradient(from 220deg,transparent 0 58%,#F3E4A8 72%,#D4A856 90%,transparent 100%)}
+}
+
+/* one field now, so it centres rather than sharing the row */
+.decl .sign-row{max-width:520px}
+.decl .sign-row input{flex:1 1 260px}
+
+
+/* ---- the wall, as a signed sleeve ----
+   Absolute placement rather than a row, so names sit at angles and cross over
+   each other the way autographs actually do. The container gets its height
+   from the script, since it depends on how many have signed. */
+
+.decl .sigwall{
+  position:relative;
+  max-width:900px;
+  margin:26px auto 0;
+  min-height:320px}
+
+.decl .sig{
+  position:absolute;
+  display:inline-block;
+  white-space:nowrap;
+  padding:4px 8px;
+  transform:translate(-50%,-50%) rotate(var(--r)) scale(var(--z));
+  transform-origin:center;
+  color:#E3D3B0;
+  cursor:default;
+  transition:color .18s ease,transform .18s ease,text-shadow .18s ease}
+
+/* a name lifts out of the pile when you point at it, which is what makes a
+   crowded wall readable rather than a mess */
+.decl .sig:hover,
+.decl .sig:focus-visible{
+  color:#FFD166;
+  z-index:20 !important;
+  transform:translate(-50%,-50%) rotate(0deg) scale(calc(var(--z) * 1.12));
+  text-shadow:0 0 26px rgba(255,209,102,.5)}
+.decl .sig:focus-visible{outline:3px solid #FFD166;outline-offset:4px;border-radius:8px}
+
+.decl .sig-hit{
+  color:#FFD166 !important;z-index:25 !important;
+  text-shadow:0 0 26px rgba(255,209,102,.6)}
+
+/* the hands vary in weight as well as shape, so the pile has depth */
+.decl .sig-h1{opacity:.96}
+.decl .sig-h2{opacity:1}
+.decl .sig-h3{opacity:.88}
+.decl .sig-h4{opacity:.93}
+.decl .sig-h5{opacity:.9}
+.decl .sig-h6{opacity:.97}
+.decl .sig:hover,.decl .sig:focus-visible{opacity:1}
+
+@media(max-width:760px){
+  .decl .sigwall{max-width:96vw;min-height:280px}
+  .decl .sig{padding:3px 5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .decl .sig{transition:none}
+}
+
+
+/* ---- the site's gold button ----
+   The homepage carries this inline on Download Kix rather than as a class, so
+   there was nothing to reuse. These are its exact declarations. kx-trace adds
+   the turning gold ring, which is already defined above. */
+.decl .kx-gold{
+  position:relative;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(180deg,#D7C582,#A1853E);
+  color:#1B1400;
+  font-weight:700;
+  font-size:17px;
+  padding:18px 40px;
+  border-radius:999px;
+  box-shadow:0 10px 44px rgba(231,182,70,.35);
+  font-family:var(--body);
+  isolation:isolate}
+.decl .kx-gold:hover{filter:brightness(1.06)}
+.decl .kx-gold:focus-visible{outline:3px solid #FFD166;outline-offset:4px}
+
+
+/* signing sits directly under the sheet, so the invitation is next to the
+   thing being signed rather than at the far end of the wall */
+.decl .signme{margin:44px auto 0;max-width:660px}
+.decl .sigs{margin-top:64px;padding-top:44px;
+  border-top:1px solid rgba(212,168,86,.18)}
+.decl .sign-row{max-width:520px}
+
+
+/* ---- the signing block ----
+   Everything here was unstyled: no alignment, no margins, every line at the
+   inherited 16px, which is why the spacing above the field read as arbitrary.
+   The labels, the note and the message now have a proper rhythm, and the
+   whole block is centred as one column. */
+
+.decl .signme{
+  max-width:620px;margin:46px auto 0;text-align:center}
+
+/* the section label, matched to the site's small caps eyebrow */
+.decl .signme .decl-lab{
+  font-family:var(--util) !important;
+  font-size:10px !important;
+  letter-spacing:.2em !important;
+  text-transform:uppercase !important;
+  color:#C09A5E !important;
+  margin:0 0 12px !important;
+  text-align:center}
+
+.decl .sign-note{
+  font-family:var(--body);
+  font-size:14.5px;
+  line-height:1.65;
+  color:#9A8B6E;
+  margin:0 auto 22px;
+  max-width:46ch;
+  text-align:center}
+
+.decl .sign-row{
+  display:flex;flex-wrap:wrap;gap:12px;
+  align-items:center;justify-content:center;
+  max-width:520px;margin:0 auto}
+.decl .sign-row input{flex:1 1 240px;min-width:0}
+.decl .sign-row .kx-gold{flex:0 0 auto}
+
+.decl .sign-msg{
+  font-family:var(--body);font-size:13.5px;color:#D4A856;
+  margin:14px 0 0;min-height:18px;text-align:center}
+.decl .sign-done{
+  font-family:var(--display);font-style:italic;font-size:21px;
+  color:#F3E4A8;margin:0;text-align:center}
+
+/* ---- the wall ---- */
+.decl .sigs{
+  margin-top:64px;padding-top:44px;
+  border-top:1px solid rgba(212,168,86,.18)}
+.decl .sigs .decl-lab{
+  font-family:var(--util) !important;
+  font-size:10px !important;letter-spacing:.2em !important;
+  text-transform:uppercase !important;color:#C09A5E !important;
+  margin:0 0 8px !important;text-align:center}
+
+/* the count closes the wall rather than announcing it: small, quiet, centred */
+.decl #sigcount{
+  display:block;
+  text-align:center;
+  font-family:var(--util);
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#897C63;
+  margin:30px 0 0}
+
+@media(max-width:560px){
+  .decl .sign-row input{flex:1 1 100%}
+  .decl .sign-row .kx-gold{width:100%}
+}
