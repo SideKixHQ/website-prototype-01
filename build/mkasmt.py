@@ -17,7 +17,7 @@ CSS  = io.open(os.path.join(PARTS, "asmt.css"), encoding="utf-8").read()
 JS   = io.open(os.path.join(PARTS, "asmt.js"),  encoding="utf-8").read()
 BODY = io.open(os.path.join(PARTS, "asmt.html"), encoding="utf-8").read()
 
-TITLE = "The Energy Discovery: Which of the Twelve Do You Run On? | SideKix"
+TITLE = "The Energy Discovery: Which Twelve Do You Run On? | SideKix"
 DESC  = ("Forty eight statements, about six minutes, and a read on which of the twelve "
          "energies you run on. Nothing is stored and nothing is sent.")
 H1    = "Twelve energies.<br/>You have all of them."
