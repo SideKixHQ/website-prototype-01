@@ -1,0 +1,254 @@
+{
+  "food-truck-business": {
+    "startup_cost_low_usd": 40000,
+    "startup_cost_high_usd": 200000,
+    "startup_cost_note": "The truck itself dominates: a used truck with equipment runs roughly $50,000-$80,000 and a new build $80,000-$175,000, with permits and licences the most geographically variable add-on (from about $588 in Indianapolis to about $17,066 in Boston in the first year).",
+    "startup_cost_source": "https://www.sbdcnet.org/small-business-research-reports/food-truck-business/",
+    "licences": [
+      "Business licence / general business registration (city or county)",
+      "EIN (federal employer identification number)",
+      "Seller's permit / sales tax permit",
+      "Mobile food facility permit from the local health department (issued to the specific vehicle and licence plate)",
+      "Plan check / plan review approval of the vehicle before the permit is issued",
+      "Written commissary agreement with an approved commissary (storage, prep, warewashing, waste disposal and potable water) - home storage of the truck or food is not accepted",
+      "Certified food protection manager certificate (accredited exam; valid 5 years, at least one certified person present)",
+      "Food handler cards for food employees (required in many states and counties)",
+      "Routine and unannounced health inspections",
+      "Fire department permit / propane and suppression system inspection",
+      "Vehicle registration and commercial auto insurance",
+      "City-specific vending, parking and proximity permits (vary widely by jurisdiction)"
+    ],
+    "licences_sources": [
+      "http://publichealth.lacounty.gov/eh/inspection/plan-check-operational-guidelines-mobile-food-facilities-mobile-support-unit.htm",
+      "https://www.uschamberfoundation.org/emerging-issues/food-truck-nation",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ],
+    "margin_note": "No primary study of food-truck-specific net margins was found; published figures (6-9%, 15-25%) come from vendor blogs and disagree with each other. The best-sourced benchmark for the wider foodservice sector is the National Restaurant Association's: food costs about 33 cents and labour about 33 cents of every sales dollar, leaving a pre-tax profit margin of roughly 5% in 2019, with 42% of operators reporting their business was unprofitable in 2025.",
+    "margin_source": "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+    "key_stat": "Starting and running a food truck for one year takes an average of 45 separate government-mandated procedures, 37 business days and $28,276 in permits, licences and ongoing legal compliance - ranging from $5,410 a year in Portland to $37,907 in Boston (U.S. Chamber of Commerce Foundation Food Truck Nation index, published 2018).",
+    "key_stat_source": "https://www.uschamberfoundation.org/emerging-issues/food-truck-nation",
+    "demand_note": "Growing: Grand View Research values the U.S. food truck services market at $2.01 billion in 2025, forecast to reach $3.56 billion by 2033, a 7.5% CAGR.",
+    "demand_source": "https://www.grandviewresearch.com/industry-analysis/us-food-truck-services-market-report",
+    "hardest_part": "The regulatory patchwork, not the cooking. Requirements differ city by city - Boston and San Francisco each demand 32 startup procedures against Denver's 10, and Washington D.C. requires 23 trips to government agencies against Denver's 8. Note: the widely repeated claim that 90% of restaurants and food trucks fail in year one is not supported by primary research; the most-cited academic study (Parsa, Ohio State, 2,439 Columbus restaurants, 1996-1999) found about 26% failed in the first year and 59% over three years.",
+    "hardest_part_sources": [
+      "https://www.uschamberfoundation.org/emerging-issues/food-truck-nation",
+      "https://news.osu.edu/restaurant-failure-rate-much-lower-than-commonly-assumed-study-finds/"
+    ],
+    "sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/food-truck-business/",
+      "https://www.uschamberfoundation.org/emerging-issues/food-truck-nation",
+      "http://publichealth.lacounty.gov/eh/inspection/plan-check-operational-guidelines-mobile-food-facilities-mobile-support-unit.htm",
+      "https://www.grandviewresearch.com/industry-analysis/us-food-truck-services-market-report",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+      "https://news.osu.edu/restaurant-failure-rate-much-lower-than-commonly-assumed-study-finds/",
+      "https://squareup.com/us/en/the-bottom-line/operating-your-business/food-truck-cost",
+      "https://ij.org/report/barriers-to-business/business/foodtruck/",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ]
+  },
+
+  "bakery-business": {
+    "startup_cost_low_usd": 10000,
+    "startup_cost_high_usd": 50000,
+    "startup_cost_note": "SBDCNet (the SBA's national SBDC information clearinghouse) cites $10,000-$50,000 for a small independent bakery, but a retail storefront costs materially more - store build-out alone runs $10,000-$100,000 and equipment (ovens, mixers, proofers, refrigeration, display cases) $20,000-$100,000, so ovens plus build-out dominate the budget for anything with a shopfront.",
+    "startup_cost_source": "https://www.sbdcnet.org/small-business-research-reports/bakery-business/",
+    "licences": [
+      "Business licence / business registration and EIN",
+      "Sales tax permit",
+      "Retail food establishment permit from the state or local health department",
+      "Plan review and pre-opening inspection of the premises",
+      "Certified food protection manager certificate (accredited exam) and food handler cards for staff, per state adoption of the FDA Food Code",
+      "Routine health inspections",
+      "Cottage food registration or permit if baking from a home kitchen - available in all 50 states and D.C., but limited to shelf-stable, non-potentially-hazardous goods (so cheesecakes, cream-filled and other refrigerated items are usually excluded)",
+      "Food allergen labelling compliance (FALCPA) on packaged goods",
+      "FDA food facility registration if manufacturing/packing/holding food beyond a retail establishment (free, renewed biennially); retail bakeries and restaurants are exempt",
+      "Zoning / certificate of occupancy",
+      "OSHA workplace safety compliance (bakery equipment standards)"
+    ],
+    "licences_sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/bakery-business/",
+      "https://ij.org/legislative-advocacy/state-reforms-for-cottage-food-and-food-freedom-laws/",
+      "https://www.fda.gov/media/160352/download",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ],
+    "margin_note": null,
+    "margin_note_explanation": "No credible primary source for retail bakery net margins was found - published figures all trace to vendor blogs and calculators rather than a survey or government dataset, so no figure is given. The nearest hard numbers are input costs: BLS puts the median baker wage at $37,160 a year (May 2025), and the National Restaurant Association's foodservice benchmark is roughly 33% food cost and 33% labour cost of sales.",
+    "margin_sources": [
+      "https://www.bls.gov/ooh/production/bakers.htm",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/"
+    ],
+    "key_stat": "The U.S. baking industry directly employs more than 789,000 people and generates over $186 billion in direct economic output; counting suppliers and induced activity it supports about 2.18 million jobs and $533 billion in output, and pays $49 billion in federal, state and local taxes (American Bakers Association 2023 Economic Impact Study).",
+    "key_stat_sources": [
+      "https://americanbakers.org/research-and-data/economic-impact",
+      "https://www.bakemag.com/articles/17987-baking-industry-generates-billions-for-us-economy"
+    ],
+    "demand_note": "Modest growth: BLS projects employment of bakers to grow 6% from 2025 to 2035, faster than the average for all occupations, adding about 14,500 jobs from a 2025 base of 262,400.",
+    "demand_source": "https://www.bls.gov/ooh/production/bakers.htm",
+    "hardest_part": "Perishability and labour against thin pricing power - baked goods must be made fresh daily and unsold stock is written off, while a bakery carries both a food cost and a skilled-labour cost (median baker pay $37,160). A commonly repeated claim is that most bakeries fail within five years; we found no bakery-specific study supporting it. The credible cross-industry figure is the SBA Office of Advocacy's: about 51% of new employer establishments survive five or more years.",
+    "hardest_part_sources": [
+      "https://www.bls.gov/ooh/production/bakers.htm",
+      "https://advocacy.sba.gov/?p=1037"
+    ],
+    "sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/bakery-business/",
+      "https://americanbakers.org/research-and-data/economic-impact",
+      "https://www.bakemag.com/articles/17987-baking-industry-generates-billions-for-us-economy",
+      "https://www.bls.gov/ooh/production/bakers.htm",
+      "https://ij.org/legislative-advocacy/state-reforms-for-cottage-food-and-food-freedom-laws/",
+      "https://www.fda.gov/media/160352/download",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code",
+      "https://advocacy.sba.gov/?p=1037",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+      "https://www.7shifts.com/blog/opening-bakery-cost/"
+    ]
+  },
+
+  "coffee-shop-business": {
+    "startup_cost_low_usd": 60000,
+    "startup_cost_high_usd": 300000,
+    "startup_cost_note": "Format drives almost everything: SBDCNet puts a kiosk at $60,000-$100,000, a drive-through at $80,000-$200,000, a sit-down location at $80,000-$275,000 and a sit-down with drive-through at $80,000-$300,000 - the espresso machine, build-out and lease deposit are the dominant line items.",
+    "startup_cost_sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/coffee-shop-business/",
+      "https://www.crimsoncup.com/running-a-coffee-shop/how-much-does-it-cost-to-open-a-coffee-shop"
+    ],
+    "licences": [
+      "Business licence / business registration and EIN",
+      "Sales tax permit",
+      "Retail food establishment (food service) permit from the state or local health department",
+      "Plan review and pre-opening inspection",
+      "Certified food protection manager certificate and food handler cards for staff, per state adoption of the FDA Food Code",
+      "Routine health inspections",
+      "Certificate of occupancy and zoning approval",
+      "Sidewalk or outdoor seating permit (where applicable)",
+      "Music licensing (ASCAP/BMI) if playing recorded music",
+      "Weights and measures registration if selling retail bags of beans by weight",
+      "Roasting permit / air quality permit if roasting on site",
+      "Fair Labor Standards Act and state wage-and-hour compliance"
+    ],
+    "licences_sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/coffee-shop-business/",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ],
+    "margin_note": "No primary source for independent coffee shop net margins was found; commonly quoted figures (2.5-7%) come from vendor blogs, not a survey. Sourced cost structure instead: drink ingredients up to 40% of sales, payroll 30% or less, rent about 15%, leaving roughly 15% for everything else - and the National Restaurant Association's foodservice-wide pre-tax margin benchmark was roughly 5% (2019).",
+    "margin_sources": [
+      "https://www.crimsoncup.com/running-a-coffee-shop/how-much-does-it-cost-to-open-a-coffee-shop",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/"
+    ],
+    "key_stat": "67% of American adults drank coffee in the past day - the highest level in over 20 years and up 37% since 2004 - making coffee more consumed than any other beverage in the U.S., including tap or bottled water (National Coffee Association, National Coffee Data Trends).",
+    "key_stat_source": "https://www.ncausa.org/Newsroom/Daily-coffee-consumption-at-20-year-high-up-nearly-40",
+    "demand_note": "Growing but slowing: the U.S. branded coffee shop market reached $58.5 billion across 45,227 outlets, with sales up 6.6% year on year, but net outlet growth slowed to 4.2% from 5.1% the prior year (World Coffee Portal).",
+    "demand_source": "https://www.worldcoffeeportal.com/news/growth-slows-in-58-5bn-us-branded-coffee-shop-market-amid-unprecedented-cost-pressures/",
+    "hardest_part": "Input costs colliding with a price-sensitive customer. Record green coffee commodity prices, a 50% tariff on Brazilian imports and supply-chain inflation pushed operators to raise prices only about 3% on a 16oz latte, and just 30% of industry leaders surveyed reported positive trading conditions, down from roughly 60% the year before. Rent and labour compound this: payroll typically consumes 30% of sales and rent about 15% before any coffee is bought.",
+    "hardest_part_sources": [
+      "https://www.worldcoffeeportal.com/news/growth-slows-in-58-5bn-us-branded-coffee-shop-market-amid-unprecedented-cost-pressures/",
+      "https://www.crimsoncup.com/running-a-coffee-shop/how-much-does-it-cost-to-open-a-coffee-shop"
+    ],
+    "sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/coffee-shop-business/",
+      "https://www.crimsoncup.com/running-a-coffee-shop/how-much-does-it-cost-to-open-a-coffee-shop",
+      "https://www.ncausa.org/Newsroom/Daily-coffee-consumption-at-20-year-high-up-nearly-40",
+      "https://www.ncausa.org/advocacy/economic-impact",
+      "https://www.worldcoffeeportal.com/news/growth-slows-in-58-5bn-us-branded-coffee-shop-market-amid-unprecedented-cost-pressures/",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ]
+  },
+
+  "catering-business": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No credible sourced range for U.S. catering startup costs was found - published figures come from vendor blogs and template sites with no stated methodology, so no number is given. The sourced components are: commissary or shared commercial kitchen access, which averages $20-$35 per hour nationally ($40-$75 in major cities) or $400-$3,500 a month depending on hours, plus health department plan review (King County, WA charges $504 for the first two hours and $252 per hour after) and general liability insurance of roughly $400-$800 a year.",
+    "startup_cost_sources": [
+      "https://sharedkitchenlocator.com/blog/how-much-to-rent-a-commercial-kitchen",
+      "https://kingcounty.gov/en/dept/dph/certificates-permits-licenses/food-business-permits/catering-home-based-business-permit"
+    ],
+    "licences": [
+      "Business licence / business registration and EIN",
+      "Sales tax permit",
+      "Catering permit from the local health department (covers food service at remote sites such as hotels, offices and venues)",
+      "Use of Commissary / Shared Kitchen Agreement signed by the facility owner - a residential kitchen is not acceptable",
+      "Field plan review inspection, with an equipment floor plan and menu submitted",
+      "Food worker cards / food handler cards for all employees",
+      "Certified food protection manager certificate",
+      "Temporary food establishment or special event permits for individual events",
+      "Alcohol server permits (e.g. Washington's MAST) and a catering liquor licence or banquet permit if serving alcohol",
+      "Commercial auto insurance and general liability insurance",
+      "USDA FSIS grant of inspection if preparing meat or poultry beyond the retail exemption limits ($100,900 for meat and $74,200 for poultry sold to hotels, restaurants and similar institutions, CY2024)"
+    ],
+    "licences_sources": [
+      "https://kingcounty.gov/en/dept/dph/certificates-permits-licenses/food-business-permits/catering-home-based-business-permit",
+      "https://www.fsis.usda.gov/policy/federal-register-rulemaking/federal-register-notices/retail-exemptions-adjusted-dollar-6"
+    ],
+    "margin_note": null,
+    "margin_note_explanation": "No credible primary source for catering net margins was found. The nearest sourced benchmark is the National Restaurant Association's foodservice cost structure - roughly 33% food cost and 33% labour cost of sales, leaving a pre-tax margin of about 5% in 2019, with 42% of operators reporting an unprofitable business in 2025.",
+    "margin_source": "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+    "key_stat": "There are 13,644 catering businesses in the U.S., up 1.1% year on year, in a market IBISWorld sizes at $15.7 billion (2026).",
+    "key_stat_sources": [
+      "https://www.ibisworld.com/united-states/number-of-businesses/caterers/1682",
+      "https://www.ibisworld.com/united-states/market-size/caterers/1682"
+    ],
+    "demand_note": "Roughly flat: IBISWorld puts the U.S. caterers market at $15.8 billion in 2025 (up 3.3%) and $15.7 billion in 2026 (down 0.9%), while the number of businesses has grown an average 1.7% a year over 2021-2026.",
+    "demand_sources": [
+      "https://www.ibisworld.com/united-states/market-size/caterers/1682",
+      "https://www.ibisworld.com/united-states/number-of-businesses/caterers/1682"
+    ],
+    "hardest_part": "You cannot legally cook at home. Health departments require caterers to work from an approved commissary with dedicated storage, warewashing and prep areas, and explicitly bar residential kitchens - so the recurring kitchen rental, plan review and food worker card requirements land before the first booking. Beyond that, the frequently repeated claim that catering fails because of seasonal cash flow is plausible but we found no primary study quantifying it, so it should not be presented as a statistic.",
+    "hardest_part_source": "https://kingcounty.gov/en/dept/dph/certificates-permits-licenses/food-business-permits/catering-home-based-business-permit",
+    "sources": [
+      "https://kingcounty.gov/en/dept/dph/certificates-permits-licenses/food-business-permits/catering-home-based-business-permit",
+      "https://www.ibisworld.com/united-states/market-size/caterers/1682",
+      "https://www.ibisworld.com/united-states/number-of-businesses/caterers/1682",
+      "https://sharedkitchenlocator.com/blog/how-much-to-rent-a-commercial-kitchen",
+      "https://www.fsis.usda.gov/policy/federal-register-rulemaking/federal-register-notices/retail-exemptions-adjusted-dollar-6",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ]
+  },
+
+  "meal-prep-business": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No credible sourced total for U.S. meal prep startup costs was found, so no range is given. The dominant recurring cost is commissary kitchen time rather than capital equipment: shared commercial kitchens average $20-$35 an hour nationally ($15-$25 rural, $40-$75 in major cities), or $400-$900 a month for 20-40 hours and $1,800-$3,500 a month for full-time use, plus application fees of $25-$100 and required liability insurance of about $400-$800 a year.",
+    "startup_cost_source": "https://sharedkitchenlocator.com/blog/how-much-to-rent-a-commercial-kitchen",
+    "licences": [
+      "Business licence / business registration and EIN",
+      "Sales tax permit",
+      "Retail food establishment or food processing permit from the state or local health department",
+      "Commissary or shared commercial kitchen agreement - cottage food laws do NOT cover meal prep, because all 50 states and D.C. limit cottage food to shelf-stable, non-potentially-hazardous items and exclude refrigerated, meat and seafood products",
+      "Certified food protection manager certificate and food handler cards for staff",
+      "Plan review and routine health inspections",
+      "HACCP plan where required for cook-chill, reduced-oxygen packaging or vacuum sealing",
+      "Nutrition and allergen labelling compliance (FALCPA) on packaged meals",
+      "FDA food facility registration if the operation manufactures, processes, packs or holds food outside the retail food establishment exemption - free, renewed biennially between 1 October and 31 December of each even-numbered year",
+      "USDA FSIS grant of inspection if handling meat or poultry beyond the retail exemption ($100,900 meat / $74,200 poultry sold to hotels, restaurants and similar institutions, CY2024)",
+      "Delivery vehicle refrigeration and cold-holding compliance; commercial auto insurance"
+    ],
+    "licences_sources": [
+      "https://ij.org/legislative-advocacy/state-reforms-for-cottage-food-and-food-freedom-laws/",
+      "https://www.fda.gov/media/160352/download",
+      "https://www.fsis.usda.gov/policy/federal-register-rulemaking/federal-register-notices/retail-exemptions-adjusted-dollar-6",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ],
+    "margin_note": null,
+    "margin_note_explanation": "No credible primary source for meal prep business net margins was found; the category is too new and fragmented for a published benchmark. The nearest sourced comparison is the National Restaurant Association's foodservice cost structure of roughly 33% food and 33% labour of sales, pre-tax margin about 5% (2019).",
+    "margin_source": "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/",
+    "key_stat": "The U.S. meal kit and prepared meal delivery market was worth $15.29 billion in 2025 and is forecast to reach $28.57 billion by 2033; the fully prepared 'heat and eat' segment is the faster-growing half, at a projected 7.9% CAGR versus 7.3% for the market overall (Grand View Research).",
+    "key_stat_source": "https://www.grandviewresearch.com/industry-analysis/us-meal-kit-delivery-services-market-report",
+    "demand_note": "Growing: Grand View Research forecasts a 7.3% CAGR for the U.S. meal kit delivery market from 2026 to 2033, with cook-and-eat kits holding 61.1% share in 2025 and prepared heat-and-eat meals growing faster at 7.9%.",
+    "demand_source": "https://www.grandviewresearch.com/industry-analysis/us-meal-kit-delivery-services-market-report",
+    "hardest_part": "The legal route in is narrower than founders expect. Because prepared meals are refrigerated, temperature-controlled-for-safety foods, no state's cottage food law lets you make them at home - a commissary or licensed commercial kitchen is mandatory from day one, and the cold chain has to be maintained through delivery. The other frequently cited difficulty, high subscriber churn in meal subscription businesses, is repeated widely but we found no primary study quantifying it for independent operators, so it should be described as an industry observation rather than a statistic.",
+    "hardest_part_sources": [
+      "https://ij.org/legislative-advocacy/state-reforms-for-cottage-food-and-food-freedom-laws/",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code"
+    ],
+    "sources": [
+      "https://www.grandviewresearch.com/industry-analysis/us-meal-kit-delivery-services-market-report",
+      "https://sharedkitchenlocator.com/blog/how-much-to-rent-a-commercial-kitchen",
+      "https://ij.org/legislative-advocacy/state-reforms-for-cottage-food-and-food-freedom-laws/",
+      "https://www.fda.gov/media/160352/download",
+      "https://www.fsis.usda.gov/policy/federal-register-rulemaking/federal-register-notices/retail-exemptions-adjusted-dollar-6",
+      "https://www.fda.gov/food/retail-food-protection/fda-food-code",
+      "https://www.restaurant.org/research-and-media/research/restaurant-economic-insights/analysis-commentary/elevated-costs-continue-to-pressure-restaurant-profitability/"
+    ]
+  }
+}

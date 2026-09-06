@@ -1,0 +1,213 @@
+{
+  "_meta": {
+    "compiled": "2026-09-06",
+    "startup_cost_disclosure": "No US government or peer-reviewed source publishes typical startup-cost dollar ranges for these five specific business types. The SBA's own 'Calculate your startup costs' guide deliberately gives cost CATEGORIES and no dollar figures. Every widely circulated per-industry figure ('$2,000-$5,000 to start bookkeeping', '$40,000 to start an online store', etc.) traces to blog posts, vendor marketing or commercial market-research paywalls rather than a primary study, so startup_cost_low_usd and startup_cost_high_usd are null for all five entries rather than guessed. The best available primary anchor is the US Census Bureau Annual Business Survey distribution of startup capital across ALL new employer businesses, cited in each startup_cost_note.",
+    "margin_disclosure": "Margin figures are computed from IRS Statistics of Income, Nonfarm Sole Proprietorship Returns, Tax Year 2022, Table 1 (net income less deficit divided by business receipts). Important caveat: sole proprietors do not deduct an owner's salary, so these 'net margins' include the owner's own compensation and are NOT comparable to corporate net profit margins. They are the closest thing to a public, primary-source profitability figure for owner-operated US businesses.",
+    "unsupported_claims_flagged": [
+      "'90% of startups fail' / '9 out of 10 businesses fail' — no primary study supports this. The actual measured figure from the SBA Office of Advocacy (using Census Business Dynamics Statistics) is that about 51% of new employer establishments survive five or more years.",
+      "'The photography industry is worth $X billion' — US government statistics do not publish a photography industry revenue total at that granularity; such figures come from commercial market-research firms (IBISWorld, Grand View Research) whose methodologies are not public.",
+      "'The average social media marketing agency charges $X/month' and 'ecommerce stores have Y% average profit margins' — no government or primary-research source publishes these; circulating figures come from vendor surveys with undisclosed samples."
+    ]
+  },
+
+  "bookkeeping-business": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No primary US source publishes a bookkeeping-specific startup cost range; the SBA's official startup-cost guide gives categories and no dollar figures, and the only credible general anchor is the Census Annual Business Survey finding that 24.1% of new US employer businesses started with less than $5,000 and 50.9% with less than $25,000, with a bookkeeping practice sitting at the low end because the dominant costs are software subscriptions, professional liability insurance and client acquisition rather than premises or inventory.",
+    "licences": [
+      "Business entity registration with the state Secretary of State (LLC or corporation), or a DBA / assumed-name filing for a sole proprietorship",
+      "IRS Employer Identification Number (EIN)",
+      "State and/or city general business licence or tax registration (varies by jurisdiction; the SBA notes state and local requirements depend on activity and location)",
+      "NO CPA licence is required to do bookkeeping. State accountancy acts restrict the TITLES 'Certified Public Accountant'/'CPA' and 'Public Accountant'/'PA' to licensees, and reserve ATTEST work — audits, reviews and compilations — to licensed CPAs and licensed CPA firms (South Carolina Board of Accountancy: unlicensed persons may not 'perform audits, reviews or compilations'; the SC Board states it 'does not have any authority over bookkeepers, tax preparers or accountants')",
+      "Texas is stricter than most: the Texas State Board of Public Accountancy treats offering services as an 'accountant', or offering 'accounting services'/audit services, without a licence as unauthorised practice, and requires a non-CPA entity providing non-attest services to disclose 'This firm is not a CPA firm and its services are not regulated by the Texas State Board of Public Accountancy' — so check your own state board before using the word 'accountant' in marketing",
+      "IRS Preparer Tax Identification Number (PTIN) — required only if you are compensated for preparing, or assisting in preparing, all or substantially all of a federal tax return. IRS guidance is explicit that a bookkeeper who only gathers receipts, organises information and does data entry does NOT need one",
+      "IRS Electronic Filing Identification Number (EFIN) — separate from the PTIN, required to e-file returns; the IRS notes 'most preparers need both' and that the EFIN carries no fee",
+      "IRS Annual Filing Season Program (AFSP) Record of Completion — voluntary, gives unenrolled preparers limited representation rights",
+      "Voluntary credentials (not licences): AIPB Certified Bookkeeper (CB); NACPB Certified Public Bookkeeper (CPB); Intuit QuickBooks ProAdvisor certification",
+      "Professional liability / errors & omissions (E&O) insurance — the SBA lists professional liability as the coverage for 'malpractice and negligence' claims",
+      "General liability insurance and/or a Business Owner's Policy; cyber liability cover for holding client financial data; a fidelity bond or employee-dishonesty cover if you have access to client bank accounts or payroll funds",
+      "Workers' compensation, unemployment insurance and (in some states) disability insurance — the SBA states these are legally required of 'every business with employees'",
+      "State sales tax registration only in the minority of states that tax bookkeeping, accounting or data-processing services — check your state Department of Revenue, as treatment varies"
+    ],
+    "margin_note": "IRS Statistics of Income data for Tax Year 2022 nonfarm sole proprietorships show 'Other accounting services' (the category most bookkeeping practices fall into) with $5,219,695 thousand of net income on $12,833,573 thousand of business receipts — a 40.7% net margin — and 'Offices of certified public accountants' at $1,722,199 thousand on $3,862,033 thousand, a 44.6% net margin. Both are far above the 19.7% average across all US nonfarm sole proprietorships, but note that sole proprietors take no owner salary, so this figure is the owner's total pre-tax return for their own labour plus profit, not a corporate-style margin.",
+    "key_stat": "BLS projects employment of bookkeeping, accounting and auditing clerks to DECLINE 6% between 2025 and 2035, from 1,532,400 jobs in 2025, while employment of accountants and auditors over the same decade is projected to GROW 5% — the routine data-entry layer is shrinking while the advisory layer grows.",
+    "demand_note": "Declining as an employed occupation but not as a service: BLS projects a 6% fall in bookkeeping clerk employment from 2025 to 2035 with about 144,100 openings a year still arising purely from replacement needs, and the growth is shifting toward higher-value advisory and CPA-adjacent work (accountants and auditors +5%, management analysts +10% over the same decade).",
+    "hardest_part": "Winning clients and pricing the work, not doing the work. The Federal Reserve's 2026 Report on Employer Firms (from the 2025 Small Business Credit Survey, 6,525 respondents) found 'reaching customers and growing sales' was the most commonly reported operational challenge across small employer firms. For bookkeepers specifically the second recurring difficulty is scope creep into tax and advisory work that a non-CPA may not legally hold out as providing in some states.",
+    "sources": [
+      "https://www.bls.gov/ooh/office-and-administrative-support/bookkeeping-accounting-and-auditing-clerks.htm",
+      "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+      "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+      "https://www.irs.gov/statistics/soi-tax-stats-nonfarm-sole-proprietorship-statistics",
+      "https://www.irs.gov/tax-professionals/frequently-asked-questions-do-i-need-a-ptin",
+      "https://llr.sc.gov/acct/Info/bookkeepers_taxprep.aspx",
+      "https://www.tsbpa.texas.gov/enforcement/faq.html",
+      "https://nasba.org/licensure/gettingacpalicense/",
+      "https://aipb.org/certification-program/certification-individual/",
+      "https://www.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs",
+      "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits",
+      "https://www.sba.gov/business-guide/launch-your-business/get-business-insurance",
+      "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+      "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms"
+    ]
+  },
+
+  "consulting-business": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No primary US source publishes a consulting-specific startup cost range; SBA's official guide gives categories and no dollar figures, and the only credible general anchor is the Census Annual Business Survey finding that 24.1% of new US employer businesses started with under $5,000 and 50.9% with under $25,000 — a solo consultancy typically sits at the bottom of that distribution because entity formation, professional liability insurance and business development effort dominate, with no premises, inventory or equipment of consequence.",
+    "licences": [
+      "Business entity registration with the state Secretary of State (LLC or corporation), or a DBA / assumed-name filing",
+      "IRS Employer Identification Number (EIN)",
+      "State and/or city general business licence or tax registration where required",
+      "There is NO general federal or state licence to call yourself a 'consultant' — the SBA's federal licensing list covers agriculture, alcohol, aviation, firearms, wildlife, fisheries, maritime transport, mining and drilling, nuclear energy, broadcasting and oversize vehicles, none of which touch generic consulting",
+      "Domain-specific licences that DO bite: giving investment advice for compensation requires registration as an Investment Adviser with the SEC or a state securities regulator (Form ADV); insurance and securities work requires state producer/representative licences; engineering, architecture and land-surveying consulting require a state PE/RA licence; immigration and legal advice are restricted to licensed attorneys or accredited representatives in most states; and consulting that touches protected health information requires HIPAA Business Associate Agreements",
+      "Voluntary credential (not a licence): Certified Management Consultant (CMC) from the Institute of Management Consultants USA",
+      "Professional liability / errors & omissions (E&O) insurance — usually the coverage clients actually contract for, and commonly demanded at $1M/$2M limits in master services agreements",
+      "General liability insurance and/or a Business Owner's Policy; cyber liability cover if handling client data",
+      "Workers' compensation, unemployment insurance and (in some states) disability insurance if you hire employees",
+      "SAM.gov registration and a UEI if you intend to contract with, or subcontract under, the US federal government",
+      "State sales tax registration in the states that tax consulting or information services — treatment varies materially by state, so check the relevant Department of Revenue"
+    ],
+    "margin_note": "IRS Statistics of Income data for Tax Year 2022 nonfarm sole proprietorships show 'Management, scientific, and technical consulting services' with $34,693,630 thousand of net income on $70,651,823 thousand of business receipts — a 49.1% net margin, the highest of the five business types covered here and roughly 2.5x the 19.7% average across all US nonfarm sole proprietorships. As with all sole-proprietor figures this includes the owner's own compensation and is not comparable to a corporate net margin.",
+    "key_stat": "14% of US management analysts are self-employed, out of 1,077,100 employed in the occupation in 2025 — and the occupation's median pay was $101,860 in May 2025, the highest of the five business types covered here.",
+    "demand_note": "Growing: BLS projects employment of management analysts to grow 10% from 2025 to 2035, described as much faster than the average for all occupations, with about 94,100 openings projected each year over the decade.",
+    "hardest_part": "An unpredictable pipeline. The Federal Reserve's 2026 Report on Employer Firms (2025 Small Business Credit Survey, 6,525 respondents) found 'reaching customers and growing sales' to be the most commonly reported operational challenge among small employer firms; for consultants this compounds because delivery time and selling time compete for the same person, producing the feast-or-famine cycle. Note this is the general small-business finding, not a consulting-specific measured statistic.",
+    "sources": [
+      "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+      "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+      "https://www.irs.gov/statistics/soi-tax-stats-nonfarm-sole-proprietorship-statistics",
+      "https://www.onetonline.org/link/certinfo/1979-A",
+      "https://www.imcusa.org/page/CERTIFICATION",
+      "https://www.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs",
+      "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits",
+      "https://www.sba.gov/business-guide/launch-your-business/get-business-insurance",
+      "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+      "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms"
+    ]
+  },
+
+  "online-store-business": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No primary US source publishes an ecommerce-specific startup cost range, and the most-cited figures (a '$40,000 first year' number in particular) trace to vendor blog posts rather than a published study; the credible anchor is the Census Annual Business Survey distribution showing 24.1% of new US employer businesses started with under $5,000 and 50.9% under $25,000, with inventory, paid customer acquisition and — since 2025 — import tariffs being the costs that actually dominate an online store rather than the storefront software.",
+    "licences": [
+      "Business entity registration with the state Secretary of State, or a DBA / assumed-name filing",
+      "IRS Employer Identification Number (EIN)",
+      "State seller's permit / sales tax registration in your home state, plus a resale certificate to buy inventory tax-free",
+      "SALES TAX NEXUS REGISTRATION: after South Dakota v. Wayfair (2018) states can require sellers to collect and remit sales or use tax on sales delivered into the state 'regardless of physical presence'. You must register in every state where you cross that state's economic nexus threshold; thresholds and the sales measure used (gross sales, retail sales, or taxable sales only) differ state by state. The Streamlined Sales Tax Registration System (SSTRS) registers you across member states at no cost",
+      "Marketplace facilitator rules — where you sell through a marketplace, the platform may be required to collect and remit on your behalf, but this does not automatically remove your own registration obligations",
+      "FTC Mail, Internet, or Telephone Order Merchandise Rule (16 CFR Part 435, the '30-day Rule'): ship within your stated time or, absent a stated time, within 30 days of a properly completed order; otherwise send a delay notice with a revised date and a free way to cancel, and refund within 7 working days for cash/cheque/money-order payments or one billing cycle for credit sales",
+      "FTC Made in USA Labeling Rule (16 CFR Part 323) — unqualified 'Made in USA' claims require the product to be 'all or virtually all' made in the US, and unqualified false labels now carry civil penalty exposure",
+      "FTC Rule on the Use of Consumer Reviews and Testimonials (16 CFR Part 465, final August 2024) — bans fake and AI-generated reviews, buying positive or negative reviews, undisclosed insider reviews, fake independent review sites, review suppression by threat, and buying or selling fake followers or views",
+      "FTC Act Section 5 — all advertising claims must be truthful and substantiated",
+      "CPSC obligations for physical goods: a Children's Product Certificate (CPC) based on third-party testing at a CPSC-accepted lab for children's products, retested and reissued at least every 12 months; a General Certificate of Conformity for other regulated products; 5-year record retention; a bar on selling recalled products; and Section 15(b) reporting of substantial product hazards",
+      "CAN-SPAM Act compliance for marketing email — accurate headers and subject lines, ad identification, a valid physical postal address, a clear opt-out honoured within 10 business days; maximum civil penalty $53,088 per violating email",
+      "Import obligations if you source overseas: US Customs and Border Protection importer of record number and, commonly, a customs bond; plus FDA, USDA or FCC clearance depending on product category",
+      "State consumer-privacy law compliance (for example the California Consumer Privacy Act as amended) once you cross that state's applicability thresholds",
+      "PCI DSS — a card-brand contractual requirement rather than a law, but effectively mandatory if you touch cardholder data",
+      "Insurance: general liability, product liability, commercial property (for stock), cyber liability, plus workers' compensation and unemployment insurance if you hire employees"
+    ],
+    "margin_note": "There is no primary public source for ecommerce-specific net margins. The closest primary figure is IRS Statistics of Income for Tax Year 2022 nonfarm sole proprietorships, where the whole Retail trade sector reported $13,450,504 thousand of net income on $211,839,978 thousand of business receipts — a 6.3% net margin, the lowest of the five business types here and well under the 19.7% average across all nonfarm sole proprietorships. Note this covers all retail sole proprietors, not online sellers specifically, and includes the owner's own compensation.",
+    "key_stat": "US retail ecommerce sales were $340.2 billion in the second quarter of 2026 — 17.1% of all US retail sales — up 12.2% year over year while total retail sales grew 6.7%.",
+    "demand_note": "Growing, and taking share: Census Bureau data show ecommerce growing 12.2% year over year in Q2 2026 versus 6.7% for total retail, lifting online sales to 17.1% of all US retail — but the Census nonemployer data also show retail-trade nonemployer businesses shrinking 8.4% between 2021 and 2022, so the channel is growing while the number of small independent sellers is not.",
+    "hardest_part": "Customer acquisition cost against rising input costs. The Federal Reserve's 2026 Report on Employer Firms found 'reaching customers and growing sales' was the most common operational challenge for small employer firms, rising costs of goods, services and wages was the most common financial challenge, and 69% of RETAIL firms specifically reported increased tariff-related costs as a financial challenge — the highest of any industry in the survey.",
+    "sources": [
+      "https://www.census.gov/retail/mrts/www/data/pdf/ec_current.pdf",
+      "https://www.census.gov/retail/ecommerce.html",
+      "https://www.census.gov/library/stories/2025/07/nonemployer-business-growth.html",
+      "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+      "https://www.irs.gov/statistics/soi-tax-stats-nonfarm-sole-proprietorship-statistics",
+      "https://www.streamlinedsalestax.org/for-businesses/remote-seller-faqs",
+      "https://www.ftc.gov/business-guidance/resources/business-guide-ftcs-mail-internet-or-telephone-order-merchandise-rule",
+      "https://www.ftc.gov/legal-library/browse/rules/mail-internet-or-telephone-order-merchandise-rule",
+      "https://www.ftc.gov/business-guidance/resources/complying-made-usa-standard",
+      "https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials",
+      "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-D/part-465",
+      "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+      "https://cpsc.gov/Business--Manufacturing/Online-Sellers-Safety-Guide",
+      "https://www.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs",
+      "https://www.sba.gov/business-guide/launch-your-business/get-business-insurance",
+      "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+      "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms"
+    ]
+  },
+
+  "photography-business": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No primary US source publishes a photography-specific startup cost range; the Census Annual Business Survey general anchor (24.1% of new US employer businesses started with under $5,000, 50.9% under $25,000) is the only credible reference point, and the costs that actually dominate are camera bodies, lenses, lighting and backup storage plus equipment and liability insurance, which push a photography start-up above a purely advisory service business.",
+    "licences": [
+      "Business entity registration with the state Secretary of State, or a DBA / assumed-name filing",
+      "IRS Employer Identification Number (EIN)",
+      "State and/or city general business licence or tax registration",
+      "STATE SALES TAX PERMIT — photography is one of the service businesses most likely to owe sales tax, because photographs are usually treated as tangible personal property or taxable digital goods. Washington State's Department of Revenue photography tax guide is a documented example: photographers must collect retail sales tax on photos delivered to in-state customers, digital photos received electronically are taxable retail sales, and all sitting/session/shooting fees are taxable whether the deliverable is a print or a digital file. Washington also applies its B&O gross-receipts tax under Retailing, Service and Other Activities, Royalties or Wholesaling classifications depending on the work. Rules differ by state — check your Department of Revenue before assuming session fees are untaxed",
+      "Reseller / resale permit to buy prints, albums, frames and packaging tax-free for resale",
+      "FAA Part 107 Remote Pilot Certificate for any commercial drone photography — applicants must be at least 16, able to read, speak, write and understand English, in a fit condition to operate safely, and must pass the Unmanned Aircraft General – Small (UAG) aeronautical knowledge exam, complete FAA Form 8710-13 via IACRA, pass a TSA background check, and complete online recurrent training every 24 calendar months. Drones used commercially must also be registered with the FAA",
+      "US Copyright Office registration of your images — group registration options exist specifically for photographers: GRUPH (Group Registration of Unpublished Photographs) and GRPPH (Group Registration of Published Photographs)",
+      "Written client contracts plus model releases and property releases for any image you intend to license commercially",
+      "General liability insurance — routinely required by wedding and event venues as a condition of access",
+      "Inland marine / equipment coverage for cameras and lighting (standard commercial property policies often exclude gear taken off premises)",
+      "Professional liability / errors & omissions cover for failure-to-deliver and lost-image claims",
+      "Workers' compensation, unemployment insurance and (in some states) disability insurance if you hire second shooters or assistants as employees rather than contractors",
+      "Location permits where applicable — national and state parks and many municipalities require permits for commercial shoots"
+    ],
+    "margin_note": null,
+    "margin_note_explanation": "There is no credible public figure for photography business margins. IRS Statistics of Income sole-proprietorship tables do not break out a 'photographic services' line, and the parent sector figure (Professional, scientific and technical services, 41.0% net margin for Tax Year 2022 sole proprietorships) is dominated by consulting and legal work with almost no equipment cost, so applying it to photography would materially overstate the result. Photography carries recurring equipment depreciation, second-shooter and editing costs that those service categories do not, and no primary source quantifies the difference.",
+    "key_stat": "67% of US photographers are self-employed — by far the highest self-employment rate of the five business types covered here, out of 145,000 people employed in the occupation in 2025.",
+    "demand_note": "Slightly declining: BLS projects employment of photographers to fall 1% between 2025 and 2035, with about 10,700 openings a year still projected on average over the decade, largely from replacement rather than growth.",
+    "hardest_part": "Price competition against a very large pool of self-employed competitors in a flat-to-shrinking market. With 67% of photographers self-employed and BLS projecting a 1% decline through 2035, differentiation and repeat/referral business matter more than capability; the Federal Reserve's 2026 Report on Employer Firms separately found 'reaching customers and growing sales' the most common operational challenge for small employer firms generally. Sales tax on session fees and digital delivery is the most commonly missed compliance item.",
+    "sources": [
+      "https://www.bls.gov/ooh/media-and-communication/photographers.htm",
+      "https://dor.wa.gov/book/export/html/934",
+      "https://www.faa.gov/uas/commercial_operators/become_a_drone_pilot",
+      "https://www.copyright.gov/registration/photographs/",
+      "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+      "https://www.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs",
+      "https://www.sba.gov/business-guide/launch-your-business/get-business-insurance",
+      "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+      "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms"
+    ]
+  },
+
+  "social-media-marketing-agency": {
+    "startup_cost_low_usd": null,
+    "startup_cost_high_usd": null,
+    "startup_cost_note": "No primary US source publishes an agency-specific startup cost range; the Census Annual Business Survey anchor (24.1% of new US employer businesses started with under $5,000, 50.9% under $25,000) applies, and for an agency the dominant costs are people and software subscriptions rather than capital equipment — note that client ad spend is normally passed through or billed to the client and should not be counted as a start-up cost.",
+    "licences": [
+      "Business entity registration with the state Secretary of State, or a DBA / assumed-name filing",
+      "IRS Employer Identification Number (EIN)",
+      "State and/or city general business licence or tax registration — there is no occupational licence required to operate a marketing or social media agency in the US",
+      "FTC Guides Concerning Use of Endorsements and Testimonials in Advertising (16 CFR Part 255, revised 2023) — the single most important rule for this business. Endorsers must clearly disclose material connections to the brand, and advertisers AND their agencies are expected to have processes in place to train and monitor influencers rather than treating disclosure as the influencer's problem alone",
+      "FTC Rule on the Use of Consumer Reviews and Testimonials (16 CFR Part 465, announced August 2024, effective 60 days after Federal Register publication) — bans fake or AI-generated reviews and testimonials, compensation conditioned on the sentiment of a review, undisclosed insider reviews by employees or managers, company-controlled sites posing as independent review sites, review suppression by threat or false accusation, and buying or selling fake followers, views or other social media indicators. The rule lets the FTC seek civil penalties against knowing violators",
+      "FTC Act Section 5 — every claim you place on a client's behalf must be truthful and substantiated, and the agency can be liable alongside the advertiser",
+      "CAN-SPAM Act for email campaigns — accurate 'From'/'Reply-To' and routing data, non-deceptive subject lines, clear ad identification, a valid physical postal address, a clear opt-out honoured within 10 business days, opt-out records kept at least 30 days, and an explicit duty to monitor third parties you hire to send. Maximum civil penalty is $53,088 per violating email",
+      "Telephone Consumer Protection Act (TCPA) and FCC rules for SMS and voice campaigns — prior express written consent is required for marketing texts",
+      "COPPA compliance if any client content or targeting is directed at children under 13",
+      "State consumer-privacy laws (for example the California Consumer Privacy Act as amended) governing lead lists, pixels and audience data",
+      "Platform advertising policies (Meta, Google, TikTok, LinkedIn) — contractual rather than legal, but account-level enforcement is the practical risk",
+      "Insurance: professional liability / errors & omissions, media and advertising liability (covering defamation, IP infringement and false advertising claims arising from published work), general liability, cyber liability for holding client account credentials and customer data, plus workers' compensation and unemployment insurance if you hire employees",
+      "Written client contracts covering ad-spend pass-through, account and pixel ownership, content licensing, and indemnity for claims substantiation — because the FTC can pursue the agency as well as the advertiser"
+    ],
+    "margin_note": "IRS Statistics of Income data for Tax Year 2022 nonfarm sole proprietorships show 'Advertising and related services' with $3,284,210 thousand of net income on $12,251,223 thousand of business receipts — a 26.8% net margin. That is above the 19.7% all-sole-proprietor average but roughly half the 49.1% margin of management consulting, reflecting the labour and subcontracting intensity of delivery work. As with all sole-proprietor figures this includes the owner's own compensation and is not comparable to a corporate net margin.",
+    "key_stat": "The maximum civil penalty under CAN-SPAM is $53,088 per individual non-compliant email — an agency that sends a single bad campaign for a client is exposed per message, not per campaign.",
+    "demand_note": "Growing modestly: BLS projects employment of advertising, promotions and marketing managers to grow 6% from 2025 to 2035 (454,800 employed in 2025, about 36,300 openings a year) and market research analysts and marketing specialists to grow 7% over the same decade (952,700 employed in 2025, about 82,000 openings a year).",
+    "hardest_part": "Client retention and proving attribution. The measurable general finding is that the Federal Reserve's 2026 Report on Employer Firms identified 'reaching customers and growing sales' as the most common operational challenge among small employer firms; agency-specific difficulty is that results are attributed to the agency month by month, so churn is high and revenue is rarely contracted long. The compliance exposure is the second commonly cited difficulty — under the FTC Endorsement Guides and the 2024 consumer reviews rule the agency, not just the client, is expected to police influencer disclosure.",
+    "sources": [
+      "https://www.ftc.gov/business-guidance/advertising-marketing/endorsements-influencers-reviews",
+      "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+      "https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials",
+      "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-D/part-465",
+      "https://www.ftc.gov/legal-library/browse/federal-register-notices/16-cfr-part-465-trade-regulation-rule-use-consumer-reviews-testimonials-final-rule",
+      "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+      "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "https://www.bls.gov/ooh/business-and-financial/market-research-analysts.htm",
+      "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+      "https://www.irs.gov/statistics/soi-tax-stats-nonfarm-sole-proprietorship-statistics",
+      "https://www.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs",
+      "https://www.sba.gov/business-guide/launch-your-business/get-business-insurance",
+      "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+      "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms"
+    ]
+  }
+}

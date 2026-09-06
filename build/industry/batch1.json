@@ -1,0 +1,221 @@
+{
+  "cleaning-business": {
+    "startup_cost_low_usd": 2000,
+    "startup_cost_high_usd": 10000,
+    "startup_cost_note": "Costs are dominated by supplies, a commercial vacuum and basic equipment plus insurance and registration rather than vehicles, which is why SBDCNet cites averages as low as $3,500 and Entrepreneur puts a bare minimum under $2,000.",
+    "startup_cost_source": "https://www.sbdcnet.org/small-business-research-reports/cleaning-services-business/",
+    "licences": [
+      "General business licence (city/county)",
+      "Employer Identification Number (EIN) from the IRS",
+      "DBA / fictitious business name registration",
+      "State sales tax permit (where cleaning services are taxable)",
+      "General liability insurance",
+      "Janitorial bond / surety bond (commonly required by commercial clients)",
+      "Workers' compensation insurance (required once you have employees)",
+      "Commercial auto insurance",
+      "State janitorial employer registration (California only, under the Property Service Workers Protection Act / AB 1978)"
+    ],
+    "licences_sources": [
+      "https://www.dir.ca.gov/DIRNews/2018/2018-47.pdf",
+      "https://www.sbdcnet.org/small-business-research-reports/cleaning-services-business/"
+    ],
+    "margin_note": "Industry benchmarks put net profit in the 10-28% of gross sales range, though the five-year average net margin reported for janitorial services is only about 6.3%.",
+    "margin_source": "https://www.youraspire.com/blog/cleaning-business-profit-margins",
+    "key_stat": "There were 2,432,600 janitors and building cleaners employed in the US in 2025, with about 321,800 openings projected each year over the following decade (BLS). ISSA forecast US commercial cleaning industry revenue to exceed $108 billion in 2025.",
+    "key_stat_sources": [
+      "https://www.bls.gov/ooh/building-and-grounds-cleaning/janitors-and-building-cleaners.htm",
+      "https://www.issa.com/articles/what-is-commercial-cleaning/"
+    ],
+    "demand_note": "Demand is stable but slow-growing: BLS projects employment of janitors and building cleaners to rise just 2% from 2025 to 2035, slower than the average for all occupations, so growth comes mainly from churn and replacement rather than market expansion.",
+    "demand_source": "https://www.bls.gov/ooh/building-and-grounds-cleaning/janitors-and-building-cleaners.htm",
+    "hardest_part": "Staffing. Extreme employee turnover is the most commonly reported operational problem in commercial cleaning, with trade sources routinely citing annual turnover around 200% and sometimes as high as 400%; note this figure circulates widely in the trade press without a primary study behind it. Underpricing recurring contracts is the second most commonly cited killer.",
+    "hardest_part_sources": [
+      "https://www.4-m.com/wp-content/uploads/2024/11/HowJanitorialTurnoverImpactsYourBusiness.pdf",
+      "https://www.getjobber.com/academy/cleaning/is-a-cleaning-business-profitable/"
+    ],
+    "sources": [
+      "https://www.bls.gov/ooh/building-and-grounds-cleaning/janitors-and-building-cleaners.htm",
+      "https://www.sbdcnet.org/small-business-research-reports/cleaning-services-business/",
+      "https://www.issa.com/articles/what-is-commercial-cleaning/",
+      "https://www.dir.ca.gov/DIRNews/2018/2018-47.pdf",
+      "https://www.youraspire.com/blog/cleaning-business-profit-margins",
+      "https://www.getjobber.com/academy/cleaning/is-a-cleaning-business-profitable/",
+      "https://www.4-m.com/wp-content/uploads/2024/11/HowJanitorialTurnoverImpactsYourBusiness.pdf"
+    ]
+  },
+
+  "lawn-care-business": {
+    "startup_cost_low_usd": 500,
+    "startup_cost_high_usd": 8000,
+    "startup_cost_note": "A lean solo operation is dominated by a mower ($300-$2,500), trimmer, blower and edger; the range jumps to $15,000-$50,000+ once you add a truck, trailer and commercial-grade heavy equipment.",
+    "startup_cost_source": "https://www.housecallpro.com/resources/lawn-care-business-startup-cost/",
+    "licences": [
+      "General business licence (city/county)",
+      "Employer Identification Number (EIN) from the IRS",
+      "State sales tax permit (where lawn services are taxable)",
+      "State commercial pesticide applicator certification / licence (required by federal law for restricted use pesticides, administered by states; many states licence all commercial applicators)",
+      "State pesticide business licence / registration (separate from the individual applicator licence in most states)",
+      "Fertilizer applicator licence (required in some states, e.g. nutrient-management states)",
+      "General liability insurance",
+      "Commercial auto insurance",
+      "Inland marine / equipment insurance (mower and trailer theft coverage)",
+      "Workers' compensation insurance (required once you have employees)"
+    ],
+    "licences_sources": [
+      "https://www.epa.gov/pesticide-worker-safety/how-get-certified-pesticide-applicator",
+      "https://www.epa.gov/pesticide-worker-safety/certification-standards-pesticide-applicators"
+    ],
+    "margin_note": "Aspire's benchmark is a 15-20% profit margin for residential lawn mowing work and a lower 10-15% for commercial property contracts.",
+    "margin_source": "https://www.youraspire.com/blog/average-landscaping-business-profit-margin",
+    "key_stat": "The US landscape industry was worth $188.8 billion in 2025 across 692,777 landscaping service companies employing over 1.4 million people, up 4.8% from 2024 (National Association of Landscape Professionals).",
+    "key_stat_source": "https://www.landscapeprofessionals.org/LP/LP/Media/landscape-industry-statistics.aspx",
+    "demand_note": "Growing: BLS projects grounds maintenance employment to grow 5% from 2025 to 2035, faster than the average for all occupations, and NALP recorded 4.8% market growth in 2025 with a 6.5% average annual growth rate over 2020-2025.",
+    "demand_sources": [
+      "https://www.bls.gov/ooh/building-and-grounds-cleaning/grounds-maintenance-workers.htm",
+      "https://www.landscapeprofessionals.org/LP/LP/Media/landscape-industry-statistics.aspx"
+    ],
+    "hardest_part": "Labour. NALP identifies the industry's top two concerns as finding qualified employees and maintaining profit levels, and projects labour costs to rise roughly 20% between now and the end of 2029. Seasonality (cash flow collapsing in winter across most of the country) is the other commonly reported difficulty.",
+    "hardest_part_source": "https://www.landscapeprofessionals.org/LP/LP/Media/landscape-industry-statistics.aspx",
+    "sources": [
+      "https://www.bls.gov/ooh/building-and-grounds-cleaning/grounds-maintenance-workers.htm",
+      "https://www.landscapeprofessionals.org/LP/LP/Media/landscape-industry-statistics.aspx",
+      "https://www.housecallpro.com/resources/lawn-care-business-startup-cost/",
+      "https://www.youraspire.com/blog/average-landscaping-business-profit-margin",
+      "https://www.epa.gov/pesticide-worker-safety/how-get-certified-pesticide-applicator",
+      "https://www.epa.gov/pesticide-worker-safety/certification-standards-pesticide-applicators"
+    ]
+  },
+
+  "mobile-car-detailing-business": {
+    "startup_cost_low_usd": 3000,
+    "startup_cost_high_usd": 10000,
+    "startup_cost_note": "The vehicle is the swing factor: a budget build at $3,000-$5,000 uses a car you already own plus an entry-level pressure washer, extractor, polisher and generator, while $5,000-$10,000 covers a dedicated van and professional-grade equipment (premium builds run $10,000-$20,000).",
+    "startup_cost_source": "https://www.aquaprovac.com/blogs/aquaprovac-blogs/mobile-auto-detailing-business-startup-guide",
+    "licences": [
+      "General business licence (city/county)",
+      "Employer Identification Number (EIN) from the IRS",
+      "State sales tax permit / seller's permit",
+      "Mobile vending or mobile business permit (required in some municipalities)",
+      "Wastewater discharge authorisation from the local Publicly Owned Treatment Works (POTW), or wash-water containment and offsite disposal - washwater may not be allowed to enter storm drains under the Clean Water Act",
+      "NPDES permit (only where wastewater is discharged directly to surface waters; generally impractical for mobile operators)",
+      "General liability insurance",
+      "Garage keepers legal liability insurance (covers customer vehicles in your care, custody and control)",
+      "Commercial auto insurance",
+      "Workers' compensation insurance (required once you have employees)"
+    ],
+    "licences_sources": [
+      "https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/41/sb/publications/powerwash.pdf",
+      "https://www.epa.gov/npdes/npdes-stormwater-program"
+    ],
+    "margin_note": "Auto detailing runs an average profit margin of 15-35%, with typical hourly rates of $50-$100 and full details priced around $150-$500 depending on vehicle size.",
+    "margin_source": "https://www.getjobber.com/academy/auto-detailing/how-much-to-charge-for-car-detailing/",
+    "key_stat": "The US Car Wash & Auto Detailing industry was worth $18.7 billion in 2026, having grown at a 1.5% CAGR over 2021-2026 (IBISWorld). The industry is highly fragmented - the 50 largest US companies hold less than 20% of the market.",
+    "key_stat_sources": [
+      "https://www.ibisworld.com/united-states/market-size/car-wash-auto-detailing/1695/",
+      "https://www.sbdcnet.org/small-business-research-reports/car-wash-detailing-business/"
+    ],
+    "demand_note": "Essentially flat: IBISWorld records the US car wash and auto detailing market at -0.1% growth in 2026 and only a 1.5% CAGR over 2021-2026, so operators grow mainly by taking share rather than riding market expansion.",
+    "demand_source": "https://www.ibisworld.com/united-states/market-size/car-wash-auto-detailing/1695/",
+    "hardest_part": "Commonly reported: customer acquisition and repeat bookings in a fragmented, low-barrier market where the 50 largest firms hold under 20% of revenue, compounded by practical constraints mobile operators face that fixed sites do not - weather, on-site water and power access, and legally disposing of wash water rather than letting it reach a storm drain.",
+    "hardest_part_sources": [
+      "https://www.sbdcnet.org/small-business-research-reports/car-wash-detailing-business/",
+      "https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/41/sb/publications/powerwash.pdf"
+    ],
+    "sources": [
+      "https://www.ibisworld.com/united-states/market-size/car-wash-auto-detailing/1695/",
+      "https://www.sbdcnet.org/small-business-research-reports/car-wash-detailing-business/",
+      "https://www.aquaprovac.com/blogs/aquaprovac-blogs/mobile-auto-detailing-business-startup-guide",
+      "https://www.getjobber.com/academy/auto-detailing/how-much-to-charge-for-car-detailing/",
+      "https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/41/sb/publications/powerwash.pdf",
+      "https://www.epa.gov/npdes/npdes-stormwater-program"
+    ]
+  },
+
+  "handyman-business": {
+    "startup_cost_low_usd": 2000,
+    "startup_cost_high_usd": 10000,
+    "startup_cost_note": "Tools and a reliable work vehicle dominate the budget; business registration is minor at $50-$500, and the real variable is which trades you offer, since licensed work such as electrical or plumbing carries far higher compliance costs.",
+    "startup_cost_source": "https://www.zenbusiness.com/handyman-business-costs/",
+    "licences": [
+      "General business licence (city/county)",
+      "Employer Identification Number (EIN) from the IRS",
+      "State contractor's licence (required above each state's minor-work threshold; in California the exemption is capped at $1,000 total per job as of 1 January 2025 under AB 2622, and only where no building permit is required and no workers are employed)",
+      "Handyman / home improvement contractor registration (required in some states and counties, e.g. home improvement contractor registration schemes)",
+      "Building permits for individual jobs (structural, electrical, plumbing, mechanical)",
+      "Specialty trade licences for electrical, plumbing, HVAC and gas work",
+      "EPA Lead-Safe Certified Renovator firm certification (RRP Rule) for work disturbing paint in housing or child-occupied facilities built before 1978",
+      "General liability insurance",
+      "Commercial auto insurance",
+      "Tools and equipment insurance",
+      "Contractor licence bond (required in most licensing states)",
+      "Workers' compensation insurance (required once you have employees)"
+    ],
+    "licences_sources": [
+      "https://www.cslb.ca.gov/Resources/IndustryBulletins/2024/AB%202622%20Implementation.FINAL.pdf",
+      "https://www.zenbusiness.com/handyman-business-costs/"
+    ],
+    "margin_note": "Most handyman businesses target a net profit margin of 20-40%, with solo operators at the higher end because they carry no payroll; self-employed handymen typically charge $50-$80 per hour against a national average of roughly $65-$125.",
+    "margin_source": "https://www.housecallpro.com/resources/how-to-price-handyman-jobs/",
+    "key_stat": "The median age of an owner-occupied home in the US reached 41 years in 2023, up from 31 years in 2005, and almost half of owner-occupied homes were built before 1980 (NAHB analysis of the American Community Survey) - an ageing stock that structurally drives repair demand.",
+    "key_stat_source": "https://www.nahb.org/news-and-economics/press-releases/2025/05/remodeling-market-poised-for-growth-as-the-age-of-owner-occupied-homes-increases",
+    "demand_note": "Modestly growing: BLS projects employment of general maintenance and repair workers to grow 4% from 2025 to 2035, about as fast as average, with roughly 148,700 openings per year, and Harvard's JCHS puts US home improvement and repair spending above $600 billion a year with $105 billion of that on maintenance alone in 2023.",
+    "demand_sources": [
+      "https://www.bls.gov/ooh/installation-maintenance-and-repair/general-maintenance-and-repair-workers.htm",
+      "https://www.jchs.harvard.edu/sites/default/files/interactive-item/files/Harvard_JCHS_Improving_Americas_Housing_2025_Key_Facts.pdf"
+    ],
+    "hardest_part": "Staying inside the licensing line. Handyman work is legal only below a state-set dollar threshold and only for non-permit work - California caps it at $1,000 per job with no employees and requires unlicensed operators to disclose that they are unlicensed in adverts, and bidding above it exposes you to legal action. Thresholds and rules differ in every state, so the commonly reported difficulty is scope creep pushing jobs across that line.",
+    "hardest_part_source": "https://www.cslb.ca.gov/Resources/IndustryBulletins/2024/AB%202622%20Implementation.FINAL.pdf",
+    "sources": [
+      "https://www.bls.gov/ooh/installation-maintenance-and-repair/general-maintenance-and-repair-workers.htm",
+      "https://www.cslb.ca.gov/Resources/IndustryBulletins/2024/AB%202622%20Implementation.FINAL.pdf",
+      "https://www.nahb.org/news-and-economics/press-releases/2025/05/remodeling-market-poised-for-growth-as-the-age-of-owner-occupied-homes-increases",
+      "https://www.jchs.harvard.edu/sites/default/files/interactive-item/files/Harvard_JCHS_Improving_Americas_Housing_2025_Key_Facts.pdf",
+      "https://www.zenbusiness.com/handyman-business-costs/",
+      "https://www.housecallpro.com/resources/how-to-price-handyman-jobs/"
+    ]
+  },
+
+  "pressure-washing-business": {
+    "startup_cost_low_usd": 6000,
+    "startup_cost_high_usd": 50000,
+    "startup_cost_note": "The machine and the rig dominate: residential pressure washers run $1,000-$3,000 and commercial units $3,000-$15,000+, while the vehicle and trailer alone account for $5,000-$30,000.",
+    "startup_cost_source": "https://www.zenbusiness.com/pressure-washing-startup-costs/",
+    "licences": [
+      "General business licence (city/county)",
+      "Employer Identification Number (EIN) from the IRS",
+      "State sales tax permit (where the service is taxable)",
+      "POTW authorisation - written permission from the local Publicly Owned Treatment Works to discharge wash water to the sanitary sewer",
+      "NPDES permit (required for any direct discharge to surface waters; permits are needed per job site and can take months, so this is generally impractical for mobile operators)",
+      "Permit-to-Install (PTI) for wastewater treatment equipment such as holding tanks or oil/water separators",
+      "Local stormwater / illicit discharge compliance under the municipal MS4 programme",
+      "General liability insurance ($40-$200 per month typical)",
+      "Commercial auto insurance",
+      "Inland marine / equipment insurance",
+      "Workers' compensation insurance (required once you have employees)"
+    ],
+    "licences_sources": [
+      "https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/41/sb/publications/powerwash.pdf",
+      "https://www.epa.gov/npdes/npdes-stormwater-program",
+      "https://www.zenbusiness.com/pressure-washing-startup-costs/"
+    ],
+    "margin_note": "Contractors are advised to target 20-40% profit margins, priced off $0.15-$0.75 per square foot residential and $0.08-$0.40 per square foot commercial, with most setting a $100-$250 job minimum to cover travel and setup.",
+    "margin_source": "https://www.housecallpro.com/resources/how-to-price-pressure-washing-jobs/",
+    "key_stat": "There were approximately 32,193 pressure washing businesses in the US in 2024 generating about $1.2 billion in industry revenue and employing roughly 41,799 technicians (IBISWorld data, as reported by Jobber) - an average of under $40,000 revenue per business, reflecting how many operators are solo or seasonal.",
+    "key_stat_source": "https://www.getjobber.com/academy/pressure-washing/pressure-washing-industry-statistics/",
+    "demand_note": "Demand tracks home maintenance spending, which Harvard's JCHS puts at $105 billion in 2023 within a US improvement and repair market above $600 billion; published growth estimates for the pressure washing niche itself conflict across secondary sources, so treat any single growth percentage with caution.",
+    "demand_sources": [
+      "https://www.jchs.harvard.edu/sites/default/files/interactive-item/files/Harvard_JCHS_Improving_Americas_Housing_2025_Key_Facts.pdf",
+      "https://www.getjobber.com/academy/pressure-washing/pressure-washing-industry-statistics/"
+    ],
+    "hardest_part": "Wastewater compliance, which most new entrants underestimate. Regulators treat pressure-wash runoff as industrial wastewater: you may not let it enter a storm sewer, gutter or parking lot drain, and using biodegradable soap does not exempt it. In practice you must either get written POTW permission to discharge to the sanitary sewer or capture the water and haul it for disposal. Seasonality is the other commonly reported difficulty.",
+    "hardest_part_source": "https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/41/sb/publications/powerwash.pdf",
+    "sources": [
+      "https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/41/sb/publications/powerwash.pdf",
+      "https://www.epa.gov/npdes/npdes-stormwater-program",
+      "https://www.zenbusiness.com/pressure-washing-startup-costs/",
+      "https://www.housecallpro.com/resources/how-to-price-pressure-washing-jobs/",
+      "https://www.getjobber.com/academy/pressure-washing/pressure-washing-industry-statistics/",
+      "https://www.jchs.harvard.edu/sites/default/files/interactive-item/files/Harvard_JCHS_Improving_Americas_Housing_2025_Key_Facts.pdf"
+    ]
+  }
+}
