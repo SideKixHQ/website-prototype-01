@@ -327,6 +327,51 @@
       "permanent": true
     },
     {
+      "source": "/sponsors",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/sponsors/",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/opt-in-accept",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/opt-in-accept/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:slug*",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/category/:slug*",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/f/great-you-have-an-idea-no-what",
+      "destination": "/blog/what-to-do-after-having-your-business-idea/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/f/:slug*",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/m/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/90-day-goals",
       "destination": "/90-day-goals.html",
       "permanent": true
