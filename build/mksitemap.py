@@ -19,11 +19,16 @@ PRIORITY = {
  "tools.html": "0.9", "library.html": "0.9", "assessment.html": "0.9",
  "market-data.html": "0.9", "state-filing.html": "0.9",
  "business-idea-where-to-start.html": "0.9",
+ "what-business-should-i-start.html": "0.9",
  "start-a-business-in-north-carolina.html": "0.9",
  "terms.html": "0.3", "privacy.html": "0.3", "cookies.html": "0.3",
 }
 FREQ = {"index.html": "weekly", "events.html": "weekly", "press.html": "weekly",
         "library.html": "weekly", "market-data.html": "monthly"}
+
+# The twenty industry guides rank on their own and are not leaf content, so
+# they sit above the 0.7 default rather than in it.
+GUIDE_PRIORITY = "0.8"
 
 
 def main():
@@ -48,7 +53,9 @@ def main():
         mod = datetime.date.fromtimestamp(os.path.getmtime(p)).isoformat()
         key = os.path.basename(slug) or "index.html"
         urls.append((url, mod, FREQ.get(key, "monthly"),
-                     PRIORITY.get(key, "0.6" if slug.startswith("blog/") else "0.7")))
+                     PRIORITY.get(key,
+                         GUIDE_PRIORITY if key.startswith("how-to-start-")
+                         else "0.6" if slug.startswith("blog/") else "0.7")))
 
     live = {u for u, _, _, _ in urls}
     dropped = [u for u in have if u not in live]
