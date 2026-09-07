@@ -53,6 +53,10 @@ STRIPS = [
   "Eight panels from a first idea to a coffee cart that opened."),
 ]
 
+# One strip is lifted out and sits directly under the declaration, because it
+# is the one that reads as yellow on the page and it earns the position.
+FEATURED = "ideas-are-easy"
+
 COMICS = [(k, t, d) for _, k, t, d in SERIES] + STRIPS
 
 body = ['<div class="br">']
@@ -67,6 +71,22 @@ body.append(
  '<span>Written for anyone who has decided to stop waiting for permission. '
  'Read it, and if it says what you would have said, put your name to it.</span>'
  '<em>Read and sign it &rarr;</em></div></a></section>')
+
+# ---- the featured strip, straight under the declaration
+_feat = [c for c in STRIPS if c[0] == FEATURED]
+if _feat:
+    _k, _t, _d = _feat[0]
+    body.append(
+     '<section class="br-s br-feat"><h2>Start here</h2>'
+     '<figure class="br-comic br-featcard">'
+     '<button aria-label="Read %s, %d panels" class="br-open" data-key="%s" type="button">'
+     '<img alt="%s" decoding="async" height="1536" loading="lazy" '
+     'src="assets/comics/%s.webp" width="1024"/>'
+     '<span aria-hidden="true" class="br-read">Read it</span></button>'
+     '<figcaption><b>%s</b><span>%s</span><em>%d panels</em></figcaption>'
+     '</figure></section>'
+     % (e(_t), len(PANELS[_k]), e(_k), e(_t + ". " + _d), e(_k),
+        e(_t), e(_d), len(PANELS[_k])))
 
 # ---- the game
 body.append(
@@ -97,7 +117,7 @@ def card(k, t, d, issue=None):
                e(t + ". " + d), e(k), e(t), e(d), n, unit))
 
 serial = "".join(card(k, t, d, i) for i, k, t, d in SERIES)
-strips = "".join(card(k, t, d) for k, t, d in STRIPS)
+strips = "".join(card(k, t, d) for k, t, d in STRIPS if k != FEATURED)
 
 DATA = {}
 for n, (i, k, t, d) in enumerate(SERIES):
@@ -307,6 +327,19 @@ html.br-reading #kx-nav{display:none !important}
 @media(pointer:coarse){ .br-read{opacity:1;transform:translateX(-50%) translateY(0)} }
 .br-comic em{display:block;font-style:normal;font-family:var(--util);font-size:10px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:7px}
+
+/* ---- the featured strip, sitting under the declaration ----
+   Wider than a grid card, because it is one thing rather than one of three,
+   and the artwork is the reason anybody opens it. */
+.br-feat{margin:0 0 56px}
+.br-featcard{max-width:560px;margin:0}
+.br-featcard .br-open{display:block;width:100%}
+.br-featcard img{width:100%;height:auto;display:block;border-radius:14px}
+@media(min-width:820px){
+  .br-featcard{display:grid;grid-template-columns:300px 1fr;gap:26px;
+    align-items:center;max-width:none}
+  .br-featcard figcaption{align-self:center}
+}
 
 /* ---- the declaration, leading the page ----
    A slow glow rather than a flash: it draws the eye without competing with
