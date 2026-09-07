@@ -1,0 +1,324 @@
+{
+ "slug": "founder-energy",
+ "title": "Which energy do you run on?",
+ "kicker": "6 questions, about 40 seconds",
+ "intro": "Twelve energies, and you have all of them. This is the quick read on which one is loudest today.",
+ "share_line": "I run on",
+ "accent": "#D4A856",
+ "og_line": "Six questions. Twelve energies. One of them is louder than the rest.",
+ "cta": {
+  "href": "../../assessment.html",
+  "label": "Score all twelve",
+  "blurb": "Six questions gave you one answer. The full Energy Discovery is 48 statements and returns the whole distribution, including the energies you run on least."
+ },
+ "questions": [
+  {
+   "q": "It is Monday and the week has one gap in it. What ends up in the gap?",
+   "options": [
+    {
+     "a": "Something I started on Saturday for no reason",
+     "w": {
+      "cat": 3,
+      "unicorn": 1
+     }
+    },
+    {
+     "a": "The thing I have been putting off, finally",
+     "w": {
+      "lion": 3,
+      "goat": 1
+     }
+    },
+    {
+     "a": "Whatever the group is stuck on",
+     "w": {
+      "gorilla": 3,
+      "dolphin": 1
+     }
+    },
+    {
+     "a": "Nothing. It is slack, and the slack is why the week holds",
+     "w": {
+      "panda": 3,
+      "highland": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A plan you liked has just stopped working. First move?",
+   "options": [
+    {
+     "a": "Find the way round it",
+     "w": {
+      "octopus": 3,
+      "unicorn": 1
+     }
+    },
+    {
+     "a": "Go again, differently",
+     "w": {
+      "phoenix": 3,
+      "lion": 1
+     }
+    },
+    {
+     "a": "Wait a beat. Half of these fix themselves",
+     "w": {
+      "possum": 3,
+      "highland": 1
+     }
+    },
+    {
+     "a": "Keep going. It stopped being fun, it did not stop working",
+     "w": {
+      "goat": 3,
+      "dragon": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Someone in the room has gone quiet.",
+   "options": [
+    {
+     "a": "I notice, and I ask them afterwards",
+     "w": {
+      "dolphin": 3,
+      "panda": 1
+     }
+    },
+    {
+     "a": "I name it now, so the room deals with it",
+     "w": {
+      "gorilla": 3,
+      "lion": 1
+     }
+    },
+    {
+     "a": "I leave it. Pushing makes it worse",
+     "w": {
+      "possum": 3,
+      "highland": 1
+     }
+    },
+    {
+     "a": "I had not noticed. I was somewhere further out",
+     "w": {
+      "dragon": 3,
+      "unicorn": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The interesting part is over and the work is boring now.",
+   "options": [
+    {
+     "a": "That is the part I am good at",
+     "w": {
+      "goat": 3,
+      "panda": 1
+     }
+    },
+    {
+     "a": "I am already thinking about something else",
+     "w": {
+      "unicorn": 3,
+      "cat": 1
+     }
+    },
+    {
+     "a": "I find a better way to do it so it stops being boring",
+     "w": {
+      "octopus": 3,
+      "cat": 1
+     }
+    },
+    {
+     "a": "I start the next thing alongside it",
+     "w": {
+      "cat": 3,
+      "dragon": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Money is tight and something has to give.",
+   "options": [
+    {
+     "a": "Cut deep, start clean",
+     "w": {
+      "phoenix": 3,
+      "lion": 1
+     }
+    },
+    {
+     "a": "Hold my level. Panic costs more than the shortfall",
+     "w": {
+      "highland": 3,
+      "possum": 1
+     }
+    },
+    {
+     "a": "Work out what still pays, and protect that",
+     "w": {
+      "panda": 3,
+      "octopus": 1
+     }
+    },
+    {
+     "a": "Keep funding the long thing. It is the whole point",
+     "w": {
+      "dragon": 3,
+      "goat": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A year out, the version of this you would be glad about:",
+   "options": [
+    {
+     "a": "Still standing, still mine",
+     "w": {
+      "highland": 3,
+      "possum": 1
+     }
+    },
+    {
+     "a": "Somewhere nobody expected it to go",
+     "w": {
+      "unicorn": 3,
+      "octopus": 1
+     }
+    },
+    {
+     "a": "Full of people who want to be there",
+     "w": {
+      "dolphin": 3,
+      "gorilla": 1
+     }
+    },
+    {
+     "a": "Past the decision I kept avoiding",
+     "w": {
+      "lion": 3,
+      "phoenix": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "possum",
+   "name": "Possum",
+   "headline": "You wait for the ground to feel solid before you move.",
+   "body": "You are the one who asks what happens if this goes wrong, and you ask it before the money is spent. Plans you have looked at tend to survive contact with reality.",
+   "art": "assets/energies/possum.webp",
+   "accent": "#E6323F",
+   "cost": "Waiting for certainty that was never going to arrive."
+  },
+  {
+   "key": "highland",
+   "name": "Highland Cow",
+   "headline": "You hold your level when the temperature rises.",
+   "body": "You are who people come to in a bad week. Your pace barely changes, which lets everyone else's settle.",
+   "art": "assets/energies/highland.webp",
+   "accent": "#3FAEBD",
+   "cost": "Being read as detached when what is wanted is urgency."
+  },
+  {
+   "key": "goat",
+   "name": "Goat",
+   "headline": "You keep climbing after the easy part ends.",
+   "body": "You finish things other people abandoned at the halfway point. Difficulty reads to you as ordinary rather than as a signal to stop.",
+   "art": "assets/energies/goat.webp",
+   "accent": "#DE9E33",
+   "cost": "Persisting past the point where the evidence changed."
+  },
+  {
+   "key": "panda",
+   "name": "Panda",
+   "headline": "You work at a rate you can still hold next year.",
+   "body": "Your output is predictable, which makes you plannable. You finish long work without the scramble at the end.",
+   "art": "assets/energies/panda.webp",
+   "accent": "#B950C2",
+   "cost": "Missing a short window that needed an unsustainable push."
+  },
+  {
+   "key": "cat",
+   "name": "Cat",
+   "headline": "You start before anyone tells you to.",
+   "body": "You do not need the brief. You will have taught yourself most of what you needed by the time permission arrives.",
+   "art": "assets/energies/cat.webp",
+   "accent": "#EB2745",
+   "cost": "Solving alone what a conversation would have solved faster."
+  },
+  {
+   "key": "lion",
+   "name": "Lion",
+   "headline": "You make the call that has been sitting unmade.",
+   "body": "Decisions stop circling when you are in the room. You will act on partial information and own what follows.",
+   "art": "assets/energies/lion.webp",
+   "accent": "#E76A23",
+   "cost": "Deciding before the cheap information had arrived."
+  },
+  {
+   "key": "phoenix",
+   "name": "Phoenix",
+   "headline": "You go back in after it went wrong.",
+   "body": "You examine failures rather than move past them, and you change approach based on what you find. Your second attempt is measurably different from your first.",
+   "art": "assets/energies/phoenix.webp",
+   "accent": "#D64635",
+   "cost": "Re-entering something that had already told you what it was."
+  },
+  {
+   "key": "octopus",
+   "name": "Octopus",
+   "headline": "You find the route through when the obvious one is blocked.",
+   "body": "You hold several moving parts without flattening them, and you pick up unfamiliar ground fast enough to act on it.",
+   "art": "assets/energies/octopus.webp",
+   "accent": "#BD4FAF",
+   "cost": "Changing approach before the last one had a fair test."
+  },
+  {
+   "key": "dolphin",
+   "name": "Dolphin",
+   "headline": "You read the room before anyone says anything.",
+   "body": "You know when a meeting has gone wrong before it shows. You adjust how you say things to who is hearing them.",
+   "art": "assets/energies/dolphin.webp",
+   "accent": "#067FC8",
+   "cost": "Carrying the room's weather and calling it your own."
+  },
+  {
+   "key": "gorilla",
+   "name": "Gorilla",
+   "headline": "You get the group to something it can actually act on.",
+   "body": "You notice who has not spoken. You take the part of the work nobody picked up, and you put the group's outcome above your position in it.",
+   "art": "assets/energies/gorilla.webp",
+   "accent": "#DF4036",
+   "cost": "Your own contribution going unrecorded."
+  },
+  {
+   "key": "dragon",
+   "name": "Dragon",
+   "headline": "You work towards something that will not pay off yet.",
+   "body": "You connect today's task to why it is being done, and you can describe where this goes in a way other people can picture.",
+   "art": "assets/energies/dragon.webp",
+   "accent": "#4B7CC7",
+   "cost": "A horizon so far out that this quarter never gets judged."
+  },
+  {
+   "key": "unicorn",
+   "name": "Unicorn",
+   "headline": "You arrive at the answer nobody else considered.",
+   "body": "You combine things that do not usually go together, and you question whether the standard way is right here rather than in general.",
+   "art": "assets/energies/unicorn.webp",
+   "accent": "#E62B68",
+   "cost": "Novelty chosen over the thing that would have worked."
+  }
+ ]
+}

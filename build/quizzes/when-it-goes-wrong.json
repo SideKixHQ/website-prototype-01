@@ -1,0 +1,289 @@
+{
+ "slug": "when-it-goes-wrong",
+ "title": "What do you do when it goes wrong?",
+ "kicker": "7 questions, about 50 seconds",
+ "intro": "Everything works until it does not. This is the read on what you actually do in the hour after, which is usually more telling than what you do on a good day.",
+ "share_line": "When it goes wrong I am",
+ "accent": "#D4A856",
+ "og_line": "Seven questions on the hour after it breaks.",
+ "cta": {
+  "title": "There are twelve of these",
+  "href": "../../assessment.html",
+  "label": "Score all twelve",
+  "blurb": "This is one of twelve energies, seen through one situation. The full Energy Discovery is 48 statements and scores all twelve."
+ },
+ "questions": [
+  {
+   "q": "The thing has just gone wrong. The first hour.",
+   "options": [
+    {
+     "a": "I am already sketching the next version",
+     "w": {
+      "phoenix": 3,
+      "octopus": 1
+     }
+    },
+    {
+     "a": "I do nothing on purpose. First reactions are usually wrong",
+     "w": {
+      "possum": 3,
+      "highland": 1
+     }
+    },
+    {
+     "a": "I say it out loud to everyone who needs to hear it",
+     "w": {
+      "lion": 3
+     }
+    },
+    {
+     "a": "I am looking for the door nobody tried",
+     "w": {
+      "octopus": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "Who finds out, and when?",
+   "options": [
+    {
+     "a": "Everyone, immediately, from me",
+     "w": {
+      "lion": 3,
+      "phoenix": 1
+     }
+    },
+    {
+     "a": "The people it affects, once I know what I am telling them",
+     "w": {
+      "highland": 3,
+      "goat": 1
+     }
+    },
+    {
+     "a": "Nobody yet. It might still be nothing",
+     "w": {
+      "possum": 3
+     }
+    },
+    {
+     "a": "Whoever can help me get round it",
+     "w": {
+      "octopus": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "A week later, the same problem is still there.",
+   "options": [
+    {
+     "a": "Still on it. It has not beaten me",
+     "w": {
+      "goat": 3,
+      "highland": 1
+     }
+    },
+    {
+     "a": "I have started something else that solves the same need",
+     "w": {
+      "phoenix": 3,
+      "octopus": 1
+     }
+    },
+    {
+     "a": "I have made the call to stop",
+     "w": {
+      "lion": 3
+     }
+    },
+    {
+     "a": "I am waiting. It is moving on its own",
+     "w": {
+      "possum": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "The part of going wrong you handle worst:",
+   "options": [
+    {
+     "a": "Being rushed into an answer",
+     "w": {
+      "possum": 3,
+      "highland": 1
+     }
+    },
+    {
+     "a": "Being told to sit tight",
+     "w": {
+      "lion": 3,
+      "phoenix": 1
+     }
+    },
+    {
+     "a": "Being told there is only one route",
+     "w": {
+      "octopus": 3
+     }
+    },
+    {
+     "a": "Being told to drop it",
+     "w": {
+      "goat": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "Somebody else caused it.",
+   "options": [
+    {
+     "a": "We deal with it now, in the room",
+     "w": {
+      "lion": 3
+     }
+    },
+    {
+     "a": "I hold my tone. Heat makes this worse",
+     "w": {
+      "highland": 3,
+      "possum": 1
+     }
+    },
+    {
+     "a": "I work round them and sort it after",
+     "w": {
+      "octopus": 3,
+      "goat": 1
+     }
+    },
+    {
+     "a": "It is done. What does the next version look like",
+     "w": {
+      "phoenix": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "Two years on, what you say about it:",
+   "options": [
+    {
+     "a": "It is the reason the current thing works",
+     "w": {
+      "phoenix": 3
+     }
+    },
+    {
+     "a": "I kept going and it turned",
+     "w": {
+      "goat": 3
+     }
+    },
+    {
+     "a": "I stayed level while everyone else did not",
+     "w": {
+      "highland": 3
+     }
+    },
+    {
+     "a": "I found a way nobody expected",
+     "w": {
+      "octopus": 3,
+      "lion": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Honestly, the risk in how you handle it:",
+   "options": [
+    {
+     "a": "I move too fast and burn something usable",
+     "w": {
+      "lion": 3,
+      "phoenix": 1
+     }
+    },
+    {
+     "a": "I wait so long the choice gets made for me",
+     "w": {
+      "possum": 3
+     }
+    },
+    {
+     "a": "I keep going long after it stopped being worth it",
+     "w": {
+      "goat": 3,
+      "highland": 1
+     }
+    },
+    {
+     "a": "I improvise past a problem that needed fixing",
+     "w": {
+      "octopus": 3
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "phoenix",
+   "name": "Phoenix",
+   "headline": "You go back in after it went wrong.",
+   "body": "You examine failures rather than move past them, and you change approach based on what you find. Your second attempt is measurably different from your first.",
+   "cost": "Re-entering something that had already told you what it was.",
+   "art": "assets/energies/phoenix.webp",
+   "accent": "#D64635"
+  },
+  {
+   "key": "possum",
+   "name": "Possum",
+   "headline": "You wait for the ground to feel solid before you move.",
+   "body": "You are the one who asks what happens if this goes wrong, and you ask it before the money is spent. Plans you have looked at tend to survive contact with reality.",
+   "cost": "Waiting for certainty that was never going to arrive.",
+   "art": "assets/energies/possum.webp",
+   "accent": "#E6323F"
+  },
+  {
+   "key": "lion",
+   "name": "Lion",
+   "headline": "You make the call that has been sitting unmade.",
+   "body": "Decisions stop circling when you are in the room. You will act on partial information and own what follows.",
+   "cost": "Deciding before the cheap information had arrived.",
+   "art": "assets/energies/lion.webp",
+   "accent": "#E76A23"
+  },
+  {
+   "key": "octopus",
+   "name": "Octopus",
+   "headline": "You find the route through when the obvious one is blocked.",
+   "body": "You hold several moving parts without flattening them, and you pick up unfamiliar ground fast enough to act on it.",
+   "cost": "Changing approach before the last one had a fair test.",
+   "art": "assets/energies/octopus.webp",
+   "accent": "#BD4FAF"
+  },
+  {
+   "key": "highland",
+   "name": "Highland Cow",
+   "headline": "You hold your level when the temperature rises.",
+   "body": "You are who people come to in a bad week. Your pace barely changes, which lets everyone else's settle.",
+   "cost": "Being read as detached when what is wanted is urgency.",
+   "art": "assets/energies/highland.webp",
+   "accent": "#3FAEBD"
+  },
+  {
+   "key": "goat",
+   "name": "Goat",
+   "headline": "You keep climbing after the easy part ends.",
+   "body": "You finish things other people abandoned at the halfway point. Difficulty reads to you as ordinary rather than as a signal to stop.",
+   "cost": "Persisting past the point where the evidence changed.",
+   "art": "assets/energies/goat.webp",
+   "accent": "#DE9E33"
+  }
+ ]
+}

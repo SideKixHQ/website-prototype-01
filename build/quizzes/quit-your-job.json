@@ -1,0 +1,331 @@
+{
+ "slug": "quit-your-job",
+ "title": "Are you ready to quit your job?",
+ "kicker": "8 questions, about a minute",
+ "intro": "Not a verdict, and not permission. A read on which of five places you are actually standing, based on what has happened rather than how it feels.",
+ "share_line": "Right now I am",
+ "accent": "#D4A856",
+ "og_line": "Eight questions and an honest read on where you actually stand.",
+ "cta": {
+  "title": "The number underneath this",
+  "href": "../../startup-cost-calculator.html",
+  "label": "Work out the real cost",
+  "blurb": "Most of this question is arithmetic wearing a feeling. What it would cost to start, and what you would have to sell to cover it."
+ },
+ "questions": [
+  {
+   "q": "Has anyone outside your own circle paid you for this?",
+   "options": [
+    {
+     "a": "Several people, more than once",
+     "w": {
+      "ready": 3,
+      "testing": 1
+     }
+    },
+    {
+     "a": "A couple, and it felt like luck",
+     "w": {
+      "testing": 3
+     }
+    },
+    {
+     "a": "Not yet. It is not built",
+     "w": {
+      "dreaming": 3
+     }
+    },
+    {
+     "a": "No, and I have not asked",
+     "w": {
+      "stay": 3,
+      "stalled": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Months of your own costs sitting in the bank:",
+   "options": [
+    {
+     "a": "Under two",
+     "w": {
+      "stay": 3
+     }
+    },
+    {
+     "a": "Three to six",
+     "w": {
+      "testing": 3,
+      "stalled": 1
+     }
+    },
+    {
+     "a": "Six to twelve",
+     "w": {
+      "ready": 3
+     }
+    },
+    {
+     "a": "I have not worked it out",
+     "w": {
+      "dreaming": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "When you picture leaving, the first feeling is:",
+   "options": [
+    {
+     "a": "Relief",
+     "w": {
+      "ready": 3,
+      "stalled": 1
+     }
+    },
+    {
+     "a": "Dread about money",
+     "w": {
+      "stay": 3
+     }
+    },
+    {
+     "a": "Excitement, then a blank",
+     "w": {
+      "dreaming": 3
+     }
+    },
+    {
+     "a": "Impatience. I know the plan already",
+     "w": {
+      "ready": 3,
+      "testing": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What is actually stopping you today?",
+   "options": [
+    {
+     "a": "Nothing concrete, which bothers me",
+     "w": {
+      "stalled": 3,
+      "ready": 1
+     }
+    },
+    {
+     "a": "The income",
+     "w": {
+      "stay": 3
+     }
+    },
+    {
+     "a": "I do not know what to build first",
+     "w": {
+      "dreaming": 3
+     }
+    },
+    {
+     "a": "I want one more quarter of proof",
+     "w": {
+      "testing": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "The last twelve weeks, on this:",
+   "options": [
+    {
+     "a": "Shipped something, talked to buyers",
+     "w": {
+      "testing": 3,
+      "ready": 1
+     }
+    },
+    {
+     "a": "Thought about it a lot",
+     "w": {
+      "dreaming": 3,
+      "stalled": 1
+     }
+    },
+    {
+     "a": "Deliberately parked it",
+     "w": {
+      "stalled": 3
+     }
+    },
+    {
+     "a": "Nothing. Work has been relentless",
+     "w": {
+      "stay": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "If it earned half your salary for a year, you would:",
+   "options": [
+    {
+     "a": "Go. That is enough",
+     "w": {
+      "ready": 3
+     }
+    },
+    {
+     "a": "Wait for three quarters",
+     "w": {
+      "testing": 3,
+      "stalled": 1
+     }
+    },
+    {
+     "a": "Still not go",
+     "w": {
+      "stay": 3
+     }
+    },
+    {
+     "a": "I have never done that sum",
+     "w": {
+      "dreaming": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "Who knows you are thinking about this?",
+   "options": [
+    {
+     "a": "Everyone. I have said it out loud",
+     "w": {
+      "ready": 3
+     }
+    },
+    {
+     "a": "A few people I trust",
+     "w": {
+      "testing": 3
+     }
+    },
+    {
+     "a": "One person, or nobody",
+     "w": {
+      "dreaming": 3,
+      "stay": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A year from now, the outcome you would find hardest:",
+   "options": [
+    {
+     "a": "Still exactly here",
+     "w": {
+      "stalled": 3,
+      "ready": 1
+     }
+    },
+    {
+     "a": "Having gone and run out of money",
+     "w": {
+      "stay": 3
+     }
+    },
+    {
+     "a": "Having gone too early and killed a good idea",
+     "w": {
+      "testing": 3
+     }
+    },
+    {
+     "a": "Never having found out",
+     "w": {
+      "dreaming": 3
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "dreaming",
+   "name": "Still dreaming about it",
+   "accent": "#8E6FBF",
+   "headline": "You want it, and nothing has been tested yet.",
+   "body": "Wanting it is not the same as being close to it, and there is no shame in that. Nothing here has met a real customer, which means nothing here has been disproved either.",
+   "cost": "Time. The idea keeps its shine for exactly as long as nobody tries to buy it.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../business-idea-where-to-start.html",
+     "label": "What to do first"
+    }
+   ]
+  },
+  {
+   "key": "testing",
+   "name": "Quietly testing it",
+   "accent": "#3FAEBD",
+   "headline": "It exists in small, and a few people have said yes.",
+   "body": "You have proof that somebody wants it, at a scale that cannot pay you yet. This is the most useful place to be and the least comfortable.",
+   "cost": "Patience. The evidence is real but thin, and thin evidence is easy to over-read.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../breakeven-calculator.html",
+     "label": "What you would have to sell"
+    }
+   ]
+  },
+  {
+   "key": "stalled",
+   "name": "Stalled on purpose",
+   "accent": "#DE9E33",
+   "headline": "You could move and you have decided not to yet.",
+   "body": "There is a reason you are waiting and it is probably a good one. Worth being honest about whether the reason is the mortgage or the fear, because they need different answers.",
+   "cost": "Momentum. A pause you keep extending stops being a decision and becomes a habit.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../90-day-goals.html",
+     "label": "Put a date on it"
+    }
+   ]
+  },
+  {
+   "key": "ready",
+   "name": "Closer than you are admitting",
+   "accent": "#4FA96B",
+   "headline": "The numbers work and you are still saying next year.",
+   "body": "Revenue exists, the gap is smaller than you say out loud, and the thing standing in the way is the size of the jump rather than the maths.",
+   "cost": "The story you tell people about why not yet. It gets more convincing every time you tell it.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../startup-cost-calculator.html",
+     "label": "Run the real number"
+    }
+   ]
+  },
+  {
+   "key": "stay",
+   "name": "Better off keeping the job",
+   "accent": "#E6323F",
+   "headline": "For now, and that is a real answer.",
+   "body": "The runway is short, the demand is unproven, and going now would mean pricing in a panic. Plenty of businesses got built at nights and weekends first.",
+   "cost": "Nothing, yet. This is the cheapest place to be wrong.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../what-business-should-i-start.html",
+     "label": "See what else fits"
+    }
+   ]
+  }
+ ]
+}

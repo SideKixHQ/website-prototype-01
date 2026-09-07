@@ -1,0 +1,421 @@
+{
+ "slug": "what-business",
+ "title": "What kind of business fits you?",
+ "kicker": "8 questions, about a minute",
+ "intro": "Not which idea. Which shape. Twenty businesses on this site, sorted into six kinds, and this points at the kind before you argue about the idea.",
+ "share_line": "I should start",
+ "accent": "#D4A856",
+ "og_line": "Eight questions, six kinds of business, and the twenty real ones behind them.",
+ "cta": {
+  "title": "See all twenty",
+  "href": "../../what-business-should-i-start.html",
+  "label": "Compare all twenty",
+  "blurb": "Every one of the twenty compared on what it costs to start, what the margin looks like, whether demand is growing and what ends most of them."
+ },
+ "questions": [
+  {
+   "q": "Saturday morning, nothing booked. What sounds least like a chore?",
+   "options": [
+    {
+     "a": "Fixing something that has been annoying you",
+     "w": {
+      "hands": 3,
+      "food": 1
+     }
+    },
+    {
+     "a": "Cooking for more people than strictly necessary",
+     "w": {
+      "food": 3,
+      "thing": 1
+     }
+    },
+    {
+     "a": "Explaining something to someone who asked",
+     "w": {
+      "skill": 3,
+      "licensed": 1
+     }
+    },
+    {
+     "a": "Rearranging a shelf until it photographs well",
+     "w": {
+      "craft": 3,
+      "skill": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Which of these would you actually enjoy owning?",
+   "options": [
+    {
+     "a": "A shop that takes orders overnight",
+     "w": {
+      "thing": 3,
+      "licensed": 1
+     }
+    },
+    {
+     "a": "A place people have to be certified to run",
+     "w": {
+      "licensed": 3,
+      "skill": 1
+     }
+    },
+    {
+     "a": "A van with your name on it",
+     "w": {
+      "hands": 3,
+      "craft": 1
+     }
+    },
+    {
+     "a": "A counter with a queue at it",
+     "w": {
+      "food": 3,
+      "hands": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A stranger asks what you do. The version you would be proud to say:",
+   "options": [
+    {
+     "a": "I sort out the thing they were dreading",
+     "w": {
+      "skill": 3,
+      "licensed": 1
+     }
+    },
+    {
+     "a": "I make the thing they put on their wall",
+     "w": {
+      "craft": 3,
+      "skill": 1
+     }
+    },
+    {
+     "a": "I ship about forty of these a week",
+     "w": {
+      "thing": 3,
+      "skill": 1
+     }
+    },
+    {
+     "a": "I run a licensed practice",
+     "w": {
+      "licensed": 3,
+      "hands": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What would you rather be judged on?",
+   "options": [
+    {
+     "a": "Whether it works now that I have left",
+     "w": {
+      "hands": 3,
+      "craft": 1
+     }
+    },
+    {
+     "a": "Whether they came back next week",
+     "w": {
+      "food": 3,
+      "hands": 1
+     }
+    },
+    {
+     "a": "Whether the advice turned out to be right",
+     "w": {
+      "skill": 3,
+      "thing": 1
+     }
+    },
+    {
+     "a": "Whether it looks the way they hoped",
+     "w": {
+      "craft": 3,
+      "hands": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Money to start:",
+   "options": [
+    {
+     "a": "Enough for stock, then more for ads",
+     "w": {
+      "thing": 3,
+      "skill": 1
+     }
+    },
+    {
+     "a": "Real money and a wait for approval",
+     "w": {
+      "licensed": 3,
+      "hands": 1
+     }
+    },
+    {
+     "a": "A few thousand for kit and a vehicle",
+     "w": {
+      "hands": 3,
+      "skill": 1
+     }
+    },
+    {
+     "a": "Enough for a room, a fit out and an inspection",
+     "w": {
+      "food": 3,
+      "craft": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The part that would bore you into quitting:",
+   "options": [
+    {
+     "a": "Doing the same job for the same person forever",
+     "w": {
+      "skill": 3,
+      "thing": 1
+     }
+    },
+    {
+     "a": "Work nobody ever looks at twice",
+     "w": {
+      "craft": 3,
+      "hands": 1
+     }
+    },
+    {
+     "a": "Talking to customers all day",
+     "w": {
+      "thing": 3,
+      "hands": 1
+     }
+    },
+    {
+     "a": "Trading before the paperwork is done",
+     "w": {
+      "licensed": 3,
+      "thing": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Where does the work happen?",
+   "options": [
+    {
+     "a": "Wherever the job is",
+     "w": {
+      "hands": 3,
+      "skill": 1
+     }
+    },
+    {
+     "a": "A kitchen, early",
+     "w": {
+      "food": 3,
+      "craft": 1
+     }
+    },
+    {
+     "a": "Anywhere with signal",
+     "w": {
+      "skill": 3,
+      "hands": 1
+     }
+    },
+    {
+     "a": "A place people come to, that had to be signed off",
+     "w": {
+      "licensed": 3,
+      "craft": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Which sentence do you want to be true in a year?",
+   "options": [
+    {
+     "a": "People ask for me by name",
+     "w": {
+      "craft": 3,
+      "food": 1
+     }
+    },
+    {
+     "a": "It ran for a week without me",
+     "w": {
+      "thing": 3,
+      "food": 1
+     }
+    },
+    {
+     "a": "Three of us are on the road",
+     "w": {
+      "hands": 3,
+      "licensed": 1
+     }
+    },
+    {
+     "a": "People queue",
+     "w": {
+      "food": 3,
+      "skill": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "hands",
+   "name": "Work you do with your hands",
+   "accent": "#DE9E33",
+   "headline": "A van, a skill and a route.",
+   "body": "A van, a skill and a route. The cheapest of these to start, which is exactly why somebody else can start one next week.",
+   "cost": "Nobody needs you specifically. You compete on showing up and on price.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../how-to-start-a-cleaning-business.html",
+     "label": "How to start cleaning"
+    },
+    {
+     "href": "../../how-to-start-a-lawn-care-business.html",
+     "label": "How to start lawn care"
+    },
+    {
+     "href": "../../how-to-start-a-handyman-business.html",
+     "label": "How to start handyman"
+    },
+    {
+     "href": "../../how-to-start-a-pressure-washing-business.html",
+     "label": "How to start pressure washing"
+    }
+   ]
+  },
+  {
+   "key": "food",
+   "name": "Work people can taste",
+   "accent": "#E6323F",
+   "headline": "The one everybody romanticises.",
+   "body": "The one everybody romanticises, and the one with the thinnest margins. Perishable stock, daily labour and a health inspector.",
+   "cost": "The hours. Food does not wait, so the business sets your day rather than the other way round.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../how-to-start-a-food-truck-business.html",
+     "label": "How to start food truck"
+    },
+    {
+     "href": "../../how-to-start-a-bakery.html",
+     "label": "How to start bakery"
+    },
+    {
+     "href": "../../how-to-start-a-coffee-shop.html",
+     "label": "How to start coffee shop"
+    },
+    {
+     "href": "../../how-to-start-a-catering-business.html",
+     "label": "How to start catering"
+    }
+   ]
+  },
+  {
+   "key": "skill",
+   "name": "Selling what you already know",
+   "accent": "#3FAEBD",
+   "headline": "Somebody already asks you about this at parties.",
+   "body": "Somebody already asks you about this at parties. The startup cost is close to nothing and the hard part is that nobody knows you do it.",
+   "cost": "It stops earning the moment you stop working. Every week spent selling is a week not billed.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../how-to-start-a-consulting-business.html",
+     "label": "How to start consulting"
+    },
+    {
+     "href": "../../how-to-start-an-ai-consulting-business.html",
+     "label": "How to start ai consulting"
+    },
+    {
+     "href": "../../how-to-start-a-bookkeeping-business.html",
+     "label": "How to start bookkeeping"
+    }
+   ]
+  },
+  {
+   "key": "thing",
+   "name": "Selling an actual thing",
+   "accent": "#8E6FBF",
+   "headline": "A shop that is open while you sleep.",
+   "body": "Inventory, postage and a shop that is open while you sleep. The only one here that can earn without you present.",
+   "cost": "Customer acquisition. The shop is open, and empty, until you pay to fill it.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../how-to-start-an-online-store.html",
+     "label": "How to start online store"
+    }
+   ]
+  },
+  {
+   "key": "craft",
+   "name": "Work people hire you for by eye",
+   "accent": "#DE5FA0",
+   "headline": "They pick you because of how it looks.",
+   "body": "They pick you because of how it looks, which means the portfolio is the business and the pricing conversation never gets easier.",
+   "cost": "Being judged on taste. The work is personal, so the rejection is too.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../how-to-start-a-photography-business.html",
+     "label": "How to start photography"
+    },
+    {
+     "href": "../../how-to-start-a-social-media-marketing-agency.html",
+     "label": "How to start social media agency"
+    }
+   ]
+  },
+  {
+   "key": "licensed",
+   "name": "Work that sits behind a licence",
+   "accent": "#4FA96B",
+   "headline": "Higher walls, fewer neighbours.",
+   "body": "Higher walls and fewer neighbours. Somebody has to sign off before you can trade, which is exactly why there is less competition once you are in.",
+   "cost": "The paperwork arrives before the first customer does, and it never fully stops.",
+   "art": "",
+   "links": [
+    {
+     "href": "../../how-to-start-a-home-care-business.html",
+     "label": "How to start home care"
+    },
+    {
+     "href": "../../how-to-start-a-med-spa.html",
+     "label": "How to start med spa"
+    },
+    {
+     "href": "../../how-to-start-a-pet-daycare-business.html",
+     "label": "How to start pet daycare"
+    },
+    {
+     "href": "../../how-to-start-an-ev-charging-business.html",
+     "label": "How to start ev charging"
+    }
+   ]
+  }
+ ]
+}
