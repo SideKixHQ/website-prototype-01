@@ -34,13 +34,38 @@ LIVE = [
 
 # What is coming. Named because an empty shelf that says "more soon" tells a
 # visitor nothing, and a named one tells them whether to come back.
+QUICK = [
+ ("q/founder-energy/", "Which energy do you run on?",
+  "The short read on which of the twelve is loudest today. Six questions, and "
+  "it ends by offering the full Discovery if you want the whole distribution.",
+  "1", "one of the twelve", "#D4A856", "zoo"),
+ ("q/what-business/", "What kind of business fits you?",
+  "Not which idea, which shape. Eight questions, six kinds of business, and "
+  "the real ones behind each of them with what they cost and what they earn.",
+  "1", "a shape, and four guides", "#DE9E33", None),
+ ("q/quit-your-job/", "Are you ready to quit your job?",
+  "Not a verdict and not permission. A read on which of five places you are "
+  "standing, based on what has happened rather than how it feels.",
+  "1", "where you actually stand", "#4FA96B", None),
+ ("q/when-it-goes-wrong/", "What do you do when it goes wrong?",
+  "Everyone has a default. Knowing yours is the difference between using it "
+  "and being used by it.",
+  "1", "your default under pressure", "#E6323F", None),
+ ("q/who-you-build-with/", "Who do you build with?",
+  "What you bring to a room, and what you cost it. Most of what goes wrong in "
+  "a business is about people rather than product.",
+  "1", "your role in a room", "#3FAEBD", None),
+ ("q/money-personality/", "How do you actually handle money?",
+  "Not how you think you handle it. What you do when a number is in front of "
+  "you, which is usually different.",
+  "1", "your money default", "#8E6FBF", None),
+]
+
+# What is coming. Named because an empty shelf that says "more soon" tells a
+# visitor nothing, and a named one tells them whether to come back.
 SOON = [
  ("How do you decide?", "Whether you move on instinct, evidence or consensus, "
   "and what that costs you when the clock is running."),
- ("What do you do when it goes wrong?", "Everyone has a default. Knowing "
-  "yours is the difference between using it and being used by it."),
- ("Who do you build with?", "The people you reach for, the people you avoid, "
-  "and the gap between the two."),
  ("What are you actually good at?", "Not what you trained for. What people "
   "come to you for without being asked."),
 ]
@@ -102,8 +127,19 @@ def build():
              'of these runs in your own browser and forgets you the moment you '
              'close the tab. <b>They are for you, not for us.</b></p>')
 
+    b.append('<h2 class="dsc-h3">The long ones</h2>')
     b.append('<div class="dsc-grid">%s</div>'
              % "".join(card(*c) for c in LIVE))
+
+    # A separate tier on purpose. The Energy Discovery is 48 statements with a
+    # method behind it, and putting a 40 second quiz beside it as an equal
+    # would cost the longer one its credibility.
+    b.append('<h2 class="dsc-h3">The quick ones</h2>')
+    b.append('<p class="dsc-note">Under a minute each, and honest rather than '
+             'flattering. Every one tells you what the result costs you as well '
+             'as what it gives you, and you can post the card.</p>')
+    b.append('<div class="dsc-grid">%s</div>'
+             % "".join(card(*c) for c in QUICK))
 
     b.append('<h2 class="dsc-h3">Being written</h2>')
     b.append('<div class="dsc-soon">%s</div>'

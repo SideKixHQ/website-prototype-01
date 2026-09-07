@@ -20,6 +20,7 @@ PRIORITY = {
  "market-data.html": "0.9", "state-filing.html": "0.9",
  "business-idea-where-to-start.html": "0.9",
  "what-business-should-i-start.html": "0.9",
+ "discoveries.html": "0.9",
  "start-a-business-in-north-carolina.html": "0.9",
  "terms.html": "0.3", "privacy.html": "0.3", "cookies.html": "0.3",
 }
@@ -46,6 +47,10 @@ def main():
         on_disk.append(("" if f == "index.html" else f, p))
     for p in sorted(glob.glob(os.path.join(ROOT, "blog", "*", "index.html"))):
         on_disk.append(("blog/%s/" % os.path.basename(os.path.dirname(p)), p))
+    # the quizzes live one folder deep so the URL is short enough to type off a
+    # screenshot, which means the flat *.html glob above never sees them
+    for p in sorted(glob.glob(os.path.join(ROOT, "q", "*", "index.html"))):
+        on_disk.append(("q/%s/" % os.path.basename(os.path.dirname(p)), p))
 
     urls = []
     for slug, p in on_disk:
@@ -54,7 +59,8 @@ def main():
         key = os.path.basename(slug) or "index.html"
         urls.append((url, mod, FREQ.get(key, "monthly"),
                      PRIORITY.get(key,
-                         GUIDE_PRIORITY if key.startswith("how-to-start-")
+                         "0.8" if slug.startswith("q/")
+                         else GUIDE_PRIORITY if key.startswith("how-to-start-")
                          else "0.6" if slug.startswith("blog/") else "0.7")))
 
     live = {u for u, _, _, _ in urls}
