@@ -180,13 +180,17 @@ JS = r"""
   show();
 """
 
+BACK = ('<p class="kx-backrow"><a class="kx-bk" href="discoveries.html">'
+        '<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">'
+        '<path d="M15 5l-7 7 7 7"></path></svg> Back to Discoveries</a></p>')
+
 n = page("founder-diagnostic.html",
  "Founder Diagnostic: Where Are You Actually? | SideKix",
  "Five questions and a straight read on where your business actually is, plus the things on this site that fit that stage. No score, no email, nothing stored.",
  "Diagnostic",
  "Where <em>are</em> you, actually?",
  "Five questions. At the end you get a read on the stage you are at and what tends to matter there, plus the handful of things on this site that fit. No score out of ten, because five questions do not earn that kind of precision.",
- BODY, css=CSS, js=JS,
+ BODY, css=CSS, js=JS, back=BACK,
  schema=(webapp("Founder Diagnostic","founder-diagnostic.html",
    "Five questions returning a read on the stage a business is at and what fits it.",
    ["Five questions","A read on your stage","Matched resources","Nothing stored"]),

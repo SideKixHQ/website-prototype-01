@@ -57,6 +57,10 @@ SCHEMA = (
                   "acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQ]},
 )
 
+BACK = ('<p class="kx-backrow"><a class="kx-bk" href="discoveries.html">'
+        '<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">'
+        '<path d="M15 5l-7 7 7 7"></path></svg> Back to Discoveries</a></p>')
+
 n = page("assessment.html", TITLE, DESC, "Energy Discovery", H1, LEDE, BODY,
-         css=CSS, js=JS, schema=SCHEMA, wrapcls="wrap res asmt")
+         css=CSS, js=JS, schema=SCHEMA, wrapcls="wrap res asmt", back=BACK)
 print(f"assessment.html {n//1024} KB")

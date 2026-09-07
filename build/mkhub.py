@@ -5,6 +5,11 @@ from toolgen import page, crumbs, webapp, faqpage, SITE
 def e(s): return html.escape(str(s), quote=True)
 
 CSS = """
+/* a link inside a group blurb inherits nothing, so it lands on the browser
+   default blue against a near black page */
+.th-g > p a{color:#F3E4A8;text-decoration:underline;text-underline-offset:3px}
+.th-g > p a:hover{color:#FFF6DC}
+
 /* ---- start here ---- */
 .th-start{margin:0 0 26px}
 .th-start h2{font-family:var(--util);font-size:11px;letter-spacing:.22em;
@@ -168,7 +173,7 @@ GROUPS = [
    ("business-structures.html","Sole proprietor, LLC or S corp","What actually differs, side by side. No recommendation, because that turns on facts a web page does not have.","5","7 rows compared"),
    ("domain-search.html","Is the name still available?","Checked at once against the registries themselves, so the answer is the register's own.","1","12 endings checked")]),
  ("Where am I, and what is next?",
-  "Three readings on yourself rather than on a number. All run in the browser and none keep anything.",
+  "Readings on yourself rather than on a number. All run in the browser and none keep anything. There are more of these in <a href=\"discoveries.html\">Discoveries</a>.",
   [("assessment.html","The Energy Discovery","Forty eight statements on how you actually behave, and a distribution across all twelve energies rather than a label. Everyone runs on all of them; the question is the proportions.","10","your 12 energies"),
    ("founder-diagnostic.html","Where are you, actually?","Five questions and a straight read on the stage you are at, plus what fits it.","2","your stage"),
    ("business-idea-where-to-start.html","You have an idea. Now what?","Five steps in the order that costs least to be wrong about, and the four places people actually get stuck.","6","a first move")]),
@@ -236,7 +241,7 @@ n = 0
 for gi, (name, blurb, cards) in enumerate(GROUPS):
     cls = "th-g g%d n%d" % (gi + 1, len(cards))
     body.append('<section class="%s"><h2>%s</h2><p>%s</p><div class="th-cards">'
-                % (cls, e(name), e(blurb)))
+                % (cls, e(name), blurb))
     for href, title, desc, fig, unit in cards:
         n += 1
         zoo = ""
