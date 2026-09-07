@@ -527,6 +527,16 @@
       "permanent": true
     },
     {
+      "source": "/discoveries",
+      "destination": "/discoveries.html",
+      "permanent": true
+    },
+    {
+      "source": "/discoveries/",
+      "destination": "/discoveries.html",
+      "permanent": true
+    },
+    {
       "source": "/domain-search",
       "destination": "/domain-search.html",
       "permanent": true
