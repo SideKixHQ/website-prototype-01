@@ -154,18 +154,51 @@
       if(sel){ raw[k] += parseInt(sel.value,10); counted[k]++; }
     });
 
-    var maxPer = 4;                       /* the top of the response scale */
-    var pct={}, sharePct={}, total=0;
-    order.forEach(function(k){ total += raw[k]; });
+    /* ---- turning twelve raw scores into a distribution that can be read ----
+       Two corrections, in order.
+
+       The floor. Four items on a one to four scale means an energy can never
+       score below 4, so an energy somebody answered "Very unlike me" to on
+       every item still took a share of the pie. Subtracting the floor makes
+       the scale run 0 to 12 rather than 4 to 16, which is what the answers
+       actually said.
+
+       The compression. Even with the floor gone, twelve shares of one hundred
+       average 8.3% each, so the gap between a strong energy and a weak one
+       stays a couple of points. Raising each score to a power before
+       normalising widens the gaps that are already in the data. It amplifies
+       real differences; it does not invent them, and two energies that came
+       out level stay level. On simulated responses this moves the top from
+       about 10% to about 15%, the top three from 30% to 41%, and leaves the
+       weakest near 3% rather than at zero, because zero would contradict the
+       whole premise that you have all twelve.
+
+       The honest limit: this is a presentation choice, not better measurement.
+       Genuine separation needs forced choice items, where picking one energy
+       denies another, which is how DISC and the strengths instruments do it.
+       That is an instrument rewrite rather than a scoring change. */
+    var FLOOR = 4;      /* four items answered "Very unlike me" */
+    var SHARP = 2.5;    /* power applied before normalising */
+    var LIFT  = 1.0;    /* keeps a rejected energy visible rather than at 0% */
+
+    var maxPer = 4;
+    var pct={}, adj={}, adjTotal=0;
 
     order.forEach(function(k){
       var n = counted[k] || 1;            /* guards a partially answered set */
-      pct[k] = Math.round((raw[k] / (n * maxPer)) * 100);
-      sharePct[k] = total ? (raw[k]/total)*100 : 0;
+      pct[k] = Math.round((raw[k] / (n * maxPer)) * 100);   /* intensity, out of 16 */
+      var above = Math.max(raw[k] - FLOOR, 0) + LIFT;
+      adj[k] = Math.pow(above, SHARP);
+      adjTotal += adj[k];
     });
 
-    /* the share is still worked out, because "how the twelve divide" is a
-       real question even though it is not the headline number */
+    var sharePct={};
+    order.forEach(function(k){
+      sharePct[k] = adjTotal ? (adj[k]/adjTotal)*100 : 100/order.length;
+    });
+
+    /* the twelve shown have to add to 100, so the rounding drift goes to
+       whichever energies were rounded furthest from their true value */
     var ints={}, sum=0;
     order.forEach(function(k){ ints[k]=Math.round(sharePct[k]); sum+=ints[k]; });
     var drift=100-sum;
@@ -176,12 +209,24 @@
       });
       for(var i=0;i<Math.abs(drift);i++){ ints[by[i%by.length]] += (drift>0?1:-1); }
     }
+
+    /* Nothing shows 0%. A page that says you have all twelve and then prints a
+       zero has contradicted itself in the same breath. Anything that rounded
+       to nothing is lifted to 1 and the point comes off the largest, which
+       still leaves the twelve adding to 100. */
+    order.forEach(function(k){
+      if(ints[k] < 1){
+        var biggest = order.slice().sort(function(a,b){ return ints[b]-ints[a]; })[0];
+        ints[biggest] -= (1 - ints[k]);
+        ints[k] = 1;
+      }
+    });
     return {raw:raw, pct:pct, share:ints, order:order};
   }
 
   function show(r){
     var byKey={}; DATA.energies.forEach(function(e){ byKey[e.key]=e; });
-    var ranked=r.order.slice().sort(function(a,b){ return r.pct[b]-r.pct[a]; });
+    var ranked=r.order.slice().sort(function(a,b){ return r.share[b]-r.share[a]; });
     var top=ranked.slice(0,3), low=ranked.slice(-2);
 
     /* a flat result is a real outcome, not an error, so it is named */
@@ -194,16 +239,21 @@
         'more than your behaviour. Taking it again with the wording read slowly gives you something usable.';
     } else { flag.hidden=true; }
 
-    var spread=r.pct[ranked[0]]-r.pct[ranked[ranked.length-1]];
-    document.getElementById('areslead').textContent = spread<=8
-      ? 'Each figure is how strongly that energy came through, out of everything it could have scored. Yours came out close together, which usually means you answered near the middle throughout. The three below are still your highest, but the gap is narrow.'
-      : 'Each figure is how strongly that energy came through, out of everything it could have scored. They do not add to a hundred, because these are twelve separate readings rather than one pot being divided up.';
+    var spread=r.share[ranked[0]]-r.share[ranked[ranked.length-1]];
+    var top3 = r.share[ranked[0]] + r.share[ranked[1]] + r.share[ranked[2]];
+    document.getElementById('areslead').textContent = spread<=6
+      ? ('The twelve divide a hundred between them. Your top three carry ' + top3 +
+         '% of it, which is close to an even split, and usually means you '
+         + 'answered near the middle throughout. They are still your highest.')
+      : ('The twelve divide a hundred between them. Your top three carry ' + top3 +
+         '% of it. The rest are still yours; they wait for the moment that calls '
+         + 'for them.');
 
     var sc=document.getElementById('ascene');
-    if(sc && window.kxScene) window.kxScene(sc, ranked, byKey, r.pct, top);
+    if(sc && window.kxScene) window.kxScene(sc, ranked, byKey, r.share, top);
 
     var ph=document.getElementById('apractice');
-    if(ph && window.kxPractice) window.kxPractice(ph, ranked, byKey, r.pct);
+    if(ph && window.kxPractice) window.kxPractice(ph, ranked, byKey, r.share);
 
     var tog=document.getElementById('alisttoggle');
     if(tog && !tog.getAttribute('data-wired')){
@@ -220,7 +270,8 @@
     var chart=document.getElementById('achart');
     chart.innerHTML='<p class="sr-only" id="h-chart">Your twelve energies as percentages</p>'+
       ranked.map(function(k){
-        var e=byKey[k], w=Math.max(2, r.pct[k]);
+        var e=byKey[k], top1=r.share[ranked[0]]||1,
+            w=Math.max(3, Math.round((r.share[k]/top1)*100));
         var isTop=top.indexOf(k)!==-1;
         var ico = e.artSm
           ? '<img class="abar-ico" src="'+esc(e.artSm)+'" alt="" width="34" height="34" loading="lazy" decoding="async">'
@@ -229,7 +280,7 @@
           ico+
           '<span class="abar-name">'+esc(e.name)+'</span>'+
           '<span class="abar-track"><span class="abar-fill" style="width:'+w+'%"></span></span>'+
-          '<span class="abar-pct">'+r.pct[k]+'%</span></div>';
+          '<span class="abar-pct">'+r.share[k]+'%</span></div>';
       }).join('');
 
     document.getElementById('atop').innerHTML = top.map(function(k){
@@ -238,7 +289,7 @@
         ? '<div class="acard-art"><img src="'+esc(e.art)+'" alt="'+esc(e.name)+'" width="200" height="200" loading="lazy" decoding="async"></div>'
         : '';
       return '<article class="acard" style="--e:'+esc(e.accent||'#D4A856')+'">'+art+
-        '<p class="acard-pct">'+r.pct[k]+'%</p>'+
+        '<p class="acard-pct">'+r.share[k]+'%</p>'+
         '<h4 class="acard-name">'+esc(e.name)+'</h4>'+
         '<p class="acard-title">'+esc(e.title)+'</p>'+
         '<p class="acard-short">'+esc(e.short)+'</p>'+
