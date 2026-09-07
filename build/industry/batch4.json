@@ -1,0 +1,332 @@
+{
+ "_meta": {
+  "compiled": "2026-09-07",
+  "startup_cost_disclosure": "Four of these five have null startup cost bounds for the same reason as batch 3: no US government or peer-reviewed source publishes typical startup-cost dollar ranges by business type, and every circulating figure traces to vendor marketing or paywalled commercial market research. EV charging is the exception, and the only entry across all four batches with primary-sourced cost figures, because the US Department of Energy publishes per-connector hardware and installation costs compiled from NREL and Idaho National Laboratory. The anchor used in every null note is the US Census Bureau Annual Business Survey distribution of startup capital across all new employer businesses (reference year 2017, the most recent year the ABS asked the question), reported by the SBA Office of Advocacy.",
+  "margin_disclosure": "Margin figures are computed from IRS Statistics of Income, Nonfarm Sole Proprietorship Returns, Tax Year 2022, Table 1 (net income less deficit divided by business receipts), read from the SOI Bulletin article PDF because the .xls tables were not machine-readable through the proxy. SOI publishes no line finer than the NAICS sector, so each figure is a sector proxy and is named as such. The caveat that matters: sole proprietors do not deduct an owner's salary, so these net margins are the owner's own pay plus profit, and are NOT comparable to corporate net profit margins. EV charging has no margin figure at all because there is no dedicated NAICS code for charging station operation, so no federal series breaks it out.",
+  "unsupported_claims_flagged": [
+   "'85% of AI projects fail' - no primary study. Circulates through vendor blogs citing one another; no underlying Gartner publication or peer-reviewed research could be located.",
+   "Home care turnover of 77% (2022) and ~79% (2023) - from the HCP/Activated Insights Benchmarking Report, a paid proprietary industry survey whose sample and methodology sit behind a paywall. The nearest government figure is BLS JOLTS, which does not break out home care.",
+   "'US med spa locations grew from ~1,600 in 2010 to more than 10,000 in 2023' - presented by the AMA without citation; traces to the American Med Spa Association's own paid industry survey. Also 'about 50% of med spas operate out of compliance' (ASDSA), published with no methodology.",
+   "'The US pet industry is worth $158 billion' - American Pet Products Association, a trade association whose announcement discloses no sample size or method and whose underlying survey is not public.",
+   "'One in five US public EV chargers does not work' - no national primary audit exists. Traces to a regional Bay Area audit (~28% of fast-charge stations unusable) and to proprietary J.D. Power survey responses. NREL states plainly that uptime is typically self-reported and that no comprehensive national uptime database exists."
+  ],
+  "corrections_to_common_guidance": [
+   "FinCEN beneficial ownership reporting is NOT a requirement for US domestic companies; fincen.gov confirms they are now fully exempt. Most guides still in circulation list it.",
+   "A pet facility that ONLY boards owners' pets falls outside the federal Animal Welfare Act and needs no USDA APHIS licence. The APHIS application page does not say this; it comes from the AWA Blue Book definitions. Many guides list a USDA licence as universally required.",
+   "EV charging demand is currently FLAT TO DECLINING, not rising. EIA reported BEV share at 6% of US light-duty sales in Q2 2026, down from 7% a year earlier, after two federal EV tax credits expired 30 September 2025. FY2026 is the final authorised year of NEVI formula funding."
+  ]
+ },
+ "ai-consulting-business": {
+  "startup_cost_low_usd": null,
+  "startup_cost_high_usd": null,
+  "startup_cost_note": "No federal statistical agency publishes a startup cost range for AI consulting, and the dollar figures circulating on business idea sites trace to vendor content rather than to any survey, so both bounds are null. The closest primary anchor is the Census Bureau Annual Business Survey startup capital question (reference year 2017), which found 50.9 percent of new employer businesses began with less than $25,000 and 24.1 percent with less than $5,000, while 11.5 percent used $250,000 or more. That question does not appear in the 2023 ABS topic lists, so the 2017 distribution remains the most recent published one.",
+  "licences": [
+   "State entity registration with the Secretary of State (LLC, corporation or partnership) plus an in-state registered agent; a sole proprietor trading under their own legal name may not need this",
+   "DBA or assumed name filing where the practice trades under a name other than the owner's or the entity's registered name",
+   "Federal Employer Identification Number from the IRS, needed to hire employees, operate as a partnership or corporation, or open business accounts; the IRS charges no fee and warns against third party sites that do",
+   "City or county general business licence and, for a home based practice, a home occupation permit",
+   "State sales and use tax permit where the deliverable is taxable; Texas taxes data processing services such as data entry, storage, manipulation, retrieval and web page creation, while advisory work using a computer as a tool stays nontaxable",
+   "Workers' compensation insurance once employees are hired, plus state unemployment insurance registration",
+   "Professional liability and technology errors and omissions cover, together with cyber liability; not a statutory licence but routinely a contractual precondition in client master services agreements",
+   "SAM.gov entity registration and a Unique Entity ID before bidding on federal contracts as a prime awardee",
+   "Colorado Artificial Intelligence Act (SB24-205) duties where the engagement involves developing or deploying high risk AI systems affecting Colorado consumers",
+   "NYC Local Law 144 compliance where an engagement touches automated employment decision tools: an independent bias audit within the prior year, publication of the audit summary, and candidate notice"
+  ],
+  "licences_sources": [
+   "https://www.sba.gov/business-guide/launch-your-business/register-your-business",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits",
+   "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+   "https://comptroller.texas.gov/taxes/publications/94-127.php",
+   "https://sam.gov/content/entity-registration",
+   "https://leg.colorado.gov/bills/sb24-205",
+   "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
+  ],
+  "margin_note": "IRS Statistics of Income, Nonfarm Sole Proprietorship Returns for Tax Year 2022, Table 1, shows professional, scientific and technical services reporting a net margin of 41.0 percent, against 19.7 percent across all nonfarm sole proprietorships. Read it with care: a sole proprietor deducts no owner's salary, so that 41.0 percent is the owner's pay and profit combined, not profit in the sense a corporation would report.",
+  "key_stat": "Of the professional, scientific and technical services establishments (NAICS 54) that opened in the year ended March 2015, 56.0 percent were still operating after five years and 37.2 percent after ten years, measured to March 2024 (BLS Business Employment Dynamics). Across all US employer establishments the SBA Office of Advocacy puts the long run averages at 49.2 percent surviving five years and 33.9 percent surviving ten, so consulting sits slightly above the national pattern.",
+  "key_stat_sources": [
+   "https://www.bls.gov/bdm/us_age_naics_54_table7.txt",
+   "https://advocacy.sba.gov/wp-content/uploads/2026/02/FINAL_FAQsAboutSmallBusiness_2026_012826.pdf"
+  ],
+  "demand_note": "BLS projects employment of management analysts, the closest occupational proxy for independent consultants, to grow 10 percent from 2025 to 2035, much faster than average, adding 109,200 jobs on a 2025 base of 1,077,100 with about 94,100 openings a year. Median pay was $101,860 in 2025 and roughly 14 percent are self-employed. BLS publishes no separate projection for AI consulting as such.",
+  "demand_direction": "up",
+  "hardest_part": "Demand generation and client concentration rather than technical delivery, because a solo or small practice bills only while a named buyer is under contract, and every week spent selling is a week not billed. The Federal Reserve's 2026 Report on Employer Firms found 77 percent of firms reporting rising costs as a financial challenge and revenue expectations at their lowest level since 2020, which is the environment in which discretionary advisory budgets are cut first. One figure to treat with caution: the widely repeated claim that 85 percent of AI projects fail has no primary study behind it.",
+  "hardest_part_sources": [
+   "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms",
+   "https://www.bls.gov/bdm/us_age_naics_54_table7.txt"
+  ],
+  "sources": [
+   "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+   "https://www.bls.gov/bdm/us_age_naics_54_table7.txt",
+   "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+   "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+   "https://advocacy.sba.gov/wp-content/uploads/2026/02/FINAL_FAQsAboutSmallBusiness_2026_012826.pdf",
+   "https://www.sba.gov/business-guide/launch-your-business/register-your-business",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits",
+   "https://comptroller.texas.gov/taxes/publications/94-127.php",
+   "https://sam.gov/content/entity-registration",
+   "https://leg.colorado.gov/bills/sb24-205",
+   "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
+   "https://www.fedsmallbusiness.org/reports/survey/2026/2026-report-on-employer-firms"
+  ],
+  "startup_cost_sources": [
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf"
+  ],
+  "margin_sources": [
+   "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf"
+  ],
+  "demand_sources": [
+   "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm"
+  ]
+ },
+ "home-care-business": {
+  "startup_cost_low_usd": null,
+  "startup_cost_high_usd": null,
+  "startup_cost_note": "No primary source publishes a dollar startup range specific to a non-medical senior home care agency, so both figures are null rather than estimated. The closest primary anchor is the US Census Bureau Annual Business Survey question on capital used to start a business, tabulated by the SBA Office of Advocacy: 24.1 percent of employer firms started with less than $5,000, 50.9 percent with less than $25,000, and about 12 percent used more than $250,000. That distribution covers all new employer businesses across every sector, so treat it as a shape rather than a home care number.",
+  "licences": [
+   "State home care organization or personal care agency licence from the state health or social services department. California requires a Home Care Organization licence at $5,603 for a two year period",
+   "Caregiver registration on a state registry with fingerprint clearance. California requires every home care aide to register at $35 for two years and clear a Department of Justice and FBI Live Scan check",
+   "Criminal background screening for owners, administrators and financial officers. Florida requires Level 2 fingerprint screening for managing employees and financial officers, and for all new homemakers and companions before hire",
+   "Employee dishonesty bond. California requires form HCS 402 documenting one as part of the licence application",
+   "General and professional liability insurance evidence filed with the application. California lists insurance among required supplemental documents; Florida does not require it for homemaker and companion registrants, so this is state by state",
+   "Workers compensation coverage plus state employer payroll tax, unemployment insurance and new hire registration once caregivers are on payroll",
+   "Federal Employer Identification Number from the IRS, required once the agency hires employees or operates as a partnership or corporation",
+   "Separate non-medical registration where the state splits hands-on personal care from homemaker and companion work. Florida charges $50.75 for a two year registration, bars hands-on care such as bathing or feeding, and bars business names implying home health, nursing or medical services",
+   "State Medicaid provider enrollment and provider qualification to serve home and community based services waiver clients",
+   "Fair Labor Standards Act compliance under 29 CFR part 552. Under the 2013 rule third party employers such as agencies cannot claim the companionship or live-in exemptions, so minimum wage and overtime apply. A July 2025 proposed rule would restore those exemptions; the Department of Labor states no final rule has been adopted"
+  ],
+  "licences_sources": [
+   "https://www.cdss.ca.gov/inforesources/Community-Care/Home-Care-Services",
+   "https://www.cdss.ca.gov/inforesources/Community-Care/Home-Care-Services/Application-Fees",
+   "https://ahca.myflorida.com/health-care-policy-and-oversight/bureau-of-health-facility-regulation/long-term-care-services-unit/homemaker-companion-services-provider/general-information",
+   "https://www.dol.gov/agencies/whd/direct-care",
+   "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+   "https://www.medicaid.gov/medicaid/home-community-based-services/index.html"
+  ],
+  "margin_note": "IRS Statistics of Income, Nonfarm Sole Proprietorship Returns for Tax Year 2022, Table 1 reports health care and social assistance at a net margin of about 35.6 percent across 2,420,090 returns. SOI publishes no separate line for home care, so this sector line is the closest NAICS match. Sole proprietors do not deduct an owner's salary, so that figure pays the owner's own labor as well as profit, and will overstate margin against an agency that puts a salaried administrator on payroll.",
+  "key_stat": "Home health and personal care aides numbered 4,677,100 jobs in 2025 with median pay of $35,800 a year, or $17.21 an hour, and typical entry at a high school diploma (BLS). BLS projects about 760,500 openings for the occupation each year on average over the decade.",
+  "key_stat_sources": [
+   "https://www.bls.gov/ooh/healthcare/home-health-aides-and-personal-care-aides.htm",
+   "https://www.bls.gov/emp/tables/emp-by-detailed-occupation.htm"
+  ],
+  "demand_note": "Demand is rising sharply: BLS projects employment of home health and personal care aides to grow 18 percent from 2025 to 2035, much faster than the average for all occupations, adding 847,300 jobs. The constraint on a new agency is staffing supply rather than client demand.",
+  "demand_direction": "up",
+  "hardest_part": "Caregiver turnover. The agency sells labor hours, so every departure costs a client relationship as well as a recruiting cycle, and BLS puts median pay at $17.21 an hour with about 760,500 openings a year, which is the wage floor that makes retention hard. One caution on the numbers: the often repeated home care turnover rates of 77 percent and roughly 79 percent come from a paid proprietary industry survey whose sample and methodology sit behind a paywall, so there is no public primary study behind them.",
+  "hardest_part_sources": [
+   "https://www.bls.gov/news.release/jolts.t20.htm",
+   "https://www.bls.gov/ooh/healthcare/home-health-aides-and-personal-care-aides.htm"
+  ],
+  "sources": [
+   "https://www.bls.gov/ooh/healthcare/home-health-aides-and-personal-care-aides.htm",
+   "https://www.bls.gov/emp/tables/emp-by-detailed-occupation.htm",
+   "https://www.bls.gov/news.release/jolts.t20.htm",
+   "https://www.irs.gov/pub/irs-prior/p1136--052025.pdf",
+   "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+   "https://www.cdss.ca.gov/inforesources/Community-Care/Home-Care-Services",
+   "https://www.cdss.ca.gov/inforesources/Community-Care/Home-Care-Services/Application-Fees",
+   "https://ahca.myflorida.com/health-care-policy-and-oversight/bureau-of-health-facility-regulation/long-term-care-services-unit/homemaker-companion-services-provider/general-information",
+   "https://www.dol.gov/agencies/whd/direct-care",
+   "https://www.medicaid.gov/medicaid/home-community-based-services/index.html",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits"
+  ],
+  "startup_cost_sources": [
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf"
+  ],
+  "margin_sources": [
+   "https://www.irs.gov/pub/irs-prior/p1136--052025.pdf"
+  ],
+  "demand_sources": [
+   "https://www.bls.gov/ooh/healthcare/home-health-aides-and-personal-care-aides.htm"
+  ]
+ },
+ "med-spa-business": {
+  "startup_cost_low_usd": null,
+  "startup_cost_high_usd": null,
+  "startup_cost_note": "No primary source publishes a dollar startup range for med spas; the ranges in circulation come from software vendors and lending firms marketing to the category and carry no published methodology, so both figures are null. The closest primary anchor is the Census Bureau Annual Business Survey distribution of startup capital across all new employer businesses: 50.9 percent started with under $25,000 and 11.5 percent with $250,000 or more. A med spa carries buildout, laser and injectable inventory, and physician compensation costs that push it toward the upper tail of that distribution, but no primary body quantifies by how much.",
+  "licences": [
+   "A licensed physician in the loop. Most states treat injectables and energy based devices as the practice of medicine, so the procedure must be performed by a physician or delegated under supervision. The Texas Medical Board requires the delegating physician, PA or APRN to be onsite or immediately available for emergency consultation",
+   "Corporate practice of medicine compliance in the entity structure. In strict ban states including California, Colorado and Iowa, a non-physician may not own the entity that delivers medical services. The clinical entity must be a professional medical corporation owned and controlled by licensed physicians, with any lay operator confined to a management services company holding only nonclinical assets",
+   "An active state medical license for the medical director or supervising physician, plus whatever medical director designation, written delegation and standing order documents the board requires",
+   "Advanced practice licensure and, where required, a collaborative practice or supervision agreement for nurse practitioners and physician assistants, and an RN license with documented delegation authority for nurses who inject",
+   "Esthetician or cosmetologist licenses from the state cosmetology board for non-medical skincare staff. California requires at least 600 hours of practical and technical instruction",
+   "Laser and energy device registration with the state radiation control program. Texas requires a certificate of registration for Class 3B and Class 4 lasers with a designated Laser Safety Officer at a biennial fee of $230, and separately runs a laser hair removal facility certificate program",
+   "A licensed prescriber to order and administer prescription products. FDA approved dermal fillers are indicated for prescription use only, so purchasing and administration must run through a prescriber rather than the business entity",
+   "HIPAA compliance as a covered entity. Under 45 CFR 160.103 a health care provider becomes a covered entity once it transmits health information electronically in connection with a standard transaction, which most med spas do through claims, eligibility or records vendors",
+   "Standard business registrations: state entity formation, an EIN, a local business license, a sales tax permit for retail skincare product sales, and any occupancy or health department permit"
+  ],
+  "licences_sources": [
+   "https://www.tmb.texas.gov/node/3861",
+   "https://sbp.senate.ca.gov/sites/sbp.senate.ca.gov/files/CRB%202016%20CPM%20Report.pdf",
+   "https://www.barbercosmo.ca.gov/applicants/license_requirements.shtml",
+   "https://www.dshs.texas.gov/texas-radiation-control/laser-laser-device-services-registration",
+   "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more",
+   "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits"
+  ],
+  "margin_note": "IRS Statistics of Income, Nonfarm Sole Proprietorship Returns Tax Year 2022 Table 1 shows health care and social assistance, the closest NAICS line, at a net margin of about 35.6 percent across 2,420,090 returns. That figure overstates a real operating margin because sole proprietors cannot deduct an owner's salary, and it is an imperfect proxy because most med spas organize as professional corporations rather than Schedule C sole proprietorships.",
+  "key_stat": "A 2025 study in Dermatologic Surgery, reported by the American Medical Association, found 36 states have no regulations or laws governing medical spas at all and 44 states lack patient protection regulations specific to med spas, with only Massachusetts and Tennessee having identifiable licensure requirements. The AMA also cites its own issue brief finding that 70 percent of medical spas have no affiliation with a physician practice.",
+  "key_stat_sources": [
+   "https://www.ama-assn.org/practice-management/scope-practice/36-states-lack-regulatory-oversight-med-spas",
+   "https://profiles.wustl.edu/en/publications/medical-spa-legislation-regulations-and-guidelines-in-the-united-/"
+  ],
+  "demand_note": "BLS projects employment of skincare specialists, the core non-physician staff role, to grow 9 percent from 2025 to 2035, much faster than the average for all occupations, from 104,200 jobs, with about 14,200 openings a year and median pay of $45,330. Demand direction is upward, though BLS publishes no series for med spa operators themselves.",
+  "demand_direction": "up",
+  "hardest_part": "The corporate practice of medicine doctrine. In strict ban states a non-physician cannot own the entity that renders medical services, so a lay owner must split the business into a physician owned professional corporation and a separate management company, and a management agreement giving the lay side control over clinical decisions, hiring of clinicians, or the medical fee stream can void the structure and expose it to unlicensed practice and fee splitting enforcement. The paired failure is the medical director in name only, an arrangement the American Society for Dermatologic Surgery Association explicitly opposes. Two figures repeated constantly in this category have no primary study behind them: the claim that US med spa locations grew from roughly 1,600 in 2010 to more than 10,000 in 2023, and the assertion that about 50 percent of med spas operate out of compliance.",
+  "hardest_part_sources": [
+   "https://sbp.senate.ca.gov/sites/sbp.senate.ca.gov/files/CRB%202016%20CPM%20Report.pdf",
+   "https://www.asds.net/Portals/0/PDF/asdsa/asdsa-position-statement-physician-oversight-in-medical-spas.pdf",
+   "https://www.ama-assn.org/practice-management/scope-practice/36-states-lack-regulatory-oversight-med-spas"
+  ],
+  "sources": [
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+   "https://www.irs.gov/pub/irs-prior/p1136--052025.pdf",
+   "https://www.bls.gov/ooh/personal-care-and-service/skincare-specialists.htm",
+   "https://www.ama-assn.org/practice-management/scope-practice/36-states-lack-regulatory-oversight-med-spas",
+   "https://profiles.wustl.edu/en/publications/medical-spa-legislation-regulations-and-guidelines-in-the-united-/",
+   "https://www.asds.net/Portals/0/PDF/asdsa/asdsa-position-statement-physician-oversight-in-medical-spas.pdf",
+   "https://sbp.senate.ca.gov/sites/sbp.senate.ca.gov/files/CRB%202016%20CPM%20Report.pdf",
+   "https://www.tmb.texas.gov/node/3861",
+   "https://www.dshs.texas.gov/texas-radiation-control/laser-laser-device-services-registration",
+   "https://www.barbercosmo.ca.gov/applicants/license_requirements.shtml",
+   "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more",
+   "https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits"
+  ],
+  "startup_cost_sources": [
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf"
+  ],
+  "margin_sources": [
+   "https://www.irs.gov/pub/irs-prior/p1136--052025.pdf"
+  ],
+  "demand_sources": [
+   "https://www.bls.gov/ooh/personal-care-and-service/skincare-specialists.htm"
+  ]
+ },
+ "pet-daycare-business": {
+  "startup_cost_low_usd": null,
+  "startup_cost_high_usd": null,
+  "startup_cost_note": "No primary source publishes a startup cost range for dog daycare or boarding specifically. Every dollar range in circulation traces to software vendors, franchise sellers, insurance brokers or business plan template sites, none of which disclose a sample or method, so both figures are null. The closest defensible anchor is the Census Bureau Annual Business Survey (data year 2017): 50.9 percent of all new employer businesses started with under $25,000 and 11.5 percent with $250,000 or more. A buildout with kennel runs, drainage, ventilation and soundproofing sits in the upper half of that distribution rather than the bottom.",
+  "licences": [
+   "State kennel or boarding kennel licence where the state regulates them. Pennsylvania prices by simultaneous capacity: $125 for 1 to 10 dogs, $200 for 11 to 25, $325 for 26 or more. Colorado licenses the same activity at $500 a year, triggered at more than three pet animals at once",
+   "Municipal kennel or animal facility licence, issued separately from any state licence. New Jersey requires municipal licensure of kennels under N.J.S.A. 4:19-15.8(a)",
+   "Zoning approval or conditional use permit, plus a certificate of zoning compliance filed with the licence application. Columbia, Missouri permits kennels outright only in C-3 and M-1 and imposes a 200 foot separation from residential property for outdoor runs, plus 7am to 7pm limits on outdoor access",
+   "Pre-licence animal facility inspection by the state agriculture department or local health department. Colorado inspects on application, on category change, on remodel, routinely thereafter and on complaint",
+   "Building plan review, construction permit and certificate of occupancy. New Jersey requires blueprint plans to go to the local health department before construction or renovation",
+   "USDA APHIS Animal Welfare Act licence or registration, but only where applicable. A facility that solely boards owners' pets falls outside the Act. The obligation attaches only if the business also breeds or resells animals, exhibits them, or takes custody in connection with transport in commerce",
+   "Written program of veterinary care and a veterinarian approved exercise plan. Pennsylvania requires both; Colorado requires a written agreement with a veterinarian for health consultation",
+   "Commercial general liability insurance, frequently a licence condition rather than a business choice. Johnston, Rhode Island requires a certificate of at least $1,000,000 per occurrence",
+   "Animal bailee coverage, also sold as care, custody and control. This is the coverage for injury to or death of a client's dog while in your custody, which standard commercial general liability excludes as property of others",
+   "Workers compensation insurance once you have employees. Handling and separating dogs is a bite and strain exposure, so this is not a formality at a staffed facility"
+  ],
+  "licences_sources": [
+   "https://ag.colorado.gov/animal-welfare/pet-animal-care-facilities-act-pacfa/pacfa-licensing",
+   "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=5825",
+   "https://www.nj.gov/health/vph/documents/guidelines_for_municipal_licensure_of_animal_facilities.pdf",
+   "https://www.como.gov/Council/Commissions/downloadfile.php?id=18805",
+   "https://www.aphis.usda.gov/awa/apply",
+   "https://www.aphis.usda.gov/sites/default/files/AC_BlueBook_AWA_508_comp_version.pdf",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits"
+  ],
+  "margin_note": "IRS Statistics of Income, Table 1 of Nonfarm Sole Proprietorship Returns for Tax Year 2022, shows Other services (NAICS 81, the sector containing pet care services at 812910) at a net margin of roughly 20.5 percent, against 19.7 percent across all nonfarm industries. SOI publishes no line below the sector. The caveat that matters is that a sole proprietor takes no deductible salary, so this net income is the owner's own pay and return combined rather than profit left after paying someone to run the place.",
+  "key_stat": "Pet care services (NAICS 812910) sold $5.8 billion in 2017, double the 2007 figure, across more than 100,000 establishments, a count up over 60 percent since 2007 (Census Economic Census); boarding alone was $2.3 billion of that, about 44 percent of industry revenue (BLS). Employer firms are a small slice of that establishment count, roughly 14,990 in 2017 with over three quarters under 10 employees, and employer firm revenue reached $9.97 billion by 2022 (Census Service Annual Survey).",
+  "key_stat_sources": [
+   "https://www.census.gov/library/stories/2020/02/spending-on-pet-care-services-doubled-in-last-decade.html",
+   "https://www.bls.gov/opub/btn/volume-13/a-tail-of-productivity-in-pet-care-services-new-technology-enables-rapid-growth.htm"
+  ],
+  "demand_note": "Demand direction is up: BLS projects employment of animal care and service workers to grow 11 percent from 2025 to 2035, much faster than the average for all occupations, from 413,000 to 459,100 jobs, with about 69,400 openings a year. Most of those openings come from replacing workers who leave rather than from net new positions, which is consistent with the sector's high turnover.",
+  "demand_direction": "up",
+  "hardest_part": "Zoning, which kills these businesses before they open, because the property that pencils out on rent is usually the one you cannot legally use. Columbia, Missouri is typical: kennels are permitted outright only in general business and industrial districts, outdoor operation elsewhere needs conditional use approval, and outdoor runs must sit 200 feet from any abutting residential property with outdoor access confined to 7am to 7pm. Staffing is the second constraint and it is a legal one: Colorado caps unsupervised group enclosures at five dogs over six months old and scales supervisors one for 2 to 15 dogs, two for 16 to 30 and four for 45 to 60, with video surveillance explicitly not counting as supervision, so revenue per room is bounded by payroll in a job BLS puts at a $35,360 median. One caution: the widely quoted $158 billion US pet industry figure comes from a trade association whose announcement discloses no sample size and no method.",
+  "hardest_part_sources": [
+   "https://www.como.gov/Council/Commissions/downloadfile.php?id=18805",
+   "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=5825",
+   "https://www.bls.gov/ooh/personal-care-and-service/animal-care-and-service-workers.htm"
+  ],
+  "sources": [
+   "https://www.bls.gov/ooh/personal-care-and-service/animal-care-and-service-workers.htm",
+   "https://www.bls.gov/opub/btn/volume-13/a-tail-of-productivity-in-pet-care-services-new-technology-enables-rapid-growth.htm",
+   "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf",
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf",
+   "https://www.sba.gov/business-guide/launch-your-business/apply-licenses-permits",
+   "https://www.census.gov/library/stories/2020/02/spending-on-pet-care-services-doubled-in-last-decade.html",
+   "https://www.aphis.usda.gov/awa/apply",
+   "https://www.aphis.usda.gov/sites/default/files/AC_BlueBook_AWA_508_comp_version.pdf",
+   "https://ag.colorado.gov/animal-welfare/pet-animal-care-facilities-act-pacfa/pacfa-licensing",
+   "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=5825",
+   "https://www.nj.gov/health/vph/documents/guidelines_for_municipal_licensure_of_animal_facilities.pdf",
+   "https://www.como.gov/Council/Commissions/downloadfile.php?id=18805"
+  ],
+  "startup_cost_sources": [
+   "https://advocacy.sba.gov/wp-content/uploads/2022/02/FinanceFAQ-Final-Feb2022.pdf"
+  ],
+  "margin_sources": [
+   "https://www.irs.gov/pub/irs-soi/soi-a-insp-id2502.pdf"
+  ],
+  "demand_sources": [
+   "https://www.bls.gov/ooh/personal-care-and-service/animal-care-and-service-workers.htm"
+  ]
+ },
+ "ev-charging-business": {
+  "startup_cost_low_usd": 6000,
+  "startup_cost_high_usd": 150000,
+  "startup_cost_note": "This is the one business in the set where primary sources publish real cost figures. The DOE Alternative Fuels Data Center compiles NREL and Idaho National Laboratory numbers of roughly $3,500 per connector for public Level 2 equipment plus about $2,500 per connector to install, against $38,000 to $90,000 per connector for DC fast charging equipment plus $20,000 to $60,000 per connector to install. The two tiers differ by an order of magnitude: one public Level 2 port lands near $6,000 all in, while one DC fast port runs roughly $58,000 to $150,000 all in, which is a sum of the two published DOE bands rather than a separately published figure. The range is per port rather than per site, so a multi port plaza multiplies the upper figure, and utility service upgrades, transformer work or trenching can push a real project past the published bands.",
+  "licences": [
+   "Local electrical permit and inspection, performed by a licensed electrical contractor and wired to NFPA 70 (National Electrical Code) Article 625, plus a building permit where site or structural work is involved",
+   "Utility interconnection or new commercial electric service agreement with the serving utility, covering the load study, service or transformer upgrade, meter set, and the applicable commercial rate schedule",
+   "State weights and measures certification of the dispenser before it may sell by the kilowatt hour. NIST Handbook 130 sets the kWh as the required unit of sale and Handbook 44 sets the tolerances, with state officials testing and placing devices in service",
+   "ADA accessibility compliance: accessible charging spaces at 11 feet wide by 20 feet long with a 5 foot access aisle, 30 by 48 inch clear floor space, and operable parts no higher than 48 inches usable with one hand at 5 pounds of force or less, per US Access Board design recommendations",
+   "Zoning and land use approval determining whether charging is an accessory use or a principal use in the district, plus parking ordinance compliance for space designation, bollards, wheel stops and signage",
+   "State public utility commission determination or statutory exemption confirming that a charging operator reselling electricity is not a regulated public utility, which varies by state",
+   "State EV charging excise tax registration where it applies. Wisconsin requires registration with the Department of Revenue before delivering electricity and imposes $0.03 per kWh; Montana imposes the same rate on public stations above 25 kW",
+   "State metering and price disclosure compliance where mandated, such as Montana's requirement that new public stations meter delivered electricity from July 2025 and all existing public stations by July 2028, with posted pricing at the site",
+   "Standard state business entity registration and a state sales or use tax permit covering charging revenue",
+   "If the project takes NEVI Formula funds, federal conditions attach: location on a designated Alternative Fuel Corridor, non proprietary connectors, open access payment, minimum uptime, data sharing, and Buy America compliance"
+  ],
+  "licences_sources": [
+   "https://www.nist.gov/pml/owm/faqs/electric-vehicle-fueling-faqs",
+   "https://www.access-board.gov/tad/ev/",
+   "https://afdc.energy.gov/fuels/electricity-codes-and-ordinances",
+   "https://afdc.energy.gov/fuels/electricity-permitting-processes",
+   "https://afdc.energy.gov/laws/12337",
+   "https://afdc.energy.gov/laws/13448"
+  ],
+  "margin_note": "No federal statistical agency publishes operating margins for independent EV charging site hosts. There is no dedicated NAICS industry code for charging station operation, so Census, BLS and IRS SOI do not break the sector out, and no primary source reports it. The peer reviewed NREL co-authored assessment that does model the economics finds profitability turns on utilisation rate, on demand charges and on retail electricity price, and that owner operator plus public partner structures fared better than standalone ownership.",
+  "key_stat": "The DOE Alternative Fuels Data Center counts 81,541 public EV charging station locations and 255,551 public charging ports in the United States as of September 6, 2026, comprising 179,368 Level 2 ports, 75,472 DC fast ports and 699 Level 1 ports. AFDC's annual series put the total at 168,388 ports across 64,641 locations for 2023, so port count has grown roughly 52 percent since then.",
+  "key_stat_sources": [
+   "https://afdc.energy.gov/stations/states",
+   "https://afdc.energy.gov/data/10972"
+  ],
+  "demand_note": "Demand is currently flat to declining rather than rising, and this is the one business in the set where that is true. EIA reported in July 2026 that battery electric vehicles were 6 percent of US light duty sales in Q2 2026, down from 7 percent a year earlier, after peaking at 12 percent in September 2025 and falling once two federal EV tax credits expired on September 30, 2025. EIA notes 2025 was the first year annual BEV sales and share declined and that the trend continued into 2026. Policy dependence is direct: FHWA apportioned the FY2026 NEVI Formula Program at $1 billion, and FY2026 is the final year of the programme's authorised formula funding.",
+  "demand_direction": "down",
+  "hardest_part": "Utility demand charges on a low utilisation site, because the monthly charge is set by peak kW drawn regardless of how few sessions occur. NREL found that at low utilisation, rates with demand charges produce high average electricity costs that fall rapidly only as utilisation rises, comparing a single 50 kW plug at one to two sessions a day against four 150 kW plugs at roughly 50 sessions a day. Reliability is the close second, and here a caution is warranted: the widely repeated claim that one in five US public chargers does not work has no national primary audit behind it, tracing instead to a regional Bay Area audit and to proprietary survey responses. NREL states plainly that uptime is typically self reported and that no comprehensive national uptime database exists, with regional studies landing between 72.5 and 87 percent.",
+  "hardest_part_sources": [
+   "https://www.nrel.gov/docs/fy22osti/82738.pdf",
+   "https://www.nrel.gov/docs/fy24osti/89896.pdf"
+  ],
+  "sources": [
+   "https://afdc.energy.gov/stations/states",
+   "https://afdc.energy.gov/data/10972",
+   "https://afdc.energy.gov/fuels/electricity-infrastructure-development",
+   "https://afdc.energy.gov/fuels/electricity-codes-and-ordinances",
+   "https://afdc.energy.gov/fuels/electricity-permitting-processes",
+   "https://afdc.energy.gov/laws/12337",
+   "https://afdc.energy.gov/laws/13448",
+   "https://highways.dot.gov/laws-regulations/directives/notices/n-4510909",
+   "https://www.nrel.gov/docs/fy22osti/82738.pdf",
+   "https://www.nrel.gov/docs/fy24osti/89896.pdf",
+   "https://www.mdpi.com/2071-1050/16/15/6701",
+   "https://www.eia.gov/todayinenergy/detail.php?id=67885",
+   "https://www.nist.gov/pml/owm/faqs/electric-vehicle-fueling-faqs",
+   "https://www.access-board.gov/tad/ev/"
+  ],
+  "startup_cost_sources": [
+   "https://afdc.energy.gov/fuels/electricity-infrastructure-development"
+  ],
+  "margin_sources": [
+   "https://www.mdpi.com/2071-1050/16/15/6701"
+  ],
+  "demand_sources": [
+   "https://www.eia.gov/todayinenergy/detail.php?id=67885"
+  ]
+ }
+}
