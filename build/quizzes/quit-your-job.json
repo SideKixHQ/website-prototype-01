@@ -286,7 +286,7 @@
    "headline": "You want it, and nothing has been tested yet.",
    "body": "Wanting it is not the same as being close to it, and there is no shame in that. Nothing here has met a real customer, which means nothing here has been disproved either.",
    "cost": "Time. The idea keeps its shine for exactly as long as nobody tries to buy it.",
-   "art": "",
+   "art": "assets/emblems/quit-your-job-dreaming.svg",
    "links": [
     {
      "href": "../../business-idea-where-to-start.html",
@@ -301,7 +301,7 @@
    "headline": "It exists in small, and a few people have said yes.",
    "body": "You have proof that somebody wants it, at a scale that cannot pay you yet. This is the most useful place to be and the least comfortable.",
    "cost": "Patience. The evidence is real but thin, and thin evidence is easy to over-read.",
-   "art": "",
+   "art": "assets/emblems/quit-your-job-testing.svg",
    "links": [
     {
      "href": "../../breakeven-calculator.html",
@@ -316,7 +316,7 @@
    "headline": "You could move and you have decided not to yet.",
    "body": "There is a reason you are waiting and it is probably a good one. Worth being honest about whether the reason is the mortgage or the fear, because they need different answers.",
    "cost": "Momentum. A pause you keep extending stops being a decision and becomes a habit.",
-   "art": "",
+   "art": "assets/emblems/quit-your-job-stalled.svg",
    "links": [
     {
      "href": "../../90-day-goals.html",
@@ -331,7 +331,7 @@
    "headline": "The numbers work and you are still saying next year.",
    "body": "Revenue exists, the gap is smaller than you say out loud, and the thing standing in the way is the size of the jump rather than the maths.",
    "cost": "The story you tell people about why not yet. It gets more convincing every time you tell it.",
-   "art": "",
+   "art": "assets/emblems/quit-your-job-ready.svg",
    "links": [
     {
      "href": "../../startup-cost-calculator.html",
@@ -346,7 +346,7 @@
    "headline": "For now, and that is a real answer.",
    "body": "The runway is short, the demand is unproven, and going now would mean pricing in a panic. Plenty of businesses got built at nights and weekends first.",
    "cost": "Nothing, yet. This is the cheapest place to be wrong.",
-   "art": "",
+   "art": "assets/emblems/quit-your-job-stay.svg",
    "links": [
     {
      "href": "../../what-business-should-i-start.html",

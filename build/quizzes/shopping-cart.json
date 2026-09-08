@@ -222,7 +222,7 @@
    "headline": "Bought, stacked, mostly unread.",
    "body": "You buy the answer in advance and get to it later. The pile is a to do list you paid for.",
    "cost": "Reading about it has started to feel like doing it.",
-   "art": ""
+   "art": "assets/emblems/shopping-cart-books.svg"
   },
   {
    "key": "ai",
@@ -231,7 +231,7 @@
    "headline": "A subscription for every problem.",
    "body": "There is a tool for this and you have it. Possibly two, because the second one had a better demo.",
    "cost": "Nobody has ever cancelled the first one.",
-   "art": ""
+   "art": "assets/emblems/shopping-cart-ai.svg"
   },
   {
    "key": "supplies",
@@ -240,7 +240,7 @@
    "headline": "The setup has to be right first.",
    "body": "The desk, the chair, the notebook that is finally the correct notebook. Getting ready is a real feeling and you like it.",
    "cost": "Getting ready is not the same as starting, and it is more fun.",
-   "art": ""
+   "art": "assets/emblems/shopping-cart-supplies.svg"
   },
   {
    "key": "courses",
@@ -249,7 +249,7 @@
    "headline": "Module three, every time.",
    "body": "You buy the structured version because structure is the bit you find hardest to make yourself.",
    "cost": "The completion rate is the number worth looking at.",
-   "art": ""
+   "art": "assets/emblems/shopping-cart-courses.svg"
   },
   {
    "key": "domains",
@@ -258,7 +258,7 @@
    "headline": "Eleven of them. Two are good.",
    "body": "Each one was a real idea at the moment you bought it. The renewals arrive together every year like a report card.",
    "cost": "Owning the address is the cheapest possible version of starting.",
-   "art": ""
+   "art": "assets/emblems/shopping-cart-domains.svg"
   }
  ]
 }

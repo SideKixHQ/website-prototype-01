@@ -222,7 +222,7 @@
    "headline": "You would rather show it than describe it.",
    "body": "The fastest route to your point is a working version of it. You have ended more arguments with a demo than with a paragraph.",
    "cost": "Not everything that needed discussing got discussed.",
-   "art": ""
+   "art": "assets/emblems/your-squad-builders.svg"
   },
   {
    "key": "dreamers",
@@ -231,7 +231,7 @@
    "headline": "You can see it finished already.",
    "body": "You hold the picture of what this becomes, which is the thing that keeps everyone going on a bad month.",
    "cost": "The gap between the picture and Tuesday is where people get discouraged.",
-   "art": ""
+   "art": "assets/emblems/your-squad-dreamers.svg"
   },
   {
    "key": "hustlers",
@@ -240,7 +240,7 @@
    "headline": "You would rather move than meet.",
    "body": "Ten conversations, four follow ups, and something happened today. You measure a week by what changed in it.",
    "cost": "Motion looks like progress right up until it does not.",
-   "art": ""
+   "art": "assets/emblems/your-squad-hustlers.svg"
   },
   {
    "key": "strategists",
@@ -249,7 +249,7 @@
    "headline": "You want to know why before how.",
    "body": "You are the person who asks the question that reframes the whole thing, usually twenty minutes in.",
    "cost": "The question sometimes arrives after everyone has already committed.",
-   "art": ""
+   "art": "assets/emblems/your-squad-strategists.svg"
   },
   {
    "key": "champions",
@@ -258,7 +258,7 @@
    "headline": "You build the room, not just the thing.",
    "body": "You know who should meet whom, and you make it happen without being asked. The network is the asset.",
    "cost": "You give away more time than you count, and nobody sends an invoice for it.",
-   "art": ""
+   "art": "assets/emblems/your-squad-champions.svg"
   }
  ]
 }

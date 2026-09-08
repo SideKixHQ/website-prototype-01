@@ -222,7 +222,7 @@
    "headline": "You want to stop guessing.",
    "body": "The part you find hardest is not building, it is knowing what to build. You would trade a lot to skip the guessing.",
    "cost": "You would stop asking people things, and asking is how you learn to read them without a power.",
-   "art": ""
+   "art": "assets/emblems/superpower-mindread.svg"
   },
   {
    "key": "energy",
@@ -231,7 +231,7 @@
    "headline": "You want the day to be longer.",
    "body": "You know exactly what to do. There is simply more of it than there are hours, and that is the whole problem.",
    "cost": "Unlimited energy would let you keep doing the wrong thing for much longer.",
-   "art": ""
+   "art": "assets/emblems/superpower-energy.svg"
   },
   {
    "key": "fearless",
@@ -240,7 +240,7 @@
    "headline": "You want the hesitation gone.",
    "body": "You have known the right move before and not made it. The gap between knowing and doing is where your time goes.",
    "cost": "A little fear is the thing that makes you check the numbers first.",
-   "art": ""
+   "art": "assets/emblems/superpower-fearless.svg"
   },
   {
    "key": "predict",
@@ -249,7 +249,7 @@
    "headline": "You want to stop being surprised.",
    "body": "You would rather be early than fast. Being caught out by something you could have seen is the one that stings.",
    "cost": "Knowing what is coming and acting on it are different skills.",
-   "art": ""
+   "art": "assets/emblems/superpower-predict.svg"
   },
   {
    "key": "clone",
@@ -258,7 +258,7 @@
    "headline": "You want to stop being the bottleneck.",
    "body": "Nothing moves without you. You would rather duplicate the standard than explain it.",
    "cost": "A clone is delegation for people who do not want to teach.",
-   "art": ""
+   "art": "assets/emblems/superpower-clone.svg"
   }
  ]
 }

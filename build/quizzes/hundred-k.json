@@ -222,7 +222,7 @@
    "headline": "You believe the thing works, nobody knows it exists.",
    "body": "Your instinct is that the problem is attention rather than product, and you are often right about that.",
    "cost": "Paid attention stops the day the money does.",
-   "art": ""
+   "art": "assets/emblems/hundred-k-marketing.svg"
   },
   {
    "key": "hire",
@@ -231,7 +231,7 @@
    "headline": "You are the bottleneck and you know it.",
    "body": "The honest answer is that everything waits on you, and buying hands is the fastest way to stop that.",
    "cost": "Hiring while it is chaotic multiplies the chaos rather than dividing it.",
-   "art": ""
+   "art": "assets/emblems/hundred-k-hire.svg"
   },
   {
    "key": "product",
@@ -240,7 +240,7 @@
    "headline": "Make it good enough to sell itself.",
    "body": "You want to close the gap between what it is and what you promised, and you would rather do that before selling harder.",
    "cost": "There is no version so good that it markets itself.",
-   "art": ""
+   "art": "assets/emblems/hundred-k-product.svg"
   },
   {
    "key": "save",
@@ -249,7 +249,7 @@
    "headline": "Runway is the only real strategy.",
    "body": "Cash in the bank buys time, and time is what kills most of the businesses that die.",
    "cost": "Runway with nothing changing on it is just a slower ending.",
-   "art": ""
+   "art": "assets/emblems/hundred-k-save.svg"
   },
   {
    "key": "office",
@@ -258,7 +258,7 @@
    "headline": "Honest, at least.",
    "body": "The office, the rebrand, the setup. Everyone has one of these, and most people will not admit to it.",
    "cost": "You will explain this purchase to somebody in about eight months.",
-   "art": ""
+   "art": "assets/emblems/hundred-k-office.svg"
   }
  ]
 }

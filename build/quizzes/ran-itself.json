@@ -222,7 +222,7 @@
    "headline": "You have been saving it up.",
    "body": "There is a list and it is long and it has not moved in years. You have been treating rest as something you earn afterwards.",
    "cost": "Afterwards keeps moving. It has moved twice since you started.",
-   "art": ""
+   "art": "assets/emblems/ran-itself-travel.svg"
   },
   {
    "key": "another",
@@ -231,7 +231,7 @@
    "headline": "It was never about this business.",
    "body": "You like the beginning. The bit where it is a blank page and anything is still possible.",
    "cost": "Beginnings are the only bit you are practised at, which is why nothing gets to year five.",
-   "art": ""
+   "art": "assets/emblems/ran-itself-another.svg"
   },
   {
    "key": "sleep",
@@ -240,7 +240,7 @@
    "headline": "That is not a joke answer.",
    "body": "You are running a deficit and you know it. The honest answer to what you want is not ambitious, it is horizontal.",
    "cost": "Tired is not a personality and it is not a strategy either.",
-   "art": ""
+   "art": "assets/emblems/ran-itself-sleep.svg"
   },
   {
    "key": "volunteer",
@@ -249,7 +249,7 @@
    "headline": "The business was always the means.",
    "body": "You want the freedom to be useful somewhere that does not pay, which is a good reason to have built the thing.",
    "cost": "You put this off exactly as long as you put off rest.",
-   "art": ""
+   "art": "assets/emblems/ran-itself-volunteer.svg"
   },
   {
    "key": "nothing",
@@ -258,7 +258,7 @@
    "headline": "And you would not feel guilty.",
    "body": "You have earned the right to stop and you know that you would take it. That is rarer and healthier than it sounds.",
    "cost": "Six months of nothing is where people find out what they actually miss.",
-   "art": ""
+   "art": "assets/emblems/ran-itself-nothing.svg"
   }
  ]
 }

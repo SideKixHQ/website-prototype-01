@@ -222,7 +222,7 @@
    "headline": "Nobody picked you, and you went the distance.",
    "body": "You were not the obvious choice and you are still standing, which is the entire point. The training montage is just your Tuesday.",
    "cost": "You have started to enjoy being the underdog more than winning would feel.",
-   "art": ""
+   "art": "assets/emblems/startup-movie-rocky.svg"
   },
   {
    "key": "wolf",
@@ -231,7 +231,7 @@
    "headline": "Loud, fast, and it is working.",
    "body": "The energy is enormous and the numbers keep going up. Everyone in the room is slightly out of breath.",
    "cost": "Nobody in the room is asking the boring question about whether this holds.",
-   "art": ""
+   "art": "assets/emblems/startup-movie-wolf.svg"
   },
   {
    "key": "social",
@@ -240,7 +240,7 @@
    "headline": "Built brilliantly, at a cost.",
    "body": "The product is genuinely good and you know it. The complicated part was never the code.",
    "cost": "Look at who is still in the founding group photo.",
-   "art": ""
+   "art": "assets/emblems/startup-movie-social.svg"
   },
   {
    "key": "mission",
@@ -249,7 +249,7 @@
    "headline": "Impossible deadline, somehow met.",
    "body": "You do your best work when the timer is already running. Every launch has one moment nobody outside the team knows about.",
    "cost": "You have started creating the emergencies yourself.",
-   "art": ""
+   "art": "assets/emblems/startup-movie-mission.svg"
   },
   {
    "key": "home",
@@ -258,7 +258,7 @@
    "headline": "Small, alone, and improvising brilliantly.",
    "body": "It is you, some tools and a lot of ingenuity. The traps you build out of nothing are genuinely impressive.",
    "cost": "You have made being alone part of the identity, which makes help hard to accept.",
-   "art": ""
+   "art": "assets/emblems/startup-movie-home.svg"
   }
  ]
 }

@@ -187,7 +187,7 @@
    "headline": "Traditional, and it works.",
    "body": "You are doing a known thing properly. There is no mystery to explain and no education to fund, which is worth more than founders admit.",
    "cost": "Anybody can order the same thing, so the only edge you have is doing it better.",
-   "art": ""
+   "art": "assets/emblems/business-pizza-pepperoni.svg"
   },
   {
    "key": "pineapple",
@@ -196,7 +196,7 @@
    "headline": "Bold, and people have opinions.",
    "body": "Half the room thinks you are wrong and the other half is extremely loyal. There is no version of this that everyone likes.",
    "cost": "You spend real energy defending the choice instead of improving it.",
-   "art": ""
+   "art": "assets/emblems/business-pizza-pineapple.svg"
   },
   {
    "key": "mushrooms",
@@ -205,7 +205,7 @@
    "headline": "Quiet, and better than it looks.",
    "body": "You are not the obvious pick and the people who choose you keep choosing you. Word of mouth is doing most of your marketing.",
    "cost": "Quiet does not scale on its own. Somebody has to say it out loud.",
-   "art": ""
+   "art": "assets/emblems/business-pizza-mushrooms.svg"
   },
   {
    "key": "everything",
@@ -214,7 +214,7 @@
    "headline": "Serial entrepreneur energy.",
    "body": "You said yes to all of it. There is a version of this that is range and a version that is indecision, and only you know which.",
    "cost": "Every extra topping makes the thing harder to describe in one sentence.",
-   "art": ""
+   "art": "assets/emblems/business-pizza-everything.svg"
   }
  ]
 }

@@ -222,7 +222,7 @@
    "headline": "You took the laptop. Of course you did.",
    "body": "The trip happened around the work rather than instead of it, and you told yourself it was only an hour a day.",
    "cost": "The people who came with you noticed, and did not say.",
-   "art": ""
+   "art": "assets/emblems/founder-confessions-vacation.svg"
   },
   {
    "key": "domain",
@@ -231,7 +231,7 @@
    "headline": "It is still renewing.",
    "body": "The idea was excellent at 2am and it is possible it still is. You own the address either way.",
    "cost": "There are eleven of these and one of them was actually good.",
-   "art": ""
+   "art": "assets/emblems/founder-confessions-domain.svg"
   },
   {
    "key": "rename",
@@ -240,7 +240,7 @@
    "headline": "The sixth one is the right one.",
    "body": "You have redone the wordmark more often than you have talked to customers about it, and you know how that sounds.",
    "cost": "Nobody outside your head noticed any of the five.",
-   "art": ""
+   "art": "assets/emblems/founder-confessions-rename.svg"
   },
   {
    "key": "logo",
@@ -249,7 +249,7 @@
    "headline": "It looked so real.",
    "body": "Having something to point at made it feel like it existed, and that feeling got you through the first month.",
    "cost": "A logo is the cheapest way to feel like you started.",
-   "art": ""
+   "art": "assets/emblems/founder-confessions-logo.svg"
   },
   {
    "key": "three",
@@ -258,7 +258,7 @@
    "headline": "One of them is going to work.",
    "body": "You would rather have three half chances than one full one, and you are genuinely faster than most people at all three.",
    "cost": "Three at forty percent is not the same as one at a hundred and twenty.",
-   "art": ""
+   "art": "assets/emblems/founder-confessions-three.svg"
   }
  ]
 }

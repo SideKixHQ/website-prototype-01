@@ -187,7 +187,7 @@
    "headline": "Deciding things and meaning it.",
    "body": "You are making calls today rather than gathering more input. The calendar bends around you instead of the other way round.",
    "cost": "Nobody tells you when you are wrong on a week like this.",
-   "art": ""
+   "art": "assets/emblems/energy-today-ceo.svg"
   },
   {
    "key": "mastermind",
@@ -196,7 +196,7 @@
    "headline": "Three moves ahead of the room.",
    "body": "You are not doing the work today, you are working out which work is worth doing. Everyone else finds out on Thursday.",
    "cost": "A plan nobody has heard yet is not a plan, it is a secret.",
-   "art": ""
+   "art": "assets/emblems/energy-today-mastermind.svg"
   },
   {
    "key": "hustle",
@@ -205,7 +205,7 @@
    "headline": "Volume, speed, and no meetings.",
    "body": "You are shipping. Not deciding, not planning, shipping. The inbox can wait and it knows it.",
    "cost": "You will be very tired on Friday and unsure exactly what moved.",
-   "art": ""
+   "art": "assets/emblems/energy-today-hustle.svg"
   },
   {
    "key": "survive",
@@ -214,7 +214,7 @@
    "headline": "Still here, which counts.",
    "body": "This is a week for keeping the lights on and the promises made. There is no shame in it and everybody has them.",
    "cost": "Nothing, if it is one week. Something, if it is the fourth in a row.",
-   "art": ""
+   "art": "assets/emblems/energy-today-survive.svg"
   }
  ]
 }

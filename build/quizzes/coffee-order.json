@@ -222,7 +222,7 @@
    "headline": "Let us get it done.",
    "body": "No decoration, no ceremony, no discussion about the notes. You want the effect and you want it now.",
    "cost": "You mistake speed for progress about twice a quarter.",
-   "art": ""
+   "art": "assets/emblems/coffee-order-black.svg"
   },
   {
    "key": "latte",
@@ -231,7 +231,7 @@
    "headline": "The strategic thinker.",
    "body": "You want the good version and you will wait the extra four minutes for it. Everything you make gets one more pass than it strictly needs.",
    "cost": "The extra pass sometimes happens instead of shipping.",
-   "art": ""
+   "art": "assets/emblems/coffee-order-latte.svg"
   },
   {
    "key": "espresso",
@@ -240,7 +240,7 @@
    "headline": "The chaos agent.",
    "body": "All of it, immediately, standing up. You are the reason the group chat has 40 unread messages at 11pm.",
    "cost": "Everyone else needs a recovery day after your good ideas.",
-   "art": ""
+   "art": "assets/emblems/coffee-order-espresso.svg"
   },
   {
    "key": "tea",
@@ -249,7 +249,7 @@
    "headline": "The calm operator.",
    "body": "You have never once been the loudest person in a meeting and you have also never missed a deadline.",
    "cost": "People forget to ask your opinion because you never demand they do.",
-   "art": ""
+   "art": "assets/emblems/coffee-order-tea.svg"
   },
   {
    "key": "energy",
@@ -258,7 +258,7 @@
    "headline": "Founder after midnight.",
    "body": "It is 1am, the thing is nearly working, and stopping now would be insane. You have had this conversation with yourself before.",
    "cost": "Tomorrow. Tomorrow is what it costs.",
-   "art": ""
+   "art": "assets/emblems/coffee-order-energy.svg"
   }
  ]
 }

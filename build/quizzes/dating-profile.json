@@ -222,7 +222,7 @@
    "headline": "True, and you would still swipe.",
    "body": "Some months it is the best thing you have done and some months you would hand it to anybody. Both are true at once.",
    "cost": "Complicated is only a problem when you stop being honest about which month it is.",
-   "art": ""
+   "art": "assets/emblems/dating-profile-complicated.svg"
   },
   {
    "key": "longterm",
@@ -231,7 +231,7 @@
    "headline": "You are building something to keep.",
    "body": "You are not in this for the exit and you have turned down the fast version at least once.",
    "cost": "Patience and avoidance look identical from the outside.",
-   "art": ""
+   "art": "assets/emblems/dating-profile-longterm.svg"
   },
   {
    "key": "heartbreak",
@@ -240,7 +240,7 @@
    "headline": "You have been through it.",
    "body": "You have already survived the version of this that ends everything, and you are still here, changed.",
    "cost": "You have started to wear the scar tissue as the qualification.",
-   "art": ""
+   "art": "assets/emblems/dating-profile-heartbreak.svg"
   },
   {
    "key": "available",
@@ -249,7 +249,7 @@
    "headline": "Which is not the flex you think.",
    "body": "You answer at midnight and on holiday, and it is genuinely part of why customers stay.",
    "cost": "The thing that made you loved is the thing that will make you leave.",
-   "art": ""
+   "art": "assets/emblems/dating-profile-available.svg"
   },
   {
    "key": "unstable",
@@ -258,7 +258,7 @@
    "headline": "Painfully accurate.",
    "body": "The money is not the reason and it is a good job too. You would find it hard to explain to anyone doing this for money.",
    "cost": "Rewarding does not pay a bill and it never has.",
-   "art": ""
+   "art": "assets/emblems/dating-profile-unstable.svg"
   }
  ]
 }

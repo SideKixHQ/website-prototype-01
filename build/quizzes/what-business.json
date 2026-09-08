@@ -286,7 +286,7 @@
    "headline": "A van, a skill and a route.",
    "body": "A van, a skill and a route. The cheapest of these to start, which is exactly why somebody else can start one next week.",
    "cost": "Nobody needs you specifically. You compete on showing up and on price.",
-   "art": "",
+   "art": "assets/emblems/what-business-hands.svg",
    "links": [
     {
      "href": "../../how-to-start-a-cleaning-business.html",
@@ -313,7 +313,7 @@
    "headline": "The one everybody romanticises.",
    "body": "The one everybody romanticises, and the one with the thinnest margins. Perishable stock, daily labour and a health inspector.",
    "cost": "The hours. Food does not wait, so the business sets your day rather than the other way round.",
-   "art": "",
+   "art": "assets/emblems/what-business-food.svg",
    "links": [
     {
      "href": "../../how-to-start-a-food-truck-business.html",
@@ -340,7 +340,7 @@
    "headline": "Somebody already asks you about this at parties.",
    "body": "Somebody already asks you about this at parties. The startup cost is close to nothing and the hard part is that nobody knows you do it.",
    "cost": "It stops earning the moment you stop working. Every week spent selling is a week not billed.",
-   "art": "",
+   "art": "assets/emblems/what-business-skill.svg",
    "links": [
     {
      "href": "../../how-to-start-a-consulting-business.html",
@@ -363,7 +363,7 @@
    "headline": "A shop that is open while you sleep.",
    "body": "Inventory, postage and a shop that is open while you sleep. The only one here that can earn without you present.",
    "cost": "Customer acquisition. The shop is open, and empty, until you pay to fill it.",
-   "art": "",
+   "art": "assets/emblems/what-business-thing.svg",
    "links": [
     {
      "href": "../../how-to-start-an-online-store.html",
@@ -378,7 +378,7 @@
    "headline": "They pick you because of how it looks.",
    "body": "They pick you because of how it looks, which means the portfolio is the business and the pricing conversation never gets easier.",
    "cost": "Being judged on taste. The work is personal, so the rejection is too.",
-   "art": "",
+   "art": "assets/emblems/what-business-craft.svg",
    "links": [
     {
      "href": "../../how-to-start-a-photography-business.html",
@@ -397,7 +397,7 @@
    "headline": "Higher walls, fewer neighbours.",
    "body": "Higher walls and fewer neighbours. Somebody has to sign off before you can trade, which is exactly why there is less competition once you are in.",
    "cost": "The paperwork arrives before the first customer does, and it never fully stops.",
-   "art": "",
+   "art": "assets/emblems/what-business-licensed.svg",
    "links": [
     {
      "href": "../../how-to-start-a-home-care-business.html",

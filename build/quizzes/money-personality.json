@@ -203,7 +203,7 @@
    "headline": "You charge what feels polite rather than what the work is worth.",
    "body": "You would rather be busy than paid, and you find out too late that the cheapest supplier attracts the hardest customers.",
    "cost": "You will work twice as hard for the same money, and resent the client for a price you set.",
-   "art": "",
+   "art": "assets/emblems/money-personality-underprice.svg",
    "links": [
     {
      "href": "../../hourly-rate-calculator.html",
@@ -218,7 +218,7 @@
    "headline": "Nothing leaves the account without a fight.",
    "body": "Cash in the bank is the only number you trust, which makes you very hard to kill and slightly hard to grow.",
    "cost": "The thing you would not spend on was sometimes the thing that would have worked.",
-   "art": "",
+   "art": "assets/emblems/money-personality-hoarder.svg",
    "links": [
     {
      "href": "../../breakeven-calculator.html",
@@ -233,7 +233,7 @@
    "headline": "You would rather bet it than sit on it.",
    "body": "You size a decision by what it could return rather than what it could cost, which is why your good years are very good.",
    "cost": "One bad quarter lands harder on you than on anybody else, because there is no float behind it.",
-   "art": "",
+   "art": "assets/emblems/money-personality-gambler.svg",
    "links": [
     {
      "href": "../../startup-cost-calculator.html",
@@ -248,7 +248,7 @@
    "headline": "The numbers exist. You have not looked at them.",
    "body": "It is not that you cannot do the maths. It is that knowing makes it real, so the spreadsheet stays closed and the decisions get made on vibes.",
    "cost": "Every problem you find late costs more than the same problem found early.",
-   "art": "",
+   "art": "assets/emblems/money-personality-avoider.svg",
    "links": [
     {
      "href": "../../what-is-cash-flow.html",
@@ -263,7 +263,7 @@
    "headline": "You priced it off the numbers and you can show your working.",
    "body": "You know your margin, your break even and what an hour of your time costs, which puts you ahead of most people running a business.",
    "cost": "A model can talk you out of a good decision that the numbers cannot see yet.",
-   "art": "",
+   "art": "assets/emblems/money-personality-engineer.svg",
    "links": [
     {
      "href": "../../product-pricing-calculator.html",
