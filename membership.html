@@ -4246,20 +4246,23 @@ try{
     var q=new URLSearchParams(location.search);
     if(q.get('purchased')!=='1') return;
     var packs=parseInt(q.get('packs')||'1',10)||1, credits=(350*packs).toLocaleString();
+    var savedCard=q.get('autoTop')==='1';
     var buy=document.querySelector('.buy'); if(!buy) return;
     buy.innerHTML='<h3 style="margin:0 0 8px;color:#FFF8D8;font-family:var(--display)">Payment received.</h3>'+
       '<p style="color:#E1D7BE;line-height:1.6;margin:0 0 4px">You\'re getting <b>'+credits+' Kix Credits</b>. '+
-      'A receipt is on its way to your inbox now, and our team will reach out to get them added to your account.</p>';
+      'A receipt is on its way to your inbox now, and our team will reach out to get them added to your account.</p>'+
+      (savedCard ? '<p style="color:#E1D7BE;line-height:1.6;margin:0">Your card is saved for future top-ups. Automatic top-ups aren’t live yet — we’ll email you before ever charging it.</p>' : '');
   })();
   document.getElementById('qbuy').addEventListener('click',function(){
     var btn=document.getElementById('qbuy'), label=document.getElementById('qlabel');
     if(btn.disabled) return;
     var prevLabel=label.textContent;
     btn.disabled=true; label.textContent='Starting checkout…';
+    var autoTop=document.getElementById('qauto');
     fetch('/api/create-checkout-session',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({type:'credits',packs:n})
+      body:JSON.stringify({type:'credits',packs:n,autoTop:!!(autoTop&&autoTop.checked)})
     }).then(function(r){ return r.json(); }).then(function(data){
       if(data && data.url){ window.location.href=data.url; return; }
       throw new Error('no checkout url');
@@ -4844,8 +4847,8 @@ try{
     if(fine){
       /* This is now the only place the top-up is explained, so the "on" copy
          has to say what fires it, what it costs and how to stop it. */
-      fine.textContent = sw.checked
-        ? 'Tops up automatically at 20 percent, same pack, same price. Turn it off any time.'
+      fine.innerHTML = sw.checked
+        ? 'Saves your card for faster top-ups later. Automatic top-ups aren’t live yet — we’ll email you before ever charging it. <a href="terms.html#s21">Kix Credits terms</a>.'
         : 'One-time purchase. No subscription.';
     }
   }

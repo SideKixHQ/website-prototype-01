@@ -8,6 +8,10 @@ const Stripe = require('stripe');
 const CREDIT_PACK_USD_CENTS = 1900;
 const CREDIT_PACK_SIZE = 350;
 const MAX_PACKS = 10;
+// Bump whenever §21 (Subscriptions, Kix Credits, Cancellations and Refunds) of
+// terms.html changes in a way that affects the saved-card/auto-top disclosure,
+// so a stored consent record stays tied to the terms version it was given under.
+const CREDITS_TERMS_VERSION = '2026-09-08';
 
 const MEMBERSHIP_PLANS = {
   access: { name: 'Access', monthlyUsdCents: 3900 },
@@ -38,8 +42,12 @@ module.exports = async (req, res) => {
   let cancelUrl;
   let metadata;
 
+  let paymentIntentData;
+  let customerCreation;
+
   if (type === 'credits') {
     const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body.packs, 10) || 1));
+    const autoTop = req.body.autoTop === true;
     lineItem = {
       price_data: {
         currency: 'usd',
@@ -51,9 +59,23 @@ module.exports = async (req, res) => {
       },
       quantity: packs,
     };
-    successUrl = `${origin}/membership.html?purchased=1&packs=${packs}&session_id={CHECKOUT_SESSION_ID}`;
+    successUrl = `${origin}/membership.html?purchased=1&packs=${packs}&autoTop=${autoTop ? '1' : '0'}&session_id={CHECKOUT_SESSION_ID}`;
     cancelUrl = `${origin}/membership.html`;
-    metadata = { source: 'website', type: 'credits', packs: String(packs) };
+    metadata = { source: 'website', type: 'credits', packs: String(packs), autoTopRequested: String(autoTop) };
+    if (autoTop) {
+      // No automatic recharge exists yet — this only saves the card against a
+      // new Customer for whoever builds that later. A Customer is required
+      // for setup_future_usage to persist the payment method past this
+      // session, hence customer_creation (mutually exclusive with `customer`,
+      // which this flow never sets since there's no account system).
+      paymentIntentData = { setup_future_usage: 'off_session' };
+      customerCreation = 'always';
+      // Consent record for the express authorization terms.html §21.9/21.10
+      // require — timestamped and tied to the terms version shown to the
+      // buyer at the moment they opted in.
+      metadata.autoTopConsentAt = new Date().toISOString();
+      metadata.autoTopConsentTermsVersion = CREDITS_TERMS_VERSION;
+    }
   } else if (type === 'membership') {
     const plan = MEMBERSHIP_PLANS[req.body.plan];
     if (!plan) {
@@ -92,6 +114,8 @@ module.exports = async (req, res) => {
       cancel_url: cancelUrl,
       metadata,
       ...(email ? { customer_email: email } : {}),
+      ...(paymentIntentData ? { payment_intent_data: paymentIntentData } : {}),
+      ...(customerCreation ? { customer_creation: customerCreation } : {}),
       integration_identifier: `sidekix-website-${randomSuffix(8)}`,
     });
 
