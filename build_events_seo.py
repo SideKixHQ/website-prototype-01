@@ -34,8 +34,9 @@ import html
 import json
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
 HERE = Path(__file__).parent
 PAGE = HERE / "events.html"
@@ -137,15 +138,87 @@ def attendance(event: dict) -> str:
     return ""
 
 
-def location_block(event: dict) -> dict:
+# "City ST 12345", with or without a comma before the state, which is how the
+# scraped location strings actually read once the date and time noise is
+# stripped off the front.
+_ADDR = re.compile(
+    r"([A-Z][A-Za-z.\'\-]+(?:\s+[A-Z][A-Za-z.\'\-]+){0,3})[,\s]+([A-Z]{2})\s+(\d{5})(?:-\d{4})?\b")
+_ONLINE = re.compile(r"online|webinar|virtual|zoom|livestream", re.I)
+
+
+def location_block(event: dict):
+    """The location, or None when the data will not support a valid one.
+
+    Search Console rejected every in person event with "Invalid object type for
+    field location". The cause was a PostalAddress carrying nothing but a name,
+    which is not a valid address: Google wants real address fields. The scraped
+    location strings are also dirty, mixing the title, the year and the start
+    time in with the street, so a name alone was never going to be an address.
+
+    Returning None drops that event from the structured data while leaving it
+    in the visible list. Markup Google rejects is worth less than markup that
+    is simply absent.
+    """
     place = (event.get("location") or "").strip()
     mode = (event.get("mode") or "").lower()
-    if mode == "online" or (place and re.search(r"online", place, re.I)):
+
+    if mode == "online" or (place and _ONLINE.search(place)):
         return {"@type": "VirtualLocation", "url": event.get("url") or PAGE_URL}
-    if place:
-        return {"@type": "Place", "name": place,
-                "address": {"@type": "PostalAddress", "name": place}}
-    return {"@type": "VirtualLocation", "url": event.get("url") or PAGE_URL}
+
+    m = _ADDR.search(place)
+    if m:
+        city, state, zipcode = m.group(1).strip(), m.group(2), m.group(3)
+        street = place[:m.start()].strip(" ,;-")
+        # the front of the string is date and time noise, so only keep it when
+        # it actually looks like a street rather than a timestamp
+        addr = {"@type": "PostalAddress", "addressLocality": city,
+                "addressRegion": state, "postalCode": zipcode,
+                "addressCountry": "US"}
+        if re.search(r"\d+\s+\w+", street) and not re.match(r"^\d{4}\b", street):
+            street = re.sub(r"^.*?(?=\d+\s+[A-Z])", "", street).strip(" ,;-")
+            if street:
+                addr["streetAddress"] = street
+        return {"@type": "Place", "name": city + ", " + state, "address": addr}
+
+    return None
+
+
+def organizer_block(host: str, url: str) -> dict:
+    """Organizer with a url where one can be inferred.
+
+    Search Console wanted organizer.url. The host's own site is not in the
+    data, but the event page lives on it, so the origin of the event URL is
+    the closest honest answer.
+    """
+    node = {"@type": "Organization", "name": host}
+    try:
+        parts = urlsplit(url)
+        if parts.scheme and parts.netloc:
+            node["url"] = parts.scheme + "://" + parts.netloc + "/"
+    except ValueError:
+        pass
+    return node
+
+
+def end_date(event: dict) -> str:
+    """An end time only where the source actually gives one.
+
+    Most rows carry an empty duration, and inventing a finish time for an event
+    somebody else is running would be worse than leaving the field out.
+    """
+    dur = (event.get("duration") or "").strip()
+    start = (event.get("start") or "").strip()
+    if not dur or not start:
+        return ""
+    m = re.match(r"^\s*(\d+(?:\.\d+)?)\s*(h|hr|hour|m|min|minute)", dur, re.I)
+    if not m:
+        return ""
+    n = float(m.group(1))
+    mins = n * 60 if m.group(2).lower().startswith(("h",)) else n
+    try:
+        return (datetime.fromisoformat(start) + timedelta(minutes=mins)).isoformat()
+    except ValueError:
+        return ""
 
 
 def build_block(events: list[dict], updated: str) -> str:
@@ -173,15 +246,28 @@ def build_block(events: list[dict], updated: str) -> str:
 
     graph = []
     for e in events:
+        where = location_block(e)
+        if where is None:
+            # no address Google will accept, so this one stays out of the
+            # structured data and lives only in the visible list
+            continue
+        host = e.get("host", "")
         node = {
             "@type": "Event",
             "name": e.get("title", ""),
             "startDate": e.get("start", ""),
             "eventStatus": "https://schema.org/EventScheduled",
-            "location": location_block(e),
-            "organizer": {"@type": "Organization", "name": e.get("host", "")},
+            "location": where,
+            "organizer": organizer_block(host, e.get("url", "")),
+            # the host presents the session, so it is also the performer.
+            # Search Console asked for this field and it is honest to give it.
+            "performer": {"@type": "Organization", "name": host},
+            "image": [SITE + "/assets/og/default.png"],
             "url": e.get("url", PAGE_URL),
         }
+        end = end_date(e)
+        if end:
+            node["endDate"] = end
         mode = attendance(e)
         if mode:
             node["eventAttendanceMode"] = mode
