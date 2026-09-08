@@ -16,6 +16,10 @@ PARTS = os.path.join(HERE, "parts")
 CSS  = io.open(os.path.join(PARTS, "asmt.css"), encoding="utf-8").read()
 JS   = io.open(os.path.join(PARTS, "asmt.js"),  encoding="utf-8").read()
 BODY = io.open(os.path.join(PARTS, "asmt.html"), encoding="utf-8").read()
+# Anonymous telemetry, loaded as its own file so the panel endpoint can be
+# switched on by editing assets/kx-analytics.js alone. It sits ahead of the
+# inline engine, which is where the tel() calls are.
+BODY += '\n<script src="assets/kx-analytics.js"></script>'
 
 TITLE = "The Energy Discovery: Which Twelve Do You Run On? | SideKix"
 DESC  = ("Forty eight statements, about six minutes, and a read on which of the twelve "

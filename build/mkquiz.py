@@ -31,7 +31,10 @@ _SKIP = re.compile(r'^(https?:|//|/|#|mailto:|tel:|data:|javascript:|\.\./)', re
 def deepen(html):
     def fix(m):
         attr, url = m.group(1), m.group(2)
-        if _SKIP.match(url):
+        # An empty src is a placeholder the script fills in later. Prefixing it
+        # turned it into src="../../", which is a request for a directory and
+        # draws a broken-image icon until the script runs.
+        if not url or _SKIP.match(url):
             return m.group(0)
         return '%s="../../%s"' % (attr, url)
     return re.sub(r'\b(href|src|poster)="([^"]*)"', fix, html)
@@ -111,6 +114,11 @@ CSS += """
 .qz-orb::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:3;
   border:2px solid var(--qa,#D4A856);opacity:.85;
   animation:qzRing .85s cubic-bezier(.2,.9,.25,1) both}
+/* An emblem is circular already and has its own rim, so it fills the orb and
+   the orb's ring gets out of the way. The 68% cap is only there because the
+   animal art is not square. */
+.qz-orb.emb img{max-width:100%;max-height:100%}
+.qz-orb.emb::after{display:none}
 @keyframes qzPop{from{transform:scale(.55);opacity:0}
   60%{transform:scale(1.05);opacity:1}to{transform:scale(1);opacity:1}}
 @keyframes qzSpin{to{transform:rotate(360deg)}}
@@ -124,11 +132,20 @@ CSS += """
   transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.2)}}
 
 .qz-you{font-family:var(--util,inherit);font-size:11px;letter-spacing:.22em;
-  text-transform:uppercase;color:#BDB4A4;margin:0 0 6px}
-.qz-name{font-family:Georgia,serif;font-size:clamp(34px,8.5vw,52px);line-height:1.03;
-  color:#FFF8D8;margin:0 0 12px;animation:qzUp .5s .2s ease-out both}
-.qz-head{font-size:clamp(18px,3.6vw,21px);line-height:1.55;color:#F3E4A8;
-  margin:0 auto 16px;max-width:30rem;animation:qzUp .5s .3s ease-out both}
+  text-transform:uppercase;color:var(--qa,#BDB4A4);opacity:.9;margin:0 0 6px}
+/* The answer, not a heading. Every result already carries an accent colour
+   that was only driving the ring, so it drives the name too: the thing the
+   visitor came for should be the loudest thing on the page and should not
+   look like the rest of it. */
+.qz-name{font-family:Georgia,serif;font-size:clamp(40px,11vw,68px);line-height:1.0;
+  color:var(--qa,#FFF8D8);margin:0 0 4px;letter-spacing:-.015em;
+  text-shadow:0 0 34px color-mix(in srgb,var(--qa,#D4A856) 45%,transparent);
+  animation:qzUp .5s .2s ease-out both}
+.qz-rule{width:74px;height:4px;border-radius:2px;margin:0 auto 16px;
+  background:var(--qa,#D4A856);opacity:.85;animation:qzUp .5s .25s ease-out both}
+.qz-head{font-size:clamp(19px,4vw,23px);line-height:1.5;color:#FFF8E8;
+  font-family:Georgia,serif;
+  margin:0 auto 18px;max-width:30rem;animation:qzUp .5s .3s ease-out both}
 .qz-body{font-size:16.5px;line-height:1.78;color:#CFC7B4;margin:0 auto 26px;
   max-width:32rem;animation:qzUp .5s .4s ease-out both}
 @keyframes qzUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -163,13 +180,20 @@ CSS += """
   border-radius:16px;background:rgba(212,168,86,.05);text-align:left}
 .qz-cta b{display:block;font-family:Georgia,serif;font-size:20px;color:#FFF8D8;margin:0 0 8px}
 .qz-cta p{font-size:15.5px;line-height:1.7;color:#CFC7B4;margin:0 0 16px}
-.qz-more{margin:30px 0 0}
+/* This list used to be a stack of gold-bordered rounded boxes, which is
+   exactly what an answer option is. Mid-quiz on a phone it read as more
+   answers to the question above it. Two changes: it is hidden entirely while
+   questions are on screen, and where it does show it is plainly navigation,
+   with no border, no box and no gold. */
+.qz-more{margin:40px 0 0;border-top:1px solid rgba(212,168,86,.14);padding-top:20px}
 .qz-more h2{font-family:var(--util,inherit);font-size:11px;letter-spacing:.2em;
-  text-transform:uppercase;color:#BDB4A4;font-weight:600;margin:0 0 12px}
-.qz-more ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.qz-more a{display:block;padding:14px 16px;border-radius:12px;text-decoration:none;
-  border:1px solid rgba(212,168,86,.22);color:#E4DAC4;font-size:15.5px;min-height:44px}
-.qz-more a:hover{border-color:#D4A856;color:#F3E4A8}
+  text-transform:uppercase;color:#8F887A;font-weight:600;margin:0 0 4px}
+.qz-more ul{list-style:none;margin:0;padding:0}
+.qz-more li{margin:0}
+.qz-more a{display:inline-block;padding:7px 0;text-decoration:none;
+  color:#9C9484;font-size:14px;line-height:1.45;border:0;background:none;
+  border-bottom:1px solid transparent}
+.qz-more a:hover,.qz-more a:focus-visible{color:#D4A856;border-bottom-color:rgba(212,168,86,.5)}
 .qz-cv{display:none}
 
 @media(prefers-reduced-motion:reduce){
@@ -248,6 +272,7 @@ JS = r"""
     form.querySelectorAll('input').forEach(function(inp){
       inp.addEventListener('change', function(){
         answers[at]=parseInt(inp.value,10);
+        tel('answer', {quiz:D.slug, q:at+1, opt:answers[at]});
         setTimeout(next, 190);
       });
     });
@@ -257,7 +282,12 @@ JS = r"""
 
   function next(){
     if(at < D.questions.length-1){ at++; renderQ(); }
-    else { writeHash(); show(score()); }
+    else {
+      writeHash();
+      var k=score();
+      tel('complete', {quiz:D.slug, result:k, answers:answers.join('')});
+      show(k);
+    }
   }
 
   function sparks(host, colour){
@@ -273,9 +303,22 @@ JS = r"""
     host.appendChild(w);
   }
 
+  /* Telemetry. kx is defined by assets/kx-analytics.js and is a no-op until
+     the panel endpoint is filled in there, so these calls are safe to ship
+     ahead of the collector existing. */
+  function tel(kind, props){
+    try{ if(window.kx && window.kx.ev) window.kx.ev(kind, props); }catch(e){}
+  }
+  tel('view', {quiz:D.slug});
+
+  /* The other quizzes are shown on the intro and on the result, and never
+     while a question is on screen, where a list of links below the options
+     is just one more thing that looks tappable. */
+  function more(on){ var n=$('#qzmore'); if(n) n.hidden=!on; }
+
   function show(key){
     var r=resultByKey(key);
-    intro.hidden=true; stage.hidden=true; res.hidden=false;
+    intro.hidden=true; stage.hidden=true; res.hidden=false; more(true);
     res.style.setProperty('--qa', r.accent||D.accent);
     $('#qzname').textContent=r.name;
     $('#qzhead').textContent=r.headline||'';
@@ -294,6 +337,7 @@ JS = r"""
     if(r.art){
       img.src=D.base+r.art; img.alt=r.name;
       orb.hidden=false; res.classList.remove('noart');
+      orb.classList.toggle('emb', /\.svg$/i.test(r.art));
       sparks(orb, r.accent);
     } else {
       /* no picture for this result, so no ring either. Setting src to the base
@@ -326,7 +370,7 @@ JS += r"""
     x.fillStyle=g; x.fillRect(0,0,W,H);
     x.strokeStyle=accent+'66'; x.lineWidth=3; x.strokeRect(38,38,W-76,H-76);
 
-    function centred(text, y, size, font, fill, max){
+    function centred(text, y, size, font, fill, max, dry){
       /* the size is passed rather than parsed out of the font string:
          parseInt('400 38px Georgia') returns the weight, 400, which put the
          line height at 520px and threw every line after the name off the
@@ -340,7 +384,11 @@ JS += r"""
       });
       if(line) lines.push(line);
       var lh=size*1.28;
-      lines.forEach(function(L,i){ x.fillText(L, W/2, y+i*lh); });
+      /* dry runs measure without drawing, so the caller can find out whether a
+         block fits before committing to it. A two line result name used to
+         push the cost line straight into the footer and the card came out with
+         three lines of text on top of each other. */
+      if(!dry) lines.forEach(function(L,i){ x.fillText(L, W/2, y+i*lh); });
       return y + lines.length*lh;
     }
 
@@ -357,7 +405,10 @@ JS += r"""
         /* drawImage into a square stretched every animal that is not square,
            and goat at 341x640 came out 88% too wide. Fit inside the ring
            on the artwork's own aspect ratio instead. */
-        var S=420, cx=W/2, cy=225+S/2, box=S*0.68;
+        var S=420, cx=W/2, cy=225+S/2;
+        // same reasoning as the page: a circular emblem fills the ring, the
+        // animal art is inscribed so its corners cannot escape the circle
+        var box = /\.svg$/i.test(r.art||'') ? S : S*0.68;
         var k=Math.min(box/img.width, box/img.height);
         var dw=img.width*k, dh=img.height*k;
         x.drawImage(img, cx-dw/2, cy-dh/2, dw, dh);
@@ -373,8 +424,15 @@ JS += r"""
       /* not the accent: four of the twelve are deep reds that vanish on black.
          The ring, the glow and the art already carry the colour. */
       y=centred(r.headline||'', y+30, 40, '400 40px Georgia, serif', '#F3E4A8', W-200);
-      if(r.cost) centred('What it costs you: '+r.cost, y+46, 29,
-                         '400 29px system-ui, sans-serif', '#9C9484', W-230);
+      var FOOT = H-210;               // where the title, url and wordmark begin
+      if(r.cost){
+        var end = centred('What it costs you: '+r.cost, y+46, 29,
+                          '400 29px system-ui, sans-serif', '#9C9484', W-230, true);
+        if(end < FOOT){
+          centred('What it costs you: '+r.cost, y+46, 29,
+                  '400 29px system-ui, sans-serif', '#9C9484', W-230);
+        }
+      }
 
       x.font='600 25px system-ui, sans-serif'; x.fillStyle='#8A8272';
       x.fillText(D.title, W/2, H-190);
@@ -409,6 +467,7 @@ JS += r"""
     var canFile = !!(navigator.canShare && navigator.share);
     sh.addEventListener('click', function(){
       var r=window.__kxResult; if(!r) return;
+      tel('share', {quiz:D.slug, result:r.key});
       sh.disabled=true; sh.textContent='Making the card...';
       card(r, function(blob){
         sh.disabled=false; sh.textContent='Share my result';
@@ -424,6 +483,7 @@ JS += r"""
     });
     dl.addEventListener('click', function(){
       var r=window.__kxResult; if(!r) return;
+      tel('save', {quiz:D.slug, result:r.key});
       dl.disabled=true;
       card(r, function(blob){ dl.disabled=false; if(blob) saveBlob(blob); });
     });
@@ -444,17 +504,26 @@ JS += r"""
 
   $('#qzstart').addEventListener('click', function(){
     intro.hidden=true; stage.hidden=false; at=0; answers=[]; renderQ();
+    more(false);
+    tel('start', {quiz:D.slug, qs:D.questions.length});
   });
   var again=$('#qzagain');
   if(again) again.addEventListener('click', function(){
     try{ history.replaceState(null,'',location.pathname); }catch(e){}
-    res.hidden=true; intro.hidden=false; at=0; answers=[];
+    res.hidden=true; intro.hidden=false; at=0; answers=[]; more(true);
   });
   wireShare();
 
   /* A shared link opens straight on the result it encodes. */
   var pre=readHash();
-  if(pre){ answers=pre; at=D.questions.length-1; show(score()); }
+  if(pre){
+    answers=pre; at=D.questions.length-1;
+    var pk=score();
+    /* Someone arriving on a shared link did not play the quiz, so this is
+       counted separately or the completion rate reads far too high. */
+    tel('inbound', {quiz:D.slug, result:pk});
+    show(pk);
+  }
 })();
 """
 
@@ -487,6 +556,7 @@ def build_one(q, others):
     b.append('<div class="qz-orb" id="qzorb"><img id="qzart" alt="" src="" '
              'width="258" height="258" decoding="async"></div>')
     b.append('<h2 class="qz-name" id="qzname"></h2>')
+    b.append('<div class="qz-rule" aria-hidden="true"></div>')
     b.append('<p class="qz-head" id="qzhead"></p>')
     b.append('<p class="qz-body" id="qzbody"></p>')
     # the honest half. A result that only flatters is a horoscope.
@@ -515,14 +585,23 @@ def build_one(q, others):
 
     # ---- the other quizzes, so one shared link leads to the rest
     if others:
-        b.append('<nav class="qz-more" aria-labelledby="qzmoreh">'
+        b.append('<nav class="qz-more" id="qzmore" aria-labelledby="qzmoreh">'
                  '<h2 id="qzmoreh">More discoveries</h2><ul>')
-        for o in others:
+        # Six, not sixteen. A sixteen-item tail on every quiz buries the
+        # result and reads as a sitemap. Each quiz takes the six that follow
+        # it in order and wraps around, so the set differs page to page and
+        # the internal linking still reaches all of them.
+        for o in others[:6]:
             b.append('<li><a href="../%s/">%s</a></li>' % (e(o["slug"]), e(o["title"])))
         b.append('</ul></nav>')
     b.append('<p class="qz-navrow"><a class="qz-back" href="../../discoveries.html">'
              'All discoveries</a></p>')
     b.append("</div>")
+    # Anonymous telemetry. Loaded as its own file rather than inlined so the
+    # panel endpoint can be switched on later by editing one file, with no
+    # rebuild of the seventeen quiz pages. It runs before the inline engine
+    # below it, which is where the tel() calls live.
+    b.append('<script src="assets/kx-analytics.js"></script>')
 
     # ---- the data the engine scores against
     payload = {
@@ -605,7 +684,10 @@ def main():
     order = list(qs.values())
     total = 0
     for q in order:
-        others = [o for o in order if o["slug"] != q["slug"]]
+        # rotate, so each quiz's "more" list starts at the one after it and
+        # every quiz gets linked from roughly the same number of pages
+        i = order.index(q)
+        others = order[i + 1:] + order[:i]
         n, url, short = build_one(q, others)
         total += n
         print("  %-24s %-34s %d KB" % (q["slug"], short, n // 1024))
