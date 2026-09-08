@@ -15,6 +15,9 @@
     "events:dry": "python3 scrape_events.py --dry-run",
     "events": "python3 scrape_events.py"
   },
+  "dependencies": {
+    "stripe": "^22.4.0"
+  },
   "devDependencies": {
     "jsdom": "^24.0.0"
   }
