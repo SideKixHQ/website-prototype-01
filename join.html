@@ -2179,6 +2179,27 @@ try{
       var btn=f.querySelector('button[type="submit"]')||f.querySelector('button');
       var lbl=btn?btn.textContent:''; if(btn){btn.disabled=true;btn.textContent='Sending...';}
       var reveal=function(){ f.style.display='none'; var t=document.getElementById('thanks'); t.classList.add('on'); t.focus(); };
+
+      // A prepay reservation is a real charge, not a waitlist signup — route
+      // it to Stripe Checkout instead of the contact-form endpoint. Anything
+      // else (plain waitlist, credits waitlist, updates signup) is unchanged.
+      var qp=new URLSearchParams(location.search);
+      if(qp.get('intent')==='prepay' && qp.get('plan')){
+        if(btn) btn.textContent='Starting checkout…';
+        fetch('/api/create-checkout-session',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({type:'membership',plan:qp.get('plan'),email:em.value.trim()})
+        }).then(function(r){ return r.json(); }).then(function(data){
+          if(data && data.url){ window.location.href=data.url; return; }
+          throw new Error('no checkout url');
+        }).catch(function(){
+          if(btn){btn.disabled=false;btn.textContent=lbl;}
+          err.innerHTML='Something went wrong starting checkout. Please email <a href="mailto:joinus@sidekixhq.com" style="color:inherit">joinus@sidekixhq.com</a> and we will get you set up by hand.';
+        });
+        return;
+      }
+
       var zipEl=document.getElementById('jzip'), hp=document.getElementById('jhp');
       window.SIDEKIX_SUBMIT({
         form_type:'waitlist',
@@ -2233,6 +2254,25 @@ try{
   if(btn) btn.textContent = intent==='prepay' ? ('Reserve '+d.n) : 'Join the list';
 })();
 }catch(e){console.error("SideKix [plan intent] failed:",e);}
+</script>
+<script>
+try{
+(function(){
+  var q=new URLSearchParams(location.search);
+  if(q.get('reserved')!=='1') return;
+  var P={access:{n:'Access',m:'$39 a month'},core:{n:'Core',m:'$99 a month'},premium:{n:'Premium',m:'$299 a month'}};
+  var d=P[(q.get('plan')||'').toLowerCase()];
+  var f=document.getElementById('joinform'); if(f) f.style.display='none';
+  var note=document.getElementById('kx-plan'); if(note) note.style.display='none';
+  var t=document.getElementById('thanks');
+  if(t){
+    t.innerHTML = '<h2>You’re locked in'+(d?', '+d.n:'')+'.</h2>'+
+      '<p>Payment received'+(d?' — your rate of <b>'+d.m+'</b> is reserved':'')+
+      '. A receipt is on its way to your inbox, and we will email you the moment this tier goes live.</p>';
+    t.classList.add('on'); t.focus();
+  }
+})();
+}catch(e){console.error("SideKix [reserved success] failed:",e);}
 </script>
 <!--kx-tray-links-->
 <script>
