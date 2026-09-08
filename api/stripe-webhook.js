@@ -70,6 +70,44 @@ module.exports = async (req, res) => {
       packs: session.metadata?.packs,
       amountTotal: session.amount_total,
     });
+
+    // Credits (not membership pre-orders) get a claim link: record the
+    // purchase in Admin-Backend and email the buyer a link to log into
+    // their real account and have the credits added. Non-2xx here makes
+    // Stripe redeliver this whole webhook later — safe, since the
+    // internal endpoint is idempotent on sessionId (won't double-create
+    // the claim or re-send the email on a retry that already succeeded).
+    if (session.metadata?.type === 'credits') {
+      const email = session.customer_details?.email;
+      const packs = parseInt(session.metadata?.packs, 10) || 1;
+      const credits = packs * 350;
+
+      if (!email) {
+        console.error('SideKix [website credits claim] no email on session', session.id);
+      } else {
+        try {
+          const claimRes = await fetch(
+            'https://api.sidekixhq.com/internal/website-credits/claims',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
+              },
+              body: JSON.stringify({ sessionId: session.id, email, credits }),
+            },
+          );
+          if (!claimRes.ok) {
+            const body = await claimRes.text().catch(() => '');
+            throw new Error(`Admin-Backend responded ${claimRes.status}: ${body}`);
+          }
+        } catch (err) {
+          console.error('SideKix [website credits claim] failed:', err);
+          res.status(502).json({ error: 'Could not record credits claim, will retry' });
+          return;
+        }
+      }
+    }
   }
 
   res.status(200).json({ received: true });

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Claim Your Kix Credits</title>
+<link href="assets/fonts.css" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#060502; --gold:#D4A856; --gold-pale:#F3E4A8; --gold-mid:#A1853E;
+  --grey:#9B958B; --line:#1E1C18; --cream:#FFEBB9;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Poppins',system-ui,sans-serif;
+  --util:'Space Grotesk',ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--grey);font-family:var(--body);font-size:16px;line-height:1.6;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;padding:24px}
+.card{max-width:420px;width:100%;background:#0f0d09;border:1px solid var(--line);border-radius:14px;padding:36px 32px}
+.eyebrow{font-family:var(--util);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-mid)}
+h1{font-family:var(--display);font-weight:600;color:var(--cream);font-size:32px;margin:10px 0 8px;line-height:1.1}
+p.sub{color:var(--grey);font-size:14.5px;margin-bottom:24px}
+label{display:block;font-size:13px;color:var(--grey);margin:16px 0 6px}
+input[type=email],input[type=password],input[type=text]{
+  width:100%;background:#050403;border:1px solid var(--line);border-radius:8px;color:var(--cream);
+  font-family:var(--body);font-size:15px;padding:11px 13px;outline:none}
+input:focus{border-color:var(--gold-mid)}
+button{width:100%;margin-top:22px;background:var(--gold);color:#1a1408;border:none;border-radius:8px;
+  font-family:var(--util);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;
+  padding:13px;cursor:pointer;transition:opacity .2s}
+button:hover{opacity:.9}
+button:disabled{opacity:.5;cursor:default}
+.msg{margin-top:16px;font-size:13.5px;line-height:1.5}
+.msg.error{color:#D98C7A}
+.msg.success{color:var(--gold-pale)}
+.linkback{display:inline-block;margin-top:26px;color:var(--gold-mid);font-size:13.5px;text-decoration:none}
+.linkback:hover{color:var(--gold)}
+.hidden{display:none}
+.big-result h1{margin-bottom:14px}
+.big-result p{color:var(--grey);font-size:15px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="step-loading">
+    <p class="eyebrow">Kix Credits</p>
+    <h1>One moment…</h1>
+  </div>
+
+  <div class="hidden" id="step-no-token">
+    <p class="eyebrow">Kix Credits</p>
+    <h1>Invalid link</h1>
+    <p class="sub">This claim link is missing or malformed. Check the link in your email, or contact <a href="mailto:support@sidekixhq.com" style="color:var(--gold-mid)">support@sidekixhq.com</a>.</p>
+  </div>
+
+  <form class="hidden" id="step-login">
+    <p class="eyebrow">Kix Credits</p>
+    <h1>Log in to claim your credits</h1>
+    <p class="sub">Sign in with your SideKix account so we know where to add them.</p>
+    <label for="email">Email</label>
+    <input autocomplete="email" id="email" required type="email"/>
+    <label for="password">Password</label>
+    <input autocomplete="current-password" id="password" required type="password"/>
+    <button id="login-btn" type="submit">Log in</button>
+    <div class="msg hidden" id="login-msg"></div>
+  </form>
+
+  <form class="hidden" id="step-otp">
+    <p class="eyebrow">Kix Credits</p>
+    <h1>Check your email</h1>
+    <p class="sub">Enter the verification code we just sent you.</p>
+    <label for="otp-code">Verification code</label>
+    <input autocomplete="one-time-code" id="otp-code" inputmode="numeric" required type="text"/>
+    <button id="otp-btn" type="submit">Verify</button>
+    <div class="msg hidden" id="otp-msg"></div>
+  </form>
+
+  <div class="hidden big-result" id="step-success">
+    <p class="eyebrow">Kix Credits</p>
+    <h1 id="success-heading">Credits added</h1>
+    <p id="success-body"></p>
+    <a class="linkback" href="membership.html">Back to SideKix →</a>
+  </div>
+
+  <div class="hidden big-result" id="step-error">
+    <p class="eyebrow">Kix Credits</p>
+    <h1>Couldn't claim credits</h1>
+    <p id="error-body">Something went wrong.</p>
+    <a class="linkback" href="membership.html">Back to SideKix →</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var API_BASE = 'https://api.sidekixhq.com';
+  var token = new URLSearchParams(location.search).get('token');
+
+  function show(id){
+    ['step-loading','step-no-token','step-login','step-otp','step-success','step-error'].forEach(function(s){
+      document.getElementById(s).classList.toggle('hidden', s !== id);
+    });
+  }
+
+  function showMsg(el, text){ el.textContent = text; el.classList.remove('hidden'); }
+
+  if (!token) { show('step-no-token'); return; }
+
+  var email = '';
+  var otpId = '';
+
+  async function completeClaim(accessToken){
+    try {
+      var res = await fetch(API_BASE + '/credits/claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
+        body: JSON.stringify({ token: token }),
+      });
+      var data = await res.json().catch(function(){ return {}; });
+      if (!res.ok) throw new Error(data.message || 'Could not claim credits');
+      document.getElementById('success-body').textContent =
+        data.creditsGranted + ' Kix Credits have been added to your account.';
+      show('step-success');
+    } catch (err) {
+      document.getElementById('error-body').textContent = err.message || 'Something went wrong.';
+      show('step-error');
+    }
+  }
+
+  document.getElementById('step-login').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn = document.getElementById('login-btn');
+    var msg = document.getElementById('login-msg');
+    msg.classList.add('hidden');
+    email = document.getElementById('email').value.trim();
+    var password = document.getElementById('password').value;
+    btn.disabled = true; btn.textContent = 'Logging in…';
+    try {
+      var res = await fetch(API_BASE + '/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'email', email: email, password: password }),
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Invalid credentials');
+      if (data.accessToken) {
+        await completeClaim(data.accessToken);
+      } else if (data.otpId) {
+        otpId = data.otpId;
+        show('step-otp');
+      } else {
+        throw new Error('Unexpected response from login');
+      }
+    } catch (err) {
+      showMsg(msg, err.message || 'Invalid credentials');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Log in';
+    }
+  });
+
+  document.getElementById('step-otp').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn = document.getElementById('otp-btn');
+    var msg = document.getElementById('otp-msg');
+    msg.classList.add('hidden');
+    var code = document.getElementById('otp-code').value.trim();
+    btn.disabled = true; btn.textContent = 'Verifying…';
+    try {
+      var res = await fetch(API_BASE + '/otp/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ otpId: otpId, code: code, email: email }),
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Invalid code');
+      if (!data.data || !data.data.accessToken) throw new Error('Unexpected response from verification');
+      await completeClaim(data.data.accessToken);
+    } catch (err) {
+      showMsg(msg, err.message || 'Invalid code');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Verify';
+    }
+  });
+
+  show('step-login');
+})();
+</script>
+</body>
+</html>
