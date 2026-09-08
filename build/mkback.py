@@ -53,10 +53,6 @@ STRIPS = [
   "Eight panels from a first idea to a coffee cart that opened."),
 ]
 
-# One strip is lifted out and sits directly under the declaration, because it
-# is the one that reads as yellow on the page and it earns the position.
-FEATURED = "ideas-are-easy"
-
 COMICS = [(k, t, d) for _, k, t, d in SERIES] + STRIPS
 
 body = ['<div class="br">']
@@ -72,21 +68,14 @@ body.append(
  'Read it, and if it says what you would have said, put your name to it.</span>'
  '<em>Read and sign it &rarr;</em></div></a></section>')
 
-# ---- the featured strip, straight under the declaration
-_feat = [c for c in STRIPS if c[0] == FEATURED]
-if _feat:
-    _k, _t, _d = _feat[0]
-    body.append(
-     '<section class="br-s br-feat"><h2>Start here</h2>'
-     '<figure class="br-comic br-featcard">'
-     '<button aria-label="Read %s, %d panels" class="br-open" data-key="%s" type="button">'
-     '<img alt="%s" decoding="async" height="1536" loading="lazy" '
-     'src="assets/comics/%s.webp" width="1024"/>'
-     '<span aria-hidden="true" class="br-read">Read it</span></button>'
-     '<figcaption><b>%s</b><span>%s</span><em>%d panels</em></figcaption>'
-     '</figure></section>'
-     % (e(_t), len(PANELS[_k]), e(_k), e(_t + ". " + _d), e(_k),
-        e(_t), e(_d), len(PANELS[_k])))
+# ---- the one-shots, straight under the declaration
+# All three of these are the yellow covers, so they sit together as one block
+# rather than one of them being pulled out above the rest. The four issues of
+# the series are dark and read as their own thing below.
+#
+# The heading names what the reader gets. "Start here" sounded like site
+# onboarding rather than a comic, and "The comics" was a heading whose only
+# content was two more headings.
 
 # ---- the game
 # Pulled 8 Sep 2026: Run Kix Run does not work on a phone, and most of the
@@ -123,7 +112,7 @@ def card(k, t, d, issue=None):
                e(t + ". " + d), e(k), e(t), e(d), n, unit))
 
 serial = "".join(card(k, t, d, i) for i, k, t, d in SERIES)
-strips = "".join(card(k, t, d) for k, t, d in STRIPS if k != FEATURED)
+strips = "".join(card(k, t, d) for k, t, d in STRIPS)
 
 DATA = {}
 for n, (i, k, t, d) in enumerate(SERIES):
@@ -134,26 +123,23 @@ for k, t, d in STRIPS:
     DATA[k] = {"title": t, "panels": PANELS[k], "unit": "Panel"}
 
 body.append(
- '<section class="br-s br-comics"><h2>The comics</h2>'
- '<h3 class="br-h3">The series</h3>'
+ '<section class="br-s br-comics"><h2>Short strips</h2>'
+ '<p class="br-b">One idea, start to finish, in about a minute. No running plot '
+ 'between them, so any of the three is a first one.</p>'
+ '<div class="br-cgrid">%s</div></section>'
+ '<section class="br-s br-comics"><h2>The story</h2>'
  '<p class="br-b">One story, running across issues. Marcus starts with a notebook '
  'and ends up with a market, and the people who would rather he did not are paying '
  'attention. Read them in order. Issue 2 is still being drawn, which is why the '
  'numbers skip.</p>'
  '<div class="br-cgrid br-cserial">%s</div>'
- '<h3 class="br-h3">One-shots</h3>'
- '<p class="br-b">Same world, no running plot. Read these in any order.</p>'
- '<div class="br-cgrid">%s</div>'
  '<script id="br-panels" type="application/json">%s</script>'
- '</section>' % (serial, strips,
+ '</section>' % (strips, serial,
                  json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")))
 
 body.append("</div>")
 
 CSS = """
-.br-h3{font-family:var(--util,inherit);font-size:11.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:#D4A856;font-weight:700;margin:38px 0 10px}
-.br-h3:first-of-type{margin-top:8px}
 .br-iss{position:absolute;top:12px;left:12px;z-index:2;
   font-family:var(--util,inherit);font-size:10px;letter-spacing:.24em;
   text-transform:uppercase;font-weight:500;color:#F3E4A8;
@@ -335,19 +321,6 @@ html.br-reading #kx-nav{display:none !important}
 @media(pointer:coarse){ .br-read{opacity:1;transform:translateX(-50%) translateY(0)} }
 .br-comic em{display:block;font-style:normal;font-family:var(--util);font-size:10px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:7px}
-
-/* ---- the featured strip, sitting under the declaration ----
-   Wider than a grid card, because it is one thing rather than one of three,
-   and the artwork is the reason anybody opens it. */
-.br-feat{margin:0 0 56px}
-.br-featcard{max-width:560px;margin:0}
-.br-featcard .br-open{display:block;width:100%}
-.br-featcard img{width:100%;height:auto;display:block;border-radius:14px}
-@media(min-width:820px){
-  .br-featcard{display:grid;grid-template-columns:300px 1fr;gap:26px;
-    align-items:center;max-width:none}
-  .br-featcard figcaption{align-self:center}
-}
 
 /* ---- the declaration, leading the page ----
    A slow glow rather than a flash: it draws the eye without competing with
