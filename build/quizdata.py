@@ -63,6 +63,35 @@ def check(q):
             bad.append("result %r is unreachable, best case loses to %r"
                        % (k, best.most_common(1)[0][0]))
 
+    # ---- shape checks. These are the ones a person notices: two answers to
+    # the same question that give the same result read as a mistake, and a
+    # question with three options next to seven with four looks unfinished.
+    counts = set(len(it["options"]) for it in q["questions"])
+    if len(counts) > 1:
+        bad.append("questions have differing option counts: %s" % sorted(counts))
+    for i, it in enumerate(q["questions"], 1):
+        prim = []
+        for o in it["options"]:
+            top = [k for k, v in (o.get("w") or {}).items() if v == max(o["w"].values())]
+            prim += top[:1]
+        dupe = [k for k in set(prim) if prim.count(k) > 1]
+        if dupe:
+            bad.append("q%d has two answers leading to %s" % (i, ", ".join(sorted(dupe))))
+    tally = collections.Counter()
+    for it in q["questions"]:
+        for o in it["options"]:
+            top = max(o["w"], key=lambda k: o["w"][k])
+            tally[top] += 1
+    for k in keys:
+        if tally.get(k, 0) == 0:
+            bad.append("result %r is never the top answer to anything" % k)
+    if tally:
+        hi, lo = max(tally.values()), min(tally.get(k, 0) for k in keys)
+        if hi >= lo * 2 + 2:
+            bad.append("uneven: %r leads %d answers, %r leads %d"
+                       % (tally.most_common(1)[0][0], hi,
+                          min(keys, key=lambda k: tally.get(k, 0)), lo))
+
     for s in _prose(q):
         if "—" in s or "–" in s:
             bad.append("dash punctuation in %r" % s[:50])

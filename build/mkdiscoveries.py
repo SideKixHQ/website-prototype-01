@@ -32,6 +32,46 @@ LIVE = [
   "2", "your stage, named", "#6FB3A6", None),
 ]
 
+
+# The silly tier. Kept visibly apart from the instruments: a 30 second quiz
+# about pizza toppings sitting beside a 48 statement assessment as an equal
+# would cost the assessment the credibility it has earned.
+FUN = [
+ ("q/energy-today/", "Which energy are you bringing today?",
+  "CEO, Mastermind, Hustle Mode, or just trying to survive. Not who you are, "
+  "who you are being this week.", "1", "this week's version of you", "#D4A856", None),
+ ("q/coffee-order/", "What is your founder coffee order?",
+  "Black coffee, latte, espresso, tea, or the energy drink at midnight. "
+  "Nobody has ever been talked out of their order.", "1", "the drink that gives you away", "#B07A46", None),
+ ("q/startup-movie/", "If your startup was a movie...",
+  "Rocky, Wolf of Wall Street, Social Network, Mission Impossible or Home "
+  "Alone. Every business has a genre.", "1", "your genre", "#C4534A", None),
+ ("q/hundred-k/", "You just got $100,000. First move?",
+  "No strings and no board. What you reach for first says more than the plan "
+  "you wrote down.", "1", "where it would really go", "#4FA96B", None),
+ ("q/superpower/", "Which founder superpower would you pick?",
+  "Read minds, unlimited energy, no fear, see trends, or clone yourself. What "
+  "you pick says which part you find hardest.", "1", "the power you would choose", "#7B5CC4", None),
+ ("q/your-squad/", "Which SideKix squad would you join?",
+  "Builders, Dreamers, Hustlers, Strategists or Community Champions. Everyone "
+  "is a bit of all five.", "1", "your table", "#D4A856", None),
+ ("q/business-pizza/", "Your business is a pizza. What is the topping?",
+  "A silly question that gets an honest answer, which is the trick of a good "
+  "one.", "1", "your topping", "#E0483C", None),
+ ("q/ran-itself/", "If it ran itself tomorrow, what would you do?",
+  "Travel, start another, sleep, volunteer, or nothing at all for six months. "
+  "Be honest.", "1", "what you would really do", "#5FA98C", None),
+ ("q/founder-confessions/", "What is the most founder thing you have done?",
+  "Worked through a holiday, bought a domain at 2am, renamed it five times. "
+  "No judgement.", "1", "your confession", "#C4534A", None),
+ ("q/shopping-cart/", "What is in your founder shopping cart?",
+  "Books, AI tools, office supplies, courses, or domains you will never use. "
+  "Where the money goes when nobody is watching.", "1", "your category", "#6FA8C4", None),
+ ("q/dating-profile/", "If your business had a dating profile...",
+  "What the bio would say if it were being honest on a Sunday night.",
+  "1", "your bio", "#DE5FA0", None),
+]
+
 # What is coming. Named because an empty shelf that says "more soon" tells a
 # visitor nothing, and a named one tells them whether to come back.
 QUICK = [
@@ -59,6 +99,46 @@ QUICK = [
   "Not how you think you handle it. What you do when a number is in front of "
   "you, which is usually different.",
   "1", "your money default", "#8E6FBF", None),
+]
+
+
+# The silly tier. Kept visibly apart from the instruments: a 30 second quiz
+# about pizza toppings sitting beside a 48 statement assessment as an equal
+# would cost the assessment the credibility it has earned.
+FUN = [
+ ("q/energy-today/", "Which energy are you bringing today?",
+  "CEO, Mastermind, Hustle Mode, or just trying to survive. Not who you are, "
+  "who you are being this week.", "1", "this week's version of you", "#D4A856", None),
+ ("q/coffee-order/", "What is your founder coffee order?",
+  "Black coffee, latte, espresso, tea, or the energy drink at midnight. "
+  "Nobody has ever been talked out of their order.", "1", "the drink that gives you away", "#B07A46", None),
+ ("q/startup-movie/", "If your startup was a movie...",
+  "Rocky, Wolf of Wall Street, Social Network, Mission Impossible or Home "
+  "Alone. Every business has a genre.", "1", "your genre", "#C4534A", None),
+ ("q/hundred-k/", "You just got $100,000. First move?",
+  "No strings and no board. What you reach for first says more than the plan "
+  "you wrote down.", "1", "where it would really go", "#4FA96B", None),
+ ("q/superpower/", "Which founder superpower would you pick?",
+  "Read minds, unlimited energy, no fear, see trends, or clone yourself. What "
+  "you pick says which part you find hardest.", "1", "the power you would choose", "#7B5CC4", None),
+ ("q/your-squad/", "Which SideKix squad would you join?",
+  "Builders, Dreamers, Hustlers, Strategists or Community Champions. Everyone "
+  "is a bit of all five.", "1", "your table", "#D4A856", None),
+ ("q/business-pizza/", "Your business is a pizza. What is the topping?",
+  "A silly question that gets an honest answer, which is the trick of a good "
+  "one.", "1", "your topping", "#E0483C", None),
+ ("q/ran-itself/", "If it ran itself tomorrow, what would you do?",
+  "Travel, start another, sleep, volunteer, or nothing at all for six months. "
+  "Be honest.", "1", "what you would really do", "#5FA98C", None),
+ ("q/founder-confessions/", "What is the most founder thing you have done?",
+  "Worked through a holiday, bought a domain at 2am, renamed it five times. "
+  "No judgement.", "1", "your confession", "#C4534A", None),
+ ("q/shopping-cart/", "What is in your founder shopping cart?",
+  "Books, AI tools, office supplies, courses, or domains you will never use. "
+  "Where the money goes when nobody is watching.", "1", "your category", "#6FA8C4", None),
+ ("q/dating-profile/", "If your business had a dating profile...",
+  "What the bio would say if it were being honest on a Sunday night.",
+  "1", "your bio", "#DE5FA0", None),
 ]
 
 # What is coming. Named because an empty shelf that says "more soon" tells a
@@ -140,6 +220,13 @@ def build():
              'as what it gives you, and you can post the card.</p>')
     b.append('<div class="dsc-grid">%s</div>'
              % "".join(card(*c) for c in QUICK))
+
+    b.append('<h2 class="dsc-h3">The silly ones</h2>')
+    b.append('<p class="dsc-note">Thirty seconds each, and shareable. They are '
+             'for fun, and they still tell you something, because a result that '
+             'only flatters is a horoscope.</p>')
+    b.append('<div class="dsc-grid">%s</div>'
+             % "".join(card(*c) for c in FUN))
 
     b.append('<h2 class="dsc-h3">Being written</h2>')
     b.append('<div class="dsc-soon">%s</div>'

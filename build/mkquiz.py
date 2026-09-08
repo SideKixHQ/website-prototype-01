@@ -61,8 +61,13 @@ CSS = """
 .qz-prog i.done{background:rgba(212,168,86,.6)}
 
 /* ---- questions ---- */
-.qz-q{margin:0 0 22px}
-.qz-q legend{font-family:Georgia,serif;font-size:clamp(21px,4.2vw,27px);
+/* A fieldset is the right element for a radio group and the wrong one to
+   leave unstyled: browsers give it a 2px groove border, their own padding and
+   min-inline-size:min-content, which drew a grey box round every question and
+   pushed the options two pixels out of line with the rest of the page. */
+.qz-q{margin:0 0 22px;border:0;padding:0;min-inline-size:0;display:block}
+.qz-q legend{display:block;float:none;width:100%;max-width:100%;box-sizing:border-box;
+  font-family:Georgia,serif;font-size:clamp(21px,4.2vw,27px);
   color:#FFF8D8;line-height:1.3;padding:0;margin:0 0 20px;text-align:center}
 .qz-opts{display:grid;gap:10px}
 .qz-opt{display:block;position:relative}
@@ -85,9 +90,18 @@ CSS = """
 CSS += """
 /* ---- the reveal ---- */
 .qz-res{text-align:center}
+.qz-res.noart .qz-name{margin-top:6px}
+.qz-res.noart::before{content:"";display:block;width:96px;height:3px;margin:0 auto 22px;
+  background:var(--qa,#D4A856);border-radius:2px}
 .qz-orb{position:relative;width:min(258px,62vw);aspect-ratio:1;margin:0 auto 18px}
-.qz-orb img{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;
-  border-radius:50%;animation:qzPop .62s cubic-bezier(.16,1.02,.3,1.02) both}
+/* The art is not square: goat is 341x640, octopus 640x550. Sizing it to the
+   full box and clipping it to a circle left tall animals as a narrow strip and
+   pushed wide ones against the ring. It is cut-out artwork on transparency, so
+   it needs no circular clip at all, just centring and room to breathe. */
+.qz-orb{display:flex;align-items:center;justify-content:center}
+.qz-orb img{position:relative;z-index:2;width:auto;height:auto;
+  max-width:68%;max-height:68%;object-fit:contain;
+  animation:qzPop .62s cubic-bezier(.16,1.02,.3,1.02) both}
 /* the glow is a rotating conic behind the art, the same trick the declaration
    uses, so the prize belongs to this site rather than to a confetti library */
 .qz-orb::before{content:"";position:absolute;inset:-9%;border-radius:50%;z-index:1;
@@ -275,11 +289,18 @@ JS = r"""
       a.href=l.href; a.textContent=l.label; li.appendChild(a); ul.appendChild(li);
     });
     ln.hidden = !(r.links && r.links.length);
-    var img=$('#qzart');
-    img.src=D.base+r.art; img.alt=r.name;
-    var orb=$('#qzorb');
+    var img=$('#qzart'), orb=$('#qzorb');
     orb.querySelectorAll('.qz-spark').forEach(function(n){ n.remove(); });
-    sparks(orb, r.accent);
+    if(r.art){
+      img.src=D.base+r.art; img.alt=r.name;
+      orb.hidden=false; res.classList.remove('noart');
+      sparks(orb, r.accent);
+    } else {
+      /* no picture for this result, so no ring either. Setting src to the base
+         path pointed the image at a directory and drew a broken icon. */
+      img.removeAttribute('src'); img.alt='';
+      orb.hidden=true; res.classList.add('noart');
+    }
     $('#qzurl').textContent=D.shortUrl;
     res.setAttribute('tabindex','-1'); res.focus();
     document.title = D.shareLine+' '+r.name+' | SideKix';
@@ -333,12 +354,14 @@ JS += r"""
     function paint(img){
       var top;
       if(img && img.width){
-        var S=420, iy=225;
-        x.save();
-        x.beginPath(); x.arc(W/2, iy+S/2, S/2, 0, Math.PI*2); x.closePath(); x.clip();
-        x.drawImage(img, (W-S)/2, iy, S, S);
-        x.restore();
-        x.beginPath(); x.arc(W/2, iy+S/2, S/2+10, 0, Math.PI*2);
+        /* drawImage into a square stretched every animal that is not square,
+           and goat at 341x640 came out 88% too wide. Fit inside the ring
+           on the artwork's own aspect ratio instead. */
+        var S=420, cx=W/2, cy=225+S/2, box=S*0.68;
+        var k=Math.min(box/img.width, box/img.height);
+        var dw=img.width*k, dh=img.height*k;
+        x.drawImage(img, cx-dw/2, cy-dh/2, dw, dh);
+        x.beginPath(); x.arc(cx, cy, S/2+10, 0, Math.PI*2);
         x.strokeStyle=accent; x.lineWidth=5; x.stroke();
         top = 782;
       } else {
