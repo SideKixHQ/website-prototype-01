@@ -10,7 +10,7 @@ The game is embedded on a click rather than on load, the same way the film is
 handled elsewhere: a poster and a button, so a page nobody plays on costs
 nothing to open.
 """
-import os, sys, io, json, html
+import os, sys, io, json, html, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from toolgen import page, crumbs, SITE
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -89,17 +89,23 @@ if _feat:
         e(_t), e(_d), len(PANELS[_k])))
 
 # ---- the game
-body.append(
- '<section class="br-s br-game"><h2>The game</h2>'
- '<div class="br-gamebox">'
- '<div class="br-gamestage" id="br-stage">'
- '<div class="br-gameface">'
- '<b>Run Kix Run</b>'
- '<p>Every founder meets the same obstacles. Collect coins, pick up advisors, '
- 'and see how far you get before one of them stops you.</p>'
- '<button class="kxcta kxcta-lead" id="br-play" type="button">Play it here</button>'
- '<p class="br-alt"><a href="%s" rel="noopener" target="_blank">Open it in its own tab instead</a></p>'
- '</div></div></div></section>' % e(GAME))
+# Pulled 8 Sep 2026: Run Kix Run does not work on a phone, and most of the
+# traffic to this page is on a phone. The section, its CSS and its loader are
+# left in place below rather than deleted, so putting it back is one flag.
+# Flip to True once the game handles touch.
+SHOW_GAME = False
+if SHOW_GAME:
+    body.append(
+     '<section class="br-s br-game"><h2>The game</h2>'
+     '<div class="br-gamebox">'
+     '<div class="br-gamestage" id="br-stage">'
+     '<div class="br-gameface">'
+     '<b>Run Kix Run</b>'
+     '<p>Every founder meets the same obstacles. Collect coins, pick up advisors, '
+     'and see how far you get before one of them stops you.</p>'
+     '<button class="kxcta kxcta-lead" id="br-play" type="button">Play it here</button>'
+     '<p class="br-alt"><a href="%s" rel="noopener" target="_blank">Open it in its own tab instead</a></p>'
+     '</div></div></div></section>' % e(GAME))
 
 # ---- the comics
 def card(k, t, d, issue=None):
@@ -225,6 +231,7 @@ CSS = """
   color:var(--gold);margin:0 0 14px;font-weight:400}
 .br-b{color:#A7A196;font-size:15.5px;line-height:1.7;margin:0 0 22px;max-width:62ch}
 
+/* GAME-CSS-START */
 /* the game loads on a click, not on arrival */
 .br-gamestage{position:relative;border:1px solid rgba(212,168,86,.28);border-radius:18px;
   overflow:hidden;background:
@@ -240,6 +247,7 @@ CSS = """
 .br-alt a:hover{color:var(--gold-pale)}
 .br-gamestage iframe{width:100%;height:clamp(420px,72vh,720px);border:0;display:block}
 .br-gamestage.on{min-height:0;padding:0}
+/* GAME-CSS-END */
 
 /* the comics */
 .br-cgrid{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -388,6 +396,7 @@ html.br-reading #kx-nav{display:none !important}
 """
 
 JS = ("""
+/* GAME-JS-START */
 /* the game arrives on a click, so a visitor who never plays never loads it */
 var stage=document.getElementById('br-stage'), play=document.getElementById('br-play');
 if(stage && play){
@@ -401,6 +410,7 @@ if(stage && play){
     f.focus();
   });
 }
+/* GAME-JS-END */
 
 /* ---- the comic reader ----
    One dialog, driven by the panel map in the page. Each panel is framed by
@@ -704,9 +714,16 @@ if(covers.length && dataEl){
 }
 """.replace("__GAME_URL__", GAME))
 
-TITLE = "The Back Room: A Game, Comics and a Declaration | SideKix"
-DESC  = ("Everything SideKix makes that will not help you run a business. Run Kix Run, "
-         "three comics, and a declaration worth putting your name to.")
+# Title and description follow SHOW_GAME, so the page never promises something
+# a visitor cannot find on it.
+if SHOW_GAME:
+    TITLE = "The Back Room: A Game, Comics and a Declaration | SideKix"
+    DESC  = ("Everything SideKix makes that will not help you run a business. Run Kix Run, "
+             "three comics, and a declaration worth putting your name to.")
+else:
+    TITLE = "The Back Room: Comics and a Declaration | SideKix"
+    DESC  = ("Everything SideKix makes that will not help you run a business. Three comics "
+             "and a declaration worth putting your name to.")
 LEDE  = ("Ideas come from curiosity. Perspective. Play. People. Sometimes from wandering "
          "somewhere you didn't mean to go. That's what this room is for.")
 
@@ -717,6 +734,14 @@ SCHEMA = (
    "name":"The Back Room","description":DESC,
    "publisher":{"@type":"Organization","name":"SideKix","url":SITE}},
 )
+
+
+# With the game pulled, its CSS rules match nothing and its loader guards on an
+# element that is not on the page. Both are dropped from the output rather than
+# shipped as dead weight, and both come back when SHOW_GAME goes True.
+if not SHOW_GAME:
+    CSS = re.sub(r"/\* GAME-CSS-START \*/.*?/\* GAME-CSS-END \*/", "", CSS, flags=re.S)
+    JS  = re.sub(r"/\* GAME-JS-START \*/.*?/\* GAME-JS-END \*/", "", JS, flags=re.S)
 
 n = page("back-room.html", TITLE, DESC, "The Back Room",
          "Go ahead. <em>Get distracted.</em>",
