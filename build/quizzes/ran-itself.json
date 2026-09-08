@@ -1,0 +1,264 @@
+{
+ "slug": "ran-itself",
+ "title": "If it could run itself tomorrow, what would you do?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "Be honest. This is the question that finds out whether you want the business or the working.",
+ "share_line": "I would",
+ "accent": "#5FA98C",
+ "og_line": "Five questions and what you would actually do with the time.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "The last real break you took:",
+   "options": [
+    {
+     "a": "Booked, then cancelled",
+     "w": {
+      "travel": 3,
+      "another": 1
+     }
+    },
+    {
+     "a": "I started something instead",
+     "w": {
+      "another": 3,
+      "volunteer": 1
+     }
+    },
+    {
+     "a": "I cannot remember",
+     "w": {
+      "sleep": 3,
+      "travel": 1
+     }
+    },
+    {
+     "a": "I spent it helping someone else",
+     "w": {
+      "volunteer": 3,
+      "sleep": 1
+     }
+    },
+    {
+     "a": "A while ago, and it was good",
+     "w": {
+      "nothing": 3,
+      "travel": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A completely open Saturday:",
+   "options": [
+    {
+     "a": "Somewhere I have not been",
+     "w": {
+      "travel": 3,
+      "sleep": 1
+     }
+    },
+    {
+     "a": "Sketching the next idea",
+     "w": {
+      "another": 3,
+      "nothing": 1
+     }
+    },
+    {
+     "a": "Horizontal",
+     "w": {
+      "sleep": 3,
+      "another": 1
+     }
+    },
+    {
+     "a": "Something for someone else",
+     "w": {
+      "volunteer": 3,
+      "nothing": 1
+     }
+    },
+    {
+     "a": "Genuinely nothing",
+     "w": {
+      "nothing": 3,
+      "another": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What do you miss most?",
+   "options": [
+    {
+     "a": "Being somewhere else",
+     "w": {
+      "travel": 3,
+      "volunteer": 1
+     }
+    },
+    {
+     "a": "The first month of anything",
+     "w": {
+      "another": 3,
+      "travel": 1
+     }
+    },
+    {
+     "a": "Waking up without an alarm",
+     "w": {
+      "sleep": 3,
+      "volunteer": 1
+     }
+    },
+    {
+     "a": "Being useful without invoicing",
+     "w": {
+      "volunteer": 3,
+      "travel": 1
+     }
+    },
+    {
+     "a": "Not being needed",
+     "w": {
+      "nothing": 3,
+      "sleep": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "If someone gave you a year, paid:",
+   "options": [
+    {
+     "a": "I would go and keep going",
+     "w": {
+      "travel": 3,
+      "nothing": 1
+     }
+    },
+    {
+     "a": "I would build something",
+     "w": {
+      "another": 3,
+      "sleep": 1
+     }
+    },
+    {
+     "a": "The first month would be a blur",
+     "w": {
+      "sleep": 3,
+      "nothing": 1
+     }
+    },
+    {
+     "a": "I would find work that matters",
+     "w": {
+      "volunteer": 3,
+      "another": 1
+     }
+    },
+    {
+     "a": "I would stop and see what happens",
+     "w": {
+      "nothing": 3,
+      "volunteer": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The reason you have not already:",
+   "options": [
+    {
+     "a": "It never feels like the right month",
+     "w": {
+      "travel": 3,
+      "another": 1
+     }
+    },
+    {
+     "a": "I keep starting things instead",
+     "w": {
+      "another": 3,
+      "volunteer": 1
+     }
+    },
+    {
+     "a": "There is always one more thing",
+     "w": {
+      "sleep": 3,
+      "travel": 1
+     }
+    },
+    {
+     "a": "It feels indulgent",
+     "w": {
+      "volunteer": 3,
+      "sleep": 1
+     }
+    },
+    {
+     "a": "I would not know who I was",
+     "w": {
+      "nothing": 3,
+      "travel": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "travel",
+   "name": "Travel",
+   "accent": "#6FA8C4",
+   "headline": "You have been saving it up.",
+   "body": "There is a list and it is long and it has not moved in years. You have been treating rest as something you earn afterwards.",
+   "cost": "Afterwards keeps moving. It has moved twice since you started.",
+   "art": "assets/emblems/ran-itself-travel.svg"
+  },
+  {
+   "key": "another",
+   "name": "Start another one",
+   "accent": "#E0483C",
+   "headline": "It was never about this business.",
+   "body": "You like the beginning. The bit where it is a blank page and anything is still possible.",
+   "cost": "Beginnings are the only bit you are practised at, which is why nothing gets to year five.",
+   "art": "assets/emblems/ran-itself-another.svg"
+  },
+  {
+   "key": "sleep",
+   "name": "Sleep",
+   "accent": "#7B5CC4",
+   "headline": "That is not a joke answer.",
+   "body": "You are running a deficit and you know it. The honest answer to what you want is not ambitious, it is horizontal.",
+   "cost": "Tired is not a personality and it is not a strategy either.",
+   "art": "assets/emblems/ran-itself-sleep.svg"
+  },
+  {
+   "key": "volunteer",
+   "name": "Give the time away",
+   "accent": "#4FA96B",
+   "headline": "The business was always the means.",
+   "body": "You want the freedom to be useful somewhere that does not pay, which is a good reason to have built the thing.",
+   "cost": "You put this off exactly as long as you put off rest.",
+   "art": "assets/emblems/ran-itself-volunteer.svg"
+  },
+  {
+   "key": "nothing",
+   "name": "Nothing, for six months",
+   "accent": "#8A8272",
+   "headline": "And you would not feel guilty.",
+   "body": "You have earned the right to stop and you know that you would take it. That is rarer and healthier than it sounds.",
+   "cost": "Six months of nothing is where people find out what they actually miss.",
+   "art": "assets/emblems/ran-itself-nothing.svg"
+  }
+ ]
+}

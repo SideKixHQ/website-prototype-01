@@ -287,5 +287,87 @@
 .hd-disc.hd-disc{width:clamp(76px,8.4vw,104px)}
 .hd-nm.hd-nm{font-size:9px;letter-spacing:.18em;line-height:1.4}
 @media(max-width:560px){
-  .hd-nm.hd-nm{font-size:8.5px;letter-spacing:.14em}
+  .hd-nm.hd-nm{font-size:9.5px;letter-spacing:.1em}
 }
+
+/* tools: tap targets */
+@media(max-width:600px){
+  .ws-check input{width:24px !important;height:24px !important;margin-top:0 !important}
+  .bs-ref a{display:inline-block;padding:3px 0;line-height:1.5}
+  .sf-checked a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}
+}
+
+/* the little count inside an active filter chip sat at .65 opacity over the
+   gold fill, which composites to #574728 on #D4A856: 4.07:1 against the 4.5
+   that 9.5px bold text needs. Raising the opacity darkens it to about 7:1. */
+[aria-pressed="true"] .kx-n,
+[aria-pressed="true"] .n{opacity:.92 !important}
+/* the unpressed chips tint their count by category, and at .65 the
+   cooler tints landed between 3.6 and 4.1 against the page ground. */
+.filters button .n,.gloss .gfilt .n,.kx-store .kx-n{opacity:.92 !important}
+
+/* the carousel dots draw as 8px but WCAG 2.2 asks for a 24px target, so the
+   hit area grows around the dot rather than the dot growing. Nothing moves:
+   the box is centred on the dot and the flex gap already leaves room. */
+/* the carousel dots paint as an 8px pill but WCAG 2.2 wants a 24px target.
+   Padding grows the box to 24 square while background-clip keeps the paint
+   inside the original 8px content area, so the dots look exactly as before
+   and the gap is dropped to hold the row at its old width. */
+#kx-hc-dots{gap:0 !important}
+.kx-hc-dot{box-sizing:content-box !important;padding:8px !important;
+  background-clip:content-box !important}
+
+/* the flip card's gold pill was a <button> inside a card that is itself
+   role="button", which is a nested control no matter what tabindex says. It is
+   a span now, so it needs the block layout and centring a button had by
+   default. Nothing about it looks different. */
+.kx-hc-btn{display:block;box-sizing:border-box;text-align:center;
+  -webkit-appearance:none;appearance:none;margin:0;text-decoration:none}
+
+/* ---------------------------------------------------------------
+   2.4.7 Focus Visible. The shared rule covered a, button and input,
+   which left select, textarea, summary and anything made focusable
+   with tabindex showing nothing at all when tabbed to. The events
+   filters and the homepage card stage were the visible cases: both
+   set outline:none of their own, the stage inline.
+   --------------------------------------------------------------- */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,
+textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible,
+[role="button"]:focus-visible{
+  outline:3px solid #F3E4A8 !important;outline-offset:3px !important}
+#kx-hc-stage:focus-visible{outline:3px solid #F3E4A8 !important;outline-offset:-3px !important}
+
+/* ---------------------------------------------------------------
+   1.4.11 Non-text Contrast. A form field's visual boundary is what
+   tells you a control is there, so it has to reach 3:1 against the
+   page. The borders ran from .18 to .40 alpha, which measures 1.46
+   to 2.30 against #0B0A06. Gold needs .55 to clear 3:1 and cream
+   needs .40, so both are set above that with a little headroom.
+   Only the resting border changes; focus, hover and filled states
+   keep whatever they already had.
+   --------------------------------------------------------------- */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+select,textarea{border-color:rgba(212,168,86,.6) !important}
+#kx-filters input,#kx-filters select,
+#kx-q,#kx-f-type,#kx-f-cost,#kx-f-state{border-color:rgba(239,233,223,.45) !important}
+
+/* ---------------------------------------------------------------
+   The back link is the only way up the hierarchy on a page that is
+   not the home page, and it was the quietest element on the screen:
+   10.5px, and a grey that measured 4.99:1 on some pages and 6.75:1
+   on others because two different colours were in use. One colour
+   everywhere, a size up, and the chevron given its own weight.
+   --------------------------------------------------------------- */
+.kx-bk{font-size:11.5px !important;color:#BDB4A4 !important;letter-spacing:.16em !important}
+.kx-bk svg{opacity:.9;stroke-width:2.2}
+.kx-bk:hover{color:#F3E4A8 !important}
+.kx-bk:hover svg{opacity:1}
+
+/* A heading given tabindex="-1" exists only so focus can be moved to it when
+   a step changes, which screen readers need. Chrome counts that programmatic
+   focus as :focus-visible and painted a ring around the question, which reads
+   as a stray box. Nothing with tabindex="-1" is reachable by Tab, so removing
+   the ring there costs a keyboard user nothing. Anything with tabindex="0"
+   keeps it. */
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible{outline:none !important}

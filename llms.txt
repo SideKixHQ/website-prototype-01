@@ -6,8 +6,8 @@
 > as SideKix, from Wilmington, North Carolina.
 
 SideKix is pre-launch. The public site is a research and resource library:
-free market data on US business formation, a plain-language glossary, working
-calculators, a weekly listing of no-cost online business events, and long-form
+open market data on US business formation, a plain-language glossary, working
+calculators, a weekly listing of business events in every state, online, livestreamed and in person, with the cost shown as the host states it, and long-form
 guides for people starting, growing, scaling or leading a small business.
 
 Everything on the site is free to read, needs no account, and asks for no
@@ -28,9 +28,20 @@ email address.
 
 ## Key pages
 
+- [Press](https://sidekixhq.com/press.html): The boilerplate, fast facts, federal figures on US business formation that are free to quote, and who to ask for an interview.
+- [The Back Room](https://sidekixhq.com/back-room.html): Run Kix Run, three comics, and a declaration. The part of SideKix with no work in it.
+- [A Declaration of Independence](https://sidekixhq.com/declaration.html): Written for anyone who has decided to stop waiting for permission. Readable as text and signable.
+- [The Energy Discovery](https://sidekixhq.com/assessment.html): Forty eight statements, about six minutes, and a distribution across twelve energies rather than a type. A self-report reflection tool, not a validated psychometric instrument. Runs in the browser and stores nothing.
+- [SideKix](https://sidekixhq.com/): The home page. What SideKix is, who it is for, and the three ways it helps: guided planning, human Advisors and a community.
+- [Partner with SideKix](https://sidekixhq.com/partners.html): Three ways to work with SideKix as an affiliate, partner or sponsor, what each one involves, and the companies already in the network.
+- [Cookie Policy](https://sidekixhq.com/cookies.html): What SideKix stores in a browser, why, and how to control it.
 - [Become a SideKix Advisor](https://sidekixhq.com/advisors.html): What a SideKix Advisor is, who it suits, and how the role works. Experienced business owners and fractional leaders share been there, done that expertise through 1:1 messaging sessions, live events and content. No minimum hours, you set your own rates, Founding Advisors keep a higher percentage.
 - [Become an Advisor | SideKix](https://sidekixhq.com/become-an-advisor.html): Advisors on SideKix have already stood where our members are standing. Tell us about your work, your expertise and your strengths, and we will be...
 - [Events · SideKix](https://sidekixhq.com/events.html): Online business events that cost nothing to attend, checked at the source each week. No filler, no hidden sales pitches.
+- [Discoveries: Short Self-Assessments | SideKix](https://sidekixhq.com/discoveries.html): Short discoveries about how you work, decide and recover. No account, no email, nothing kept, and each one ends with something you can act on.
+- [I Have a Business Idea but Do Not Know Where to Start | SideKix](https://sidekixhq.com/business-idea-where-to-start.html): The first move when an idea exists and nothing else does. Five steps ordered by risk, and the four places people get stuck.
+- [How to Start a Business in North Carolina | SideKix](https://sidekixhq.com/start-a-business-in-north-carolina.html): Form L-01 costs $125, the annual report is due 15 April. Every fee read from the NC Secretary of State with the date it was checked.
+- [Press Release: 174 Million Americans Have a Business Idea | SideKix](https://sidekixhq.com/press-release-launch.html): The launch release, with a source for every figure quoted.
 - [Frequently asked questions | SideKix](https://sidekixhq.com/faq.html): Fifty-nine answers about SideKix: how the operating system works, what Advisors do, memberships and Kix Credits.
 - [Business Glossary: 59 Terms Explained Plainly | SideKix](https://sidekixhq.com/glossary.html): A plain-language glossary of 59 business terms for people starting something: LLC, EIN, runway, margin, MRR, cap table and more. Copy any definition.
 - [How SideKix works](https://sidekixhq.com/how-it-works.html): See the whole operating system in one screen. Kix listens first, your map draws itself, and the right advisor.
@@ -42,7 +53,21 @@ email address.
 - [Resources: Blogs, Guides and Answers | SideKix](https://sidekixhq.com/library.html): The SideKix resource hub. Sixty-three blog posts on starting, funding, growing and staying with it, filterable by topic, plus the resource library, calculators, glossary, FAQs and market data. No account required.
 - [Resource Library: Agencies, Lenders and Registries | SideKix](https://sidekixhq.com/resources.html): Twenty nine agencies, lenders, advisors and registries that help people start and run a business in the United States. Every one is public, no cost to use, and linked straight to the page you need.
 - [Terms of Use | SideKix](https://sidekixhq.com/terms.html): The terms governing the SideKix platform, including Kix, Journey Maps, Community, Advisors, events, subscriptions and Kix Credits.
-- [Free Business Calculators: Startup Cost, Breakeven | SideKix](https://sidekixhq.com/tools.html): Four free calculators for people starting something: startup costs, breakeven point, hourly rate and product pricing. Nothing saved, nothing sent.
+- [Business Tools: Calculators, Worksheets and Lookups | SideKix](https://sidekixhq.com/tools.html): Fourteen free tools for people starting something: calculators, a fifty state filing lookup, a domain checker, fillable worksheets and checklists that remember your progress. No account and no email.
+- [Startup Cost Calculator: What It Costs to Start | SideKix](https://sidekixhq.com/startup-cost-calculator.html): Add your one-off costs and monthly running costs and see what you need before you open. Nothing saved, nothing sent, no account.
+- [Breakeven Calculator: Units and Revenue | SideKix](https://sidekixhq.com/breakeven-calculator.html): Enter fixed costs, price and variable cost per sale to see the units and the revenue you need to cover them.
+- [Hourly Rate Calculator for Freelancers | SideKix](https://sidekixhq.com/hourly-rate-calculator.html): Works back from the income you want and the hours you can actually bill, not the hours you work.
+- [Product Pricing Calculator: Margin and Fees | SideKix](https://sidekixhq.com/product-pricing-calculator.html): Works back from the margin you want, with materials, labour, overhead and payment fees included.
+- [What Do I File in My State? LLC Lookup for All 50 | SideKix](https://sidekixhq.com/state-filing.html): What you file to start an LLC in any US state: the office, the form, the fee, the name search, the registered agent rule and the annual report. Every figure linked to the state's own page.
+- [Sole Proprietor vs LLC vs S Corp: Side by Side | SideKix](https://sidekixhq.com/business-structures.html): Sole proprietor, LLC and S corporation compared on what actually differs: liability, how each is taxed, ownership limits, cost and ongoing work. Reference, not advice.
+- [Business Name Domain Checker: 12 Endings at Once | SideKix](https://sidekixhq.com/domain-search.html): Check a business name across a dozen domain endings at once, against the registries themselves. No account and nothing stored.
+- [Founder Diagnostic: Where Are You Actually? | SideKix](https://sidekixhq.com/founder-diagnostic.html): Five questions and a straight read on where your business actually is, plus the things on this site that fit that stage.
+- [Positioning Statement Generator | SideKix](https://sidekixhq.com/positioning-statement.html): Answer five questions and get a positioning statement you can edit, plus a bio line and a one-sentence answer for when somebody asks what you do.
+- [Outreach Email Generator: Reach Out Without the Cringe | SideKix](https://sidekixhq.com/outreach-email.html): Six questions and a short outreach email that sounds like a person: how you found them, the specific thing you noticed, who you are and one clear ask.
+- [Weekly Business Check-In: Fillable Worksheet | SideKix](https://sidekixhq.com/weekly-check-in.html): A fillable weekly business check-in. Wins, key numbers, progress, what got in the way and next week's top three. Saves in your browser, prints, downloads.
+- [90-Day Goals: Fillable Worksheet | SideKix](https://sidekixhq.com/90-day-goals.html): A fillable 90-day goal-setting worksheet. Reflect, set a vision, pick three priorities and build the weekly rhythm.
+- [Business Startup Checklist: Tick and Track | SideKix](https://sidekixhq.com/startup-checklist.html): An interactive business startup checklist in five phases ordered by risk: decide, validate, set up, build, sell. Remembers your progress.
+- [Support System Checklist for Founders | SideKix](https://sidekixhq.com/support-system-checklist.html): An interactive support system checklist for founders: personal, peer, expertise, resource and community support, with a gap plan.
 
 ## Guides and articles
 
@@ -113,7 +138,7 @@ email address.
 
 - SideKix is a product of Character Limit LLC, doing business as SideKix,
   based in Wilmington, North Carolina, United States.
-- SideKix is pre-launch. Membership tiers are published but not yet selling.
+- SideKix is pre-launch. Memberships and Kix Credits can be prepaid now, ahead of the platform opening.
 - The trademark application for SideKix is pending with the USPTO.
 - The site publishes no sponsored content and runs no advertising.
 

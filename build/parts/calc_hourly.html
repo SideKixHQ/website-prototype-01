@@ -1,0 +1,12 @@
+<div class="calc" id="hourly">
+<div><h2>What should you charge an hour?</h2>
+<p class="cdek">Billable hours are always fewer than working hours. Admin, sales and unpaid revisions
+    all come out of the same week, which is why the percentage matters more than the total.</p>
+<div class="crow"><label for="h_income">Income you want to take home<span class="chint">per year</span></label><span class="cin"><span class="cu">$</span><input id="h_income" inputmode="decimal" min="0" step="any" type="number" value="70000"/></span></div>
+<div class="crow"><label for="h_costs">Business costs<span class="chint">per year</span></label><span class="cin"><span class="cu">$</span><input id="h_costs" inputmode="decimal" min="0" step="any" type="number" value="9000"/></span></div>
+<div class="crow"><label for="h_weeks">Weeks you will work<span class="chint">allowing for time off</span></label><span class="cin"><span class="cu">#</span><input id="h_weeks" inputmode="decimal" min="0" step="any" type="number" value="46"/></span></div>
+<div class="crow"><label for="h_hours">Hours a week</label><span class="cin"><span class="cu">#</span><input id="h_hours" inputmode="decimal" min="0" step="any" type="number" value="30"/></span></div>
+<div class="crow"><label for="h_bill">Share of those hours you can bill</label><span class="cin"><span class="cu">%</span><input id="h_bill" inputmode="decimal" min="0" step="any" type="number" value="60"/></span></div>
+</div>
+<aside class="cout"><p class="col">Your rate</p><p class="cov" id="h_out"></p><p class="cos" id="h_sub"></p><dl><dt>Billable hours a year</dt><dd id="h_bh"></dd><dt>Day rate at 8 hours</dt><dd id="h_day"></dd><dt>Total to bill</dt><dd id="h_need"></dd></dl><button class="ccopy" data-k="h" type="button">Copy this result</button></aside>
+</div>

@@ -21,8 +21,11 @@ def _chrome():
 
 
 
-TOP = open("/home/claude/build/_shell_top.html", encoding="utf-8").read()
-BOTTOM = open("/home/claude/build/_shell_bottom.html", encoding="utf-8").read()
+# Relative to this file rather than to one absolute location, so the repo can
+# be checked out anywhere and still build.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+TOP = open(os.path.join(_HERE, "_shell_top.html"), encoding="utf-8").read()
+BOTTOM = open(os.path.join(_HERE, "_shell_bottom.html"), encoding="utf-8").read()
 SITE = "https://sidekixhq.com"
 
 def page(filename, title, desc, main_html, extra_css="", extra_js="", schema=(), og_title=None):

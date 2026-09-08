@@ -1,0 +1,220 @@
+{
+ "slug": "energy-today",
+ "title": "Which business energy are you bringing today?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "Not who you are. Who you are being this week, which is a different question and usually a more useful one.",
+ "share_line": "Today I am bringing",
+ "accent": "#D4A856",
+ "og_line": "Five questions and the version of you that turned up this week.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "The first thing you did this morning:",
+   "options": [
+    {
+     "a": "Made a decision someone was waiting on",
+     "w": {
+      "ceo": 3,
+      "mastermind": 1
+     }
+    },
+    {
+     "a": "Sat with the bigger question for a bit",
+     "w": {
+      "mastermind": 3,
+      "survive": 1
+     }
+    },
+    {
+     "a": "Opened the thing and started building",
+     "w": {
+      "hustle": 3,
+      "mastermind": 1
+     }
+    },
+    {
+     "a": "Worked out what could not slip today",
+     "w": {
+      "survive": 3,
+      "ceo": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your calendar this week:",
+   "options": [
+    {
+     "a": "Cleared for the things that matter",
+     "w": {
+      "ceo": 3,
+      "hustle": 1
+     }
+    },
+    {
+     "a": "Two long blocks and nothing else",
+     "w": {
+      "mastermind": 3,
+      "ceo": 1
+     }
+    },
+    {
+     "a": "Packed, and I keep adding",
+     "w": {
+      "hustle": 3,
+      "survive": 1
+     }
+    },
+    {
+     "a": "Whatever survived the reshuffle",
+     "w": {
+      "survive": 3,
+      "mastermind": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Someone asks how it is going.",
+   "options": [
+    {
+     "a": "Good. Here is what we decided",
+     "w": {
+      "ceo": 3,
+      "survive": 1
+     }
+    },
+    {
+     "a": "Ask me in a month",
+     "w": {
+      "mastermind": 3,
+      "hustle": 1
+     }
+    },
+    {
+     "a": "Busy. Really busy",
+     "w": {
+      "hustle": 3,
+      "ceo": 1
+     }
+    },
+    {
+     "a": "Fine, and I change the subject",
+     "w": {
+      "survive": 3,
+      "hustle": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "An unexpected opportunity lands.",
+   "options": [
+    {
+     "a": "Yes or no, today",
+     "w": {
+      "ceo": 3,
+      "mastermind": 1
+     }
+    },
+    {
+     "a": "Where does it sit in two years",
+     "w": {
+      "mastermind": 3,
+      "survive": 1
+     }
+    },
+    {
+     "a": "Yes, obviously, I will find the time",
+     "w": {
+      "hustle": 3,
+      "mastermind": 1
+     }
+    },
+    {
+     "a": "Not this week. Maybe next",
+     "w": {
+      "survive": 3,
+      "ceo": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What would actually help right now?",
+   "options": [
+    {
+     "a": "Fewer people needing my answer",
+     "w": {
+      "ceo": 3,
+      "hustle": 1
+     }
+    },
+    {
+     "a": "An afternoon with no interruptions",
+     "w": {
+      "mastermind": 3,
+      "ceo": 1
+     }
+    },
+    {
+     "a": "Two more of me",
+     "w": {
+      "hustle": 3,
+      "survive": 1
+     }
+    },
+    {
+     "a": "One thing off the list",
+     "w": {
+      "survive": 3,
+      "mastermind": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "ceo",
+   "name": "CEO Energy",
+   "accent": "#D4A856",
+   "headline": "Deciding things and meaning it.",
+   "body": "You are making calls today rather than gathering more input. The calendar bends around you instead of the other way round.",
+   "cost": "Nobody tells you when you are wrong on a week like this.",
+   "art": "assets/emblems/energy-today-ceo.svg"
+  },
+  {
+   "key": "mastermind",
+   "name": "Mastermind Energy",
+   "accent": "#6FA8C4",
+   "headline": "Three moves ahead of the room.",
+   "body": "You are not doing the work today, you are working out which work is worth doing. Everyone else finds out on Thursday.",
+   "cost": "A plan nobody has heard yet is not a plan, it is a secret.",
+   "art": "assets/emblems/energy-today-mastermind.svg"
+  },
+  {
+   "key": "hustle",
+   "name": "Hustle Mode",
+   "accent": "#E0483C",
+   "headline": "Volume, speed, and no meetings.",
+   "body": "You are shipping. Not deciding, not planning, shipping. The inbox can wait and it knows it.",
+   "cost": "You will be very tired on Friday and unsure exactly what moved.",
+   "art": "assets/emblems/energy-today-hustle.svg"
+  },
+  {
+   "key": "survive",
+   "name": "Just Trying to Survive",
+   "accent": "#8A8272",
+   "headline": "Still here, which counts.",
+   "body": "This is a week for keeping the lights on and the promises made. There is no shame in it and everybody has them.",
+   "cost": "Nothing, if it is one week. Something, if it is the fourth in a row.",
+   "art": "assets/emblems/energy-today-survive.svg"
+  }
+ ]
+}

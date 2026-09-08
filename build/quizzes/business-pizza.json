@@ -1,0 +1,220 @@
+{
+ "slug": "business-pizza",
+ "title": "Your business is a pizza. What is the topping?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "It is a silly question that gets an honest answer, which is the whole trick of a good one.",
+ "share_line": "My business is",
+ "accent": "#E0483C",
+ "og_line": "Five questions and the topping your business has been all along.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "Explain your business in one sentence.",
+   "options": [
+    {
+     "a": "Easy. People already know what it is",
+     "w": {
+      "pepperoni": 3,
+      "pineapple": 1
+     }
+    },
+    {
+     "a": "I can, but people argue with it",
+     "w": {
+      "pineapple": 3,
+      "everything": 1
+     }
+    },
+    {
+     "a": "It takes me two sentences, honestly",
+     "w": {
+      "mushrooms": 3,
+      "pineapple": 1
+     }
+    },
+    {
+     "a": "I have never managed it in one",
+     "w": {
+      "everything": 3,
+      "pepperoni": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your customers found you because:",
+   "options": [
+    {
+     "a": "They were already looking for it",
+     "w": {
+      "pepperoni": 3,
+      "mushrooms": 1
+     }
+    },
+    {
+     "a": "Somebody told them it was mad",
+     "w": {
+      "pineapple": 3,
+      "pepperoni": 1
+     }
+    },
+    {
+     "a": "Someone they trust recommended it",
+     "w": {
+      "mushrooms": 3,
+      "everything": 1
+     }
+    },
+    {
+     "a": "Different ones, different reasons",
+     "w": {
+      "everything": 3,
+      "pineapple": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What do people say when you describe it?",
+   "options": [
+    {
+     "a": "Makes sense",
+     "w": {
+      "pepperoni": 3,
+      "everything": 1
+     }
+    },
+    {
+     "a": "Really?",
+     "w": {
+      "pineapple": 3,
+      "mushrooms": 1
+     }
+    },
+    {
+     "a": "Oh, that is clever",
+     "w": {
+      "mushrooms": 3,
+      "pepperoni": 1
+     }
+    },
+    {
+     "a": "So which part is the business?",
+     "w": {
+      "everything": 3,
+      "mushrooms": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your competitors:",
+   "options": [
+    {
+     "a": "Plenty, and I know them all",
+     "w": {
+      "pepperoni": 3,
+      "pineapple": 1
+     }
+    },
+    {
+     "a": "Almost none, which worries me slightly",
+     "w": {
+      "pineapple": 3,
+      "everything": 1
+     }
+    },
+    {
+     "a": "A few, quiet like me",
+     "w": {
+      "mushrooms": 3,
+      "pineapple": 1
+     }
+    },
+    {
+     "a": "Different ones for each thing",
+     "w": {
+      "everything": 3,
+      "pepperoni": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What would you never change?",
+   "options": [
+    {
+     "a": "Doing the basics properly",
+     "w": {
+      "pepperoni": 3,
+      "mushrooms": 1
+     }
+    },
+    {
+     "a": "The thing people find strange",
+     "w": {
+      "pineapple": 3,
+      "pepperoni": 1
+     }
+    },
+    {
+     "a": "The quality nobody sees",
+     "w": {
+      "mushrooms": 3,
+      "everything": 1
+     }
+    },
+    {
+     "a": "Being able to say yes",
+     "w": {
+      "everything": 3,
+      "pineapple": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "pepperoni",
+   "name": "Pepperoni",
+   "accent": "#C4534A",
+   "headline": "Traditional, and it works.",
+   "body": "You are doing a known thing properly. There is no mystery to explain and no education to fund, which is worth more than founders admit.",
+   "cost": "Anybody can order the same thing, so the only edge you have is doing it better.",
+   "art": "assets/emblems/business-pizza-pepperoni.svg"
+  },
+  {
+   "key": "pineapple",
+   "name": "Pineapple",
+   "accent": "#D9A441",
+   "headline": "Bold, and people have opinions.",
+   "body": "Half the room thinks you are wrong and the other half is extremely loyal. There is no version of this that everyone likes.",
+   "cost": "You spend real energy defending the choice instead of improving it.",
+   "art": "assets/emblems/business-pizza-pineapple.svg"
+  },
+  {
+   "key": "mushrooms",
+   "name": "Mushrooms",
+   "accent": "#8A7A5C",
+   "headline": "Quiet, and better than it looks.",
+   "body": "You are not the obvious pick and the people who choose you keep choosing you. Word of mouth is doing most of your marketing.",
+   "cost": "Quiet does not scale on its own. Somebody has to say it out loud.",
+   "art": "assets/emblems/business-pizza-mushrooms.svg"
+  },
+  {
+   "key": "everything",
+   "name": "Everything on it",
+   "accent": "#4FA96B",
+   "headline": "Serial entrepreneur energy.",
+   "body": "You said yes to all of it. There is a version of this that is range and a version that is indecision, and only you know which.",
+   "cost": "Every extra topping makes the thing harder to describe in one sentence.",
+   "art": "assets/emblems/business-pizza-everything.svg"
+  }
+ ]
+}

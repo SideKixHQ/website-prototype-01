@@ -19,7 +19,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Become a SideKix Advisor | Get Paid for What You Know</title>
 
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link as="style" href="assets/fonts.css" rel="preload"/><link as="font" crossorigin="" href="assets/Space-Grotesk-400-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Space-Grotesk-500-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-700-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-500-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-italic-5f682672.woff2" rel="preload" type="font/woff2"/><link href="assets/fonts.css" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;family=Cormorant+Garamond:wght@600&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -45,7 +45,7 @@
   @keyframes kxDot{0%,100%{opacity:1}50%{opacity:.25}}
 
   .kx-trace::before{content:"";position:absolute;inset:-2.5px;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--kxa),transparent 0 58%,#F3E4A8 72%,#FFFFEF 80%,#D4A856 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:kxTrace 6.5s linear infinite;pointer-events:none;}
-  .kx-gold-text{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
+  .kx-gold-text{background:linear-gradient(100deg,#EEDCFF,#B07FE0 40%,#7B52A8 72%,#EEDCFF);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
   .kx-link{position:relative;transition:color .2s}
   .kx-link:hover{color:#fff}
   .kx-link::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:#D4A856;transition:width .28s cubic-bezier(.16,1,.3,1)}
@@ -131,14 +131,14 @@
 @media(max-width:560px){.sk-base .sk-tm{font-size:9px}}
 </style>
 <link href="https://sidekixhq.com/advisors.html" rel="canonical"/>
-<meta content="Share your been there, done that experience with people building a business. No minimum hours, your own rates, and three ways to earn from what you know." name="description"/>
+<meta content="Share your been there, done that experience with people building a business. No minimum hours, three ways to earn, and pro bono whenever you want it." name="description"/>
 <meta content="website" property="og:type"/><meta content="SideKix" property="og:site_name"/>
 <meta content="Become a SideKix Advisor" property="og:title"/>
-<meta content="Share your been there, done that experience with people building a business. No minimum hours, your own rates, and three ways to earn from what you know." property="og:description"/>
+<meta content="Share your been there, done that experience with people building a business. No minimum hours, three ways to earn, and pro bono whenever you want it." property="og:description"/>
 <meta content="https://sidekixhq.com/advisors.html" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Become a SideKix Advisor" name="twitter:title"/>
-<meta content="Share your been there, done that experience with people building a business. No minimum hours, your own rates, and three ways to earn from what you know." name="twitter:description"/>
+<meta content="Share your been there, done that experience with people building a business. No minimum hours, three ways to earn, and pro bono whenever you want it." name="twitter:description"/>
 <meta content="index, follow, max-image-preview:large" name="robots"/>
 <style>
 /* ---- topic chips carry their own colour, as on the resources page ----
@@ -1765,27 +1765,51 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-note{font-size:14.5px;color:#9C968D;margin:26px 0 0}
 /* The pro bono line was the quietest thing in the loudest section, which is
    backwards: it is the point that makes the whole marketplace feel less
-   transactional. Given its own frame, a lit dot, and gold that runs when you
-   reach for it. The shimmer only animates on hover, so it costs nothing at
+   transactional. Given its own frame, a lit dot, and the one violet on a site
+   that is otherwise black and gold, so the eye lands on it. The shimmer only animates on hover, so it costs nothing at
    rest. */
-.adv-probono{display:inline-flex;align-items:flex-start;gap:13px;
-  margin:30px 0 0;padding:16px 24px 16px 20px;border-radius:14px;max-width:640px;
-  border:1px solid rgba(212,168,86,.3);color:#D8D2C4;font-size:16px;line-height:1.6;
-  background:linear-gradient(100deg,rgba(212,168,86,.10),rgba(212,168,86,.03) 60%,transparent);
+.adv-probono{display:flex;width:fit-content;align-items:flex-start;gap:13px;
+  margin:30px auto 0;padding:16px 24px 16px 20px;border-radius:14px;max-width:640px;
+  border:1px solid rgba(176,127,224,.34);color:#D6CFE0;font-size:16px;line-height:1.6;
+  background:linear-gradient(100deg,rgba(176,127,224,.13),rgba(176,127,224,.04) 60%,transparent);
   transition:border-color .35s ease,background .35s ease,color .35s ease}
 .adv-probono::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;border-radius:999px;
-  background:var(--gold);box-shadow:0 0 14px rgba(212,168,86,.75);transition:box-shadow .35s ease}
+  background:#B07FE0;box-shadow:0 0 14px rgba(176,127,224,.8);transition:box-shadow .35s ease}
 .adv-pbtext{min-width:0}
-.adv-probono b{font-weight:700;color:var(--gold-pale)}
-.adv-probono:hover{border-color:rgba(212,168,86,.7);color:#F4EEDF;
-  background:linear-gradient(100deg,rgba(212,168,86,.22),rgba(212,168,86,.07) 60%,rgba(212,168,86,.02))}
+.adv-probono b{font-weight:700;color:#DEC4F7}
+.adv-probono:hover{border-color:rgba(176,127,224,.85);color:#F1EAFA;
+  background:linear-gradient(100deg,rgba(176,127,224,.26),rgba(176,127,224,.09) 60%,rgba(176,127,224,.03))}
+
+/* ---- the pro bono line has to be found, not read past ----
+   It sits under three cards that all say "charge for this", and it is the
+   one line that says the opposite. Centred so it reads as its own statement
+   rather than a footnote to card 03, and given a slow breath so the eye
+   catches it on the way down the page.
+
+   Six seconds, glow only. Nothing moves and nothing reflows: the border
+   colour and two shadows change, which the compositor handles on its own
+   layer. Stops entirely under prefers-reduced-motion, below. */
+@keyframes advPbBreathe{
+  0%,100%{border-color:rgba(176,127,224,.24);
+    box-shadow:0 0 0 0 rgba(176,127,224,0), inset 0 0 22px rgba(176,127,224,.03)}
+  50%    {border-color:rgba(176,127,224,.95);
+    box-shadow:0 0 38px 4px rgba(176,127,224,.34), inset 0 0 30px rgba(176,127,224,.15)}
+}
+@keyframes advPbDot{
+  0%,100%{box-shadow:0 0 8px rgba(176,127,224,.5);transform:scale(.9)}
+  50%    {box-shadow:0 0 26px 3px rgba(190,150,235,1);transform:scale(1.4)}
+}
+.adv-probono{animation:advPbBreathe 4.5s ease-in-out infinite}
+.adv-probono::before{animation:advPbDot 4.5s ease-in-out infinite}
+/* hover takes over from the breath so the two never fight */
+.adv-probono:hover,.adv-probono:hover::before{animation:none}
 .adv-probono:hover::before{box-shadow:0 0 24px rgba(212,168,86,1)}
 .adv-probono:hover b{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);
   background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:kxShimmer 6s linear infinite}
 @media (prefers-reduced-motion:reduce){
   .adv-probono,.adv-probono::before{transition:none}
-  .adv-probono:hover b{animation:none;color:var(--gold-pale);background:none;-webkit-text-fill-color:currentColor}
+  .adv-probono:hover b{animation:none;color:#DEC4F7;background:none;-webkit-text-fill-color:currentColor}
 }
 
 .adv-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,168,86,.4);
@@ -1866,7 +1890,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
   color:#8C8478;margin:0 0 20px}
 .adv-fit{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);margin:0}
 @media (min-width:820px){.adv-fit{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .adv-fit .adv-fitcard:nth-child(5){grid-column:1 / -1}}
+  }
 .adv-fitcard{position:relative;min-width:0;text-align:left;cursor:pointer;
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;
   padding:22px 26px 22px 22px;border-radius:16px;font-family:var(--body);
@@ -1876,7 +1900,6 @@ window.SIDEKIX_SUBMIT = function (payload) {
 .adv-fitcard:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .adv-fitcard b{grid-column:2;font-size:17.5px;font-weight:700;color:#FFF3C6;line-height:1.35}
 .adv-fitsub{grid-column:2;color:#A8A296;font-size:15.5px;line-height:1.6}
-.adv-fitcard-soft b{color:#E6DCC4}
 .adv-tick{grid-row:1 / span 2;align-self:start;margin-top:2px;
   width:26px;height:26px;border-radius:999px;box-sizing:border-box;
   border:1.5px solid rgba(212,168,86,.5);background:transparent;
@@ -2073,32 +2096,36 @@ window.SIDEKIX_SUBMIT = function (payload) {
 @media (max-width:760px){
 
   /* ---- the hero artwork was there and invisible ----
-     It sits behind the copy as a backdrop at .26 opacity under a scrim that
-     runs to .9, which works on a wide screen where the art has its own column
-     to the right of the text. On a phone there is no such column: the art was
-     underneath the words, so the scrim had to be that heavy, and what was left
-     could not be seen. Below 760 it stops being a backdrop and becomes a
-     picture: out of absolute positioning, under the copy, in full colour, at
-     the size the poster was drawn to be seen at. Nothing sits on top of it, so
-     the scrim comes off and the colour plate replaces the gold one. */
-  .adv-hero{display:flex;flex-direction:column}
-  .adv-inner{order:1}
-  .adv-hero-artwrap{
-    position:relative !important;order:2;
-    right:auto;top:auto;transform:none;
-    /* The plate carries a baked alpha vignette so the artwork can rise out of
-       the dark on a wide screen. Standing on its own here, that fade is empty
-       space: the opaque part runs 6.6% to 87.8% down and 10.7% to 89.6%
-       across, so the box is sized to what is actually drawn, 0.66 wide to
-       tall, and the plate is scaled and nudged to put that region in it. */
-    width:min(300px,76%);height:auto;aspect-ratio:.66;
-    overflow:hidden;
-    margin:26px auto 0}
-  .adv-hero-art{transform:scale(1.26) translateY(-1.4%)}
-  .adv-hero-art{animation:none;object-position:center;transition:none}
-  .adv-hero-duo{opacity:0}
-  .adv-hero-colour{opacity:1}
-  .adv-hero-scrim,.adv-hero-light{display:none}
+     It sits behind the copy at .26 opacity under a scrim running to .9, which
+     works on a wide screen where the art has its own column beside the text.
+     On a phone there is no such column, so the scrim had to be that heavy and
+     nothing was left to see.
+
+     An earlier fix pulled the art out of the flow and set it under the copy as
+     a picture of its own. That solved the visibility and broke something more
+     important: these hero images are part of the background, not illustrations
+     placed next to the words, and separating them on a phone makes the page
+     stop reading as one thing. The homepage never does it, so this does not
+     either.
+
+     The homepage's own phone treatment instead, value for value: the art stays
+     exactly where it is and gets wider, further off the edge and quiet enough
+     to read through. Wider because the plate then covers the column the text
+     does not use; further off the edge because the subject sits right of
+     centre; quiet because the words have to win. The scrim lightens rather
+     than disappearing, since it is what holds the left side dark under the
+     heading. */
+  .adv-hero-artwrap{width:118%;right:-30%;height:104%}
+  .adv-hero-art{animation:none;transition:none;object-position:56% 44%}
+  /* The gold plate, not the colour one. A phone has no hover, so whatever it
+     shows is the only state it will ever show, and the muted version is the
+     one that behaves like a background rather than competing with the words. */
+  .adv-hero-duo{opacity:.34}
+  .adv-hero-colour{opacity:0}
+  .adv-hero-light{display:none}
+  .adv-hero-scrim{background:
+    linear-gradient(90deg,#0B0A06 22%,rgba(11,10,6,.55) 52%,rgba(11,10,6,.2) 78%,rgba(11,10,6,.5) 100%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 20%,rgba(11,10,6,0) 84%,#0B0A06 100%)}
 
   /* ---- the clock belongs under the sentence it illustrates ----
      The grid is one column here, and the clock is first in source, so a phone
@@ -2137,7 +2164,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 }
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://sidekixhq.com/advisors.html#page","url":"https://sidekixhq.com/advisors.html","name":"Become a SideKix Advisor","description":"Become a SideKix Advisor. Share your been there, done that experience with people building a business, choose your own hours with no minimum, and earn through 1:1 messaging sessions, live events and expert content.","isPartOf":{"@type":"WebSite","name":"SideKix","url":"https://sidekixhq.com/"},"about":{"@type":"Organization","name":"SideKix","url":"https://sidekixhq.com/"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://sidekixhq.com/assets/k-mark.png"},"significantLink":"https://sidekixhq.com/become-an-advisor.html"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Advisors","item":"https://sidekixhq.com/advisors.html"}]},{"@type":"FAQPage","@id":"https://sidekixhq.com/advisors.html#faq","mainEntity":[{"@type":"Question","name":"What is the time commitment?","acceptedAnswer":{"@type":"Answer","text":"This is up to each Advisor, based on how active they wish to be on the SideKix app. A minimum of one to two hours per week works well, and some Advisors choose to do far more, taking on daily meetings, working closer with entrepreneurs, or offering various services."}},{"@type":"Question","name":"Are Advisors employees?","acceptedAnswer":{"@type":"Answer","text":"No. Advisors are independent contractors."}},{"@type":"Question","name":"How are Advisors paid?","acceptedAnswer":{"@type":"Answer","text":"Up to the Advisor. You determine your services and what to charge. If you are looking to give back to the community pro bono, you can set available office hours and provide advice and expertise without charging any fees. It is entirely up to you, and SideKix is here with assistance or suggestions if you want them."}},{"@type":"Question","name":"Do I need an LLC?","acceptedAnswer":{"@type":"Answer","text":"Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one."}},{"@type":"Question","name":"What about video sessions?","acceptedAnswer":{"@type":"Answer","text":"A survey indicated that 62% of respondents preferred messaging support. As an option, video sessions can be started during a messaging session by the Advisor."}}]},{"@type":"VideoObject","name":"SideKix Advisor film","description":"What a SideKix Advisor is, and how the role works.","thumbnailUrl":"https://i.ytimg.com/vi/Sr0EUw0cDhE/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/Sr0EUw0cDhE","contentUrl":"https://youtu.be/Sr0EUw0cDhE"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://sidekixhq.com/advisors.html#page","url":"https://sidekixhq.com/advisors.html","name":"Become a SideKix Advisor","description":"Become a SideKix Advisor. Share your been there, done that experience with people building a business, choose your own hours with no minimum, and earn through 1:1 messaging sessions, live events and expert content.","isPartOf":{"@type":"WebSite","name":"SideKix","url":"https://sidekixhq.com/"},"about":{"@type":"Organization","name":"SideKix","url":"https://sidekixhq.com/"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://sidekixhq.com/assets/k-mark.png"},"significantLink":"https://sidekixhq.com/become-an-advisor.html"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Advisors","item":"https://sidekixhq.com/advisors.html"}]},{"@type":"FAQPage","@id":"https://sidekixhq.com/advisors.html#faq","mainEntity":[{"@type":"Question","name":"What is the time commitment?","acceptedAnswer":{"@type":"Answer","text":"This is up to each Advisor, based on how active they wish to be on the SideKix app. A minimum of one to two hours per week works well, and some Advisors choose to do far more, taking on daily meetings, working closer with entrepreneurs, or offering various services."}},{"@type":"Question","name":"Are Advisors employees?","acceptedAnswer":{"@type":"Answer","text":"No. Advisors are independent contractors."}},{"@type":"Question","name":"How are Advisors paid?","acceptedAnswer":{"@type":"Answer","text":"It depends on the format. For Sessions you choose whether to charge at all, and if you do, the price is fixed by SideKix so support stays within reach of the people who need it. Open office hours at no charge work the same way. Live Events and Expert Content are yours to shape: you determine what you offer and what it costs, including offering it at no charge if you want to give back to the community. SideKix is here with assistance or suggestions if you want them."}},{"@type":"Question","name":"Do I need an LLC?","acceptedAnswer":{"@type":"Answer","text":"Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one."}},{"@type":"Question","name":"Messaging or video?","acceptedAnswer":{"@type":"Answer","text":"A survey indicated that 62% of respondents preferred messaging support. As an option, video sessions can be started during a messaging session by the Advisor."}}]},{"@type":"VideoObject","name":"SideKix Advisor film","description":"What a SideKix Advisor is, and how the role works.","thumbnailUrl":"https://i.ytimg.com/vi/Sr0EUw0cDhE/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/Sr0EUw0cDhE","contentUrl":"https://youtu.be/Sr0EUw0cDhE"}]}</script>
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
 <nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
@@ -2173,6 +2200,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
   <div aria-hidden="true" class="adv-hero-artwrap"><img alt="" class="adv-hero-art adv-hero-duo" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/2917c03071fa.webp" width="665"/><img alt="" class="adv-hero-art adv-hero-colour" decoding="async" fetchpriority="low" height="1182" loading="lazy" src="assets/img/7dcebcae6e26.webp" width="665"/><span class="adv-hero-light"></span></div>
   <div aria-hidden="true" class="adv-hero-scrim"></div>
   <div class="adv-inner">
+    <p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p>
     <span class="eyebrow">Become an Advisor</span>
     <h1>You already know what they are <em>about to learn</em>.</h1>
     <p class="lede">SideKix Advisors bring been there, done that experience to people building something. <span class="lede-b">You choose how much time you give, and you are paid for what you know.</span></p>
@@ -2211,10 +2239,15 @@ window.SIDEKIX_SUBMIT = function (payload) {
         <b>You show up when you say you will.</b>
         <span class="adv-fitsub">Reliable, professional, and moving without being pushed.</span>
       </button>
-      <button aria-pressed="false" class="adv-fitcard adv-fitcard-soft" type="button">
+      <button aria-pressed="false" class="adv-fitcard" type="button">
         <span aria-hidden="true" class="adv-tick"></span>
-        <b>You have mentored or coached before.</b>
-        <span class="adv-fitsub">A bonus, and not required.</span>
+        <b>You meet people where they are.</b>
+        <span class="adv-fitsub">The best advice starts with understanding someone's situation, not retelling your own.</span>
+      </button>
+      <button aria-pressed="false" class="adv-fitcard" type="button">
+        <span aria-hidden="true" class="adv-tick"></span>
+        <b>You know when your experience does not apply.</b>
+        <span class="adv-fitsub">You can tell what came from your choices, what came from circumstance, and what may not translate to someone else.</span>
       </button>
     </div>
     <p aria-live="polite" class="adv-tally" id="adv-tally"></p>
@@ -2242,12 +2275,12 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <section class="adv adv-earn">
   <div class="adv-inner">
     <span class="eyebrow">Work from anywhere</span>
-    <h2>Three ways to <em>get paid</em> for what you know.</h2>
+    <h2>Three ways to turn your experience into <em>impact</em>.</h2>
     <div class="adv-cards">
       <article class="adv-card">
         <span class="adv-num">01</span>
         <h3>1:1 Sessions</h3>
-        <p>Messaging or video, scheduled in the app. Personalized support, on your availability, at your rate.</p>
+        <p>Messaging or video, scheduled in the app. Personalized support on your availability, at the fixed SideKix price or at no charge.</p>
       </article>
       <article class="adv-card">
         <span class="adv-num">02</span>
@@ -2260,7 +2293,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
         <p>Templates, tools, trainings and materials that help users take action. Sell what you have already built.</p>
       </article>
     </div>
-    <p class="adv-probono"><span class="adv-pbtext"><b>Pro bono works too.</b> Advisors can set open office hours and charge nothing at all.</span></p>
+    <p class="adv-probono"><span class="adv-pbtext"><b>Pro bono works too.</b> Sessions, events and content can all be offered at no charge, so your experience reaches people who cannot pay for it yet.</span></p>
   </div>
 </section>
 
@@ -2327,7 +2360,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
     <h2>The questions <em>people ask first</em>.</h2>
     <details><summary>What is the time commitment?</summary><div><p>This is up to each Advisor, based on how active they wish to be on the SideKix app. A minimum of one to two hours per week works well, and some Advisors choose to do far more, taking on daily meetings, working closer with entrepreneurs, or offering various services.</p></div></details>
     <details><summary>Are Advisors employees?</summary><div><p>No. Advisors are independent contractors.</p></div></details>
-    <details><summary>How are Advisors paid?</summary><div><p>Up to the Advisor. You determine your services and what to charge. If you are looking to give back to the community pro bono, you can set available office hours and provide advice and expertise without charging any fees. It is entirely up to you, and SideKix is here with assistance or suggestions if you want them.</p></div></details>
+    <details><summary>How are Advisors paid?</summary><div><p>It depends on the format. For Sessions you choose whether to charge at all, and if you do, the price is fixed by SideKix so support stays within reach of the people who need it. Open office hours at no charge work the same way. Live Events and Expert Content are yours to shape: you determine what you offer and what it costs, including offering it at no charge if you want to give back to the community. SideKix is here with assistance or suggestions if you want them.</p></div></details>
     <details><summary>Do I need an LLC?</summary><div><p>Not mandatory. Payment can be made directly to an LLC if one is established. All tax, insurance and liability responsibilities remain with the Advisor, so although an LLC is not required on day one, some Advisors choose to form one.</p></div></details>
     <details><summary>Messaging or video?</summary><div><p>Both. A survey indicated that 62% of respondents preferred messaging support, so sessions start there, and the Advisor can move a session to video at any point.</p></div></details>
   </div>
@@ -2345,7 +2378,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
 </section>
 
 </main>
-<footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="library.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookies.html">Cookie Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
+<footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="library.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="press.html">Press</a></li><li><a href="back-room.html">The Back Room</a></li><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookies.html">Cookie Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
 </div>
 <script>
 /* the cards carry a light that follows the pointer, the same idea the
@@ -2540,16 +2573,20 @@ try{
     ''                      : 'SideKix',
     'how-it-works.html'     : 'how it works',
     'membership.html'       : 'membership',
-    'resources.html'        : 'resources',
+    'advisors.html'         : 'Advisors',
+    'become-an-advisor.html': 'the advisor application',
+    'partners.html'         : 'Partners',
     'events.html'           : 'events',
+    'library.html'          : 'the blog',
+    'resources.html'        : 'the resource library',
     'market-data.html'      : 'market data',
     'glossary.html'         : 'the glossary',
-    'tools.html'            : 'the calculators',
+    'tools.html'            : 'Tools',
     'faq.html'              : 'the FAQs',
     'join.html'             : 'early access',
-    'become-an-advisor.html': 'the advisor page',
     'privacy.html'          : 'the privacy policy',
-    'terms.html'            : 'the terms'
+    'terms.html'            : 'the terms',
+    'cookies.html'          : 'the cookie policy'
   };
 
   var ref = document.referrer;
@@ -2968,10 +3005,11 @@ try{
   var cards=[].slice.call(box.querySelectorAll('.adv-fitcard'));
   var LINES=['',
     'One is a start.',
-    'Two of five. Worth reading on.',
-    'Three of five. That is the shape of an Advisor.',
-    'Four of five. This was written for you.',
-    'Five of five. That is a Founding Advisor.'];
+    'Two of six. Worth reading on.',
+    'Three of six. That is the shape of an Advisor.',
+    'Four of six. This was written for you.',
+    'Five of six. Very few people tick five.',
+    'Six of six. That is a Founding Advisor.'];
   function tally(){
     var n=cards.filter(function(c){return c.getAttribute('aria-pressed')==='true';}).length;
     out.textContent=LINES[n]||'';

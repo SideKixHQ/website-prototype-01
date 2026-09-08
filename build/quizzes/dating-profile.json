@@ -1,0 +1,264 @@
+{
+ "slug": "dating-profile",
+ "title": "If your business had a dating profile...",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "What the bio would say, if it were being honest on a Sunday night.",
+ "share_line": "My bio would say",
+ "accent": "#DE5FA0",
+ "og_line": "Five questions and the bio your business would actually write.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "How would last month describe it?",
+   "options": [
+    {
+     "a": "Up and down, hourly",
+     "w": {
+      "complicated": 3,
+      "longterm": 1
+     }
+    },
+    {
+     "a": "Slow and fine",
+     "w": {
+      "longterm": 3,
+      "available": 1
+     }
+    },
+    {
+     "a": "Recovering",
+     "w": {
+      "heartbreak": 3,
+      "complicated": 1
+     }
+    },
+    {
+     "a": "Constant",
+     "w": {
+      "available": 3,
+      "heartbreak": 1
+     }
+    },
+    {
+     "a": "Broke, but good",
+     "w": {
+      "unstable": 3,
+      "complicated": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What would a customer say about you?",
+   "options": [
+    {
+     "a": "Hard to pin down",
+     "w": {
+      "complicated": 3,
+      "heartbreak": 1
+     }
+    },
+    {
+     "a": "Still here after all these years",
+     "w": {
+      "longterm": 3,
+      "unstable": 1
+     }
+    },
+    {
+     "a": "They came back stronger",
+     "w": {
+      "heartbreak": 3,
+      "longterm": 1
+     }
+    },
+    {
+     "a": "They always answer",
+     "w": {
+      "available": 3,
+      "unstable": 1
+     }
+    },
+    {
+     "a": "They really care about this",
+     "w": {
+      "unstable": 3,
+      "longterm": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your relationship with the business is:",
+   "options": [
+    {
+     "a": "On and off, and I am fine with that",
+     "w": {
+      "complicated": 3,
+      "available": 1
+     }
+    },
+    {
+     "a": "Committed, boringly",
+     "w": {
+      "longterm": 3,
+      "complicated": 1
+     }
+    },
+    {
+     "a": "Repaired",
+     "w": {
+      "heartbreak": 3,
+      "available": 1
+     }
+    },
+    {
+     "a": "Codependent, if I am honest",
+     "w": {
+      "available": 3,
+      "complicated": 1
+     }
+    },
+    {
+     "a": "Love, mostly",
+     "w": {
+      "unstable": 3,
+      "heartbreak": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The red flag you would admit to:",
+   "options": [
+    {
+     "a": "I change my mind",
+     "w": {
+      "complicated": 3,
+      "unstable": 1
+     }
+    },
+    {
+     "a": "I am slow to move",
+     "w": {
+      "longterm": 3,
+      "heartbreak": 1
+     }
+    },
+    {
+     "a": "I bring up the past",
+     "w": {
+      "heartbreak": 3,
+      "unstable": 1
+     }
+    },
+    {
+     "a": "I do not switch off",
+     "w": {
+      "available": 3,
+      "longterm": 1
+     }
+    },
+    {
+     "a": "I do not check the balance",
+     "w": {
+      "unstable": 3,
+      "available": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What are you actually looking for?",
+   "options": [
+    {
+     "a": "Something that makes sense",
+     "w": {
+      "complicated": 3,
+      "longterm": 1
+     }
+    },
+    {
+     "a": "Something that lasts",
+     "w": {
+      "longterm": 3,
+      "available": 1
+     }
+    },
+    {
+     "a": "Something worth the last one",
+     "w": {
+      "heartbreak": 3,
+      "complicated": 1
+     }
+    },
+    {
+     "a": "Someone to share the load",
+     "w": {
+      "available": 3,
+      "heartbreak": 1
+     }
+    },
+    {
+     "a": "Something that means something",
+     "w": {
+      "unstable": 3,
+      "complicated": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "complicated",
+   "name": "It is complicated",
+   "accent": "#7B5CC4",
+   "headline": "True, and you would still swipe.",
+   "body": "Some months it is the best thing you have done and some months you would hand it to anybody. Both are true at once.",
+   "cost": "Complicated is only a problem when you stop being honest about which month it is.",
+   "art": "assets/emblems/dating-profile-complicated.svg"
+  },
+  {
+   "key": "longterm",
+   "name": "Looking for long term",
+   "accent": "#4FA96B",
+   "headline": "You are building something to keep.",
+   "body": "You are not in this for the exit and you have turned down the fast version at least once.",
+   "cost": "Patience and avoidance look identical from the outside.",
+   "art": "assets/emblems/dating-profile-longterm.svg"
+  },
+  {
+   "key": "heartbreak",
+   "name": "Will break your heart, then make you stronger",
+   "accent": "#C4534A",
+   "headline": "You have been through it.",
+   "body": "You have already survived the version of this that ends everything, and you are still here, changed.",
+   "cost": "You have started to wear the scar tissue as the qualification.",
+   "art": "assets/emblems/dating-profile-heartbreak.svg"
+  },
+  {
+   "key": "available",
+   "name": "Available 24/7",
+   "accent": "#E0483C",
+   "headline": "Which is not the flex you think.",
+   "body": "You answer at midnight and on holiday, and it is genuinely part of why customers stay.",
+   "cost": "The thing that made you loved is the thing that will make you leave.",
+   "art": "assets/emblems/dating-profile-available.svg"
+  },
+  {
+   "key": "unstable",
+   "name": "Financially unstable, emotionally rewarding",
+   "accent": "#D4A856",
+   "headline": "Painfully accurate.",
+   "body": "The money is not the reason and it is a good job too. You would find it hard to explain to anyone doing this for money.",
+   "cost": "Rewarding does not pay a bill and it never has.",
+   "art": "assets/emblems/dating-profile-unstable.svg"
+  }
+ ]
+}

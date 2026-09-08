@@ -1,0 +1,288 @@
+{
+ "slug": "who-you-build-with",
+ "title": "Who do you build with?",
+ "kicker": "7 questions, about 50 seconds",
+ "intro": "Most of what goes wrong in a business is about people rather than product. This is the read on what you bring to a room, and what you cost it.",
+ "share_line": "In a room I am the",
+ "accent": "#D4A856",
+ "og_line": "Seven questions on what you bring to a room, and what you cost it.",
+ "cta": {
+  "title": "There are twelve of these",
+  "href": "../../assessment.html",
+  "label": "Score all twelve",
+  "blurb": "This is one of twelve energies, seen through other people. The full Energy Discovery is 48 statements and scores all twelve."
+ },
+ "questions": [
+  {
+   "q": "The best working relationship you have had was mostly:",
+   "options": [
+    {
+     "a": "Someone who noticed what I was not saying",
+     "w": {
+      "dolphin": 3
+     }
+    },
+    {
+     "a": "Someone who got the whole group moving",
+     "w": {
+      "gorilla": 3
+     }
+    },
+    {
+     "a": "Someone who left me alone to get on with it",
+     "w": {
+      "cat": 3,
+      "unicorn": 1
+     }
+    },
+    {
+     "a": "Someone who was still there in year three",
+     "w": {
+      "panda": 3,
+      "dragon": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A new person joins. Your first instinct:",
+   "options": [
+    {
+     "a": "Work out how they are actually doing",
+     "w": {
+      "dolphin": 3
+     }
+    },
+    {
+     "a": "Get them into the room and talking",
+     "w": {
+      "gorilla": 3
+     }
+    },
+    {
+     "a": "Give them something real and see what happens",
+     "w": {
+      "cat": 3
+     }
+    },
+    {
+     "a": "Wait. I will know in a month",
+     "w": {
+      "panda": 3,
+      "dragon": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Disagreement in the group.",
+   "options": [
+    {
+     "a": "I read who has gone quiet and start there",
+     "w": {
+      "dolphin": 3
+     }
+    },
+    {
+     "a": "I get it named so we can decide",
+     "w": {
+      "gorilla": 3
+     }
+    },
+    {
+     "a": "I go and prove it instead of arguing",
+     "w": {
+      "cat": 3,
+      "unicorn": 1
+     }
+    },
+    {
+     "a": "I ask what this looks like in a year",
+     "w": {
+      "dragon": 3,
+      "panda": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What you want from the people around you:",
+   "options": [
+    {
+     "a": "To be told the truth early",
+     "w": {
+      "dolphin": 3,
+      "gorilla": 1
+     }
+    },
+    {
+     "a": "To be pointed at something and left to it",
+     "w": {
+      "cat": 3
+     }
+    },
+    {
+     "a": "To be asked the question nobody else asks",
+     "w": {
+      "unicorn": 3
+     }
+    },
+    {
+     "a": "To still be here when it gets slow",
+     "w": {
+      "panda": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "The kind of meeting you would cancel:",
+   "options": [
+    {
+     "a": "Any meeting that ends without a decision",
+     "w": {
+      "gorilla": 3,
+      "cat": 1
+     }
+    },
+    {
+     "a": "The one where nobody says what they think",
+     "w": {
+      "dolphin": 3
+     }
+    },
+    {
+     "a": "The one about next quarter, when the real question is next decade",
+     "w": {
+      "dragon": 3
+     }
+    },
+    {
+     "a": "The one that could have been the same as last time",
+     "w": {
+      "unicorn": 3,
+      "panda": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "You are best to work with when:",
+   "options": [
+    {
+     "a": "Someone needs to feel understood",
+     "w": {
+      "dolphin": 3
+     }
+    },
+    {
+     "a": "A group is stuck and needs a decision",
+     "w": {
+      "gorilla": 3
+     }
+    },
+    {
+     "a": "Nobody has done it before",
+     "w": {
+      "unicorn": 3,
+      "cat": 1
+     }
+    },
+    {
+     "a": "It has to still be running in five years",
+     "w": {
+      "panda": 3,
+      "dragon": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "You are hardest to work with when:",
+   "options": [
+    {
+     "a": "I carry other people's weather",
+     "w": {
+      "dolphin": 3
+     }
+    },
+    {
+     "a": "I push a decision before people are ready",
+     "w": {
+      "gorilla": 3
+     }
+    },
+    {
+     "a": "I disappear and build alone",
+     "w": {
+      "cat": 3,
+      "unicorn": 1
+     }
+    },
+    {
+     "a": "I will not be hurried, even when speed matters",
+     "w": {
+      "dragon": 3,
+      "panda": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "dolphin",
+   "name": "Dolphin",
+   "headline": "You read the room before anyone says anything.",
+   "body": "You know when a meeting has gone wrong before it shows. You adjust how you say things to who is hearing them.",
+   "cost": "Carrying the room's weather and calling it your own.",
+   "art": "assets/energies/dolphin.webp",
+   "accent": "#067FC8"
+  },
+  {
+   "key": "gorilla",
+   "name": "Gorilla",
+   "headline": "You get the group to something it can actually act on.",
+   "body": "You notice who has not spoken. You take the part of the work nobody picked up, and you put the group's outcome above your position in it.",
+   "cost": "Your own contribution going unrecorded.",
+   "art": "assets/energies/gorilla.webp",
+   "accent": "#DF4036"
+  },
+  {
+   "key": "cat",
+   "name": "Cat",
+   "headline": "You start before anyone tells you to.",
+   "body": "You do not need the brief. You will have taught yourself most of what you needed by the time permission arrives.",
+   "cost": "Solving alone what a conversation would have solved faster.",
+   "art": "assets/energies/cat.webp",
+   "accent": "#EB2745"
+  },
+  {
+   "key": "panda",
+   "name": "Panda",
+   "headline": "You work at a rate you can still hold next year.",
+   "body": "Your output is predictable, which makes you plannable. You finish long work without the scramble at the end.",
+   "cost": "Missing a short window that needed an unsustainable push.",
+   "art": "assets/energies/panda.webp",
+   "accent": "#B950C2"
+  },
+  {
+   "key": "unicorn",
+   "name": "Unicorn",
+   "headline": "You arrive at the answer nobody else considered.",
+   "body": "You combine things that do not usually go together, and you question whether the standard way is right here rather than in general.",
+   "cost": "Novelty chosen over the thing that would have worked.",
+   "art": "assets/energies/unicorn.webp",
+   "accent": "#E62B68"
+  },
+  {
+   "key": "dragon",
+   "name": "Dragon",
+   "headline": "You work towards something that will not pay off yet.",
+   "body": "You connect today's task to why it is being done, and you can describe where this goes in a way other people can picture.",
+   "cost": "A horizon so far out that this quarter never gets judged.",
+   "art": "assets/energies/dragon.webp",
+   "accent": "#4B7CC7"
+  }
+ ]
+}

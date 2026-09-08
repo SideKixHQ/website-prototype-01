@@ -4,35 +4,1897 @@
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).css",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).woff2",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/img/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/js/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).html",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=600"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/about-us",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/company",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/company/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/our-story",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/our-story/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/support",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/support/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/careers",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/careers/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/jobs",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/jobs/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/app-terms-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/app-terms-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy/",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/posts/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources.html",
+      "permanent": true
+    },
+    {
+      "source": "/resources/",
+      "destination": "/resources.html",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/plans",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/plans/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/get-started",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/get-started/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/signup",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/signup/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/sign-up",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/sign-up/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sponsors",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/sponsors/",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/opt-in-accept",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/opt-in-accept/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisor-faqs",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisor-faqs/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/general-faq",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/general-faq/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/members",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/members/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/website-terms-conditions",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/website-terms-conditions/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/ai-app-policy",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/ai-app-policy/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:slug(.*)",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/category/:slug(.*)",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/f/great-you-have-an-idea-no-what",
+      "destination": "/blog/what-to-do-after-having-your-business-idea/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/f/great-you-have-an-idea-no-what/",
+      "destination": "/blog/what-to-do-after-having-your-business-idea/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/f/:slug(.*)",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/m/:path(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/90-day-goals",
+      "destination": "/90-day-goals.html",
+      "permanent": true
+    },
+    {
+      "source": "/90-day-goals/",
+      "destination": "/90-day-goals.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisors",
+      "destination": "/advisors.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisors/",
+      "destination": "/advisors.html",
+      "permanent": true
+    },
+    {
+      "source": "/assessment",
+      "destination": "/assessment.html",
+      "permanent": true
+    },
+    {
+      "source": "/assessment/",
+      "destination": "/assessment.html",
+      "permanent": true
+    },
+    {
+      "source": "/back-room",
+      "destination": "/back-room.html",
+      "permanent": true
+    },
+    {
+      "source": "/back-room/",
+      "destination": "/back-room.html",
+      "permanent": true
+    },
+    {
+      "source": "/become-an-advisor",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/become-an-advisor/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/breakeven-calculator",
+      "destination": "/breakeven-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/breakeven-calculator/",
+      "destination": "/breakeven-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-idea-where-to-start",
+      "destination": "/business-idea-where-to-start.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-idea-where-to-start/",
+      "destination": "/business-idea-where-to-start.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-structures",
+      "destination": "/business-structures.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-structures/",
+      "destination": "/business-structures.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookies",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/cookies/",
+      "destination": "/cookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/declaration",
+      "destination": "/declaration.html",
+      "permanent": true
+    },
+    {
+      "source": "/declaration/",
+      "destination": "/declaration.html",
+      "permanent": true
+    },
+    {
+      "source": "/discoveries",
+      "destination": "/discoveries.html",
+      "permanent": true
+    },
+    {
+      "source": "/discoveries/",
+      "destination": "/discoveries.html",
+      "permanent": true
+    },
+    {
+      "source": "/domain-search",
+      "destination": "/domain-search.html",
+      "permanent": true
+    },
+    {
+      "source": "/domain-search/",
+      "destination": "/domain-search.html",
+      "permanent": true
+    },
+    {
+      "source": "/events",
+      "destination": "/events.html",
+      "permanent": true
+    },
+    {
+      "source": "/events/",
+      "destination": "/events.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/founder-diagnostic",
+      "destination": "/founder-diagnostic.html",
+      "permanent": true
+    },
+    {
+      "source": "/founder-diagnostic/",
+      "destination": "/founder-diagnostic.html",
+      "permanent": true
+    },
+    {
+      "source": "/glossary",
+      "destination": "/glossary.html",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/",
+      "destination": "/glossary.html",
+      "permanent": true
+    },
+    {
+      "source": "/hourly-rate-calculator",
+      "destination": "/hourly-rate-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/hourly-rate-calculator/",
+      "destination": "/hourly-rate-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/join",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/join/",
+      "destination": "/join.html",
+      "permanent": true
+    },
+    {
+      "source": "/library",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/library/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/market-data",
+      "destination": "/market-data.html",
+      "permanent": true
+    },
+    {
+      "source": "/market-data/",
+      "destination": "/market-data.html",
+      "permanent": true
+    },
+    {
+      "source": "/membership",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/membership/",
+      "destination": "/membership.html",
+      "permanent": true
+    },
+    {
+      "source": "/outreach-email",
+      "destination": "/outreach-email.html",
+      "permanent": true
+    },
+    {
+      "source": "/outreach-email/",
+      "destination": "/outreach-email.html",
+      "permanent": true
+    },
+    {
+      "source": "/partners",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/partners/",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/positioning-statement",
+      "destination": "/positioning-statement.html",
+      "permanent": true
+    },
+    {
+      "source": "/positioning-statement/",
+      "destination": "/positioning-statement.html",
+      "permanent": true
+    },
+    {
+      "source": "/press",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/press/",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/press-release-launch",
+      "destination": "/press-release-launch.html",
+      "permanent": true
+    },
+    {
+      "source": "/press-release-launch/",
+      "destination": "/press-release-launch.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy/",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/product-pricing-calculator",
+      "destination": "/product-pricing-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/product-pricing-calculator/",
+      "destination": "/product-pricing-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-a-business-in-north-carolina",
+      "destination": "/start-a-business-in-north-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-a-business-in-north-carolina/",
+      "destination": "/start-a-business-in-north-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-alabama",
+      "destination": "/start-an-llc-in-alabama.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-alabama/",
+      "destination": "/start-an-llc-in-alabama.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-alaska",
+      "destination": "/start-an-llc-in-alaska.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-alaska/",
+      "destination": "/start-an-llc-in-alaska.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-arizona",
+      "destination": "/start-an-llc-in-arizona.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-arizona/",
+      "destination": "/start-an-llc-in-arizona.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-arkansas",
+      "destination": "/start-an-llc-in-arkansas.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-arkansas/",
+      "destination": "/start-an-llc-in-arkansas.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-california",
+      "destination": "/start-an-llc-in-california.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-california/",
+      "destination": "/start-an-llc-in-california.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-colorado",
+      "destination": "/start-an-llc-in-colorado.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-colorado/",
+      "destination": "/start-an-llc-in-colorado.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-connecticut",
+      "destination": "/start-an-llc-in-connecticut.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-connecticut/",
+      "destination": "/start-an-llc-in-connecticut.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-delaware",
+      "destination": "/start-an-llc-in-delaware.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-delaware/",
+      "destination": "/start-an-llc-in-delaware.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-florida",
+      "destination": "/start-an-llc-in-florida.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-florida/",
+      "destination": "/start-an-llc-in-florida.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-georgia",
+      "destination": "/start-an-llc-in-georgia.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-georgia/",
+      "destination": "/start-an-llc-in-georgia.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-hawaii",
+      "destination": "/start-an-llc-in-hawaii.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-hawaii/",
+      "destination": "/start-an-llc-in-hawaii.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-idaho",
+      "destination": "/start-an-llc-in-idaho.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-idaho/",
+      "destination": "/start-an-llc-in-idaho.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-illinois",
+      "destination": "/start-an-llc-in-illinois.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-illinois/",
+      "destination": "/start-an-llc-in-illinois.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-indiana",
+      "destination": "/start-an-llc-in-indiana.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-indiana/",
+      "destination": "/start-an-llc-in-indiana.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-iowa",
+      "destination": "/start-an-llc-in-iowa.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-iowa/",
+      "destination": "/start-an-llc-in-iowa.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-kansas",
+      "destination": "/start-an-llc-in-kansas.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-kansas/",
+      "destination": "/start-an-llc-in-kansas.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-kentucky",
+      "destination": "/start-an-llc-in-kentucky.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-kentucky/",
+      "destination": "/start-an-llc-in-kentucky.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-louisiana",
+      "destination": "/start-an-llc-in-louisiana.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-louisiana/",
+      "destination": "/start-an-llc-in-louisiana.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-maine",
+      "destination": "/start-an-llc-in-maine.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-maine/",
+      "destination": "/start-an-llc-in-maine.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-maryland",
+      "destination": "/start-an-llc-in-maryland.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-maryland/",
+      "destination": "/start-an-llc-in-maryland.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-massachusetts",
+      "destination": "/start-an-llc-in-massachusetts.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-massachusetts/",
+      "destination": "/start-an-llc-in-massachusetts.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-michigan",
+      "destination": "/start-an-llc-in-michigan.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-michigan/",
+      "destination": "/start-an-llc-in-michigan.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-minnesota",
+      "destination": "/start-an-llc-in-minnesota.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-minnesota/",
+      "destination": "/start-an-llc-in-minnesota.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-mississippi",
+      "destination": "/start-an-llc-in-mississippi.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-mississippi/",
+      "destination": "/start-an-llc-in-mississippi.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-missouri",
+      "destination": "/start-an-llc-in-missouri.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-missouri/",
+      "destination": "/start-an-llc-in-missouri.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-montana",
+      "destination": "/start-an-llc-in-montana.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-montana/",
+      "destination": "/start-an-llc-in-montana.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-nebraska",
+      "destination": "/start-an-llc-in-nebraska.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-nebraska/",
+      "destination": "/start-an-llc-in-nebraska.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-nevada",
+      "destination": "/start-an-llc-in-nevada.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-nevada/",
+      "destination": "/start-an-llc-in-nevada.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-hampshire",
+      "destination": "/start-an-llc-in-new-hampshire.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-hampshire/",
+      "destination": "/start-an-llc-in-new-hampshire.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-jersey",
+      "destination": "/start-an-llc-in-new-jersey.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-jersey/",
+      "destination": "/start-an-llc-in-new-jersey.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-mexico",
+      "destination": "/start-an-llc-in-new-mexico.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-mexico/",
+      "destination": "/start-an-llc-in-new-mexico.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-york",
+      "destination": "/start-an-llc-in-new-york.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-new-york/",
+      "destination": "/start-an-llc-in-new-york.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-north-carolina",
+      "destination": "/start-an-llc-in-north-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-north-carolina/",
+      "destination": "/start-an-llc-in-north-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-north-dakota",
+      "destination": "/start-an-llc-in-north-dakota.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-north-dakota/",
+      "destination": "/start-an-llc-in-north-dakota.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-ohio",
+      "destination": "/start-an-llc-in-ohio.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-ohio/",
+      "destination": "/start-an-llc-in-ohio.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-oklahoma",
+      "destination": "/start-an-llc-in-oklahoma.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-oklahoma/",
+      "destination": "/start-an-llc-in-oklahoma.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-oregon",
+      "destination": "/start-an-llc-in-oregon.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-oregon/",
+      "destination": "/start-an-llc-in-oregon.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-pennsylvania",
+      "destination": "/start-an-llc-in-pennsylvania.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-pennsylvania/",
+      "destination": "/start-an-llc-in-pennsylvania.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-rhode-island",
+      "destination": "/start-an-llc-in-rhode-island.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-rhode-island/",
+      "destination": "/start-an-llc-in-rhode-island.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-south-carolina",
+      "destination": "/start-an-llc-in-south-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-south-carolina/",
+      "destination": "/start-an-llc-in-south-carolina.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-south-dakota",
+      "destination": "/start-an-llc-in-south-dakota.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-south-dakota/",
+      "destination": "/start-an-llc-in-south-dakota.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-tennessee",
+      "destination": "/start-an-llc-in-tennessee.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-tennessee/",
+      "destination": "/start-an-llc-in-tennessee.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-texas",
+      "destination": "/start-an-llc-in-texas.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-texas/",
+      "destination": "/start-an-llc-in-texas.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-utah",
+      "destination": "/start-an-llc-in-utah.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-utah/",
+      "destination": "/start-an-llc-in-utah.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-vermont",
+      "destination": "/start-an-llc-in-vermont.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-vermont/",
+      "destination": "/start-an-llc-in-vermont.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-virginia",
+      "destination": "/start-an-llc-in-virginia.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-virginia/",
+      "destination": "/start-an-llc-in-virginia.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-washington",
+      "destination": "/start-an-llc-in-washington.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-washington/",
+      "destination": "/start-an-llc-in-washington.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-west-virginia",
+      "destination": "/start-an-llc-in-west-virginia.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-west-virginia/",
+      "destination": "/start-an-llc-in-west-virginia.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-wisconsin",
+      "destination": "/start-an-llc-in-wisconsin.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-wisconsin/",
+      "destination": "/start-an-llc-in-wisconsin.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-wyoming",
+      "destination": "/start-an-llc-in-wyoming.html",
+      "permanent": true
+    },
+    {
+      "source": "/start-an-llc-in-wyoming/",
+      "destination": "/start-an-llc-in-wyoming.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-checklist",
+      "destination": "/startup-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-checklist/",
+      "destination": "/startup-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-cost-calculator",
+      "destination": "/startup-cost-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/startup-cost-calculator/",
+      "destination": "/startup-cost-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/state-filing",
+      "destination": "/state-filing.html",
+      "permanent": true
+    },
+    {
+      "source": "/state-filing/",
+      "destination": "/state-filing.html",
+      "permanent": true
+    },
+    {
+      "source": "/support-system-checklist",
+      "destination": "/support-system-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/support-system-checklist/",
+      "destination": "/support-system-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools",
+      "destination": "/tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools/",
+      "destination": "/tools.html",
+      "permanent": true
+    },
+    {
+      "source": "/weekly-check-in",
+      "destination": "/weekly-check-in.html",
+      "permanent": true
+    },
+    {
+      "source": "/weekly-check-in/",
+      "destination": "/weekly-check-in.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-accounts-payable",
+      "destination": "/what-is-accounts-payable.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-accounts-payable/",
+      "destination": "/what-is-accounts-payable.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-accounts-receivable",
+      "destination": "/what-is-accounts-receivable.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-accounts-receivable/",
+      "destination": "/what-is-accounts-receivable.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-accrual-accounting",
+      "destination": "/what-is-accrual-accounting.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-accrual-accounting/",
+      "destination": "/what-is-accrual-accounting.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-angel-investor",
+      "destination": "/what-is-angel-investor.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-angel-investor/",
+      "destination": "/what-is-angel-investor.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-articles-of-organization",
+      "destination": "/what-is-articles-of-organization.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-articles-of-organization/",
+      "destination": "/what-is-articles-of-organization.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-bootstrapping",
+      "destination": "/what-is-bootstrapping.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-bootstrapping/",
+      "destination": "/what-is-bootstrapping.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-breakeven-point",
+      "destination": "/what-is-breakeven-point.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-breakeven-point/",
+      "destination": "/what-is-breakeven-point.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-burn-rate",
+      "destination": "/what-is-burn-rate.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-burn-rate/",
+      "destination": "/what-is-burn-rate.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-business-plan",
+      "destination": "/what-is-business-plan.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-business-plan/",
+      "destination": "/what-is-business-plan.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cac",
+      "destination": "/what-is-cac.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cac/",
+      "destination": "/what-is-cac.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cap-table",
+      "destination": "/what-is-cap-table.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cap-table/",
+      "destination": "/what-is-cap-table.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cash-flow",
+      "destination": "/what-is-cash-flow.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cash-flow/",
+      "destination": "/what-is-cash-flow.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-churn-rate",
+      "destination": "/what-is-churn-rate.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-churn-rate/",
+      "destination": "/what-is-churn-rate.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cogs",
+      "destination": "/what-is-cogs.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cogs/",
+      "destination": "/what-is-cogs.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-convertible-note",
+      "destination": "/what-is-convertible-note.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-convertible-note/",
+      "destination": "/what-is-convertible-note.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-corporation",
+      "destination": "/what-is-corporation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-corporation/",
+      "destination": "/what-is-corporation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-dba",
+      "destination": "/what-is-dba.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-dba/",
+      "destination": "/what-is-dba.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-dilution",
+      "destination": "/what-is-dilution.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-dilution/",
+      "destination": "/what-is-dilution.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-doing-business-as",
+      "destination": "/what-is-doing-business-as.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-doing-business-as/",
+      "destination": "/what-is-doing-business-as.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-due-diligence",
+      "destination": "/what-is-due-diligence.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-due-diligence/",
+      "destination": "/what-is-due-diligence.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-ein",
+      "destination": "/what-is-ein.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-ein/",
+      "destination": "/what-is-ein.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-equity",
+      "destination": "/what-is-equity.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-equity/",
+      "destination": "/what-is-equity.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-fixed-costs",
+      "destination": "/what-is-fixed-costs.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-fixed-costs/",
+      "destination": "/what-is-fixed-costs.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-fulfillment",
+      "destination": "/what-is-fulfillment.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-fulfillment/",
+      "destination": "/what-is-fulfillment.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-gross-margin",
+      "destination": "/what-is-gross-margin.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-gross-margin/",
+      "destination": "/what-is-gross-margin.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-independent-contractor",
+      "destination": "/what-is-independent-contractor.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-independent-contractor/",
+      "destination": "/what-is-independent-contractor.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-intellectual-property",
+      "destination": "/what-is-intellectual-property.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-intellectual-property/",
+      "destination": "/what-is-intellectual-property.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-invoice",
+      "destination": "/what-is-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-invoice/",
+      "destination": "/what-is-invoice.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-lead",
+      "destination": "/what-is-lead.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-lead/",
+      "destination": "/what-is-lead.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-lean-startup",
+      "destination": "/what-is-lean-startup.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-lean-startup/",
+      "destination": "/what-is-lean-startup.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-llc",
+      "destination": "/what-is-llc.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-llc/",
+      "destination": "/what-is-llc.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-ltv",
+      "destination": "/what-is-ltv.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-ltv/",
+      "destination": "/what-is-ltv.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-margin",
+      "destination": "/what-is-margin.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-margin/",
+      "destination": "/what-is-margin.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-market-research",
+      "destination": "/what-is-market-research.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-market-research/",
+      "destination": "/what-is-market-research.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-mrr",
+      "destination": "/what-is-mrr.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-mrr/",
+      "destination": "/what-is-mrr.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-mvp",
+      "destination": "/what-is-mvp.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-mvp/",
+      "destination": "/what-is-mvp.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-net-profit",
+      "destination": "/what-is-net-profit.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-net-profit/",
+      "destination": "/what-is-net-profit.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-operating-expenses",
+      "destination": "/what-is-operating-expenses.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-operating-expenses/",
+      "destination": "/what-is-operating-expenses.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-overhead",
+      "destination": "/what-is-overhead.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-overhead/",
+      "destination": "/what-is-overhead.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-pass-through-taxation",
+      "destination": "/what-is-pass-through-taxation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-pass-through-taxation/",
+      "destination": "/what-is-pass-through-taxation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-pivot",
+      "destination": "/what-is-pivot.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-pivot/",
+      "destination": "/what-is-pivot.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-positioning",
+      "destination": "/what-is-positioning.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-positioning/",
+      "destination": "/what-is-positioning.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-product-market-fit",
+      "destination": "/what-is-product-market-fit.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-product-market-fit/",
+      "destination": "/what-is-product-market-fit.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-profit-and-loss-statement",
+      "destination": "/what-is-profit-and-loss-statement.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-profit-and-loss-statement/",
+      "destination": "/what-is-profit-and-loss-statement.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-registered-agent",
+      "destination": "/what-is-registered-agent.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-registered-agent/",
+      "destination": "/what-is-registered-agent.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-retainer",
+      "destination": "/what-is-retainer.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-retainer/",
+      "destination": "/what-is-retainer.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-runway",
+      "destination": "/what-is-runway.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-runway/",
+      "destination": "/what-is-runway.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-s-corporation",
+      "destination": "/what-is-s-corporation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-s-corporation/",
+      "destination": "/what-is-s-corporation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-saas",
+      "destination": "/what-is-saas.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-saas/",
+      "destination": "/what-is-saas.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-sba-loan",
+      "destination": "/what-is-sba-loan.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-sba-loan/",
+      "destination": "/what-is-sba-loan.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-self-employment-tax",
+      "destination": "/what-is-self-employment-tax.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-self-employment-tax/",
+      "destination": "/what-is-self-employment-tax.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-seo",
+      "destination": "/what-is-seo.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-seo/",
+      "destination": "/what-is-seo.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-sole-proprietorship",
+      "destination": "/what-is-sole-proprietorship.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-sole-proprietorship/",
+      "destination": "/what-is-sole-proprietorship.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-term-sheet",
+      "destination": "/what-is-term-sheet.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-term-sheet/",
+      "destination": "/what-is-term-sheet.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-trademark",
+      "destination": "/what-is-trademark.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-trademark/",
+      "destination": "/what-is-trademark.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-unit-economics",
+      "destination": "/what-is-unit-economics.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-unit-economics/",
+      "destination": "/what-is-unit-economics.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-valuation",
+      "destination": "/what-is-valuation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-valuation/",
+      "destination": "/what-is-valuation.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-variable-costs",
+      "destination": "/what-is-variable-costs.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-variable-costs/",
+      "destination": "/what-is-variable-costs.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-working-capital",
+      "destination": "/what-is-working-capital.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-working-capital/",
+      "destination": "/what-is-working-capital.html",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

@@ -9,6 +9,71 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-05
+
+### Tools
+
+**A section that was four calculators is now fifteen pages.** `tools.html` is
+the hub, reached from the Tools orb on every Resources page, and it links four
+calculators, a fifty state filing lookup, a structure comparison, a domain
+checker, a founder diagnostic, two generators and four fillable worksheets.
+One page per tool, each with its own title, description, breadcrumbs and
+`WebApplication` schema, all wired into `sitemap.xml` and `llms.txt`.
+
+The state data is `build/state-filings.json`: 50 states with the filing office,
+the document name, the fee, the name search, the registered agent rule and the
+report cadence, each with the government page it came from. Two states, New
+Mexico and Tennessee, have no confirmed LLC fee and the page says so rather
+than printing a number nobody checked.
+
+**Nine of the pages had a JavaScript error that killed them.** The generator
+wrapped page scripts in `try { ... } catch` but not in a function, so a
+top-level `return` inside the page's own code was a syntax error and the whole
+block never ran. On `founder-diagnostic.html` that meant the questions did not
+advance; on the worksheets nothing saved. `build/toolgen.py` now emits an
+IIFE inside the `try`, and the pages were regenerated rather than patched.
+
+Checked: every calculator computes, `?state=Texas` deep-links and shows $300,
+the worksheets survive a reload with their progress meters intact, and the
+domain checker reports "no answer" rather than "available" when the registry
+cannot be reached.
+
+### Fonts
+
+**Three pages were never loading the site's fonts.** `advisors.html`,
+`partners.html` and `events.html` had the Google preconnect hints but no
+`fonts.css` stylesheet, so they rendered in Georgia and system-ui while every
+other page used Cormorant Garamond and Space Grotesk. On partners the hero
+copy block sits outside `.wrap.res.prt`, so `.prt h1` never matched it either:
+the heading was 32px of the body font where advisors is 66px of the display
+serif. Both fixed, and the hero eyebrow and lede now take the same rules as
+the rest of the page.
+
+**The font swap was the largest source of layout shift on the site.** Every
+face is `font-display: swap` and the files are only discovered once `fonts.css`
+parses, so the fallback painted first and the page reflowed when the real font
+arrived. Measured on a phone: state-filing 0.7063, startup-checklist 0.1186,
+business-structures 0.1070, library 0.0915 on desktop. Blocking the woff2 files
+dropped those to 0.0578, 0.0049, 0 and 0, which identified the cause.
+
+Six `rel="preload"` hints for the Latin subsets now sit in every page head,
+ahead of the stylesheet. Same bytes, earlier in the queue, and the request
+chain is gone. Every page measured after the change: 0.0000 at 1440 and 390,
+including all fifteen tool pages.
+
+### Cleanup
+
+Six image plates left over from earlier hero work, 2.5 MB, no longer referenced
+by any page: removed. `__pycache__` added to `.gitignore`. Tap targets under
+24px on a phone (worksheet checkboxes, the numbered source links on the state
+page, the reference links on the structures page) brought up to size. Seven
+meta descriptions were over 165 characters and were rewritten shorter.
+
+Checked afterwards: 32 pages at 1440 and 390, no horizontal overflow, exactly
+one `h1` each, no console errors and no failed requests.
+
+---
+
 ## 2026-09-04, night
 
 ### Advisors, on a phone

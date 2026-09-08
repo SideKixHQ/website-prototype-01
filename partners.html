@@ -19,7 +19,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Partner with SideKix: Affiliates and Sponsors | SideKix</title>
 
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link as="style" href="assets/fonts.css" rel="preload"/><link as="font" crossorigin="" href="assets/Space-Grotesk-400-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Space-Grotesk-500-normal-3d870fe2.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-700-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-500-normal-388b7669.woff2" rel="preload" type="font/woff2"/><link as="font" crossorigin="" href="assets/Cormorant-Garamond-600-italic-5f682672.woff2" rel="preload" type="font/woff2"/><link href="assets/fonts.css" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;family=Cormorant+Garamond:wght@600&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -1761,87 +1761,117 @@ window.SIDEKIX_SUBMIT = function (payload) {
   .prtfilm-play:hover img{transform:none}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"SideKix film","description":"What SideKix is building, and how partners, affiliates and sponsors fit in.","thumbnailUrl":"https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg","uploadDate":"2026-09-04","embedUrl":"https://www.youtube-nocookie.com/embed/GsnBg1r40cg","contentUrl":"https://youtu.be/GsnBg1r40cg"}</script>
-<style id="kx-prt-poster">
-/* ---- the poster gets the treatment the homepage and advisors hero use ----
-   Not a framed card on the page but artwork rising out of the ground: the red
-   border trimmed off, an elliptical alpha baked into both plates so the edges
-   dissolve rather than stopping, a gold duotone at rest and the full colour
-   underneath it. Mirrored from the advisors hero, which puts its art on the
-   right, because this one goes on the left.
+<style id="kx-prt-home">
+/* ---- the partners hero, built on the homepage hero ----
+   Same three layers in the same order and the same geometry: one image pinned
+   to the right and bled off it, a radial mask on the image itself so it
+   dissolves into the ground rather than ending, a linear scrim over it that is
+   solid behind the copy and clear over the art, and the copy on top.
 
-   Two plates rather than a CSS filter, because a filter cannot turn a gold
-   duotone back into the original reds and greens; crossfading opacity between
-   two images can, and the compositor does it without repainting either one. */
-.prthero{position:relative;isolation:isolate;overflow:hidden;
-  min-height:clamp(560px,80vh,760px);
-  display:flex;align-items:center;
-  margin:0 0 10px}
-/* Fitted inside its box, the plate read as an oval floating on the page: you
-   could see where the artwork stopped, which is the one thing the advisors
-   hero never does. It works there because the art is cropped and runs off the
-   window edge, so the fade is never seen as a shape. Same geometry here,
-   mirrored: wider than its column, taller than the section, hanging off the
-   left edge, and covering rather than fitting. */
-.prthero-artwrap{position:absolute;left:-5%;top:50%;transform:translateY(-50%);
-  width:min(46%,620px);height:118%;z-index:1;pointer-events:none;overflow:visible}
-.prthero-art{position:absolute;left:0;top:0;width:100%;height:100%;
-  object-fit:cover;object-position:52% 44%;
-  animation:prtDrift 52s ease-in-out infinite alternate;will-change:transform;
-  transition:opacity .75s cubic-bezier(.16,1,.3,1)}
-.prthero-duo{opacity:.42}
-.prthero-colour{opacity:0}
-.prthero:hover .prthero-duo{opacity:0}
-.prthero:hover .prthero-colour{opacity:1}
-.prthero-light{position:absolute;inset:-6%;
-  background:radial-gradient(ellipse 44% 30% at var(--px,50%) var(--py,46%),
-    rgba(6,5,4,0) 0%,rgba(6,5,4,0) 34%,rgba(6,5,4,.5) 70%,rgba(6,5,4,.72) 100%);
-  -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
-  mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);
-  opacity:0;transition:opacity .6s ease;will-change:background}
-.prthero:hover .prthero-light{opacity:1}
-@keyframes prtDrift{
-  from{transform:translate3d(0,0,0) scale(1.01)}
-  to{transform:translate3d(2.4%,1.8%,0) scale(1.07)}}
-/* The advisors scrim mirrored exactly would have darkened this artwork's left
-   half, because there the art sits against the right edge of the window and is
-   meant to fade off it. This one stands clear of the edge, so the band is cut
-   for where it actually is: a touch of dark at the very edge so nothing stops
-   hard, fully open from 14% to 42% where the poster sits, and solid from 74%
-   across, behind the copy. */
-.prthero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
+   The image is part of the scene, not an illustration beside it. That is why
+   it is masked rather than cropped, why the copy sits over it rather than next
+   to it, and why on a phone it stays put and only gets wider, further right
+   and quieter, exactly as the homepage does. Pulling it out into its own block
+   under the copy, which is what an earlier attempt did, turns a background
+   into a picture and the page stops reading as one thing. */
+#prt-home{position:relative;height:100vh;min-height:720px;overflow:hidden;
+  display:flex;align-items:center;z-index:2;padding-bottom:4vh}
+/* The homepage's 52% is uncapped, and on a wide monitor that made this
+   plate 899x1078 against the advisors hero's 620x995: 157% of it by area at
+   1728. Capped at 600 so it stays a shade under the advisors art at every
+   width, and shortened from 110% to 92% because the poster is a tall format
+   and at full height it ran the whole section.
+
+   The mask centre moves right, from 60% to 68%, and the opaque core tightens
+   from 42% to 30%. That pulls the solid part of the mask away from the upper
+   left corner, which is where the QR code sits, so it fades out with the rest
+   of the edge instead of reading as a hard graphic floating in the dark.
+   Vertically the radius is set to 62% against a centre at 50%, which puts
+   both the top and bottom edges of the box at 0.81 of the mask radius, past
+   the 0.76 transparent stop, so neither one ends on a straight cut. */
+.prt-homeart{position:absolute;right:-4%;top:50%;transform:translateY(-50%);
+  width:min(46%,600px);height:114%;object-fit:cover;object-position:52% 54%;z-index:1;
+  -webkit-mask-image:radial-gradient(72% 70% at 66% 50%,#000 42%,transparent 84%);
+  mask-image:radial-gradient(72% 70% at 66% 50%,#000 42%,transparent 84%);
+  opacity:.80;
+  /* The homepage photograph is already dark and sits at .9 untouched. This
+     plate is a bright yellow poster, so it is pulled toward the site gold at
+     rest and released to its own colour on hover. Same filter functions in the
+     same order in both states, so the browser interpolates rather than snaps. */
+  filter:saturate(.55) sepia(.35) hue-rotate(-8deg) brightness(.82) contrast(1.02);
+  transition:opacity .7s ease,filter .7s ease}
+#prt-home:hover .prt-homeart{
+  opacity:1;
+  filter:saturate(1.25) sepia(0) hue-rotate(0deg) brightness(1.1) contrast(1.05)}
+.prt-homescrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(11,10,6,.6) 0%,rgba(11,10,6,0) 11%,
-      rgba(11,10,6,0) 28%,rgba(11,10,6,.55) 43%,#0B0A06 57%),
-    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 21%,
-      rgba(11,10,6,0) 80%,#0B0A06 100%)}
-.prthero-copy{position:relative;z-index:3;
-  width:min(560px,92%);margin-left:auto;margin-right:clamp(24px,7vw,120px);
-  text-align:left}
-.prthero-copy h1,.prthero-copy .lede{text-align:left;margin-left:0;margin-right:0}
-.prthero-copy .lede{max-width:44ch}
+    linear-gradient(90deg,#0B0A06 30%,rgba(10,10,10,.4) 60%,transparent 82%),
+    linear-gradient(0deg,#0B0A06 0%,rgba(11,10,6,0) 18%,rgba(11,10,6,0) 78%,#0B0A06 100%)}
+.prt-homecopy{position:relative;z-index:5;padding:0 56px;max-width:920px}
+.prt-homecopy .kx-backrow{justify-content:flex-start}
 
-@media (max-width:900px){
-  /* One column, so the art stops being a backdrop and becomes a picture under
-     the copy, in colour, the same correction the advisors hero needed. */
-  .prthero{flex-direction:column;align-items:stretch;min-height:0;overflow:visible;
-    padding-bottom:6px}
-  .prthero-copy{order:1;width:100%;margin:0 auto;text-align:center}
-  .prthero-copy h1,.prthero-copy .lede{text-align:center;margin-left:auto;margin-right:auto}
-  .prthero-artwrap{position:relative;order:2;left:auto;top:auto;transform:none;
-    /* The poster's own proportions, so contain shows all of it. Cover, which
-       is right when it is a backdrop bleeding off the window edge, crops the
-       title and the caption off when it is a picture standing on its own. */
-    width:min(330px,80%);height:auto;aspect-ratio:648/1166;margin:24px auto 0}
-  .prthero-art{animation:none;object-fit:contain;object-position:center;transition:none}
-  .prthero-duo{opacity:0}
-  .prthero-colour{opacity:1}
-  .prthero-scrim,.prthero-light{display:none}
+.prt-homecopy h1{font-family:var(--display);font-weight:600;
+  font-size:clamp(38px,5.4vw,66px);line-height:1.04;color:#FFFBEE;
+  letter-spacing:-.006em;margin:0 0 18px;text-wrap:balance}
+.prt-homecopy h1 em{font-style:italic;color:#F3E4A8}
+.prt-homecopy .eyebrow{font-family:var(--util);font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:#9C968D;display:block;margin-bottom:14px}
+.prt-homecopy .lede{color:#D6D2C8;font-size:16.5px;line-height:1.7;margin:0 0 8px}
+.prt-homecopy .eyebrow,.prt-homecopy h1,.prt-homecopy .lede{
+  text-align:left;margin-left:0;margin-right:0}
+.prt-homecopy .lede{max-width:52ch}
+
+/* ---- the hero had no action in it ----
+   The homepage and the advisors hero both close on two buttons and a line of
+   small print. Partners had a heading, one sentence and then 462px of nothing
+   before the first content: 330px of hero the copy did not use and 132px of
+   section padding under it. The buttons are the fix for both problems at once,
+   because the space was empty for want of something to do rather than for want
+   of decoration. Same geometry as the advisors pair, so the two pages read as
+   a set. */
+.prt-homecta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:26px 0 0}
+.prt-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;
+  font-family:'Poppins',system-ui,sans-serif;font-size:17px;line-height:26px;
+  border-radius:999px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.prt-btn.prt-btn-gold{border:none;background:linear-gradient(180deg,#D7C582,#A1853E);
+  color:#1B1400;font-weight:700;padding:18px 40px;
+  box-shadow:0 10px 44px rgba(231,182,70,.35)}
+.prt-btn-gold span{margin-left:.42em}
+.prt-btn.prt-btn-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(212,168,86,.55);
+  color:#EBD08C;font-weight:600;padding:18px 32px}
+.prt-btn:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px}
+.prt-homenote{font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:#9C968D;margin:20px 0 0}
+.prt-homenote b{color:var(--gold);font-weight:600}
+
+/* The section is sized to its content now rather than to a viewport. 100vh is
+   right for the homepage, which fills it; here it left a third of the hero
+   empty. */
+#prt-home{height:auto;min-height:clamp(540px,70vh,660px)}
+.wrap.res.prt{padding-top:36px}
+
+@media (max-width:640px){
+  /* The homepage's own phone treatment, value for value: the section stops
+     being full height, the copy takes the full width, and the image stays
+     where it is, wider and pushed further off the right edge and quiet enough
+     to read through. */
+  #prt-home{height:auto;min-height:0;padding:116px 0 64px}
+  .prt-homecopy{padding-left:20px;padding-right:20px;max-width:100%}
+  /* Held at the gold end of the filter rather than released toward colour.
+     A phone has no hover, so this is the only state it will ever show, and
+     the muted version is the one that behaves like a background. */
+  .prt-homeart{width:118%;height:100%;right:-26%;opacity:.34;
+    filter:saturate(.42) sepia(.45) hue-rotate(-10deg) brightness(.86) contrast(1.02)}
+  .prt-homecopy .kx-backrow{justify-content:flex-start}
+  .prt-homecta{justify-content:center;gap:12px;margin-top:22px}
+  .prt-btn{flex:1 1 100%;padding-left:20px;padding-right:20px}
+  .prt-homenote{text-align:center}
+  .wrap.res.prt{padding-top:48px}
 }
 @media (prefers-reduced-motion:reduce){
-  .prthero-art{animation:none;transition:none}
+  .prt-homeart{transition:none}
 }
 </style>
-
 </head>
 <body><a class="skip-link" href="#maincontent">Skip to content</a>
 <nav aria-label="Main" id="kx-nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,4vw,56px);transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent;flex-wrap:wrap;">
@@ -1870,19 +1900,17 @@ window.SIDEKIX_SUBMIT = function (payload) {
 <!-- CTA -->
 <!-- FOOTER -->
 <div aria-hidden="true" class="prt-ground"></div>
-<main id="maincontent"><section class="wrap res prt"><p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p><section class="prthero">
-  <div aria-hidden="true" class="prthero-artwrap"><img alt="" class="prthero-art prthero-duo" decoding="async" fetchpriority="high" height="1475" src="assets/img/bffe23e7fabc.webp" width="820"/><img alt="" class="prthero-art prthero-colour" decoding="async" height="1475" loading="lazy" src="assets/img/9756f93332d7.webp" width="820"/><span class="prthero-light"></span></div>
-  <div aria-hidden="true" class="prthero-scrim"></div>
-  <div class="prthero-copy">
-    <span class="eyebrow">Partners</span><h1>Collaboration is what<br/>builds <em>community</em>.</h1>
-    <p class="lede">Three ways to work with us, each with a different shape. Pick the one that fits and we will take it from there.</p>
-  </div>
+<main id="maincontent">
+<section id="prt-home">
+<img alt="" class="prt-homeart" decoding="async" fetchpriority="high" height="1619" src="assets/img/d2ea54146634.webp" width="900"/>
+<div aria-hidden="true" class="prt-homescrim"></div>
+<div class="prt-homecopy"><p class="kx-backrow"><a class="kx-bk" href="index.html"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p><span class="eyebrow">Partners</span><h1>Collaboration is what<br/>builds <em>community</em>.</h1><p class="lede">Three ways to work with us, each with a different shape. Pick the one that fits and we will take it from there.</p><div class="prt-homecta"><button class="prt-btn prt-btn-gold kx-mag kx-trace" data-pfopen="" type="button">Start an introduction <span aria-hidden="true">&rarr;</span></button><a class="prt-btn prt-btn-ghost kx-mag kx-trace" href="#prt-roster">See who is already here</a></div><p class="prt-homenote"><b>Forty-three companies</b> are already in the network.</p></div>
 </section>
-</div><div aria-label="Ways to work with SideKix" class="prtdiscs" role="tablist"><button aria-controls="panel-affiliates" aria-selected="true" class="prtdisc" data-k="affiliates" id="tab-affiliates" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Affiliates</span><span class="pd-kick">Referral based</span></button><button aria-controls="panel-partners" aria-selected="false" class="prtdisc" data-k="partners" id="tab-partners" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Partners</span><span class="pd-kick">Co-create and collaborate</span></button><button aria-controls="panel-sponsors" aria-selected="false" class="prtdisc" data-k="sponsors" id="tab-sponsors" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Sponsors</span><span class="pd-kick">Brand visibility</span></button></div><div class="prtpanel" id="prtpanel"><div aria-labelledby="tab-affiliates" class="prtp" id="panel-affiliates" role="tabpanel"><h2>You get discovered by people who need exactly what you do.</h2><ul class="prtben"><li>Your business surfaces in Kix suggestions when a member's situation matches what you offer</li><li>An exclusive member discount listed in the community classifieds</li><li>Referral tracking, so you see what the relationship is actually worth</li><li>No cost to join and no exclusivity</li></ul><button class="prtgo" data-kind="affiliate" data-pfopen="" type="button">Talk to us about becoming an affiliate</button></div><div aria-labelledby="tab-partners" class="prtp" hidden="" id="panel-partners" role="tabpanel"><h2>You help build the thing, and the thing carries your name.</h2><ul class="prtben"><li>Co-created workshops, trainings and content, credited to you</li><li>Your offering integrated into the member journey rather than bolted on</li><li>A say in long-term programmes for entrepreneur education and access</li><li>Named on this page and in the product</li></ul><button class="prtgo" data-kind="partner" data-pfopen="" type="button">Talk to us about becoming a partner</button></div><div aria-labelledby="tab-sponsors" class="prtp" hidden="" id="panel-sponsors" role="tabpanel"><h2>You fund the work and get seen doing it.</h2><ul class="prtben"><li>Fund an event, a programme or a campaign and put your name on it</li><li>In-app and on-site placement where members are already looking</li><li>Co-branded experiences built with our team</li><li>Reporting on reach, not vanity numbers</li></ul><button class="prtgo" data-kind="sponsor" data-pfopen="" type="button">Talk to us about becoming a sponsor</button></div></div><section class="prtfilm" id="prt-film"><span class="prtfilm-eyebrow">The film</span><h2 class="prtfilm-h">What we are building, <em>in two minutes</em>.</h2><div class="prtfilm-box" data-yt="GsnBg1r40cg"><button class="prtfilm-play" type="button" aria-label="Play the SideKix film"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg" width="1280"/><span aria-hidden="true" class="prtfilm-btn"></span></button></div><p class="prtfilm-note"><a href="https://youtu.be/GsnBg1r40cg" rel="noopener" target="_blank">Watch on YouTube &rarr;</a></p></section><div class="prtroster"><h2>Who is already here</h2><h3>National affiliates</h3><div class="prtticker"><div aria-hidden="true" class="prtlane prtlane-a"><div class="prttrack"><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span></div></div><div aria-hidden="true" class="prtlane prtlane-b"><div class="prttrack"><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span></div></div><ul class="sr-only"><li>Amplemarket</li><li>Apollo</li><li>AspenTechLabs</li><li>BILL</li><li>Beehiiv</li><li>Capsule</li><li>Carta</li><li>Catalyst</li><li>Clearco</li><li>Contractor Foreman</li><li>ElevenLabs</li><li>FreshBooks</li><li>Google Workspace</li><li>Gusto</li><li>HealthRx</li><li>Housecall Pro</li><li>Instantly.AI</li><li>KrispCall</li><li>Leadpages</li><li>Make</li><li>Optery</li><li>Printify</li><li>ProDevs</li><li>Rewarx Studio AI</li><li>ShadowGPS</li><li>Shopify</li><li>Smart Tracking</li><li>Trainual</li><li>Unitel</li><li>WhatConverts</li><li>ZenBusiness</li><li>airSlate</li><li>folk</li><li>monday.com</li></ul></div><h3>Partners</h3><div class="prtnames"><span class="prtname">Right to Start</span><span class="prtname">Second Order Studio</span><span class="prtname">Self Help Credit Union</span><span class="prtname">Zapier</span></div><h3>Local, Wilmington NC</h3><div class="prtnames"><span class="prtname">BlueTone Media</span><span class="prtname">Bridge to Wilmington</span><span class="prtname">Cape Fear Community College</span><span class="prtname">K Starr Coaching</span><span class="prtname">UNCW</span></div></div><div class="prtend">
+<section class="wrap res prt"><div aria-label="Ways to work with SideKix" class="prtdiscs" role="tablist"><button aria-controls="panel-affiliates" aria-selected="true" class="prtdisc" data-k="affiliates" id="tab-affiliates" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Affiliates</span><span class="pd-kick">Referral based</span></button><button aria-controls="panel-partners" aria-selected="false" class="prtdisc" data-k="partners" id="tab-partners" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Partners</span><span class="pd-kick">Co-create and collaborate</span></button><button aria-controls="panel-sponsors" aria-selected="false" class="prtdisc" data-k="sponsors" id="tab-sponsors" role="tab"><span aria-hidden="true" class="pd-disc"><i class="pd-mouth"></i></span><span class="pd-nm">Sponsors</span><span class="pd-kick">Brand visibility</span></button></div><div class="prtpanel" id="prtpanel"><div aria-labelledby="tab-affiliates" class="prtp" id="panel-affiliates" role="tabpanel"><h2>You get discovered by people who need exactly what you do.</h2><ul class="prtben"><li>Your business surfaces in Kix suggestions when a member's situation matches what you offer</li><li>An exclusive member discount listed in the community classifieds</li><li>Referral tracking, so you see what the relationship is actually worth</li><li>No cost to join and no exclusivity</li></ul><button class="prtgo" data-kind="affiliate" data-pfopen="" type="button">Talk to us about becoming an affiliate</button></div><div aria-labelledby="tab-partners" class="prtp" hidden="" id="panel-partners" role="tabpanel"><h2>You help build the thing, and the thing carries your name.</h2><ul class="prtben"><li>Co-created workshops, trainings and content, credited to you</li><li>Your offering integrated into the member journey rather than bolted on</li><li>A say in long-term programmes for entrepreneur education and access</li><li>Named on this page and in the product</li></ul><button class="prtgo" data-kind="partner" data-pfopen="" type="button">Talk to us about becoming a partner</button></div><div aria-labelledby="tab-sponsors" class="prtp" hidden="" id="panel-sponsors" role="tabpanel"><h2>You fund the work and get seen doing it.</h2><ul class="prtben"><li>Fund an event, a programme or a campaign and put your name on it</li><li>In-app and on-site placement where members are already looking</li><li>Co-branded experiences built with our team</li><li>Reporting on reach, not vanity numbers</li></ul><button class="prtgo" data-kind="sponsor" data-pfopen="" type="button">Talk to us about becoming a sponsor</button></div></div><section class="prtfilm" id="prt-film"><span class="prtfilm-eyebrow">The film</span><h2 class="prtfilm-h">What we are building, <em>in two minutes</em>.</h2><div class="prtfilm-box" data-yt="GsnBg1r40cg"><button class="prtfilm-play" type="button" aria-label="Play the SideKix film"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/GsnBg1r40cg/maxresdefault.jpg" width="1280"/><span aria-hidden="true" class="prtfilm-btn"></span></button></div><p class="prtfilm-note"><a href="https://youtu.be/GsnBg1r40cg" rel="noopener" target="_blank">Watch on YouTube &rarr;</a></p></section><div class="prtroster" id="prt-roster"><h2>Who is already here</h2><h3>National affiliates</h3><div class="prtticker"><div aria-hidden="true" class="prtlane prtlane-a"><div class="prttrack"><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span><span class="prtname">Amplemarket</span><span class="prtname">Apollo</span><span class="prtname">AspenTechLabs</span><span class="prtname">BILL</span><span class="prtname">Beehiiv</span><span class="prtname">Capsule</span><span class="prtname">Carta</span><span class="prtname">Catalyst</span><span class="prtname">Clearco</span><span class="prtname">Contractor Foreman</span><span class="prtname">ElevenLabs</span><span class="prtname">FreshBooks</span><span class="prtname">Google Workspace</span><span class="prtname">Gusto</span><span class="prtname">HealthRx</span><span class="prtname">Housecall Pro</span><span class="prtname">Instantly.AI</span></div></div><div aria-hidden="true" class="prtlane prtlane-b"><div class="prttrack"><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span><span class="prtname">KrispCall</span><span class="prtname">Leadpages</span><span class="prtname">Make</span><span class="prtname">Optery</span><span class="prtname">Printify</span><span class="prtname">ProDevs</span><span class="prtname">Rewarx Studio AI</span><span class="prtname">ShadowGPS</span><span class="prtname">Shopify</span><span class="prtname">Smart Tracking</span><span class="prtname">Trainual</span><span class="prtname">Unitel</span><span class="prtname">WhatConverts</span><span class="prtname">ZenBusiness</span><span class="prtname">airSlate</span><span class="prtname">folk</span><span class="prtname">monday.com</span></div></div><ul class="sr-only"><li>Amplemarket</li><li>Apollo</li><li>AspenTechLabs</li><li>BILL</li><li>Beehiiv</li><li>Capsule</li><li>Carta</li><li>Catalyst</li><li>Clearco</li><li>Contractor Foreman</li><li>ElevenLabs</li><li>FreshBooks</li><li>Google Workspace</li><li>Gusto</li><li>HealthRx</li><li>Housecall Pro</li><li>Instantly.AI</li><li>KrispCall</li><li>Leadpages</li><li>Make</li><li>Optery</li><li>Printify</li><li>ProDevs</li><li>Rewarx Studio AI</li><li>ShadowGPS</li><li>Shopify</li><li>Smart Tracking</li><li>Trainual</li><li>Unitel</li><li>WhatConverts</li><li>ZenBusiness</li><li>airSlate</li><li>folk</li><li>monday.com</li></ul></div><h3>Partners</h3><div class="prtnames"><span class="prtname">Right to Start</span><span class="prtname">Second Order Studio</span><span class="prtname">Self Help Credit Union</span><span class="prtname">Zapier</span></div><h3>Local, Wilmington NC</h3><div class="prtnames"><span class="prtname">BlueTone Media</span><span class="prtname">Bridge to Wilmington</span><span class="prtname">Cape Fear Community College</span><span class="prtname">K Starr Coaching</span><span class="prtname">UNCW</span></div></div><div class="prtend">
 <h2>Ready when you are.</h2>
 <p>Tell us which of the three fits and a little about what you do. We reply to every one.</p>
 <button class="prtcta kx-trace kx-mag" data-pfopen="" type="button">Start an introduction <i>→</i></button>
-</div></section></main><footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="library.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookies.html">Cookie Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
+</div></section></main><footer class="sk-footer"><div class="sk-inner"><div class="sk-brand"><div class="sk-word">SideKix</div><p>A complete business operating system. Find a personalized path from where you are to where you want to be.</p><div class="sk-social"><a aria-label="SideKix on LinkedIn" href="https://www.linkedin.com/company/sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21H9z"></path></svg></a><a aria-label="SideKix on YouTube" href="https://www.youtube.com/@sidekixhq" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"></path></svg></a><a aria-label="SideKix on Instagram" href="https://www.instagram.com/sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.42.7.83.9 1.4.18.44.38 1.05.43 2.25.06 1.28.07 1.66.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.42.43-.83.7-1.4.9-.44.18-1.05.38-2.25.43-1.28.06-1.66.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.43-.42-.7-.83-.9-1.4-.18-.44-.38-1.05-.43-2.25C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.42-.43.83-.7 1.4-.9.44-.18 1.05-.38 2.25-.43C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 7.25a2.85 2.85 0 1 1 0-5.7 2.85 2.85 0 0 1 0 5.7zm5.6-7.44a1.03 1.03 0 1 1-2.06 0 1.03 1.03 0 0 1 2.06 0z"></path></svg></a><a aria-label="SideKix on Facebook" href="https://www.facebook.com/people/SideKix/100091394580450/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"></path></svg></a><a aria-label="SideKix on Threads" href="https://www.threads.com/@sidekixhqinc" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M16.4 11.3c-.1-.05-.2-.1-.3-.14-.18-3.3-1.98-5.2-5-5.22h-.04c-1.8 0-3.3.77-4.23 2.17l1.66 1.14c.69-1.05 1.78-1.27 2.57-1.27h.03c.98.01 1.72.3 2.2.85.35.4.58.96.7 1.66-.87-.15-1.8-.19-2.8-.13-2.8.16-4.6 1.8-4.48 4.08.06 1.15.64 2.14 1.62 2.79.83.55 1.9.82 3.01.76 1.47-.08 2.62-.64 3.42-1.66.61-.78.99-1.78 1.16-3.05.7.42 1.22.98 1.5 1.65.5 1.14.53 3-1 4.55-1.35 1.35-2.97 1.94-5.42 1.96-2.71-.02-4.76-.89-6.09-2.59C4.34 16.9 3.7 14.66 3.68 12c.02-2.66.66-4.9 1.9-6.65C6.91 3.65 8.96 2.78 11.67 2.76c2.73.02 4.82.9 6.2 2.6.68.85 1.2 1.9 1.53 3.14l1.95-.52c-.4-1.52-1.05-2.84-1.93-3.93C17.66 1.86 15 .75 11.68.73h-.01C8.35.75 5.72 1.87 4.06 4.06 2.58 6 1.81 8.7 1.79 12v.01c.02 3.3.79 6 2.27 7.94 1.66 2.18 4.29 3.3 7.61 3.32h.01c2.95-.02 5.03-.79 6.74-2.5 2.24-2.23 2.17-5.03 1.43-6.74-.53-1.23-1.54-2.23-2.91-2.9zm-5 4.9c-1.23.07-2.5-.48-2.57-1.66-.05-.88.62-1.86 2.65-1.98.23-.01.46-.02.68-.02.74 0 1.43.07 2.06.21-.23 2.9-1.6 3.4-2.82 3.46z"></path></svg></a><a aria-label="SideKix on Reddit" href="https://www.reddit.com/r/sidekix" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M22 12.1c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.23-1.5.6-1.5-1-3.5-1.7-5.7-1.8l1-4.6 3.2.7c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6-.7-1.6-1.6-1.6c-.6 0-1.2.36-1.45.9l-3.6-.77a.5.5 0 0 0-.6.38l-1.1 5.03c-2.2.1-4.2.8-5.7 1.8a2.16 2.16 0 0 0-1.5-.6C2.98 9.9 2 10.9 2 12.1c0 .85.5 1.6 1.2 1.95a4 4 0 0 0-.05.63c0 3.2 3.7 5.8 8.3 5.8s8.3-2.6 8.3-5.8c0-.2-.02-.42-.05-.62.7-.36 1.2-1.1 1.2-1.96zM7.4 13.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6-.7 1.6-1.6 1.6-1.6-.72-1.6-1.6zm8.9 4.2c-1.1 1.1-3.2 1.18-3.8 1.18s-2.7-.08-3.8-1.18a.42.42 0 0 1 .6-.6c.7.7 2.2.95 3.2.95s2.5-.25 3.2-.95a.42.42 0 0 1 .6.6zm-.3-2.6c-.9 0-1.6-.72-1.6-1.6s.7-1.6 1.6-1.6 1.6.7 1.6 1.6-.7 1.6-1.6 1.6z"></path></svg></a></div></div><nav aria-labelledby="fh1" class="sk-col"><h2 id="fh1">Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="how-it-works.html">How it works</a></li><li><a href="membership.html">Membership</a></li><li><a href="library.html">Resources</a></li><li><a href="events.html">Events</a></li></ul></nav><nav aria-labelledby="fh2" class="sk-col"><h2 id="fh2">Get started</h2><ul><li><a href="join.html">Early access</a></li><li><a href="become-an-advisor.html">Become an Advisor</a></li><li><a href="partners.html">Partner with us</a></li><li><a href="faq.html">FAQs</a></li></ul></nav><nav aria-labelledby="fh3" class="sk-col"><h2 id="fh3">Company</h2><ul><li><a href="press.html">Press</a></li><li><a href="back-room.html">The Back Room</a></li><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="cookies.html">Cookie Policy</a></li><li><a href="mailto:support@sidekixhq.com">Support</a></li></ul></nav></div><div class="sk-base"><span>© 2026 Character Limit LLC, doing business as SideKix</span><span>North Carolina, United States</span><span class="sk-tag">Begin. Build. Become.</span><span class="sk-tm">SideKix™ is a trademark of Character Limit LLC. U.S. federal trademark application pending.</span></div></footer>
 </div>
 <script>
 /* the cards carry a light that follows the pointer, the same idea the
@@ -2077,16 +2105,20 @@ try{
     ''                      : 'SideKix',
     'how-it-works.html'     : 'how it works',
     'membership.html'       : 'membership',
-    'resources.html'        : 'resources',
+    'advisors.html'         : 'Advisors',
+    'become-an-advisor.html': 'the advisor application',
+    'partners.html'         : 'Partners',
     'events.html'           : 'events',
+    'library.html'          : 'the blog',
+    'resources.html'        : 'the resource library',
     'market-data.html'      : 'market data',
     'glossary.html'         : 'the glossary',
-    'tools.html'            : 'the calculators',
+    'tools.html'            : 'Tools',
     'faq.html'              : 'the FAQs',
     'join.html'             : 'early access',
-    'become-an-advisor.html': 'the advisor page',
     'privacy.html'          : 'the privacy policy',
-    'terms.html'            : 'the terms'
+    'terms.html'            : 'the terms',
+    'cookies.html'          : 'the cookie policy'
   };
 
   var ref = document.referrer;
@@ -2457,34 +2489,6 @@ try{
   });
 })();
 }catch(e){console.error('SideKix [partners film] failed:',e);}
-</script>
-
-<script>
-try{
-/* The light that follows the pointer across the artwork, the same driver the
-   advisors hero uses: a rAF loop that eases toward the cursor and stops
-   scheduling frames once it has settled, rather than running forever. */
-(function(){
-  var hero=document.querySelector('.prthero');
-  if(!hero) return;
-  var wrap=hero.querySelector('.prthero-artwrap'), light=hero.querySelector('.prthero-light');
-  if(!wrap||!light) return;
-  if(!window.matchMedia||!matchMedia('(hover:hover)').matches) return;
-  var cx=50, cy=46, tx=50, ty=46, raf=null;
-  function loop(){
-    cx+=(tx-cx)*0.13; cy+=(ty-cy)*0.13;
-    light.style.setProperty('--px',cx.toFixed(2)+'%');
-    light.style.setProperty('--py',cy.toFixed(2)+'%');
-    if(Math.abs(tx-cx)>0.06||Math.abs(ty-cy)>0.06){ raf=requestAnimationFrame(loop); }
-    else { raf=null; }
-  }
-  hero.addEventListener('pointermove',function(e){
-    var r=wrap.getBoundingClientRect();
-    tx=((e.clientX-r.left)/r.width)*100; ty=((e.clientY-r.top)/r.height)*100;
-    if(raf===null) raf=requestAnimationFrame(loop);
-  },{passive:true});
-})();
-}catch(e){console.error('SideKix [partners hero light] failed:',e);}
 </script>
 </body>
 </html>

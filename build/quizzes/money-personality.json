@@ -1,0 +1,275 @@
+{
+ "slug": "money-personality",
+ "title": "How do you actually handle money?",
+ "kicker": "6 questions, about 40 seconds",
+ "intro": "Not how you think you handle it. The read is on what you do when a number is in front of you, which is usually different.",
+ "share_line": "With money I am",
+ "accent": "#D4A856",
+ "og_line": "Six questions on what you actually do when a number is in front of you.",
+ "cta": {
+  "title": "The calculators",
+  "href": "../../tools.html",
+  "label": "Open the calculators",
+  "blurb": "Rate, break even, pricing and startup cost. The four numbers most of this comes down to, worked out rather than guessed."
+ },
+ "questions": [
+  {
+   "q": "Someone asks your price.",
+   "options": [
+    {
+     "a": "I say a number and stop talking",
+     "w": {
+      "engineer": 3
+     }
+    },
+    {
+     "a": "I say a number slightly lower than I meant to",
+     "w": {
+      "underprice": 3
+     }
+    },
+    {
+     "a": "I ask what their budget is first",
+     "w": {
+      "avoider": 3,
+      "underprice": 1
+     }
+    },
+    {
+     "a": "I go high. They can always say no",
+     "w": {
+      "gambler": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "Money arrives unexpectedly.",
+   "options": [
+    {
+     "a": "It stays there",
+     "w": {
+      "hoarder": 3
+     }
+    },
+    {
+     "a": "It goes into the thing I have been putting off buying",
+     "w": {
+      "gambler": 3,
+      "engineer": 1
+     }
+    },
+    {
+     "a": "It gets absorbed and I could not tell you where",
+     "w": {
+      "avoider": 3
+     }
+    },
+    {
+     "a": "It goes against the next known cost",
+     "w": {
+      "engineer": 3,
+      "hoarder": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "How often do you look at what you actually made last month?",
+   "options": [
+    {
+     "a": "Monthly, in a spreadsheet I built",
+     "w": {
+      "engineer": 3
+     }
+    },
+    {
+     "a": "When something feels wrong",
+     "w": {
+      "avoider": 3
+     }
+    },
+    {
+     "a": "Constantly. I know the balance right now",
+     "w": {
+      "hoarder": 3
+     }
+    },
+    {
+     "a": "I look at revenue, not profit",
+     "w": {
+      "gambler": 3,
+      "underprice": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Raising your prices by 20%:",
+   "options": [
+    {
+     "a": "I have modelled exactly who I would lose",
+     "w": {
+      "engineer": 3
+     }
+    },
+    {
+     "a": "Makes me feel sick",
+     "w": {
+      "underprice": 3
+     }
+    },
+    {
+     "a": "Already did it. They paid",
+     "w": {
+      "gambler": 3,
+      "hoarder": 1
+     }
+    },
+    {
+     "a": "I would need to check what I charge now",
+     "w": {
+      "avoider": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "Spending on something that might not work:",
+   "options": [
+    {
+     "a": "Fine, if the downside is survivable",
+     "w": {
+      "gambler": 3
+     }
+    },
+    {
+     "a": "Only with a number on the return",
+     "w": {
+      "engineer": 3
+     }
+    },
+    {
+     "a": "Almost never. That is how money disappears",
+     "w": {
+      "hoarder": 3,
+      "underprice": 1
+     }
+    },
+    {
+     "a": "I would rather not think about it",
+     "w": {
+      "avoider": 3
+     }
+    }
+   ]
+  },
+  {
+   "q": "The money mistake you have actually made:",
+   "options": [
+    {
+     "a": "Charged too little for too long",
+     "w": {
+      "underprice": 3
+     }
+    },
+    {
+     "a": "Sat on cash while the moment passed",
+     "w": {
+      "hoarder": 3
+     }
+    },
+    {
+     "a": "Bet on something before it was proven",
+     "w": {
+      "gambler": 3
+     }
+    },
+    {
+     "a": "Did not look until it was a problem",
+     "w": {
+      "avoider": 3,
+      "engineer": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "underprice",
+   "name": "The Underpricer",
+   "accent": "#3FAEBD",
+   "headline": "You charge what feels polite rather than what the work is worth.",
+   "body": "You would rather be busy than paid, and you find out too late that the cheapest supplier attracts the hardest customers.",
+   "cost": "You will work twice as hard for the same money, and resent the client for a price you set.",
+   "art": "assets/emblems/money-personality-underprice.svg",
+   "links": [
+    {
+     "href": "../../hourly-rate-calculator.html",
+     "label": "Work out your actual rate"
+    }
+   ]
+  },
+  {
+   "key": "hoarder",
+   "name": "The Hoarder",
+   "accent": "#4FA96B",
+   "headline": "Nothing leaves the account without a fight.",
+   "body": "Cash in the bank is the only number you trust, which makes you very hard to kill and slightly hard to grow.",
+   "cost": "The thing you would not spend on was sometimes the thing that would have worked.",
+   "art": "assets/emblems/money-personality-hoarder.svg",
+   "links": [
+    {
+     "href": "../../breakeven-calculator.html",
+     "label": "See what spending buys you"
+    }
+   ]
+  },
+  {
+   "key": "gambler",
+   "name": "The Big Swinger",
+   "accent": "#E6323F",
+   "headline": "You would rather bet it than sit on it.",
+   "body": "You size a decision by what it could return rather than what it could cost, which is why your good years are very good.",
+   "cost": "One bad quarter lands harder on you than on anybody else, because there is no float behind it.",
+   "art": "assets/emblems/money-personality-gambler.svg",
+   "links": [
+    {
+     "href": "../../startup-cost-calculator.html",
+     "label": "Cost it before you commit"
+    }
+   ]
+  },
+  {
+   "key": "avoider",
+   "name": "The Avoider",
+   "accent": "#DE9E33",
+   "headline": "The numbers exist. You have not looked at them.",
+   "body": "It is not that you cannot do the maths. It is that knowing makes it real, so the spreadsheet stays closed and the decisions get made on vibes.",
+   "cost": "Every problem you find late costs more than the same problem found early.",
+   "art": "assets/emblems/money-personality-avoider.svg",
+   "links": [
+    {
+     "href": "../../what-is-cash-flow.html",
+     "label": "Start with cash flow"
+    }
+   ]
+  },
+  {
+   "key": "engineer",
+   "name": "The Engineer",
+   "accent": "#8E6FBF",
+   "headline": "You priced it off the numbers and you can show your working.",
+   "body": "You know your margin, your break even and what an hour of your time costs, which puts you ahead of most people running a business.",
+   "cost": "A model can talk you out of a good decision that the numbers cannot see yet.",
+   "art": "assets/emblems/money-personality-engineer.svg",
+   "links": [
+    {
+     "href": "../../product-pricing-calculator.html",
+     "label": "Price the next thing"
+    }
+   ]
+  }
+ ]
+}

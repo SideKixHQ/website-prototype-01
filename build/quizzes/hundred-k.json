@@ -1,0 +1,264 @@
+{
+ "slug": "hundred-k",
+ "title": "You just got $100,000. First move?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "No strings, no investor, no board. What you reach for first says more than any plan you have written down.",
+ "share_line": "I would spend it on",
+ "accent": "#4FA96B",
+ "og_line": "Five questions and where the money would actually go.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "What is most broken today?",
+   "options": [
+    {
+     "a": "Nobody has heard of us",
+     "w": {
+      "marketing": 3,
+      "hire": 1
+     }
+    },
+    {
+     "a": "Everything waits on me",
+     "w": {
+      "hire": 3,
+      "save": 1
+     }
+    },
+    {
+     "a": "The product is not there yet",
+     "w": {
+      "product": 3,
+      "marketing": 1
+     }
+    },
+    {
+     "a": "We are too close to the edge",
+     "w": {
+      "save": 3,
+      "product": 1
+     }
+    },
+    {
+     "a": "Honestly, morale",
+     "w": {
+      "office": 3,
+      "marketing": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A customer says no. The usual reason:",
+   "options": [
+    {
+     "a": "They had never heard of us",
+     "w": {
+      "marketing": 3,
+      "product": 1
+     }
+    },
+    {
+     "a": "We were too slow to respond",
+     "w": {
+      "hire": 3,
+      "office": 1
+     }
+    },
+    {
+     "a": "It did not do the thing they needed",
+     "w": {
+      "product": 3,
+      "hire": 1
+     }
+    },
+    {
+     "a": "Price",
+     "w": {
+      "save": 3,
+      "office": 1
+     }
+    },
+    {
+     "a": "We did not look established enough",
+     "w": {
+      "office": 3,
+      "hire": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Money makes you feel:",
+   "options": [
+    {
+     "a": "Impatient to use it",
+     "w": {
+      "marketing": 3,
+      "save": 1
+     }
+    },
+    {
+     "a": "Like I can finally delegate",
+     "w": {
+      "hire": 3,
+      "marketing": 1
+     }
+    },
+    {
+     "a": "Like I can finally finish it",
+     "w": {
+      "product": 3,
+      "save": 1
+     }
+    },
+    {
+     "a": "Calm, for the first time in months",
+     "w": {
+      "save": 3,
+      "marketing": 1
+     }
+    },
+    {
+     "a": "Like celebrating",
+     "w": {
+      "office": 3,
+      "product": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Twelve months out, success looks like:",
+   "options": [
+    {
+     "a": "Everyone in the category knows us",
+     "w": {
+      "marketing": 3,
+      "office": 1
+     }
+    },
+    {
+     "a": "It runs without me in the room",
+     "w": {
+      "hire": 3,
+      "product": 1
+     }
+    },
+    {
+     "a": "The thing is genuinely finished",
+     "w": {
+      "product": 3,
+      "office": 1
+     }
+    },
+    {
+     "a": "Still here, on our own money",
+     "w": {
+      "save": 3,
+      "hire": 1
+     }
+    },
+    {
+     "a": "It feels like a real company",
+     "w": {
+      "office": 3,
+      "save": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The advice you would ignore:",
+   "options": [
+    {
+     "a": "Wait until the product is ready",
+     "w": {
+      "marketing": 3,
+      "hire": 1
+     }
+    },
+    {
+     "a": "Do it yourself for another year",
+     "w": {
+      "hire": 3,
+      "save": 1
+     }
+    },
+    {
+     "a": "Ship it rough and fix it later",
+     "w": {
+      "product": 3,
+      "marketing": 1
+     }
+    },
+    {
+     "a": "Spend it to grow faster",
+     "w": {
+      "save": 3,
+      "product": 1
+     }
+    },
+    {
+     "a": "Be sensible",
+     "w": {
+      "office": 3,
+      "marketing": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "marketing",
+   "name": "Straight into marketing",
+   "accent": "#E0483C",
+   "headline": "You believe the thing works, nobody knows it exists.",
+   "body": "Your instinct is that the problem is attention rather than product, and you are often right about that.",
+   "cost": "Paid attention stops the day the money does.",
+   "art": "assets/emblems/hundred-k-marketing.svg"
+  },
+  {
+   "key": "hire",
+   "name": "Hire someone",
+   "accent": "#6FA8C4",
+   "headline": "You are the bottleneck and you know it.",
+   "body": "The honest answer is that everything waits on you, and buying hands is the fastest way to stop that.",
+   "cost": "Hiring while it is chaotic multiplies the chaos rather than dividing it.",
+   "art": "assets/emblems/hundred-k-hire.svg"
+  },
+  {
+   "key": "product",
+   "name": "Build the product out",
+   "accent": "#D4A856",
+   "headline": "Make it good enough to sell itself.",
+   "body": "You want to close the gap between what it is and what you promised, and you would rather do that before selling harder.",
+   "cost": "There is no version so good that it markets itself.",
+   "art": "assets/emblems/hundred-k-product.svg"
+  },
+  {
+   "key": "save",
+   "name": "Save nearly all of it",
+   "accent": "#5FA98C",
+   "headline": "Runway is the only real strategy.",
+   "body": "Cash in the bank buys time, and time is what kills most of the businesses that die.",
+   "cost": "Runway with nothing changing on it is just a slower ending.",
+   "art": "assets/emblems/hundred-k-save.svg"
+  },
+  {
+   "key": "office",
+   "name": "Something you will regret",
+   "accent": "#7B5CC4",
+   "headline": "Honest, at least.",
+   "body": "The office, the rebrand, the setup. Everyone has one of these, and most people will not admit to it.",
+   "cost": "You will explain this purchase to somebody in about eight months.",
+   "art": "assets/emblems/hundred-k-office.svg"
+  }
+ ]
+}

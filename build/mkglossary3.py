@@ -1,5 +1,5 @@
 import os
-import sys, json, html, collections; sys.path.insert(0,'/home/claude/build')
+import sys, json, html, collections; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from terms import TERMS, CATS
 from shell import page
 
@@ -26,7 +26,7 @@ for L,items in groups.items():
         tid="t-"+"".join(ch.lower() if ch.isalnum() else "-" for ch in term).strip("-")
         rows.append(
           f'<div class="grow" data-cat="{cat}" id="{tid}">'
-          f'<dt class="gtermname"><span class="gtermtext">{e(term)}</span>'
+          f'<dt class="gtermname"><a class="gtermtext" href="what-is-{tid[2:]}.html">{e(term)}</a>'
           f'<span class="gcatdot" aria-hidden="true"></span>'
           f'<span class="gcatname">{cat}</span></dt>'
           f'<dd class="gdef">{e(d)}'
@@ -100,7 +100,8 @@ CSS='''
 .gloss .gfilt[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1a1400;font-weight:700;
   box-shadow:0 6px 22px color-mix(in srgb,var(--c,#D4A856) 30%,transparent)}
 .gloss .gfilt:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px}
-.gloss .gfilt .n{font-size:9px;opacity:.65;margin-left:7px;letter-spacing:.08em}
+/* was opacity .65, which put these counts at 3.98:1 and 4.08:1, both under AA */
+.gloss .gfilt .n{font-size:9px;opacity:1;margin-left:7px;letter-spacing:.08em}
 
 /* the A to Z rail */
 .gloss .galpha{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin:0 auto 8px;
@@ -133,7 +134,11 @@ CSS='''
 .gloss .grow[hidden]{display:none}
 .gloss .gtermname{font-family:var(--body);font-weight:600;font-size:16.5px;line-height:1.35;
   color:#FFF8E8;margin:0;min-width:0;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
-.gloss .gtermtext{display:inline;overflow-wrap:anywhere}
+.gloss .gtermtext{display:inline;overflow-wrap:anywhere;
+  color:#FFF8E8;text-decoration:none;
+  border-bottom:1px solid rgba(212,168,86,.3)}
+.gtermtext:hover{color:#F3E4A8;border-bottom-color:#D4A856}
+.gtermtext:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px;border-radius:4px}
 .gloss .gcatdot{width:7px;height:7px;border-radius:99px;flex:none;
   background:var(--c,#D4A856);box-shadow:0 0 9px color-mix(in srgb,var(--c,#D4A856) 65%,transparent)}
 .gloss .gcatname{font-family:var(--util);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
@@ -332,5 +337,5 @@ MAIN=f'''<main id="maincontent">
 out=page("glossary.html",
   f"Business Glossary: {len(T)} Terms Explained Plainly | SideKix",
   DESC, MAIN, extra_css=CSS, extra_js=JS, schema=(schema,crumbs))
-open("/home/claude/site/glossary.html","w",encoding="utf-8").write(out)
+open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"glossary.html"),"w",encoding="utf-8").write(out)
 print("glossary rebuilt as an A to Z index:",len(out)//1024,"KB |",len(T),"terms |",len(groups),"letters")

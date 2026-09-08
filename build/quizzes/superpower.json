@@ -1,0 +1,264 @@
+{
+ "slug": "superpower",
+ "title": "Which founder superpower would you pick?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "You only get one. What you reach for says which part of this you find hardest, which is more interesting than the power itself.",
+ "share_line": "I would pick",
+ "accent": "#7B5CC4",
+ "og_line": "Five questions and the power you would actually choose.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "The most frustrating part of last month:",
+   "options": [
+    {
+     "a": "Building the wrong thing",
+     "w": {
+      "mindread": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "Running out of hours",
+     "w": {
+      "energy": 3,
+      "predict": 1
+     }
+    },
+    {
+     "a": "Sitting on a decision too long",
+     "w": {
+      "fearless": 3,
+      "mindread": 1
+     }
+    },
+    {
+     "a": "Getting blindsided",
+     "w": {
+      "predict": 3,
+      "fearless": 1
+     }
+    },
+    {
+     "a": "Being the only one who could do it",
+     "w": {
+      "clone": 3,
+      "mindread": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "When you are stuck, you usually:",
+   "options": [
+    {
+     "a": "Go and ask people",
+     "w": {
+      "mindread": 3,
+      "fearless": 1
+     }
+    },
+    {
+     "a": "Work later",
+     "w": {
+      "energy": 3,
+      "clone": 1
+     }
+    },
+    {
+     "a": "Wait until it feels safer",
+     "w": {
+      "fearless": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "Read everything about it",
+     "w": {
+      "predict": 3,
+      "clone": 1
+     }
+    },
+    {
+     "a": "Do it myself, again",
+     "w": {
+      "clone": 3,
+      "energy": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What would you delegate first?",
+   "options": [
+    {
+     "a": "Nothing. I need to hear it directly",
+     "w": {
+      "mindread": 3,
+      "predict": 1
+     }
+    },
+    {
+     "a": "Anything, I just need the hours",
+     "w": {
+      "energy": 3,
+      "mindread": 1
+     }
+    },
+    {
+     "a": "The decisions I keep avoiding",
+     "w": {
+      "fearless": 3,
+      "predict": 1
+     }
+    },
+    {
+     "a": "Watching the market",
+     "w": {
+      "predict": 3,
+      "mindread": 1
+     }
+    },
+    {
+     "a": "Everything, if it were done my way",
+     "w": {
+      "clone": 3,
+      "fearless": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The compliment that lands hardest:",
+   "options": [
+    {
+     "a": "You really understood what I needed",
+     "w": {
+      "mindread": 3,
+      "clone": 1
+     }
+    },
+    {
+     "a": "I do not know how you do it all",
+     "w": {
+      "energy": 3,
+      "fearless": 1
+     }
+    },
+    {
+     "a": "You just went for it",
+     "w": {
+      "fearless": 3,
+      "clone": 1
+     }
+    },
+    {
+     "a": "You called that months ago",
+     "w": {
+      "predict": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "Nothing works without you",
+     "w": {
+      "clone": 3,
+      "predict": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your version of a nightmare:",
+   "options": [
+    {
+     "a": "Building for a year, nobody wants it",
+     "w": {
+      "mindread": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "Falling behind and not catching up",
+     "w": {
+      "energy": 3,
+      "predict": 1
+     }
+    },
+    {
+     "a": "Watching someone else do the thing I hesitated on",
+     "w": {
+      "fearless": 3,
+      "mindread": 1
+     }
+    },
+    {
+     "a": "The market moves and I am the last to know",
+     "w": {
+      "predict": 3,
+      "fearless": 1
+     }
+    },
+    {
+     "a": "Being off for a week and it all stops",
+     "w": {
+      "clone": 3,
+      "mindread": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "mindread",
+   "name": "Read your customers minds",
+   "accent": "#6FA8C4",
+   "headline": "You want to stop guessing.",
+   "body": "The part you find hardest is not building, it is knowing what to build. You would trade a lot to skip the guessing.",
+   "cost": "You would stop asking people things, and asking is how you learn to read them without a power.",
+   "art": "assets/emblems/superpower-mindread.svg"
+  },
+  {
+   "key": "energy",
+   "name": "Unlimited energy",
+   "accent": "#E0483C",
+   "headline": "You want the day to be longer.",
+   "body": "You know exactly what to do. There is simply more of it than there are hours, and that is the whole problem.",
+   "cost": "Unlimited energy would let you keep doing the wrong thing for much longer.",
+   "art": "assets/emblems/superpower-energy.svg"
+  },
+  {
+   "key": "fearless",
+   "name": "Never fear failure",
+   "accent": "#D4A856",
+   "headline": "You want the hesitation gone.",
+   "body": "You have known the right move before and not made it. The gap between knowing and doing is where your time goes.",
+   "cost": "A little fear is the thing that makes you check the numbers first.",
+   "art": "assets/emblems/superpower-fearless.svg"
+  },
+  {
+   "key": "predict",
+   "name": "See market trends coming",
+   "accent": "#5FA98C",
+   "headline": "You want to stop being surprised.",
+   "body": "You would rather be early than fast. Being caught out by something you could have seen is the one that stings.",
+   "cost": "Knowing what is coming and acting on it are different skills.",
+   "art": "assets/emblems/superpower-predict.svg"
+  },
+  {
+   "key": "clone",
+   "name": "Clone yourself",
+   "accent": "#C4534A",
+   "headline": "You want to stop being the bottleneck.",
+   "body": "Nothing moves without you. You would rather duplicate the standard than explain it.",
+   "cost": "A clone is delegation for people who do not want to teach.",
+   "art": "assets/emblems/superpower-clone.svg"
+  }
+ ]
+}
