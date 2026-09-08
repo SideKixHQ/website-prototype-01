@@ -2129,8 +2129,13 @@ html.kx-idle *::after{
 .qz-prog i.done{background:rgba(212,168,86,.6)}
 
 /* ---- questions ---- */
-.qz-q{margin:0 0 22px}
-.qz-q legend{font-family:Georgia,serif;font-size:clamp(21px,4.2vw,27px);
+/* A fieldset is the right element for a radio group and the wrong one to
+   leave unstyled: browsers give it a 2px groove border, their own padding and
+   min-inline-size:min-content, which drew a grey box round every question and
+   pushed the options two pixels out of line with the rest of the page. */
+.qz-q{margin:0 0 22px;border:0;padding:0;min-inline-size:0;display:block}
+.qz-q legend{display:block;float:none;width:100%;max-width:100%;box-sizing:border-box;
+  font-family:Georgia,serif;font-size:clamp(21px,4.2vw,27px);
   color:#FFF8D8;line-height:1.3;padding:0;margin:0 0 20px;text-align:center}
 .qz-opts{display:grid;gap:10px}
 .qz-opt{display:block;position:relative}
@@ -2151,9 +2156,18 @@ html.kx-idle *::after{
 
 /* ---- the reveal ---- */
 .qz-res{text-align:center}
+.qz-res.noart .qz-name{margin-top:6px}
+.qz-res.noart::before{content:"";display:block;width:96px;height:3px;margin:0 auto 22px;
+  background:var(--qa,#D4A856);border-radius:2px}
 .qz-orb{position:relative;width:min(258px,62vw);aspect-ratio:1;margin:0 auto 18px}
-.qz-orb img{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;
-  border-radius:50%;animation:qzPop .62s cubic-bezier(.16,1.02,.3,1.02) both}
+/* The art is not square: goat is 341x640, octopus 640x550. Sizing it to the
+   full box and clipping it to a circle left tall animals as a narrow strip and
+   pushed wide ones against the ring. It is cut-out artwork on transparency, so
+   it needs no circular clip at all, just centring and room to breathe. */
+.qz-orb{display:flex;align-items:center;justify-content:center}
+.qz-orb img{position:relative;z-index:2;width:auto;height:auto;
+  max-width:68%;max-height:68%;object-fit:contain;
+  animation:qzPop .62s cubic-bezier(.16,1.02,.3,1.02) both}
 /* the glow is a rotating conic behind the art, the same trick the declaration
    uses, so the prize belongs to this site rather than to a confetti library */
 .qz-orb::before{content:"";position:absolute;inset:-9%;border-radius:50%;z-index:1;
@@ -2253,7 +2267,7 @@ html.kx-idle *::after{
 <span class="eyebrow">A discovery</span>
 <h1>What do you do when it goes wrong?</h1>
 <p class="lede">7 questions, about 50 seconds</p>
-<div class="qz"><section class="qz-intro" id="qzintro"><p class="qz-kick">7 questions, about 50 seconds</p><p>Everything works until it does not. This is the read on what you actually do in the hour after, which is usually more telling than what you do on a good day.</p><button class="qz-go" type="button" id="qzstart">Start</button></section><section id="qzstage" hidden><div class="qz-prog" id="qzprog" role="status" aria-live="polite"></div><form id="qzform"></form></section><section class="qz-res" id="qzres" hidden aria-live="polite"><p class="qz-you">When it goes wrong I am</p><div class="qz-orb" id="qzorb"><img id="qzart" alt="" src="../../" width="258" height="258" decoding="async"></div><h2 class="qz-name" id="qzname"></h2><p class="qz-head" id="qzhead"></p><p class="qz-body" id="qzbody"></p><p class="qz-cost" id="qzcost"><b>What it costs you</b> <span id="qzcostt"></span></p><nav class="qz-links" id="qzlinks" hidden aria-label="Where to read more"><h2>Start here</h2><ul></ul></nav><div class="qz-acts"><button class="qz-btn pri" type="button" id="qzshare">Share my result</button><button class="qz-btn" type="button" id="qzsave">Save the image</button><button class="qz-btn" type="button" id="qzcopy">Copy link</button></div><p class="qz-note" id="qztoast" role="status" hidden></p><p class="qz-note">Post the image anywhere. The address on it is <span class="qz-url" id="qzurl">sidekixhq.com/q/when-it-goes-wrong</span></p><div class="qz-cta"><b>There are twelve of these</b><p>This is one of twelve energies, seen through one situation. The full Energy Discovery is 48 statements and scores all twelve.</p><a class="qz-go" href="../../assessment.html">Score all twelve</a></div><p class="qz-navrow"><button type="button" class="qz-back" id="qzagain">Take it again</button></p></section><nav class="qz-more" aria-labelledby="qzmoreh"><h2 id="qzmoreh">More discoveries</h2><ul><li><a href="../founder-energy/">Which energy do you run on?</a></li><li><a href="../money-personality/">How do you actually handle money?</a></li><li><a href="../quit-your-job/">Are you ready to quit your job?</a></li><li><a href="../what-business/">What kind of business fits you?</a></li><li><a href="../who-you-build-with/">Who do you build with?</a></li></ul></nav><p class="qz-navrow"><a class="qz-back" href="../../discoveries.html">All discoveries</a></p></div>
+<div class="qz"><section class="qz-intro" id="qzintro"><p class="qz-kick">7 questions, about 50 seconds</p><p>Everything works until it does not. This is the read on what you actually do in the hour after, which is usually more telling than what you do on a good day.</p><button class="qz-go" type="button" id="qzstart">Start</button></section><section id="qzstage" hidden><div class="qz-prog" id="qzprog" role="status" aria-live="polite"></div><form id="qzform"></form></section><section class="qz-res" id="qzres" hidden aria-live="polite"><p class="qz-you">When it goes wrong I am</p><div class="qz-orb" id="qzorb"><img id="qzart" alt="" src="../../" width="258" height="258" decoding="async"></div><h2 class="qz-name" id="qzname"></h2><p class="qz-head" id="qzhead"></p><p class="qz-body" id="qzbody"></p><p class="qz-cost" id="qzcost"><b>What it costs you</b> <span id="qzcostt"></span></p><nav class="qz-links" id="qzlinks" hidden aria-label="Where to read more"><h2>Start here</h2><ul></ul></nav><div class="qz-acts"><button class="qz-btn pri" type="button" id="qzshare">Share my result</button><button class="qz-btn" type="button" id="qzsave">Save the image</button><button class="qz-btn" type="button" id="qzcopy">Copy link</button></div><p class="qz-note" id="qztoast" role="status" hidden></p><p class="qz-note">Post the image anywhere. The address on it is <span class="qz-url" id="qzurl">sidekixhq.com/q/when-it-goes-wrong</span></p><div class="qz-cta"><b>There are twelve of these</b><p>This is one of twelve energies, seen through one situation. The full Energy Discovery is 48 statements and scores all twelve.</p><a class="qz-go" href="../../assessment.html">Score all twelve</a></div><p class="qz-navrow"><button type="button" class="qz-back" id="qzagain">Take it again</button></p></section><nav class="qz-more" aria-labelledby="qzmoreh"><h2 id="qzmoreh">More discoveries</h2><ul><li><a href="../business-pizza/">Your business is a pizza. What is the topping?</a></li><li><a href="../coffee-order/">What is your founder coffee order?</a></li><li><a href="../dating-profile/">If your business had a dating profile...</a></li><li><a href="../energy-today/">Which business energy are you bringing today?</a></li><li><a href="../founder-confessions/">What is the most founder thing you have done?</a></li><li><a href="../founder-energy/">Which energy do you run on?</a></li><li><a href="../hundred-k/">You just got $100,000. First move?</a></li><li><a href="../money-personality/">How do you actually handle money?</a></li><li><a href="../quit-your-job/">Are you ready to quit your job?</a></li><li><a href="../ran-itself/">If it could run itself tomorrow, what would you do?</a></li><li><a href="../shopping-cart/">What is in your founder shopping cart?</a></li><li><a href="../startup-movie/">If your startup was a movie...</a></li><li><a href="../superpower/">Which founder superpower would you pick?</a></li><li><a href="../what-business/">What kind of business fits you?</a></li><li><a href="../who-you-build-with/">Who do you build with?</a></li><li><a href="../your-squad/">Which SideKix squad would you join?</a></li></ul></nav><p class="qz-navrow"><a class="qz-back" href="../../discoveries.html">All discoveries</a></p></div>
 
 </section>
 </main>
@@ -3500,11 +3514,18 @@ window.KXQUIZ={"slug": "when-it-goes-wrong", "title": "What do you do when it go
       a.href=l.href; a.textContent=l.label; li.appendChild(a); ul.appendChild(li);
     });
     ln.hidden = !(r.links && r.links.length);
-    var img=$('#qzart');
-    img.src=D.base+r.art; img.alt=r.name;
-    var orb=$('#qzorb');
+    var img=$('#qzart'), orb=$('#qzorb');
     orb.querySelectorAll('.qz-spark').forEach(function(n){ n.remove(); });
-    sparks(orb, r.accent);
+    if(r.art){
+      img.src=D.base+r.art; img.alt=r.name;
+      orb.hidden=false; res.classList.remove('noart');
+      sparks(orb, r.accent);
+    } else {
+      /* no picture for this result, so no ring either. Setting src to the base
+         path pointed the image at a directory and drew a broken icon. */
+      img.removeAttribute('src'); img.alt='';
+      orb.hidden=true; res.classList.add('noart');
+    }
     $('#qzurl').textContent=D.shortUrl;
     res.setAttribute('tabindex','-1'); res.focus();
     document.title = D.shareLine+' '+r.name+' | SideKix';
@@ -3556,12 +3577,14 @@ window.KXQUIZ={"slug": "when-it-goes-wrong", "title": "What do you do when it go
     function paint(img){
       var top;
       if(img && img.width){
-        var S=420, iy=225;
-        x.save();
-        x.beginPath(); x.arc(W/2, iy+S/2, S/2, 0, Math.PI*2); x.closePath(); x.clip();
-        x.drawImage(img, (W-S)/2, iy, S, S);
-        x.restore();
-        x.beginPath(); x.arc(W/2, iy+S/2, S/2+10, 0, Math.PI*2);
+        /* drawImage into a square stretched every animal that is not square,
+           and goat at 341x640 came out 88% too wide. Fit inside the ring
+           on the artwork's own aspect ratio instead. */
+        var S=420, cx=W/2, cy=225+S/2, box=S*0.68;
+        var k=Math.min(box/img.width, box/img.height);
+        var dw=img.width*k, dh=img.height*k;
+        x.drawImage(img, cx-dw/2, cy-dh/2, dw, dh);
+        x.beginPath(); x.arc(cx, cy, S/2+10, 0, Math.PI*2);
         x.strokeStyle=accent; x.lineWidth=5; x.stroke();
         top = 782;
       } else {
