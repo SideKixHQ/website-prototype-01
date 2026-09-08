@@ -38,8 +38,12 @@ module.exports = async (req, res) => {
   let cancelUrl;
   let metadata;
 
+  let paymentIntentData;
+  let customerCreation;
+
   if (type === 'credits') {
     const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body.packs, 10) || 1));
+    const autoTop = req.body.autoTop === true;
     lineItem = {
       price_data: {
         currency: 'usd',
@@ -53,7 +57,16 @@ module.exports = async (req, res) => {
     };
     successUrl = `${origin}/membership.html?purchased=1&packs=${packs}&session_id={CHECKOUT_SESSION_ID}`;
     cancelUrl = `${origin}/membership.html`;
-    metadata = { source: 'website', type: 'credits', packs: String(packs) };
+    metadata = { source: 'website', type: 'credits', packs: String(packs), autoTopRequested: String(autoTop) };
+    if (autoTop) {
+      // No automatic recharge exists yet — this only saves the card against a
+      // new Customer for whoever builds that later. A Customer is required
+      // for setup_future_usage to persist the payment method past this
+      // session, hence customer_creation (mutually exclusive with `customer`,
+      // which this flow never sets since there's no account system).
+      paymentIntentData = { setup_future_usage: 'off_session' };
+      customerCreation = 'always';
+    }
   } else if (type === 'membership') {
     const plan = MEMBERSHIP_PLANS[req.body.plan];
     if (!plan) {
@@ -92,6 +105,8 @@ module.exports = async (req, res) => {
       cancel_url: cancelUrl,
       metadata,
       ...(email ? { customer_email: email } : {}),
+      ...(paymentIntentData ? { payment_intent_data: paymentIntentData } : {}),
+      ...(customerCreation ? { customer_creation: customerCreation } : {}),
       integration_identifier: `sidekix-website-${randomSuffix(8)}`,
     });
 

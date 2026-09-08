@@ -69,6 +69,10 @@ module.exports = async (req, res) => {
       plan: session.metadata?.plan,
       packs: session.metadata?.packs,
       amountTotal: session.amount_total,
+      // Set only when autoTop was checked — a card was saved against this
+      // Stripe Customer for later, but nothing charges it automatically yet.
+      autoTopRequested: session.metadata?.autoTopRequested === 'true',
+      stripeCustomerId: session.customer || null,
     });
   }
 
