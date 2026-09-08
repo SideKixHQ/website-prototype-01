@@ -224,10 +224,25 @@
     return {raw:raw, pct:pct, share:ints, order:order};
   }
 
+  /* Telemetry. kx comes from assets/kx-analytics.js and is a no-op until the
+     panel endpoint is set there, so this ships safely ahead of the collector. */
+  function tel(kind, props){
+    try{ if(window.kx && window.kx.ev) window.kx.ev(kind, props); }catch(e){}
+  }
+
   function show(r){
     var byKey={}; DATA.energies.forEach(function(e){ byKey[e.key]=e; });
     var ranked=r.order.slice().sort(function(a,b){ return r.share[b]-r.share[a]; });
     var top=ranked.slice(0,3), low=ranked.slice(-2);
+
+    /* The three that carry the result, the spread, and whether the answering
+       looked like straight-lining. No statement-by-statement answers leave the
+       browser: the shape of the result is what the panel can act on, and the
+       forty eight raw answers are closer to a personal record than a metric. */
+    tel('complete', {kind:'discovery', top1:ranked[0], top2:ranked[1], top3:ranked[2],
+                     s1:r.share[ranked[0]], s2:r.share[ranked[1]], s3:r.share[ranked[2]],
+                     spread:r.share[ranked[0]]-r.share[ranked[ranked.length-1]],
+                     flat:quality().straightLining?1:0});
 
     /* a flat result is a real outcome, not an error, so it is named */
     var q=quality();
@@ -357,7 +372,11 @@
         return;
       }
       err.hidden=true;
-      page=Math.min(page+1, pages()-1); showPage(); return;
+      page=Math.min(page+1, pages()-1); showPage();
+      /* Page reached, so the panel can show where the forty eight statements
+         lose people rather than only that they were lost. */
+      tel('page', {kind:'discovery', page:page+1, of:pages()});
+      return;
     }
     if(t.closest('#aback')){ err.hidden=true; page=Math.max(0,page-1); showPage(); return; }
   });
@@ -399,6 +418,7 @@
 
   startBtn.addEventListener('click', function(){
     intro.hidden=true; form.hidden=false; tick();
+    tel('start', {kind:'discovery'});
     if(form.scrollIntoView) try{ form.scrollIntoView({behavior:'smooth',block:'start'}); }catch(x){}
   });
 
