@@ -3,3 +3,9 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local env vars for `vercel dev` (e.g. WEBSITE_INTERNAL_KEY) — never commit secrets.
+.env
+.env.*
+!.env.example
+!.env.*.example
