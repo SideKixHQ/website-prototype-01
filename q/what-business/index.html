@@ -2160,8 +2160,14 @@ html.kx-idle *::after{
 .qz-res.noart::before{content:"";display:block;width:96px;height:3px;margin:0 auto 22px;
   background:var(--qa,#D4A856);border-radius:2px}
 .qz-orb{position:relative;width:min(258px,62vw);aspect-ratio:1;margin:0 auto 18px}
-.qz-orb img{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;
-  border-radius:50%;animation:qzPop .62s cubic-bezier(.16,1.02,.3,1.02) both}
+/* The art is not square: goat is 341x640, octopus 640x550. Sizing it to the
+   full box and clipping it to a circle left tall animals as a narrow strip and
+   pushed wide ones against the ring. It is cut-out artwork on transparency, so
+   it needs no circular clip at all, just centring and room to breathe. */
+.qz-orb{display:flex;align-items:center;justify-content:center}
+.qz-orb img{position:relative;z-index:2;width:auto;height:auto;
+  max-width:68%;max-height:68%;object-fit:contain;
+  animation:qzPop .62s cubic-bezier(.16,1.02,.3,1.02) both}
 /* the glow is a rotating conic behind the art, the same trick the declaration
    uses, so the prize belongs to this site rather than to a confetti library */
 .qz-orb::before{content:"";position:absolute;inset:-9%;border-radius:50%;z-index:1;
@@ -2261,7 +2267,7 @@ html.kx-idle *::after{
 <span class="eyebrow">A discovery</span>
 <h1>What kind of business fits you?</h1>
 <p class="lede">8 questions, about a minute</p>
-<div class="qz"><section class="qz-intro" id="qzintro"><p class="qz-kick">8 questions, about a minute</p><p>Not which idea. Which shape. Twenty businesses on this site, sorted into six kinds, and this points at the kind before you argue about the idea.</p><button class="qz-go" type="button" id="qzstart">Start</button></section><section id="qzstage" hidden><div class="qz-prog" id="qzprog" role="status" aria-live="polite"></div><form id="qzform"></form></section><section class="qz-res" id="qzres" hidden aria-live="polite"><p class="qz-you">I should start</p><div class="qz-orb" id="qzorb"><img id="qzart" alt="" src="../../" width="258" height="258" decoding="async"></div><h2 class="qz-name" id="qzname"></h2><p class="qz-head" id="qzhead"></p><p class="qz-body" id="qzbody"></p><p class="qz-cost" id="qzcost"><b>What it costs you</b> <span id="qzcostt"></span></p><nav class="qz-links" id="qzlinks" hidden aria-label="Where to read more"><h2>Start here</h2><ul></ul></nav><div class="qz-acts"><button class="qz-btn pri" type="button" id="qzshare">Share my result</button><button class="qz-btn" type="button" id="qzsave">Save the image</button><button class="qz-btn" type="button" id="qzcopy">Copy link</button></div><p class="qz-note" id="qztoast" role="status" hidden></p><p class="qz-note">Post the image anywhere. The address on it is <span class="qz-url" id="qzurl">sidekixhq.com/q/what-business</span></p><div class="qz-cta"><b>See all twenty</b><p>Every one of the twenty compared on what it costs to start, what the margin looks like, whether demand is growing and what ends most of them.</p><a class="qz-go" href="../../what-business-should-i-start.html">Compare all twenty</a></div><p class="qz-navrow"><button type="button" class="qz-back" id="qzagain">Take it again</button></p></section><nav class="qz-more" aria-labelledby="qzmoreh"><h2 id="qzmoreh">More discoveries</h2><ul><li><a href="../founder-energy/">Which energy do you run on?</a></li><li><a href="../money-personality/">How do you actually handle money?</a></li><li><a href="../quit-your-job/">Are you ready to quit your job?</a></li><li><a href="../when-it-goes-wrong/">What do you do when it goes wrong?</a></li><li><a href="../who-you-build-with/">Who do you build with?</a></li></ul></nav><p class="qz-navrow"><a class="qz-back" href="../../discoveries.html">All discoveries</a></p></div>
+<div class="qz"><section class="qz-intro" id="qzintro"><p class="qz-kick">8 questions, about a minute</p><p>Not which idea. Which shape. Twenty businesses on this site, sorted into six kinds, and this points at the kind before you argue about the idea.</p><button class="qz-go" type="button" id="qzstart">Start</button></section><section id="qzstage" hidden><div class="qz-prog" id="qzprog" role="status" aria-live="polite"></div><form id="qzform"></form></section><section class="qz-res" id="qzres" hidden aria-live="polite"><p class="qz-you">I should start</p><div class="qz-orb" id="qzorb"><img id="qzart" alt="" src="../../" width="258" height="258" decoding="async"></div><h2 class="qz-name" id="qzname"></h2><p class="qz-head" id="qzhead"></p><p class="qz-body" id="qzbody"></p><p class="qz-cost" id="qzcost"><b>What it costs you</b> <span id="qzcostt"></span></p><nav class="qz-links" id="qzlinks" hidden aria-label="Where to read more"><h2>Start here</h2><ul></ul></nav><div class="qz-acts"><button class="qz-btn pri" type="button" id="qzshare">Share my result</button><button class="qz-btn" type="button" id="qzsave">Save the image</button><button class="qz-btn" type="button" id="qzcopy">Copy link</button></div><p class="qz-note" id="qztoast" role="status" hidden></p><p class="qz-note">Post the image anywhere. The address on it is <span class="qz-url" id="qzurl">sidekixhq.com/q/what-business</span></p><div class="qz-cta"><b>See all twenty</b><p>Every one of the twenty compared on what it costs to start, what the margin looks like, whether demand is growing and what ends most of them.</p><a class="qz-go" href="../../what-business-should-i-start.html">Compare all twenty</a></div><p class="qz-navrow"><button type="button" class="qz-back" id="qzagain">Take it again</button></p></section><nav class="qz-more" aria-labelledby="qzmoreh"><h2 id="qzmoreh">More discoveries</h2><ul><li><a href="../business-pizza/">Your business is a pizza. What is the topping?</a></li><li><a href="../coffee-order/">What is your founder coffee order?</a></li><li><a href="../dating-profile/">If your business had a dating profile...</a></li><li><a href="../energy-today/">Which business energy are you bringing today?</a></li><li><a href="../founder-confessions/">What is the most founder thing you have done?</a></li><li><a href="../founder-energy/">Which energy do you run on?</a></li><li><a href="../hundred-k/">You just got $100,000. First move?</a></li><li><a href="../money-personality/">How do you actually handle money?</a></li><li><a href="../quit-your-job/">Are you ready to quit your job?</a></li><li><a href="../ran-itself/">If it could run itself tomorrow, what would you do?</a></li><li><a href="../shopping-cart/">What is in your founder shopping cart?</a></li><li><a href="../startup-movie/">If your startup was a movie...</a></li><li><a href="../superpower/">Which founder superpower would you pick?</a></li><li><a href="../when-it-goes-wrong/">What do you do when it goes wrong?</a></li><li><a href="../who-you-build-with/">Who do you build with?</a></li><li><a href="../your-squad/">Which SideKix squad would you join?</a></li></ul></nav><p class="qz-navrow"><a class="qz-back" href="../../discoveries.html">All discoveries</a></p></div>
 
 </section>
 </main>
@@ -3571,12 +3577,14 @@ window.KXQUIZ={"slug": "what-business", "title": "What kind of business fits you
     function paint(img){
       var top;
       if(img && img.width){
-        var S=420, iy=225;
-        x.save();
-        x.beginPath(); x.arc(W/2, iy+S/2, S/2, 0, Math.PI*2); x.closePath(); x.clip();
-        x.drawImage(img, (W-S)/2, iy, S, S);
-        x.restore();
-        x.beginPath(); x.arc(W/2, iy+S/2, S/2+10, 0, Math.PI*2);
+        /* drawImage into a square stretched every animal that is not square,
+           and goat at 341x640 came out 88% too wide. Fit inside the ring
+           on the artwork's own aspect ratio instead. */
+        var S=420, cx=W/2, cy=225+S/2, box=S*0.68;
+        var k=Math.min(box/img.width, box/img.height);
+        var dw=img.width*k, dh=img.height*k;
+        x.drawImage(img, cx-dw/2, cy-dh/2, dw, dh);
+        x.beginPath(); x.arc(cx, cy, S/2+10, 0, Math.PI*2);
         x.strokeStyle=accent; x.lineWidth=5; x.stroke();
         top = 782;
       } else {
