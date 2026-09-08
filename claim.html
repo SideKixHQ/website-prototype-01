@@ -73,6 +73,11 @@ button:disabled{opacity:.5;cursor:default}
     <input autocomplete="one-time-code" id="otp-code" inputmode="numeric" required type="text"/>
     <button id="otp-btn" type="submit">Verify</button>
     <div class="msg hidden" id="otp-msg"></div>
+    <p class="sub" style="margin-top:16px;margin-bottom:0">
+      <a class="linkback" href="#" id="otp-resend" style="margin-top:0">Resend code</a>
+      &nbsp;·&nbsp;
+      <a class="linkback" href="#" id="otp-back" style="margin-top:0">Back to login</a>
+    </p>
   </form>
 
   <div class="hidden big-result" id="step-success">
@@ -101,7 +106,14 @@ button:disabled{opacity:.5;cursor:default}
     });
   }
 
-  function showMsg(el, text){ el.textContent = text; el.classList.remove('hidden'); }
+  function showMsg(el, text, type){
+    // .msg.error/.msg.success exist in the stylesheet but were never
+    // actually toggled anywhere — every message rendered in the default
+    // grey regardless of whether it was an error.
+    el.textContent = text;
+    el.classList.remove('hidden', 'error', 'success');
+    el.classList.add(type || 'error');
+  }
 
   if (!token) { show('step-no-token'); return; }
 
@@ -140,7 +152,7 @@ button:disabled{opacity:.5;cursor:default}
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'email', email: email, password: password }),
       });
-      var data = await res.json();
+      var data = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(data.message || 'Invalid credentials');
       if (data.accessToken) {
         await completeClaim(data.accessToken);
@@ -170,7 +182,7 @@ button:disabled{opacity:.5;cursor:default}
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ otpId: otpId, code: code, email: email }),
       });
-      var data = await res.json();
+      var data = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(data.message || 'Invalid code');
       if (!data.data || !data.data.accessToken) throw new Error('Unexpected response from verification');
       await completeClaim(data.data.accessToken);
@@ -178,6 +190,37 @@ button:disabled{opacity:.5;cursor:default}
       showMsg(msg, err.message || 'Invalid code');
     } finally {
       btn.disabled = false; btn.textContent = 'Verify';
+    }
+  });
+
+  document.getElementById('otp-back').addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById('otp-msg').classList.add('hidden');
+    document.getElementById('otp-code').value = '';
+    show('step-login');
+  });
+
+  document.getElementById('otp-resend').addEventListener('click', async function(e){
+    e.preventDefault();
+    var link = e.target;
+    var msg = document.getElementById('otp-msg');
+    msg.classList.add('hidden');
+    var originalText = link.textContent;
+    link.textContent = 'Sending…';
+    try {
+      var res = await fetch(API_BASE + '/otp/resend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ purpose: 'login', type: 'email', email: email }),
+      });
+      var data = await res.json().catch(function(){ return {}; });
+      if (!res.ok) throw new Error(data.message || 'Could not resend the code');
+      otpId = data.otpId;
+      showMsg(msg, 'A new code is on its way.', 'success');
+    } catch (err) {
+      showMsg(msg, err.message || 'Could not resend the code');
+    } finally {
+      link.textContent = originalText;
     }
   });
 
