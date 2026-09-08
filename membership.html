@@ -4246,10 +4246,12 @@ try{
     var q=new URLSearchParams(location.search);
     if(q.get('purchased')!=='1') return;
     var packs=parseInt(q.get('packs')||'1',10)||1, credits=(350*packs).toLocaleString();
+    var savedCard=q.get('autoTop')==='1';
     var buy=document.querySelector('.buy'); if(!buy) return;
     buy.innerHTML='<h3 style="margin:0 0 8px;color:#FFF8D8;font-family:var(--display)">Payment received.</h3>'+
       '<p style="color:#E1D7BE;line-height:1.6;margin:0 0 4px">You\'re getting <b>'+credits+' Kix Credits</b>. '+
-      'A receipt is on its way to your inbox now, and our team will reach out to get them added to your account.</p>';
+      'A receipt is on its way to your inbox now, and our team will reach out to get them added to your account.</p>'+
+      (savedCard ? '<p style="color:#E1D7BE;line-height:1.6;margin:0">Your card is saved for future top-ups. Automatic top-ups aren’t live yet — we’ll email you before ever charging it.</p>' : '');
   })();
   document.getElementById('qbuy').addEventListener('click',function(){
     var btn=document.getElementById('qbuy'), label=document.getElementById('qlabel');
@@ -4845,8 +4847,8 @@ try{
     if(fine){
       /* This is now the only place the top-up is explained, so the "on" copy
          has to say what fires it, what it costs and how to stop it. */
-      fine.textContent = sw.checked
-        ? 'Saves your card for faster top-ups later. Automatic top-ups aren’t live yet — we’ll email you before ever charging it.'
+      fine.innerHTML = sw.checked
+        ? 'Saves your card for faster top-ups later. Automatic top-ups aren’t live yet — we’ll email you before ever charging it. <a href="terms.html#s21">Kix Credits terms</a>.'
         : 'One-time purchase. No subscription.';
     }
   }

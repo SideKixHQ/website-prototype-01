@@ -71,7 +71,12 @@ module.exports = async (req, res) => {
       amountTotal: session.amount_total,
       // Set only when autoTop was checked — a card was saved against this
       // Stripe Customer for later, but nothing charges it automatically yet.
+      // The consent fields are the record terms.html §21.10 requires for
+      // this express authorization: when it was given and under which
+      // version of the terms.
       autoTopRequested: session.metadata?.autoTopRequested === 'true',
+      autoTopConsentAt: session.metadata?.autoTopConsentAt || null,
+      autoTopConsentTermsVersion: session.metadata?.autoTopConsentTermsVersion || null,
       stripeCustomerId: session.customer || null,
     });
   }
