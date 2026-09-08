@@ -1,0 +1,264 @@
+{
+ "slug": "startup-movie",
+ "title": "If your startup was a movie...",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "Every business has a genre. Yours is showing whether you meant it to or not.",
+ "share_line": "My startup is",
+ "accent": "#C4534A",
+ "og_line": "Five questions and the film your business is quietly remaking.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "The best thing about your business right now:",
+   "options": [
+    {
+     "a": "It should not work and it does",
+     "w": {
+      "rocky": 3,
+      "wolf": 1
+     }
+    },
+    {
+     "a": "The number went up again",
+     "w": {
+      "wolf": 3,
+      "mission": 1
+     }
+    },
+    {
+     "a": "The thing itself is really good",
+     "w": {
+      "social": 3,
+      "rocky": 1
+     }
+    },
+    {
+     "a": "We pulled off something last month",
+     "w": {
+      "mission": 3,
+      "social": 1
+     }
+    },
+    {
+     "a": "It is entirely mine",
+     "w": {
+      "home": 3,
+      "rocky": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your last big win came from:",
+   "options": [
+    {
+     "a": "Refusing to stop",
+     "w": {
+      "rocky": 3,
+      "social": 1
+     }
+    },
+    {
+     "a": "Selling harder than anyone expected",
+     "w": {
+      "wolf": 3,
+      "home": 1
+     }
+    },
+    {
+     "a": "Building something nobody else had",
+     "w": {
+      "social": 3,
+      "wolf": 1
+     }
+    },
+    {
+     "a": "A deadline that should have killed us",
+     "w": {
+      "mission": 3,
+      "home": 1
+     }
+    },
+    {
+     "a": "Solving it alone at 2am",
+     "w": {
+      "home": 3,
+      "wolf": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "The team is:",
+   "options": [
+    {
+     "a": "Small and loyal",
+     "w": {
+      "rocky": 3,
+      "mission": 1
+     }
+    },
+    {
+     "a": "Growing fast, energy high",
+     "w": {
+      "wolf": 3,
+      "rocky": 1
+     }
+    },
+    {
+     "a": "Talented and a bit complicated",
+     "w": {
+      "social": 3,
+      "mission": 1
+     }
+    },
+    {
+     "a": "Whoever is needed for this one",
+     "w": {
+      "mission": 3,
+      "rocky": 1
+     }
+    },
+    {
+     "a": "Me",
+     "w": {
+      "home": 3,
+      "social": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What keeps you up:",
+   "options": [
+    {
+     "a": "Proving they were wrong about me",
+     "w": {
+      "rocky": 3,
+      "home": 1
+     }
+    },
+    {
+     "a": "Keeping the run going",
+     "w": {
+      "wolf": 3,
+      "social": 1
+     }
+    },
+    {
+     "a": "Whether we are building the right thing",
+     "w": {
+      "social": 3,
+      "home": 1
+     }
+    },
+    {
+     "a": "The date in the calendar",
+     "w": {
+      "mission": 3,
+      "wolf": 1
+     }
+    },
+    {
+     "a": "Everything, because it is all mine",
+     "w": {
+      "home": 3,
+      "mission": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "How does the third act go?",
+   "options": [
+    {
+     "a": "I go the distance either way",
+     "w": {
+      "rocky": 3,
+      "wolf": 1
+     }
+    },
+    {
+     "a": "Enormous, one way or the other",
+     "w": {
+      "wolf": 3,
+      "mission": 1
+     }
+    },
+    {
+     "a": "It works, and it changes who is in it",
+     "w": {
+      "social": 3,
+      "rocky": 1
+     }
+    },
+    {
+     "a": "Down to the last second",
+     "w": {
+      "mission": 3,
+      "social": 1
+     }
+    },
+    {
+     "a": "I answer the door and let someone in",
+     "w": {
+      "home": 3,
+      "rocky": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "rocky",
+   "name": "Rocky",
+   "accent": "#C4534A",
+   "headline": "Nobody picked you, and you went the distance.",
+   "body": "You were not the obvious choice and you are still standing, which is the entire point. The training montage is just your Tuesday.",
+   "cost": "You have started to enjoy being the underdog more than winning would feel.",
+   "art": ""
+  },
+  {
+   "key": "wolf",
+   "name": "The Wolf of Wall Street",
+   "accent": "#D9A441",
+   "headline": "Loud, fast, and it is working.",
+   "body": "The energy is enormous and the numbers keep going up. Everyone in the room is slightly out of breath.",
+   "cost": "Nobody in the room is asking the boring question about whether this holds.",
+   "art": ""
+  },
+  {
+   "key": "social",
+   "name": "The Social Network",
+   "accent": "#5B84B1",
+   "headline": "Built brilliantly, at a cost.",
+   "body": "The product is genuinely good and you know it. The complicated part was never the code.",
+   "cost": "Look at who is still in the founding group photo.",
+   "art": ""
+  },
+  {
+   "key": "mission",
+   "name": "Mission Impossible",
+   "accent": "#7B5CC4",
+   "headline": "Impossible deadline, somehow met.",
+   "body": "You do your best work when the timer is already running. Every launch has one moment nobody outside the team knows about.",
+   "cost": "You have started creating the emergencies yourself.",
+   "art": ""
+  },
+  {
+   "key": "home",
+   "name": "Home Alone",
+   "accent": "#5FA98C",
+   "headline": "Small, alone, and improvising brilliantly.",
+   "body": "It is you, some tools and a lot of ingenuity. The traps you build out of nothing are genuinely impressive.",
+   "cost": "You have made being alone part of the identity, which makes help hard to accept.",
+   "art": ""
+  }
+ ]
+}

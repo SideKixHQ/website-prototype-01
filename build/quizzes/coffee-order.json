@@ -1,0 +1,264 @@
+{
+ "slug": "coffee-order",
+ "title": "What is your founder coffee order?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "Nobody has ever been talked out of their order. This works out which one you are before you say it.",
+ "share_line": "My order is",
+ "accent": "#B07A46",
+ "og_line": "Five questions and the drink that gives you away.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "It is 6am. Why are you awake?",
+   "options": [
+    {
+     "a": "I always am. It is the quiet hour",
+     "w": {
+      "black": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "I am not. I am still up from yesterday",
+     "w": {
+      "energy": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "Slowly, with something warm, no screens yet",
+     "w": {
+      "tea": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "I woke up mid idea and had to write it down",
+     "w": {
+      "espresso": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "Alarm, gym, then the good coffee",
+     "w": {
+      "latte": 3,
+      "espresso": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Someone books a meeting with no agenda.",
+   "options": [
+    {
+     "a": "I ask what it is about before accepting",
+     "w": {
+      "black": 3,
+      "espresso": 1
+     }
+    },
+    {
+     "a": "I accept and prepare one for them",
+     "w": {
+      "latte": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "I accept. Something interesting usually happens",
+     "w": {
+      "espresso": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "I move it to the end of the week",
+     "w": {
+      "tea": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "I accept it and four others, same day",
+     "w": {
+      "energy": 3,
+      "latte": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your to do list right now is:",
+   "options": [
+    {
+     "a": "Three things, all of them real",
+     "w": {
+      "black": 3,
+      "tea": 1
+     }
+    },
+    {
+     "a": "Colour coded, and I enjoy that",
+     "w": {
+      "latte": 3,
+      "black": 1
+     }
+    },
+    {
+     "a": "Six lists across four apps",
+     "w": {
+      "espresso": 3,
+      "tea": 1
+     }
+    },
+    {
+     "a": "One list, same one for years",
+     "w": {
+      "tea": 3,
+      "black": 1
+     }
+    },
+    {
+     "a": "The list is a metaphor at this point",
+     "w": {
+      "energy": 3,
+      "espresso": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "A launch goes badly.",
+   "options": [
+    {
+     "a": "Cut it, say so, move",
+     "w": {
+      "black": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "Post mortem, then version two",
+     "w": {
+      "latte": 3,
+      "espresso": 1
+     }
+    },
+    {
+     "a": "I already started the next thing during it",
+     "w": {
+      "espresso": 3,
+      "energy": 1
+     }
+    },
+    {
+     "a": "Wait a week. It looks different by then",
+     "w": {
+      "tea": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "Fix it live, overnight, personally",
+     "w": {
+      "energy": 3,
+      "tea": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "How does the work day end?",
+   "options": [
+    {
+     "a": "When the thing is done",
+     "w": {
+      "black": 3,
+      "latte": 1
+     }
+    },
+    {
+     "a": "At a time I decided in advance",
+     "w": {
+      "latte": 3,
+      "tea": 1
+     }
+    },
+    {
+     "a": "Abruptly, mid sentence",
+     "w": {
+      "espresso": 3,
+      "black": 1
+     }
+    },
+    {
+     "a": "Gently, and I do not check afterwards",
+     "w": {
+      "tea": 3,
+      "espresso": 1
+     }
+    },
+    {
+     "a": "It does not so much end as pause",
+     "w": {
+      "energy": 3,
+      "black": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "black",
+   "name": "Black Coffee",
+   "accent": "#8A5A32",
+   "headline": "Let us get it done.",
+   "body": "No decoration, no ceremony, no discussion about the notes. You want the effect and you want it now.",
+   "cost": "You mistake speed for progress about twice a quarter.",
+   "art": ""
+  },
+  {
+   "key": "latte",
+   "name": "Latte",
+   "accent": "#C9A06A",
+   "headline": "The strategic thinker.",
+   "body": "You want the good version and you will wait the extra four minutes for it. Everything you make gets one more pass than it strictly needs.",
+   "cost": "The extra pass sometimes happens instead of shipping.",
+   "art": ""
+  },
+  {
+   "key": "espresso",
+   "name": "Espresso Shot",
+   "accent": "#E0483C",
+   "headline": "The chaos agent.",
+   "body": "All of it, immediately, standing up. You are the reason the group chat has 40 unread messages at 11pm.",
+   "cost": "Everyone else needs a recovery day after your good ideas.",
+   "art": ""
+  },
+  {
+   "key": "tea",
+   "name": "Tea",
+   "accent": "#5FA98C",
+   "headline": "The calm operator.",
+   "body": "You have never once been the loudest person in a meeting and you have also never missed a deadline.",
+   "cost": "People forget to ask your opinion because you never demand they do.",
+   "art": ""
+  },
+  {
+   "key": "energy",
+   "name": "Energy Drink",
+   "accent": "#7B5CC4",
+   "headline": "Founder after midnight.",
+   "body": "It is 1am, the thing is nearly working, and stopping now would be insane. You have had this conversation with yourself before.",
+   "cost": "Tomorrow. Tomorrow is what it costs.",
+   "art": ""
+  }
+ ]
+}

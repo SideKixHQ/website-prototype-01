@@ -20,26 +20,28 @@
      "a": "Several people, more than once",
      "w": {
       "ready": 3,
-      "testing": 1
+      "stay": 1
      }
     },
     {
      "a": "A couple, and it felt like luck",
      "w": {
-      "testing": 3
+      "testing": 3,
+      "ready": 1
      }
     },
     {
-     "a": "Not yet. It is not built",
+     "a": "Not yet. There is nothing to buy",
      "w": {
-      "dreaming": 3
+      "dreaming": 3,
+      "ready": 1
      }
     },
     {
-     "a": "No, and I have not asked",
+     "a": "No, and I have not asked anyone",
      "w": {
       "stay": 3,
-      "stalled": 1
+      "ready": 1
      }
     }
    ]
@@ -50,57 +52,62 @@
     {
      "a": "Under two",
      "w": {
-      "stay": 3
+      "stay": 3,
+      "testing": 1
      }
     },
     {
      "a": "Three to six",
      "w": {
       "testing": 3,
-      "stalled": 1
+      "stay": 1
      }
     },
     {
      "a": "Six to twelve",
      "w": {
-      "ready": 3
-     }
-    },
-    {
-     "a": "I have not worked it out",
-     "w": {
-      "dreaming": 3
-     }
-    }
-   ]
-  },
-  {
-   "q": "When you picture leaving, the first feeling is:",
-   "options": [
-    {
-     "a": "Relief",
-     "w": {
       "ready": 3,
       "stalled": 1
      }
     },
     {
-     "a": "Dread about money",
+     "a": "I could not tell you without checking",
      "w": {
-      "stay": 3
+      "dreaming": 3,
+      "testing": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "When you picture handing in your notice, the first feeling is:",
+   "options": [
+    {
+     "a": "Relief",
+     "w": {
+      "ready": 3,
+      "testing": 1
+     }
+    },
+    {
+     "a": "Dread about the money",
+     "w": {
+      "stay": 3,
+      "ready": 1
      }
     },
     {
      "a": "Excitement, then a blank",
      "w": {
-      "dreaming": 3
+      "dreaming": 3,
+      "testing": 1
      }
     },
     {
-     "a": "Impatience. I know the plan already",
+     "a": "A flat calm. I have pictured it a lot",
      "w": {
-      "ready": 3,
-      "testing": 1
+      "stalled": 3,
+      "stay": 1
      }
     }
    ]
@@ -109,28 +116,31 @@
    "q": "What is actually stopping you today?",
    "options": [
     {
-     "a": "Nothing concrete, which bothers me",
+     "a": "Nothing concrete, and that bothers me",
      "w": {
       "stalled": 3,
-      "ready": 1
+      "testing": 1
      }
     },
     {
      "a": "The income",
      "w": {
-      "stay": 3
+      "stay": 3,
+      "dreaming": 1
      }
     },
     {
      "a": "I do not know what to build first",
      "w": {
-      "dreaming": 3
+      "dreaming": 3,
+      "stalled": 1
      }
     },
     {
      "a": "I want one more quarter of proof",
      "w": {
-      "testing": 3
+      "testing": 3,
+      "stay": 1
      }
     }
    ]
@@ -139,10 +149,10 @@
    "q": "The last twelve weeks, on this:",
    "options": [
     {
-     "a": "Shipped something, talked to buyers",
+     "a": "Shipped something and talked to buyers",
      "w": {
       "testing": 3,
-      "ready": 1
+      "stalled": 1
      }
     },
     {
@@ -153,15 +163,17 @@
      }
     },
     {
-     "a": "Deliberately parked it",
+     "a": "Parked it deliberately",
      "w": {
-      "stalled": 3
+      "stalled": 3,
+      "dreaming": 1
      }
     },
     {
      "a": "Nothing. Work has been relentless",
      "w": {
-      "stay": 3
+      "stay": 3,
+      "ready": 1
      }
     }
    ]
@@ -172,26 +184,29 @@
     {
      "a": "Go. That is enough",
      "w": {
-      "ready": 3
+      "ready": 3,
+      "dreaming": 1
      }
     },
     {
-     "a": "Wait for three quarters",
+     "a": "Wait for three more quarters",
      "w": {
       "testing": 3,
-      "stalled": 1
+      "stay": 1
      }
     },
     {
      "a": "Still not go",
      "w": {
-      "stay": 3
+      "stay": 3,
+      "ready": 1
      }
     },
     {
-     "a": "I have never done that sum",
+     "a": "Realise I have never done that sum",
      "w": {
-      "dreaming": 3
+      "dreaming": 3,
+      "testing": 1
      }
     }
    ]
@@ -202,19 +217,28 @@
     {
      "a": "Everyone. I have said it out loud",
      "w": {
-      "ready": 3
+      "ready": 3,
+      "testing": 1
      }
     },
     {
      "a": "A few people I trust",
      "w": {
-      "testing": 3
+      "testing": 3,
+      "dreaming": 1
      }
     },
     {
      "a": "One person, or nobody",
      "w": {
       "dreaming": 3,
+      "testing": 1
+     }
+    },
+    {
+     "a": "People asked, and I changed the subject",
+     "w": {
+      "stalled": 3,
       "stay": 1
      }
     }
@@ -224,28 +248,31 @@
    "q": "A year from now, the outcome you would find hardest:",
    "options": [
     {
-     "a": "Still exactly here",
+     "a": "Still standing in exactly this spot",
      "w": {
       "stalled": 3,
-      "ready": 1
+      "testing": 1
      }
     },
     {
      "a": "Having gone and run out of money",
      "w": {
-      "stay": 3
+      "stay": 3,
+      "dreaming": 1
      }
     },
     {
      "a": "Having gone too early and killed a good idea",
      "w": {
-      "testing": 3
+      "testing": 3,
+      "ready": 1
      }
     },
     {
      "a": "Never having found out",
      "w": {
-      "dreaming": 3
+      "dreaming": 3,
+      "ready": 1
      }
     }
    ]

@@ -1,0 +1,264 @@
+{
+ "slug": "your-squad",
+ "title": "Which SideKix squad would you join?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "Everyone is a bit of all five. One of them is where you would sit down first and stay longest.",
+ "share_line": "My squad is",
+ "accent": "#D4A856",
+ "og_line": "Five questions and the table you would sit at.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "A new group forms. Within a week you are:",
+   "options": [
+    {
+     "a": "Building the first version",
+     "w": {
+      "builders": 3,
+      "dreamers": 1
+     }
+    },
+    {
+     "a": "Describing where it goes",
+     "w": {
+      "dreamers": 3,
+      "strategists": 1
+     }
+    },
+    {
+     "a": "Talking to people outside it",
+     "w": {
+      "hustlers": 3,
+      "builders": 1
+     }
+    },
+    {
+     "a": "Asking what we are actually solving",
+     "w": {
+      "strategists": 3,
+      "hustlers": 1
+     }
+    },
+    {
+     "a": "Introducing everyone properly",
+     "w": {
+      "champions": 3,
+      "builders": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Which meeting do you want to be in?",
+   "options": [
+    {
+     "a": "The one with a prototype on the table",
+     "w": {
+      "builders": 3,
+      "hustlers": 1
+     }
+    },
+    {
+     "a": "The one about five years out",
+     "w": {
+      "dreamers": 3,
+      "champions": 1
+     }
+    },
+    {
+     "a": "The one with a customer in it",
+     "w": {
+      "hustlers": 3,
+      "dreamers": 1
+     }
+    },
+    {
+     "a": "The one where we choose between two paths",
+     "w": {
+      "strategists": 3,
+      "champions": 1
+     }
+    },
+    {
+     "a": "The one where people meet each other",
+     "w": {
+      "champions": 3,
+      "dreamers": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Somebody is stuck. You:",
+   "options": [
+    {
+     "a": "Sit down and build it with them",
+     "w": {
+      "builders": 3,
+      "strategists": 1
+     }
+    },
+    {
+     "a": "Remind them what it is for",
+     "w": {
+      "dreamers": 3,
+      "builders": 1
+     }
+    },
+    {
+     "a": "Find them the person who unblocks it",
+     "w": {
+      "hustlers": 3,
+      "strategists": 1
+     }
+    },
+    {
+     "a": "Work out whether it is worth doing at all",
+     "w": {
+      "strategists": 3,
+      "builders": 1
+     }
+    },
+    {
+     "a": "Check how they are, first",
+     "w": {
+      "champions": 3,
+      "hustlers": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your unfair advantage is:",
+   "options": [
+    {
+     "a": "I can make the thing",
+     "w": {
+      "builders": 3,
+      "champions": 1
+     }
+    },
+    {
+     "a": "I can see it before it exists",
+     "w": {
+      "dreamers": 3,
+      "hustlers": 1
+     }
+    },
+    {
+     "a": "I will ask anyone for anything",
+     "w": {
+      "hustlers": 3,
+      "champions": 1
+     }
+    },
+    {
+     "a": "I see the second order effects",
+     "w": {
+      "strategists": 3,
+      "dreamers": 1
+     }
+    },
+    {
+     "a": "I know everybody",
+     "w": {
+      "champions": 3,
+      "strategists": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Which compliment would you keep?",
+   "options": [
+    {
+     "a": "You built that?",
+     "w": {
+      "builders": 3,
+      "dreamers": 1
+     }
+    },
+    {
+     "a": "You made me believe it was possible",
+     "w": {
+      "dreamers": 3,
+      "strategists": 1
+     }
+    },
+    {
+     "a": "You made it happen",
+     "w": {
+      "hustlers": 3,
+      "builders": 1
+     }
+    },
+    {
+     "a": "You saw what nobody else did",
+     "w": {
+      "strategists": 3,
+      "hustlers": 1
+     }
+    },
+    {
+     "a": "You brought us together",
+     "w": {
+      "champions": 3,
+      "builders": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "builders",
+   "name": "The Builders",
+   "accent": "#D4A856",
+   "headline": "You would rather show it than describe it.",
+   "body": "The fastest route to your point is a working version of it. You have ended more arguments with a demo than with a paragraph.",
+   "cost": "Not everything that needed discussing got discussed.",
+   "art": ""
+  },
+  {
+   "key": "dreamers",
+   "name": "The Dreamers",
+   "accent": "#7B5CC4",
+   "headline": "You can see it finished already.",
+   "body": "You hold the picture of what this becomes, which is the thing that keeps everyone going on a bad month.",
+   "cost": "The gap between the picture and Tuesday is where people get discouraged.",
+   "art": ""
+  },
+  {
+   "key": "hustlers",
+   "name": "The Hustlers",
+   "accent": "#E0483C",
+   "headline": "You would rather move than meet.",
+   "body": "Ten conversations, four follow ups, and something happened today. You measure a week by what changed in it.",
+   "cost": "Motion looks like progress right up until it does not.",
+   "art": ""
+  },
+  {
+   "key": "strategists",
+   "name": "The Strategists",
+   "accent": "#6FA8C4",
+   "headline": "You want to know why before how.",
+   "body": "You are the person who asks the question that reframes the whole thing, usually twenty minutes in.",
+   "cost": "The question sometimes arrives after everyone has already committed.",
+   "art": ""
+  },
+  {
+   "key": "champions",
+   "name": "The Community Champions",
+   "accent": "#4FA96B",
+   "headline": "You build the room, not just the thing.",
+   "body": "You know who should meet whom, and you make it happen without being asked. The network is the asset.",
+   "cost": "You give away more time than you count, and nobody sends an invoice for it.",
+   "art": ""
+  }
+ ]
+}

@@ -1,0 +1,264 @@
+{
+ "slug": "shopping-cart",
+ "title": "What is in your founder shopping cart?",
+ "kicker": "5 questions, about 30 seconds",
+ "intro": "Where the money goes when nobody is watching. Everyone has a category and nobody picks it on purpose.",
+ "share_line": "My cart is full of",
+ "accent": "#6FA8C4",
+ "og_line": "Five questions and where your money quietly goes.",
+ "cta": {
+  "title": "Something a bit more serious",
+  "href": "../../assessment.html",
+  "label": "The Energy Discovery",
+  "blurb": "That one was for fun. The Energy Discovery is 48 statements and returns how you actually work across all twelve energies."
+ },
+ "questions": [
+  {
+   "q": "Last thing you bought for the business:",
+   "options": [
+    {
+     "a": "Something to read",
+     "w": {
+      "books": 3,
+      "ai": 1
+     }
+    },
+    {
+     "a": "A subscription",
+     "w": {
+      "ai": 3,
+      "courses": 1
+     }
+    },
+    {
+     "a": "Something for the desk",
+     "w": {
+      "supplies": 3,
+      "books": 1
+     }
+    },
+    {
+     "a": "A course",
+     "w": {
+      "courses": 3,
+      "supplies": 1
+     }
+    },
+    {
+     "a": "A domain",
+     "w": {
+      "domains": 3,
+      "books": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "When you feel stuck, you:",
+   "options": [
+    {
+     "a": "Find the book on it",
+     "w": {
+      "books": 3,
+      "supplies": 1
+     }
+    },
+    {
+     "a": "Find the tool for it",
+     "w": {
+      "ai": 3,
+      "domains": 1
+     }
+    },
+    {
+     "a": "Tidy, then start",
+     "w": {
+      "supplies": 3,
+      "ai": 1
+     }
+    },
+    {
+     "a": "Sign up to learn it properly",
+     "w": {
+      "courses": 3,
+      "domains": 1
+     }
+    },
+    {
+     "a": "Start a different idea",
+     "w": {
+      "domains": 3,
+      "ai": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "What is unopened right now?",
+   "options": [
+    {
+     "a": "Three books",
+     "w": {
+      "books": 3,
+      "courses": 1
+     }
+    },
+    {
+     "a": "Two trials I forgot to cancel",
+     "w": {
+      "ai": 3,
+      "books": 1
+     }
+    },
+    {
+     "a": "A notebook too nice to use",
+     "w": {
+      "supplies": 3,
+      "courses": 1
+     }
+    },
+    {
+     "a": "Module three onwards",
+     "w": {
+      "courses": 3,
+      "books": 1
+     }
+    },
+    {
+     "a": "Nine domains",
+     "w": {
+      "domains": 3,
+      "supplies": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Your monthly spend surprise:",
+   "options": [
+    {
+     "a": "How much I spend on reading",
+     "w": {
+      "books": 3,
+      "domains": 1
+     }
+    },
+    {
+     "a": "The number of subscriptions",
+     "w": {
+      "ai": 3,
+      "supplies": 1
+     }
+    },
+    {
+     "a": "How much the setup cost",
+     "w": {
+      "supplies": 3,
+      "domains": 1
+     }
+    },
+    {
+     "a": "What I paid to learn things",
+     "w": {
+      "courses": 3,
+      "ai": 1
+     }
+    },
+    {
+     "a": "The renewals, all at once",
+     "w": {
+      "domains": 3,
+      "courses": 1
+     }
+    }
+   ]
+  },
+  {
+   "q": "Which would you defend hardest?",
+   "options": [
+    {
+     "a": "Every book earned its place",
+     "w": {
+      "books": 3,
+      "ai": 1
+     }
+    },
+    {
+     "a": "The tools genuinely save time",
+     "w": {
+      "ai": 3,
+      "courses": 1
+     }
+    },
+    {
+     "a": "Good tools are not vanity",
+     "w": {
+      "supplies": 3,
+      "books": 1
+     }
+    },
+    {
+     "a": "I finished the ones that mattered",
+     "w": {
+      "courses": 3,
+      "supplies": 1
+     }
+    },
+    {
+     "a": "One of them is going to be worth it",
+     "w": {
+      "domains": 3,
+      "books": 1
+     }
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "key": "books",
+   "name": "Books",
+   "accent": "#8A7A5C",
+   "headline": "Bought, stacked, mostly unread.",
+   "body": "You buy the answer in advance and get to it later. The pile is a to do list you paid for.",
+   "cost": "Reading about it has started to feel like doing it.",
+   "art": ""
+  },
+  {
+   "key": "ai",
+   "name": "AI tools",
+   "accent": "#7B5CC4",
+   "headline": "A subscription for every problem.",
+   "body": "There is a tool for this and you have it. Possibly two, because the second one had a better demo.",
+   "cost": "Nobody has ever cancelled the first one.",
+   "art": ""
+  },
+  {
+   "key": "supplies",
+   "name": "Office supplies",
+   "accent": "#5FA98C",
+   "headline": "The setup has to be right first.",
+   "body": "The desk, the chair, the notebook that is finally the correct notebook. Getting ready is a real feeling and you like it.",
+   "cost": "Getting ready is not the same as starting, and it is more fun.",
+   "art": ""
+  },
+  {
+   "key": "courses",
+   "name": "Courses",
+   "accent": "#D4A856",
+   "headline": "Module three, every time.",
+   "body": "You buy the structured version because structure is the bit you find hardest to make yourself.",
+   "cost": "The completion rate is the number worth looking at.",
+   "art": ""
+  },
+  {
+   "key": "domains",
+   "name": "Domain names",
+   "accent": "#E0483C",
+   "headline": "Eleven of them. Two are good.",
+   "body": "Each one was a real idea at the moment you bought it. The renewals arrive together every year like a report card.",
+   "cost": "Owning the address is the cheapest possible version of starting.",
+   "art": ""
+  }
+ ]
+}
