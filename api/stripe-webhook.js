@@ -93,8 +93,25 @@ module.exports = async (req, res) => {
               headers: {
                 'Content-Type': 'application/json',
                 'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
+                // Admin-Backend's global DeviceIdGuard requires this on every
+                // route not explicitly exempted (admin/otp/rbac/uploads/
+                // payments) — found by actually running this call locally;
+                // without it every request 400s before WebsiteInternalGuard
+                // ever runs.
+                'x-device-agent': 'web',
               },
-              body: JSON.stringify({ sessionId: session.id, email, credits }),
+              body: JSON.stringify({
+                sessionId: session.id,
+                email,
+                credits,
+                // amount_total is in the smallest currency unit (cents for
+                // usd) — convert to major units for CreditPurchaseIntent,
+                // which stores dollars like the rest of that table.
+                amountCharged: typeof session.amount_total === 'number' ? session.amount_total / 100 : undefined,
+                currency: session.currency,
+                stripePaymentIntentId:
+                  typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+              }),
             },
           );
           if (!claimRes.ok) {

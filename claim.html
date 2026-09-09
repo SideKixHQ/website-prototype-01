@@ -93,6 +93,10 @@ button:disabled{opacity:.5;cursor:default}
 <script>
 (function(){
   var API_BASE = 'https://api.sidekixhq.com';
+  // Admin-Backend's global DeviceIdGuard requires x-device-agent (app/android/
+  // ios/web) on every route not explicitly exempted — every fetch below sends
+  // 'web', the honest value for a browser page. Found by actually running
+  // this flow locally; without it every call 400s before reaching real auth.
   var token = new URLSearchParams(location.search).get('token');
 
   function show(id){
@@ -112,7 +116,7 @@ button:disabled{opacity:.5;cursor:default}
     try {
       var res = await fetch(API_BASE + '/credits/claim', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accessToken, 'x-device-agent': 'web' },
         body: JSON.stringify({ token: token }),
       });
       var data = await res.json().catch(function(){ return {}; });
@@ -137,7 +141,7 @@ button:disabled{opacity:.5;cursor:default}
     try {
       var res = await fetch(API_BASE + '/auth/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-device-agent': 'web' },
         body: JSON.stringify({ type: 'email', email: email, password: password }),
       });
       var data = await res.json();
@@ -167,7 +171,7 @@ button:disabled{opacity:.5;cursor:default}
     try {
       var res = await fetch(API_BASE + '/otp/verify', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-device-agent': 'web' },
         body: JSON.stringify({ otpId: otpId, code: code, email: email }),
       });
       var data = await res.json();
