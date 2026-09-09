@@ -137,6 +137,17 @@ button.co-pay:disabled{opacity:.6;cursor:default}
 .co-success h1{margin-bottom:8px}
 .co-success p{color:var(--grey);font-size:14.5px;line-height:1.6;max-width:34ch;margin:0 auto}
 
+.co-qr{
+  margin-top:22px;padding-top:20px;border-top:1px solid rgba(212,168,86,.2);
+  animation:kxFadeIn .4s .6s cubic-bezier(.16,1,.3,1) backwards;
+}
+.co-qr img{
+  display:block;margin:0 auto 14px;border-radius:12px;border:1px solid rgba(212,168,86,.3);
+  padding:8px;background:var(--gold-pale);
+}
+.co-qr p{font-size:13px;line-height:1.55;max-width:30ch}
+.co-qr p b{color:var(--cream)}
+
 @media(max-width:520px){
   .card{padding:28px 22px;border-radius:16px}
   h1{font-size:26px}
@@ -207,6 +218,12 @@ button.co-pay:disabled{opacity:.6;cursor:default}
     </div>
     <h1>Payment received.</h1>
     <p>Check your email for a link to add these credits to your account.</p>
+
+    <div class="co-qr">
+      <img alt="QR code to get the SideKix app" height="120" loading="lazy" src="assets/img/get-app-qr.png" width="120"/>
+      <p><b>Scan to get the SideKix app.</b> Sign up with the same email you just used — your credits will already be waiting, no claim link needed.</p>
+    </div>
+
     <a class="linkback" href="membership.html">
       <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg>
       Back to SideKix
