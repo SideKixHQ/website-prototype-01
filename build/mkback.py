@@ -25,9 +25,9 @@ GAME = "https://sidekixhq.github.io/runkixrun/"
 PANELS = json.load(io.open(os.path.join(ROOT, "assets", "comics", "panels.json"),
                            encoding="utf-8"))
 
-# The series runs in issue order. Issue 2 has not been drawn yet, so the
-# numbers skip rather than renumber: the issue number is printed inside the
-# artwork and cannot be changed after the fact.
+# The series runs in reading order. Issue numbers are printed inside the
+# artwork, so the page does not label them: a badge could only repeat what the
+# cover already says or disagree with it. Order carries the sequence.
 SERIES = [
  (1, "the-first-step", "The First Step",
   "Marcus has a notebook full of ideas and a shift that ends at 7:43. "
@@ -100,7 +100,11 @@ if SHOW_GAME:
 def card(k, t, d, issue=None):
     n = len(PANELS[k])
     unit = "pages" if issue else "panels"
-    num = ('<b class="br-iss">Issue %d</b>' % issue) if issue else ""
+    # No issue badge. The number is painted into every cover, so a pill on
+    # top of the art could only ever agree with it or contradict it, and the
+    # printed number is the one that cannot be changed. Reading order carries
+    # the sequence instead.
+    num = ""
     return ('<figure class="br-comic%s">'
             '<button aria-label="Read %s, %d %s" class="br-open" data-key="%s" type="button">'
             '%s<img alt="%s" decoding="async" height="1536" loading="lazy" '
@@ -116,7 +120,7 @@ strips = "".join(card(k, t, d) for k, t, d in STRIPS)
 
 DATA = {}
 for n, (i, k, t, d) in enumerate(SERIES):
-    DATA[k] = {"title": "Issue %d: %s" % (i, t), "panels": PANELS[k], "unit": "Page"}
+    DATA[k] = {"title": t, "panels": PANELS[k], "unit": "Page"}
     if n + 1 < len(SERIES):
         DATA[k]["next"] = SERIES[n + 1][1]
 for k, t, d in STRIPS:
@@ -130,8 +134,7 @@ body.append(
  '<section class="br-s br-comics"><h2>The story</h2>'
  '<p class="br-b">One story, running across issues. Marcus starts with a notebook '
  'and ends up with a market, and the people who would rather he did not are paying '
- 'attention. Read them in order. Issue 2 is still being drawn, which is why the '
- 'numbers skip.</p>'
+ 'attention. Read them in order.</p>'
  '<div class="br-cgrid br-cserial">%s</div>'
  '<script id="br-panels" type="application/json">%s</script>'
  '</section>' % (strips, serial,
@@ -140,11 +143,6 @@ body.append(
 body.append("</div>")
 
 CSS = """
-.br-iss{position:absolute;top:12px;left:12px;z-index:2;
-  font-family:var(--util,inherit);font-size:10px;letter-spacing:.24em;
-  text-transform:uppercase;font-weight:500;color:#F3E4A8;
-  background:rgba(8,7,4,.82);border:1px solid rgba(212,168,86,.55);
-  padding:6px 12px;border-radius:999px;backdrop-filter:blur(3px)}
 .br-comic.br-serial .br-open{position:relative}
 .br-view.at-end .br-ctl.br-next{border-color:#D4A856;color:#FFF6DC;
   background:rgba(212,168,86,.18)}
