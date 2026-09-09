@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Checkout — Kix Credits | SideKix</title>
+<link href="assets/fonts.css" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#060502; --gold:#D4A856; --gold-pale:#F3E4A8; --gold-mid:#A1853E;
+  --grey:#9B958B; --line:#1E1C18; --cream:#FFEBB9; --red:#D98C7A;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Poppins',system-ui,sans-serif;
+  --util:'Space Grotesk',ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);color:var(--grey);font-family:var(--body);font-size:16px;line-height:1.55;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;
+  position:relative;overflow-x:hidden;
+}
+
+/* ---- the site's own background language, not a bespoke one ----
+   A fine noise grain over everything (body::before) plus a pointer-follow
+   gold cursor dot + trailing ring (#kx-cursor/#kx-ring) — the same pieces
+   every other page uses. Deliberately NOT porting the third piece,
+   #kx-desat (the desaturation vignette that only lifts color near the
+   pointer): on a marketing page that vignette sits over decorative content,
+   but here almost the entire viewport IS the interactive form, so it read
+   as the card/button being greyed-out/disabled whenever the pointer wasn't
+   hovering directly over them — a real usability regression a checkout
+   page can't afford. Disabled outright for touch devices and
+   prefers-reduced-motion, exactly as elsewhere. */
+body::before{
+  content:'';position:fixed;inset:0;z-index:91;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#kx-cursor{
+  position:fixed;top:0;left:0;width:26px;height:26px;border-radius:999px;pointer-events:none;z-index:210;
+  mix-blend-mode:screen;background:radial-gradient(circle,rgba(255,224,140,1),rgba(255,198,92,.6) 42%,rgba(231,182,70,0) 72%);
+  transform:translate(-50%,-50%);transition:width .25s,height .25s;opacity:0;
+}
+#kx-ring{
+  position:fixed;top:0;left:0;width:420px;height:420px;border-radius:999px;pointer-events:none;z-index:59;
+  transform:translate(-50%,-50%);border:1px solid rgba(212,168,86,.28);
+  box-shadow:0 0 60px rgba(231,182,70,.12) inset;opacity:0;animation:kxPulseRing 3s ease-in-out infinite;
+}
+@keyframes kxPulseRing{0%,100%{opacity:.6}50%{opacity:1}}
+
+.card{
+  position:relative;z-index:1;max-width:680px;width:100%;
+  background:linear-gradient(180deg,#0f0d09,#0a0907);
+  border:1px solid rgba(212,168,86,.28);border-radius:22px;
+  padding:52px 52px;box-shadow:0 30px 90px rgba(0,0,0,.55);
+  animation:kxCardIn .5s cubic-bezier(.16,1,.3,1);
+}
+@keyframes kxCardIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:var(--util);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-mid)}
+h1{font-family:var(--display);font-weight:600;color:var(--cream);font-size:36px;margin:10px 0 8px;line-height:1.08}
+p.sub{color:var(--grey);font-size:15px;margin-bottom:4px}
+
+.co-summary{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  margin:22px 0 24px;padding:18px 22px;border-radius:14px;
+  background:rgba(212,168,86,.06);border:1px solid rgba(212,168,86,.2);
+}
+.co-summary-credits{font-family:var(--display);font-weight:600;font-size:24px;color:#FFF8D8}
+.co-summary-minutes{display:block;margin-top:2px;font-family:var(--util);font-size:11.5px;letter-spacing:.06em;color:var(--grey)}
+.co-summary-price{font-family:var(--util);font-size:22px;color:var(--gold)}
+
+label{display:block;font-size:13px;letter-spacing:.03em;color:var(--grey);margin:0 0 7px}
+input[type=email]{
+  width:100%;background:#050403;border:1px solid var(--line);border-radius:10px;color:var(--cream);
+  font-family:var(--body);font-size:16px;padding:14px 16px;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+input[type=email]:focus{border-color:var(--gold-mid);box-shadow:0 0 0 3px rgba(212,168,86,.16)}
+input[type=email]:disabled{opacity:.6}
+
+.co-express{margin-top:16px}
+.co-express-divider{
+  display:flex;align-items:center;gap:12px;margin:16px 0 0;
+  font-family:var(--util);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);
+}
+.co-express-divider::before,.co-express-divider::after{content:'';flex:1;height:1px;background:var(--line)}
+
+.co-payment-label{margin-top:16px}
+.co-payment-label,.co-payment-shell,.co-terms,.co-express{animation:kxFadeIn .35s ease-out}
+@keyframes kxFadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.co-payment-shell{
+  margin-top:6px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#050403;min-height:22px;
+}
+.co-payment-shell.loading{animation:kxPulseBorder 1.6s ease-in-out infinite}
+@keyframes kxPulseBorder{0%,100%{border-color:var(--line)}50%{border-color:rgba(212,168,86,.7)}}
+
+.co-terms{
+  display:flex;align-items:flex-start;gap:10px;margin-top:16px;font-size:12.5px;line-height:1.5;color:var(--grey);
+}
+.co-terms input[type=checkbox]{
+  flex:none;width:17px;height:17px;margin-top:1px;accent-color:var(--gold);cursor:pointer;
+}
+.co-terms label{display:inline;font-size:inherit;color:inherit;margin:0;cursor:pointer}
+.co-terms a{color:var(--gold-mid);text-decoration:underline}
+.co-terms a:hover{color:var(--gold)}
+
+button.co-pay{
+  width:100%;margin-top:22px;position:relative;display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(180deg,#D7C582,#A1853E);color:#1a1408;border:none;border-radius:999px;
+  font-family:var(--body);font-weight:700;font-size:17px;
+  min-height:56px;cursor:pointer;box-shadow:0 12px 34px rgba(23,18,4,.5);transition:opacity .2s,transform .15s;
+}
+button.co-pay:hover{opacity:.92}
+button.co-pay:active{transform:scale(.99)}
+button.co-pay:disabled{opacity:.6;cursor:default}
+.co-spinner{width:16px;height:16px;border-radius:999px;border:2px solid rgba(26,20,8,.35);border-top-color:#1a1408;animation:kxSpin .7s linear infinite}
+@keyframes kxSpin{to{transform:rotate(360deg)}}
+
+.co-error{margin-top:12px;font-size:13px;line-height:1.5;color:var(--red)}
+.co-finep{margin-top:12px;font-size:11.5px;color:var(--grey);text-align:center}
+
+.linkback{display:inline-flex;align-items:center;gap:6px;margin-top:20px;color:var(--gold-mid);font-size:13px;text-decoration:none}
+.linkback:hover{color:var(--gold)}
+.linkback svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+.hidden{display:none}
+
+/* ---- success ----
+   An expanding gold ring burst behind the checkmark (two rings, staggered)
+   plus a stroke-draw checkmark. */
+.co-success{text-align:center}
+.co-burst{position:relative;width:110px;height:110px;margin:0 auto 16px}
+.co-burst i{
+  position:absolute;inset:0;border-radius:999px;border:1px solid rgba(212,168,86,.55);
+  animation:kxBurst 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+.co-burst i:nth-child(2){animation-delay:.12s}
+@keyframes kxBurst{from{opacity:.9;transform:scale(.3)}to{opacity:0;transform:scale(1.6)}}
+.co-check{position:absolute;inset:0;margin:auto;width:60px;height:60px}
+.co-check-circle{stroke:var(--gold);stroke-width:2.5;fill:none;stroke-dasharray:151;stroke-dashoffset:151;animation:kxCircle .5s ease-out forwards}
+.co-check-mark{stroke:var(--gold-pale);stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:36;stroke-dashoffset:36;animation:kxCheck .35s .45s ease-out forwards}
+@keyframes kxCircle{to{stroke-dashoffset:0}}
+@keyframes kxCheck{to{stroke-dashoffset:0}}
+.co-success h1{margin-bottom:8px}
+.co-success p{color:var(--grey);font-size:14.5px;line-height:1.6;max-width:34ch;margin:0 auto}
+
+.co-qr{
+  margin-top:22px;padding-top:20px;border-top:1px solid rgba(212,168,86,.2);
+  animation:kxFadeIn .4s .6s cubic-bezier(.16,1,.3,1) backwards;
+}
+.co-qr img{
+  display:block;margin:0 auto 14px;border-radius:12px;border:1px solid rgba(212,168,86,.3);
+  padding:8px;background:var(--gold-pale);
+}
+.co-qr p{font-size:13px;line-height:1.55;max-width:30ch}
+.co-qr p b{color:var(--cream)}
+
+@media(max-width:520px){
+  .card{padding:28px 22px;border-radius:16px}
+  h1{font-size:26px}
+}
+@media(prefers-reduced-motion:reduce){
+  .card{animation:none}
+  .co-payment-shell.loading{animation:none}
+  .co-spinner{animation:none}
+  .co-burst i{animation:none;display:none}
+  .co-check-circle,.co-check-mark{animation:none;stroke-dashoffset:0}
+  #kx-ring{animation:none}
+}
+</style>
+</head>
+<body>
+<div aria-hidden="true" id="kx-cursor"></div>
+<div aria-hidden="true" id="kx-ring"></div>
+
+<div class="card">
+  <div id="step-form">
+    <p class="eyebrow">Kix Credits</p>
+    <h1>Complete your purchase</h1>
+    <p class="sub">Card details are entered in Stripe's secure field below and never touch SideKix.</p>
+
+    <div class="co-summary">
+      <div>
+        <span class="co-summary-credits" id="coCredits">350 Kix Credits</span>
+        <small class="co-summary-minutes" id="coMinutes">up to 90 minutes of conversation</small>
+      </div>
+      <span class="co-summary-price" id="coPrice">$19</span>
+    </div>
+
+    <form id="coForm" novalidate>
+      <label for="coEmail">Email — where your claim link goes</label>
+      <input autocomplete="email" id="coEmail" placeholder="you@example.com" required type="email"/>
+
+      <div class="co-express hidden" id="coExpressShell">
+        <div id="coExpressElement"></div>
+        <div class="co-express-divider"><span>Or pay with card</span></div>
+      </div>
+
+      <label class="co-payment-label hidden" id="coPaymentLabel">Card</label>
+      <div class="co-payment-shell hidden" id="coPaymentShell">
+        <div id="coPaymentElement"></div>
+      </div>
+
+      <div class="co-terms hidden" id="coTerms">
+        <input id="coAgree" required type="checkbox"/>
+        <label for="coAgree">I agree to the <a href="purchase-policy.html" target="_blank">SideKix Purchase and Payment Policy</a>. Kix Credits never expire and this purchase is final.</label>
+      </div>
+
+      <button class="co-pay" id="coPayBtn" type="submit">
+        <span id="coPayLabel">Continue to payment</span>
+        <span aria-hidden="true" class="co-spinner hidden" id="coSpinner"></span>
+      </button>
+      <p class="co-error hidden" id="coError" role="alert"></p>
+      <p class="co-finep">One-time purchase. No subscription.</p>
+    </form>
+
+    <a class="linkback" href="membership.html">
+      <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg>
+      Back to SideKix
+    </a>
+  </div>
+
+  <div class="co-success hidden" id="stepSuccess">
+    <div class="co-burst">
+      <i></i><i></i>
+      <svg class="co-check" viewbox="0 0 52 52">
+        <circle class="co-check-circle" cx="26" cy="26" r="24"></circle>
+        <path class="co-check-mark" d="M14 27l7 7 17-17"></path>
+      </svg>
+    </div>
+    <h1>Payment received.</h1>
+    <p>Check your email for a link to add these credits to your account.</p>
+
+    <div class="co-qr">
+      <img alt="QR code to get the SideKix app" height="180" loading="lazy" src="assets/img/get-app-qr.png" width="180"/>
+      <p><b>Scan to get the SideKix app.</b> Sign up with the same email you just used — your credits will already be waiting, no claim link needed.</p>
+    </div>
+
+    <a class="linkback" href="membership.html">
+      <svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg>
+      Back to SideKix
+    </a>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+try{
+(function(){
+  var CREDIT_PACK_SIZE = 350, CREDIT_PACK_USD = 19, MAX_PACKS = 10;
+  var packs = Math.min(MAX_PACKS, Math.max(1, parseInt(new URLSearchParams(location.search).get('packs'), 10) || 1));
+
+  document.getElementById('coCredits').textContent = (CREDIT_PACK_SIZE*packs).toLocaleString()+' Kix Credits';
+  document.getElementById('coMinutes').textContent = 'up to '+(90*packs).toLocaleString()+' minutes of conversation';
+  document.getElementById('coPrice').textContent = '$'+(CREDIT_PACK_USD*packs).toLocaleString();
+  var payLabelText = 'Pay $'+(CREDIT_PACK_USD*packs).toLocaleString();
+
+  // Deliberately the classic Card Element, not the generic Payment Element —
+  // the latter pulls in whatever payment methods (Klarna, Link's own
+  // save-info fields) the Stripe account has enabled for Dynamic Payment
+  // Methods, ignoring create-payment-intent.js's payment_method_types
+  // restriction in the UI even though the PaymentIntent itself stays
+  // card-only. Card Element has never supported anything but a card, which
+  // is also what keeps this page from turning into the same multi-screen
+  // scroll Stripe's own hosted Checkout has.
+  var stripe=null, elements=null, cardElement=null, expressCheckoutElement=null, clientSecret=null;
+  var form=document.getElementById('coForm');
+  var emailInput=document.getElementById('coEmail');
+  var expressShell=document.getElementById('coExpressShell');
+  var paymentLabelEl=document.getElementById('coPaymentLabel');
+  var paymentShell=document.getElementById('coPaymentShell');
+  var termsEl=document.getElementById('coTerms');
+  var agreeCheckbox=document.getElementById('coAgree');
+  var payBtn=document.getElementById('coPayBtn');
+  var payLabel=document.getElementById('coPayLabel');
+  var spinner=document.getElementById('coSpinner');
+  var errorEl=document.getElementById('coError');
+  var stepForm=document.getElementById('step-form');
+  var stepSuccess=document.getElementById('stepSuccess');
+
+  function showError(msg){ errorEl.textContent=msg; errorEl.classList.remove('hidden'); }
+  function clearError(){ errorEl.classList.add('hidden'); errorEl.textContent=''; }
+  function setBusy(busy){
+    payBtn.disabled=busy;
+    spinner.classList.toggle('hidden', !busy);
+    payLabel.style.opacity = busy ? '0' : '1';
+  }
+
+  // The publishable key is safe to fetch eagerly and isn't secret — starting
+  // this the moment the page loads (well before the user finishes typing an
+  // email) means the card field can mount the instant they submit, instead
+  // of waiting on this network round trip too. The PaymentIntent itself
+  // (needs the real amount + email, and the secret key server-side) still
+  // can't start until submit.
+  var publishableKeyPromise = fetch('/api/stripe-config').then(function(r){ return r.json(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    clearError();
+
+    if(!emailInput.checkValidity()){
+      showError('Enter a valid email — that\'s where your claim link goes.');
+      emailInput.focus();
+      return;
+    }
+
+    if(!cardElement){
+      // Phase 1: mount the card field as soon as the (already-loading)
+      // publishable key resolves, and kick off the real PaymentIntent
+      // (against this email — stripe-webhook.js reads it from the
+      // PaymentIntent's metadata, not from the card's billing details, to
+      // grant the claim to the right inbox) in parallel. The two no longer
+      // block each other: mounting doesn't need clientSecret, only the
+      // eventual confirm does.
+      setBusy(true);
+      emailInput.disabled=true;
+      paymentLabelEl.classList.remove('hidden');
+      paymentShell.classList.remove('hidden');
+      paymentShell.classList.add('loading');
+      termsEl.classList.remove('hidden');
+
+      var intentPromise = fetch('/api/create-payment-intent',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({packs:packs,email:emailInput.value.trim()})
+      }).then(function(r){ return r.json(); }).then(function(data){
+        if(!data || !data.clientSecret){ throw new Error((data && data.error) || 'no client secret'); }
+        clientSecret = data.clientSecret;
+      });
+
+      publishableKeyPromise.then(function(cfg){
+        if(!cfg || !cfg.publishableKey){ throw new Error('no publishable key'); }
+        stripe = Stripe(cfg.publishableKey);
+        // mode/amount/currency (rather than a clientSecret) is what lets the
+        // Express Checkout Element mount immediately, in parallel with the
+        // real PaymentIntent creation below — same reasoning as the eager
+        // publishable-key fetch. Card Element doesn't care either way; it's
+        // confirmed separately via confirmCardPayment(clientSecret, ...).
+        elements = stripe.elements({
+          mode:'payment', amount: CREDIT_PACK_USD*packs*100, currency:'usd',
+          appearance: { variables: { borderRadius:'999px' } }
+        });
+
+        // One-click wallets (Apple Pay, Google Pay, and — once enabled in
+        // the Stripe Dashboard's payment methods settings — Amazon Pay) on
+        // top of the plain card field below, not instead of it. Explicitly
+        // NOT the generic Payment Element: that's what was pulling in
+        // Klarna/Link via Dashboard-driven Dynamic Payment Methods
+        // regardless of payment_method_types (see the Card Element comment
+        // above) — the Express Checkout Element gives one-click wallets
+        // without that accordion. `link:'never'` keeps Link (which isn't a
+        // real "download our app" wallet, just Stripe's own) out of this
+        // row; PayPal/Klarna simply won't appear unless enabled in the
+        // Dashboard, which nothing here does deliberately.
+        expressCheckoutElement = elements.create('expressCheckout', {
+          // `auto` here means "show if Dashboard-enabled" — Klarna and
+          // Link are BOTH enabled account-wide on this Stripe account
+          // (confirmed directly in the Dashboard's payment methods list),
+          // so leaving them unset would silently bring back the exact
+          // Klarna/Link problem the switch away from Payment Element was
+          // meant to fix. Every key must be explicit; there's no
+          // account-level default that only applies to this Element.
+          paymentMethods: {
+            applePay:'auto', googlePay:'auto', amazonPay:'auto',
+            link:'never', klarna:'never', paypal:'never'
+          },
+          buttonHeight: 48
+        });
+        expressCheckoutElement.mount('#coExpressElement');
+        expressCheckoutElement.on('availablepaymentmethodschange', function(ev){
+          var any = !!(ev && ev.availablePaymentMethods && Object.keys(ev.availablePaymentMethods).length);
+          expressShell.classList.toggle('hidden', !any);
+        });
+        expressCheckoutElement.on('confirm', function(event){
+          setBusy(true);
+          elements.submit().then(function(result){
+            if(result.error) throw result.error;
+            return Promise.resolve(form._intentPromise);
+          }).then(function(){
+            if(!clientSecret){ throw new Error("Couldn't start checkout. Please try again."); }
+            return stripe.confirmPayment({
+              elements: elements,
+              clientSecret: clientSecret,
+              confirmParams: { return_url: location.origin + '/membership.html' },
+              redirect: 'if_required'
+            });
+          }).then(function(result){
+            if(result.error){ throw result.error; }
+            stepForm.classList.add('hidden');
+            stepSuccess.classList.remove('hidden');
+          }).catch(function(err){
+            console.error('SideKix [checkout] express checkout failed:', err);
+            setBusy(false);
+            showError((err && err.message) || "That payment couldn't be completed. Try another way.");
+          });
+        });
+
+        cardElement = elements.create('card', {
+          style: {
+            base: {
+              color:'#FFEBB9', fontFamily:'Poppins, system-ui, sans-serif', fontSize:'15px',
+              '::placeholder':{color:'#6B655A'}
+            },
+            invalid:{color:'#D98C7A'}
+          }
+        });
+        cardElement.mount('#coPaymentElement');
+        cardElement.on('ready', function(){
+          paymentShell.classList.remove('loading');
+          setBusy(false);
+          payLabel.textContent = payLabelText;
+        });
+        cardElement.on('change', function(ev){
+          if(ev.error) showError(ev.error.message); else clearError();
+        });
+      }).catch(function(err){
+        console.error('SideKix [checkout] could not mount card field:', err);
+        setBusy(false);
+        emailInput.disabled=false;
+        paymentShell.classList.remove('loading');
+        paymentLabelEl.classList.add('hidden');
+        paymentShell.classList.add('hidden');
+        termsEl.classList.add('hidden');
+        showError("Couldn't start checkout. Please try again in a moment.");
+      });
+
+      intentPromise.catch(function(err){
+        console.error('SideKix [checkout] could not create payment intent:', err);
+        // Reported only if the user actually reaches phase 2 before this
+        // resolves — see the guard below — so typing a card number doesn't
+        // get interrupted by an error toast for a call the field itself
+        // didn't need.
+      });
+
+      form._intentPromise = intentPromise;
+      return;
+    }
+
+    if(!agreeCheckbox.checked){
+      showError('Please agree to the Purchase and Payment Policy to continue.');
+      agreeCheckbox.focus();
+      return;
+    }
+
+    // Phase 2: card field is filled in and terms are agreed — actually
+    // charge it. Waits on the PaymentIntent from phase 1 in the (unlikely)
+    // case the user fills in a card faster than that call returns.
+    setBusy(true);
+    Promise.resolve(form._intentPromise).then(function(){
+      if(!clientSecret){ throw new Error("Couldn't start checkout. Please try again."); }
+      return stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: { email: emailInput.value.trim() }
+        }
+      });
+    }).then(function(result){
+      if(result.error){
+        setBusy(false);
+        showError(result.error.message || "That card couldn't be charged. Try another.");
+        return;
+      }
+      // The claim itself lands async via stripe-webhook.js once Stripe
+      // sends payment_intent.succeeded; this just tells the buyer their
+      // card was actually charged.
+      stepForm.classList.add('hidden');
+      stepSuccess.classList.remove('hidden');
+    }).catch(function(err){
+      console.error('SideKix [checkout] confirm failed:', err);
+      setBusy(false);
+      showError(err.message || 'Something went wrong confirming payment. Please try again.');
+    });
+  });
+
+  // ---- the site's cursor-follow glow, ported verbatim ----
+  (function(){
+    var RM=!!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var TOUCH=!!(window.matchMedia && matchMedia('(hover:none)').matches);
+    if(RM||TOUCH) return;
+    var cur=document.getElementById('kx-cursor'),
+        ring=document.getElementById('kx-ring');
+    if(!cur) return;
+    var tx=innerWidth/2, ty=innerHeight/2, x=tx, y=ty, mx=tx, my=ty;
+    addEventListener('pointermove',function(e){
+      tx=e.clientX; ty=e.clientY;
+      cur.style.opacity='1'; if(ring) ring.style.opacity='1';
+    },{passive:true});
+    (function loop(){
+      x+=(tx-x)*0.22; y+=(ty-y)*0.22;
+      mx+=(tx-mx)*0.09; my+=(ty-my)*0.09;
+      cur.style.transform='translate('+x+'px,'+y+'px) translate(-50%,-50%)';
+      if(ring) ring.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+    document.addEventListener('pointerover',function(e){
+      if(e.target.closest && e.target.closest('a,button,input')){ cur.style.width='42px'; cur.style.height='42px'; }
+    },true);
+    document.addEventListener('pointerout',function(e){
+      if(e.target.closest && e.target.closest('a,button,input')){ cur.style.width='26px'; cur.style.height='26px'; }
+    },true);
+  })();
+})();
+}catch(e){ console.error('SideKix [checkout] failed:', e); }
+</script>
+</body>
+</html>
