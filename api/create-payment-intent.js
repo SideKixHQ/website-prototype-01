@@ -1,13 +1,13 @@
 const Stripe = require('stripe');
+const { getCreditsPricing } = require('./lib/live-pricing');
 
-// Mirrors create-checkout-session.js's credits pricing exactly — kept in
-// sync with CreditsFeature.Bundle.bundlePriceUSD ($19/350 credits, flat per
-// pack) on the iOS side. Only credits are supported here: this endpoint
-// backs the embedded/animated Payment Element checkout, which — for now —
-// is a credits-only experience (see membership.html). Membership rate-lock
-// pre-orders still go through the redirect-based create-checkout-session.js.
-const CREDIT_PACK_USD_CENTS = 1900;
-const CREDIT_PACK_SIZE = 350;
+// Fetched live from Admin-Backend (see lib/live-pricing.js), same as
+// create-checkout-session.js — previously this hardcoded its own separate
+// copy of the credits price with only a comment keeping it in sync. Only
+// credits are supported here: this endpoint backs the embedded/animated
+// Payment Element checkout, which — for now — is a credits-only experience
+// (see membership.html). Membership rate-lock pre-orders still go through
+// the redirect-based create-checkout-session.js.
 const MAX_PACKS = 10;
 
 module.exports = async (req, res) => {
@@ -23,8 +23,9 @@ module.exports = async (req, res) => {
   }
 
   const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body?.packs, 10) || 1));
-  const amount = packs * CREDIT_PACK_USD_CENTS;
-  const credits = packs * CREDIT_PACK_SIZE;
+  const { standardBundle } = await getCreditsPricing();
+  const amount = packs * Math.round(standardBundle.priceUSD * 100);
+  const credits = packs * standardBundle.credits;
 
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {

@@ -1,19 +1,11 @@
 const Stripe = require('stripe');
+const { getCreditsPricing, getMembershipPlans } = require('./lib/live-pricing');
 
 // Server-defined pricing only — the client sends an identifier (plan/packs),
-// never an amount. Mirrors the iOS app's real prices exactly:
-// CreditsFeature.Bundle.bundlePriceUSD ($19/350 credits, flat per pack) and
-// MembershipHubFeature's monthly tiers, so the website can never quote a
-// number the app itself wouldn't charge.
-const CREDIT_PACK_USD_CENTS = 1900;
-const CREDIT_PACK_SIZE = 350;
+// never an amount. Fetched live from Admin-Backend (see lib/live-pricing.js)
+// rather than hardcoded, so the website can never quote a number the app
+// itself wouldn't charge — that used to be enforced only by a comment.
 const MAX_PACKS = 10;
-
-const MEMBERSHIP_PLANS = {
-  access: { name: 'Access', monthlyUsdCents: 3900 },
-  core: { name: 'Core', monthlyUsdCents: 9900 },
-  premium: { name: 'Premium', monthlyUsdCents: 29900 },
-};
 
 function randomSuffix(length) {
   const letters = 'abcdefghijklmnopqrstuvwxyz';
@@ -40,25 +32,27 @@ module.exports = async (req, res) => {
 
   if (type === 'credits') {
     const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body.packs, 10) || 1));
+    const { standardBundle } = await getCreditsPricing();
     lineItem = {
       price_data: {
         currency: 'usd',
         product_data: {
           name: 'Kix Credits',
-          description: `${CREDIT_PACK_SIZE} credits per pack`,
+          description: `${standardBundle.credits} credits per pack`,
         },
-        unit_amount: CREDIT_PACK_USD_CENTS,
+        unit_amount: Math.round(standardBundle.priceUSD * 100),
       },
       quantity: packs,
     };
     successUrl = `${origin}/membership.html?purchased=1&packs=${packs}&session_id={CHECKOUT_SESSION_ID}`;
     cancelUrl = `${origin}/membership.html`;
     // credits is stored explicitly (not just packs) so the webhook never
-    // has to independently know/recompute CREDIT_PACK_SIZE — one constant,
-    // defined only here.
-    metadata = { source: 'website', type: 'credits', packs: String(packs), credits: String(packs * CREDIT_PACK_SIZE) };
+    // has to independently recompute the bundle size — one live source,
+    // fetched once above.
+    metadata = { source: 'website', type: 'credits', packs: String(packs), credits: String(packs * standardBundle.credits) };
   } else if (type === 'membership') {
-    const plan = MEMBERSHIP_PLANS[req.body.plan];
+    const plans = await getMembershipPlans();
+    const plan = plans[req.body.plan];
     if (!plan) {
       res.status(400).json({ error: 'Unknown plan' });
       return;
