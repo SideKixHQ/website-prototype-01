@@ -53,7 +53,10 @@ module.exports = async (req, res) => {
     };
     successUrl = `${origin}/membership.html?purchased=1&packs=${packs}&session_id={CHECKOUT_SESSION_ID}`;
     cancelUrl = `${origin}/membership.html`;
-    metadata = { source: 'website', type: 'credits', packs: String(packs) };
+    // credits is stored explicitly (not just packs) so the webhook never
+    // has to independently know/recompute CREDIT_PACK_SIZE — one constant,
+    // defined only here.
+    metadata = { source: 'website', type: 'credits', packs: String(packs), credits: String(packs * CREDIT_PACK_SIZE) };
   } else if (type === 'membership') {
     const plan = MEMBERSHIP_PLANS[req.body.plan];
     if (!plan) {

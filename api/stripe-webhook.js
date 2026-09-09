@@ -79,11 +79,18 @@ module.exports = async (req, res) => {
     // the claim or re-send the email on a retry that already succeeded).
     if (session.metadata?.type === 'credits') {
       const email = session.customer_details?.email;
-      const packs = parseInt(session.metadata?.packs, 10) || 1;
-      const credits = packs * 350;
+      // Read the exact amount create-checkout-session.js stored — never
+      // recompute packs * CREDIT_PACK_SIZE here (that constant used to be
+      // duplicated in both files with nothing keeping them in sync). A
+      // session with no credits metadata (e.g. one created manually in the
+      // Stripe Dashboard for testing) fails loudly instead of silently
+      // granting a guessed amount.
+      const credits = parseInt(session.metadata?.credits, 10);
 
       if (!email) {
         console.error('SideKix [website credits claim] no email on session', session.id);
+      } else if (!Number.isInteger(credits) || credits <= 0) {
+        console.error('SideKix [website credits claim] missing/invalid credits metadata on session', session.id);
       } else {
         try {
           const claimRes = await fetch(
