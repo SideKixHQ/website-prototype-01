@@ -58,6 +58,44 @@ async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged
   return { ok: true };
 }
 
+// The failed-payment counterpart to submitCreditsClaim above — previously a
+// declined card or an abandoned checkout left no record anywhere at all.
+// Unlike a successful claim, there's nothing to grant here, so a missing
+// email just means "nothing useful to log", not an error — an entirely
+// abandoned session that never got that far genuinely has no destination
+// for this record.
+async function submitCheckoutFailure({ email, credits, packs, amountAttempted, currency, stripeCheckoutSessionId, stripePaymentIntentId, failureReason }) {
+  if (!email) {
+    console.log('SideKix [website checkout failure] no email captured, nothing to log for', stripePaymentIntentId || stripeCheckoutSessionId);
+    return;
+  }
+  const failureRes = await fetch(
+    'https://api.sidekixhq.com/internal/website-credits/failures',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
+        'x-device-agent': 'web',
+      },
+      body: JSON.stringify({
+        email,
+        credits: Number.isInteger(credits) && credits > 0 ? credits : 1,
+        packs,
+        amountAttempted,
+        currency,
+        stripeCheckoutSessionId,
+        stripePaymentIntentId,
+        failureReason,
+      }),
+    },
+  );
+  if (!failureRes.ok) {
+    const body = await failureRes.text().catch(() => '');
+    throw new Error(`Admin-Backend responded ${failureRes.status}: ${body}`);
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).end();
@@ -175,6 +213,57 @@ module.exports = async (req, res) => {
     } catch (err) {
       console.error('SideKix [website credits claim] failed:', err);
       res.status(502).json({ error: 'Could not record credits claim, will retry' });
+      return;
+    }
+  }
+
+  // Failure/cancellation counterparts to the two success paths above — a
+  // declined card, an abandoned session, or an explicitly cancelled
+  // PaymentIntent previously left no database record at all.
+  if (
+    (event.type === 'payment_intent.payment_failed' || event.type === 'payment_intent.canceled') &&
+    event.data.object.metadata?.type === 'credits'
+  ) {
+    const intent = event.data.object;
+    try {
+      await submitCheckoutFailure({
+        email: intent.metadata?.email,
+        credits: parseInt(intent.metadata?.credits, 10),
+        packs: parseInt(intent.metadata?.packs, 10) || undefined,
+        // intent.amount (not amount_received) — nothing was actually
+        // received, this is what was attempted.
+        amountAttempted: typeof intent.amount === 'number' ? intent.amount / 100 : undefined,
+        currency: intent.currency,
+        stripePaymentIntentId: intent.id,
+        failureReason: intent.last_payment_error?.message || (event.type === 'payment_intent.canceled' ? 'Payment cancelled' : 'Payment failed'),
+      });
+    } catch (err) {
+      console.error('SideKix [website checkout failure] failed to log:', err);
+      res.status(502).json({ error: 'Could not record checkout failure, will retry' });
+      return;
+    }
+  }
+
+  if (
+    (event.type === 'checkout.session.expired' || event.type === 'checkout.session.async_payment_failed') &&
+    event.data.object.metadata?.type === 'credits'
+  ) {
+    const session = event.data.object;
+    try {
+      await submitCheckoutFailure({
+        email: session.customer_details?.email,
+        credits: parseInt(session.metadata?.credits, 10),
+        packs: parseInt(session.metadata?.packs, 10) || undefined,
+        amountAttempted: typeof session.amount_total === 'number' ? session.amount_total / 100 : undefined,
+        currency: session.currency,
+        stripeCheckoutSessionId: session.id,
+        stripePaymentIntentId:
+          typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+        failureReason: event.type === 'checkout.session.expired' ? 'Checkout session expired (abandoned)' : 'Async payment failed',
+      });
+    } catch (err) {
+      console.error('SideKix [website checkout failure] failed to log:', err);
+      res.status(502).json({ error: 'Could not record checkout failure, will retry' });
       return;
     }
   }
