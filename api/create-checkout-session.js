@@ -112,7 +112,7 @@ module.exports = async (req, res) => {
           message: submitMessage,
         },
         terms_of_service_acceptance: {
-          message: `I agree to the [SideKix Purchase Terms](${origin}/terms.html#s21).`,
+          message: `I agree to the [SideKix Purchase and Payment Policy](${origin}/purchase-policy.html).`,
         },
       },
     });
