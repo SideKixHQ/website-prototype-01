@@ -242,6 +242,73 @@ def test_page() -> None:
         print(f"   {'ok  ' if ok else 'FAIL'} {label}")
 
 
+
+def test_location_cleaner(m) -> None:
+    """The venue field arrived carrying the date, the time and the title.
+
+    354 of the 860 published rows started with a year, a clock time or the
+    event's own name. These are real strings taken from events.json.
+    """
+    section("location cleaner")
+    C = m.clean_location
+    check("   online label stops before the title",
+          C("Online Meeting (Live) APEX - Capability Statements 101: Purpose",
+            "APEX - Capability Statements 101: Purpose, Key Elements, and Best Practices"),
+          "Online Meeting (Live)")
+    check("   a leading year and time are dropped",
+          C("2026 3:00-5:00pm CENTRAL 318 Main St, Evansville IN 47708"),
+          "318 Main St, Evansville IN 47708")
+    check("   a bare hour range is dropped too",
+          C("2026 8 to 10 am 500 McCullough Ave, San Antonio TX 78215"),
+          "500 McCullough Ave, San Antonio TX 78215")
+    # The house number is the regression this guards: an earlier cut read
+    # "1101" as a clock time and served "Halligan Drive" with no number.
+    check("   a house number is not mistaken for a time",
+          C("1101 Halligan Drive, North Platte NE 69101"),
+          "1101 Halligan Drive, North Platte NE 69101")
+    check("   a venue named for a year survives",
+          C("The 1907 at Central School"), "The 1907 at Central School")
+    # Case sensitivity is the point: EASTERN is a timezone, Eastern is a place.
+    check("   a shouted timezone goes, a place name stays",
+          C("Eastern Arizona College Academic Programs Building"),
+          "Eastern Arizona College Academic Programs Building")
+    check("   a doubled venue name is collapsed",
+          C("Innovate Newport Innovate Newport"), "Innovate Newport")
+    check("   a bare fragment becomes no venue",
+          C("1490, Hazleton PA 18201"), "")
+    check("   a facilitator line is left alone",
+          C("Online Facilitated by Mason SBDC"), "Online Facilitated by Mason SBDC")
+
+
+def test_unknown_time(m) -> None:
+    """A date with no time parsed to midnight and the page printed 12:00 AM."""
+    section("unknown start times")
+    a = m.normalize({"title": "x", "start": "September 8, 2026", "url": "https://e.com",
+                     "summary": "", "topic": "", "location": ""})
+    check("   a date with no time is flagged", a["time_tbd"], True)
+    b = m.normalize({"title": "x", "start": "September 8, 2026 3:00pm", "url": "https://e.com",
+                     "summary": "", "topic": "", "location": ""})
+    check("   a real time is not flagged", b["time_tbd"], False)
+    # Re-normalising must not flip the flag: the ISO stamp contains "00:00".
+    c = m.normalize(dict(a, start=a["start"]))
+    check("   re-running keeps the flag", c["time_tbd"], True)
+
+
+def test_mode_backfill(m) -> None:
+    """153 rows carried no mode, so the card could not say where to turn up."""
+    section("mode backfill")
+    def mode(loc, host="H", title="t"):
+        return m.normalize({"title": title, "start": "September 8, 2026 10:00am",
+                            "url": "https://e.com", "summary": "", "topic": "",
+                            "location": loc, "host": host})["mode"]
+    check("   a named venue means in person", mode("Duncan Town Hall"), "In person")
+    check("   a hyphenated on-line still reads online",
+          mode("On-line Training - Statewide"), "Online")
+    check("   an always-online host with no venue",
+          mode("", host="Meta Blueprint"), "Online")
+    check("   no signal stays honest and empty", mode("", host="H"), "")
+
+
 def main() -> int:
     print("=" * 66)
     print("  SideKix events pipeline, offline self-test")
@@ -252,6 +319,9 @@ def main() -> int:
     test_parsers(m)
     test_safety_rail(m)
     test_data(m)
+    test_location_cleaner(m)
+    test_unknown_time(m)
+    test_mode_backfill(m)
     test_page()
 
     print("\n" + "=" * 66)

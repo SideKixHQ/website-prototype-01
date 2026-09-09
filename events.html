@@ -1071,6 +1071,10 @@ var EVENTS=[],filter='All';
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function time(d){return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}
+/* A date with no published time parsed to midnight and printed "12:00 AM" on
+   177 cards. The scraper now flags those; say the time is unknown instead of
+   asserting one. */
+function whenText(e,d){return e && e.time_tbd ? 'Time TBA' : time(d);}
 function meta(parts){return parts.filter(function(p){return p&&String(p).trim();})
                                  .map(function(p){return '<span>'+esc(p)+'</span>';}).join('');}
 
@@ -1087,7 +1091,7 @@ function renderNext(){
   panel.hidden=false;
   document.getElementById('kx-next-title').textContent=e.title;
   document.getElementById('kx-next-meta').innerHTML=
-    meta([e.host, d.toLocaleDateString([],{weekday:'long'})+', '+MONTHS[d.getMonth()]+' '+d.getDate(), time(d), e.duration]);
+    meta([e.host, d.toLocaleDateString([],{weekday:'long'})+', '+MONTHS[d.getMonth()]+' '+d.getDate(), whenText(e,d), e.duration]);
   document.getElementById('kx-next-link').href=e.url;
   tick(d);clearInterval(window.__kxt);window.__kxt=setInterval(function(){tick(d);},1000);
 }
@@ -1200,7 +1204,7 @@ function renderGrid(){
       '<div class="kx-mon">'+MONTHS[d.getMonth()]+'</div>'+
       '<h3><a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(clean(e.title))+'</a></h3>'+
       '<p>'+esc(e.summary)+'</p>'+
-      '<div class="kx-meta">'+meta([e.host, time(d), e.duration])+'</div>'+
+      '<div class="kx-meta">'+meta([e.host, whenText(e,d), e.duration])+'</div>'+
       '<div class="kx-badges">'+'<span class="kx-badge kx-mode-'+esc((e.mode||'other').toLowerCase().replace(/ /g,'-'))+'">'+esc(e.mode||'Check with host')+'</span>'+(e.location && !/online/i.test(e.location) ? '<span class="kx-badge kx-where">'+esc(e.location)+'</span>' : '')+'<span class="kx-badge kx-cost">'+esc(costLabel(e))+'</span>'+'</div>'+
       (stageOf(e) ? '<div class="kx-stage">'+esc(stageOf(e))+'</div>' : '')+
       '</article>';

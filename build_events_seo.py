@@ -316,7 +316,12 @@ def build_block(events: list[dict], updated: str) -> str:
 
 def patch_card_template(page: str) -> str:
     """Add the mode, place and cost line to each card in the grid."""
-    anchor = "'<div class=\"kx-meta\">'+meta([e.host, time(d), e.duration])+'</div>'+"
+    # whenText replaced the bare time(d) call when the scraper started flagging
+    # events whose host published no start time. Both spellings are accepted so
+    # this keeps working against a page from either side of that change.
+    anchor = "'<div class=\"kx-meta\">'+meta([e.host, whenText(e,d), e.duration])+'</div>'+"
+    if anchor not in page:
+        anchor = "'<div class=\"kx-meta\">'+meta([e.host, time(d), e.duration])+'</div>'+"
     if "kx-badges" in page:
         note(True, "card template (already patched)")
         return page

@@ -77,7 +77,9 @@
     { "name": "Start Small Think Big", "url": "https://www.startsmallthinkbig.org/events", "category": "Nonprofit", "scope": "National" },
     { "name": "National Community Reinvestment Coalition", "url": "https://ncrc.org/events/", "category": "Nonprofit", "scope": "National" },
     { "name": "Founder Institute", "url": "https://fi.co/events", "category": "Network", "scope": "National" },
-    { "name": "1 Million Cups", "url": "https://www.1millioncups.com/s/communities", "category": "Network", "scope": "National" },
+    { "name": "1 Million Cups", "url": "https://www.eventbrite.com/o/1-million-cups-15924399928", "category": "Network", "scope": "National", "note": "Was 1millioncups.com/s/communities, which is Salesforce Experience Cloud: it renders client side and hands a parser nothing, which is why this source has never produced an event. Chapters publish on Eventbrite. Eventbrite refuses some automated fetches with a 405, so probe from CI before trusting this." },
+    { "name": "1 Million Cups Round Rock", "url": "https://www.eventbrite.com/o/1-million-cups-round-rock-14918712049", "category": "Network", "scope": "Texas", "note": "Candidate. Unprobed." },
+    { "name": "Venture Cafe", "url": "https://venturecafeglobal.org/events/", "category": "Nonprofit", "scope": "National", "note": "Free weekly Thursday Gatherings in several US cities. Candidate. Unprobed." },
     { "name": "Hello Alice", "url": "https://www.helloalice.com/events", "category": "Network", "scope": "National" },
 
     { "name": "SoCal Veterans Business Outreach Center", "url": "https://socalvboc.org/training-events/", "category": "Nonprofit", "scope": "California" },

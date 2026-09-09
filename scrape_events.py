@@ -528,7 +528,11 @@ def _neoserra_cards(soup: BeautifulSoup, source: dict) -> list[dict]:
 
         blob = " ".join(card.get_text(" ", strip=True).split())
         loc = ""
-        m = re.search(r"(Online Meeting[^,]*|Online Course[^,]*)", blob, re.I)
+        # [^,]* ran past the venue and swallowed the title that shares the
+        # card, which is where "Online Meeting (Live) APEX - Capability
+        # Statements 101: Purpose" came from. Bounded to the label and its
+        # parenthetical.
+        m = re.search(r"(Online (?:Meeting|Course)(?:\s*\([^)]{0,24}\))?)", blob, re.I)
         if m:
             loc = m.group(1)
         else:
@@ -654,6 +658,13 @@ def from_neoserra(soup: BeautifulSoup, source: dict) -> list[dict]:
 # on Facebook Live every time; waiting for each listing to mention that would
 # lose most of them.
 ALWAYS_STREAMS = {"1 Million Cups"}
+# Hosts whose entire catalogue is online, so a missing venue is not a mystery.
+ALWAYS_ONLINE = {"Meta Blueprint"}
+# Words that mean "attend from your desk" wherever they turn up. "on-line" with
+# the hyphen is Vermont's spelling and was being read as a physical venue.
+_ONLINE_VENUE_WORDS = re.compile(
+    r"\bon-?line\b|\bvirtual\b|\bwebinar\b|\bzoom\b|\bms teams\b|\bwebex\b"
+    r"|\blivestream\b|\bremote\b|\be-?learning\b", re.I)
 
 
 def mode_of(blob: str, streams: bool, place: str = "") -> str:
@@ -812,11 +823,158 @@ def keep(event: dict, now: datetime, horizon: datetime) -> bool:
     return now < when < horizon
 
 
+
+# ---------------------------------------------------------------------------
+# Location normalisation.
+#
+# Hosts put the venue in the same text node as the date, the time, the timezone
+# and sometimes the title, and every parser inherited the mess: 354 of 860
+# published rows carried a venue that started with a year, a clock time, or the
+# event's own name. Cleaning the assembled field rather than each parser means
+# one rule set covers every source and can be measured against events.json.
+# ---------------------------------------------------------------------------
+# An online venue label. Bounded, so "Online Meeting (Live)" does not run on
+# into the title that shares the card with it.
+_ONLINE_VENUE = re.compile(
+    r"^(online\s+(?:meeting|course|training|workshop|seminar)"
+    r"(?:\s*\([^)]{0,24}\))?)", re.I)
+_ONLINE_FACIL = re.compile(r"^(online\s+facilitated\s+by\s+.{2,90})$", re.I)
+_VIRTUAL = re.compile(r"^(virtual|online|via\s+zoom|zoom|on-?line[\w .-]{0,24})$", re.I)
+
+# Leading debris, stripped before anything else is attempted.
+# A leading year is debris only when a clock time follows it. "1907 The 1907 at
+# Central School" and "2026 Main St" are venues, not stamps.
+_TIMEISH = (r"\d{1,2}\s*[:.]\s*\d{2}|\d{1,2}\s*[ap]\.?\s?m\b|noon"
+            r"|\d{1,2}\s*(?:[-–—]|to)\s*\d{1,2}\b(?!\d)")
+_YEAR = re.compile(r"^(?:19|20)\d{2}\b(?=\s*(?:" + _TIMEISH + r"))\s*", re.I)
+# A run of digits is not a time. Require a colon or an am/pm, or house numbers
+# get eaten: "1101 Halligan Drive" lost its 1101 to an earlier version of this.
+_CLOCK = re.compile(
+    r"^(?:\d{1,2}\s*[:.]\s*\d{2}\s*(?:[ap]\.?\s?m\.?)?|\d{1,2}\s*[ap]\.?\s?m\.?|noon)"
+    r"(?:\s*(?:[-–—]|to)\s*"
+    r"(?:\d{1,2}\s*[:.]\s*\d{2}\s*(?:[ap]\.?\s?m\.?)?|\d{1,2}\s*[ap]\.?\s?m\.?|noon|\d{1,2}))?"
+    r"(?=\s|$)\s*", re.I)
+# Shouted timezones only. Case sensitive, so "Eastern Arizona College" survives.
+_TZ = re.compile(r"^(?:[A-Z]{2,4}T|CENTRAL|EASTERN|MOUNTAIN|PACIFIC)\b\s*")
+# "8 to 10 am", "1-4PM", "11-12". Only ever reached after a year has been
+# stripped, and only when more text follows, so a venue called "11-12" survives.
+_HOURRANGE = re.compile(
+    r"^\d{1,2}\s*(?:[-–—]|to)\s*\d{1,2}\b(?!\d)\s*(?:[ap]\.?\s?m\.?)?(?=\s+\S)\s*", re.I)
+_PARENS = re.compile(r"^\([^)]{0,30}\)\s*")
+
+_SUFFIX = (r"st|street|ave|avenue|rd|road|dr|drive|blvd|boulevard|ln|lane|way|"
+           r"hwy|highway|pl|place|ct|court|ter|terrace|pkwy|parkway|cir|circle|"
+           r"sq|square|plz|plaza|trl|trail|loop|route|rt")
+# Case sensitive on purpose: a street name is capitalised, and matching
+# lowercase filler words let the match start inside the date debris.
+_STREET = re.compile(
+    r"(\d{1,6}[A-Za-z]?\s+(?:[A-Z0-9][\w.'#&/-]*\s+){0,6}"
+    r"(?:" + _SUFFIX + r")\b"
+    r"[\w .,'#&/-]{0,60}?,\s*[A-Za-z .'-]{2,28}\s+[A-Z]{2}\s+\d{5})")
+_ADDR_TAIL = re.compile(r",\s*[A-Za-z .'-]{2,28}\s+[A-Z]{2}\s+\d{5}\s*$")
+
+
+def _strip_leading_junk(s: str) -> str:
+    prev = None
+    while prev != s and s:
+        prev = s
+        for pat in (_YEAR, _CLOCK, _HOURRANGE, _TZ, _PARENS):
+            s = pat.sub("", s).strip()
+        s = s.lstrip(" ,;-").strip()
+    return s
+
+
+def _dedupe_phrase(s: str) -> str:
+    """'Innovate Newport Innovate Newport' -> 'Innovate Newport'."""
+    w = s.split()
+    n = len(w)
+    if n < 2:
+        return s
+    if n % 2 == 0 and w[: n // 2] == w[n // 2:]:
+        return " ".join(w[: n // 2])
+    for size in range(n // 2, 1, -1):
+        if w[-size:] == w[-2 * size:-size]:
+            return " ".join(w[:-size])
+    return s
+
+
+def clean_location(raw: str, title: str = "") -> str:
+    if not raw:
+        return ""
+    s = " ".join(str(raw).split())
+
+    m = _ONLINE_VENUE.match(s)
+    if m:
+        out = " ".join(m.group(1).split())
+        return re.sub(r"\(live\)", "(Live)", out, flags=re.I)
+    m = _ONLINE_FACIL.match(s)
+    if m:
+        return " ".join(m.group(1).split())
+    if _VIRTUAL.match(s):
+        return s.rstrip(" ,")
+
+    s = _strip_leading_junk(s)
+
+    # A full street address anywhere in what is left wins outright.
+    m = _STREET.search(s)
+    if m:
+        return " ".join(m.group(1).split())
+
+    # The title bleeding in is the eCenterDirect card bug. Cut at it.
+    if title:
+        t = " ".join(str(title).split())
+        for probe in (t, t[:40], t[:25]):
+            if len(probe) >= 12 and probe in s:
+                head, _, tail = s.partition(probe)
+                # The title can sit at either end of the run-on. Keep whichever
+                # side still holds a venue rather than always keeping the head:
+                # "Business & Brews - Portsmouth 3 Point Bar & Grill" is all
+                # title until the venue at the end.
+                s = head.strip() if len(head.strip()) >= len(tail.strip()) else tail.strip()
+                break
+
+    s = s.strip(" ,;-")
+    s = _dedupe_phrase(s)
+
+    # A bare fragment ("1490", "2-140", "119") is worse than no venue at all,
+    # unless it still carries a city and state.
+    if len(s) < 4 or re.fullmatch(r"[\d\W]+", s):
+        return ""
+    if _ADDR_TAIL.match(s) or re.fullmatch(r"[\d\W]{0,8}" + _ADDR_TAIL.pattern.rstrip("$"), s):
+        return ""
+    return s
+
+
 def normalize(event: dict) -> dict:
+    raw_start = str(event.get("start", ""))
     when = dateparse.parse(event["start"])
     if when.tzinfo is None:
         when = when.replace(tzinfo=timezone(timedelta(hours=-4)))
     event["start"] = when.isoformat()
+    # A date with no time parses to midnight, and the page then printed
+    # "12:00 AM" on 177 cards. Nothing starts at midnight; the host simply did
+    # not publish a time. Say so instead of inventing one.
+    # "00:00" is not a signal: it is what an ISO stamp looks like after a
+    # date-only string has already been through here once. Only a host actually
+    # writing midnight counts.
+    said_midnight = bool(re.search(r"\b12\s*[:.]?\s*0{0,2}\s*a\.?\s?m\b|\bmidnight\b", raw_start, re.I))
+    event["time_tbd"] = (when.hour == 0 and when.minute == 0) and not said_midnight
+    event["location"] = clean_location(event.get("location", ""), event.get("title", ""))
+    # mode_of reads the listing row and gets it right 707 times out of 860. The
+    # rest come back empty, and an empty mode is a card that answers "can I
+    # attend this from my desk?" with nothing. The cleaned venue settles most of
+    # them: a venue that names a platform is online, and a venue that names a
+    # place is somewhere you turn up. Only fills a gap, never overrules the row.
+    if not event.get("mode"):
+        loc = event["location"]
+        if _ONLINE_VENUE_WORDS.search(loc):
+            event["mode"] = "Online"
+        elif loc:
+            event["mode"] = "In person"
+        elif event.get("host") in ALWAYS_ONLINE:
+            event["mode"] = "Online"
+        elif _ONLINE_VENUE_WORDS.search(f"{event.get('title','')} {event.get('summary','')}"):
+            event["mode"] = "Online"
     # Hosts label their own events, and between them they use 47 different
     # words for eight ideas: "Cash Flow Management", "Business Accounting and
     # Budget" and "Financial Analysis" are all Finance. Publishing their labels
@@ -836,6 +994,7 @@ def normalize(event: dict) -> dict:
     # the page, and it would triple the size of events.json.
     event.pop("raw", None)
     event.setdefault("location", "")
+    event.setdefault("time_tbd", False)
     event.setdefault("category", "")
     event.setdefault("scope", "")
     return event
