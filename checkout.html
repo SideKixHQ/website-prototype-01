@@ -353,7 +353,17 @@ try{
         // row; PayPal/Klarna simply won't appear unless enabled in the
         // Dashboard, which nothing here does deliberately.
         expressCheckoutElement = elements.create('expressCheckout', {
-          paymentMethods: { applePay:'auto', googlePay:'auto', link:'never' },
+          // `auto` here means "show if Dashboard-enabled" — Klarna and
+          // Link are BOTH enabled account-wide on this Stripe account
+          // (confirmed directly in the Dashboard's payment methods list),
+          // so leaving them unset would silently bring back the exact
+          // Klarna/Link problem the switch away from Payment Element was
+          // meant to fix. Every key must be explicit; there's no
+          // account-level default that only applies to this Element.
+          paymentMethods: {
+            applePay:'auto', googlePay:'auto', amazonPay:'auto',
+            link:'never', klarna:'never', paypal:'never'
+          },
           buttonHeight: 48
         });
         expressCheckoutElement.mount('#coExpressElement');
