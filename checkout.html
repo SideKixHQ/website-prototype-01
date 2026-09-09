@@ -49,37 +49,44 @@ body::before{
 @keyframes kxPulseRing{0%,100%{opacity:.6}50%{opacity:1}}
 
 .card{
-  position:relative;z-index:1;max-width:440px;width:100%;
+  position:relative;z-index:1;max-width:680px;width:100%;
   background:linear-gradient(180deg,#0f0d09,#0a0907);
-  border:1px solid rgba(212,168,86,.28);border-radius:20px;
-  padding:36px 36px;box-shadow:0 30px 90px rgba(0,0,0,.55);
+  border:1px solid rgba(212,168,86,.28);border-radius:22px;
+  padding:52px 52px;box-shadow:0 30px 90px rgba(0,0,0,.55);
   animation:kxCardIn .5s cubic-bezier(.16,1,.3,1);
 }
 @keyframes kxCardIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
 
 .eyebrow{font-family:var(--util);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-mid)}
-h1{font-family:var(--display);font-weight:600;color:var(--cream);font-size:30px;margin:8px 0 6px;line-height:1.08}
-p.sub{color:var(--grey);font-size:13.5px;margin-bottom:4px}
+h1{font-family:var(--display);font-weight:600;color:var(--cream);font-size:36px;margin:10px 0 8px;line-height:1.08}
+p.sub{color:var(--grey);font-size:15px;margin-bottom:4px}
 
 .co-summary{
   display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-  margin:18px 0 20px;padding:15px 18px;border-radius:14px;
+  margin:22px 0 24px;padding:18px 22px;border-radius:14px;
   background:rgba(212,168,86,.06);border:1px solid rgba(212,168,86,.2);
 }
-.co-summary-credits{font-family:var(--display);font-weight:600;font-size:20px;color:#FFF8D8}
-.co-summary-minutes{display:block;margin-top:2px;font-family:var(--util);font-size:10.5px;letter-spacing:.06em;color:var(--grey)}
-.co-summary-price{font-family:var(--util);font-size:19px;color:var(--gold)}
+.co-summary-credits{font-family:var(--display);font-weight:600;font-size:24px;color:#FFF8D8}
+.co-summary-minutes{display:block;margin-top:2px;font-family:var(--util);font-size:11.5px;letter-spacing:.06em;color:var(--grey)}
+.co-summary-price{font-family:var(--util);font-size:22px;color:var(--gold)}
 
-label{display:block;font-size:12px;letter-spacing:.03em;color:var(--grey);margin:0 0 6px}
+label{display:block;font-size:13px;letter-spacing:.03em;color:var(--grey);margin:0 0 7px}
 input[type=email]{
   width:100%;background:#050403;border:1px solid var(--line);border-radius:10px;color:var(--cream);
-  font-family:var(--body);font-size:15px;padding:12px 14px;outline:none;transition:border-color .2s,box-shadow .2s;
+  font-family:var(--body);font-size:16px;padding:14px 16px;outline:none;transition:border-color .2s,box-shadow .2s;
 }
 input[type=email]:focus{border-color:var(--gold-mid);box-shadow:0 0 0 3px rgba(212,168,86,.16)}
 input[type=email]:disabled{opacity:.6}
 
+.co-express{margin-top:16px}
+.co-express-divider{
+  display:flex;align-items:center;gap:12px;margin:16px 0 0;
+  font-family:var(--util);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);
+}
+.co-express-divider::before,.co-express-divider::after{content:'';flex:1;height:1px;background:var(--line)}
+
 .co-payment-label{margin-top:16px}
-.co-payment-label,.co-payment-shell,.co-terms{animation:kxFadeIn .35s ease-out}
+.co-payment-label,.co-payment-shell,.co-terms,.co-express{animation:kxFadeIn .35s ease-out}
 @keyframes kxFadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .co-payment-shell{
   margin-top:6px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#050403;min-height:22px;
@@ -98,10 +105,10 @@ input[type=email]:disabled{opacity:.6}
 .co-terms a:hover{color:var(--gold)}
 
 button.co-pay{
-  width:100%;margin-top:18px;position:relative;display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;margin-top:22px;position:relative;display:flex;align-items:center;justify-content:center;gap:10px;
   background:linear-gradient(180deg,#D7C582,#A1853E);color:#1a1408;border:none;border-radius:999px;
-  font-family:var(--body);font-weight:700;font-size:16px;
-  min-height:50px;cursor:pointer;box-shadow:0 12px 34px rgba(23,18,4,.5);transition:opacity .2s,transform .15s;
+  font-family:var(--body);font-weight:700;font-size:17px;
+  min-height:56px;cursor:pointer;box-shadow:0 12px 34px rgba(23,18,4,.5);transition:opacity .2s,transform .15s;
 }
 button.co-pay:hover{opacity:.92}
 button.co-pay:active{transform:scale(.99)}
@@ -184,6 +191,11 @@ button.co-pay:disabled{opacity:.6;cursor:default}
       <label for="coEmail">Email — where your claim link goes</label>
       <input autocomplete="email" id="coEmail" placeholder="you@example.com" required type="email"/>
 
+      <div class="co-express hidden" id="coExpressShell">
+        <div id="coExpressElement"></div>
+        <div class="co-express-divider"><span>Or pay with card</span></div>
+      </div>
+
       <label class="co-payment-label hidden" id="coPaymentLabel">Card</label>
       <div class="co-payment-shell hidden" id="coPaymentShell">
         <div id="coPaymentElement"></div>
@@ -220,7 +232,7 @@ button.co-pay:disabled{opacity:.6;cursor:default}
     <p>Check your email for a link to add these credits to your account.</p>
 
     <div class="co-qr">
-      <img alt="QR code to get the SideKix app" height="120" loading="lazy" src="assets/img/get-app-qr.png" width="120"/>
+      <img alt="QR code to get the SideKix app" height="180" loading="lazy" src="assets/img/get-app-qr.png" width="180"/>
       <p><b>Scan to get the SideKix app.</b> Sign up with the same email you just used — your credits will already be waiting, no claim link needed.</p>
     </div>
 
@@ -251,9 +263,10 @@ try{
   // card-only. Card Element has never supported anything but a card, which
   // is also what keeps this page from turning into the same multi-screen
   // scroll Stripe's own hosted Checkout has.
-  var stripe=null, cardElement=null, clientSecret=null;
+  var stripe=null, elements=null, cardElement=null, expressCheckoutElement=null, clientSecret=null;
   var form=document.getElementById('coForm');
   var emailInput=document.getElementById('coEmail');
+  var expressShell=document.getElementById('coExpressShell');
   var paymentLabelEl=document.getElementById('coPaymentLabel');
   var paymentShell=document.getElementById('coPaymentShell');
   var termsEl=document.getElementById('coTerms');
@@ -318,7 +331,60 @@ try{
       publishableKeyPromise.then(function(cfg){
         if(!cfg || !cfg.publishableKey){ throw new Error('no publishable key'); }
         stripe = Stripe(cfg.publishableKey);
-        var elements = stripe.elements();
+        // mode/amount/currency (rather than a clientSecret) is what lets the
+        // Express Checkout Element mount immediately, in parallel with the
+        // real PaymentIntent creation below — same reasoning as the eager
+        // publishable-key fetch. Card Element doesn't care either way; it's
+        // confirmed separately via confirmCardPayment(clientSecret, ...).
+        elements = stripe.elements({
+          mode:'payment', amount: CREDIT_PACK_USD*packs*100, currency:'usd',
+          appearance: { variables: { borderRadius:'999px' } }
+        });
+
+        // One-click wallets (Apple Pay, Google Pay, and — once enabled in
+        // the Stripe Dashboard's payment methods settings — Amazon Pay) on
+        // top of the plain card field below, not instead of it. Explicitly
+        // NOT the generic Payment Element: that's what was pulling in
+        // Klarna/Link via Dashboard-driven Dynamic Payment Methods
+        // regardless of payment_method_types (see the Card Element comment
+        // above) — the Express Checkout Element gives one-click wallets
+        // without that accordion. `link:'never'` keeps Link (which isn't a
+        // real "download our app" wallet, just Stripe's own) out of this
+        // row; PayPal/Klarna simply won't appear unless enabled in the
+        // Dashboard, which nothing here does deliberately.
+        expressCheckoutElement = elements.create('expressCheckout', {
+          paymentMethods: { applePay:'auto', googlePay:'auto', link:'never' },
+          buttonHeight: 48
+        });
+        expressCheckoutElement.mount('#coExpressElement');
+        expressCheckoutElement.on('availablepaymentmethodschange', function(ev){
+          var any = !!(ev && ev.availablePaymentMethods && Object.keys(ev.availablePaymentMethods).length);
+          expressShell.classList.toggle('hidden', !any);
+        });
+        expressCheckoutElement.on('confirm', function(event){
+          setBusy(true);
+          elements.submit().then(function(result){
+            if(result.error) throw result.error;
+            return Promise.resolve(form._intentPromise);
+          }).then(function(){
+            if(!clientSecret){ throw new Error("Couldn't start checkout. Please try again."); }
+            return stripe.confirmPayment({
+              elements: elements,
+              clientSecret: clientSecret,
+              confirmParams: { return_url: location.origin + '/membership.html' },
+              redirect: 'if_required'
+            });
+          }).then(function(result){
+            if(result.error){ throw result.error; }
+            stepForm.classList.add('hidden');
+            stepSuccess.classList.remove('hidden');
+          }).catch(function(err){
+            console.error('SideKix [checkout] express checkout failed:', err);
+            setBusy(false);
+            showError((err && err.message) || "That payment couldn't be completed. Try another way.");
+          });
+        });
+
         cardElement = elements.create('card', {
           style: {
             base: {
