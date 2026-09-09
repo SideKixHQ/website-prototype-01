@@ -13,6 +13,51 @@ function readRawBody(req) {
   });
 }
 
+// Shared by both fulfillment paths (redirect-based Checkout Sessions and the
+// embedded Payment Element flow) — Admin-Backend's claim endpoint only ever
+// wants an opaque unique id plus the purchase details; it never cares
+// whether that id came from a Checkout Session (cs_...) or a PaymentIntent
+// created directly (pi_...), so this same call works for either.
+async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged, currency, stripePaymentIntentId }) {
+  if (!email) {
+    console.error('SideKix [website credits claim] no email for', idempotencyId);
+    return { ok: true };
+  }
+  if (!Number.isInteger(credits) || credits <= 0) {
+    console.error('SideKix [website credits claim] missing/invalid credits metadata for', idempotencyId);
+    return { ok: true };
+  }
+
+  const claimRes = await fetch(
+    'https://api.sidekixhq.com/internal/website-credits/claims',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
+        // Admin-Backend's global DeviceIdGuard requires this on every route
+        // not explicitly exempted (admin/otp/rbac/uploads/payments) — found
+        // by actually running this call locally; without it every request
+        // 400s before WebsiteInternalGuard ever runs.
+        'x-device-agent': 'web',
+      },
+      body: JSON.stringify({
+        sessionId: idempotencyId,
+        email,
+        credits,
+        amountCharged,
+        currency,
+        stripePaymentIntentId,
+      }),
+    },
+  );
+  if (!claimRes.ok) {
+    const body = await claimRes.text().catch(() => '');
+    throw new Error(`Admin-Backend responded ${claimRes.status}: ${body}`);
+  }
+  return { ok: true };
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).end();
@@ -78,59 +123,59 @@ module.exports = async (req, res) => {
     // internal endpoint is idempotent on sessionId (won't double-create
     // the claim or re-send the email on a retry that already succeeded).
     if (session.metadata?.type === 'credits') {
-      const email = session.customer_details?.email;
       // Read the exact amount create-checkout-session.js stored — never
       // recompute packs * CREDIT_PACK_SIZE here (that constant used to be
       // duplicated in both files with nothing keeping them in sync). A
       // session with no credits metadata (e.g. one created manually in the
       // Stripe Dashboard for testing) fails loudly instead of silently
       // granting a guessed amount.
-      const credits = parseInt(session.metadata?.credits, 10);
-
-      if (!email) {
-        console.error('SideKix [website credits claim] no email on session', session.id);
-      } else if (!Number.isInteger(credits) || credits <= 0) {
-        console.error('SideKix [website credits claim] missing/invalid credits metadata on session', session.id);
-      } else {
-        try {
-          const claimRes = await fetch(
-            'https://api.sidekixhq.com/internal/website-credits/claims',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
-                // Admin-Backend's global DeviceIdGuard requires this on every
-                // route not explicitly exempted (admin/otp/rbac/uploads/
-                // payments) — found by actually running this call locally;
-                // without it every request 400s before WebsiteInternalGuard
-                // ever runs.
-                'x-device-agent': 'web',
-              },
-              body: JSON.stringify({
-                sessionId: session.id,
-                email,
-                credits,
-                // amount_total is in the smallest currency unit (cents for
-                // usd) — convert to major units for CreditPurchaseIntent,
-                // which stores dollars like the rest of that table.
-                amountCharged: typeof session.amount_total === 'number' ? session.amount_total / 100 : undefined,
-                currency: session.currency,
-                stripePaymentIntentId:
-                  typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
-              }),
-            },
-          );
-          if (!claimRes.ok) {
-            const body = await claimRes.text().catch(() => '');
-            throw new Error(`Admin-Backend responded ${claimRes.status}: ${body}`);
-          }
-        } catch (err) {
-          console.error('SideKix [website credits claim] failed:', err);
-          res.status(502).json({ error: 'Could not record credits claim, will retry' });
-          return;
-        }
+      try {
+        await submitCreditsClaim({
+          idempotencyId: session.id,
+          email: session.customer_details?.email,
+          credits: parseInt(session.metadata?.credits, 10),
+          // amount_total is in the smallest currency unit (cents for usd) —
+          // convert to major units for CreditPurchaseIntent, which stores
+          // dollars like the rest of that table.
+          amountCharged: typeof session.amount_total === 'number' ? session.amount_total / 100 : undefined,
+          currency: session.currency,
+          stripePaymentIntentId:
+            typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+        });
+      } catch (err) {
+        console.error('SideKix [website credits claim] failed:', err);
+        res.status(502).json({ error: 'Could not record credits claim, will retry' });
+        return;
       }
+    }
+  }
+
+  // The embedded Payment Element flow (create-payment-intent.js) never
+  // creates a Checkout Session — the PaymentIntent itself carries the same
+  // metadata shape, and its own id is a perfectly good unique idempotency
+  // key for the claim (Admin-Backend's endpoint treats it as an opaque
+  // string either way — see submitCreditsClaim above).
+  if (event.type === 'payment_intent.succeeded' && event.data.object.metadata?.type === 'credits') {
+    const intent = event.data.object;
+    console.log('SideKix website embedded credits purchase paid:', {
+      paymentIntentId: intent.id,
+      email: intent.metadata?.email,
+      packs: intent.metadata?.packs,
+      amountReceived: intent.amount_received,
+    });
+    try {
+      await submitCreditsClaim({
+        idempotencyId: intent.id,
+        email: intent.metadata?.email,
+        credits: parseInt(intent.metadata?.credits, 10),
+        amountCharged: typeof intent.amount_received === 'number' ? intent.amount_received / 100 : undefined,
+        currency: intent.currency,
+        stripePaymentIntentId: intent.id,
+      });
+    } catch (err) {
+      console.error('SideKix [website credits claim] failed:', err);
+      res.status(502).json({ error: 'Could not record credits claim, will retry' });
+      return;
     }
   }
 
