@@ -84,6 +84,14 @@ module.exports = async (req, res) => {
 
   const email = typeof req.body.email === 'string' ? req.body.email.trim() : undefined;
 
+  // Shown on the Stripe-hosted checkout page itself (checkout.stripe.com),
+  // not on our site — this is the only copy a buyer sees between "click
+  // Purchase" and being charged, so the final-sale/no-expiry disclosure
+  // belongs here, not just on membership.html.
+  const submitMessage = type === 'credits'
+    ? 'Kix turns your goals and challenges into a personalized path forward. Credits are yours the moment you buy them, so all purchases are final. Kix Credits never expire.'
+    : 'Kix turns your goals and challenges into a personalized path forward. This is a one-time payment to lock in your rate; recurring billing starts when this tier goes live.';
+
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2026-07-29.dahlia',
@@ -96,6 +104,17 @@ module.exports = async (req, res) => {
       metadata,
       ...(email ? { customer_email: email } : {}),
       integration_identifier: `sidekix-website-${randomSuffix(8)}`,
+      consent_collection: {
+        terms_of_service: 'required',
+      },
+      custom_text: {
+        submit: {
+          message: submitMessage,
+        },
+        terms_of_service_acceptance: {
+          message: `I agree to the [SideKix Purchase Terms](${origin}/terms.html#s21).`,
+        },
+      },
     });
 
     res.status(200).json({ url: session.url });
