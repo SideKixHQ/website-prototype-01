@@ -562,6 +562,30 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
+  <p class="eyebrow">The skills half</p>
+  <h2>The syllabus is built per town</h2>
+  <div class="rule"></div>
+  <p class="lead">Behavior is the constant. Skills are not, and no town should accept a syllabus
+    that turns up already written. Three inputs decide what gets taught.</p>
+  <ul class="plain">
+    <li><b>What is here now.</b> The employers in your county and the work they are actually
+      hiring for, from your own labor market data rather than a national list.</li>
+    <li><b>What you are chasing.</b> The target industries already in your strategy. Leland has
+      published its own: life sciences, information technology, medical technology, aerospace,
+      marine biology and wind energy.</li>
+    <li><b>The gap between the two.</b> Where the work you want and the people you have do not line
+      up is exactly where the skills teaching goes.</li>
+  </ul>
+  <p>That third one is the whole job. A county with an employer base it cannot staff and residents
+    it cannot place has one problem, not two, and the gap between those lists is the shape of it.</p>
+  <p>So this part is built with you before a cohort starts, and it is rebuilt when the target list
+    changes. Behavior transfers between towns. The skills half does not, and a program that
+    pretends otherwise is selling you somebody else&#8217;s curriculum.</p>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
   <p class="eyebrow">The case</p>
   <h2>Why a town pays for this</h2>
   <div class="rule"></div>
@@ -648,8 +672,8 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
-  <p class="eyebrow">The other half</p>
-  <h2>A resident is one side of the desk</h2>
+  <p class="eyebrow">Cultural architecture</p>
+  <h2>Culture is the other side of the desk</h2>
   <div class="rule"></div>
   <p>Somebody who moves up into a badly run workplace comes back down. Turnover is not a resident
     problem and retention is not a resident achievement. Both are built into how an employer
