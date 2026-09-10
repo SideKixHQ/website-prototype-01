@@ -359,12 +359,15 @@ exits: advance, switch, credential, or own it.</desc>
 # Five named behaviors down the side, the same four stages across the top, and
 # a bar that grows as the behavior goes from named to habitual. It is the
 # design of the program, not a plot of results, and the caption says so.
+# Four of these are the dimensions of career adaptability, the construct built for
+# people moving between jobs rather than for managers running teams. The fifth is
+# personal initiative, which is the one with the randomised trial behind it.
 COMP = [
- ("Action oriented",        "#F0855A", "takes the challenge on without waiting to be told"),
- ("Resourcefulness",        "#FFE7A6", "finds the opening, and the way to it"),
- ("Plans and aligns",       "#5FB6A6", "plans for what goes wrong before it does"),
- ("Courage",                "#4FC3F7", "says the difficult thing, makes the ask"),
- ("Ensures accountability", "#B18BE4", "still doing it ninety days on"),
+ ("Looks ahead",        "#F0855A", "has a picture of their own next two years"),
+ ("Takes charge",       "#FFE7A6", "treats the path as theirs to steer"),
+ ("Explores",           "#5FB6A6", "knows what work is here and what it pays"),
+ ("Bets on themselves", "#4FC3F7", "attempts it, and handles it going wrong"),
+ ("Takes initiative",   "#B18BE4", "acts before anyone asks, and keeps going"),
 ]
 STAGE = [("Weeks 1 to 2", "named"), ("Weeks 3 to 5", "practiced"),
          ("Weeks 6 to 8", "applied"), ("+ 90 days", "habitual")]
@@ -400,8 +403,8 @@ def _grow_cols():
 GROWTH_SVG = f"""<svg viewBox="0 0 1000 470" role="img" aria-labelledby="hgd3t hgd3d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd3t">What the program is built to move</title>
-<desc id="hgd3d">Five competencies down the side: action oriented, resourcefulness, plans and
-aligns, courage, and ensures accountability. The same four stages across the top: weeks one to two
+<desc id="hgd3d">Five competencies down the side: looks ahead, takes charge, explores, bets on
+themselves, and takes initiative. The same four stages across the top: weeks one to two
 where each behavior is named, weeks three to five where it is practiced, weeks six to eight where
 it is applied, and the ninety days after, where it becomes habitual. Each bar grows across the row.
 This is the design of the program rather than a plot of measured results.</desc>
@@ -448,6 +451,17 @@ SOURCES = [
  ('Seven-year follow-up to the same trial. A 52% profit gain, with effects concentrated among men. '
   'World Bank Development Impact.',
   'https://blogs.worldbank.org/en/impactevaluations/personal-initiative-training-continues-to-yield-positive-benefit'),
+ ('Career adaptability and its four dimensions, concern, control, curiosity and confidence, as '
+  'measured by the Career Adapt-Abilities Scale, validated across 13 countries. Savickas and '
+  'Porfeli, and the CAAS chapter.',
+  'https://www.marksavickas.com/files/1_Savickas_bio/Career%20Construction%20Theory/Publications/Book%20Chapters/CAAS_Chapter.pdf'),
+ ('Confidence in one&#8217;s own skills predicting career progress, and the finding that most '
+  'workers on a career path can name and communicate the skills employers value. Harvard Project '
+  'on Workforce.',
+  'https://pw.hks.harvard.edu/post/navigating-opportunity-career-information-and-mobility-in-low-wage-employment'),
+ ('The odds of leaving low wage work roughly halving every four years, reaching about one per '
+  'cent by year ten. Harvard Project on Workforce, reported via the Harvard Gazette.',
+  'https://news.harvard.edu/gazette/story/2022/01/helping-trapped-low-wage-workers-employers-struggling-to-fill-spots/'),
  ('Sector-focused training programs across four randomized trials. Earnings gains of 14 to 38% '
   'in the year after training, persisting at 12 to 34%. WorkRise.',
   'https://workrisenetwork.org/working-knowledge/evidence-sector-focused-training-programs-shows-significant-and-persistent'),
@@ -508,7 +522,12 @@ MAIN = f"""<main id="maincontent" class="hg">
   </ul>
   <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
     was taught leadership, only whether they have started doing what a leader does. So the report
-    scores five competencies, each one visible to a manager or an advisor.</p>
+    scores five things a person is seen to do instead.</p>
+  <p>Four of them are the dimensions of career adaptability, which is the measure built for people
+    moving between jobs rather than for managers running teams. The fifth is initiative, the one
+    with the randomized trial behind it. None of them require somebody to already be a supervisor,
+    which matters when the program has to work for a line cook and a laid off analyst in the same
+    room.</p>
 
   <figure>
     <div class="dwrap">{GROWTH_SVG}</div>
@@ -519,12 +538,12 @@ MAIN = f"""<main id="maincontent" class="hg">
   </figure>
 
   <ul class="plain">
-    <li><b>Action oriented.</b> Takes on the tough job without waiting to be told to.</li>
-    <li><b>Resourcefulness.</b> Finds the opening nobody pointed out, and the way to it.</li>
-    <li><b>Plans and aligns.</b> Plans for what goes wrong before it goes wrong.</li>
-    <li><b>Courage.</b> Says the difficult thing. Makes the ask, of a manager, a lender or a
-      stranger.</li>
-    <li><b>Ensures accountability.</b> Still doing it ninety days after the room emptied.</li>
+    <li><b>Looks ahead.</b> Has a picture of their own next two years, not just next Friday.</li>
+    <li><b>Takes charge.</b> Treats a working life as theirs to steer, not weather that happens
+      to them.</li>
+    <li><b>Explores.</b> Knows what work exists here, what it pays, and what it takes to get it.</li>
+    <li><b>Bets on themselves.</b> Attempts the thing, and handles it when it goes wrong.</li>
+    <li><b>Takes initiative.</b> Acts before anyone asks, and keeps going when it stalls.</li>
   </ul>
  </div>
 </section>
@@ -556,8 +575,13 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The case</p>
   <h2>Why a town pays for this</h2>
   <div class="rule"></div>
-  <p>Wilmington does not have an unemployment problem. It has a low wage employment problem, and
-    the growth arriving next door is filling up with people who moved in.</p>
+  <p class="lead">Most American metros have the same shape of problem. Employment is fine. Wages are
+    not. And the growth that does land fills up with people who moved in for it.</p>
+  <p>It compounds quietly, and there is a clock on it: every four years somebody stays in low wage
+    work, the odds of getting out roughly halve. By year ten they are down to about one in a
+    hundred. A town is not deciding whether to fix this. It is deciding how long to wait.</p>
+  <p>The four numbers below are Wilmington&#8217;s, because that is where the first cohorts run.
+    Every town gets the same four built from its own county.</p>
   <div class="stats">
     <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
       figure is $32.66.</span></div>
@@ -568,9 +592,10 @@ MAIN = f"""<main id="maincontent" class="hg">
     <div class="stat"><b>13,800</b><span>Jobs the metro is projected to add by 2034. Somebody is
       going to fill them.</span></div>
   </div>
-  <p style="margin-top:26px">Site consultants stopped asking only who lives here now. They ask what
-    the pipeline looks like, and close to six in ten manufacturers name talent as a top concern. So
-    the staffing answer and the political answer turn out to be the same asset.</p>
+  <p style="margin-top:26px">Wherever the county is, site consultants stopped asking only who lives
+    there now. They ask what the pipeline looks like, and close to six in ten manufacturers name
+    talent as a top concern. So the staffing answer and the political answer turn out to be the
+    same asset.</p>
   <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal to
     a council whose residents did not get hired.</p></div>
  </div>
@@ -716,10 +741,14 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The first cohorts</p>
   <h2>Where it starts</h2>
   <div class="rule"></div>
-  <p>SideKix is in Wilmington, and the Cape Fear region is where the first cohorts run. Two towns,
-    two different problems. Wilmington needs people who already have jobs to move up. Leland, which
-    has more than doubled since 2010, needs residents who can build a career without crossing the
-    bridge every morning. Same program, weighted differently, measured the same way.</p>
+  <p>The program is built to run anywhere with a county, an employer base and residents who are
+    stuck. What changes between towns is the target industries, the local numbers and the weighting
+    of the four exits. The eight weeks, the five competencies and the reporting do not change.</p>
+  <p>SideKix is in Wilmington, so the Cape Fear region is where the first cohorts run, and it
+    happens to be a useful pair. Wilmington needs people who already have jobs to move up. Leland,
+    which has more than doubled since 2010, needs residents who can build a career without crossing
+    the bridge every morning. Same program, weighted differently, measured the same way. If it works
+    for two towns that unalike, it travels.</p>
   <p><strong>Homegrown has not run yet.</strong> The first towns are design partners: they shape it,
     they get founding terms, and their results are the evidence every town after them sees.</p>
  </div>
