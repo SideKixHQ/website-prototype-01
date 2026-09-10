@@ -126,20 +126,22 @@ CSS = """
    and still reads brighter than the near-white heading around it. */
 .hg .punch .no{color:#FF6B5B}
 
-/* The four step spine under the opening diagram. It is the whole offer in one
-   glance and doubles as the page's navigation, which a long scroll otherwise
-   has none of. A real sequence, so the numbering carries meaning. */
-.hg .hgsteps{list-style:none;margin:0;padding:0;display:grid;gap:10px;
-  grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
-.hg .hgsteps a{display:flex;gap:12px;align-items:baseline;height:100%;
-  border:1px solid rgba(212,168,86,.26);border-radius:14px;padding:18px 18px 20px;
-  background:linear-gradient(180deg,rgba(22,17,7,.5),rgba(8,8,9,.7));
-  text-decoration:none;color:#D8D2C6;font-size:15.4px;line-height:1.45;
-  transition:border-color .25s,color .25s,transform .25s}
-.hg .hgsteps a span{font-family:var(--util);font-size:10.5px;letter-spacing:.16em;
-  color:#CDAA63;flex:none}
-.hg .hgsteps a:hover{border-color:var(--gold);color:#FFF8E8;transform:translateY(-2px)}
-.hg .hgsteps a:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px}
+/* The four step spine under the opening diagram: the whole offer in one glance,
+   and the navigation a long scroll otherwise has none of. Deliberately not
+   carded. Stat tiles, exit cards and diagram panels already carry a border on
+   this page, and a fourth bordered grid flattens all of them. The gold numeral
+   is the only chrome it needs. A real sequence, so the numbering means
+   something. */
+.hg .hgsteps{list-style:none;margin:0;padding:0;display:grid;gap:24px 36px;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.hg .hgsteps a{display:block;text-decoration:none;color:#CFC9BE;font-size:15.8px;
+  line-height:1.5;transition:color .25s}
+.hg .hgsteps a span{display:block;font-family:var(--util);font-size:11px;
+  letter-spacing:.2em;color:#CDAA63;margin-bottom:8px}
+.hg .hgsteps a:hover{color:#FFF8E8;text-decoration:underline;
+  text-underline-offset:4px;text-decoration-color:rgba(212,168,86,.55)}
+.hg .hgsteps a:focus-visible{outline:3px solid var(--gold-pale);outline-offset:4px;
+  border-radius:4px}
 @media (prefers-reduced-motion:reduce){.hg .hgsteps a{transition:none}}
 
 /* stat row */
