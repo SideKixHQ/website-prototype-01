@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-10 21:16:11 homegrown -->
+<!-- kx-build 2026-09-10 21:19:45 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1169,6 +1169,10 @@ section.wrap{position:relative;z-index:1 !important}
 .hg h2:hover .punch,.hg .punch:hover,.hg h2:focus-within .punch{background-size:100% 46%}
 @media (hover:none){.hg .punch{background-size:100% 46%}}
 @media (prefers-reduced-motion:reduce){.hg .punch{transition:none}}
+/* the turn of the sentence, in gold. Bright rather than saturated: the heading
+   is near-white, so a deep gold would read as dimmer and therefore as less
+   important, which is the opposite of the job. */
+.hg .punch .no{color:#FFC947}
 
 /* stat row */
 .hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:32px 0 8px}
@@ -1878,7 +1882,7 @@ exits: advance, switch, credential, or own it.</desc>
 <section>
  <div class="hgwrap">
   <p class="eyebrow">Why behavior</p>
-  <h2><span class="punch">Teaching people things does not work</span></h2>
+  <h2><span class="punch">Teaching people things <span class="no">does not</span> work</span></h2>
   <div class="rule"></div>
   <p>This is one of the few corners of workforce development where the evidence is clean, and it
     says the same thing every time. Content fades. Behavior compounds.</p>
