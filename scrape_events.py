@@ -1064,6 +1064,45 @@ def probe() -> int:
     log("  right now or need their own parser.")
     return 0
 
+# ---------------------------------------------------------------------------
+# Pruning.
+#
+# keep() drops anything already past at scrape time, but the file is written
+# weekly and events expire between runs. By the following Monday roughly a
+# week of rows are dead: the page hides them, every visitor still downloads
+# them. Pruning rewrites the file with the past rows removed and touches
+# nothing else, so it is safe to run on any cadence, including daily.
+#
+# The shrink guard in main() already compares against upcoming events in the
+# existing file rather than the total, so a pruned file does not make the next
+# scrape refuse to write.
+# ---------------------------------------------------------------------------
+def prune_past(path=None) -> int:
+    out = path or OUT
+    if not out.exists():
+        log(f"{out} does not exist, nothing to prune.")
+        return 1
+    try:
+        data = json.loads(out.read_text())
+    except (json.JSONDecodeError, OSError) as exc:
+        log(f"cannot read {out}: {exc}")
+        return 1
+
+    events = data.get("events", [])
+    today = dt.date.today().isoformat()
+    fresh = [e for e in events if str(e.get("start", ""))[:10] >= today]
+    dropped = len(events) - len(fresh)
+
+    if not dropped:
+        log(f"nothing to prune, all {len(events)} events are upcoming.")
+        return 0
+
+    data["events"] = fresh
+    out.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+    log(f"pruned {dropped} past event(s) from {out}, {len(fresh)} remain.")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="print, do not write")
@@ -1073,10 +1112,16 @@ def main() -> int:
                     help="absolute floor, refuse to write fewer than this (default 5)")
     ap.add_argument("--allow-shrink", action="store_true",
                     help="write even when the result is smaller than the existing file")
+    ap.add_argument("--prune", action="store_true",
+                    help="drop events that have already happened from events.json "
+                         "and stop, without scraping")
     args = ap.parse_args()
 
     now = datetime.now(timezone.utc)
     horizon = now + timedelta(days=HORIZON_DAYS)
+
+    if args.prune:
+        return prune_past()
 
     if args.probe:
         return probe()

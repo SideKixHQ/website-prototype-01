@@ -9,6 +9,48 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-10
+
+### The self test was failing on three assertions that the code had outgrown
+
+`selftest.py` returned 48 passed, 5 failed. Three of the failures were the
+suite disagreeing with changes made on purpose:
+
+`ALLOW_INPERSON` is `True` and `events.html` carries an "In person" filter, but
+section 1 still expected a room only 1 Million Cups to be dropped, and the SBA
+parser test still expected one row out of two. Both now expect the event kept.
+Section 2 already exercises the switch in both positions, so the coverage that
+mattered was never lost.
+
+`BIGEVENT` was narrowed to gala, fundraiser and fundraising dinner, so
+conferences pass the filter. The "a conference" case expected a rejection.
+It now expects the event kept, and two new cases hold the line that `BIGEVENT`
+still guards: a gala and a fundraiser are both dropped.
+
+53 passed, 2 failed after the change. The two that remain are the banned word
+and dash rules running against scraped titles written by other organizations,
+which is a rule the data cannot satisfy. Left red on purpose rather than
+quietly weakened.
+
+### Past events are no longer shipped to every visitor
+
+`keep()` drops anything already past at scrape time, but the file is written
+weekly and rows expire between runs. Three days after the 2026-09-07 refresh,
+79 of 860 events had already happened. The page hid them, and every visitor
+still downloaded them.
+
+`scrape_events.py --prune` rewrites `events.json` with the past rows removed
+and changes nothing else, so it can run on any cadence. Run once against the
+current file: 860 events to 781, 519KB to 460KB. The shrink guard in `main()`
+already compares against upcoming events in the existing file rather than the
+total, so a pruned file does not make the next scrape refuse to write.
+
+Checked: `--prune` a second time is a clean no op. The page renders 756
+upcoming, filters by format, cost and state, and the "SHOW 60 MORE" control
+pages through the set. No console errors, one h1, no horizontal overflow at
+390px. All seven conference rows survived the prune.
+
+
 ## 2026-09-05
 
 ### Tools

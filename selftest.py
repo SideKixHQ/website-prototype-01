@@ -71,9 +71,11 @@ def test_filters(m) -> None:
         ("1MC hybrid",
          ev("1 Million Cups Kansas City",
             "In person at the Kauffman Center or virtually on zoom"), True),
+        # ALLOW_INPERSON is on, so a room-only event is kept and the card
+        # carries its location. Section 2 checks both positions of the switch.
         ("1MC room only, no stream",
          ev("1 Million Cups Tampa",
-            "THIS EVENT WILL BE HOSTED IN PERSON. Walk-ins accepted."), False),
+            "THIS EVENT WILL BE HOSTED IN PERSON. Walk-ins accepted."), True),
         ("priced with a dollar sign",
          ev("Advanced Bookkeeping", "Registration $49 per seat"), False),
         ("priced in words",
@@ -86,8 +88,14 @@ def test_filters(m) -> None:
          ev("Roundtable", "Members only session"), False),
         ("on demand recording",
          ev("Marketing 101", "Recorded, watch anytime"), False),
+        # BIGEVENT is gala/fundraiser only. A no-cost conference is an event
+        # a founder can attend, so it belongs on the page.
         ("a conference",
-         ev("Growth Conference", "Two day conference, online"), False),
+         ev("Growth Conference", "Two day conference, online"), True),
+        ("a gala",
+         ev("Annual Awards Gala", "Black tie gala, online stream"), False),
+        ("a fundraiser",
+         ev("Spring Fundraiser", "Fundraiser, join online"), False),
         ("already happened",
          ev("Old Webinar", "Online", (now - timedelta(days=2)).isoformat()), False),
         ("beyond the horizon",
@@ -147,8 +155,8 @@ def test_parsers(m) -> None:
     </article>"""
     got = m.from_sba(BeautifulSoup(sba_html, "html.parser"),
                      {"name": "SBA", "url": "https://www.sba.gov/events"})
-    check("   SBA parser keeps the online row only", len(got), 1)
-    print(f"   {'ok  ' if len(got)==1 else 'FAIL'} SBA parser keeps the online row only")
+    check("   SBA parser keeps both rows", len(got), 2)
+    print(f"   {'ok  ' if len(got)==2 else 'FAIL'} SBA parser keeps both rows")
     if got:
         check("   SBA parser credits the real host", got[0]["host"], "UTPB-SBDC")
         print(f"   {'ok  ' if got[0]['host']=='UTPB-SBDC' else 'FAIL'} SBA parser credits the real host, not SBA")
