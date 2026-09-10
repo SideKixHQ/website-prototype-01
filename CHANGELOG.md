@@ -11,6 +11,31 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### The body font was never loading on any page
+
+`assets/fonts.css` declared Poppins five times and EA Majer once, and every one
+of those rules had the family name interpolated into its own filename with the
+quotes left in, so each `src` pointed at a file that does not exist and never
+did. Nothing in `assets/` matched. `document.fonts` held no Poppins entry on any
+page, and because `--body` is `'Poppins',system-ui,sans-serif`, every page on
+the site has been rendering its body text in `system-ui`.
+
+Poppins is now self-hosted the way Cormorant Garamond and Space Grotesk already
+were: latin and latin-ext subsets at 400, 500, 600, 700 and 800, ten woff2 files
+totalling about 120KB, with the unicode ranges Google publishes. Devanagari was
+skipped, being roughly 60KB per weight and unused. The EA Majer rule was deleted
+rather than repaired: no file, and no reference to it anywhere in the shell.
+
+The weights were chosen from what the built pages actually ask for: 600 leads at
+344 uses, then 700, 800, 500 and 400.
+
+Checked: Poppins 400 through 800 report `loaded` on `index.html`,
+`membership.html` and `homegrown.html`, `document.fonts.check` passes, and no
+font request fails. Restoring a real font changes text metrics on every page, so
+fifteen pages were measured for horizontal overflow at 390px and 1240px, and
+none has any. A before and after of `membership.html` shows the layout holding
+with the correct letterforms.
+
 ### SideKix Homegrown, an offering page for towns and counties
 
 Two economic development directors, for Wilmington and for Leland, asked for
