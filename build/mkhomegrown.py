@@ -662,6 +662,24 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
+  <p class="eyebrow">The other half</p>
+  <h2>A resident is one side of the desk</h2>
+  <div class="rule"></div>
+  <p>Somebody who moves up into a badly run workplace comes back down. Turnover is not a resident
+    problem and retention is not a resident achievement. Both are built into how an employer
+    actually runs, day to day.</p>
+  <p>So there is a second thing SideKix does, and towns tend to need it once the first one starts
+    working: <strong>cultural architecture</strong>. Designing how a workplace is meant to operate,
+    putting that in place, and repairing the parts quietly costing an employer its people. Same
+    behavioral basis as the resident work, pointed at the organization instead of the person.</p>
+  <p>For a town it is what holds up the local fill rate and the twelve month retention. Placing
+    somebody is the easy number to report. Keeping them is what that number is actually
+    measuring.</p>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
   <p class="eyebrow">The deliverable</p>
   <h2>What a town gets</h2>
   <div class="rule"></div>
