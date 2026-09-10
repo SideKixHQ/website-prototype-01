@@ -496,9 +496,9 @@ MAIN = f"""<main id="maincontent" class="hg">
       decide whether any of the rest holds.</li>
     <li><b>Leadership.</b> Running a shift, running a team, or running your own thing.</li>
   </ul>
-  <p>Those five are what gets taught. They are not what gets reported, because you cannot audit a
-    topic. What gets reported is five behaviors, each one something a manager or an advisor can
-    watch a person do.</p>
+  <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
+    was taught leadership, only whether they have started doing what a leader does. So the report
+    scores five behaviors, each one visible to a manager or an advisor.</p>
 
   <figure>
     <div class="dwrap">{GROWTH_SVG}</div>
