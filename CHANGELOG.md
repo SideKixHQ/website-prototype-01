@@ -11,6 +11,50 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### Homegrown scores named competencies, and the caveat says something
+
+The five things the program scores were plain-language coinages, self starting,
+opportunity spotting, obstacle anticipation, asking, follow through. They now
+carry the competency names an L and D reader will recognise: action oriented,
+resourcefulness, plans and aligns, courage, ensures accountability. Each still
+sits beside a plain observable in the list underneath, so the label carries
+weight with an evaluator and the sentence next to it carries meaning for
+everyone else.
+
+Worth recording, since it constrains what the page can say: the Leadership
+Architect framework these names come from is Korn Ferry intellectual property,
+descended from Lominger, licensed rather than public. The words themselves are
+ordinary English and most predate the framework, so using them is fine. Naming
+Lominger or Korn Ferry on the page, reproducing their definitions, or presenting
+this as their instrument would not be, absent a licence. The page therefore uses
+the terminology and defines it in SideKix's own words, and attributes nothing.
+
+"Teaching people things does not work" is the line the argument turns on and was
+set like any other heading. It now carries a gold marker that sits as a thin
+underline at rest and sweeps up into a full highlight on hover. Rest state
+matters more than the hover here: it is what a screenshot and a phone get, since
+touch never hovers, so devices reporting `hover: none` are given the full
+highlight outright and reduced-motion drops the transition.
+
+The caveat about the trial was unreadable. It opened "Said plainly, because
+someone should ask", named Lome, which means nothing to a reader who was never
+told the trial was in Togo, and referred to "that trial" when the tile above had
+not said where it ran. The tile now says West Africa and the caveat is four
+plain sentences. It stays on the page: the thirty and fifty two per cent figures
+are the strongest claim here, the audience includes people who will look the
+study up, and quoting the gains while dropping the limits is the kind of thing
+that ends a procurement conversation.
+
+What a town gets now includes platform access for everybody in the cohort: the
+community, the resource library, the self discoveries, events, training and AI
+guidance. The eight weeks end and that does not, which is the answer to what
+happens in month five.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile` and `contrast3` clean, including the
+cream heading over the new marker. No console errors. The longest competency
+label, ensures accountability, measures 176px inside a 305px zone, so nothing
+overflows the diagram.
+
 ### Homegrown rewritten: shorter, specific, and finally in alignment
 
 The page said what it did in the abstract and buried the part that is actually

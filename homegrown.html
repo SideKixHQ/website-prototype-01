@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-10 20:00:55 homegrown -->
+<!-- kx-build 2026-09-10 20:10:46 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1160,6 +1160,16 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .rule{height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,86,.42),transparent);
   margin:0 0 34px}
 
+/* The line the page turns on. A gold marker sits under it at rest so it still
+   reads as emphasis in a screenshot or on a phone, and sweeps up into a full
+   highlight on hover. Touch devices, which never hover, get the full state. */
+.hg .punch{display:inline;background-image:linear-gradient(90deg,rgba(212,168,86,.34),rgba(212,168,86,.34));
+  background-repeat:no-repeat;background-size:100% 10%;background-position:0 93%;
+  transition:background-size .55s cubic-bezier(.22,.61,.36,1)}
+.hg h2:hover .punch,.hg .punch:hover,.hg h2:focus-within .punch{background-size:100% 46%}
+@media (hover:none){.hg .punch{background-size:100% 46%}}
+@media (prefers-reduced-motion:reduce){.hg .punch{transition:none}}
+
 /* stat row */
 .hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:32px 0 8px}
 .hg .stat{border:1px solid rgba(212,168,86,.28);border-radius:14px;padding:22px 20px;
@@ -1596,7 +1606,7 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
 <section>
  <div class="hgwrap">
   <p class="eyebrow">What we do</p>
-  <h2>Five areas of work. Five behaviors we score.</h2>
+  <h2>Five areas of work. Five competencies we score.</h2>
   <div class="rule"></div>
   <p class="lead">A resident spends eight weeks on five things. Every exercise runs on their own
     situation, never a case study, and a facilitator runs the room.</p>
@@ -1611,34 +1621,35 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
   </ul>
   <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
     was taught leadership, only whether they have started doing what a leader does. So the report
-    scores five behaviors, each one visible to a manager or an advisor.</p>
+    scores five competencies, each one visible to a manager or an advisor.</p>
 
   <figure>
     <div class="dwrap"><svg viewBox="0 0 1000 470" role="img" aria-labelledby="hgd3t hgd3d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd3t">What the program is built to move</title>
-<desc id="hgd3d">Five behaviors down the side: self starting, opportunity spotting, obstacle
-anticipation, asking, and follow through. The same four stages across the top: weeks one to two
+<desc id="hgd3d">Five competencies down the side: action oriented, resourcefulness, plans and
+aligns, courage, and ensures accountability. The same four stages across the top: weeks one to two
 where each behavior is named, weeks three to five where it is practiced, weeks six to eight where
 it is applied, and the ninety days after, where it becomes habitual. Each bar grows across the row.
 This is the design of the program rather than a plot of measured results.</desc>
 <rect x="330" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="400" y="46" text-anchor="middle" fill="#CDAA63">Weeks 1 to 2</text><text class="d-sub" x="400" y="68" text-anchor="middle">named</text><rect x="500" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="570" y="46" text-anchor="middle" fill="#CDAA63">Weeks 3 to 5</text><text class="d-sub" x="570" y="68" text-anchor="middle">practiced</text><rect x="670" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="740" y="46" text-anchor="middle" fill="#CDAA63">Weeks 6 to 8</text><text class="d-sub" x="740" y="68" text-anchor="middle">applied</text><rect x="840" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="910" y="46" text-anchor="middle" fill="#CDAA63">+ 90 days</text><text class="d-sub" x="910" y="68" text-anchor="middle">habitual</text>
-<text class="d-note" x="305" y="46" text-anchor="end">The behavior</text>
-<text class="d-row" x="305" y="134" text-anchor="end">Self starting</text><rect x="330" y="123.5" width="140" height="13" rx="6.5" fill="#F0855A" fill-opacity=".17"/><rect x="500" y="121.0" width="140" height="18" rx="9.0" fill="#F0855A" fill-opacity=".38"/><rect x="670" y="118.0" width="140" height="24" rx="12.0" fill="#F0855A" fill-opacity=".64"/><rect x="840" y="115.0" width="140" height="30" rx="15.0" fill="#F0855A" fill-opacity=".96"/><path d="M0,162 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="199" text-anchor="end">Opportunity spotting</text><rect x="330" y="188.5" width="140" height="13" rx="6.5" fill="#FFE7A6" fill-opacity=".17"/><rect x="500" y="186.0" width="140" height="18" rx="9.0" fill="#FFE7A6" fill-opacity=".38"/><rect x="670" y="183.0" width="140" height="24" rx="12.0" fill="#FFE7A6" fill-opacity=".64"/><rect x="840" y="180.0" width="140" height="30" rx="15.0" fill="#FFE7A6" fill-opacity=".96"/><path d="M0,227 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="264" text-anchor="end">Obstacle anticipation</text><rect x="330" y="253.5" width="140" height="13" rx="6.5" fill="#5FB6A6" fill-opacity=".17"/><rect x="500" y="251.0" width="140" height="18" rx="9.0" fill="#5FB6A6" fill-opacity=".38"/><rect x="670" y="248.0" width="140" height="24" rx="12.0" fill="#5FB6A6" fill-opacity=".64"/><rect x="840" y="245.0" width="140" height="30" rx="15.0" fill="#5FB6A6" fill-opacity=".96"/><path d="M0,292 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="329" text-anchor="end">Asking</text><rect x="330" y="318.5" width="140" height="13" rx="6.5" fill="#4FC3F7" fill-opacity=".17"/><rect x="500" y="316.0" width="140" height="18" rx="9.0" fill="#4FC3F7" fill-opacity=".38"/><rect x="670" y="313.0" width="140" height="24" rx="12.0" fill="#4FC3F7" fill-opacity=".64"/><rect x="840" y="310.0" width="140" height="30" rx="15.0" fill="#4FC3F7" fill-opacity=".96"/><path d="M0,357 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="394" text-anchor="end">Follow through</text><rect x="330" y="383.5" width="140" height="13" rx="6.5" fill="#B18BE4" fill-opacity=".17"/><rect x="500" y="381.0" width="140" height="18" rx="9.0" fill="#B18BE4" fill-opacity=".38"/><rect x="670" y="378.0" width="140" height="24" rx="12.0" fill="#B18BE4" fill-opacity=".64"/><rect x="840" y="375.0" width="140" height="30" rx="15.0" fill="#B18BE4" fill-opacity=".96"/>
+<text class="d-note" x="305" y="46" text-anchor="end">The competency</text>
+<text class="d-row" x="305" y="134" text-anchor="end">Action oriented</text><rect x="330" y="123.5" width="140" height="13" rx="6.5" fill="#F0855A" fill-opacity=".17"/><rect x="500" y="121.0" width="140" height="18" rx="9.0" fill="#F0855A" fill-opacity=".38"/><rect x="670" y="118.0" width="140" height="24" rx="12.0" fill="#F0855A" fill-opacity=".64"/><rect x="840" y="115.0" width="140" height="30" rx="15.0" fill="#F0855A" fill-opacity=".96"/><path d="M0,162 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="199" text-anchor="end">Resourcefulness</text><rect x="330" y="188.5" width="140" height="13" rx="6.5" fill="#FFE7A6" fill-opacity=".17"/><rect x="500" y="186.0" width="140" height="18" rx="9.0" fill="#FFE7A6" fill-opacity=".38"/><rect x="670" y="183.0" width="140" height="24" rx="12.0" fill="#FFE7A6" fill-opacity=".64"/><rect x="840" y="180.0" width="140" height="30" rx="15.0" fill="#FFE7A6" fill-opacity=".96"/><path d="M0,227 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="264" text-anchor="end">Plans and aligns</text><rect x="330" y="253.5" width="140" height="13" rx="6.5" fill="#5FB6A6" fill-opacity=".17"/><rect x="500" y="251.0" width="140" height="18" rx="9.0" fill="#5FB6A6" fill-opacity=".38"/><rect x="670" y="248.0" width="140" height="24" rx="12.0" fill="#5FB6A6" fill-opacity=".64"/><rect x="840" y="245.0" width="140" height="30" rx="15.0" fill="#5FB6A6" fill-opacity=".96"/><path d="M0,292 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="329" text-anchor="end">Courage</text><rect x="330" y="318.5" width="140" height="13" rx="6.5" fill="#4FC3F7" fill-opacity=".17"/><rect x="500" y="316.0" width="140" height="18" rx="9.0" fill="#4FC3F7" fill-opacity=".38"/><rect x="670" y="313.0" width="140" height="24" rx="12.0" fill="#4FC3F7" fill-opacity=".64"/><rect x="840" y="310.0" width="140" height="30" rx="15.0" fill="#4FC3F7" fill-opacity=".96"/><path d="M0,357 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="394" text-anchor="end">Ensures accountability</text><rect x="330" y="383.5" width="140" height="13" rx="6.5" fill="#B18BE4" fill-opacity=".17"/><rect x="500" y="381.0" width="140" height="18" rx="9.0" fill="#B18BE4" fill-opacity=".38"/><rect x="670" y="378.0" width="140" height="24" rx="12.0" fill="#B18BE4" fill-opacity=".64"/><rect x="840" y="375.0" width="140" height="30" rx="15.0" fill="#B18BE4" fill-opacity=".96"/>
 <text class="d-sub" x="500" y="446" text-anchor="middle">Every one of them scored as observable behavior, at baseline in week one and again at day 180.</text>
 </svg></div>
     <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
-    <figcaption>Where each behavior is meant to have reached by each stage. This is the design of
+    <figcaption>Where each competency is meant to have reached by each stage. This is the design of
       the program, not a plot of results, and it is what the week one baseline and the day 180
       check are scored against.</figcaption>
   </figure>
 
   <ul class="plain">
-    <li><b>Self starting.</b> Acts before being asked to.</li>
-    <li><b>Opportunity spotting.</b> Names an opening nobody pointed out.</li>
-    <li><b>Obstacle anticipation.</b> Plans for what goes wrong before it does.</li>
-    <li><b>Asking.</b> Makes the request out loud, of a manager, a lender or a stranger.</li>
-    <li><b>Follow through.</b> Still doing it ninety days after the room emptied.</li>
+    <li><b>Action oriented.</b> Takes on the tough job without waiting to be told to.</li>
+    <li><b>Resourcefulness.</b> Finds the opening nobody pointed out, and the way to it.</li>
+    <li><b>Plans and aligns.</b> Plans for what goes wrong before it goes wrong.</li>
+    <li><b>Courage.</b> Says the difficult thing. Makes the ask, of a manager, a lender or a
+      stranger.</li>
+    <li><b>Ensures accountability.</b> Still doing it ninety days after the room emptied.</li>
   </ul>
  </div>
 </section>
@@ -1646,22 +1657,22 @@ This is the design of the program rather than a plot of measured results.</desc>
 <section>
  <div class="hgwrap">
   <p class="eyebrow">Why behavior</p>
-  <h2>Teaching people things does not work</h2>
+  <h2><span class="punch">Teaching people things does not work</span></h2>
   <div class="rule"></div>
   <p>This is one of the few corners of workforce development where the evidence is clean, and it
     says the same thing every time. Content fades. Behavior compounds.</p>
   <div class="stats">
     <div class="stat"><b>10 to 15%</b><span>How much of ordinary training ever shows up in
       somebody&#8217;s work. Most of the rest is gone within a week.</span></div>
-    <div class="stat"><b>11%</b><span>Profit change from conventional business training in a
-      controlled trial of 1,500 owners. Not statistically significant.</span></div>
+    <div class="stat"><b>11%</b><span>Profit change from conventional business training, in a
+      controlled trial of 1,500 owners in West Africa. Not statistically significant.</span></div>
     <div class="stat"><b>30%</b><span>Same hours, same mentoring, behavior based instead. Fifty two
       per cent by year seven, and it paid for itself inside one.</span></div>
   </div>
-  <p style="margin-top:26px">Said plainly, because someone should ask: that trial ran in Lom&#233;,
-    not a Carolina metro, and at seven years the gains sat mostly with the men in it. It is the
-    best evidence there is for this method. It is not proof of what happens here. Finding that out
-    is what the first cohorts are for.</p>
+  <p style="margin-top:26px">One caveat, up front rather than buried. That trial ran with small
+    business owners in West Africa, not a Carolina metro, and by year seven the gains were much
+    stronger for the men in it. It is the best evidence this method has, and it is not proof of
+    what happens here. That is what the first cohorts are for.</p>
  </div>
 </section>
 
@@ -1789,6 +1800,10 @@ exits: advance, switch, credential, or own it.</desc>
       lived in the county.</li>
     <li><b>The handoffs, tracked.</b> Referred to the college, and separately, actually enrolled.</li>
     <li><b>A facilitator.</b> A person in a room, not a video library with a progress bar.</li>
+    <li><b>The SideKix platform, for everybody in the cohort.</b> The community, the resource
+      library, the self discoveries, live events, training, and AI guidance from Kix. The eight
+      weeks end. This does not, which is how somebody gets help with the thing that hits them in
+      month five.</li>
   </ul>
  </div>
 </section>

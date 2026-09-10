@@ -111,6 +111,16 @@ CSS = """
 .hg .rule{height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,86,.42),transparent);
   margin:0 0 34px}
 
+/* The line the page turns on. A gold marker sits under it at rest so it still
+   reads as emphasis in a screenshot or on a phone, and sweeps up into a full
+   highlight on hover. Touch devices, which never hover, get the full state. */
+.hg .punch{display:inline;background-image:linear-gradient(90deg,rgba(212,168,86,.34),rgba(212,168,86,.34));
+  background-repeat:no-repeat;background-size:100% 10%;background-position:0 93%;
+  transition:background-size .55s cubic-bezier(.22,.61,.36,1)}
+.hg h2:hover .punch,.hg .punch:hover,.hg h2:focus-within .punch{background-size:100% 46%}
+@media (hover:none){.hg .punch{background-size:100% 46%}}
+@media (prefers-reduced-motion:reduce){.hg .punch{transition:none}}
+
 /* stat row */
 .hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:32px 0 8px}
 .hg .stat{border:1px solid rgba(212,168,86,.28);border-radius:14px;padding:22px 20px;
@@ -350,11 +360,11 @@ exits: advance, switch, credential, or own it.</desc>
 # a bar that grows as the behavior goes from named to habitual. It is the
 # design of the program, not a plot of results, and the caption says so.
 COMP = [
- ("Self starting",          "#F0855A", "acts before being asked to"),
- ("Opportunity spotting",   "#FFE7A6", "names an opening nobody pointed out"),
- ("Obstacle anticipation",  "#5FB6A6", "plans for what goes wrong first"),
- ("Asking",                 "#4FC3F7", "makes the request out loud"),
- ("Follow through",         "#B18BE4", "still doing it ninety days on"),
+ ("Action oriented",        "#F0855A", "takes the challenge on without waiting to be told"),
+ ("Resourcefulness",        "#FFE7A6", "finds the opening, and the way to it"),
+ ("Plans and aligns",       "#5FB6A6", "plans for what goes wrong before it does"),
+ ("Courage",                "#4FC3F7", "says the difficult thing, makes the ask"),
+ ("Ensures accountability", "#B18BE4", "still doing it ninety days on"),
 ]
 STAGE = [("Weeks 1 to 2", "named"), ("Weeks 3 to 5", "practiced"),
          ("Weeks 6 to 8", "applied"), ("+ 90 days", "habitual")]
@@ -390,13 +400,13 @@ def _grow_cols():
 GROWTH_SVG = f"""<svg viewBox="0 0 1000 470" role="img" aria-labelledby="hgd3t hgd3d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd3t">What the program is built to move</title>
-<desc id="hgd3d">Five behaviors down the side: self starting, opportunity spotting, obstacle
-anticipation, asking, and follow through. The same four stages across the top: weeks one to two
+<desc id="hgd3d">Five competencies down the side: action oriented, resourcefulness, plans and
+aligns, courage, and ensures accountability. The same four stages across the top: weeks one to two
 where each behavior is named, weeks three to five where it is practiced, weeks six to eight where
 it is applied, and the ninety days after, where it becomes habitual. Each bar grows across the row.
 This is the design of the program rather than a plot of measured results.</desc>
 {_grow_cols()}
-<text class="d-note" x="305" y="46" text-anchor="end">The behavior</text>
+<text class="d-note" x="305" y="46" text-anchor="end">The competency</text>
 {_grow_rows()}
 <text class="d-sub" x="500" y="446" text-anchor="middle">Every one of them scored as observable behavior, at baseline in week one and again at day 180.</text>
 </svg>"""
@@ -483,7 +493,7 @@ MAIN = f"""<main id="maincontent" class="hg">
 <section>
  <div class="hgwrap">
   <p class="eyebrow">What we do</p>
-  <h2>Five areas of work. Five behaviors we score.</h2>
+  <h2>Five areas of work. Five competencies we score.</h2>
   <div class="rule"></div>
   <p class="lead">A resident spends eight weeks on five things. Every exercise runs on their own
     situation, never a case study, and a facilitator runs the room.</p>
@@ -498,22 +508,23 @@ MAIN = f"""<main id="maincontent" class="hg">
   </ul>
   <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
     was taught leadership, only whether they have started doing what a leader does. So the report
-    scores five behaviors, each one visible to a manager or an advisor.</p>
+    scores five competencies, each one visible to a manager or an advisor.</p>
 
   <figure>
     <div class="dwrap">{GROWTH_SVG}</div>
     <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
-    <figcaption>Where each behavior is meant to have reached by each stage. This is the design of
+    <figcaption>Where each competency is meant to have reached by each stage. This is the design of
       the program, not a plot of results, and it is what the week one baseline and the day 180
       check are scored against.</figcaption>
   </figure>
 
   <ul class="plain">
-    <li><b>Self starting.</b> Acts before being asked to.</li>
-    <li><b>Opportunity spotting.</b> Names an opening nobody pointed out.</li>
-    <li><b>Obstacle anticipation.</b> Plans for what goes wrong before it does.</li>
-    <li><b>Asking.</b> Makes the request out loud, of a manager, a lender or a stranger.</li>
-    <li><b>Follow through.</b> Still doing it ninety days after the room emptied.</li>
+    <li><b>Action oriented.</b> Takes on the tough job without waiting to be told to.</li>
+    <li><b>Resourcefulness.</b> Finds the opening nobody pointed out, and the way to it.</li>
+    <li><b>Plans and aligns.</b> Plans for what goes wrong before it goes wrong.</li>
+    <li><b>Courage.</b> Says the difficult thing. Makes the ask, of a manager, a lender or a
+      stranger.</li>
+    <li><b>Ensures accountability.</b> Still doing it ninety days after the room emptied.</li>
   </ul>
  </div>
 </section>
@@ -521,22 +532,22 @@ MAIN = f"""<main id="maincontent" class="hg">
 <section>
  <div class="hgwrap">
   <p class="eyebrow">Why behavior</p>
-  <h2>Teaching people things does not work</h2>
+  <h2><span class="punch">Teaching people things does not work</span></h2>
   <div class="rule"></div>
   <p>This is one of the few corners of workforce development where the evidence is clean, and it
     says the same thing every time. Content fades. Behavior compounds.</p>
   <div class="stats">
     <div class="stat"><b>10 to 15%</b><span>How much of ordinary training ever shows up in
       somebody&#8217;s work. Most of the rest is gone within a week.</span></div>
-    <div class="stat"><b>11%</b><span>Profit change from conventional business training in a
-      controlled trial of 1,500 owners. Not statistically significant.</span></div>
+    <div class="stat"><b>11%</b><span>Profit change from conventional business training, in a
+      controlled trial of 1,500 owners in West Africa. Not statistically significant.</span></div>
     <div class="stat"><b>30%</b><span>Same hours, same mentoring, behavior based instead. Fifty two
       per cent by year seven, and it paid for itself inside one.</span></div>
   </div>
-  <p style="margin-top:26px">Said plainly, because someone should ask: that trial ran in Lom&#233;,
-    not a Carolina metro, and at seven years the gains sat mostly with the men in it. It is the
-    best evidence there is for this method. It is not proof of what happens here. Finding that out
-    is what the first cohorts are for.</p>
+  <p style="margin-top:26px">One caveat, up front rather than buried. That trial ran with small
+    business owners in West Africa, not a Carolina metro, and by year seven the gains were much
+    stronger for the men in it. It is the best evidence this method has, and it is not proof of
+    what happens here. That is what the first cohorts are for.</p>
  </div>
 </section>
 
@@ -647,6 +658,10 @@ MAIN = f"""<main id="maincontent" class="hg">
       lived in the county.</li>
     <li><b>The handoffs, tracked.</b> Referred to the college, and separately, actually enrolled.</li>
     <li><b>A facilitator.</b> A person in a room, not a video library with a progress bar.</li>
+    <li><b>The SideKix platform, for everybody in the cohort.</b> The community, the resource
+      library, the self discoveries, live events, training, and AI guidance from Kix. The eight
+      weeks end. This does not, which is how somebody gets help with the thing that hits them in
+      month five.</li>
   </ul>
  </div>
 </section>
