@@ -21,6 +21,7 @@ PRIORITY = {
  "business-idea-where-to-start.html": "0.9",
  "what-business-should-i-start.html": "0.9",
  "discoveries.html": "0.9",
+ "homegrown.html": "0.9",
  "start-a-business-in-north-carolina.html": "0.9",
  "terms.html": "0.3", "privacy.html": "0.3", "cookies.html": "0.3",
 }

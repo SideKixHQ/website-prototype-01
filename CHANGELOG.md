@@ -11,6 +11,53 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### SideKix Homegrown, an offering page for towns and counties
+
+Two economic development directors, for Wilmington and for Leland, asked for
+help with career development. `homegrown.html` is the offering that answers
+that ask, and it is the first page on the site written to be sold rather than
+read.
+
+The argument it makes is that the three things an economic development office
+is asked for, attracting business, growing the industries already here and
+getting residents into the work, are one problem rather than three, and that
+the missing asset is a named, tracked bench of local residents. The program
+underneath it, Next Move, is eight weeks plus ninety days of follow through,
+built on personal initiative rather than curriculum, with four exits so that a
+credential handoff to the community college counts as a success rather than a
+loss.
+
+Two diagrams carry the argument, because the page also has to work projected in
+a meeting. Both are inline SVG on the site palette, and both have a download
+control that rasterises them at 2x onto the dark ground for use in a deck. The
+export injects its own copy of the type rules, since a serialised SVG does not
+carry the page stylesheet with it.
+
+Every figure on the page is sourced, with the date checked, in the last section.
+One claim about the share of US businesses with no employees was cut rather than
+shipped, because the SBA Advocacy source could not be reached to verify the
+exact figure and the page promises that every number is listed. The Togo trial
+that the method leans on is quoted with its limits stated on the page, including
+that the seven-year gains were concentrated among men, on the view that an
+evaluator will find that out anyway and it is better to say it first.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile`, `navclear` and `contrast3` all clean
+for the page. No console or page errors. No horizontal overflow at 390px. Both
+download controls produce PNGs, 1800x1040 and 1960x820. Three things were fixed
+during the build rather than shipped: the title and meta description were over
+the SEO audit's limits; the first section carried the section rhythm on top of
+the 132px of top padding the shell already gives it, which double-spaced the
+page under the hero, and every other page on the site sets that margin to zero;
+and the colour fallback on the exit card tags was `--gold-mid`, which measures
+3.55:1 on the card fill against the 4.5 needed. The rendered tags were never
+affected, since they carry their own colour, but the fallback is now `#CDAA63`
+at 5.69:1.
+
+`sitemap.xml` and `llms.txt` carry the page. The sitemap entry was added by
+hand rather than by rerunning `build/mksitemap.py`, which wanted to add four
+unrelated transactional pages and rewrite every `lastmod` from checkout
+timestamps.
+
 ### The self test was failing on three assertions that the code had outgrown
 
 `selftest.py` returned 48 passed, 5 failed. Three of the failures were the
