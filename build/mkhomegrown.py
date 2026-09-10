@@ -76,8 +76,10 @@ CSS = """
   line-height:1.05;color:#FFF8E8;margin:14px auto 0;max-width:17ch;letter-spacing:-.01em}
 .hg .hgdek{font-size:clamp(16px,1.9vw,18.5px);line-height:1.66;color:#B9B4AB;
   margin:24px auto 0;max-width:60ch}
+/* .hg p caps every paragraph at 68ch; without auto margins this one sits left of
+   centre inside the centred hero instead of under it */
 .hg .hgstamp{font-family:var(--util);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold-mid);margin-top:30px}
+  color:var(--gold-mid);margin:30px auto 0;max-width:60ch}
 
 /* section furniture */
 .hg section{margin:clamp(52px,7vw,86px) 0 0}
