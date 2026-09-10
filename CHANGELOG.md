@@ -53,6 +53,24 @@ and the colour fallback on the exit card tags was `--gold-mid`, which measures
 affected, since they carry their own colour, but the fallback is now `#CDAA63`
 at 5.69:1.
 
+The diagram export embeds the fonts. A serialised SVG in a data URI cannot
+reach `assets/fonts.css`, so the first version of the export rasterised on
+system fallbacks. It now reads the faces the page already loaded out of the
+CSSOM, fetches the basic-latin subsets and inlines them as data URIs, with any
+failure falling back to the previous behaviour. Two things had to be corrected
+to make it work: browsers serialise that subset's range as `U+0-FF` rather than
+`U+0000-00FF`, and the weights asked for did not match the weights the diagrams
+actually use.
+
+Doing that surfaced a separate, pre-existing bug that is worth fixing on its
+own. Every `@font-face` for Poppins and EA Majer in `assets/fonts.css` has a
+malformed `src`, `url(""Poppins"-ec1e9eca.ttf")`, with the family name
+interpolated into the filename and its quotes left in. No matching file exists
+in `assets/` either. `document.fonts` holds no Poppins entry on `index.html`
+any more than on this page, so the body font across the whole site is silently
+falling back to `system-ui`. Not touched here, because it affects every page and
+is not this change's to make.
+
 `sitemap.xml` and `llms.txt` carry the page. The sitemap entry was added by
 hand rather than by rerunning `build/mksitemap.py`, which wanted to add four
 unrelated transactional pages and rewrite every `lastmod` from checkout

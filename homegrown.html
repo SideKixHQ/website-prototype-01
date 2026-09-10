@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-10 18:57:23 homegrown -->
+<!-- kx-build 2026-09-10 19:03:50 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -2564,16 +2564,77 @@ var HGCSS = [
  'letter-spacing:.16em;text-transform:uppercase;fill:#CDAA63}'
 ].join('');
 
-function hgExport(svg, name){
+// A serialised SVG in a data: URI cannot reach assets/fonts.css, so an export
+// would fall back to system fonts. Read the faces the page already loaded, and
+// inline the basic-latin subsets as data URIs. Everything here is best effort:
+// any failure returns '' and the export proceeds on the fallback stacks.
+var HGFONTS = null;
+var WANT = { 'Cormorant Garamond': [600], 'Poppins': [400], 'Space Grotesk': [400, 500] };
+
+function hgFaceRules(){
+  var out = [];
+  for (var i = 0; i < document.styleSheets.length; i++){
+    var rules;
+    try { rules = document.styleSheets[i].cssRules; } catch (e) { continue; }
+    if (!rules) continue;
+    for (var j = 0; j < rules.length; j++){
+      var r = rules[j];
+      if (r.type !== 5) continue;                       // CSSFontFaceRule
+      var fam = (r.style.getPropertyValue('font-family') || '').replace(/['"]/g, '').trim();
+      if (!WANT[fam]) continue;
+      var wt = parseInt(r.style.getPropertyValue('font-weight'), 10) || 400;
+      if (WANT[fam].indexOf(wt) === -1) continue;
+      if ((r.style.getPropertyValue('font-style') || 'normal').trim() !== 'normal') continue;
+      var range = r.style.getPropertyValue('unicode-range') || '';
+      // basic latin only; the diagrams carry nothing outside it
+      var flat = range.toUpperCase().replace(/\s+/g, '');
+      if (range && flat.indexOf('U+0-FF') === -1 && flat.indexOf('U+0000-00FF') === -1) continue;
+      var src = r.style.getPropertyValue('src') || '';
+      var m = src.match(/url\(\s*["']?([^"')]+)["']?\s*\)/);
+      if (!m) continue;
+      out.push({ fam: fam, wt: wt, url: new URL(m[1], document.styleSheets[i].href || location.href).href });
+    }
+  }
+  return out;
+}
+
+function hgFontCSS(){
+  if (HGFONTS !== null) { return Promise.resolve(HGFONTS); }
+  var faces = hgFaceRules();
+  if (!faces.length || !window.fetch || !window.Promise) { HGFONTS = ''; return Promise.resolve(''); }
+  var jobs = faces.map(function(f){
+    return fetch(f.url).then(function(res){
+      if (!res.ok) { throw new Error('font ' + res.status); }
+      return res.blob();
+    }).then(function(blob){
+      return new Promise(function(resolve, reject){
+        var fr = new FileReader();
+        fr.onload = function(){ resolve(fr.result); };
+        fr.onerror = reject;
+        fr.readAsDataURL(blob);
+      });
+    }).then(function(data){
+      return "@font-face{font-family:'" + f.fam + "';font-style:normal;font-weight:" + f.wt +
+             ";src:url(" + data + ") format('woff2');}";
+    }).catch(function(){ return ''; });
+  });
+  var bail = new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); });
+  return Promise.race([Promise.all(jobs), bail]).then(function(parts){
+    HGFONTS = parts ? parts.join('') : '';
+    return HGFONTS;
+  }).catch(function(){ HGFONTS = ''; return ''; });
+}
+
+function hgRaster(svg, name, fontCSS){
   var box = svg.viewBox.baseVal;
   var w = box && box.width ? box.width : svg.clientWidth;
   var h = box && box.height ? box.height : svg.clientHeight;
   var clone = svg.cloneNode(true);
-  clone.setAttribute('xmlns','http://www.w3.org/2000/svg');
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   clone.setAttribute('width', w);
   clone.setAttribute('height', h);
-  var st = document.createElementNS('http://www.w3.org/2000/svg','style');
-  st.appendChild(document.createTextNode(HGCSS));
+  var st = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+  st.appendChild(document.createTextNode((fontCSS || '') + HGCSS));
   clone.insertBefore(st, clone.firstChild);
 
   var markup = new XMLSerializer().serializeToString(clone);
@@ -2588,7 +2649,7 @@ function hgExport(svg, name){
     cx.fillRect(0, 0, cv.width, cv.height);
     cx.drawImage(img, 0, 0, cv.width, cv.height);
     cv.toBlob(function(blob){
-      if(!blob){ return; }
+      if (!blob) { return; }
       var a = document.createElement('a');
       var href = URL.createObjectURL(blob);
       a.href = href; a.download = 'sidekix-homegrown-' + name + '.png';
@@ -2609,14 +2670,16 @@ Array.prototype.forEach.call(document.querySelectorAll('.hg .dget'), function(bt
   btn.addEventListener('click', function(){
     var fig = btn.closest('figure');
     var svg = fig && fig.querySelector('svg');
-    if(!svg){ return; }
+    if (!svg) { return; }
     var label = btn.textContent;
     btn.textContent = 'Preparing\u2026';
     btn.disabled = true;
-    try{ hgExport(svg, btn.getAttribute('data-svg') || 'diagram'); }
-    finally{
-      setTimeout(function(){ btn.textContent = label; btn.disabled = false; }, 1400);
-    }
+    var done = function(){ btn.textContent = label; btn.disabled = false; };
+    hgFontCSS().then(function(css){
+      hgRaster(svg, btn.getAttribute('data-svg') || 'diagram', css);
+    }).catch(function(){
+      hgRaster(svg, btn.getAttribute('data-svg') || 'diagram', '');
+    }).then(function(){ setTimeout(done, 1200); }, function(){ setTimeout(done, 1200); });
   });
 });
 
