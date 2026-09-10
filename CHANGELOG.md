@@ -11,6 +11,46 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### Homegrown rewritten: shorter, specific, and finally in alignment
+
+The page said what it did in the abstract and buried the part that is actually
+distinctive. It now leads with the method. After the opening diagram the second
+section is "Five areas of work. Five behaviors we score.", which names the work
+in plain words, behavior, skills, career development, personal development and
+leadership, and then separates what gets taught from what gets reported. You
+cannot audit a topic. You can watch a person do a thing.
+
+The hero was rewritten. The old headline made a claim without saying what the
+program is; the new deck says it in three sentences and ends on the deliverable,
+a list of who is ready, for what, and by when.
+
+Length came down from 3,181 words to 2,476, and from 3,181 to 1,836 for what a
+reader actually faces, because the twelve sources and the five questions now sit
+inside collapsed `details` rather than running down the page. The evidence
+section lost four paragraphs of prose and became three figures, which is what
+anyone was going to take from it anyway.
+
+Two real alignment bugs, both mine.
+
+The page had three horizontal axes. The hero and the figure captions centred on
+620, the full width rows centred on 620, and the prose ran 84 to 831, centring
+on 457, because `.hg p` capped at 68ch with no auto margins. Everything in the
+reading column now shares one width, and the width is set in rem rather than ch:
+`ch` resolves against each element's own font, so an `h2` at 70ch was far wider
+than a `p` at 70ch and their left edges never lined up. Two bands now, 236 to
+1004 for text and 84 to 1156 for diagrams, stat rows, cards and the table, both
+centred on the same axis.
+
+The call to action block was a class collision. The shell defines `.cta` as an
+inline-block button; the section reused the name, inherited `display:inline-block`
+and shrink-wrapped to 891px against the 1072px it should have filled, sitting
+left of centre. Renamed to `.hgcta`. Namespacing by prefix rather than by
+out-specifying a shell rule is the fix.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile` and `contrast3` clean, no console
+errors, no horizontal overflow at 390px, and the reading column and the full
+width band both measured back to a common centre.
+
 ### Homegrown opens on the diagram, gains a growth model, and loses its dashes
 
 Three changes, all from review.

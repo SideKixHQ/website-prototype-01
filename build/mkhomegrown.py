@@ -81,6 +81,19 @@ CSS = """
 .hg .hgstamp{font-family:var(--util);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--gold-mid);margin:30px auto 0;max-width:60ch}
 
+/* One reading column, centred on the same axis as the hero and the diagrams.
+   Before this, prose sat left in a 68ch box whose centre landed 160px left of
+   everything else, which is what made the page look out of true. Diagrams,
+   stat rows, card grids and the table still run the full width. */
+.hg{--hgcol:48rem}
+.hg .hgwrap > .eyebrow,
+.hg .hgwrap > h2,
+.hg .hgwrap > h3,
+.hg .hgwrap > .rule,
+.hg .hgwrap > p,
+.hg .hgwrap > ul.plain,
+.hg .hgwrap > .callout{max-width:var(--hgcol);margin-left:auto;margin-right:auto}
+
 /* section furniture */
 .hg section{margin:clamp(52px,7vw,86px) 0 0}
 /* the shell already gives the first section 132px of top padding; adding the section
@@ -179,11 +192,11 @@ CSS = """
   color:#FFF3DC;margin:0}
 
 /* cta */
-.hg .cta{border:1px solid rgba(212,168,86,.36);border-radius:20px;padding:clamp(30px,5vw,52px);
+.hg .hgcta{border:1px solid rgba(212,168,86,.36);border-radius:20px;padding:clamp(30px,5vw,52px);
   text-align:center;background:radial-gradient(120% 140% at 50% 0%,rgba(34,26,10,.7),rgba(7,7,8,.92));
   margin-top:clamp(52px,7vw,86px)}
-.hg .cta h2{margin-bottom:12px}
-.hg .cta p{margin-left:auto;margin-right:auto;text-align:center}
+.hg .hgcta h2{margin-bottom:12px}
+.hg .hgcta p{margin-left:auto;margin-right:auto;text-align:center}
 .hg .btnrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
 .hg .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;
   border-radius:999px;text-decoration:none;font-family:var(--body);font-size:14.5px;font-weight:600;
@@ -447,11 +460,11 @@ MAIN = f"""<main id="maincontent" class="hg">
 <header class="hghero">
   <div class="hgwrap">
     <p class="eyebrow">SideKix Homegrown</p>
-    <h1>The jobs you attract should go to the people already here.</h1>
-    <p class="hgdek">Homegrown is a workforce program for towns and counties. It builds a named,
-      tracked bench of residents moving toward the work your target industries actually hire for,
-      so recruitment has a staffing answer, expansion has somewhere to draw from, and the growth
-      you win reaches the people who were already living there.</p>
+    <h1>The jobs you bring in should go to the people already here.</h1>
+    <p class="hgdek">Homegrown is an eight week program your town runs for its own residents. It
+      builds the five things that move a person into better work: behavior, skills, career
+      development, personal development and leadership. Ninety days later you get a list of who is
+      ready, for what, and by when.</p>
     <p class="hgstamp">For economic developers, workforce boards and chambers</p>
   </div>
 </header>
@@ -461,157 +474,40 @@ MAIN = f"""<main id="maincontent" class="hg">
   <figure>
     <div class="dwrap">{LOOP_SVG}</div>
     <div class="dbar"><button type="button" class="dget" data-svg="loop">Download this diagram</button></div>
-    <figcaption>Attracting business, growing the employers already here and getting residents hired
-      are usually run as three programs. They are one loop, and it only closes on the third. Break
-      that link and the jobs still arrive, the wages still do not move, and the case for the next
-      deal gets thinner every cycle. The bench in the middle is what holds it together.</figcaption>
+    <figcaption>Attracting business, growing the employers you have and getting residents hired are
+      usually run as three programs. They are one loop, and it only closes on the third.</figcaption>
   </figure>
  </div>
 </section>
 
 <section>
  <div class="hgwrap">
-  <p class="eyebrow">The case</p>
-  <h2>Three asks, one problem</h2>
+  <p class="eyebrow">What we do</p>
+  <h2>Five areas of work. Five behaviors we score.</h2>
   <div class="rule"></div>
-  <p class="lead">Most economic development offices are carrying three jobs at once. Attract
-    business. Grow the industries already here. Make sure residents can actually get the work.
-    They get funded separately, measured separately and discussed separately.</p>
-  <p>They are one problem, and the third one is where it breaks.</p>
-  <p>Workforce availability has been a leading factor in site selection for years running. Close to
-    six in ten manufacturers name talent shortages a top concern, and site consultants have stopped
-    asking only who lives here now. They ask what the pipeline looks like. Meanwhile the
-    growth that does land gets filled by people who move in. The residents who were already there
-    stay roughly where they were. And the next incentive package becomes a harder vote.</p>
-  <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal
-    to a council whose residents did not get hired.</p></div>
-  <p>Those are not two problems either. They are the same missing asset.</p>
-
-  <div class="stats">
-    <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
-      figure is $32.66.</span></div>
-    <div class="stat"><b>13.5%</b><span>Of metro employment is food preparation and serving, at
-      $14.99 an hour. The largest single occupational group.</span></div>
-    <div class="stat"><b>24%</b><span>Population growth in Brunswick County between 2020 and 2024.
-      The fastest in North Carolina.</span></div>
-    <div class="stat"><b>13,800</b><span>Jobs the Wilmington metro is projected to add by 2034.
-      Someone is going to fill them.</span></div>
-  </div>
- </div>
-</section>
-
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">The asset</p>
-  <h2>The thing nobody can hand a site consultant</h2>
-  <div class="rule"></div>
-  <p>Ask an economic development office for its workforce case and you get institutions. A community
-    college. A university. A career center. Real assets, every one of them, but they describe
-    <strong>capacity</strong>, not <strong>supply</strong>. A site consultant already assumes you have
-    a college.</p>
-  <p>What almost no region can produce is this:</p>
-  <div class="callout"><p>Here are 240 residents, assessed, moving toward these occupations, with
-    timelines, and a person accountable for each one.</p></div>
-  <p>That is a bench. It is not a training program and it is not a list of graduates. It is a live
-    roster you can put in front of a site consultant in March and again in June and have it mean
-    something different each time. Homegrown exists to produce it.</p>
- </div>
-</section>
-
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">The program</p>
-  <h2>Next Move</h2>
-  <div class="rule"></div>
-  <p>Homegrown is what the town buys. Next Move is what the resident does: eight weeks, then ninety
-    days of follow through. It is facilitated, it runs in cohorts, and every exercise operates on the
-    participant's real situation rather than a case study.</p>
-
-  <figure>
-    <div class="dwrap">{FLOW_SVG}</div>
-    <div class="dbar"><button type="button" class="dget" data-svg="flow">Download this diagram</button></div>
-    <figcaption>Eight weeks to a decision and a plan, then ninety days holding the person to it.
-      Four exits, because a program with only one acceptable outcome pushes people toward it whether
-      it fits them or not.</figcaption>
-  </figure>
-
-  <div style="margin-top:34px">
-  {_phrow('#F0855A', 'Weeks 1 to 2', 'Begin: where you actually are',
-    'A behavioral assessment, a career diagnostic and an honest read on the ground: current wage, '
-    'real skills, real constraints, and what this person actually wants. It ends in a one-page '
-    'profile they keep. Adults do not learn from a syllabus handed to them. They learn from their '
-    'own situation, examined properly.')}
-  {_phrow('#FFE7A6', 'Weeks 3 to 5', 'Build: initiative, not information',
-    'The core of the program and the part most training skips entirely. Proactivity. Spotting an '
-    'opening. Planning for the obstacle before it arrives. Starting without being told to. This is '
-    'competency work, run by a facilitator, against each participant&#8217;s live circumstances.')}
-  {_phrow('#5FB6A6', 'Weeks 6 to 8', 'Become: one move, chosen and planned',
-    'The participant picks a single next move and builds the ninety-day plan that makes it happen: '
-    'implementation intentions written down, an advisor session, and a commitment they sign. Vague '
-    'intent does not survive a Monday.')}
-  {_phrow('#B18BE4', '+ 90 days', 'Follow through: the part everyone skips',
-    'A weekly check-in and a monthly advisor touch for ninety days after the room empties. This is '
-    'where a program either produces a result or produces a certificate. People forget most of what '
-    'they hear inside a week, and the environment someone returns to shapes whether a new behavior '
-    'survives far more than the content ever did.')}
-  </div>
- </div>
-</section>
-
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">The exits</p>
-  <h2>Four ways out, and the college gets three of them</h2>
-  <div class="rule"></div>
-  <div class="cards">
-    {_card('#4FC3F7', 'Exit 01', 'Advance',
-     'A raise, a promotion or a step across, with the employer the person already has. The cheapest '
-     'good outcome available to a region, and the one nobody runs a program for.')}
-    {_card('#5FB6A6', 'Exit 02', 'Switch',
-     'Into a higher-wage occupation, usually inside a target industry. This is where the wage gap '
-     'actually closes.')}
-    {_card('#FFE7A6', 'Exit 03', 'Credential',
-     'Enrolled at the community college or through the career center, in the right program, for a '
-     'reason the person can articulate. Tracked to enrollment, not just to referral.')}
-    {_card('#B18BE4', 'Exit 04', 'Own it',
-     'Self-employment, where that is the honest answer. Most American small businesses have no '
-     'employees at all, so this is a normal destination and not a consolation prize.')}
-  </div>
-  <p style="margin-top:26px">Only one of those four is a new job with a new employer, and that is
-    deliberate.</p>
-  <p>It also settles the question every partner asks first. <strong>Homegrown does not teach a trade
-    and does not want to.</strong> When a resident needs a credential they are handed to the community
-    college or the career center, and Homegrown reports whether they enrolled, which is worth
-    real money to a college funded on enrollment. This is a feeder, not a competitor. That distinction
-    is the difference between a partner network and a turf fight.</p>
- </div>
-</section>
-
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">The method</p>
-  <h2>Why it is built on behavior, not curriculum</h2>
-  <div class="rule"></div>
-  <p>Because the curriculum version does not work, and this is one of the few corners of workforce
-    development where the evidence is unusually clean.</p>
-  <p>Across the research, something like <strong>ten to fifteen per cent</strong> of training
-    transfers to the job. People forget roughly seventy per cent of what they are told within a day.
-    The environment someone returns to shapes whether a new behavior survives more than the content
-    ever did.</p>
-  <p>So the thing being built is not knowledge. It is five behaviors, each one named, practiced
-    against the participant's real situation, and then held for ninety days until it is simply how
-    that person works.</p>
+  <p class="lead">A resident spends eight weeks on five things. Every exercise runs on their own
+    situation, never a case study, and a facilitator runs the room.</p>
+  <ul class="plain">
+    <li><b>Behavior.</b> How somebody acts when nobody is telling them what to do.</li>
+    <li><b>Skills.</b> The specific thing an employer here is hiring for.</li>
+    <li><b>Career development.</b> What the next rung is, what it pays, and how people actually
+      get onto it.</li>
+    <li><b>Personal development.</b> Money, confidence, transport, childcare. The things that
+      decide whether any of the rest holds.</li>
+    <li><b>Leadership.</b> Running a shift, running a team, or running your own thing.</li>
+  </ul>
+  <p>Those five are what gets taught. They are not what gets reported, because you cannot audit a
+    topic. What gets reported is five behaviors, each one something a manager or an advisor can
+    watch a person do.</p>
 
   <figure>
     <div class="dwrap">{GROWTH_SVG}</div>
     <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
-    <figcaption>What the eight weeks are built to move, and how far. This is the design of the
-      program, not a plot of results: the bars show where each behavior is meant to have reached by
-      each stage, which is also what the baseline and the day 180 check are scored against.</figcaption>
+    <figcaption>Where each behavior is meant to have reached by each stage. This is the design of
+      the program, not a plot of results, and it is what the week one baseline and the day 180
+      check are scored against.</figcaption>
   </figure>
 
-  <p>Naming them that precisely is what makes the program measurable. A town is not buying
-    attendance. It is buying a change in five things that can be observed by somebody else:</p>
   <ul class="plain">
     <li><b>Self starting.</b> Acts before being asked to.</li>
     <li><b>Opportunity spotting.</b> Names an opening nobody pointed out.</li>
@@ -619,22 +515,122 @@ MAIN = f"""<main id="maincontent" class="hg">
     <li><b>Asking.</b> Makes the request out loud, of a manager, a lender or a stranger.</li>
     <li><b>Follow through.</b> Still doing it ninety days after the room emptied.</li>
   </ul>
-  <p>The cleanest comparison anyone has run: fifteen hundred business owners in Togo were randomized
-    into three groups: a control, conventional business training, and psychology-based training
-    in personal initiative. Same hours, same mentoring afterwards. Conventional training moved profits
-    eleven per cent, which was not statistically significant. <strong>The initiative training moved
-    them thirty per cent at two years and fifty-two per cent at seven</strong>, and paid for itself
-    inside a year.</p>
-  <p>Worth saying plainly, because someone will ask and they should: those results come from
-    microenterprises in Lom&#233;, not a Carolina metro, and at seven years the gains were
-    concentrated among the men in the study. It is the strongest evidence available for this method.
-    It is not proof of what happens here. Measuring what happens here is what the first cohorts
-    are for.</p>
-  <p>The structure around the method has its own record. Sector-focused programs have four randomized
-    trials behind them, producing earnings gains of fourteen to thirty-eight per cent in the year after
-    training and still running at twelve to thirty-four per cent years later. What those programs share
-    is not a curriculum. It is cohorts, a real employer connection and genuine support around the
-    person. That is the shape of this.</p>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">Why behavior</p>
+  <h2>Teaching people things does not work</h2>
+  <div class="rule"></div>
+  <p>This is one of the few corners of workforce development where the evidence is clean, and it
+    says the same thing every time. Content fades. Behavior compounds.</p>
+  <div class="stats">
+    <div class="stat"><b>10 to 15%</b><span>How much of ordinary training ever shows up in
+      somebody&#8217;s work. Most of the rest is gone within a week.</span></div>
+    <div class="stat"><b>11%</b><span>Profit change from conventional business training in a
+      controlled trial of 1,500 owners. Not statistically significant.</span></div>
+    <div class="stat"><b>30%</b><span>Same hours, same mentoring, behavior based instead. Fifty two
+      per cent by year seven, and it paid for itself inside one.</span></div>
+  </div>
+  <p style="margin-top:26px">Said plainly, because someone should ask: that trial ran in Lom&#233;,
+    not a Carolina metro, and at seven years the gains sat mostly with the men in it. It is the
+    best evidence there is for this method. It is not proof of what happens here. Finding that out
+    is what the first cohorts are for.</p>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">The case</p>
+  <h2>Why a town pays for this</h2>
+  <div class="rule"></div>
+  <p>Wilmington does not have an unemployment problem. It has a low wage employment problem, and
+    the growth arriving next door is filling up with people who moved in.</p>
+  <div class="stats">
+    <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
+      figure is $32.66.</span></div>
+    <div class="stat"><b>13.5%</b><span>Of metro jobs are food preparation and serving, at $14.99 an
+      hour. The largest single group.</span></div>
+    <div class="stat"><b>24%</b><span>Population growth in Brunswick County from 2020 to 2024. The
+      fastest in North Carolina.</span></div>
+    <div class="stat"><b>13,800</b><span>Jobs the metro is projected to add by 2034. Somebody is
+      going to fill them.</span></div>
+  </div>
+  <p style="margin-top:26px">Site consultants stopped asking only who lives here now. They ask what
+    the pipeline looks like, and close to six in ten manufacturers name talent as a top concern. So
+    the staffing answer and the political answer turn out to be the same asset.</p>
+  <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal to
+    a council whose residents did not get hired.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">The asset</p>
+  <h2>What you can hand a site consultant</h2>
+  <div class="rule"></div>
+  <p>Ask an economic development office for its workforce case and you get institutions. A college,
+    a university, a career center. Real, but they describe capacity, not supply, and a consultant
+    already assumes you have a college.</p>
+  <div class="callout"><p>Here are 240 residents, assessed, moving toward these occupations, with
+    timelines, and a person accountable for each one.</p></div>
+  <p>That is a bench. Not a program, not a graduate list. A live roster that means something
+    different in June than it did in March.</p>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">The program</p>
+  <h2>Eight weeks, then ninety days</h2>
+  <div class="rule"></div>
+  <figure>
+    <div class="dwrap">{FLOW_SVG}</div>
+    <div class="dbar"><button type="button" class="dget" data-svg="flow">Download this diagram</button></div>
+    <figcaption>Eight weeks to a decision and a plan, then ninety days holding the person to it.</figcaption>
+  </figure>
+  <div style="margin-top:30px">
+  {_phrow('#F0855A', 'Weeks 1 to 2', 'Begin',
+    'An assessment, a career diagnostic and an honest read on the ground: what they earn now, what '
+    'they can actually do, what is in the way, and what they want. Out comes a one page profile '
+    'they keep.')}
+  {_phrow('#FFE7A6', 'Weeks 3 to 5', 'Build',
+    'The five areas of work, run against their real situation. This is the part ordinary training '
+    'skips, and it is the part that decides whether any of it survives contact with a Monday.')}
+  {_phrow('#5FB6A6', 'Weeks 6 to 8', 'Become',
+    'They pick one move and build the ninety day plan that makes it happen, with an advisor '
+    'session and a commitment they sign.')}
+  {_phrow('#B18BE4', '+ 90 days', 'Follow through',
+    'A weekly check in and a monthly advisor touch after the room empties. This is where a program '
+    'either produces a result or produces a certificate.')}
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">The exits</p>
+  <h2>Four ways out, and the college gets three</h2>
+  <div class="rule"></div>
+  <div class="cards">
+    {_card('#4FC3F7', 'Exit 01', 'Advance',
+     'A raise, a promotion or a step across, with the employer they already have. The cheapest good '
+     'outcome a town can buy, and nobody runs a program for it.')}
+    {_card('#5FB6A6', 'Exit 02', 'Switch',
+     'Into a higher wage occupation, usually inside a target industry. This is where the wage gap '
+     'actually closes.')}
+    {_card('#FFE7A6', 'Exit 03', 'Credential',
+     'Enrolled at the community college or through the career center, in the right program, for a '
+     'reason they can say out loud.')}
+    {_card('#B18BE4', 'Exit 04', 'Own it',
+     'Self employment, where that is the honest answer. Most American small businesses have no '
+     'employees at all.')}
+  </div>
+  <p style="margin-top:26px"><strong>Homegrown does not teach a trade and does not want to.</strong>
+    When somebody needs a credential they go to the college or the career center, and we report
+    whether they enrolled. A college funded on enrollment is better off for it. This is a feeder,
+    not a competitor.</p>
  </div>
 </section>
 
@@ -644,16 +640,13 @@ MAIN = f"""<main id="maincontent" class="hg">
   <h2>What a town gets</h2>
   <div class="rule"></div>
   <ul class="plain">
-    <li><b>A cohort.</b> Residents you nominate or we recruit alongside you, run through the eight
-      weeks and the ninety days that follow.</li>
-    <li><b>The bench report, quarterly.</b> Who is in motion, toward what, and how far along. Written
-      to be handed to a site consultant or dropped into an RFI response, not filed.</li>
-    <li><b>A local fill rate.</b> For the target employers you name, the share of new hires who
-      already lived in the county.</li>
-    <li><b>The handoffs, tracked.</b> Who was referred to the college or the career center, and who
-      actually enrolled.</li>
-    <li><b>A facilitator.</b> The program is run by a person in a room, not a video library with a
-      completion bar.</li>
+    <li><b>A cohort.</b> Residents you nominate or we recruit with you.</li>
+    <li><b>The bench report, quarterly.</b> Who is in motion, toward what, how far along. Written to
+      hand to a site consultant, not to file.</li>
+    <li><b>A local fill rate.</b> For the employers you name, the share of new hires who already
+      lived in the county.</li>
+    <li><b>The handoffs, tracked.</b> Referred to the college, and separately, actually enrolled.</li>
+    <li><b>A facilitator.</b> A person in a room, not a video library with a progress bar.</li>
   </ul>
  </div>
 </section>
@@ -663,23 +656,19 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The numbers</p>
   <h2>How it is measured</h2>
   <div class="rule"></div>
-  <p>Seat hours and satisfaction scores are not outcomes. These are, and they are set before the
-    first cohort starts rather than chosen afterwards to suit the result.</p>
+  <p>Set before the first cohort starts, not chosen afterwards to suit the result.</p>
   <table class="mtab">
     <thead><tr><th>Measure</th><th>What it is</th></tr></thead>
     <tbody>
-      <tr class="hero"><td>Local fill rate</td><td>The share of new hires at the target employers you
-        name who already lived in the county. The number that decides whether the next incentive
-        package survives a vote, and the one almost nobody reports.</td></tr>
-      <tr><td>Documented move</td><td>The share of participants who advance, switch, enroll or
-        register a business within 180 days.</td></tr>
-      <tr><td>Wage change</td><td>Taken at baseline in week one, verified at 180 days.</td></tr>
-      <tr><td>Completion</td><td>Target 70 per cent, deliberately the standard federally funded
-        short-term programs are now held to.</td></tr>
-      <tr><td>Handoff conversion</td><td>Referred to a college or career center, and enrolled. Two
-        different numbers, reported as two different numbers.</td></tr>
-      <tr><td>Twelve-month retention</td><td>Still living and working in the county a year on. The
-        economic development metric, as opposed to the placement metric.</td></tr>
+      <tr class="hero"><td>Local fill rate</td><td>Share of new hires at the employers you name who
+        already lived in the county. The number that decides the next council vote, and the one
+        almost nobody reports.</td></tr>
+      <tr><td>Documented move</td><td>Advanced, switched, enrolled or registered a business within
+        180 days.</td></tr>
+      <tr><td>Wage change</td><td>Baseline in week one, verified at day 180.</td></tr>
+      <tr><td>Completion</td><td>Target 70 per cent, the standard federally funded short programs
+        are held to.</td></tr>
+      <tr><td>Twelve month retention</td><td>Still living and working in the county a year on.</td></tr>
     </tbody>
   </table>
  </div>
@@ -690,27 +679,20 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The money</p>
   <h2>How it is paid for</h2>
   <div class="rule"></div>
-  <p>The question after &#8220;does it work&#8221; is always &#8220;which line does it come out
-    of&#8221;. Usually more than one:</p>
   <ul class="plain">
-    <li><b>Economic development discretionary budget.</b> The fastest route and the one an ED office
-      controls outright. Most first cohorts should start here.</li>
+    <li><b>Economic development budget.</b> Fastest, and the one an ED office controls outright.
+      Most first cohorts should start here.</li>
     <li><b>The workforce board.</b> Entrepreneurial skills training and microenterprise services are
-      allowable activities under federal workforce law, and boards are specifically directed to
-      coordinate workforce with economic development. Board procurement runs on its own annual cycle,
-      so treat this as a plan-ahead route rather than a fast one.</li>
-    <li><b>Sector partnership and employer engagement grants.</b> North Carolina has funded local
-      boards for precisely this kind of work, the Cape Fear board included.</li>
-    <li><b>Capital readiness funding</b>, where the self-employment exit is in scope.</li>
-    <li><b>Chambers and employers</b>, for the advancement track, where the employer keeps the
-      person, so the employer can carry part of the cost.</li>
+      allowable under federal workforce law. Board procurement runs on its own annual cycle, so plan
+      ahead rather than counting on it.</li>
+    <li><b>Sector partnership and employer engagement grants.</b> North Carolina funds local boards
+      for exactly this, the Cape Fear board included.</li>
+    <li><b>Chambers and employers</b>, for the advancement track, where the employer keeps the person.</li>
   </ul>
-  <p>One thing worth settling early rather than late. Federal training vouchers require a program
-    that leads to a recognized credential. <strong>Homegrown does not, by design</strong>. It is
-    the layer in front of the credential, not the credential itself. That keeps it off the state
-    eligible training provider list and outside voucher funding, and it keeps it fast to start and
-    free to change. If a town needs the voucher route specifically, that is a different build, and it
-    is better said before anyone budgets than after.</p>
+  <p>Worth settling early: federal training vouchers require a program that leads to a credential.
+    <strong>Homegrown does not, by design.</strong> It is the layer in front of the credential. That
+    keeps it off the state provider list and out of voucher money, and keeps it fast to start and
+    free to change.</p>
  </div>
 </section>
 
@@ -719,29 +701,19 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The first cohorts</p>
   <h2>Where it starts</h2>
   <div class="rule"></div>
-  <p>SideKix is in Wilmington, North Carolina, and the Cape Fear region is where the first cohorts
-    run.</p>
-  <p>The regional case is not abstract. The Wilmington metro&#8217;s mean wage runs about seventeen
-    per cent under the national figure, and its largest single occupational group is food preparation
-    and serving at just under fifteen dollars an hour. Next door, Brunswick County is the fastest
-    growing county in the state, up twenty-four per cent in four years, with Leland more than doubling
-    since 2010, a town adding residents considerably faster than it adds places for them to
-    work.</p>
-  <p>Two genuinely different problems. Wilmington needs people who already have jobs to move up.
-    Leland needs residents who can build a career without crossing the bridge every morning. Same
-    program, weighted differently, measured the same way.</p>
+  <p>SideKix is in Wilmington, and the Cape Fear region is where the first cohorts run. Two towns,
+    two different problems. Wilmington needs people who already have jobs to move up. Leland, which
+    has more than doubled since 2010, needs residents who can build a career without crossing the
+    bridge every morning. Same program, weighted differently, measured the same way.</p>
   <p><strong>Homegrown has not run yet.</strong> The first towns are design partners: they shape it,
-    they get founding terms, and their results are the evidence every town after them sees. That is a
-    better position than buying something finished, and it has the advantage of being true.</p>
+    they get founding terms, and their results are the evidence every town after them sees.</p>
  </div>
 </section>
 
 <div class="hgwrap">
- <div class="cta">
+ <div class="hgcta">
   <h2>Make the growth reach the people already there</h2>
-  <p>Homegrown is open for design partners for its first cohorts, in the Cape Fear region and
-    beyond. A first conversation runs about thirty minutes and does not need a budget attached
-    to it.</p>
+  <p>A first conversation runs about thirty minutes and does not need a budget attached to it.</p>
   <div class="btnrow">
     <a class="btn solid" href="mailto:support@sidekixhq.com?subject=SideKix%20Homegrown%20-%20enquiry&amp;body=Which%20town%20or%20county%3A%0AYour%20role%3A%0AWhat%20you%20are%20trying%20to%20fix%3A%0A">Start a conversation</a>
     <a class="btn ghost" href="how-it-works.html">How SideKix works</a>
@@ -759,13 +731,14 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section class="src">
  <div class="hgwrap">
-  <h2>Where these numbers come from</h2>
-  <div class="rule"></div>
-  <p>Every figure on this page is from a public source. Each is listed below, checked on
-    {CHECKED}. Where a claim is weaker than it looks, that is said on the page rather than here.</p>
-  <ol>
-    {''.join(f'<li>{t} <a href="{u}" target="_blank" rel="noopener noreferrer">Source</a></li>' for t, u in SOURCES)}
-  </ol>
+  <details>
+    <summary>Where these numbers come from</summary>
+    <p>Every figure on this page is public, listed here, and checked on {CHECKED}. Where a claim is
+      weaker than it looks, that is said on the page rather than buried here.</p>
+    <ol>
+      {''.join(f'<li>{t} <a href="{u}" target="_blank" rel="noopener noreferrer">Source</a></li>' for t, u in SOURCES)}
+    </ol>
+  </details>
  </div>
 </section>
 
