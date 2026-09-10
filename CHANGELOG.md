@@ -11,6 +11,38 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### A jobs map, as a pipeline rather than a picture
+
+`build/mkjobsmap.py` and `build/mkjobspage.py` build a map of where the jobs are
+against where the workers live, for any set of US counties, from free federal
+data: LEHD LODES for jobs, resident workers and commute flows, TIGERweb for
+tract geometry. Blocks aggregate to tracts, flows aggregate to county pairs, and
+the whole region comes out as one JSON file the page renders inline. No basemap
+tiles, so no API key, no tile bill, no attribution constraint, and the thing
+looks like the rest of the site instead of looking like Google.
+
+The map draws one number per tract, jobs minus employed residents, which is a
+polarity rather than a magnitude. So the scale is diverging: two hues either
+side of a neutral grey midpoint, seven steps, no rainbow. The midpoint recedes
+so tracts furthest out of balance carry the most weight, which is the point of
+the map. Every step was checked rather than eyeballed: all seven clear 3:1 on
+the panel ground, and lightness rises monotonically outward from the midpoint on
+both sides. The categorical validator was run too and flagged the grey midpoint
+and the pole lightness, which are the two things a diverging ramp is supposed to
+do; its own scope note says it covers categorical palettes.
+
+Tract hover and keyboard focus both raise a tooltip with jobs, resident workers
+and the net, every tract is focusable, and the full table sits under a details
+element so the map is not the only way to read it.
+
+Neither the data file nor the page is committed. The sandbox this was written in
+has no route to census.gov: the egress proxy denies it, over curl and over
+fetch. So the pipeline was verified end to end against a synthetic fixture, 120
+tracts through projection, colour assignment, hover and layout, and the fixture
+and the page built from it were deleted rather than shipped. Running the two
+commands anywhere with outbound access produces the real thing. Nothing invented
+is in the repository.
+
 ### Homegrown scores named competencies, and the caveat says something
 
 The five things the program scores were plain-language coinages, self starting,
