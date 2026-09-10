@@ -84,8 +84,10 @@ CSS = """
 /* section furniture */
 .hg section{margin:clamp(52px,7vw,86px) 0 0}
 /* the shell already gives the first section 132px of top padding; adding the section
-   rhythm on top of it double-spaces the page under the hero */
-.hg section:first-of-type{margin-top:0}
+   rhythm on top of it double-spaces the page under the hero. On this page the first
+   section is the opening diagram rather than text, so it also sits closer than the
+   shell default, which would strand it behind a screen of black. */
+.hg section:first-of-type{margin-top:0;padding-top:clamp(30px,4vw,58px)}
 .hg h2{font-family:var(--display);font-weight:600;font-size:clamp(27px,3.9vw,42px);
   line-height:1.14;color:#FFF8E8;margin:0 0 6px}
 .hg h3{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.4vw,25px);
@@ -128,6 +130,8 @@ CSS = """
 .hg .d-mids{font-family:var(--body);font-size:12px;fill:#C6BE9E}
 .hg .d-note{font-family:var(--util);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
   fill:#CDAA63}
+.hg .d-row{font-family:var(--util);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  fill:#E3DED2}
 
 /* card grids */
 .hg .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:26px 0 0}
@@ -249,8 +253,8 @@ def _node(x, y, w, h, colour, label, sub):
 LOOP_SVG = f"""<svg viewBox="0 0 900 520" role="img" aria-labelledby="hgd1t hgd1d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd1t">The Homegrown loop</title>
-<desc id="hgd1d">Four stages turning clockwise in a ring - attract, expand, hire local and prove -
-around a centre marked The Bench: local residents assessed, matched and tracked. The bench feeds
+<desc id="hgd1d">Four stages turning clockwise in a ring: attract, expand, hire local and prove,
+set around a centre marked The Bench: local residents assessed, matched and tracked. The bench feeds
 all four stages, and hiring locally is what makes the next deal defensible.</desc>
 {_defs('A')}
 <circle cx="450" cy="260" r="205" fill="url(#hgglowA)"/>
@@ -278,9 +282,9 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
 {_node(40, 218, 200, 84, '#B18BE4', 'Prove', 'the next deal lands')}
 </svg>"""
 
-PH = [("Weeks 1&#8211;2", "Begin", "#F0855A", "Where you actually", "are. Assessed."),
-      ("Weeks 3&#8211;5", "Build", "#FFE7A6", "Initiative, applied to", "your real situation."),
-      ("Weeks 6&#8211;8", "Become", "#5FB6A6", "One move chosen.", "A ninety-day plan."),
+PH = [("Weeks 1 to 2", "Begin", "#F0855A", "Where you actually", "are. Assessed."),
+      ("Weeks 3 to 5", "Build", "#FFE7A6", "Initiative, applied to", "your real situation."),
+      ("Weeks 6 to 8", "Become", "#5FB6A6", "One move chosen.", "A ninety-day plan."),
       ("+ 90 days", "Follow through", "#B18BE4", "A weekly check-in.", "An advisor each month.")]
 EX = [("Exit 01", "Advance", "up, where you work now"),
       ("Exit 02", "Switch", "into a higher-wage role"),
@@ -312,8 +316,8 @@ def _chev(x):
 FLOW_SVG = f"""<svg viewBox="0 0 980 410" role="img" aria-labelledby="hgd2t hgd2d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd2t">The Next Move program</title>
-<desc id="hgd2d">Four stages left to right - Begin in weeks one and two, Build in weeks three to
-five, Become in weeks six to eight, then ninety days of follow through - feeding down into four
+<desc id="hgd2d">Four stages left to right. Begin in weeks one and two, Build in weeks three to
+five, Become in weeks six to eight, then ninety days of follow through, feeding down into four
 exits: advance, switch, credential, or own it.</desc>
 {_defs('B')}
 {''.join(_phase(i) for i in range(4))}
@@ -328,6 +332,63 @@ exits: advance, switch, credential, or own it.</desc>
 {''.join(_exit(i) for i in range(4))}
 </svg>"""
 
+# The third diagram: what the eight weeks are supposed to move, and how far.
+# Five named behaviors down the side, the same four stages across the top, and
+# a bar that grows as the behavior goes from named to habitual. It is the
+# design of the program, not a plot of results, and the caption says so.
+COMP = [
+ ("Self starting",          "#F0855A", "acts before being asked to"),
+ ("Opportunity spotting",   "#FFE7A6", "names an opening nobody pointed out"),
+ ("Obstacle anticipation",  "#5FB6A6", "plans for what goes wrong first"),
+ ("Asking",                 "#4FC3F7", "makes the request out loud"),
+ ("Follow through",         "#B18BE4", "still doing it ninety days on"),
+]
+STAGE = [("Weeks 1 to 2", "named"), ("Weeks 3 to 5", "practiced"),
+         ("Weeks 6 to 8", "applied"), ("+ 90 days", "habitual")]
+_CX = [330, 500, 670, 840]          # column left edges, 140 wide
+_CH = [13, 18, 24, 30]              # bar height grows with the behavior
+_CO = [".17", ".38", ".64", ".96"]  # and so does its weight
+_RY = [130, 195, 260, 325, 390]
+
+def _grow_rows():
+    out = []
+    for i, (name, colour, _) in enumerate(COMP):
+        cy = _RY[i]
+        out.append(f'<text class="d-row" x="305" y="{cy + 4}" text-anchor="end">{name}</text>')
+        for j in range(4):
+            h = _CH[j]
+            out.append(f'<rect x="{_CX[j]}" y="{cy - h / 2}" width="140" height="{h}" '
+                       f'rx="{h / 2}" fill="{colour}" fill-opacity="{_CO[j]}"/>')
+        if i < len(COMP) - 1:
+            out.append(f'<path d="M0,{cy + 32} H980" stroke="#A1853E" stroke-opacity=".13" '
+                       f'stroke-width="1"/>')
+    return "".join(out)
+
+def _grow_cols():
+    out = []
+    for j, (stage, level) in enumerate(STAGE):
+        cx = _CX[j] + 70
+        out.append(f'<rect x="{_CX[j]}" y="88" width="140" height="330" rx="16" '
+                   f'fill="#FFFFFF" fill-opacity=".017"/>')
+        out.append(f'<text class="d-wk" x="{cx}" y="46" text-anchor="middle" fill="#CDAA63">{stage}</text>')
+        out.append(f'<text class="d-sub" x="{cx}" y="68" text-anchor="middle">{level}</text>')
+    return "".join(out)
+
+GROWTH_SVG = f"""<svg viewBox="0 0 1000 470" role="img" aria-labelledby="hgd3t hgd3d"
+     xmlns="http://www.w3.org/2000/svg">
+<title id="hgd3t">What the program is built to move</title>
+<desc id="hgd3d">Five behaviors down the side: self starting, opportunity spotting, obstacle
+anticipation, asking, and follow through. The same four stages across the top: weeks one to two
+where each behavior is named, weeks three to five where it is practiced, weeks six to eight where
+it is applied, and the ninety days after, where it becomes habitual. Each bar grows across the row.
+This is the design of the program rather than a plot of measured results.</desc>
+{_grow_cols()}
+<text class="d-note" x="305" y="46" text-anchor="end">The behavior</text>
+{_grow_rows()}
+<text class="d-sub" x="500" y="446" text-anchor="middle">Every one of them scored as observable behavior, at baseline in week one and again at day 180.</text>
+</svg>"""
+
+
 # ---------------------------------------------------------------- content
 CHECKED = "10 September 2026"
 
@@ -340,11 +401,11 @@ def _phrow(c, k, h, p):
             f'<div><h3>{h}</h3><p>{p}</p></div></div>')
 
 SOURCES = [
- ('Occupational Employment and Wage Statistics, Wilmington NC metropolitan area, May 2024 &#8212; '
+ ('Occupational Employment and Wage Statistics, Wilmington NC metropolitan area, May 2024. '
   'mean hourly wage $26.94 against $32.66 nationally; food preparation and serving 13.5% of area '
   'employment at $14.99. U.S. Bureau of Labor Statistics.',
   'https://www.bls.gov/regions/southeast/news-release/occupationalemploymentandwages_wilmington.htm'),
- ('North Carolina employment projections 2024&#8211;2034 &#8212; the Wilmington area projected to add '
+ ('North Carolina employment projections 2024 to 2034. The Wilmington area projected to add '
   'roughly 13,800 jobs, a 6.9% increase. NC Department of Commerce.',
   'https://www.commerce.nc.gov/data-tools-reports/labor-market-data-tools/employment-projections/north-carolina-employment-projections-2024-2034-regional-occupational-trends'),
  ('Brunswick County the fastest-growing county in North Carolina, up 24% between April 2020 and July '
@@ -354,23 +415,23 @@ SOURCES = [
  ('Workforce availability a leading site selection factor, and roughly 60% of manufacturers naming '
   'talent shortages a top concern. Business Facilities.',
   'https://businessfacilities.com/topics/site-selection-factors/education-and-workforce/'),
- ('Training transfer at roughly 10&#8211;15%, and forgetting of about 70% within a day. Summary of the '
+ ('Training transfer at roughly 10 to 15%, and forgetting of about 70% within a day. Summary of the '
   'transfer-of-training literature.',
   'https://www.aimforbehavior.com/library/only-10-to-15-percent-of-what-people/'),
  ('Campos et al., <em>Teaching personal initiative beats traditional training in boosting small business '
-  'in West Africa</em>, Science, 2017 &#8212; 30% profit gain against a statistically insignificant 11% '
+  'in West Africa</em>, Science, 2017. A 30% profit gain against a statistically insignificant 11% '
   'for conventional training.',
   'https://www.science.org/doi/10.1126/science.aan5329'),
- ('Seven-year follow-up to the same trial &#8212; a 52% profit gain, with effects concentrated among men. '
+ ('Seven-year follow-up to the same trial. A 52% profit gain, with effects concentrated among men. '
   'World Bank Development Impact.',
   'https://blogs.worldbank.org/en/impactevaluations/personal-initiative-training-continues-to-yield-positive-benefit'),
- ('Sector-focused training programs across four randomized trials &#8212; earnings gains of 14&#8211;38% '
-  'in the year after training, persisting at 12&#8211;34%. WorkRise.',
+ ('Sector-focused training programs across four randomized trials. Earnings gains of 14 to 38% '
+  'in the year after training, persisting at 12 to 34%. WorkRise.',
   'https://workrisenetwork.org/working-knowledge/evidence-sector-focused-training-programs-shows-significant-and-persistent'),
  ('Entrepreneurial skills training and microenterprise services as allowable WIOA activities, and the '
   'direction to coordinate workforce with economic development. WorkforceGPS, U.S. Department of Labor.',
   'https://www.workforcegps.org/resources/2019/10/30/13/49/Resources-to-Support-Entrepreneurship'),
- ('Eligible Training Provider List requirements &#8212; programs must lead to a recognized postsecondary '
+ ('Eligible Training Provider List requirements. Programs must lead to a recognized postsecondary '
   'credential, certificate of apprenticeship or licence to draw voucher funding. WorkforceGPS.',
   'https://ion.workforcegps.org/resources/2016/03/10/17/06/Eligible_Training_Provider_Provisions_and_ETPLs_in_WOIA'),
  ('Sector partnership grants to North Carolina local workforce boards, the Cape Fear board among them. '
@@ -397,6 +458,19 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
+  <figure>
+    <div class="dwrap">{LOOP_SVG}</div>
+    <div class="dbar"><button type="button" class="dget" data-svg="loop">Download this diagram</button></div>
+    <figcaption>Attracting business, growing the employers already here and getting residents hired
+      are usually run as three programs. They are one loop, and it only closes on the third. Break
+      that link and the jobs still arrive, the wages still do not move, and the case for the next
+      deal gets thinner every cycle. The bench in the middle is what holds it together.</figcaption>
+  </figure>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
   <p class="eyebrow">The case</p>
   <h2>Three asks, one problem</h2>
   <div class="rule"></div>
@@ -406,7 +480,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p>They are one problem, and the third one is where it breaks.</p>
   <p>Workforce availability has been a leading factor in site selection for years running. Close to
     six in ten manufacturers name talent shortages a top concern, and site consultants have stopped
-    asking only who lives here now &#8212; they ask what the pipeline looks like. Meanwhile the
+    asking only who lives here now. They ask what the pipeline looks like. Meanwhile the
     growth that does land gets filled by people who move in. The residents who were already there
     stay roughly where they were. And the next incentive package becomes a harder vote.</p>
   <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal
@@ -417,7 +491,7 @@ MAIN = f"""<main id="maincontent" class="hg">
     <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
       figure is $32.66.</span></div>
     <div class="stat"><b>13.5%</b><span>Of metro employment is food preparation and serving, at
-      $14.99 an hour &#8212; the largest single occupational group.</span></div>
+      $14.99 an hour. The largest single occupational group.</span></div>
     <div class="stat"><b>24%</b><span>Population growth in Brunswick County between 2020 and 2024.
       The fastest in North Carolina.</span></div>
     <div class="stat"><b>13,800</b><span>Jobs the Wilmington metro is projected to add by 2034.
@@ -428,23 +502,11 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
-  <figure>
-    <div class="dwrap">{LOOP_SVG}</div>
-    <div class="dbar"><button type="button" class="dget" data-svg="loop">Download this diagram</button></div>
-    <figcaption>The loop only closes if residents get hired. Break that link and attraction stops
-      compounding: the jobs arrive, the wages do not move, and the political case for the next deal
-      gets thinner every cycle. The bench in the middle is what holds it together.</figcaption>
-  </figure>
- </div>
-</section>
-
-<section>
- <div class="hgwrap">
   <p class="eyebrow">The asset</p>
   <h2>The thing nobody can hand a site consultant</h2>
   <div class="rule"></div>
   <p>Ask an economic development office for its workforce case and you get institutions. A community
-    college. A university. A career center. Real assets, every one &#8212; but they describe
+    college. A university. A career center. Real assets, every one of them, but they describe
     <strong>capacity</strong>, not <strong>supply</strong>. A site consultant already assumes you have
     a college.</p>
   <p>What almost no region can produce is this:</p>
@@ -474,20 +536,20 @@ MAIN = f"""<main id="maincontent" class="hg">
   </figure>
 
   <div style="margin-top:34px">
-  {_phrow('#F0855A', 'Weeks 1&#8211;2', 'Begin &#8212; where you actually are',
+  {_phrow('#F0855A', 'Weeks 1 to 2', 'Begin: where you actually are',
     'A behavioral assessment, a career diagnostic and an honest read on the ground: current wage, '
     'real skills, real constraints, and what this person actually wants. It ends in a one-page '
     'profile they keep. Adults do not learn from a syllabus handed to them. They learn from their '
     'own situation, examined properly.')}
-  {_phrow('#FFE7A6', 'Weeks 3&#8211;5', 'Build &#8212; initiative, not information',
+  {_phrow('#FFE7A6', 'Weeks 3 to 5', 'Build: initiative, not information',
     'The core of the program and the part most training skips entirely. Proactivity. Spotting an '
     'opening. Planning for the obstacle before it arrives. Starting without being told to. This is '
     'competency work, run by a facilitator, against each participant&#8217;s live circumstances.')}
-  {_phrow('#5FB6A6', 'Weeks 6&#8211;8', 'Become &#8212; one move, chosen and planned',
+  {_phrow('#5FB6A6', 'Weeks 6 to 8', 'Become: one move, chosen and planned',
     'The participant picks a single next move and builds the ninety-day plan that makes it happen: '
     'implementation intentions written down, an advisor session, and a commitment they sign. Vague '
     'intent does not survive a Monday.')}
-  {_phrow('#B18BE4', '+ 90 days', 'Follow through &#8212; the part everyone skips',
+  {_phrow('#B18BE4', '+ 90 days', 'Follow through: the part everyone skips',
     'A weekly check-in and a monthly advisor touch for ninety days after the room empties. This is '
     'where a program either produces a result or produces a certificate. People forget most of what '
     'they hear inside a week, and the environment someone returns to shapes whether a new behavior '
@@ -519,7 +581,7 @@ MAIN = f"""<main id="maincontent" class="hg">
     deliberate.</p>
   <p>It also settles the question every partner asks first. <strong>Homegrown does not teach a trade
     and does not want to.</strong> When a resident needs a credential they are handed to the community
-    college or the career center, and Homegrown reports whether they enrolled &#8212; which is worth
+    college or the career center, and Homegrown reports whether they enrolled, which is worth
     real money to a college funded on enrollment. This is a feeder, not a competitor. That distinction
     is the difference between a partner network and a turf fight.</p>
  </div>
@@ -536,8 +598,29 @@ MAIN = f"""<main id="maincontent" class="hg">
     transfers to the job. People forget roughly seventy per cent of what they are told within a day.
     The environment someone returns to shapes whether a new behavior survives more than the content
     ever did.</p>
+  <p>So the thing being built is not knowledge. It is five behaviors, each one named, practiced
+    against the participant's real situation, and then held for ninety days until it is simply how
+    that person works.</p>
+
+  <figure>
+    <div class="dwrap">{GROWTH_SVG}</div>
+    <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
+    <figcaption>What the eight weeks are built to move, and how far. This is the design of the
+      program, not a plot of results: the bars show where each behavior is meant to have reached by
+      each stage, which is also what the baseline and the day 180 check are scored against.</figcaption>
+  </figure>
+
+  <p>Naming them that precisely is what makes the program measurable. A town is not buying
+    attendance. It is buying a change in five things that can be observed by somebody else:</p>
+  <ul class="plain">
+    <li><b>Self starting.</b> Acts before being asked to.</li>
+    <li><b>Opportunity spotting.</b> Names an opening nobody pointed out.</li>
+    <li><b>Obstacle anticipation.</b> Plans for what goes wrong before it does.</li>
+    <li><b>Asking.</b> Makes the request out loud, of a manager, a lender or a stranger.</li>
+    <li><b>Follow through.</b> Still doing it ninety days after the room emptied.</li>
+  </ul>
   <p>The cleanest comparison anyone has run: fifteen hundred business owners in Togo were randomized
-    into three groups &#8212; a control, conventional business training, and psychology-based training
+    into three groups: a control, conventional business training, and psychology-based training
     in personal initiative. Same hours, same mentoring afterwards. Conventional training moved profits
     eleven per cent, which was not statistically significant. <strong>The initiative training moved
     them thirty per cent at two years and fifty-two per cent at seven</strong>, and paid for itself
@@ -591,7 +674,7 @@ MAIN = f"""<main id="maincontent" class="hg">
       <tr><td>Documented move</td><td>The share of participants who advance, switch, enroll or
         register a business within 180 days.</td></tr>
       <tr><td>Wage change</td><td>Taken at baseline in week one, verified at 180 days.</td></tr>
-      <tr><td>Completion</td><td>Target 70 per cent &#8212; deliberately the standard federally funded
+      <tr><td>Completion</td><td>Target 70 per cent, deliberately the standard federally funded
         short-term programs are now held to.</td></tr>
       <tr><td>Handoff conversion</td><td>Referred to a college or career center, and enrolled. Two
         different numbers, reported as two different numbers.</td></tr>
@@ -619,11 +702,11 @@ MAIN = f"""<main id="maincontent" class="hg">
     <li><b>Sector partnership and employer engagement grants.</b> North Carolina has funded local
       boards for precisely this kind of work, the Cape Fear board included.</li>
     <li><b>Capital readiness funding</b>, where the self-employment exit is in scope.</li>
-    <li><b>Chambers and employers</b>, for the advancement track &#8212; the employer keeps the
+    <li><b>Chambers and employers</b>, for the advancement track, where the employer keeps the
       person, so the employer can carry part of the cost.</li>
   </ul>
   <p>One thing worth settling early rather than late. Federal training vouchers require a program
-    that leads to a recognized credential. <strong>Homegrown does not, by design</strong> &#8212; it is
+    that leads to a recognized credential. <strong>Homegrown does not, by design</strong>. It is
     the layer in front of the credential, not the credential itself. That keeps it off the state
     eligible training provider list and outside voucher funding, and it keeps it fast to start and
     free to change. If a town needs the voucher route specifically, that is a different build, and it
@@ -642,7 +725,7 @@ MAIN = f"""<main id="maincontent" class="hg">
     per cent under the national figure, and its largest single occupational group is food preparation
     and serving at just under fifteen dollars an hour. Next door, Brunswick County is the fastest
     growing county in the state, up twenty-four per cent in four years, with Leland more than doubling
-    since 2010 &#8212; a town adding residents considerably faster than it adds places for them to
+    since 2010, a town adding residents considerably faster than it adds places for them to
     work.</p>
   <p>Two genuinely different problems. Wilmington needs people who already have jobs to move up.
     Leland needs residents who can build a career without crossing the bridge every morning. Same
@@ -702,7 +785,9 @@ var HGCSS = [
  '.d-mid{font-family:\\'Cormorant Garamond\\',Georgia,serif;font-size:23px;font-weight:600;fill:#FFF8E8}',
  '.d-mids{font-family:\\'Poppins\\',system-ui,sans-serif;font-size:12px;fill:#C6BE9E}',
  '.d-note{font-family:\\'Space Grotesk\\',ui-monospace,monospace;font-size:10px;',
- 'letter-spacing:.16em;text-transform:uppercase;fill:#CDAA63}'
+ 'letter-spacing:.16em;text-transform:uppercase;fill:#CDAA63}',
+ '.d-row{font-family:\\'Space Grotesk\\',ui-monospace,monospace;font-size:12px;',
+ 'letter-spacing:.1em;text-transform:uppercase;fill:#E3DED2}'
 ].join('');
 
 // A serialised SVG in a data: URI cannot reach assets/fonts.css, so an export

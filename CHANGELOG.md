@@ -11,6 +11,43 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### Homegrown opens on the diagram, gains a growth model, and loses its dashes
+
+Three changes, all from review.
+
+The loop diagram now sits directly under the hero rather than after the opening
+argument. It is the thesis of the page, and making a reader work through five
+paragraphs of prose to reach it wasted it. Its caption was rewritten to stand on
+its own, since it no longer has the argument above it to lean on. The first
+section on this page also overrides the shell's 132px of top padding down to
+about 58px: that default is right for a section that opens with a heading and
+wrong for one that opens with a full width figure, which it stranded behind a
+screen of black.
+
+A third diagram was added, because neither of the first two showed what the
+program actually changes in a person. One shows the system, the other shows the
+mechanics. The new one names five behaviors, self starting, opportunity
+spotting, obstacle anticipation, asking and follow through, and shows each of
+them growing across the same four stages, from named to practiced to applied to
+habitual. The caption says plainly that it is the design of the program and not
+a plot of measured results, because a chart of bars will otherwise be read as
+data. The five behaviors are also written out under it as observable
+indicators, which is what makes the day 180 score mean anything.
+
+Every em and en dash on the page is gone, per house style. They were reworded
+rather than swapped for another mark: sentences split at full stops, lists took
+colons, and the four phase headings read "Begin: where you actually are" and so
+on. Week ranges are "Weeks 1 to 2". The two SVG descriptions used hyphens the
+same way and were rewritten too. Worth noting for a later pass: `index.html`
+carries 17 em dashes and `membership.html` 23, so the rule is not yet applied
+site wide.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile` and `contrast3` clean for the page,
+no console errors, and all three download controls produce PNGs at 1800x1040,
+2000x940 and 1960x820. Two spelling slips were caught before shipping, since the
+new diagram had been written in British English against a site that uses
+American.
+
 ### The body font was never loading on any page
 
 `assets/fonts.css` declared Poppins five times and EA Majer once, and every one

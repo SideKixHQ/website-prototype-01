@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-10 19:21:23 homegrown -->
+<!-- kx-build 2026-09-10 19:30:40 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1133,8 +1133,10 @@ section.wrap{position:relative;z-index:1 !important}
 /* section furniture */
 .hg section{margin:clamp(52px,7vw,86px) 0 0}
 /* the shell already gives the first section 132px of top padding; adding the section
-   rhythm on top of it double-spaces the page under the hero */
-.hg section:first-of-type{margin-top:0}
+   rhythm on top of it double-spaces the page under the hero. On this page the first
+   section is the opening diagram rather than text, so it also sits closer than the
+   shell default, which would strand it behind a screen of black. */
+.hg section:first-of-type{margin-top:0;padding-top:clamp(30px,4vw,58px)}
 .hg h2{font-family:var(--display);font-weight:600;font-size:clamp(27px,3.9vw,42px);
   line-height:1.14;color:#FFF8E8;margin:0 0 6px}
 .hg h3{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.4vw,25px);
@@ -1177,6 +1179,8 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .d-mids{font-family:var(--body);font-size:12px;fill:#C6BE9E}
 .hg .d-note{font-family:var(--util);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
   fill:#CDAA63}
+.hg .d-row{font-family:var(--util);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  fill:#E3DED2}
 
 /* card grids */
 .hg .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:26px 0 0}
@@ -1520,43 +1524,12 @@ img{width:auto;height:auto}
 
 <section>
  <div class="hgwrap">
-  <p class="eyebrow">The case</p>
-  <h2>Three asks, one problem</h2>
-  <div class="rule"></div>
-  <p class="lead">Most economic development offices are carrying three jobs at once. Attract
-    business. Grow the industries already here. Make sure residents can actually get the work.
-    They get funded separately, measured separately and discussed separately.</p>
-  <p>They are one problem, and the third one is where it breaks.</p>
-  <p>Workforce availability has been a leading factor in site selection for years running. Close to
-    six in ten manufacturers name talent shortages a top concern, and site consultants have stopped
-    asking only who lives here now &#8212; they ask what the pipeline looks like. Meanwhile the
-    growth that does land gets filled by people who move in. The residents who were already there
-    stay roughly where they were. And the next incentive package becomes a harder vote.</p>
-  <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal
-    to a council whose residents did not get hired.</p></div>
-  <p>Those are not two problems either. They are the same missing asset.</p>
-
-  <div class="stats">
-    <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
-      figure is $32.66.</span></div>
-    <div class="stat"><b>13.5%</b><span>Of metro employment is food preparation and serving, at
-      $14.99 an hour &#8212; the largest single occupational group.</span></div>
-    <div class="stat"><b>24%</b><span>Population growth in Brunswick County between 2020 and 2024.
-      The fastest in North Carolina.</span></div>
-    <div class="stat"><b>13,800</b><span>Jobs the Wilmington metro is projected to add by 2034.
-      Someone is going to fill them.</span></div>
-  </div>
- </div>
-</section>
-
-<section>
- <div class="hgwrap">
   <figure>
     <div class="dwrap"><svg viewBox="0 0 900 520" role="img" aria-labelledby="hgd1t hgd1d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd1t">The Homegrown loop</title>
-<desc id="hgd1d">Four stages turning clockwise in a ring - attract, expand, hire local and prove -
-around a centre marked The Bench: local residents assessed, matched and tracked. The bench feeds
+<desc id="hgd1d">Four stages turning clockwise in a ring: attract, expand, hire local and prove,
+set around a centre marked The Bench: local residents assessed, matched and tracked. The bench feeds
 all four stages, and hiring locally is what makes the next deal defensible.</desc>
 <defs>
 <marker id="hgarA" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7"
@@ -1601,10 +1574,42 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
 <rect x="40" y="218" width="200" height="84" rx="13" fill="url(#hgcardA)" stroke="#B18BE4" stroke-opacity=".55" stroke-width="1.4"/><text class="d-lab" x="140.0" y="254.0" text-anchor="middle" style="fill:#B18BE4">Prove</text><text class="d-sub" x="140.0" y="277.0" text-anchor="middle">the next deal lands</text>
 </svg></div>
     <div class="dbar"><button type="button" class="dget" data-svg="loop">Download this diagram</button></div>
-    <figcaption>The loop only closes if residents get hired. Break that link and attraction stops
-      compounding: the jobs arrive, the wages do not move, and the political case for the next deal
-      gets thinner every cycle. The bench in the middle is what holds it together.</figcaption>
+    <figcaption>Attracting business, growing the employers already here and getting residents hired
+      are usually run as three programs. They are one loop, and it only closes on the third. Break
+      that link and the jobs still arrive, the wages still do not move, and the case for the next
+      deal gets thinner every cycle. The bench in the middle is what holds it together.</figcaption>
   </figure>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">The case</p>
+  <h2>Three asks, one problem</h2>
+  <div class="rule"></div>
+  <p class="lead">Most economic development offices are carrying three jobs at once. Attract
+    business. Grow the industries already here. Make sure residents can actually get the work.
+    They get funded separately, measured separately and discussed separately.</p>
+  <p>They are one problem, and the third one is where it breaks.</p>
+  <p>Workforce availability has been a leading factor in site selection for years running. Close to
+    six in ten manufacturers name talent shortages a top concern, and site consultants have stopped
+    asking only who lives here now. They ask what the pipeline looks like. Meanwhile the
+    growth that does land gets filled by people who move in. The residents who were already there
+    stay roughly where they were. And the next incentive package becomes a harder vote.</p>
+  <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal
+    to a council whose residents did not get hired.</p></div>
+  <p>Those are not two problems either. They are the same missing asset.</p>
+
+  <div class="stats">
+    <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
+      figure is $32.66.</span></div>
+    <div class="stat"><b>13.5%</b><span>Of metro employment is food preparation and serving, at
+      $14.99 an hour. The largest single occupational group.</span></div>
+    <div class="stat"><b>24%</b><span>Population growth in Brunswick County between 2020 and 2024.
+      The fastest in North Carolina.</span></div>
+    <div class="stat"><b>13,800</b><span>Jobs the Wilmington metro is projected to add by 2034.
+      Someone is going to fill them.</span></div>
+  </div>
  </div>
 </section>
 
@@ -1614,7 +1619,7 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
   <h2>The thing nobody can hand a site consultant</h2>
   <div class="rule"></div>
   <p>Ask an economic development office for its workforce case and you get institutions. A community
-    college. A university. A career center. Real assets, every one &#8212; but they describe
+    college. A university. A career center. Real assets, every one of them, but they describe
     <strong>capacity</strong>, not <strong>supply</strong>. A site consultant already assumes you have
     a college.</p>
   <p>What almost no region can produce is this:</p>
@@ -1639,8 +1644,8 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
     <div class="dwrap"><svg viewBox="0 0 980 410" role="img" aria-labelledby="hgd2t hgd2d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd2t">The Next Move program</title>
-<desc id="hgd2d">Four stages left to right - Begin in weeks one and two, Build in weeks three to
-five, Become in weeks six to eight, then ninety days of follow through - feeding down into four
+<desc id="hgd2d">Four stages left to right. Begin in weeks one and two, Build in weeks three to
+five, Become in weeks six to eight, then ninety days of follow through, feeding down into four
 exits: advance, switch, credential, or own it.</desc>
 <defs>
 <marker id="hgarB" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7"
@@ -1660,7 +1665,7 @@ exits: advance, switch, credential, or own it.</desc>
   <stop offset="100%" stop-color="#D4A856" stop-opacity="0"/>
 </radialGradient>
 </defs>
-<rect x="36" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#F0855A" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="142" y="70" text-anchor="middle" fill="#F0855A">Weeks 1&#8211;2</text><text class="d-lab" x="142" y="99" text-anchor="middle">Begin</text><text class="d-sub" x="142" y="123" text-anchor="middle">Where you actually</text><text class="d-sub" x="142" y="141" text-anchor="middle">are. Assessed.</text><rect x="268" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#FFE7A6" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="374" y="70" text-anchor="middle" fill="#FFE7A6">Weeks 3&#8211;5</text><text class="d-lab" x="374" y="99" text-anchor="middle">Build</text><text class="d-sub" x="374" y="123" text-anchor="middle">Initiative, applied to</text><text class="d-sub" x="374" y="141" text-anchor="middle">your real situation.</text><rect x="500" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#5FB6A6" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="606" y="70" text-anchor="middle" fill="#5FB6A6">Weeks 6&#8211;8</text><text class="d-lab" x="606" y="99" text-anchor="middle">Become</text><text class="d-sub" x="606" y="123" text-anchor="middle">One move chosen.</text><text class="d-sub" x="606" y="141" text-anchor="middle">A ninety-day plan.</text><rect x="732" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#B18BE4" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="838" y="70" text-anchor="middle" fill="#B18BE4">+ 90 days</text><text class="d-lab" x="838" y="99" text-anchor="middle">Follow through</text><text class="d-sub" x="838" y="123" text-anchor="middle">A weekly check-in.</text><text class="d-sub" x="838" y="141" text-anchor="middle">An advisor each month.</text>
+<rect x="36" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#F0855A" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="142" y="70" text-anchor="middle" fill="#F0855A">Weeks 1 to 2</text><text class="d-lab" x="142" y="99" text-anchor="middle">Begin</text><text class="d-sub" x="142" y="123" text-anchor="middle">Where you actually</text><text class="d-sub" x="142" y="141" text-anchor="middle">are. Assessed.</text><rect x="268" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#FFE7A6" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="374" y="70" text-anchor="middle" fill="#FFE7A6">Weeks 3 to 5</text><text class="d-lab" x="374" y="99" text-anchor="middle">Build</text><text class="d-sub" x="374" y="123" text-anchor="middle">Initiative, applied to</text><text class="d-sub" x="374" y="141" text-anchor="middle">your real situation.</text><rect x="500" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#5FB6A6" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="606" y="70" text-anchor="middle" fill="#5FB6A6">Weeks 6 to 8</text><text class="d-lab" x="606" y="99" text-anchor="middle">Become</text><text class="d-sub" x="606" y="123" text-anchor="middle">One move chosen.</text><text class="d-sub" x="606" y="141" text-anchor="middle">A ninety-day plan.</text><rect x="732" y="40" width="212" height="118" rx="14" fill="url(#hgcardB)" stroke="#B18BE4" stroke-opacity=".5" stroke-width="1.4"/><text class="d-wk" x="838" y="70" text-anchor="middle" fill="#B18BE4">+ 90 days</text><text class="d-lab" x="838" y="99" text-anchor="middle">Follow through</text><text class="d-sub" x="838" y="123" text-anchor="middle">A weekly check-in.</text><text class="d-sub" x="838" y="141" text-anchor="middle">An advisor each month.</text>
 <path d="M253,91 L263,99 L253,107" fill="none" stroke="#A1853E" stroke-opacity=".8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M485,91 L495,99 L485,107" fill="none" stroke="#A1853E" stroke-opacity=".8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M717,91 L727,99 L717,107" fill="none" stroke="#A1853E" stroke-opacity=".8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M490,163 V214" fill="none" stroke="#A1853E" stroke-opacity=".6" stroke-width="1.4"/>
 <path d="M142,214 H838" fill="none" stroke="#A1853E" stroke-opacity=".6" stroke-width="1.4"/>
@@ -1678,10 +1683,10 @@ exits: advance, switch, credential, or own it.</desc>
   </figure>
 
   <div style="margin-top:34px">
-  <div class="phase" style="--c:#F0855A"><div class="pk">Weeks 1&#8211;2</div><div><h3>Begin &#8212; where you actually are</h3><p>A behavioral assessment, a career diagnostic and an honest read on the ground: current wage, real skills, real constraints, and what this person actually wants. It ends in a one-page profile they keep. Adults do not learn from a syllabus handed to them. They learn from their own situation, examined properly.</p></div></div>
-  <div class="phase" style="--c:#FFE7A6"><div class="pk">Weeks 3&#8211;5</div><div><h3>Build &#8212; initiative, not information</h3><p>The core of the program and the part most training skips entirely. Proactivity. Spotting an opening. Planning for the obstacle before it arrives. Starting without being told to. This is competency work, run by a facilitator, against each participant&#8217;s live circumstances.</p></div></div>
-  <div class="phase" style="--c:#5FB6A6"><div class="pk">Weeks 6&#8211;8</div><div><h3>Become &#8212; one move, chosen and planned</h3><p>The participant picks a single next move and builds the ninety-day plan that makes it happen: implementation intentions written down, an advisor session, and a commitment they sign. Vague intent does not survive a Monday.</p></div></div>
-  <div class="phase" style="--c:#B18BE4"><div class="pk">+ 90 days</div><div><h3>Follow through &#8212; the part everyone skips</h3><p>A weekly check-in and a monthly advisor touch for ninety days after the room empties. This is where a program either produces a result or produces a certificate. People forget most of what they hear inside a week, and the environment someone returns to shapes whether a new behavior survives far more than the content ever did.</p></div></div>
+  <div class="phase" style="--c:#F0855A"><div class="pk">Weeks 1 to 2</div><div><h3>Begin: where you actually are</h3><p>A behavioral assessment, a career diagnostic and an honest read on the ground: current wage, real skills, real constraints, and what this person actually wants. It ends in a one-page profile they keep. Adults do not learn from a syllabus handed to them. They learn from their own situation, examined properly.</p></div></div>
+  <div class="phase" style="--c:#FFE7A6"><div class="pk">Weeks 3 to 5</div><div><h3>Build: initiative, not information</h3><p>The core of the program and the part most training skips entirely. Proactivity. Spotting an opening. Planning for the obstacle before it arrives. Starting without being told to. This is competency work, run by a facilitator, against each participant&#8217;s live circumstances.</p></div></div>
+  <div class="phase" style="--c:#5FB6A6"><div class="pk">Weeks 6 to 8</div><div><h3>Become: one move, chosen and planned</h3><p>The participant picks a single next move and builds the ninety-day plan that makes it happen: implementation intentions written down, an advisor session, and a commitment they sign. Vague intent does not survive a Monday.</p></div></div>
+  <div class="phase" style="--c:#B18BE4"><div class="pk">+ 90 days</div><div><h3>Follow through: the part everyone skips</h3><p>A weekly check-in and a monthly advisor touch for ninety days after the room empties. This is where a program either produces a result or produces a certificate. People forget most of what they hear inside a week, and the environment someone returns to shapes whether a new behavior survives far more than the content ever did.</p></div></div>
   </div>
  </div>
 </section>
@@ -1701,7 +1706,7 @@ exits: advance, switch, credential, or own it.</desc>
     deliberate.</p>
   <p>It also settles the question every partner asks first. <strong>Homegrown does not teach a trade
     and does not want to.</strong> When a resident needs a credential they are handed to the community
-    college or the career center, and Homegrown reports whether they enrolled &#8212; which is worth
+    college or the career center, and Homegrown reports whether they enrolled, which is worth
     real money to a college funded on enrollment. This is a feeder, not a competitor. That distinction
     is the difference between a partner network and a turf fight.</p>
  </div>
@@ -1718,8 +1723,41 @@ exits: advance, switch, credential, or own it.</desc>
     transfers to the job. People forget roughly seventy per cent of what they are told within a day.
     The environment someone returns to shapes whether a new behavior survives more than the content
     ever did.</p>
+  <p>So the thing being built is not knowledge. It is five behaviors, each one named, practiced
+    against the participant's real situation, and then held for ninety days until it is simply how
+    that person works.</p>
+
+  <figure>
+    <div class="dwrap"><svg viewBox="0 0 1000 470" role="img" aria-labelledby="hgd3t hgd3d"
+     xmlns="http://www.w3.org/2000/svg">
+<title id="hgd3t">What the program is built to move</title>
+<desc id="hgd3d">Five behaviors down the side: self starting, opportunity spotting, obstacle
+anticipation, asking, and follow through. The same four stages across the top: weeks one to two
+where each behavior is named, weeks three to five where it is practiced, weeks six to eight where
+it is applied, and the ninety days after, where it becomes habitual. Each bar grows across the row.
+This is the design of the program rather than a plot of measured results.</desc>
+<rect x="330" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="400" y="46" text-anchor="middle" fill="#CDAA63">Weeks 1 to 2</text><text class="d-sub" x="400" y="68" text-anchor="middle">named</text><rect x="500" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="570" y="46" text-anchor="middle" fill="#CDAA63">Weeks 3 to 5</text><text class="d-sub" x="570" y="68" text-anchor="middle">practiced</text><rect x="670" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="740" y="46" text-anchor="middle" fill="#CDAA63">Weeks 6 to 8</text><text class="d-sub" x="740" y="68" text-anchor="middle">applied</text><rect x="840" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="910" y="46" text-anchor="middle" fill="#CDAA63">+ 90 days</text><text class="d-sub" x="910" y="68" text-anchor="middle">habitual</text>
+<text class="d-note" x="305" y="46" text-anchor="end">The behavior</text>
+<text class="d-row" x="305" y="134" text-anchor="end">Self starting</text><rect x="330" y="123.5" width="140" height="13" rx="6.5" fill="#F0855A" fill-opacity=".17"/><rect x="500" y="121.0" width="140" height="18" rx="9.0" fill="#F0855A" fill-opacity=".38"/><rect x="670" y="118.0" width="140" height="24" rx="12.0" fill="#F0855A" fill-opacity=".64"/><rect x="840" y="115.0" width="140" height="30" rx="15.0" fill="#F0855A" fill-opacity=".96"/><path d="M0,162 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="199" text-anchor="end">Opportunity spotting</text><rect x="330" y="188.5" width="140" height="13" rx="6.5" fill="#FFE7A6" fill-opacity=".17"/><rect x="500" y="186.0" width="140" height="18" rx="9.0" fill="#FFE7A6" fill-opacity=".38"/><rect x="670" y="183.0" width="140" height="24" rx="12.0" fill="#FFE7A6" fill-opacity=".64"/><rect x="840" y="180.0" width="140" height="30" rx="15.0" fill="#FFE7A6" fill-opacity=".96"/><path d="M0,227 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="264" text-anchor="end">Obstacle anticipation</text><rect x="330" y="253.5" width="140" height="13" rx="6.5" fill="#5FB6A6" fill-opacity=".17"/><rect x="500" y="251.0" width="140" height="18" rx="9.0" fill="#5FB6A6" fill-opacity=".38"/><rect x="670" y="248.0" width="140" height="24" rx="12.0" fill="#5FB6A6" fill-opacity=".64"/><rect x="840" y="245.0" width="140" height="30" rx="15.0" fill="#5FB6A6" fill-opacity=".96"/><path d="M0,292 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="329" text-anchor="end">Asking</text><rect x="330" y="318.5" width="140" height="13" rx="6.5" fill="#4FC3F7" fill-opacity=".17"/><rect x="500" y="316.0" width="140" height="18" rx="9.0" fill="#4FC3F7" fill-opacity=".38"/><rect x="670" y="313.0" width="140" height="24" rx="12.0" fill="#4FC3F7" fill-opacity=".64"/><rect x="840" y="310.0" width="140" height="30" rx="15.0" fill="#4FC3F7" fill-opacity=".96"/><path d="M0,357 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="394" text-anchor="end">Follow through</text><rect x="330" y="383.5" width="140" height="13" rx="6.5" fill="#B18BE4" fill-opacity=".17"/><rect x="500" y="381.0" width="140" height="18" rx="9.0" fill="#B18BE4" fill-opacity=".38"/><rect x="670" y="378.0" width="140" height="24" rx="12.0" fill="#B18BE4" fill-opacity=".64"/><rect x="840" y="375.0" width="140" height="30" rx="15.0" fill="#B18BE4" fill-opacity=".96"/>
+<text class="d-sub" x="500" y="446" text-anchor="middle">Every one of them scored as observable behavior, at baseline in week one and again at day 180.</text>
+</svg></div>
+    <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
+    <figcaption>What the eight weeks are built to move, and how far. This is the design of the
+      program, not a plot of results: the bars show where each behavior is meant to have reached by
+      each stage, which is also what the baseline and the day 180 check are scored against.</figcaption>
+  </figure>
+
+  <p>Naming them that precisely is what makes the program measurable. A town is not buying
+    attendance. It is buying a change in five things that can be observed by somebody else:</p>
+  <ul class="plain">
+    <li><b>Self starting.</b> Acts before being asked to.</li>
+    <li><b>Opportunity spotting.</b> Names an opening nobody pointed out.</li>
+    <li><b>Obstacle anticipation.</b> Plans for what goes wrong before it does.</li>
+    <li><b>Asking.</b> Makes the request out loud, of a manager, a lender or a stranger.</li>
+    <li><b>Follow through.</b> Still doing it ninety days after the room emptied.</li>
+  </ul>
   <p>The cleanest comparison anyone has run: fifteen hundred business owners in Togo were randomized
-    into three groups &#8212; a control, conventional business training, and psychology-based training
+    into three groups: a control, conventional business training, and psychology-based training
     in personal initiative. Same hours, same mentoring afterwards. Conventional training moved profits
     eleven per cent, which was not statistically significant. <strong>The initiative training moved
     them thirty per cent at two years and fifty-two per cent at seven</strong>, and paid for itself
@@ -1773,7 +1811,7 @@ exits: advance, switch, credential, or own it.</desc>
       <tr><td>Documented move</td><td>The share of participants who advance, switch, enroll or
         register a business within 180 days.</td></tr>
       <tr><td>Wage change</td><td>Taken at baseline in week one, verified at 180 days.</td></tr>
-      <tr><td>Completion</td><td>Target 70 per cent &#8212; deliberately the standard federally funded
+      <tr><td>Completion</td><td>Target 70 per cent, deliberately the standard federally funded
         short-term programs are now held to.</td></tr>
       <tr><td>Handoff conversion</td><td>Referred to a college or career center, and enrolled. Two
         different numbers, reported as two different numbers.</td></tr>
@@ -1801,11 +1839,11 @@ exits: advance, switch, credential, or own it.</desc>
     <li><b>Sector partnership and employer engagement grants.</b> North Carolina has funded local
       boards for precisely this kind of work, the Cape Fear board included.</li>
     <li><b>Capital readiness funding</b>, where the self-employment exit is in scope.</li>
-    <li><b>Chambers and employers</b>, for the advancement track &#8212; the employer keeps the
+    <li><b>Chambers and employers</b>, for the advancement track, where the employer keeps the
       person, so the employer can carry part of the cost.</li>
   </ul>
   <p>One thing worth settling early rather than late. Federal training vouchers require a program
-    that leads to a recognized credential. <strong>Homegrown does not, by design</strong> &#8212; it is
+    that leads to a recognized credential. <strong>Homegrown does not, by design</strong>. It is
     the layer in front of the credential, not the credential itself. That keeps it off the state
     eligible training provider list and outside voucher funding, and it keeps it fast to start and
     free to change. If a town needs the voucher route specifically, that is a different build, and it
@@ -1824,7 +1862,7 @@ exits: advance, switch, credential, or own it.</desc>
     per cent under the national figure, and its largest single occupational group is food preparation
     and serving at just under fifteen dollars an hour. Next door, Brunswick County is the fastest
     growing county in the state, up twenty-four per cent in four years, with Leland more than doubling
-    since 2010 &#8212; a town adding residents considerably faster than it adds places for them to
+    since 2010, a town adding residents considerably faster than it adds places for them to
     work.</p>
   <p>Two genuinely different problems. Wilmington needs people who already have jobs to move up.
     Leland needs residents who can build a career without crossing the bridge every morning. Same
@@ -1863,7 +1901,7 @@ exits: advance, switch, credential, or own it.</desc>
   <p>Every figure on this page is from a public source. Each is listed below, checked on
     10 September 2026. Where a claim is weaker than it looks, that is said on the page rather than here.</p>
   <ol>
-    <li>Occupational Employment and Wage Statistics, Wilmington NC metropolitan area, May 2024 &#8212; mean hourly wage $26.94 against $32.66 nationally; food preparation and serving 13.5% of area employment at $14.99. U.S. Bureau of Labor Statistics. <a href="https://www.bls.gov/regions/southeast/news-release/occupationalemploymentandwages_wilmington.htm" target="_blank" rel="noopener noreferrer">Source</a></li><li>North Carolina employment projections 2024&#8211;2034 &#8212; the Wilmington area projected to add roughly 13,800 jobs, a 6.9% increase. NC Department of Commerce. <a href="https://www.commerce.nc.gov/data-tools-reports/labor-market-data-tools/employment-projections/north-carolina-employment-projections-2024-2034-regional-occupational-trends" target="_blank" rel="noopener noreferrer">Source</a></li><li>Brunswick County the fastest-growing county in North Carolina, up 24% between April 2020 and July 2024 to 169,448; Leland at 30,264 in 2023, more than double its 2010 count. Business North Carolina, citing the Census Bureau and the NC Office of State Budget and Management. <a href="https://businessnc.com/community-close-up-brunswick-new-hanover-pender-counties/" target="_blank" rel="noopener noreferrer">Source</a></li><li>Workforce availability a leading site selection factor, and roughly 60% of manufacturers naming talent shortages a top concern. Business Facilities. <a href="https://businessfacilities.com/topics/site-selection-factors/education-and-workforce/" target="_blank" rel="noopener noreferrer">Source</a></li><li>Training transfer at roughly 10&#8211;15%, and forgetting of about 70% within a day. Summary of the transfer-of-training literature. <a href="https://www.aimforbehavior.com/library/only-10-to-15-percent-of-what-people/" target="_blank" rel="noopener noreferrer">Source</a></li><li>Campos et al., <em>Teaching personal initiative beats traditional training in boosting small business in West Africa</em>, Science, 2017 &#8212; 30% profit gain against a statistically insignificant 11% for conventional training. <a href="https://www.science.org/doi/10.1126/science.aan5329" target="_blank" rel="noopener noreferrer">Source</a></li><li>Seven-year follow-up to the same trial &#8212; a 52% profit gain, with effects concentrated among men. World Bank Development Impact. <a href="https://blogs.worldbank.org/en/impactevaluations/personal-initiative-training-continues-to-yield-positive-benefit" target="_blank" rel="noopener noreferrer">Source</a></li><li>Sector-focused training programs across four randomized trials &#8212; earnings gains of 14&#8211;38% in the year after training, persisting at 12&#8211;34%. WorkRise. <a href="https://workrisenetwork.org/working-knowledge/evidence-sector-focused-training-programs-shows-significant-and-persistent" target="_blank" rel="noopener noreferrer">Source</a></li><li>Entrepreneurial skills training and microenterprise services as allowable WIOA activities, and the direction to coordinate workforce with economic development. WorkforceGPS, U.S. Department of Labor. <a href="https://www.workforcegps.org/resources/2019/10/30/13/49/Resources-to-Support-Entrepreneurship" target="_blank" rel="noopener noreferrer">Source</a></li><li>Eligible Training Provider List requirements &#8212; programs must lead to a recognized postsecondary credential, certificate of apprenticeship or licence to draw voucher funding. WorkforceGPS. <a href="https://ion.workforcegps.org/resources/2016/03/10/17/06/Eligible_Training_Provider_Provisions_and_ETPLs_in_WOIA" target="_blank" rel="noopener noreferrer">Source</a></li><li>Sector partnership grants to North Carolina local workforce boards, the Cape Fear board among them. NC Department of Commerce. <a href="https://www.commerce.nc.gov/news/press-releases/2024/01/31/nc-commerce-awards-grants-local-workforce-boards-supporting-sector-partnerships-advanced" target="_blank" rel="noopener noreferrer">Source</a></li><li>A 70% completion standard applied to federally funded short-term workforce programs. NC Community College System, Workforce Pell resources. <a href="https://www.nccommunitycolleges.edu/workforce-pell/" target="_blank" rel="noopener noreferrer">Source</a></li>
+    <li>Occupational Employment and Wage Statistics, Wilmington NC metropolitan area, May 2024. mean hourly wage $26.94 against $32.66 nationally; food preparation and serving 13.5% of area employment at $14.99. U.S. Bureau of Labor Statistics. <a href="https://www.bls.gov/regions/southeast/news-release/occupationalemploymentandwages_wilmington.htm" target="_blank" rel="noopener noreferrer">Source</a></li><li>North Carolina employment projections 2024 to 2034. The Wilmington area projected to add roughly 13,800 jobs, a 6.9% increase. NC Department of Commerce. <a href="https://www.commerce.nc.gov/data-tools-reports/labor-market-data-tools/employment-projections/north-carolina-employment-projections-2024-2034-regional-occupational-trends" target="_blank" rel="noopener noreferrer">Source</a></li><li>Brunswick County the fastest-growing county in North Carolina, up 24% between April 2020 and July 2024 to 169,448; Leland at 30,264 in 2023, more than double its 2010 count. Business North Carolina, citing the Census Bureau and the NC Office of State Budget and Management. <a href="https://businessnc.com/community-close-up-brunswick-new-hanover-pender-counties/" target="_blank" rel="noopener noreferrer">Source</a></li><li>Workforce availability a leading site selection factor, and roughly 60% of manufacturers naming talent shortages a top concern. Business Facilities. <a href="https://businessfacilities.com/topics/site-selection-factors/education-and-workforce/" target="_blank" rel="noopener noreferrer">Source</a></li><li>Training transfer at roughly 10 to 15%, and forgetting of about 70% within a day. Summary of the transfer-of-training literature. <a href="https://www.aimforbehavior.com/library/only-10-to-15-percent-of-what-people/" target="_blank" rel="noopener noreferrer">Source</a></li><li>Campos et al., <em>Teaching personal initiative beats traditional training in boosting small business in West Africa</em>, Science, 2017. A 30% profit gain against a statistically insignificant 11% for conventional training. <a href="https://www.science.org/doi/10.1126/science.aan5329" target="_blank" rel="noopener noreferrer">Source</a></li><li>Seven-year follow-up to the same trial. A 52% profit gain, with effects concentrated among men. World Bank Development Impact. <a href="https://blogs.worldbank.org/en/impactevaluations/personal-initiative-training-continues-to-yield-positive-benefit" target="_blank" rel="noopener noreferrer">Source</a></li><li>Sector-focused training programs across four randomized trials. Earnings gains of 14 to 38% in the year after training, persisting at 12 to 34%. WorkRise. <a href="https://workrisenetwork.org/working-knowledge/evidence-sector-focused-training-programs-shows-significant-and-persistent" target="_blank" rel="noopener noreferrer">Source</a></li><li>Entrepreneurial skills training and microenterprise services as allowable WIOA activities, and the direction to coordinate workforce with economic development. WorkforceGPS, U.S. Department of Labor. <a href="https://www.workforcegps.org/resources/2019/10/30/13/49/Resources-to-Support-Entrepreneurship" target="_blank" rel="noopener noreferrer">Source</a></li><li>Eligible Training Provider List requirements. Programs must lead to a recognized postsecondary credential, certificate of apprenticeship or licence to draw voucher funding. WorkforceGPS. <a href="https://ion.workforcegps.org/resources/2016/03/10/17/06/Eligible_Training_Provider_Provisions_and_ETPLs_in_WOIA" target="_blank" rel="noopener noreferrer">Source</a></li><li>Sector partnership grants to North Carolina local workforce boards, the Cape Fear board among them. NC Department of Commerce. <a href="https://www.commerce.nc.gov/news/press-releases/2024/01/31/nc-commerce-awards-grants-local-workforce-boards-supporting-sector-partnerships-advanced" target="_blank" rel="noopener noreferrer">Source</a></li><li>A 70% completion standard applied to federally funded short-term workforce programs. NC Community College System, Workforce Pell resources. <a href="https://www.nccommunitycolleges.edu/workforce-pell/" target="_blank" rel="noopener noreferrer">Source</a></li>
   </ol>
  </div>
 </section>
@@ -2563,7 +2601,9 @@ var HGCSS = [
  '.d-mid{font-family:\'Cormorant Garamond\',Georgia,serif;font-size:23px;font-weight:600;fill:#FFF8E8}',
  '.d-mids{font-family:\'Poppins\',system-ui,sans-serif;font-size:12px;fill:#C6BE9E}',
  '.d-note{font-family:\'Space Grotesk\',ui-monospace,monospace;font-size:10px;',
- 'letter-spacing:.16em;text-transform:uppercase;fill:#CDAA63}'
+ 'letter-spacing:.16em;text-transform:uppercase;fill:#CDAA63}',
+ '.d-row{font-family:\'Space Grotesk\',ui-monospace,monospace;font-size:12px;',
+ 'letter-spacing:.1em;text-transform:uppercase;fill:#E3DED2}'
 ].join('');
 
 // A serialised SVG in a data: URI cannot reach assets/fonts.css, so an export
