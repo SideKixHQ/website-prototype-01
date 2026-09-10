@@ -43,11 +43,11 @@ faqs = [
   "a person accountable for each one. That list is what an economic developer needs in a recruitment "
   "conversation, and it is not the same as a list of programs."),
  ("What does a town actually receive?",
-  "A Squad of residents run through the eight week program and ninety days of follow through, a "
+  "A cohort of residents run through the eight week program and ninety days of follow through, a "
   "quarterly bench report written to be handed to a site consultant or dropped into an RFI response, "
   "and a local fill rate figure for the target employers you name."),
  ("How long before there is anything to show?",
-  "One Squad takes eight weeks, and the outcomes that matter are verified at a hundred and eighty "
+  "One cohort takes eight weeks, and the outcomes that matter are verified at a hundred and eighty "
   "days. A credible bench in the first six months is tens of residents, not hundreds. Anyone promising "
   "a pipeline of three hundred people in a quarter is selling a list, not a bench."),
  ("Has SideKix run this before?",
@@ -570,7 +570,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p>It compounds quietly, and there is a clock on it: every four years somebody stays in low wage
     work, the odds of getting out roughly halve. By year ten they are down to about one in a
     hundred. A town is not deciding whether to fix this. It is deciding how long to wait.</p>
-  <p>The four numbers below are Wilmington&#8217;s, because that is where the first Squads run.
+  <p>The four numbers below are Wilmington&#8217;s, because that is where the first cohorts run.
     Every town gets the same four built from its own county.</p>
   <div class="stats">
     <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
@@ -582,29 +582,15 @@ MAIN = f"""<main id="maincontent" class="hg">
     <div class="stat"><b>13,800</b><span>Jobs the metro is projected to add by 2034. Somebody is
       going to fill them.</span></div>
   </div>
-  <p style="margin-top:26px">Wherever the county is, site consultants stopped asking only who lives
-    there now. They ask what the pipeline looks like, and close to six in ten manufacturers name
-    talent as a top concern. So the staffing answer and the political answer turn out to be the
+  <p style="margin-top:26px">Wherever the county is, site consultants, the people a company pays to
+    choose where it lands, stopped asking only who lives there now. They ask what the pipeline
+    looks like, and close to six in ten manufacturers name talent as a top concern. So the staffing answer and the political answer turn out to be the
     same asset.</p>
   <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal to
     a council whose residents did not get hired.</p></div>
  </div>
 </section>
 
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">The asset</p>
-  <h2>What you can hand a site consultant</h2>
-  <div class="rule"></div>
-  <p>Ask an economic development office for its workforce case and you get institutions. A college,
-    a university, a career center. Real, but they describe capacity, not supply, and a consultant
-    already assumes you have a college.</p>
-  <div class="callout"><p>Here are 240 residents, assessed, moving toward these occupations, with
-    timelines, and a person accountable for each one.</p></div>
-  <p>That is a bench. Not a program, not a graduate list. A live roster that means something
-    different in June than it did in March.</p>
- </div>
-</section>
 
 <section>
  <div class="hgwrap">
@@ -684,14 +670,14 @@ MAIN = f"""<main id="maincontent" class="hg">
   <h2>What a town gets</h2>
   <div class="rule"></div>
   <ul class="plain">
-    <li><b>A Squad.</b> The residents you nominate, or that we recruit alongside you. A cohort, if you are writing it into a grant application.</li>
+    <li><b>A cohort.</b> The residents you nominate, or that we recruit alongside you.</li>
     <li><b>The bench report, quarterly.</b> Who is in motion, toward what, how far along. Written to
       hand to a site consultant, not to file.</li>
     <li><b>A local fill rate.</b> For the employers you name, the share of new hires who already
       lived in the county.</li>
     <li><b>The handoffs, tracked.</b> Referred to the college, and separately, actually enrolled.</li>
     <li><b>A facilitator.</b> A person in a room, not a video library with a progress bar.</li>
-    <li><b>The SideKix platform, for everybody in the Squad.</b> The community, the resource
+    <li><b>The SideKix platform, for everybody in the cohort.</b> The community, the resource
       library, the self discoveries, live events, training, and AI guidance from Kix. The eight
       weeks end. This does not, which is how somebody gets help with the thing that hits them in
       month five.</li>
@@ -704,7 +690,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The numbers</p>
   <h2>How it is measured</h2>
   <div class="rule"></div>
-  <p>Set before the first Squad starts, not chosen afterwards to suit the result.</p>
+  <p>Set before the first cohort starts, not chosen afterwards to suit the result.</p>
   <table class="mtab">
     <thead><tr><th>Measure</th><th>What it is</th></tr></thead>
     <tbody>
@@ -729,7 +715,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <div class="rule"></div>
   <ul class="plain">
     <li><b>Economic development budget.</b> Fastest, and the one an ED office controls outright.
-      Most first Squads should start here.</li>
+      Most first cohorts should start here.</li>
     <li><b>The workforce board.</b> Entrepreneurial skills training and microenterprise services are
       allowable under federal workforce law. Board procurement runs on its own annual cycle, so plan
       ahead rather than counting on it.</li>
@@ -746,13 +732,13 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
-  <p class="eyebrow">The first Squads</p>
+  <p class="eyebrow">The first cohorts</p>
   <h2>Where it starts</h2>
   <div class="rule"></div>
   <p>The program is built to run anywhere with a county, an employer base and residents who are
     stuck. What changes between towns is the target industries, the local numbers and the weighting
     of the four exits. The eight weeks, the five competencies and the reporting do not change.</p>
-  <p>SideKix is in Wilmington, so the Cape Fear region is where the first Squads run, and it
+  <p>SideKix is in Wilmington, so the Cape Fear region is where the first cohorts run, and it
     happens to be a useful pair. Wilmington needs people who already have jobs to move up. Leland,
     which has more than doubled since 2010, needs residents who can build a career without crossing
     the bridge every morning. Same program, weighted differently, measured the same way. If it works
@@ -790,7 +776,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p style="margin-top:26px">One caveat, up front rather than buried. That trial ran with small
     business owners in West Africa, not a Carolina metro, and by year seven the gains were much
     stronger for the men in it. It is the best evidence this method has, and it is not proof of
-    what happens here. That is what the first Squads are for.</p>
+    what happens here. That is what the first cohorts are for.</p>
  </div>
 </section>
 
