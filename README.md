@@ -51,6 +51,33 @@ which stops a bad run from emptying the page. Override with `--allow-shrink`.
 `pinned.json` is for events you want on the page regardless of what the
 scrapers return. It is currently empty.
 
+## The jobs map
+
+`where-the-jobs-are.html` colours every census tract in a region by one number:
+the jobs located in it minus the employed people living in it. Positive is an
+employment centre, negative is a place people leave in the morning.
+
+It is built in two steps, because only the first needs the network.
+
+    python3 build/mkjobsmap.py     # writes jobs-map.json, needs census.gov
+    python3 build/mkjobspage.py    # writes where-the-jobs-are.html
+
+`mkjobsmap.py` pulls LEHD LODES (WAC for jobs, RAC for resident workers, OD for
+commute flows) and tract geometry from TIGERweb, aggregates blocks to tracts and
+flows to county pairs, and writes a single JSON file. All of it is public domain
+federal data, no key required.
+
+Defaults to the Cape Fear workforce area, New Hanover, Brunswick, Pender and
+Columbus, for 2022. Any county works:
+
+    python3 build/mkjobsmap.py --region 37129,37019 --year 2021
+
+Adding a state means adding its LODES slug to `STATE_OF` in that file.
+
+Neither `jobs-map.json` nor the page is in the repository yet, because the
+sandbox this was written in has no route to census.gov. Run the two commands and
+both appear.
+
 ## Tests
 
     python selftest.py

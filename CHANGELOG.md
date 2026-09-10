@@ -11,6 +11,249 @@ site, comparing the build before the change with the build after it.
 
 ## 2026-09-10
 
+### A jobs map, as a pipeline rather than a picture
+
+`build/mkjobsmap.py` and `build/mkjobspage.py` build a map of where the jobs are
+against where the workers live, for any set of US counties, from free federal
+data: LEHD LODES for jobs, resident workers and commute flows, TIGERweb for
+tract geometry. Blocks aggregate to tracts, flows aggregate to county pairs, and
+the whole region comes out as one JSON file the page renders inline. No basemap
+tiles, so no API key, no tile bill, no attribution constraint, and the thing
+looks like the rest of the site instead of looking like Google.
+
+The map draws one number per tract, jobs minus employed residents, which is a
+polarity rather than a magnitude. So the scale is diverging: two hues either
+side of a neutral grey midpoint, seven steps, no rainbow. The midpoint recedes
+so tracts furthest out of balance carry the most weight, which is the point of
+the map. Every step was checked rather than eyeballed: all seven clear 3:1 on
+the panel ground, and lightness rises monotonically outward from the midpoint on
+both sides. The categorical validator was run too and flagged the grey midpoint
+and the pole lightness, which are the two things a diverging ramp is supposed to
+do; its own scope note says it covers categorical palettes.
+
+Tract hover and keyboard focus both raise a tooltip with jobs, resident workers
+and the net, every tract is focusable, and the full table sits under a details
+element so the map is not the only way to read it.
+
+Neither the data file nor the page is committed. The sandbox this was written in
+has no route to census.gov: the egress proxy denies it, over curl and over
+fetch. So the pipeline was verified end to end against a synthetic fixture, 120
+tracts through projection, colour assignment, hover and layout, and the fixture
+and the page built from it were deleted rather than shipped. Running the two
+commands anywhere with outbound access produces the real thing. Nothing invented
+is in the repository.
+
+### Homegrown scores named competencies, and the caveat says something
+
+The five things the program scores were plain-language coinages, self starting,
+opportunity spotting, obstacle anticipation, asking, follow through. They now
+carry the competency names an L and D reader will recognise: action oriented,
+resourcefulness, plans and aligns, courage, ensures accountability. Each still
+sits beside a plain observable in the list underneath, so the label carries
+weight with an evaluator and the sentence next to it carries meaning for
+everyone else.
+
+Worth recording, since it constrains what the page can say: the Leadership
+Architect framework these names come from is Korn Ferry intellectual property,
+descended from Lominger, licensed rather than public. The words themselves are
+ordinary English and most predate the framework, so using them is fine. Naming
+Lominger or Korn Ferry on the page, reproducing their definitions, or presenting
+this as their instrument would not be, absent a licence. The page therefore uses
+the terminology and defines it in SideKix's own words, and attributes nothing.
+
+"Teaching people things does not work" is the line the argument turns on and was
+set like any other heading. It now carries a gold marker that sits as a thin
+underline at rest and sweeps up into a full highlight on hover. Rest state
+matters more than the hover here: it is what a screenshot and a phone get, since
+touch never hovers, so devices reporting `hover: none` are given the full
+highlight outright and reduced-motion drops the transition.
+
+The caveat about the trial was unreadable. It opened "Said plainly, because
+someone should ask", named Lome, which means nothing to a reader who was never
+told the trial was in Togo, and referred to "that trial" when the tile above had
+not said where it ran. The tile now says West Africa and the caveat is four
+plain sentences. It stays on the page: the thirty and fifty two per cent figures
+are the strongest claim here, the audience includes people who will look the
+study up, and quoting the gains while dropping the limits is the kind of thing
+that ends a procurement conversation.
+
+What a town gets now includes platform access for everybody in the cohort: the
+community, the resource library, the self discoveries, events, training and AI
+guidance. The eight weeks end and that does not, which is the answer to what
+happens in month five.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile` and `contrast3` clean, including the
+cream heading over the new marker. No console errors. The longest competency
+label, ensures accountability, measures 176px inside a 305px zone, so nothing
+overflows the diagram.
+
+### Homegrown rewritten: shorter, specific, and finally in alignment
+
+The page said what it did in the abstract and buried the part that is actually
+distinctive. It now leads with the method. After the opening diagram the second
+section is "Five areas of work. Five behaviors we score.", which names the work
+in plain words, behavior, skills, career development, personal development and
+leadership, and then separates what gets taught from what gets reported. You
+cannot audit a topic. You can watch a person do a thing.
+
+The hero was rewritten. The old headline made a claim without saying what the
+program is; the new deck says it in three sentences and ends on the deliverable,
+a list of who is ready, for what, and by when.
+
+Length came down from 3,181 words to 2,476, and from 3,181 to 1,836 for what a
+reader actually faces, because the twelve sources and the five questions now sit
+inside collapsed `details` rather than running down the page. The evidence
+section lost four paragraphs of prose and became three figures, which is what
+anyone was going to take from it anyway.
+
+Two real alignment bugs, both mine.
+
+The page had three horizontal axes. The hero and the figure captions centred on
+620, the full width rows centred on 620, and the prose ran 84 to 831, centring
+on 457, because `.hg p` capped at 68ch with no auto margins. Everything in the
+reading column now shares one width, and the width is set in rem rather than ch:
+`ch` resolves against each element's own font, so an `h2` at 70ch was far wider
+than a `p` at 70ch and their left edges never lined up. Two bands now, 236 to
+1004 for text and 84 to 1156 for diagrams, stat rows, cards and the table, both
+centred on the same axis.
+
+The call to action block was a class collision. The shell defines `.cta` as an
+inline-block button; the section reused the name, inherited `display:inline-block`
+and shrink-wrapped to 891px against the 1072px it should have filled, sitting
+left of centre. Renamed to `.hgcta`. Namespacing by prefix rather than by
+out-specifying a shell rule is the fix.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile` and `contrast3` clean, no console
+errors, no horizontal overflow at 390px, and the reading column and the full
+width band both measured back to a common centre.
+
+### Homegrown opens on the diagram, gains a growth model, and loses its dashes
+
+Three changes, all from review.
+
+The loop diagram now sits directly under the hero rather than after the opening
+argument. It is the thesis of the page, and making a reader work through five
+paragraphs of prose to reach it wasted it. Its caption was rewritten to stand on
+its own, since it no longer has the argument above it to lean on. The first
+section on this page also overrides the shell's 132px of top padding down to
+about 58px: that default is right for a section that opens with a heading and
+wrong for one that opens with a full width figure, which it stranded behind a
+screen of black.
+
+A third diagram was added, because neither of the first two showed what the
+program actually changes in a person. One shows the system, the other shows the
+mechanics. The new one names five behaviors, self starting, opportunity
+spotting, obstacle anticipation, asking and follow through, and shows each of
+them growing across the same four stages, from named to practiced to applied to
+habitual. The caption says plainly that it is the design of the program and not
+a plot of measured results, because a chart of bars will otherwise be read as
+data. The five behaviors are also written out under it as observable
+indicators, which is what makes the day 180 score mean anything.
+
+Every em and en dash on the page is gone, per house style. They were reworded
+rather than swapped for another mark: sentences split at full stops, lists took
+colons, and the four phase headings read "Begin: where you actually are" and so
+on. Week ranges are "Weeks 1 to 2". The two SVG descriptions used hyphens the
+same way and were rewritten too. Worth noting for a later pass: `index.html`
+carries 17 em dashes and `membership.html` 23, so the rule is not yet applied
+site wide.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile` and `contrast3` clean for the page,
+no console errors, and all three download controls produce PNGs at 1800x1040,
+2000x940 and 1960x820. Two spelling slips were caught before shipping, since the
+new diagram had been written in British English against a site that uses
+American.
+
+### The body font was never loading on any page
+
+`assets/fonts.css` declared Poppins five times and EA Majer once, and every one
+of those rules had the family name interpolated into its own filename with the
+quotes left in, so each `src` pointed at a file that does not exist and never
+did. Nothing in `assets/` matched. `document.fonts` held no Poppins entry on any
+page, and because `--body` is `'Poppins',system-ui,sans-serif`, every page on
+the site has been rendering its body text in `system-ui`.
+
+Poppins is now self-hosted the way Cormorant Garamond and Space Grotesk already
+were: latin and latin-ext subsets at 400, 500, 600, 700 and 800, ten woff2 files
+totalling about 120KB, with the unicode ranges Google publishes. Devanagari was
+skipped, being roughly 60KB per weight and unused. The EA Majer rule was deleted
+rather than repaired: no file, and no reference to it anywhere in the shell.
+
+The weights were chosen from what the built pages actually ask for: 600 leads at
+344 uses, then 700, 800, 500 and 400.
+
+Checked: Poppins 400 through 800 report `loaded` on `index.html`,
+`membership.html` and `homegrown.html`, `document.fonts.check` passes, and no
+font request fails. Restoring a real font changes text metrics on every page, so
+fifteen pages were measured for horizontal overflow at 390px and 1240px, and
+none has any. A before and after of `membership.html` shows the layout holding
+with the correct letterforms.
+
+### SideKix Homegrown, an offering page for towns and counties
+
+Two economic development directors, for Wilmington and for Leland, asked for
+help with career development. `homegrown.html` is the offering that answers
+that ask, and it is the first page on the site written to be sold rather than
+read.
+
+The argument it makes is that the three things an economic development office
+is asked for, attracting business, growing the industries already here and
+getting residents into the work, are one problem rather than three, and that
+the missing asset is a named, tracked bench of local residents. The program
+underneath it, Next Move, is eight weeks plus ninety days of follow through,
+built on personal initiative rather than curriculum, with four exits so that a
+credential handoff to the community college counts as a success rather than a
+loss.
+
+Two diagrams carry the argument, because the page also has to work projected in
+a meeting. Both are inline SVG on the site palette, and both have a download
+control that rasterises them at 2x onto the dark ground for use in a deck. The
+export injects its own copy of the type rules, since a serialised SVG does not
+carry the page stylesheet with it.
+
+Every figure on the page is sourced, with the date checked, in the last section.
+One claim about the share of US businesses with no employees was cut rather than
+shipped, because the SBA Advocacy source could not be reached to verify the
+exact figure and the page promises that every number is listed. The Togo trial
+that the method leans on is quoted with its limits stated on the page, including
+that the seven-year gains were concentrated among men, on the view that an
+evaluator will find that out anyway and it is better to say it first.
+
+Checked: `wcag`, `wcag2`, `pour`, `mobile`, `navclear` and `contrast3` all clean
+for the page. No console or page errors. No horizontal overflow at 390px. Both
+download controls produce PNGs, 1800x1040 and 1960x820. Three things were fixed
+during the build rather than shipped: the title and meta description were over
+the SEO audit's limits; the first section carried the section rhythm on top of
+the 132px of top padding the shell already gives it, which double-spaced the
+page under the hero, and every other page on the site sets that margin to zero;
+and the colour fallback on the exit card tags was `--gold-mid`, which measures
+3.55:1 on the card fill against the 4.5 needed. The rendered tags were never
+affected, since they carry their own colour, but the fallback is now `#CDAA63`
+at 5.69:1.
+
+The diagram export embeds the fonts. A serialised SVG in a data URI cannot
+reach `assets/fonts.css`, so the first version of the export rasterised on
+system fallbacks. It now reads the faces the page already loaded out of the
+CSSOM, fetches the basic-latin subsets and inlines them as data URIs, with any
+failure falling back to the previous behaviour. Two things had to be corrected
+to make it work: browsers serialise that subset's range as `U+0-FF` rather than
+`U+0000-00FF`, and the weights asked for did not match the weights the diagrams
+actually use.
+
+Doing that surfaced a separate, pre-existing bug that is worth fixing on its
+own. Every `@font-face` for Poppins and EA Majer in `assets/fonts.css` has a
+malformed `src`, `url(""Poppins"-ec1e9eca.ttf")`, with the family name
+interpolated into the filename and its quotes left in. No matching file exists
+in `assets/` either. `document.fonts` holds no Poppins entry on `index.html`
+any more than on this page, so the body font across the whole site is silently
+falling back to `system-ui`. Not touched here, because it affects every page and
+is not this change's to make.
+
+`sitemap.xml` and `llms.txt` carry the page. The sitemap entry was added by
+hand rather than by rerunning `build/mksitemap.py`, which wanted to add four
+unrelated transactional pages and rewrite every `lastmod` from checkout
+timestamps.
+
 ### The self test was failing on three assertions that the code had outgrown
 
 `selftest.py` returned 48 passed, 5 failed. Three of the failures were the
