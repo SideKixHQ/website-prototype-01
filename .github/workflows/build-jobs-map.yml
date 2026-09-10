@@ -1,0 +1,56 @@
+name: Build jobs map
+
+# The map needs census.gov, which a sandbox usually cannot reach. A runner can.
+# Actions tab, "Build jobs map", Run workflow. Nothing to install locally.
+
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: "County FIPS codes, comma separated. Blank uses the Cape Fear area: New Hanover, Brunswick, Pender, Columbus."
+        type: string
+        default: ""
+      year:
+        description: "LODES data year. 2022 is the safe default; a newer year may not be published for every state yet."
+        type: string
+        default: "2022"
+  schedule:
+    # LODES publishes once a year, so check each October.
+    - cron: "0 12 1 10 *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Both scripts are standard library only, so there is nothing to install.
+      - name: Fetch LODES and tract geometry
+        run: |
+          python build/mkjobsmap.py \
+            ${{ inputs.region && format('--region {0}', inputs.region) || '' }} \
+            --year ${{ inputs.year || '2022' }}
+
+      - name: Render the page
+        run: python build/mkjobspage.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "jobsmap-bot"
+          git config user.email "actions@github.com"
+          git add jobs-map.json where-the-jobs-are.html sitemap.xml llms.txt
+          if git diff --cached --quiet; then
+            echo "No change."
+            exit 0
+          fi
+          git commit -m "Build jobs map ($(date -u +%Y-%m-%d))"
+          # Someone editing the repo mid-run should not cost the whole build.
+          git pull --rebase --autostash
+          git push

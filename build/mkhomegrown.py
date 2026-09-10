@@ -43,11 +43,11 @@ faqs = [
   "a person accountable for each one. That list is what an economic developer needs in a recruitment "
   "conversation, and it is not the same as a list of programs."),
  ("What does a town actually receive?",
-  "A cohort of residents run through the eight week program and ninety days of follow through, a "
+  "A Squad of residents run through the eight week program and ninety days of follow through, a "
   "quarterly bench report written to be handed to a site consultant or dropped into an RFI response, "
   "and a local fill rate figure for the target employers you name."),
  ("How long before there is anything to show?",
-  "One cohort takes eight weeks, and the outcomes that matter are verified at a hundred and eighty "
+  "One Squad takes eight weeks, and the outcomes that matter are verified at a hundred and eighty "
   "days. A credible bench in the first six months is tens of residents, not hundreds. Anyone promising "
   "a pipeline of three hundred people in a quarter is selling a list, not a bench."),
  ("Has SideKix run this before?",
@@ -205,8 +205,12 @@ CSS = """
 .hg .hgcta{border:1px solid rgba(212,168,86,.36);border-radius:20px;padding:clamp(30px,5vw,52px);
   text-align:center;background:radial-gradient(120% 140% at 50% 0%,rgba(34,26,10,.7),rgba(7,7,8,.92));
   margin-top:clamp(52px,7vw,86px)}
-.hg .hgcta h2{margin-bottom:12px}
-.hg .hgcta p{margin-left:auto;margin-right:auto;text-align:center}
+/* the deck used to orphan its last two words onto a line of their own, which is
+   what made this block read as crooked under a one line heading */
+.hg .hgcta h2{margin-bottom:12px;max-width:22ch;margin-left:auto;margin-right:auto;
+  text-wrap:balance}
+.hg .hgcta p{margin-left:auto;margin-right:auto;text-align:center;max-width:48ch;
+  text-wrap:balance}
 .hg .btnrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
 .hg .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;
   border-radius:999px;text-decoration:none;font-family:var(--body);font-size:14.5px;font-weight:600;
@@ -362,12 +366,15 @@ exits: advance, switch, credential, or own it.</desc>
 # Four of these are the dimensions of career adaptability, the construct built for
 # people moving between jobs rather than for managers running teams. The fifth is
 # personal initiative, which is the one with the randomised trial behind it.
+# Each one has to name something a manager or an advisor could watch happen.
+# "Knows", "has a picture of" and "treats X as" are states of mind and fail that
+# test, however true they are, so each is written as the act that reveals it.
 COMP = [
- ("Looks ahead",        "#F0855A", "has a picture of their own next two years"),
- ("Takes charge",       "#FFE7A6", "treats the path as theirs to steer"),
- ("Explores",           "#5FB6A6", "knows what work is here and what it pays"),
- ("Bets on themselves", "#4FC3F7", "attempts it, and handles it going wrong"),
- ("Takes initiative",   "#B18BE4", "acts before anyone asks, and keeps going"),
+ ("Names the target",   "#F0855A", "says where they intend to be, and what comes first"),
+ ("Makes the call",     "#FFE7A6", "decides, rather than waiting to be told the options"),
+ ("Finds out",          "#5FB6A6", "asks somebody who does the job what it really takes"),
+ ("Bets on themselves", "#4FC3F7", "puts in for it before feeling ready"),
+ ("Takes initiative",   "#B18BE4", "starts what nobody asked for, and is still at it"),
 ]
 STAGE = [("Weeks 1 to 2", "named"), ("Weeks 3 to 5", "practiced"),
          ("Weeks 6 to 8", "applied"), ("+ 90 days", "habitual")]
@@ -403,8 +410,8 @@ def _grow_cols():
 GROWTH_SVG = f"""<svg viewBox="0 0 1000 470" role="img" aria-labelledby="hgd3t hgd3d"
      xmlns="http://www.w3.org/2000/svg">
 <title id="hgd3t">What the program is built to move</title>
-<desc id="hgd3d">Five competencies down the side: looks ahead, takes charge, explores, bets on
-themselves, and takes initiative. The same four stages across the top: weeks one to two
+<desc id="hgd3d">Five competencies down the side: names the target, makes the call, finds out,
+bets on themselves, and takes initiative. The same four stages across the top: weeks one to two
 where each behavior is named, weeks three to five where it is practiced, weeks six to eight where
 it is applied, and the ninety days after, where it becomes habitual. Each bar grows across the row.
 This is the design of the program rather than a plot of measured results.</desc>
@@ -520,54 +527,34 @@ MAIN = f"""<main id="maincontent" class="hg">
     <li><b>Leadership.</b> Running a shift, running a team, or running your own thing.</li>
   </ul>
   <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
-    was taught leadership, only whether they have started doing what a leader does. So the report
-    scores five things a person is seen to do instead.</p>
-  <p>Four of them are the dimensions of career adaptability, which is the measure built for people
-    moving between jobs rather than for managers running teams. The fifth is initiative, the one
-    with the randomized trial behind it. None of them require somebody to already be a supervisor,
-    which matters when the program has to work for a line cook and a laid off analyst in the same
-    room.</p>
+    was taught leadership, only whether they have started acting like one. So the report scores
+    five things you can watch a person do.</p>
+  <p>Four come from career adaptability, built for people changing jobs rather than managers
+    running teams. The fifth is initiative, the construct with the trial behind it. None needs a
+    supervisor&#8217;s title, which is what matters when a line cook and a laid off analyst are in
+    the same room.</p>
 
   <figure>
     <div class="dwrap">{GROWTH_SVG}</div>
     <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
-    <figcaption>Where each competency is meant to have reached by each stage. This is the design of
-      the program, not a plot of results, and it is what the week one baseline and the day 180
-      check are scored against.</figcaption>
+    <figcaption>The design of the program, not a plot of results.</figcaption>
   </figure>
 
   <ul class="plain">
-    <li><b>Looks ahead.</b> Has a picture of their own next two years, not just next Friday.</li>
-    <li><b>Takes charge.</b> Treats a working life as theirs to steer, not weather that happens
-      to them.</li>
-    <li><b>Explores.</b> Knows what work exists here, what it pays, and what it takes to get it.</li>
-    <li><b>Bets on themselves.</b> Attempts the thing, and handles it when it goes wrong.</li>
-    <li><b>Takes initiative.</b> Acts before anyone asks, and keeps going when it stalls.</li>
+    <li><b>Names the target.</b> Says out loud where they intend to be in two years, and what has
+      to happen first.</li>
+    <li><b>Makes the call.</b> Decides their own next move, instead of waiting to be told what the
+      options are.</li>
+    <li><b>Finds out.</b> Asks somebody who does the job what it pays and what it takes, rather
+      than guessing at it.</li>
+    <li><b>Bets on themselves.</b> Puts in for it before feeling ready, and comes back after a
+      no.</li>
+    <li><b>Takes initiative.</b> Starts the thing nobody asked for, and is still at it in month
+      three.</li>
   </ul>
  </div>
 </section>
 
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">Why behavior</p>
-  <h2><span class="punch">Teaching people things does not work</span></h2>
-  <div class="rule"></div>
-  <p>This is one of the few corners of workforce development where the evidence is clean, and it
-    says the same thing every time. Content fades. Behavior compounds.</p>
-  <div class="stats">
-    <div class="stat"><b>10 to 15%</b><span>How much of ordinary training ever shows up in
-      somebody&#8217;s work. Most of the rest is gone within a week.</span></div>
-    <div class="stat"><b>11%</b><span>Profit change from conventional business training, in a
-      controlled trial of 1,500 owners in West Africa. Not statistically significant.</span></div>
-    <div class="stat"><b>30%</b><span>Same hours, same mentoring, behavior based instead. Fifty two
-      per cent by year seven, and it paid for itself inside one.</span></div>
-  </div>
-  <p style="margin-top:26px">One caveat, up front rather than buried. That trial ran with small
-    business owners in West Africa, not a Carolina metro, and by year seven the gains were much
-    stronger for the men in it. It is the best evidence this method has, and it is not proof of
-    what happens here. That is what the first cohorts are for.</p>
- </div>
-</section>
 
 <section>
  <div class="hgwrap">
@@ -579,7 +566,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p>It compounds quietly, and there is a clock on it: every four years somebody stays in low wage
     work, the odds of getting out roughly halve. By year ten they are down to about one in a
     hundred. A town is not deciding whether to fix this. It is deciding how long to wait.</p>
-  <p>The four numbers below are Wilmington&#8217;s, because that is where the first cohorts run.
+  <p>The four numbers below are Wilmington&#8217;s, because that is where the first Squads run.
     Every town gets the same four built from its own county.</p>
   <div class="stats">
     <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
@@ -675,14 +662,14 @@ MAIN = f"""<main id="maincontent" class="hg">
   <h2>What a town gets</h2>
   <div class="rule"></div>
   <ul class="plain">
-    <li><b>A cohort.</b> Residents you nominate or we recruit with you.</li>
+    <li><b>A Squad.</b> The residents you nominate, or that we recruit alongside you. A cohort, if you are writing it into a grant application.</li>
     <li><b>The bench report, quarterly.</b> Who is in motion, toward what, how far along. Written to
       hand to a site consultant, not to file.</li>
     <li><b>A local fill rate.</b> For the employers you name, the share of new hires who already
       lived in the county.</li>
     <li><b>The handoffs, tracked.</b> Referred to the college, and separately, actually enrolled.</li>
     <li><b>A facilitator.</b> A person in a room, not a video library with a progress bar.</li>
-    <li><b>The SideKix platform, for everybody in the cohort.</b> The community, the resource
+    <li><b>The SideKix platform, for everybody in the Squad.</b> The community, the resource
       library, the self discoveries, live events, training, and AI guidance from Kix. The eight
       weeks end. This does not, which is how somebody gets help with the thing that hits them in
       month five.</li>
@@ -695,7 +682,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <p class="eyebrow">The numbers</p>
   <h2>How it is measured</h2>
   <div class="rule"></div>
-  <p>Set before the first cohort starts, not chosen afterwards to suit the result.</p>
+  <p>Set before the first Squad starts, not chosen afterwards to suit the result.</p>
   <table class="mtab">
     <thead><tr><th>Measure</th><th>What it is</th></tr></thead>
     <tbody>
@@ -720,7 +707,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   <div class="rule"></div>
   <ul class="plain">
     <li><b>Economic development budget.</b> Fastest, and the one an ED office controls outright.
-      Most first cohorts should start here.</li>
+      Most first Squads should start here.</li>
     <li><b>The workforce board.</b> Entrepreneurial skills training and microenterprise services are
       allowable under federal workforce law. Board procurement runs on its own annual cycle, so plan
       ahead rather than counting on it.</li>
@@ -737,13 +724,13 @@ MAIN = f"""<main id="maincontent" class="hg">
 
 <section>
  <div class="hgwrap">
-  <p class="eyebrow">The first cohorts</p>
+  <p class="eyebrow">The first Squads</p>
   <h2>Where it starts</h2>
   <div class="rule"></div>
   <p>The program is built to run anywhere with a county, an employer base and residents who are
     stuck. What changes between towns is the target industries, the local numbers and the weighting
     of the four exits. The eight weeks, the five competencies and the reporting do not change.</p>
-  <p>SideKix is in Wilmington, so the Cape Fear region is where the first cohorts run, and it
+  <p>SideKix is in Wilmington, so the Cape Fear region is where the first Squads run, and it
     happens to be a useful pair. Wilmington needs people who already have jobs to move up. Leland,
     which has more than doubled since 2010, needs residents who can build a career without crossing
     the bridge every morning. Same program, weighted differently, measured the same way. If it works
@@ -756,13 +743,34 @@ MAIN = f"""<main id="maincontent" class="hg">
 <div class="hgwrap">
  <div class="hgcta">
   <h2>Make the growth reach the people already there</h2>
-  <p>A first conversation runs about thirty minutes and does not need a budget attached to it.</p>
+  <p>A first conversation takes thirty minutes and needs no budget attached.</p>
   <div class="btnrow">
-    <a class="btn solid" href="mailto:support@sidekixhq.com?subject=SideKix%20Homegrown%20-%20enquiry&amp;body=Which%20town%20or%20county%3A%0AYour%20role%3A%0AWhat%20you%20are%20trying%20to%20fix%3A%0A">Start a conversation</a>
-    <a class="btn ghost" href="how-it-works.html">How SideKix works</a>
+    <a class="btn solid" href="mailto:support@sidekixhq.com?subject=SideKix%20Homegrown%20-%20enquiry&amp;body=Which%20town%20or%20county%3A%0AYour%20role%3A%0AWhat%20you%20are%20trying%20to%20fix%3A%0A">Ask about your town</a>
   </div>
  </div>
 </div>
+
+<section>
+ <div class="hgwrap">
+  <p class="eyebrow">Why behavior</p>
+  <h2><span class="punch">Teaching people things does not work</span></h2>
+  <div class="rule"></div>
+  <p>This is one of the few corners of workforce development where the evidence is clean, and it
+    says the same thing every time. Content fades. Behavior compounds.</p>
+  <div class="stats">
+    <div class="stat"><b>10 to 15%</b><span>How much of ordinary training ever shows up in
+      somebody&#8217;s work. Most of the rest is gone within a week.</span></div>
+    <div class="stat"><b>11%</b><span>Profit change from conventional business training, in a
+      controlled trial of 1,500 owners in West Africa. Not statistically significant.</span></div>
+    <div class="stat"><b>30%</b><span>Same hours, same mentoring, behavior based instead. Fifty two
+      per cent by year seven, and it paid for itself inside one.</span></div>
+  </div>
+  <p style="margin-top:26px">One caveat, up front rather than buried. That trial ran with small
+    business owners in West Africa, not a Carolina metro, and by year seven the gains were much
+    stronger for the men in it. It is the best evidence this method has, and it is not proof of
+    what happens here. That is what the first Squads are for.</p>
+ </div>
+</section>
 
 <section>
  <div class="hgwrap narrow">

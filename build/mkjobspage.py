@@ -332,6 +332,46 @@ if (svg) {
     out = out.replace("<!DOCTYPE html>\n", f"<!DOCTYPE html>\n<!-- kx-build {stamp} jobsmap -->\n", 1)
     open(OUT, "w", encoding="utf-8").write(out)
     print(f"where-the-jobs-are.html written: {len(out)//1024} KB, {len(paths)} tracts")
+    register(region_name)
+
+
+def register(region_name):
+    """Put the page in sitemap.xml and llms.txt if it is not already there.
+    Idempotent, and surgical: rerunning build/mksitemap.py instead would rewrite
+    every lastmod in the file from checkout timestamps."""
+    sm = os.path.join(_ROOT, "sitemap.xml")
+    if os.path.exists(sm):
+        t = open(sm, encoding="utf-8").read()
+        if "where-the-jobs-are.html" not in t:
+            import re as _re
+            entry = ("  <url>\n"
+                     f"    <loc>{SITE}/where-the-jobs-are.html</loc>\n"
+                     f"    <lastmod>{datetime.date.today().isoformat()}</lastmod>\n"
+                     "    <changefreq>yearly</changefreq>\n"
+                     "    <priority>0.8</priority>\n"
+                     "  </url>\n")
+            anchor = _re.search(r"  <url>\s*<loc>[^<]*homegrown\.html</loc>.*?</url>\n", t, _re.S)
+            if anchor:
+                t = t[:anchor.end()] + entry + t[anchor.end():]
+            else:
+                t = t.replace("</urlset>", entry + "</urlset>", 1)
+            open(sm, "w", encoding="utf-8").write(t)
+            print("  sitemap.xml updated")
+
+    lt = os.path.join(_ROOT, "llms.txt")
+    if os.path.exists(lt):
+        t = open(lt, encoding="utf-8").read()
+        if "where-the-jobs-are" not in t:
+            line = (f"- [Where the Jobs Are]({SITE}/where-the-jobs-are.html): Every census tract in "
+                    f"{region_name} coloured by the jobs located in it minus the employed people "
+                    "living in it, from Census LODES. Shows which places are employment centres "
+                    "and which export their workers every morning. Free federal data, no account.\n")
+            key = "- [SideKix Homegrown]"
+            if key in t:
+                i = t.index(key)
+                t = t[:i] + line + t[i:]
+                open(lt, "w", encoding="utf-8").write(t)
+                print("  llms.txt updated")
 
 
 if __name__ == "__main__":
