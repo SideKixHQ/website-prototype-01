@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-10 21:44:37 homegrown -->
+<!-- kx-build 2026-09-10 21:50:44 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1169,10 +1169,27 @@ section.wrap{position:relative;z-index:1 !important}
 .hg h2:hover .punch,.hg .punch:hover,.hg h2:focus-within .punch{background-size:100% 46%}
 @media (hover:none){.hg .punch{background-size:100% 46%}}
 @media (prefers-reduced-motion:reduce){.hg .punch{transition:none}}
-/* the turn of the sentence, in gold. Bright rather than saturated: the heading
-   is near-white, so a deep gold would read as dimmer and therefore as less
-   important, which is the opposite of the job. */
-.hg .punch .no{color:#FFC947}
+/* The turn of the sentence, in red. Bright rather than deep: this heading also
+   carries the gold marker, and the site's own --app-red measures 1.71:1 against
+   that strip, well under the 3:1 large text needs. #FF6B5B clears both grounds
+   and still reads brighter than the near-white heading around it. */
+.hg .punch .no{color:#FF6B5B}
+
+/* The four step spine under the opening diagram. It is the whole offer in one
+   glance and doubles as the page's navigation, which a long scroll otherwise
+   has none of. A real sequence, so the numbering carries meaning. */
+.hg .hgsteps{list-style:none;margin:0;padding:0;display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.hg .hgsteps a{display:flex;gap:12px;align-items:baseline;height:100%;
+  border:1px solid rgba(212,168,86,.26);border-radius:14px;padding:18px 18px 20px;
+  background:linear-gradient(180deg,rgba(22,17,7,.5),rgba(8,8,9,.7));
+  text-decoration:none;color:#D8D2C6;font-size:15.4px;line-height:1.45;
+  transition:border-color .25s,color .25s,transform .25s}
+.hg .hgsteps a span{font-family:var(--util);font-size:10.5px;letter-spacing:.16em;
+  color:#CDAA63;flex:none}
+.hg .hgsteps a:hover{border-color:var(--gold);color:#FFF8E8;transform:translateY(-2px)}
+.hg .hgsteps a:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.hg .hgsteps a{transition:none}}
 
 /* stat row */
 .hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:32px 0 8px}
@@ -1612,6 +1629,17 @@ all four stages, and hiring locally is what makes the next deal defensible.</des
 
 <section>
  <div class="hgwrap">
+  <ol class="hgsteps">
+    <li><a href="#gets"><span>01</span> Find people</a></li>
+    <li><a href="#skills"><span>02</span> Build a bench, on deliberate skills and behaviors</a></li>
+    <li><a href="#program"><span>03</span> Help them grow</a></li>
+    <li><a href="#culture"><span>04</span> Help the businesses grow</a></li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="hgwrap">
   <p class="eyebrow">What we do</p>
   <h2>Five areas of work. Five competencies we score.</h2>
   <div class="rule"></div>
@@ -1668,7 +1696,7 @@ This is the design of the program rather than a plot of measured results.</desc>
 </section>
 
 
-<section>
+<section id="skills">
  <div class="hgwrap">
   <p class="eyebrow">The skills half</p>
   <h2>The syllabus is built per town</h2>
@@ -1724,7 +1752,7 @@ This is the design of the program rather than a plot of measured results.</desc>
 </section>
 
 
-<section>
+<section id="program">
  <div class="hgwrap">
   <p class="eyebrow">The program</p>
   <h2>Eight weeks, then ninety days</h2>
@@ -1795,7 +1823,7 @@ exits: advance, switch, credential, or own it.</desc>
  </div>
 </section>
 
-<section>
+<section id="culture">
  <div class="hgwrap">
   <p class="eyebrow">Cultural architecture</p>
   <h2>Culture is the other side of the desk</h2>
@@ -1803,17 +1831,45 @@ exits: advance, switch, credential, or own it.</desc>
   <p>Somebody who moves up into a badly run workplace comes back down. Turnover is not a resident
     problem and retention is not a resident achievement. Both are built into how an employer
     actually runs, day to day.</p>
-  <p>So there is a second thing SideKix does, and towns tend to need it once the first one starts
-    working: <strong>cultural architecture</strong>. Designing how a workplace is meant to operate,
-    putting that in place, and repairing the parts quietly costing an employer its people. Same
-    behavioral basis as the resident work, pointed at the organization instead of the person.</p>
+  <p><strong>Culture is alive.</strong> Everything you do, and everything you do not do, lands on
+    it. It is built out of six things, and five of them meet in the same place.</p>
+
+  <figure>
+    <div class="dwrap"><svg viewBox="0 0 900 578" role="img" aria-labelledby="hgd4t hgd4d"
+     xmlns="http://www.w3.org/2000/svg">
+<title id="hgd4t">The parts a culture is made of</title>
+<desc id="hgd4d">Five parts set in a ring around a centre: mission, values, process, incentives and
+environment. People sit in the middle, because every one of the five lands on them. A faint circle
+joins the five to show they also act on each other.</desc>
+{_defs('D')}
+<circle cx="450" cy="312" r="214" fill="none" stroke="#A1853E" stroke-opacity=".22"
+        stroke-width="1" stroke-dasharray="2 7"/>
+<g stroke="#A1853E" stroke-opacity=".5" stroke-width="1.2" stroke-dasharray="3 5">
+  <path d="M450,220 L450,142"/><path d="M537,284 L612,259"/><path d="M504,386 L550,450"/><path d="M396,386 L350,450"/><path d="M363,284 L288,259"/>
+</g>
+<circle cx="450" cy="312" r="196" fill="url(#hgglowD)"/>
+<circle cx="450" cy="312" r="92" fill="url(#hgcoreD)" stroke="#D4A856" stroke-opacity=".62"
+        stroke-width="1.6"/>
+<text class="d-note" x="450" y="286" text-anchor="middle">The center</text>
+<text class="d-mid" x="450" y="316" text-anchor="middle">People</text>
+<text class="d-mids" x="450" y="340" text-anchor="middle">all five land here</text>
+<rect x="352" y="60" width="196" height="76" rx="13" fill="url(#hgcardD)" stroke="#4FC3F7" stroke-opacity=".55" stroke-width="1.4"/><text class="d-lab" x="450" y="93" text-anchor="middle" style="fill:#4FC3F7">Mission</text><text class="d-sub" x="450" y="115" text-anchor="middle">what this is for</text><rect x="556" y="208" width="196" height="76" rx="13" fill="url(#hgcardD)" stroke="#FFE7A6" stroke-opacity=".55" stroke-width="1.4"/><text class="d-lab" x="654" y="241" text-anchor="middle" style="fill:#FFE7A6">Values</text><text class="d-sub" x="654" y="263" text-anchor="middle">what we say matters</text><rect x="478" y="447" width="196" height="76" rx="13" fill="url(#hgcardD)" stroke="#5FB6A6" stroke-opacity=".55" stroke-width="1.4"/><text class="d-lab" x="576" y="480" text-anchor="middle" style="fill:#5FB6A6">Process</text><text class="d-sub" x="576" y="502" text-anchor="middle">how the work moves</text><rect x="226" y="447" width="196" height="76" rx="13" fill="url(#hgcardD)" stroke="#B18BE4" stroke-opacity=".55" stroke-width="1.4"/><text class="d-lab" x="324" y="480" text-anchor="middle" style="fill:#B18BE4">Incentives</text><text class="d-sub" x="324" y="502" text-anchor="middle">what gets rewarded</text><rect x="148" y="208" width="196" height="76" rx="13" fill="url(#hgcardD)" stroke="#F0855A" stroke-opacity=".55" stroke-width="1.4"/><text class="d-lab" x="246" y="241" text-anchor="middle" style="fill:#F0855A">Environment</text><text class="d-sub" x="246" y="263" text-anchor="middle">where the work happens</text>
+</svg></div>
+    <div class="dbar"><button type="button" class="dget" data-svg="culture">Download this diagram</button></div>
+    <figcaption>Move any one of the five and you have moved the culture, whether you meant to
+      or not.</figcaption>
+  </figure>
+
+  <p style="margin-top:30px">So the work is three steps. Identify the culture you actually have,
+    map the one you want, then train your leaders to manage and measure it every day. That last
+    step is the one that makes it stick, and the one most places skip.</p>
   <p>For a town it is what holds up the local fill rate and the twelve month retention. Placing
     somebody is the easy number to report. Keeping them is what that number is actually
     measuring.</p>
  </div>
 </section>
 
-<section>
+<section id="gets">
  <div class="hgwrap">
   <p class="eyebrow">The deliverable</p>
   <h2>What a town gets</h2>
