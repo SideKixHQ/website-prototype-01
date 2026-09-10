@@ -485,10 +485,9 @@ MAIN = f"""<main id="maincontent" class="hg">
   <div class="hgwrap">
     <p class="eyebrow">SideKix Homegrown</p>
     <h1>The jobs you bring in should go to the people already here.</h1>
-    <p class="hgdek">Homegrown is an eight week program your town runs for its own residents. It
-      builds the five things that move a person into better work: behavior, skills, career
-      development, personal development and leadership. Ninety days later you get a list of who is
-      ready, for what, and by when.</p>
+    <p class="hgdek">Homegrown runs eight weeks in your town, with the people already there.
+      Behavior, skills, career development, personal development, leadership. Ninety days making it
+      stick. Then a list of names: who is ready, for what, and by when.</p>
     <p class="hgstamp">For economic developers, workforce boards and chambers</p>
   </div>
 </header>
