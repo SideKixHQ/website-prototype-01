@@ -126,37 +126,51 @@ CSS = """
    and still reads brighter than the near-white heading around it. */
 .hg .punch .no{color:#FF6B5B}
 
-/* The four steps are the interface, not a signpost. The page held two documents
-   in one scroll, an offer and a method, fifteen peer sections deep. Each step is
-   a tab and the detail lives in its panel, so one panel is open and three are a
-   click away rather than all four being scrolled through. Underline tabs: this
-   page already has more borders than it can afford. */
-.hg .hgtabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  border-bottom:1px solid rgba(212,168,86,.2);margin:0 0 36px}
-.hg .hgtab{appearance:none;background:none;border:none;
-  border-bottom:2px solid rgba(212,168,86,.22);
-  text-align:left;padding:15px 20px 15px 0;cursor:pointer;color:#9C968D;
-  font-family:var(--body);font-size:15.6px;line-height:1.45;margin-bottom:-1px;
-  transition:color .2s,border-color .2s}
-/* An unselected tab still has to look pressable, so it keeps a rule of its own
-   and a chevron that steps right on hover and turns down when selected. Drawn
-   with borders rather than a glyph: a character escape here was silently read as
-   an octal one and shipped U+0083, a control character, which rendered as tofu. */
-.hg .hgtab::after{content:'';float:right;width:7px;height:7px;margin:5px 0 0 12px;
-  border-right:2px solid #6E6A62;border-bottom:2px solid #6E6A62;
-  transform:rotate(-45deg);transform-origin:center;
-  transition:transform .2s,border-color .2s}
-.hg .hgtab:hover::after{border-color:var(--gold);transform:rotate(-45deg) translate(2px,2px)}
-.hg .hgtab[aria-selected="true"]::after{border-color:var(--gold);transform:rotate(45deg)}
-.hg .hgtab b{display:block;font-family:var(--util);font-size:11px;letter-spacing:.2em;
-  font-weight:500;color:#6E6A62;margin-bottom:8px;transition:color .2s}
-.hg .hgtab:hover{color:#E3DED2;border-bottom-color:rgba(212,168,86,.5)}
-.hg .hgtab[aria-selected="true"]{color:#FFF8E8;border-bottom-color:var(--gold)}
-.hg .hgtab[aria-selected="true"] b{color:#CDAA63}
-.hg .hgtab:focus-visible{outline:3px solid var(--gold-pale);outline-offset:-3px;border-radius:4px}
-.hg .hgpanel[hidden]{display:none}
-.hg .hgpanel:focus{outline:none}
-@media (prefers-reduced-motion:reduce){.hg .hgtab{transition:none}}
+/* A sticky rail beside the content, which is the documented pattern for a long
+   page: the sections stay visible and scrollable, and the rail says where you
+   are and lets you jump. Nothing is hidden behind a click. */
+.hg .hglayout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(28px,4vw,64px);
+  align-items:start}
+.hg .hgrail{position:sticky;top:34px}
+.hg .hgrail ol{list-style:none;margin:0;padding:0}
+.hg .hgrail a{display:flex;gap:11px;align-items:baseline;padding:9px 0;text-decoration:none;
+  color:#7E786F;font-size:14.5px;line-height:1.4;transition:color .22s}
+.hg .hgrail a span{font-family:var(--util);font-size:10px;letter-spacing:.14em;color:#85806F;
+  flex:none;transition:color .22s}
+.hg .hgrail a:hover{color:#D8D2C6}
+.hg .hgrail a[aria-current="true"]{color:#FFF8E8}
+.hg .hgrail a[aria-current="true"] span{color:var(--gold)}
+.hg .hgrail a:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px;border-radius:4px}
+.hg .hgsec{scroll-margin-top:28px}
+.hg .hgsec + .hgsec{margin-top:clamp(64px,8vw,104px)}
+/* below the rail's width the page is one column and the rail rides along the top */
+@media (max-width:900px){
+  .hg .hglayout{grid-template-columns:minmax(0,1fr)}
+  .hg .hgrail{position:static;border-bottom:1px solid rgba(212,168,86,.18);
+    margin-bottom:34px;padding-bottom:6px}
+  .hg .hgrail ol{display:flex;gap:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none}
+  .hg .hgrail ol::-webkit-scrollbar{display:none}
+  .hg .hgrail a{white-space:nowrap;padding:4px 0 12px;border-bottom:2px solid transparent;
+    margin-bottom:-8px}
+  .hg .hgrail a[aria-current="true"]{border-bottom-color:var(--gold)}
+}
+
+/* Movement. Every rule here describes the finished state as the default, and the
+   .hgmo class that JS adds is what opts an element into starting from somewhere
+   else. No JS, or reduced motion, and the page is simply already arrived. */
+.hg .hgmo .rise{opacity:0;transform:translateY(18px)}
+.hg .rise{transition:opacity .7s cubic-bezier(.22,.61,.36,1),
+  transform .7s cubic-bezier(.22,.61,.36,1)}
+.hg .rise.seen{opacity:1;transform:none}
+.hg .hgmo .dwrap svg .pop{opacity:0}
+.hg .dwrap svg .pop{transition:opacity .5s ease}
+.hg .hgmo .dwrap svg .grow{transform:scaleX(0);transform-origin:left center}
+.hg .dwrap svg .grow{transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+@media (prefers-reduced-motion:reduce){
+  .hg .rise,.hg .dwrap svg .pop,.hg .dwrap svg .grow{transition:none !important;
+    opacity:1 !important;transform:none !important}
+}
 
 /* the exits were four cards for four short labels, which is a lot of frame for
    very little content on a page already full of frames */
@@ -439,7 +453,7 @@ def _grow_rows():
         for j in range(4):
             h = _CH[j]
             out.append(f'<rect x="{_CX[j]}" y="{cy - h / 2}" width="140" height="{h}" '
-                       f'rx="{h / 2}" fill="{colour}" fill-opacity="{_CO[j]}"/>')
+                       f'rx="{h / 2}" class="grow" fill="{colour}" fill-opacity="{_CO[j]}"/>')
         if i < len(COMP) - 1:
             out.append(f'<path d="M0,{cy + 32} H980" stroke="#A1853E" stroke-opacity=".13" '
                        f'stroke-width="1"/>')
@@ -556,6 +570,18 @@ SOURCES = [
   'https://www.nccommunitycolleges.edu/workforce-pell/'),
 ]
 
+SECTIONS = [
+    ("what",    "What we do"),
+    ("skills",  "The skills"),
+    ("program", "The program"),
+    ("culture", "Culture"),
+    ("gets",    "What you get"),
+    ("case",    "Why it pays"),
+]
+RAIL = "".join(
+    f'<li><a href="#{sid}" data-rail="{sid}"><span>{i:02d}</span>{label}</a></li>'
+    for i, (sid, label) in enumerate(SECTIONS, 1))
+
 MAIN = f"""<main id="maincontent" class="hg">
 
 <header class="hghero">
@@ -569,7 +595,7 @@ MAIN = f"""<main id="maincontent" class="hg">
   </div>
 </header>
 
-<section>
+<section class="hgfig">
  <div class="hgwrap">
   <figure>
     <div class="dwrap">{LOOP_SVG}</div>
@@ -578,41 +604,135 @@ MAIN = f"""<main id="maincontent" class="hg">
       usually run as three programs. They are one loop, and it only closes on the third.</figcaption>
   </figure>
  </div>
+</figure>
 </section>
 
-<section id="steps">
- <div class="hgwrap">
-  <p class="eyebrow">What we do</p>
-  <h2>Four steps. Pick one.</h2>
-  <div class="rule"></div>
+<div class="hgwrap">
+ <div class="hglayout">
 
-  <div class="hgtabs" role="tablist" aria-label="What Homegrown does, in four steps">
-    <button class="hgtab" role="tab" id="tab-find" aria-controls="panel-find"
-            aria-selected="true" type="button"><b>01</b>Find people</button>
-    <button class="hgtab" role="tab" id="tab-skills" aria-controls="panel-skills"
-            aria-selected="false" tabindex="-1" type="button"><b>02</b>Build a bench</button>
-    <button class="hgtab" role="tab" id="tab-grow" aria-controls="panel-grow"
-            aria-selected="false" tabindex="-1" type="button"><b>03</b>Help them grow</button>
-    <button class="hgtab" role="tab" id="tab-culture" aria-controls="panel-culture"
-            aria-selected="false" tabindex="-1" type="button"><b>04</b>Help businesses grow</button>
-  </div>
+  <nav class="hgrail" aria-label="Sections of this page">
+    <ol>{RAIL}</ol>
+  </nav>
 
-  <div class="hgpanel" role="tabpanel" id="panel-find" aria-labelledby="tab-find" tabindex="0">
-    <h3>Find people</h3>
-    <p>A cohort is the residents you nominate, or that we recruit alongside you. Employed, mostly.
-      Stuck, mostly. The people a town already has and has no program for.</p>
+  <div class="hgbody">
+
+   <section id="what" class="hgsec">
+    <p class="eyebrow">What we do</p>
+    <h2>Find people, and make them ready</h2>
+    <div class="rule"></div>
+    <p class="lead">Find people. Build a bench on deliberate skills and behaviors. Help them grow.
+      Help the businesses grow.</p>
+    <p>A resident spends eight weeks on five things, and every exercise runs on their own
+      situation rather than a case study.</p>
     <ul class="plain">
+      <li><b>Behavior.</b> How somebody acts when nobody is telling them what to do.</li>
+      <li><b>Skills.</b> The specific thing an employer here is hiring for.</li>
+      <li><b>Career development.</b> What the next rung is, what it pays, and how people get
+        onto it.</li>
+      <li><b>Personal development.</b> Money, confidence, transport, childcare. The things that
+        decide whether any of the rest holds.</li>
+      <li><b>Leadership.</b> Running a shift, running a team, or running your own thing.</li>
+    </ul>
+    <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
+      was taught leadership, only whether they have started acting like one, so the report scores
+      five things you can watch a person do.</p>
+
+    <figure>
+      <div class="dwrap">{GROWTH_SVG}</div>
+      <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
+      <figcaption>The design of the program, not a plot of results.</figcaption>
+    </figure>
+
+    <ul class="plain">
+      <li><b>Names the target.</b> Says out loud where they intend to be in two years.</li>
+      <li><b>Makes the call.</b> Decides their own next move rather than waiting to be told the
+        options.</li>
+      <li><b>Finds out.</b> Asks somebody who does the job what it pays and what it takes.</li>
+      <li><b>Bets on themselves.</b> Puts in for it before feeling ready, and comes back after
+        a no.</li>
+      <li><b>Takes initiative.</b> Starts the thing nobody asked for, and is still at it in month
+        three.</li>
+    </ul>
+   </section>
+
+   <section id="skills" class="hgsec">
+    <p class="eyebrow">The skills</p>
+    <h2>The syllabus is built per town</h2>
+    <div class="rule"></div>
+    <p class="lead">Behavior is the constant. Skills are not, and no town should accept a syllabus
+      that turns up already written. Three inputs decide what gets taught.</p>
+    <ul class="plain">
+      <li><b>What is here now.</b> The employers in your county and the work they are actually
+        hiring for, from your own labor market data.</li>
+      <li><b>What you are chasing.</b> The target industries already in your strategy. Leland has
+        published its own: life sciences, information technology, medical technology, aerospace,
+        marine biology and wind energy.</li>
+      <li><b>The gap between the two.</b> Where the work you want and the people you have do not
+        line up is exactly where the skills teaching goes.</li>
+    </ul>
+    <p>Behavior transfers between towns. The skills half does not, and a program that pretends
+      otherwise is selling you somebody else&#8217;s curriculum.</p>
+   </section>
+
+   <section id="program" class="hgsec">
+    <p class="eyebrow">The program</p>
+    <h2>Eight weeks, then ninety days</h2>
+    <div class="rule"></div>
+    <figure>
+      <div class="dwrap">{FLOW_SVG}</div>
+      <div class="dbar"><button type="button" class="dget" data-svg="flow">Download this diagram</button></div>
+      <figcaption>Four exits, because a program with one acceptable outcome pushes people toward it
+        whether it fits or not.</figcaption>
+    </figure>
+    <ul class="exits">
+      <li style="--c:#4FC3F7"><b>Exit 01</b><strong>Advance</strong><span>A raise or a step across,
+        with the employer they already have.</span></li>
+      <li style="--c:#5FB6A6"><b>Exit 02</b><strong>Switch</strong><span>Into a higher wage
+        occupation. Where the wage gap actually closes.</span></li>
+      <li style="--c:#FFE7A6"><b>Exit 03</b><strong>Credential</strong><span>Enrolled at the
+        college, for a reason they can say out loud.</span></li>
+      <li style="--c:#B18BE4"><b>Exit 04</b><strong>Own it</strong><span>Self employment, where that
+        is the honest answer.</span></li>
+    </ul>
+    <p style="margin-top:26px"><strong>Homegrown does not teach a trade and does not want to.</strong>
+      When somebody needs a credential they go to the college, and we report whether they enrolled.
+      This is a feeder, not a competitor.</p>
+   </section>
+
+   <section id="culture" class="hgsec">
+    <p class="eyebrow">Cultural architecture</p>
+    <h2>Culture is the other side of the desk</h2>
+    <div class="rule"></div>
+    <p>Somebody who moves up into a badly run workplace comes back down. Turnover is not a resident
+      problem and retention is not a resident achievement. Both are built into how an employer runs,
+      day to day.</p>
+    <p><strong>Culture is alive.</strong> Everything you do, and everything you do not do, lands on
+      it. It is built out of six things, and five of them meet in the same place.</p>
+    <figure>
+      <div class="dwrap">{CULTURE_SVG}</div>
+      <div class="dbar"><button type="button" class="dget" data-svg="culture">Download this diagram</button></div>
+      <figcaption>Move any one of the five and you have moved the culture, whether you meant to
+        or not.</figcaption>
+    </figure>
+    <p style="margin-top:30px">Identify the culture you actually have, map the one you want, then
+      train your leaders to manage and measure it every day. That last step makes it stick, and it
+      is the one most places skip.</p>
+   </section>
+
+   <section id="gets" class="hgsec">
+    <p class="eyebrow">The deliverable</p>
+    <h2>What a town gets</h2>
+    <div class="rule"></div>
+    <ul class="plain">
+      <li><b>A cohort.</b> The residents you nominate, or that we recruit alongside you.</li>
       <li><b>The bench report, quarterly.</b> Who is in motion, toward what, how far along. Written
         to hand to a site consultant, not to file.</li>
       <li><b>A local fill rate.</b> For the employers you name, the share of new hires who already
-        lived in the county. The number that decides the next council vote, and the one almost
-        nobody reports.</li>
-      <li><b>The handoffs, tracked.</b> Referred to the college, and separately, actually
-        enrolled.</li>
+        lived in the county.</li>
+      <li><b>The handoffs, tracked.</b> Referred to the college, and separately, enrolled.</li>
       <li><b>A facilitator.</b> A person in a room, not a video library with a progress bar.</li>
       <li><b>The SideKix platform, for everybody in the cohort.</b> Community, resource library,
-        self discoveries, events, training and AI guidance from Kix. The eight weeks end. This does
-        not.</li>
+        self discoveries, events, training and AI guidance from Kix.</li>
     </ul>
     <details>
       <summary>How it is measured</summary>
@@ -631,134 +751,35 @@ MAIN = f"""<main id="maincontent" class="hg">
         </tbody>
       </table>
     </details>
-  </div>
+   </section>
 
-  <div class="hgpanel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills" tabindex="0" hidden>
-    <h3>Build a bench, on deliberate skills and behaviors</h3>
-    <p>Behavior is the constant. Skills are not, and no town should accept a syllabus that turns up
-      already written. Three inputs decide what gets taught.</p>
-    <ul class="plain">
-      <li><b>What is here now.</b> The employers in your county and the work they are actually
-        hiring for, from your own labor market data.</li>
-      <li><b>What you are chasing.</b> The target industries already in your strategy. Leland has
-        published its own: life sciences, information technology, medical technology, aerospace,
-        marine biology and wind energy.</li>
-      <li><b>The gap between the two.</b> Where the work you want and the people you have do not
-        line up is exactly where the skills teaching goes.</li>
-    </ul>
-    <p>Behavior transfers between towns. The skills half does not, and a program that pretends
-      otherwise is selling you somebody else&#8217;s curriculum.</p>
+   <section id="case" class="hgsec">
+    <p class="eyebrow">The case</p>
+    <h2>Why a town pays for this</h2>
+    <div class="rule"></div>
+    <p class="lead">Most American metros have the same shape of problem. Employment is fine. Wages
+      are not. And the growth that does land fills up with people who moved in for it.</p>
+    <div class="stats">
+      <div class="stat"><b data-to="26.94" data-dec="2" data-pre="$">$26.94</b><span>Mean hourly
+        wage in the Wilmington metro. The national figure is $32.66.</span></div>
+      <div class="stat"><b data-to="13.5" data-dec="1" data-suf="%">13.5%</b><span>Of metro jobs are
+        food preparation and serving, at $14.99 an hour.</span></div>
+      <div class="stat"><b data-to="24" data-dec="0" data-suf="%">24%</b><span>Population growth in
+        Brunswick County, 2020 to 2024. The fastest in North Carolina.</span></div>
+      <div class="stat"><b data-to="13800" data-dec="0" data-sep="1">13,800</b><span>Jobs the metro
+        is projected to add by 2034. Somebody is going to fill them.</span></div>
+    </div>
+    <p style="margin-top:26px">There is a clock on it: every four years somebody stays in low wage
+      work, the odds of getting out roughly halve. By year ten they are down to about one in a
+      hundred. Those four figures are Wilmington&#8217;s, because that is where the first cohorts
+      run. Every town gets the same four from its own county.</p>
+    <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal
+      to a council whose residents did not get hired.</p></div>
+   </section>
 
-    <figure>
-      <div class="dwrap">{GROWTH_SVG}</div>
-      <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
-      <figcaption>The design of the program, not a plot of results.</figcaption>
-    </figure>
-
-    <details>
-      <summary>The five competencies, and why these five</summary>
-      <ul class="plain">
-        <li><b>Names the target.</b> Says out loud where they intend to be in two years, and what
-          has to happen first.</li>
-        <li><b>Makes the call.</b> Decides their own next move, instead of waiting to be told what
-          the options are.</li>
-        <li><b>Finds out.</b> Asks somebody who does the job what it pays and what it takes.</li>
-        <li><b>Bets on themselves.</b> Puts in for it before feeling ready, and comes back after a
-          no.</li>
-        <li><b>Takes initiative.</b> Starts the thing nobody asked for, and is still at it in month
-          three.</li>
-      </ul>
-      <p>Four come from career adaptability, built for people changing jobs rather than managers
-        running teams. The fifth is initiative, the construct with the trial behind it. None needs a
-        supervisor&#8217;s title, which is what matters when a line cook and a laid off analyst are
-        in the same room.</p>
-    </details>
-  </div>
-
-  <div class="hgpanel" role="tabpanel" id="panel-grow" aria-labelledby="tab-grow" tabindex="0" hidden>
-    <h3>Help them grow</h3>
-    <p>Eight weeks to a decision and a plan, then ninety days holding the person to it.</p>
-    <figure>
-      <div class="dwrap">{FLOW_SVG}</div>
-      <div class="dbar"><button type="button" class="dget" data-svg="flow">Download this diagram</button></div>
-      <figcaption>Four exits, because a program with one acceptable outcome pushes people toward it
-        whether it fits or not.</figcaption>
-    </figure>
-    <ul class="exits">
-      <li style="--c:#4FC3F7"><b>Exit 01</b><strong>Advance</strong><span>A raise or a step across,
-        with the employer they already have. The cheapest good outcome a town can buy.</span></li>
-      <li style="--c:#5FB6A6"><b>Exit 02</b><strong>Switch</strong><span>Into a higher wage
-        occupation. This is where the wage gap actually closes.</span></li>
-      <li style="--c:#FFE7A6"><b>Exit 03</b><strong>Credential</strong><span>Enrolled at the college
-        or through the career center, for a reason they can say out loud.</span></li>
-      <li style="--c:#B18BE4"><b>Exit 04</b><strong>Own it</strong><span>Self employment, where that
-        is the honest answer.</span></li>
-    </ul>
-    <p style="margin-top:26px"><strong>Homegrown does not teach a trade and does not want to.</strong>
-      When somebody needs a credential they go to the college, and we report whether they enrolled.
-      This is a feeder, not a competitor.</p>
-    <details>
-      <summary>The eight weeks, week by week</summary>
-      {_phrow('#F0855A', 'Weeks 1 to 2', 'Begin',
-        'An assessment, a career diagnostic and an honest read on the ground: what they earn now, '
-        'what they can actually do, what is in the way, and what they want.')}
-      {_phrow('#FFE7A6', 'Weeks 3 to 5', 'Build',
-        'The five areas of work, run against their real situation. The part ordinary training '
-        'skips, and the part that decides whether any of it survives contact with a Monday.')}
-      {_phrow('#5FB6A6', 'Weeks 6 to 8', 'Become',
-        'They pick one move and build the ninety day plan that makes it happen, with an advisor '
-        'session and a commitment they sign.')}
-      {_phrow('#B18BE4', '+ 90 days', 'Follow through',
-        'A weekly check in and a monthly advisor touch after the room empties. Where a program '
-        'either produces a result or produces a certificate.')}
-    </details>
-  </div>
-
-  <div class="hgpanel" role="tabpanel" id="panel-culture" aria-labelledby="tab-culture" tabindex="0" hidden>
-    <h3>Help the businesses grow</h3>
-    <p>Somebody who moves up into a badly run workplace comes back down. Turnover is not a resident
-      problem and retention is not a resident achievement. Both are built into how an employer
-      actually runs, day to day.</p>
-    <p><strong>Culture is alive.</strong> Everything you do, and everything you do not do, lands on
-      it. It is built out of six things, and five of them meet in the same place.</p>
-    <figure>
-      <div class="dwrap">{CULTURE_SVG}</div>
-      <div class="dbar"><button type="button" class="dget" data-svg="culture">Download this diagram</button></div>
-      <figcaption>Move any one of the five and you have moved the culture, whether you meant to
-        or not.</figcaption>
-    </figure>
-    <p style="margin-top:30px">So the work is three steps. Identify the culture you actually have,
-      map the one you want, then train your leaders to manage and measure it every day. That last
-      step makes it stick, and it is the one most places skip.</p>
   </div>
  </div>
-</section>
-
-<section>
- <div class="hgwrap">
-  <p class="eyebrow">The case</p>
-  <h2>Why a town pays for this</h2>
-  <div class="rule"></div>
-  <p class="lead">Most American metros have the same shape of problem. Employment is fine. Wages are
-    not. And the growth that does land fills up with people who moved in for it.</p>
-  <div class="stats">
-    <div class="stat"><b>$26.94</b><span>Mean hourly wage in the Wilmington metro. The national
-      figure is $32.66.</span></div>
-    <div class="stat"><b>13.5%</b><span>Of metro jobs are food preparation and serving, at $14.99 an
-      hour. The largest single group.</span></div>
-    <div class="stat"><b>24%</b><span>Population growth in Brunswick County from 2020 to 2024. The
-      fastest in North Carolina.</span></div>
-    <div class="stat"><b>13,800</b><span>Jobs the metro is projected to add by 2034. Somebody is
-      going to fill them.</span></div>
-  </div>
-  <p style="margin-top:26px">There is a clock on it: every four years somebody stays in low wage
-    work, the odds of getting out roughly halve. By year ten they are down to about one in a
-    hundred. The four figures above are Wilmington&#8217;s, because that is where the first cohorts
-    run. Every town gets the same four from its own county.</p>
-  <div class="callout"><p>You cannot sell a region you cannot staff, and you cannot defend a deal to
-    a council whose residents did not get hired.</p></div>
- </div>
-</section>
+</div>
 
 <div class="hgwrap">
  <div class="hgcta">
@@ -773,21 +794,38 @@ MAIN = f"""<main id="maincontent" class="hg">
 <section class="src">
  <div class="hgwrap">
   <details>
+    <summary>Why behavior and not curriculum</summary>
+    <div class="stats">
+      <div class="stat"><b>10 to 15%</b><span>Of ordinary training that ever shows up in
+        somebody&#8217;s work.</span></div>
+      <div class="stat"><b data-to="11" data-dec="0" data-suf="%">11%</b><span>Profit change from
+        conventional business training, in a controlled trial of 1,500 owners in West Africa. Not
+        statistically significant.</span></div>
+      <div class="stat"><b data-to="30" data-dec="0" data-suf="%">30%</b><span>Same hours, same
+        mentoring, behavior based instead. Fifty two per cent by year seven.</span></div>
+    </div>
+    <p style="margin-top:22px">One caveat, up front rather than buried. That trial ran with small
+      business owners in West Africa, not a Carolina metro, and by year seven the gains were much
+      stronger for the men in it. It is the best evidence this method has, and it is not proof of
+      what happens here.</p>
+    <p>Four of the five scored competencies come from career adaptability, built for people changing
+      jobs rather than managers running teams. The fifth is initiative, the construct with the trial
+      behind it. None needs a supervisor&#8217;s title.</p>
+  </details>
+  <details>
     <summary>How it is paid for</summary>
     <ul class="plain">
-      <li><b>Economic development budget.</b> Fastest, and the one an ED office controls outright.
-        Most first cohorts should start here.</li>
+      <li><b>Economic development budget.</b> Fastest, and the one an ED office controls
+        outright.</li>
       <li><b>The workforce board.</b> Entrepreneurial skills training and microenterprise services
-        are allowable under federal workforce law. Board procurement runs on its own annual cycle,
-        so plan ahead rather than counting on it.</li>
+        are allowable under federal workforce law, on its own annual procurement cycle.</li>
       <li><b>Sector partnership and employer engagement grants.</b> North Carolina funds local
         boards for exactly this, the Cape Fear board included.</li>
       <li><b>Chambers and employers</b>, for the advancement track, where the employer keeps the
         person.</li>
     </ul>
-    <p>Worth settling early: federal training vouchers require a program that leads to a credential.
-      Homegrown does not, by design. It is the layer in front of the credential, which keeps it off
-      the state provider list and fast to start.</p>
+    <p>Federal training vouchers require a program that leads to a credential. Homegrown does not,
+      by design: it is the layer in front of the credential, which keeps it fast to start.</p>
   </details>
   <details>
     <summary>Where it starts, and whether it travels</summary>
@@ -796,22 +834,10 @@ MAIN = f"""<main id="maincontent" class="hg">
       four exits. The eight weeks, the five competencies and the reporting do not change.</p>
     <p>SideKix is in Wilmington, so the Cape Fear region is where the first cohorts run. Wilmington
       needs people who already have jobs to move up. Leland, which has more than doubled since 2010,
-      needs residents who can build a career without crossing the bridge every morning. If it works
-      for two towns that unalike, it travels.</p>
+      needs residents who can build a career without crossing the bridge every morning.</p>
     <p><strong>Homegrown has not run yet.</strong> The first towns are design partners: they shape
       it, they get founding terms, and their results are the evidence every town after them
       sees.</p>
-  </details>
-  <details>
-    <summary>Why behavior and not curriculum</summary>
-    <p>Roughly <strong>10 to 15 per cent</strong> of ordinary training ever shows up in somebody's
-      work. In a controlled trial of 1,500 owners in West Africa, conventional business training
-      moved profits <strong>11 per cent</strong>, which was not statistically significant. Same
-      hours and same mentoring, behavior based instead: <strong>30 per cent</strong>, rising to
-      fifty two by year seven, and it paid for itself inside one.</p>
-    <p>One caveat, up front rather than buried. That trial ran with small business owners in West
-      Africa, not a Carolina metro, and by year seven the gains were much stronger for the men in
-      it. It is the best evidence this method has, and it is not proof of what happens here.</p>
   </details>
   {''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faqs)}
   <details>
@@ -948,49 +974,136 @@ function hgRaster(svg, name, fontCSS){
 }
 
 
-// The four step tabs. Standard tablist behaviour: arrows move, Home and End
-// jump, and only the selected tab is in the tab order so a keyboard user is not
-// forced through four buttons to reach the panel.
-var hgTabs = [].slice.call(document.querySelectorAll('.hg .hgtab'));
-function hgSelect(tab, focus){
-  hgTabs.forEach(function(t){
-    var on = t === tab;
-    t.setAttribute('aria-selected', on ? 'true' : 'false');
-    if (on) { t.removeAttribute('tabindex'); } else { t.setAttribute('tabindex', '-1'); }
-    var panel = document.getElementById(t.getAttribute('aria-controls'));
-    if (panel) { panel.hidden = !on; }
-  });
-  if (focus) { tab.focus(); }
-}
-hgTabs.forEach(function(tab, i){
-  tab.addEventListener('click', function(){ hgSelect(tab, false); });
-  tab.addEventListener('keydown', function(e){
-    var k = e.key, next = null;
-    if (k === 'ArrowRight' || k === 'ArrowDown') { next = hgTabs[(i + 1) % hgTabs.length]; }
-    else if (k === 'ArrowLeft' || k === 'ArrowUp') { next = hgTabs[(i - 1 + hgTabs.length) % hgTabs.length]; }
-    else if (k === 'Home') { next = hgTabs[0]; }
-    else if (k === 'End') { next = hgTabs[hgTabs.length - 1]; }
-    if (next) { e.preventDefault(); hgSelect(next, true); }
-  });
-});
-// Deep links should open the right step rather than land on a hidden panel.
-// Also bound to hashchange: a hash link followed from this same page, and the
-// back button, are same-document navigations that never re-run a load handler.
-function hgFromHash(scroll){
-  var h = (location.hash || '').replace('#', '');
-  if (!h) { return; }
-  var map = { gets: 'tab-find', skills: 'tab-skills', program: 'tab-grow', culture: 'tab-culture' };
-  var id = map[h] || (h.indexOf('panel-') === 0 ? h.replace('panel-', 'tab-') : null);
-  var t = id && document.getElementById(id);
-  if (!t) { return; }
-  hgSelect(t, false);
-  if (scroll) {
-    var steps = document.getElementById('steps');
-    if (steps) { steps.scrollIntoView(); }
+// Everything below is enhancement. The stylesheet already describes the arrived
+// state, so this adds .hgmo first to opt the page into starting from somewhere
+// else, and only when motion is actually wanted.
+var HG = document.querySelector('.hg');
+var HGREDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var HGOBS = 'IntersectionObserver' in window;
+if (HG && HGOBS && !HGREDUCED) { HG.classList.add('hgmo'); }
+
+// --- the rail follows the section you are actually reading -------------------
+(function(){
+  var links = [].slice.call(document.querySelectorAll('.hgrail a[data-rail]'));
+  var secs = links.map(function(a){ return document.getElementById(a.getAttribute('data-rail')); })
+                  .filter(Boolean);
+  if (!links.length || !secs.length) { return; }
+  var current = null;
+  function mark(id){
+    if (id === current) { return; }
+    current = id;
+    links.forEach(function(a){
+      if (a.getAttribute('data-rail') === id) { a.setAttribute('aria-current', 'true'); }
+      else { a.removeAttribute('aria-current'); }
+    });
   }
-}
-hgFromHash(true);
-window.addEventListener('hashchange', function(){ hgFromHash(true); });
+  // The last section whose top has crossed the reading line. Deterministic, where
+  // an intersection band gets ambiguous when a tall section and a short one both
+  // sit inside it.
+  function pick(){
+    var line = window.innerHeight * 0.34, best = secs[0];
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i].getBoundingClientRect().top <= line) { best = secs[i]; }
+    }
+    mark(best.id);
+  }
+  var queued = false;
+  function onScroll(){
+    if (queued) { return; }
+    queued = true;
+    requestAnimationFrame(function(){ queued = false; pick(); });
+  }
+  pick();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+})();
+
+// --- sections arrive, rather than being already there ------------------------
+(function(){
+  if (!HGOBS) { return; }
+  var bits = [].slice.call(document.querySelectorAll(
+    '.hg .hgsec > *, .hg .hgcta, .hg .hghero > .hgwrap > *'));
+  bits.forEach(function(el){ el.classList.add('rise'); });
+  if (HGREDUCED) { bits.forEach(function(el){ el.classList.add('seen'); }); return; }
+  var io = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) { return; }
+      var el = e.target;
+      var sibs = [].slice.call(el.parentNode.children).filter(function(n){
+        return n.classList && n.classList.contains('rise');
+      });
+      el.style.transitionDelay = Math.min(sibs.indexOf(el), 5) * 55 + 'ms';
+      el.classList.add('seen');
+      obs.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+  bits.forEach(function(el){ io.observe(el); });
+})();
+
+// --- numbers count up --------------------------------------------------------
+(function(){
+  var nums = [].slice.call(document.querySelectorAll('.hg [data-to]'));
+  if (!nums.length) { return; }
+  function render(el, v){
+    var dec = +(el.getAttribute('data-dec') || 0);
+    var t = v.toFixed(dec);
+    if (el.getAttribute('data-sep')) { t = (+t).toLocaleString('en-US'); }
+    el.textContent = (el.getAttribute('data-pre') || '') + t + (el.getAttribute('data-suf') || '');
+  }
+  if (!HGOBS || HGREDUCED) { return; }               // the markup already reads correctly
+  nums.forEach(function(el){ el.setAttribute('aria-label', el.textContent.trim()); });
+  var io = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) { return; }
+      var el = e.target, to = parseFloat(el.getAttribute('data-to')), t0 = null;
+      obs.unobserve(el);
+      function step(ts){
+        if (t0 === null) { t0 = ts; }
+        var k = Math.min((ts - t0) / 1100, 1);
+        render(el, to * (1 - Math.pow(1 - k, 3)));    // ease out, lands exactly on the value
+        if (k < 1) { requestAnimationFrame(step); }
+      }
+      render(el, 0);
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.6 });
+  nums.forEach(function(el){ io.observe(el); });
+})();
+
+// --- the diagrams draw themselves -------------------------------------------
+(function(){
+  if (!HGOBS || HGREDUCED) { return; }
+  [].slice.call(document.querySelectorAll('.hg .dwrap svg')).forEach(function(svg){
+    var marks = [].slice.call(svg.querySelectorAll('rect,circle,text,path'));
+    var strokes = marks.filter(function(n){
+      var f = n.getAttribute('fill');
+      return n.tagName === 'path' && (f === 'none' || (!f && n.parentNode.getAttribute('fill') === 'none'));
+    });
+    marks.forEach(function(n){ if (!n.classList.contains('grow')) { n.classList.add('pop'); } });
+    strokes.forEach(function(n){
+      var len = 0;
+      try { len = n.getTotalLength(); } catch (err) { return; }
+      if (!len) { return; }
+      n.style.strokeDasharray = len;
+      n.style.strokeDashoffset = len;
+      n.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(.22,.61,.36,1)';
+    });
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) { return; }
+        obs.unobserve(e.target);
+        marks.forEach(function(n, i){
+          var d = Math.min(i * 26, 900);
+          n.style.transitionDelay = d + 'ms';
+          n.classList.remove('pop');
+          if (n.classList.contains('grow')) { n.style.transform = 'none'; }
+        });
+        strokes.forEach(function(n){ n.style.strokeDashoffset = '0'; });
+      });
+    }, { threshold: 0.25 });
+    io.observe(svg);
+  });
+})();
 
 Array.prototype.forEach.call(document.querySelectorAll('.hg .dget'), function(btn){
   btn.addEventListener('click', function(){

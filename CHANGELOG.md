@@ -9,6 +9,51 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-11
+
+### Homegrown navigates by rail, and moves
+
+The page had three tries at navigation before this one, and the last was wrong
+on its own terms: four steps presented as tabs, under a heading that read "Four
+steps. Pick one." Tabs are for alternatives. The four steps are a sequence, so
+there was nothing to pick. The tab interface is gone; the four steps are now one
+lead line in "What we do".
+
+In its place the page runs on a sticky section rail. Six sections, numbered,
+down the left at 1024px and wider, collapsing to a horizontal scroll strip above
+the content below 900px. The rail marks the section you are in as you scroll,
+so the page always answers "where am I" without being asked.
+
+The rail's active section is picked deterministically rather than by observer
+callback order: on each rAF-throttled scroll the code takes the last section
+whose top has crossed a line 34% down the viewport. That gives one answer for
+any scroll position, including the ones where two sections are on screen at
+once. Checked at 390, 900 and 1280px: all six sections track.
+
+Movement, because a page this long reads better when it responds to being read.
+Sections rise in with a stagger. The four diagrams draw themselves, strokes
+first by dashoffset, then labels fading in 26ms apart, then the growth bars
+scaling out from their left edge. The stat numbers count up on a cubic ease-out
+over 1100ms and land exactly on their value, not near it.
+
+All of it is authored finished-state-first. The CSS default is the arrived
+state; JavaScript adds a class that opts elements into starting somewhere else.
+So the page with JavaScript off, and the page under prefers-reduced-motion,
+both render complete and static. Verified all three ways: 0 elements left
+stranded under 90% opacity in any of them, and the counters read their final
+values in every case.
+
+CSS scroll-driven animation would have been the lighter tool here, but it sits
+around 84% support with Firefox still behind a flag, so this uses
+IntersectionObserver.
+
+Also raised the rail's section numbers from #5A554D to #85806F. At 10px they
+need 4.5:1 and were sitting at 2.76:1 against the page ground; they now measure
+5.1:1. Found by `audit/contrast3.js`, which was the only finding on the page
+across the whole suite (wcag, wcag2, pour, seo, mobile, contrast3).
+
+---
+
 ## 2026-09-10
 
 ### A jobs map, as a pipeline rather than a picture
