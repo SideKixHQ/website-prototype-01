@@ -155,6 +155,35 @@ button.co-pay:disabled{opacity:.6;cursor:default}
 .co-qr p{font-size:13px;line-height:1.55;max-width:30ch}
 .co-qr p b{color:var(--cream)}
 
+.co-applink{
+  margin-top:20px;padding-top:20px;border-top:1px solid rgba(212,168,86,.2);
+  animation:kxFadeIn .4s .75s cubic-bezier(.16,1,.3,1) backwards;
+  max-width:320px;margin-left:auto;margin-right:auto;
+}
+.co-applink-label{font-size:13px;color:var(--grey);margin-bottom:12px}
+.co-applink-tabs{display:flex;gap:8px;margin-bottom:10px}
+.co-applink-tab{
+  flex:1;background:#050403;border:1px solid var(--line);border-radius:999px;color:var(--grey);
+  font-family:var(--body);font-size:12.5px;font-weight:600;padding:9px 10px;cursor:pointer;
+  transition:border-color .2s,color .2s;
+}
+.co-applink-tab.is-active{border-color:var(--gold-mid);color:var(--cream);background:rgba(212,168,86,.1)}
+.co-applink-row{display:flex;gap:8px}
+.co-applink-row input[type=tel]{
+  flex:1;min-width:0;background:#050403;border:1px solid var(--line);border-radius:10px;color:var(--cream);
+  font-family:var(--body);font-size:14px;padding:11px 13px;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.co-applink-row input[type=tel]:focus{border-color:var(--gold-mid);box-shadow:0 0 0 3px rgba(212,168,86,.16)}
+.co-applink-row button{
+  flex:none;background:linear-gradient(180deg,#D7C582,#A1853E);color:#1a1408;border:none;border-radius:10px;
+  font-family:var(--body);font-weight:700;font-size:13.5px;padding:0 18px;cursor:pointer;transition:opacity .2s;
+}
+.co-applink-row button:hover{opacity:.92}
+.co-applink-row button:disabled{opacity:.6;cursor:default}
+.co-applink-status{margin-top:10px;font-size:12.5px;line-height:1.5}
+.co-applink-status.is-error{color:var(--red)}
+.co-applink-status.is-success{color:var(--gold-pale)}
+
 @media(max-width:520px){
   .card{padding:28px 22px;border-radius:16px}
   h1{font-size:26px}
@@ -234,6 +263,19 @@ button.co-pay:disabled{opacity:.6;cursor:default}
     <div class="co-qr">
       <img alt="QR code to get the SideKix app" height="180" loading="lazy" src="assets/img/get-app-qr.png" width="180"/>
       <p><b>Scan to get the SideKix app.</b> Sign up with the same email you just used — your credits will already be waiting, no claim link needed.</p>
+    </div>
+
+    <div class="co-applink">
+      <p class="co-applink-label">Or have the link sent to you:</p>
+      <div class="co-applink-tabs" role="tablist">
+        <button aria-selected="true" class="co-applink-tab is-active" data-channel="sms" id="appLinkTabSms" role="tab" type="button">Text me the app link</button>
+        <button aria-selected="false" class="co-applink-tab" data-channel="email" id="appLinkTabEmail" role="tab" type="button">Email me the app link</button>
+      </div>
+      <div class="co-applink-row">
+        <input aria-label="Phone number" autocomplete="tel" id="appLinkPhone" placeholder="+1 555 123 4567" type="tel"/>
+        <button id="appLinkSendBtn" type="button">Send</button>
+      </div>
+      <p class="co-applink-status hidden" id="appLinkStatus"></p>
     </div>
 
     <a class="linkback" href="membership.html">
@@ -471,6 +513,79 @@ try{
       showError(err.message || 'Something went wrong confirming payment. Please try again.');
     });
   });
+
+  // ---- "Text me the app link" / "Email me the app link" ----
+  // Best-effort re-delivery of the same reminder the claim email already
+  // sent — see api/send-app-link.js. emailInput is never cleared or removed
+  // after the success screen shows, so its value is still the right one
+  // to use here even though the buyer is long past the form step.
+  (function(){
+    var tabSms=document.getElementById('appLinkTabSms');
+    var tabEmail=document.getElementById('appLinkTabEmail');
+    var phoneRow=document.querySelector('.co-applink-row');
+    var phoneInput=document.getElementById('appLinkPhone');
+    var sendBtn=document.getElementById('appLinkSendBtn');
+    var statusEl=document.getElementById('appLinkStatus');
+    if(!tabSms||!tabEmail||!sendBtn) return;
+
+    var channel='sms';
+
+    function setChannel(next){
+      channel=next;
+      tabSms.classList.toggle('is-active', channel==='sms');
+      tabSms.setAttribute('aria-selected', channel==='sms');
+      tabEmail.classList.toggle('is-active', channel==='email');
+      tabEmail.setAttribute('aria-selected', channel==='email');
+      phoneRow.classList.toggle('hidden', channel==='email');
+      statusEl.classList.add('hidden');
+    }
+    tabSms.addEventListener('click', function(){ setChannel('sms'); });
+    tabEmail.addEventListener('click', function(){ setChannel('email'); });
+
+    function showStatus(msg, isError){
+      statusEl.textContent=msg;
+      statusEl.classList.remove('hidden');
+      statusEl.classList.toggle('is-error', !!isError);
+      statusEl.classList.toggle('is-success', !isError);
+    }
+
+    sendBtn.addEventListener('click', function(){
+      var email=(emailInput.value||'').trim();
+      if(!email){
+        showStatus("Couldn't find your email from checkout — please refresh and try again.", true);
+        return;
+      }
+
+      var payload={ email:email, channel:channel };
+      if(channel==='sms'){
+        var phone=(phoneInput.value||'').trim();
+        if(!phone){
+          showStatus('Enter your phone number first.', true);
+          phoneInput.focus();
+          return;
+        }
+        payload.phone=phone;
+      }
+
+      sendBtn.disabled=true;
+      showStatus('Sending…', false);
+
+      fetch('/api/send-app-link', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      }).then(function(r){ return r.json().then(function(data){ return { ok:r.ok, data:data }; }); })
+        .then(function(res){
+          sendBtn.disabled=false;
+          if(!res.ok){ throw new Error((res.data && res.data.error) || "Couldn't send that. Try again."); }
+          showStatus(channel==='sms' ? 'Sent! Check your texts.' : 'Sent! Check your inbox.', false);
+        }).catch(function(err){
+          sendBtn.disabled=false;
+          console.error('SideKix [checkout] send-app-link failed:', err);
+          showStatus(err.message || "Couldn't send that. Try again.", true);
+        });
+    });
+  })();
 
   // ---- the site's cursor-follow glow, ported verbatim ----
   (function(){
