@@ -52,7 +52,12 @@ async function fetchFromAdminBackend(path) {
   if (!res.ok) {
     throw new Error(`Admin-Backend responded ${res.status} for ${path}`);
   }
-  return res.json();
+  // Admin-Backend wraps every response in a {success, statusCode, message,
+  // data} envelope (a global NestJS interceptor, not something any one
+  // endpoint opts into) — the real payload callers here actually want is
+  // always under .data.
+  const body = await res.json();
+  return body.data;
 }
 
 function isFresh(entry) {
