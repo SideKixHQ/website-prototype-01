@@ -432,24 +432,33 @@ exits: advance, switch, credential, or own it.</desc>
 # Five named behaviors down the side, the same four stages across the top, and
 # a bar that grows as the behavior goes from named to habitual. It is the
 # design of the program, not a plot of results, and the caption says so.
-# The constructs behind the five are the individual-contributor end of the
-# Leadership Architect set, in order: self-development, resourcefulness, decision
-# quality, action orientation, drives results. That end of the library is the half
-# that can be scored on one person; the rest of it measures somebody running other
-# people, which is the wrong instrument for a town upskilling its residents. None
-# of Korn Ferry's competency names are used here, because the library is licensed
-# and this page is not.
-# Each has to name something a manager or an advisor could watch happen.
-# "Knows", "has a picture of" and "treats X as" are states of mind and fail that
-# test, however true they are, so each is written as the act that reveals it.
-# They are also written to read twice: as a growth plan for the resident, and as
-# a hiring profile for the employer, who is the one the report goes to.
+# Two levels, kept separate, because collapsing them is the easy mistake.
+# The NAME is the behavior: a trainable disposition that experience builds and
+# practice keeps, and the thing a course can actually be designed around. The
+# text beside it is a behavioral indicator: one witnessable act that evidences
+# the behavior moved. You train information seeking; "asks the person who knows"
+# is only proof it happened, so it cannot be the name.
+# Names that are states of mind fail the other way. "Knows", "has a picture of"
+# and "explores" cannot be scored by a manager or an advisor, however true.
+#
+# The five map onto the individual-contributor end of the Leadership Architect
+# set, in order: plans and aligns, resourcefulness, decision quality, courage,
+# action orientation. That end is the half that can be scored on one person; the
+# rest measures somebody running other people, which is the wrong instrument for
+# a town upskilling its residents. None of Korn Ferry's competency names are used
+# here, because the library is licensed and this page is not.
+# Initiative is the one with a randomised trial behind it, and Frese and Fay's
+# construct is self-starting plus proactive plus persistent, which is why its
+# indicator carries both starting and still being at it in month three.
+#
+# All five are written to read twice: as a growth plan for the resident, and as a
+# hiring profile for the employer, who is the one the report goes to.
 COMP = [
- ("Names the target",        "#F0855A", "says where they intend to be, and what comes first"),
- ("Asks the person who knows","#FFE7A6", "goes to somebody doing the job instead of guessing"),
- ("Makes the call",          "#5FB6A6", "decides, rather than waiting to be handed the options"),
- ("Puts their hand up",      "#4FC3F7", "puts in for it before feeling ready"),
- ("Finishes what they start","#B18BE4", "still at it in month three, with nobody checking"),
+ ("Goal setting",        "#F0855A", "names a role and a date, and what comes first"),
+ ("Information seeking", "#FFE7A6", "asks somebody doing the job, instead of guessing"),
+ ("Decisiveness",        "#5FB6A6", "commits with what they have, rather than waiting"),
+ ("Self-advocacy",       "#4FC3F7", "puts in for it, and asks again after a no"),
+ ("Initiative",          "#B18BE4", "starts it unasked, and is still at it in month three"),
 ]
 STAGE = [("Weeks 1 to 2", "named"), ("Weeks 3 to 5", "practiced"),
          ("Weeks 6 to 8", "applied"), ("+ 90 days", "habitual")]
@@ -648,7 +657,8 @@ MAIN = f"""<main id="maincontent" class="hg">
     </ul>
     <p>Those five are the curriculum. They are not the report. You cannot measure whether somebody
       was taught leadership, only whether they have started acting like one, so the report scores
-      five things you can watch a person do.</p>
+      five behaviors instead. Each is a habit that experience builds and practice keeps, and each
+      is listed with the act that proves it moved.</p>
 
     <figure>
       <div class="dwrap">{GROWTH_SVG}</div>
@@ -657,15 +667,14 @@ MAIN = f"""<main id="maincontent" class="hg">
     </figure>
 
     <ul class="plain">
-      <li><b>Names the target.</b> Says out loud where they intend to be in two years, and what
-        comes first.</li>
-      <li><b>Asks the person who knows.</b> Goes to somebody already doing the job and asks what
-        it pays and what it takes, instead of guessing.</li>
-      <li><b>Makes the call.</b> Decides their own next move with what they have, rather than
-        waiting to be handed the options.</li>
-      <li><b>Puts their hand up.</b> Puts in for it before feeling ready, and comes back after
-        a no.</li>
-      <li><b>Finishes what they start.</b> Still at it in month three, when nobody is checking.</li>
+      <li><b>Goal setting.</b> Names a role and a date, and says out loud what comes first.</li>
+      <li><b>Information seeking.</b> Goes to somebody already doing the job and asks what it pays
+        and what it takes, instead of guessing.</li>
+      <li><b>Decisiveness.</b> Commits to a next move with what they have, rather than waiting to
+        be handed the options.</li>
+      <li><b>Self-advocacy.</b> Puts in for it before feeling ready, and asks again after a no.</li>
+      <li><b>Initiative.</b> Starts the thing nobody asked for, and is still at it in month
+        three.</li>
     </ul>
     <p>That list is a hiring profile as much as a growth plan. An employer reading it sees somebody
       who can say where they are going, will find the answer instead of guessing, decide instead of

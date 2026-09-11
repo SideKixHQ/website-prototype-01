@@ -94,6 +94,42 @@ injects carry inline CSS dimensions but no width/height attributes, which
 `audit/seo.js` counts as layout shift. It predates this work and affects both
 generated pages, so it belongs to `build/_chrome.html` and a pass of its own.
 
+### The five reported behaviors are named as behaviors, not as actions
+
+A competency model keeps two levels apart and the page had collapsed them. The
+name has to be the behavior: a trainable disposition that experience builds and
+practice keeps, and the thing a course can be designed around. The line beside
+it is a behavioral indicator: one witnessable act that evidences the behavior
+moved. "Asks the person who knows" was sitting in the name slot, but it is only
+proof, not the thing you train. The behavior has a name in English and it is
+information seeking.
+
+The five are now named as behaviors, each with its indicator underneath:
+
+    Goal setting         names a role and a date, and what comes first
+    Information seeking  asks somebody doing the job, instead of guessing
+    Decisiveness         commits with what they have, rather than waiting
+    Self-advocacy        puts in for it, and asks again after a no
+    Initiative           starts it unasked, and is still at it in month three
+
+This also fixes the growth diagram, whose column header reads "The competency"
+and until now had a column of action fragments under it.
+
+Note on the last one: Frese and Fay define personal initiative as self-starting
+plus proactive plus persistent, which is why its indicator carries both starting
+the thing and still being at it in month three. It is also the one of the five
+with a randomised trial behind it, which the page already cites.
+
+The earlier failure was the opposite one. Names like "explores" and "has a
+picture of" are states of mind and cannot be scored by a manager or an advisor,
+so they were replaced with acts. That was a correction in the right direction
+that went one level too far.
+
+Checked at 390 and 1280px: rail tracks all six sections, counters land, nothing
+stranded invisible, no console errors, no overflow, and the longest label,
+"Information seeking", clears the diagram's viewBox edge by 156px. wcag, wcag2,
+pour, mobile and contrast3 clean on this page.
+
 ---
 
 ## 2026-09-10
