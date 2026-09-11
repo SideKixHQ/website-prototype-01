@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-11 00:05:23 homegrown -->
+<!-- kx-build 2026-09-11 12:22:58 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1134,7 +1134,11 @@ section.wrap{position:relative;z-index:1 !important}
    Before this, prose sat left in a 68ch box whose centre landed 160px left of
    everything else, which is what made the page look out of true. Diagrams,
    stat rows, card grids and the table still run the full width. */
-.hg{--hgcol:48rem}
+/* One vertical scale for the whole page. Before this the gaps between blocks
+   ran 6, 16, 18, 22, 26, 28, 30, 32 and 34px, four of them set inline on single
+   paragraphs, and a figure could be followed 6px later by a list. Three steps:
+   tight inside a unit, mid between blocks, wide around a full-width object. */
+.hg{--hgcol:48rem;--sp-tight:16px;--sp-mid:26px;--sp-wide:34px}
 .hg .hgwrap > .eyebrow,
 .hg .hgwrap > h2,
 .hg .hgwrap > h3,
@@ -1149,16 +1153,19 @@ section.wrap{position:relative;z-index:1 !important}
    rhythm on top of it double-spaces the page under the hero. On this page the first
    section is the opening diagram rather than text, so it also sits closer than the
    shell default, which would strand it behind a screen of black. */
-.hg section:first-of-type{margin-top:0;padding-top:clamp(30px,4vw,58px)}
+.hg section:first-of-type{margin-top:0;padding-top:clamp(30px,4vw,48px) !important}
+/* and the opening diagram closes with a full section break, not a hairline */
+.hg .hgfig{padding-bottom:clamp(64px,8vw,104px)}
+.hg .hgfig figure{margin:0}
 .hg h2{font-family:var(--display);font-weight:600;font-size:clamp(27px,3.9vw,42px);
   line-height:1.14;color:#FFF8E8;margin:0 0 6px}
 .hg h3{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.4vw,25px);
   line-height:1.2;color:#FFF3DC;margin:0 0 8px}
-.hg p{font-size:16px;line-height:1.72;color:#B9B4AB;margin:0 0 16px;max-width:68ch}
+.hg p{font-size:16px;line-height:1.72;color:#B9B4AB;margin:0 0 var(--sp-tight);max-width:68ch}
 .hg p.lead{font-size:17.5px;color:#CFC9BE}
 .hg strong{color:#EFE7D6;font-weight:600}
 .hg .rule{height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,86,.42),transparent);
-  margin:0 0 34px}
+  margin:0 0 var(--sp-wide)}
 
 /* The line the page turns on. A gold marker sits under it at rest so it still
    reads as emphasis in a screenshot or on a phone, and sweeps up into a full
@@ -1223,7 +1230,7 @@ section.wrap{position:relative;z-index:1 !important}
 
 /* the exits were four cards for four short labels, which is a lot of frame for
    very little content on a page already full of frames */
-.hg .exits{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:2px;
+.hg .exits{list-style:none;margin:var(--sp-mid) 0;padding:0;display:grid;gap:2px;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .hg .exits li{padding:16px 20px 18px 0}
 .hg .exits b{display:block;font-family:var(--util);font-size:10px;letter-spacing:.2em;
@@ -1233,7 +1240,7 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .exits span{display:block;font-size:14.8px;line-height:1.6;color:#A8A296}
 
 /* stat row */
-.hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:32px 0 8px}
+.hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:var(--sp-wide) 0 var(--sp-mid)}
 .hg .stat{border:1px solid rgba(212,168,86,.28);border-radius:14px;padding:22px 20px;
   background:linear-gradient(180deg,rgba(26,20,8,.5),rgba(8,8,9,.72))}
 .hg .stat b{display:block;font-family:var(--display);font-size:clamp(30px,4.2vw,40px);
@@ -1241,7 +1248,7 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .stat span{display:block;font-size:14px;line-height:1.55;color:#A8A296}
 
 /* figure / diagram */
-.hg figure{margin:34px 0 0}
+.hg figure{margin:var(--sp-wide) 0}
 .hg .dwrap{border:1px solid rgba(212,168,86,.3);border-radius:18px;padding:26px 20px 20px;
   background:linear-gradient(180deg,rgba(24,18,7,.55),rgba(7,7,8,.92));
   overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -1288,7 +1295,7 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .phase h3{font-size:22px}
 
 /* plain list */
-.hg ul.plain{list-style:none;margin:6px 0 18px;padding:0;max-width:68ch}
+.hg ul.plain{list-style:none;margin:var(--sp-tight) 0;padding:0;max-width:68ch}
 .hg ul.plain li{position:relative;padding:9px 0 9px 26px;font-size:15.6px;line-height:1.66;
   color:#B9B4AB;border-top:1px solid rgba(212,168,86,.13)}
 .hg ul.plain li:first-child{border-top:none}
@@ -1297,7 +1304,7 @@ section.wrap{position:relative;z-index:1 !important}
 .hg ul.plain li b{color:#EFE7D6;font-weight:600}
 
 /* metric table */
-.hg .mtab{width:100%;border-collapse:collapse;margin:22px 0 0;font-size:15.2px}
+.hg .mtab{width:100%;border-collapse:collapse;margin:var(--sp-mid) 0;font-size:15.2px}
 .hg .mtab th,.hg .mtab td{text-align:left;padding:14px 14px 14px 0;
   border-top:1px solid rgba(212,168,86,.16);vertical-align:top;line-height:1.6}
 .hg .mtab thead th{border-top:none;font-family:var(--util);font-size:10.5px;letter-spacing:.18em;
@@ -1307,7 +1314,7 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .mtab tr.hero td:first-child{color:var(--cream)}
 
 /* callout */
-.hg .callout{border-left:2px solid var(--gold);padding:4px 0 4px 22px;margin:28px 0;
+.hg .callout{border-left:2px solid var(--gold);padding:4px 0 4px 22px;margin:var(--sp-mid) 0;
   max-width:70ch}
 .hg .callout p{font-family:var(--display);font-size:clamp(19px,2.5vw,25px);line-height:1.38;
   color:#FFF3DC;margin:0}
@@ -1710,7 +1717,7 @@ it is applied, and the ninety days after, where it becomes habitual. Each bar gr
 This is the design of the program rather than a plot of measured results.</desc>
 <rect x="330" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="400" y="46" text-anchor="middle" fill="#CDAA63">Weeks 1 to 2</text><text class="d-sub" x="400" y="68" text-anchor="middle">named</text><rect x="500" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="570" y="46" text-anchor="middle" fill="#CDAA63">Weeks 3 to 5</text><text class="d-sub" x="570" y="68" text-anchor="middle">practiced</text><rect x="670" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="740" y="46" text-anchor="middle" fill="#CDAA63">Weeks 6 to 8</text><text class="d-sub" x="740" y="68" text-anchor="middle">applied</text><rect x="840" y="88" width="140" height="330" rx="16" fill="#FFFFFF" fill-opacity=".017"/><text class="d-wk" x="910" y="46" text-anchor="middle" fill="#CDAA63">+ 90 days</text><text class="d-sub" x="910" y="68" text-anchor="middle">habitual</text>
 <text class="d-note" x="305" y="46" text-anchor="end">The competency</text>
-<text class="d-row" x="305" y="134" text-anchor="end">Names the target</text><rect x="330" y="123.5" width="140" height="13" rx="6.5" class="grow" fill="#F0855A" fill-opacity=".17"/><rect x="500" y="121.0" width="140" height="18" rx="9.0" class="grow" fill="#F0855A" fill-opacity=".38"/><rect x="670" y="118.0" width="140" height="24" rx="12.0" class="grow" fill="#F0855A" fill-opacity=".64"/><rect x="840" y="115.0" width="140" height="30" rx="15.0" class="grow" fill="#F0855A" fill-opacity=".96"/><path d="M0,162 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="199" text-anchor="end">Makes the call</text><rect x="330" y="188.5" width="140" height="13" rx="6.5" class="grow" fill="#FFE7A6" fill-opacity=".17"/><rect x="500" y="186.0" width="140" height="18" rx="9.0" class="grow" fill="#FFE7A6" fill-opacity=".38"/><rect x="670" y="183.0" width="140" height="24" rx="12.0" class="grow" fill="#FFE7A6" fill-opacity=".64"/><rect x="840" y="180.0" width="140" height="30" rx="15.0" class="grow" fill="#FFE7A6" fill-opacity=".96"/><path d="M0,227 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="264" text-anchor="end">Finds out</text><rect x="330" y="253.5" width="140" height="13" rx="6.5" class="grow" fill="#5FB6A6" fill-opacity=".17"/><rect x="500" y="251.0" width="140" height="18" rx="9.0" class="grow" fill="#5FB6A6" fill-opacity=".38"/><rect x="670" y="248.0" width="140" height="24" rx="12.0" class="grow" fill="#5FB6A6" fill-opacity=".64"/><rect x="840" y="245.0" width="140" height="30" rx="15.0" class="grow" fill="#5FB6A6" fill-opacity=".96"/><path d="M0,292 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="329" text-anchor="end">Bets on themselves</text><rect x="330" y="318.5" width="140" height="13" rx="6.5" class="grow" fill="#4FC3F7" fill-opacity=".17"/><rect x="500" y="316.0" width="140" height="18" rx="9.0" class="grow" fill="#4FC3F7" fill-opacity=".38"/><rect x="670" y="313.0" width="140" height="24" rx="12.0" class="grow" fill="#4FC3F7" fill-opacity=".64"/><rect x="840" y="310.0" width="140" height="30" rx="15.0" class="grow" fill="#4FC3F7" fill-opacity=".96"/><path d="M0,357 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="394" text-anchor="end">Takes initiative</text><rect x="330" y="383.5" width="140" height="13" rx="6.5" class="grow" fill="#B18BE4" fill-opacity=".17"/><rect x="500" y="381.0" width="140" height="18" rx="9.0" class="grow" fill="#B18BE4" fill-opacity=".38"/><rect x="670" y="378.0" width="140" height="24" rx="12.0" class="grow" fill="#B18BE4" fill-opacity=".64"/><rect x="840" y="375.0" width="140" height="30" rx="15.0" class="grow" fill="#B18BE4" fill-opacity=".96"/>
+<text class="d-row" x="305" y="134" text-anchor="end">Names the target</text><rect x="330" y="123.5" width="140" height="13" rx="6.5" class="grow" fill="#F0855A" fill-opacity=".17"/><rect x="500" y="121.0" width="140" height="18" rx="9.0" class="grow" fill="#F0855A" fill-opacity=".38"/><rect x="670" y="118.0" width="140" height="24" rx="12.0" class="grow" fill="#F0855A" fill-opacity=".64"/><rect x="840" y="115.0" width="140" height="30" rx="15.0" class="grow" fill="#F0855A" fill-opacity=".96"/><path d="M0,162 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="199" text-anchor="end">Asks the person who knows</text><rect x="330" y="188.5" width="140" height="13" rx="6.5" class="grow" fill="#FFE7A6" fill-opacity=".17"/><rect x="500" y="186.0" width="140" height="18" rx="9.0" class="grow" fill="#FFE7A6" fill-opacity=".38"/><rect x="670" y="183.0" width="140" height="24" rx="12.0" class="grow" fill="#FFE7A6" fill-opacity=".64"/><rect x="840" y="180.0" width="140" height="30" rx="15.0" class="grow" fill="#FFE7A6" fill-opacity=".96"/><path d="M0,227 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="264" text-anchor="end">Makes the call</text><rect x="330" y="253.5" width="140" height="13" rx="6.5" class="grow" fill="#5FB6A6" fill-opacity=".17"/><rect x="500" y="251.0" width="140" height="18" rx="9.0" class="grow" fill="#5FB6A6" fill-opacity=".38"/><rect x="670" y="248.0" width="140" height="24" rx="12.0" class="grow" fill="#5FB6A6" fill-opacity=".64"/><rect x="840" y="245.0" width="140" height="30" rx="15.0" class="grow" fill="#5FB6A6" fill-opacity=".96"/><path d="M0,292 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="329" text-anchor="end">Puts their hand up</text><rect x="330" y="318.5" width="140" height="13" rx="6.5" class="grow" fill="#4FC3F7" fill-opacity=".17"/><rect x="500" y="316.0" width="140" height="18" rx="9.0" class="grow" fill="#4FC3F7" fill-opacity=".38"/><rect x="670" y="313.0" width="140" height="24" rx="12.0" class="grow" fill="#4FC3F7" fill-opacity=".64"/><rect x="840" y="310.0" width="140" height="30" rx="15.0" class="grow" fill="#4FC3F7" fill-opacity=".96"/><path d="M0,357 H980" stroke="#A1853E" stroke-opacity=".13" stroke-width="1"/><text class="d-row" x="305" y="394" text-anchor="end">Finishes what they start</text><rect x="330" y="383.5" width="140" height="13" rx="6.5" class="grow" fill="#B18BE4" fill-opacity=".17"/><rect x="500" y="381.0" width="140" height="18" rx="9.0" class="grow" fill="#B18BE4" fill-opacity=".38"/><rect x="670" y="378.0" width="140" height="24" rx="12.0" class="grow" fill="#B18BE4" fill-opacity=".64"/><rect x="840" y="375.0" width="140" height="30" rx="15.0" class="grow" fill="#B18BE4" fill-opacity=".96"/>
 <text class="d-sub" x="500" y="446" text-anchor="middle">Every one of them scored as observable behavior, at baseline in week one and again at day 180.</text>
 </svg></div>
       <div class="dbar"><button type="button" class="dget" data-svg="growth">Download this diagram</button></div>
@@ -1718,15 +1725,20 @@ This is the design of the program rather than a plot of measured results.</desc>
     </figure>
 
     <ul class="plain">
-      <li><b>Names the target.</b> Says out loud where they intend to be in two years.</li>
-      <li><b>Makes the call.</b> Decides their own next move rather than waiting to be told the
-        options.</li>
-      <li><b>Finds out.</b> Asks somebody who does the job what it pays and what it takes.</li>
-      <li><b>Bets on themselves.</b> Puts in for it before feeling ready, and comes back after
+      <li><b>Names the target.</b> Says out loud where they intend to be in two years, and what
+        comes first.</li>
+      <li><b>Asks the person who knows.</b> Goes to somebody already doing the job and asks what
+        it pays and what it takes, instead of guessing.</li>
+      <li><b>Makes the call.</b> Decides their own next move with what they have, rather than
+        waiting to be handed the options.</li>
+      <li><b>Puts their hand up.</b> Puts in for it before feeling ready, and comes back after
         a no.</li>
-      <li><b>Takes initiative.</b> Starts the thing nobody asked for, and is still at it in month
-        three.</li>
+      <li><b>Finishes what they start.</b> Still at it in month three, when nobody is checking.</li>
     </ul>
+    <p>That list is a hiring profile as much as a growth plan. An employer reading it sees somebody
+      who can say where they are going, will find the answer instead of guessing, decide instead of
+      escalating, ask for the harder job, and still be there in month three. Which is the point,
+      because the employer is who the report goes to.</p>
    </section>
 
    <section id="skills" class="hgsec">
@@ -1802,7 +1814,7 @@ exits: advance, switch, credential, or own it.</desc>
       <li style="--c:#B18BE4"><b>Exit 04</b><strong>Own it</strong><span>Self employment, where that
         is the honest answer.</span></li>
     </ul>
-    <p style="margin-top:26px"><strong>Homegrown does not teach a trade and does not want to.</strong>
+    <p><strong>Homegrown does not teach a trade and does not want to.</strong>
       When somebody needs a credential they go to the college, and we report whether they enrolled.
       This is a feeder, not a competitor.</p>
    </section>
@@ -1841,7 +1853,7 @@ joins the five to show they also act on each other.</desc>
       <figcaption>Move any one of the five and you have moved the culture, whether you meant to
         or not.</figcaption>
     </figure>
-    <p style="margin-top:30px">Identify the culture you actually have, map the one you want, then
+    <p>Identify the culture you actually have, map the one you want, then
       train your leaders to manage and measure it every day. That last step makes it stick, and it
       is the one most places skip.</p>
    </section>
@@ -1896,7 +1908,7 @@ joins the five to show they also act on each other.</desc>
       <div class="stat"><b data-to="13800" data-dec="0" data-sep="1">13,800</b><span>Jobs the metro
         is projected to add by 2034. Somebody is going to fill them.</span></div>
     </div>
-    <p style="margin-top:26px">There is a clock on it: every four years somebody stays in low wage
+    <p>There is a clock on it: every four years somebody stays in low wage
       work, the odds of getting out roughly halve. By year ten they are down to about one in a
       hundred. Those four figures are Wilmington&#8217;s, because that is where the first cohorts
       run. Every town gets the same four from its own county.</p>
@@ -1931,7 +1943,7 @@ joins the five to show they also act on each other.</desc>
       <div class="stat"><b data-to="30" data-dec="0" data-suf="%">30%</b><span>Same hours, same
         mentoring, behavior based instead. Fifty two per cent by year seven.</span></div>
     </div>
-    <p style="margin-top:22px">One caveat, up front rather than buried. That trial ran with small
+    <p>One caveat, up front rather than buried. That trial ran with small
       business owners in West Africa, not a Carolina metro, and by year seven the gains were much
       stronger for the men in it. It is the best evidence this method has, and it is not proof of
       what happens here.</p>

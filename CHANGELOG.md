@@ -52,6 +52,48 @@ need 4.5:1 and were sitting at 2.76:1 against the page ground; they now measure
 5.1:1. Found by `audit/contrast3.js`, which was the only finding on the page
 across the whole suite (wcag, wcag2, pour, seo, mobile, contrast3).
 
+### Homegrown gets one spacing scale, and five behaviors an employer reads
+
+Measured every vertical gap on the page. The section frame was disciplined,
+16px eyebrow to heading and 34px below the rule in all six sections, but
+everything under that rule was hand tuned: gaps ran 6, 16, 18, 22, 26, 28, 30,
+32 and 34px, four of them set inline on single paragraphs. In "What we do" a
+509px diagram was followed 6px later by a list, because `figure` carried no
+bottom margin and `ul.plain` opened with 6px.
+
+There are now three steps, as tokens on `.hg`: 16px inside a unit, 26px between
+blocks, 34px around a full-width object. Every block margin reads from them and
+the four inline margins are gone, carried instead by the block above each
+paragraph. Gaps on the page now measure 16, 26 or 34, nothing else.
+
+Two structural fixes came out of the same measurement. The shell sets
+`main > section:first-of-type{padding-top:132px !important}`; the hero here is a
+`<header>`, so that landed on the opening diagram instead. The diagram floated
+188px below the hero and sat 34px above the first section, the reverse of what
+it should be. It now opens at 48px and closes with a full section break, 102px
+at 1280 and 64px at 390, matching the section rhythm exactly.
+
+Separately, the five reported behaviors were all career self-management. They
+served the resident navigating their own path and gave an employer nothing to
+hire on, which matters because the employer is who the report goes to. The five
+are now built on the individual-contributor end of the Leadership Architect
+set: self-development, resourcefulness, decision quality, action orientation and
+drives results. None of Korn Ferry's competency names are used, as the library
+is licensed. Each still names an act somebody can be watched doing, and the list
+now reads twice, as a growth plan and as a hiring profile. "Finds out" is gone;
+it was a bare verb with no object.
+
+Checked: all six rail sections track at 390, 900 and 1280px, counters land on
+value, nothing stranded invisible with JavaScript on, off or under reduced
+motion, no console errors, no horizontal page overflow, and the longest new
+diagram label clears the viewBox edge by 100px. wcag, wcag2, pour, mobile and
+contrast3 report nothing on this page.
+
+One pre-existing finding left alone: the three chrome images the generator
+injects carry inline CSS dimensions but no width/height attributes, which
+`audit/seo.js` counts as layout shift. It predates this work and affects both
+generated pages, so it belongs to `build/_chrome.html` and a pass of its own.
+
 ---
 
 ## 2026-09-10

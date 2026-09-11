@@ -85,7 +85,11 @@ CSS = """
    Before this, prose sat left in a 68ch box whose centre landed 160px left of
    everything else, which is what made the page look out of true. Diagrams,
    stat rows, card grids and the table still run the full width. */
-.hg{--hgcol:48rem}
+/* One vertical scale for the whole page. Before this the gaps between blocks
+   ran 6, 16, 18, 22, 26, 28, 30, 32 and 34px, four of them set inline on single
+   paragraphs, and a figure could be followed 6px later by a list. Three steps:
+   tight inside a unit, mid between blocks, wide around a full-width object. */
+.hg{--hgcol:48rem;--sp-tight:16px;--sp-mid:26px;--sp-wide:34px}
 .hg .hgwrap > .eyebrow,
 .hg .hgwrap > h2,
 .hg .hgwrap > h3,
@@ -100,16 +104,19 @@ CSS = """
    rhythm on top of it double-spaces the page under the hero. On this page the first
    section is the opening diagram rather than text, so it also sits closer than the
    shell default, which would strand it behind a screen of black. */
-.hg section:first-of-type{margin-top:0;padding-top:clamp(30px,4vw,58px)}
+.hg section:first-of-type{margin-top:0;padding-top:clamp(30px,4vw,48px) !important}
+/* and the opening diagram closes with a full section break, not a hairline */
+.hg .hgfig{padding-bottom:clamp(64px,8vw,104px)}
+.hg .hgfig figure{margin:0}
 .hg h2{font-family:var(--display);font-weight:600;font-size:clamp(27px,3.9vw,42px);
   line-height:1.14;color:#FFF8E8;margin:0 0 6px}
 .hg h3{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.4vw,25px);
   line-height:1.2;color:#FFF3DC;margin:0 0 8px}
-.hg p{font-size:16px;line-height:1.72;color:#B9B4AB;margin:0 0 16px;max-width:68ch}
+.hg p{font-size:16px;line-height:1.72;color:#B9B4AB;margin:0 0 var(--sp-tight);max-width:68ch}
 .hg p.lead{font-size:17.5px;color:#CFC9BE}
 .hg strong{color:#EFE7D6;font-weight:600}
 .hg .rule{height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,86,.42),transparent);
-  margin:0 0 34px}
+  margin:0 0 var(--sp-wide)}
 
 /* The line the page turns on. A gold marker sits under it at rest so it still
    reads as emphasis in a screenshot or on a phone, and sweeps up into a full
@@ -174,7 +181,7 @@ CSS = """
 
 /* the exits were four cards for four short labels, which is a lot of frame for
    very little content on a page already full of frames */
-.hg .exits{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:2px;
+.hg .exits{list-style:none;margin:var(--sp-mid) 0;padding:0;display:grid;gap:2px;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .hg .exits li{padding:16px 20px 18px 0}
 .hg .exits b{display:block;font-family:var(--util);font-size:10px;letter-spacing:.2em;
@@ -184,7 +191,7 @@ CSS = """
 .hg .exits span{display:block;font-size:14.8px;line-height:1.6;color:#A8A296}
 
 /* stat row */
-.hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:32px 0 8px}
+.hg .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:var(--sp-wide) 0 var(--sp-mid)}
 .hg .stat{border:1px solid rgba(212,168,86,.28);border-radius:14px;padding:22px 20px;
   background:linear-gradient(180deg,rgba(26,20,8,.5),rgba(8,8,9,.72))}
 .hg .stat b{display:block;font-family:var(--display);font-size:clamp(30px,4.2vw,40px);
@@ -192,7 +199,7 @@ CSS = """
 .hg .stat span{display:block;font-size:14px;line-height:1.55;color:#A8A296}
 
 /* figure / diagram */
-.hg figure{margin:34px 0 0}
+.hg figure{margin:var(--sp-wide) 0}
 .hg .dwrap{border:1px solid rgba(212,168,86,.3);border-radius:18px;padding:26px 20px 20px;
   background:linear-gradient(180deg,rgba(24,18,7,.55),rgba(7,7,8,.92));
   overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -239,7 +246,7 @@ CSS = """
 .hg .phase h3{font-size:22px}
 
 /* plain list */
-.hg ul.plain{list-style:none;margin:6px 0 18px;padding:0;max-width:68ch}
+.hg ul.plain{list-style:none;margin:var(--sp-tight) 0;padding:0;max-width:68ch}
 .hg ul.plain li{position:relative;padding:9px 0 9px 26px;font-size:15.6px;line-height:1.66;
   color:#B9B4AB;border-top:1px solid rgba(212,168,86,.13)}
 .hg ul.plain li:first-child{border-top:none}
@@ -248,7 +255,7 @@ CSS = """
 .hg ul.plain li b{color:#EFE7D6;font-weight:600}
 
 /* metric table */
-.hg .mtab{width:100%;border-collapse:collapse;margin:22px 0 0;font-size:15.2px}
+.hg .mtab{width:100%;border-collapse:collapse;margin:var(--sp-mid) 0;font-size:15.2px}
 .hg .mtab th,.hg .mtab td{text-align:left;padding:14px 14px 14px 0;
   border-top:1px solid rgba(212,168,86,.16);vertical-align:top;line-height:1.6}
 .hg .mtab thead th{border-top:none;font-family:var(--util);font-size:10.5px;letter-spacing:.18em;
@@ -258,7 +265,7 @@ CSS = """
 .hg .mtab tr.hero td:first-child{color:var(--cream)}
 
 /* callout */
-.hg .callout{border-left:2px solid var(--gold);padding:4px 0 4px 22px;margin:28px 0;
+.hg .callout{border-left:2px solid var(--gold);padding:4px 0 4px 22px;margin:var(--sp-mid) 0;
   max-width:70ch}
 .hg .callout p{font-family:var(--display);font-size:clamp(19px,2.5vw,25px);line-height:1.38;
   color:#FFF3DC;margin:0}
@@ -425,18 +432,24 @@ exits: advance, switch, credential, or own it.</desc>
 # Five named behaviors down the side, the same four stages across the top, and
 # a bar that grows as the behavior goes from named to habitual. It is the
 # design of the program, not a plot of results, and the caption says so.
-# Four of these are the dimensions of career adaptability, the construct built for
-# people moving between jobs rather than for managers running teams. The fifth is
-# personal initiative, which is the one with the randomised trial behind it.
-# Each one has to name something a manager or an advisor could watch happen.
+# The constructs behind the five are the individual-contributor end of the
+# Leadership Architect set, in order: self-development, resourcefulness, decision
+# quality, action orientation, drives results. That end of the library is the half
+# that can be scored on one person; the rest of it measures somebody running other
+# people, which is the wrong instrument for a town upskilling its residents. None
+# of Korn Ferry's competency names are used here, because the library is licensed
+# and this page is not.
+# Each has to name something a manager or an advisor could watch happen.
 # "Knows", "has a picture of" and "treats X as" are states of mind and fail that
 # test, however true they are, so each is written as the act that reveals it.
+# They are also written to read twice: as a growth plan for the resident, and as
+# a hiring profile for the employer, who is the one the report goes to.
 COMP = [
- ("Names the target",   "#F0855A", "says where they intend to be, and what comes first"),
- ("Makes the call",     "#FFE7A6", "decides, rather than waiting to be told the options"),
- ("Finds out",          "#5FB6A6", "asks somebody who does the job what it really takes"),
- ("Bets on themselves", "#4FC3F7", "puts in for it before feeling ready"),
- ("Takes initiative",   "#B18BE4", "starts what nobody asked for, and is still at it"),
+ ("Names the target",        "#F0855A", "says where they intend to be, and what comes first"),
+ ("Asks the person who knows","#FFE7A6", "goes to somebody doing the job instead of guessing"),
+ ("Makes the call",          "#5FB6A6", "decides, rather than waiting to be handed the options"),
+ ("Puts their hand up",      "#4FC3F7", "puts in for it before feeling ready"),
+ ("Finishes what they start","#B18BE4", "still at it in month three, with nobody checking"),
 ]
 STAGE = [("Weeks 1 to 2", "named"), ("Weeks 3 to 5", "practiced"),
          ("Weeks 6 to 8", "applied"), ("+ 90 days", "habitual")]
@@ -644,15 +657,20 @@ MAIN = f"""<main id="maincontent" class="hg">
     </figure>
 
     <ul class="plain">
-      <li><b>Names the target.</b> Says out loud where they intend to be in two years.</li>
-      <li><b>Makes the call.</b> Decides their own next move rather than waiting to be told the
-        options.</li>
-      <li><b>Finds out.</b> Asks somebody who does the job what it pays and what it takes.</li>
-      <li><b>Bets on themselves.</b> Puts in for it before feeling ready, and comes back after
+      <li><b>Names the target.</b> Says out loud where they intend to be in two years, and what
+        comes first.</li>
+      <li><b>Asks the person who knows.</b> Goes to somebody already doing the job and asks what
+        it pays and what it takes, instead of guessing.</li>
+      <li><b>Makes the call.</b> Decides their own next move with what they have, rather than
+        waiting to be handed the options.</li>
+      <li><b>Puts their hand up.</b> Puts in for it before feeling ready, and comes back after
         a no.</li>
-      <li><b>Takes initiative.</b> Starts the thing nobody asked for, and is still at it in month
-        three.</li>
+      <li><b>Finishes what they start.</b> Still at it in month three, when nobody is checking.</li>
     </ul>
+    <p>That list is a hiring profile as much as a growth plan. An employer reading it sees somebody
+      who can say where they are going, will find the answer instead of guessing, decide instead of
+      escalating, ask for the harder job, and still be there in month three. Which is the point,
+      because the employer is who the report goes to.</p>
    </section>
 
    <section id="skills" class="hgsec">
@@ -694,7 +712,7 @@ MAIN = f"""<main id="maincontent" class="hg">
       <li style="--c:#B18BE4"><b>Exit 04</b><strong>Own it</strong><span>Self employment, where that
         is the honest answer.</span></li>
     </ul>
-    <p style="margin-top:26px"><strong>Homegrown does not teach a trade and does not want to.</strong>
+    <p><strong>Homegrown does not teach a trade and does not want to.</strong>
       When somebody needs a credential they go to the college, and we report whether they enrolled.
       This is a feeder, not a competitor.</p>
    </section>
@@ -714,7 +732,7 @@ MAIN = f"""<main id="maincontent" class="hg">
       <figcaption>Move any one of the five and you have moved the culture, whether you meant to
         or not.</figcaption>
     </figure>
-    <p style="margin-top:30px">Identify the culture you actually have, map the one you want, then
+    <p>Identify the culture you actually have, map the one you want, then
       train your leaders to manage and measure it every day. That last step makes it stick, and it
       is the one most places skip.</p>
    </section>
@@ -769,7 +787,7 @@ MAIN = f"""<main id="maincontent" class="hg">
       <div class="stat"><b data-to="13800" data-dec="0" data-sep="1">13,800</b><span>Jobs the metro
         is projected to add by 2034. Somebody is going to fill them.</span></div>
     </div>
-    <p style="margin-top:26px">There is a clock on it: every four years somebody stays in low wage
+    <p>There is a clock on it: every four years somebody stays in low wage
       work, the odds of getting out roughly halve. By year ten they are down to about one in a
       hundred. Those four figures are Wilmington&#8217;s, because that is where the first cohorts
       run. Every town gets the same four from its own county.</p>
@@ -804,7 +822,7 @@ MAIN = f"""<main id="maincontent" class="hg">
       <div class="stat"><b data-to="30" data-dec="0" data-suf="%">30%</b><span>Same hours, same
         mentoring, behavior based instead. Fifty two per cent by year seven.</span></div>
     </div>
-    <p style="margin-top:22px">One caveat, up front rather than buried. That trial ran with small
+    <p>One caveat, up front rather than buried. That trial ran with small
       business owners in West Africa, not a Carolina metro, and by year seven the gains were much
       stronger for the men in it. It is the best evidence this method has, and it is not proof of
       what happens here.</p>
