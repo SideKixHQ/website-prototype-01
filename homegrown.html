@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- kx-build 2026-09-11 12:31:04 homegrown -->
+<!-- kx-build 2026-09-11 12:42:16 homegrown -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1230,9 +1230,39 @@ section.wrap{position:relative;z-index:1 !important}
 
 /* the exits were four cards for four short labels, which is a lot of frame for
    very little content on a page already full of frames */
-.hg .exits{list-style:none;margin:var(--sp-mid) 0;padding:0;display:grid;gap:2px;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.hg .exits li{padding:16px 20px 18px 0}
+.hg .exits{list-style:none;margin:var(--sp-mid) 0;padding:0;display:grid;gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+/* Four exits must never wrap three and one, and what decides that is the width
+   of the column they sit in, not the viewport: between 901 and about 1050px the
+   rail is still beside the content and the column is narrow. Auto-fit above is
+   the fallback; where container queries exist the count is exact. */
+@supports (container-type:inline-size){
+  .hg .hgbody{container-type:inline-size}
+  .hg .exits{grid-template-columns:1fr}
+  @container (min-width:400px){.hg .exits{grid-template-columns:repeat(2,1fr)}}
+  @container (min-width:760px){.hg .exits{grid-template-columns:repeat(4,1fr)}}
+}
+.hg .exits li{position:relative;padding:21px 20px 23px;border-radius:14px;
+  border:1px solid rgba(212,168,86,.2);
+  background:linear-gradient(180deg,rgba(26,20,8,.42),rgba(8,8,9,.66));
+  transition:transform .35s cubic-bezier(.22,.61,.36,1),border-color .35s,background .35s}
+/* each card carries its own accent as a bar that draws across the top on hover,
+   which gives the row movement without dressing a list item up as a button */
+.hg .exits li::before{content:'';position:absolute;left:20px;right:20px;top:-1px;height:2px;
+  border-radius:2px;background:var(--c,#CDAA63);transform:scaleX(0);transform-origin:left center;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+.hg .exits li:hover{transform:translateY(-4px);border-color:var(--c,#CDAA63);
+  background:linear-gradient(180deg,rgba(34,26,10,.6),rgba(10,10,11,.78))}
+.hg .exits li:hover::before{transform:scaleX(1)}
+.hg .exits li:hover strong{color:#FFF8E8}
+/* touch devices never hover, so the bar sits drawn and dim rather than missing */
+@media (hover:none){
+  .hg .exits li::before{transform:scaleX(1);opacity:.5}
+}
+@media (prefers-reduced-motion:reduce){
+  .hg .exits li,.hg .exits li::before{transition:none !important}
+  .hg .exits li:hover{transform:none}
+}
 .hg .exits b{display:block;font-family:var(--util);font-size:10px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--c,#CDAA63);margin-bottom:9px}
 .hg .exits strong{display:block;font-family:var(--display);font-size:22px;font-weight:600;
@@ -1314,10 +1344,53 @@ section.wrap{position:relative;z-index:1 !important}
 .hg .mtab tr.hero td:first-child{color:var(--cream)}
 
 /* callout */
+/* The line that keeps the community college a partner rather than a rival. It
+   was a plain paragraph, so it read as an aside, which is the opposite of the
+   point it is making. */
+.hg .hgnote{border:1px solid rgba(212,168,86,.32);border-left:3px solid var(--gold);
+  border-radius:0 14px 14px 0;padding:20px 24px;margin:var(--sp-mid) 0;max-width:43rem;
+  background:linear-gradient(100deg,rgba(38,29,10,.72),rgba(12,11,8,.6))}
+.hg .hgnote p{margin:0;font-size:16.4px;color:#C8C2B6;max-width:none}
+.hg .hgnote strong{color:var(--cream)}
+
 .hg .callout{border-left:2px solid var(--gold);padding:4px 0 4px 22px;margin:var(--sp-mid) 0;
   max-width:70ch}
 .hg .callout p{font-family:var(--display);font-size:clamp(19px,2.5vw,25px);line-height:1.38;
   color:#FFF3DC;margin:0}
+
+/* Disclosures. Until now the rules for these lived only in the preview harness
+   and never in the page, so all six shipped with the browser's default triangle
+   and body-weight text, which is why the headings read as prose. */
+.hg details{border-top:1px solid rgba(212,168,86,.16)}
+.hg details:last-of-type{border-bottom:1px solid rgba(212,168,86,.16)}
+.hg details summary{cursor:pointer;list-style:none;display:flex;gap:18px;
+  justify-content:space-between;align-items:center;padding:18px 0;
+  font-size:16.5px;font-weight:500;color:#E3DED2;
+  transition:color .25s,padding-left .25s}
+.hg details summary::-webkit-details-marker{display:none}
+/* drawn from borders rather than a glyph, because a chevron character shipped as
+   a control code once already */
+.hg details summary::after{content:'';flex:none;width:8px;height:8px;
+  border-right:1.5px solid var(--gold-mid);border-bottom:1.5px solid var(--gold-mid);
+  transform:rotate(45deg) translate(-2px,-2px);
+  transition:transform .32s cubic-bezier(.22,.61,.36,1),border-color .25s}
+.hg details[open] summary::after{transform:rotate(-135deg)}
+.hg details summary:hover{color:#FFF8E8;padding-left:8px}
+.hg details summary:hover::after{border-color:var(--gold-pale)}
+.hg details summary:focus-visible{outline:3px solid var(--gold-pale);outline-offset:4px;
+  border-radius:4px}
+.hg details > *:not(summary){margin-bottom:22px}
+.hg details p{font-size:15.4px;color:#A8A296;max-width:66ch}
+@media (prefers-reduced-motion:reduce){
+  .hg details summary,.hg details summary::after{transition:none !important}
+  .hg details summary:hover{padding-left:0}
+}
+
+/* a subhead for an object that runs the full column, so its rule trails off to
+   the right instead of sitting under prose */
+.hg .mhead{display:flex;align-items:center;gap:16px;margin:var(--sp-wide) 0 2px}
+.hg .mhead::after{content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(212,168,86,.42),transparent)}
 
 /* cta */
 .hg .hgcta{border:1px solid rgba(212,168,86,.36);border-radius:20px;padding:clamp(30px,5vw,52px);
@@ -1814,9 +1887,11 @@ exits: advance, switch, credential, or own it.</desc>
       <li style="--c:#B18BE4"><b>Exit 04</b><strong>Own it</strong><span>Self employment, where that
         is the honest answer.</span></li>
     </ul>
-    <p><strong>Homegrown does not teach a trade and does not want to.</strong>
-      When somebody needs a credential they go to the college, and we report whether they enrolled.
-      This is a feeder, not a competitor.</p>
+    <div class="hgnote">
+      <p><strong>Homegrown does not teach a trade and does not want to.</strong> When somebody needs
+        a credential they go to the college, and we report whether they enrolled. This is a feeder,
+        not a competitor.</p>
+    </div>
    </section>
 
    <section id="culture" class="hgsec">
@@ -1873,8 +1948,7 @@ joins the five to show they also act on each other.</desc>
       <li><b>The SideKix platform, for everybody in the cohort.</b> Community, resource library,
         self discoveries, events, training and AI guidance from Kix.</li>
     </ul>
-    <details>
-      <summary>How it is measured</summary>
+    <h3 class="mhead">How it is measured</h3>
       <table class="mtab">
         <thead><tr><th>Measure</th><th>What it is</th></tr></thead>
         <tbody>
@@ -1889,7 +1963,6 @@ joins the five to show they also act on each other.</desc>
             on.</td></tr>
         </tbody>
       </table>
-    </details>
    </section>
 
    <section id="case" class="hgsec">

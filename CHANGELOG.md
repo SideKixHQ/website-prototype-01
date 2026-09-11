@@ -130,6 +130,44 @@ stranded invisible, no console errors, no overflow, and the longest label,
 "Information seeking", clears the diagram's viewBox edge by 156px. wcag, wcag2,
 pour, mobile and contrast3 clean on this page.
 
+### Exits become cards, the college line gets a panel, and the disclosures get styled at all
+
+Four things, one of them a bug worth naming.
+
+The bug: the rules for this page's `<details>` elements only ever existed in the
+preview harness and were never in the page CSS. All six shipped with the
+browser's default triangle and body-weight text, which is exactly why the
+headings read as prose. The preview had been showing something the page did not
+do. Those rules are now in the page, and the summaries read as controls: a
+chevron drawn from borders that rotates on open, a colour change and an 8px
+indent on hover.
+
+"How it is measured" came out of its disclosure entirely. It is not optional
+depth, it is the offer, and it holds the one number nobody else reports. It is
+now a visible subhead with the table open under it, styled as a rule that trails
+off to the right so it reads as a subhead rather than as another section.
+
+The four exits are cards again, and they move: a 4px lift, the border taking the
+card's own accent, and a 2px bar in that accent drawing across the top from the
+left. They are list items, not links, so the hover state deliberately stops
+short of looking like a button. Touch devices, which never hover, get the bar
+drawn and dimmed rather than missing.
+
+The exits also never wrap three and one now. What decides the count is the width
+of the column they sit in, not the viewport: between 901 and about 1050px the
+rail is still beside the content and that column is narrow, so viewport media
+queries get it wrong. A container query on `.hgbody` makes the count exact, with
+the old auto-fit left as the fallback. Checked at 360, 390, 480, 640, 780, 900,
+950, 1024, 1100, 1280 and 1600px: every width is one, two or four across, never
+three and one, with the rail and the scrollspy correct at all eleven.
+
+"Homegrown does not teach a trade" was a plain paragraph, so the line that keeps
+the community college a partner rather than a rival read as an aside. It now
+sits in a panel with a solid gold left edge and a warm ground, capped at the
+prose measure so it does not run wider than its own text.
+
+wcag, wcag2, pour, mobile and contrast3 clean on this page.
+
 ---
 
 ## 2026-09-10
