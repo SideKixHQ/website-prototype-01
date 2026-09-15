@@ -9,6 +9,57 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-09-15
+
+### Homegrown answers four questions instead of listing six topics
+
+The page was confusing because it was organised as a catalog rather than as an
+argument, and because three of the four things a reader needs were collapsed
+inside `<details>` at the bottom.
+
+Measured before changing anything. Six rail sections carrying 457, 131, 236,
+216, 181 and 174 words: the first section was nearly three and a half times the
+second, holding the curriculum, the growth diagram, all five behaviors and the
+employer line at once. Skills, Program and Culture were three headings for one
+idea. What You Get and Why It Pays were two headings for another. And "why it
+works", which is the most persuasive material on offer, did not exist on the
+visible page at all: it was a collapsed disclosure called "Why behavior and not
+curriculum", along with "How it is paid for" and "Where it starts".
+
+The page now has four sections, named as the four questions a reader actually
+asks: what it is, how it works, why it works, how to start. Section weights are
+321, 692, 313 and 256 words, with the long one being the question that deserves
+the most answer. Total copy is down from 2,682 words to 2,495 while three
+previously hidden sections became visible, so the real reduction is larger than
+the number suggests.
+
+Moves that came out of the restructure. The problem statistics left "Why a town
+pays for this" and now open "What it is", because the problem is part of saying
+what the thing is for. The growth diagram moved to "Why it works", because it
+shows the mechanism rather than the offer. Culture stopped being a peer section
+and became the employer half of "How it works", which is truer to how it is
+sold and matches the supervisor module shipping with cohort one.
+
+Also fixed while in there: the stat tiles wrapped three and one at several
+widths, the same bug already fixed for the exits, so they now take the container
+query treatment and read one, two or four across and never three and one,
+checked at 390, 640, 900, 950, 1024, 1280 and 1600px. A stray `</figure>` in the
+hero block is gone. And the hidden evidence section still described the previous
+competency framework, naming career adaptability, which was replaced days ago;
+that paragraph now describes the framework the page actually uses.
+
+One audit finding investigated and dismissed with evidence: `audit/contrast3.js`
+reports the red "does not" at 3.82:1 against the gold marker, needing 4.5:1. It
+reads the size as 16px because jsdom cannot compute `clamp()`. Measured in
+Chromium the phrase renders at 27px on a phone and 42px on a desktop, both above
+the 24px large-text threshold, so the requirement is 3:1 and it passes, at
+7.29:1 against the page ground and 3.82:1 against the marker at its darkest.
+
+All four rail sections track at every width tested, counters land, nothing is
+stranded invisible, no horizontal overflow. wcag, wcag2, pour and mobile clean.
+
+---
+
 ## 2026-09-11
 
 ### Homegrown navigates by rail, and moves
