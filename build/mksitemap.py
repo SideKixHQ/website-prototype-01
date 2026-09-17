@@ -13,6 +13,15 @@ SITE = "https://sidekixhq.com"
 # noindex or not a destination
 SKIP = {"404.html"}
 
+# Glossary term pages are ~90 words each and the definition repeats three times
+# on the page, so Google reads the set as doorway content: 59 pages, 0
+# impressions in the first quarter. They stay live and linked for readers, and
+# vercel.json serves them X-Robots-Tag: noindex, follow. Listing them in the
+# sitemap while asking Google not to index them is a contradiction, so they are
+# dropped here too. Delete this pattern if the pages are ever written out
+# properly.
+SKIP_PATTERNS = (re.compile(r"^what-is-[a-z0-9-]+\.html$"),)
+
 PRIORITY = {
  "": "1.0", "index.html": "1.0",
  "how-it-works.html": "0.9", "membership.html": "0.9", "join.html": "0.9",
@@ -41,9 +50,12 @@ def main():
     on_disk = []
     for p in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
         f = os.path.basename(p)
-        if f in SKIP:
+        if f in SKIP or any(rx.match(f) for rx in SKIP_PATTERNS):
             continue
-        if re.search(r'<meta content="noindex"', io.open(p, encoding="utf-8").read(8000)):
+        # Read the whole file, not the first 8KB: the shell inlines about 110KB
+        # of CSS before the meta tags, so the robots tag sits near byte 72,000
+        # and an 8KB probe never reached it.
+        if re.search(r'<meta content="noindex', io.open(p, encoding="utf-8").read()):
             continue
         on_disk.append(("" if f == "index.html" else f, p))
     for p in sorted(glob.glob(os.path.join(ROOT, "blog", "*", "index.html"))):

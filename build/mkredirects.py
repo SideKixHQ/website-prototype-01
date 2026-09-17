@@ -47,6 +47,16 @@ LEGACY = collections.OrderedDict([
     ("members",              "/membership.html"),
     ("website-terms-conditions", "/terms.html"),
     ("ai-app-policy",        "/terms.html"),
+    # Still 404ing while Search Console shows live impressions for them:
+    # /advisor-apply/ was taking 6 clicks a quarter into a dead page.
+    ("advisor-apply",           "/become-an-advisor.html"),
+    ("membership-faqs",         "/faq.html"),
+    ("partner-application",     "/partners.html"),
+    ("product",                 "/how-it-works.html"),
+    ("entrepreneur-guides",     "/library.html"),
+    ("business-templates",      "/resources.html"),
+    ("data",                    "/market-data.html"),
+    ("sidekix-advisor-network", "/advisors.html"),
 ])
 
 # Wildcards, for URL shapes rather than single pages. Search Console's
