@@ -73,6 +73,15 @@
           "value": "public, max-age=600"
         }
       ]
+    },
+    {
+      "source": "/what-is-(.*).html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -394,6 +403,86 @@
     {
       "source": "/ai-app-policy/",
       "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisor-apply",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/advisor-apply/",
+      "destination": "/become-an-advisor.html",
+      "permanent": true
+    },
+    {
+      "source": "/membership-faqs",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/membership-faqs/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/partner-application",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/partner-application/",
+      "destination": "/partners.html",
+      "permanent": true
+    },
+    {
+      "source": "/product",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/product/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/entrepreneur-guides",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/entrepreneur-guides/",
+      "destination": "/library.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-templates",
+      "destination": "/resources.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-templates/",
+      "destination": "/resources.html",
+      "permanent": true
+    },
+    {
+      "source": "/data",
+      "destination": "/market-data.html",
+      "permanent": true
+    },
+    {
+      "source": "/data/",
+      "destination": "/market-data.html",
+      "permanent": true
+    },
+    {
+      "source": "/sidekix-advisor-network",
+      "destination": "/advisors.html",
+      "permanent": true
+    },
+    {
+      "source": "/sidekix-advisor-network/",
+      "destination": "/advisors.html",
       "permanent": true
     },
     {
