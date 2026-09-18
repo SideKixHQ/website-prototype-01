@@ -767,6 +767,9 @@ MAIN = f"""<main id="maincontent" class="hg">
     which has more than doubled since 2010, needs residents who can build a career without crossing
     the bridge every morning. Same program, weighted differently, measured the same way. If it works
     for two towns that unalike, it travels.</p>
+  <p class="hgmap"><a href="where-the-jobs-are.html">See where the jobs are, and where the workers
+    sleep</a>, mapped for every census tract in Brunswick, Columbus, New Hanover and Pender from
+    Census LODES 2023.</p>
   <p><strong>Homegrown has not run yet.</strong> The first towns are design partners: they shape it,
     they get founding terms, and their results are the evidence every town after them sees.</p>
  </div>
