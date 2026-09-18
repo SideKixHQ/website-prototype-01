@@ -65,6 +65,15 @@ def article(slug,title,og_title,desc,cat,standfirst,body,faq,related,published="
   <a class="home" href="../../index.html" aria-label="SideKix home">
     <img src="../../assets/sidekix-wordmark.png" alt="SideKix">
   </a>
+  <nav class="anav" aria-label="Main">
+    <a href="../../index.html">Home</a>
+    <a href="../../how-it-works.html">How it works</a>
+    <a href="../../membership.html">Membership</a>
+    <a href="../../advisors.html">Advisors</a>
+    <a href="../../partners.html">Partners</a>
+    <a href="../../events.html">Events</a>
+    <a href="../../library.html" aria-current="page">Resources</a>
+  </nav>
   <a class="acta" href="../../membership.html">Build the Future</a>
 </header>
 
