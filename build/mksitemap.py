@@ -22,6 +22,13 @@ SKIP = {"404.html"}
 # properly.
 SKIP_PATTERNS = (re.compile(r"^what-is-[a-z0-9-]+\.html$"),)
 
+# Two pages that are live but deliberately unlinked and unfinished: the
+# Homegrown offering has not settled on a name, and the jobs map goes with it.
+# A page that nothing links to but the sitemap advertises is exactly what
+# produces "Discovered, currently not indexed", so they stay out until they
+# ship under their real name.
+SKIP_UNSHIPPED = {"homegrown.html", "where-the-jobs-are.html"}
+
 PRIORITY = {
  "": "1.0", "index.html": "1.0",
  "how-it-works.html": "0.9", "membership.html": "0.9", "join.html": "0.9",
@@ -50,7 +57,7 @@ def main():
     on_disk = []
     for p in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
         f = os.path.basename(p)
-        if f in SKIP or any(rx.match(f) for rx in SKIP_PATTERNS):
+        if f in SKIP or f in SKIP_UNSHIPPED or any(rx.match(f) for rx in SKIP_PATTERNS):
             continue
         # Read the whole file, not the first 8KB: the shell inlines about 110KB
         # of CSS before the meta tags, so the robots tag sits near byte 72,000
