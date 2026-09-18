@@ -1,0 +1,42 @@
+name: Rebuild shell pages
+
+# homegrown.html and where-the-jobs-are.html are generated from build/shell.py,
+# so a change to the shell or to either generator only reaches the site once
+# they are rebuilt. Nothing here needs the network: the map reads the
+# jobs-map.json that "Build jobs map" already committed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Both generators are standard library only, so there is nothing to install.
+      - name: Rebuild the shell pages
+        run: |
+          python build/mkhomegrown.py
+          python build/mkjobspage.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "shellpages-bot"
+          git config user.email "actions@github.com"
+          git add homegrown.html where-the-jobs-are.html sitemap.xml llms.txt
+          if git diff --cached --quiet; then
+            echo "No change."
+            exit 0
+          fi
+          git commit -m "Rebuild shell pages ($(date -u +%Y-%m-%d))"
+          # Someone editing the repo mid-run should not cost the whole build.
+          git pull --rebase --autostash
+          git push
