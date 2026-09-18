@@ -416,3 +416,19 @@ a{color:#FFEBB9}
   .grab .gmeta{flex:1 1 100%}
   .grab a.gdlbtn,.grab button.gcpbtn{flex:1 1 100%;min-height:48px}
 }
+
+/* ---------- top bar nav ----------
+   Blog posts run on the light article template rather than the main site
+   shell, so they had no way into the rest of the site above the footer.
+   These rules add the same seven destinations in the template's own type,
+   and step aside on narrow screens where the footer still carries them. */
+.abar .anav{display:flex;align-items:center;gap:clamp(12px,1.8vw,24px);margin:0 auto}
+.abar .anav a{font-family:var(--util);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--grey);text-decoration:none;white-space:nowrap;
+  padding:6px 0;border-bottom:1px solid transparent;
+  transition:color .25s ease,border-color .25s ease}
+.abar .anav a:hover,.abar .anav a:focus-visible{color:var(--gold-pale);
+  border-bottom-color:rgba(212,168,86,.55)}
+.abar .anav a[aria-current="page"]{color:var(--gold);border-bottom-color:rgba(212,168,86,.8)}
+@media (max-width:980px){.abar .anav{display:none}}
+@media print{.abar .anav{display:none}}
