@@ -2493,7 +2493,7 @@ try{
   cards.forEach(function(c){ counts[c.dataset.cat]=(counts[c.dataset.cat]||0)+1; });
   btns.forEach(function(b){
     var n = b.dataset.cat==='all' ? cards.length : (counts[b.dataset.cat]||0);
-    if(!b.querySelector('.n')) b.insertAdjacentHTML('beforeend','<span class="n">'+n+'</span>');
+    /* The counts are written into the HTML so they are there before the script runs and for anything that does not run scripts. That made them drift: this only ever inserted a count when the span was missing, so adding a card left every existing number stale. Update in place when it is there, insert when it is not. */ var el=b.querySelector('.n'); if(el){ if(el.textContent!==String(n)) el.textContent=n; } else { b.insertAdjacentHTML('beforeend','<span class="n">'+n+'</span>'); }
   });
 
   /* a wash of the hovered topic's color behind the whole section */
