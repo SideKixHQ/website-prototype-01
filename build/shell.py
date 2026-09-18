@@ -28,7 +28,43 @@ TOP = open(os.path.join(_HERE, "_shell_top.html"), encoding="utf-8").read()
 BOTTOM = open(os.path.join(_HERE, "_shell_bottom.html"), encoding="utf-8").read()
 SITE = "https://sidekixhq.com"
 
-def page(filename, title, desc, main_html, extra_css="", extra_js="", schema=(), og_title=None):
+
+def _mainnav(current=""):
+    """The real site nav, lifted out of resources.html at build time.
+
+    The shell's own header only ever had the logo and the Build the Future
+    pill, so every page built through here was missing Home, How it works,
+    Membership, Advisors, Partners, Events and Resources. Copying the markup
+    into the template is what caused that drift in the first place, so the bar
+    is read from a real page instead and cannot fall behind again.
+
+    Returns (markup, head) where head is the style and script the bar needs.
+    """
+    root = os.path.dirname(_HERE)
+    try:
+        src = open(os.path.join(root, "resources.html"), encoding="utf-8").read()
+    except FileNotFoundError:
+        return "", ""
+
+    m = re.search(r'(<button[^>]*class="kx-burger".*?</button>\s*<div class="kx-links">.*?</div>)',
+                  src, re.S)
+    if not m:
+        return "", ""
+    markup = m.group(1)
+
+    # mark the page you are on, and leave it unmarked when the page is not in the bar
+    if current:
+        markup = re.sub(r'<a href="%s"' % re.escape(current),
+                        '<a aria-current="page" href="%s"' % current, markup, count=1)
+
+    blocks = re.findall(r'<style[^>]*>(?:(?!</style>).)*?\.kx-(?:links|burger)(?:(?!</style>).)*?</style>',
+                        src, re.S)
+    blocks += re.findall(r'<script[^>]*>(?:(?!</script>).)*?kx-burger(?:(?!</script>).)*?</script>',
+                         src, re.S)
+    return markup, "\n".join(blocks)
+
+
+def page(filename, title, desc, main_html, extra_css="", extra_js="", schema=(), og_title=None, nav_current=""):
     top = TOP
     top = re.sub(r'<title>.*?</title>', f'<title>{title}</title>', top, count=1, flags=re.S)
     old = re.search(r'<meta name="description" content="(.*?)"', top, re.S).group(1)
@@ -40,6 +76,13 @@ def page(filename, title, desc, main_html, extra_css="", extra_js="", schema=(),
     top = top.replace("window.KXHERE='resources'", "window.KXHERE=''")
     if extra_css:
         top = top.replace("</head>", f"<style>\n{extra_css}\n</style>\n</head>", 1)
+    # the main nav bar, and the style and script it needs
+    nav_markup, nav_head = _mainnav(nav_current)
+    if nav_markup:
+        top = top.replace("</head>", nav_head + "</head>", 1)
+        top = re.sub(r'(<nav[^>]*id="kx-nav".*?)</nav>',
+                     lambda mm: mm.group(1) + nav_markup + "</nav>", top, count=1, flags=re.S)
+
     # the shared chrome goes last so it wins the cascade, exactly as it did
     # when it was appended to the built file
     top = top.replace("</head>", _chrome() + "</head>", 1)
