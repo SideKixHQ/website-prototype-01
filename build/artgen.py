@@ -1,4 +1,10 @@
-"""Generate a SideKix blog article on the existing article template."""
+"""Generate a SideKix blog article on the existing article template.
+
+The bar and footer are the site ones: the bar is #kx-nav out of site.css and
+the footer is lifted from a published article, which patcharticles.py keeps
+in step with the homepage. Breadcrumb name and url come from this article, so
+a new post cannot inherit another post's identity.
+"""
 import json, html, os, re
 
 SITE="https://sidekixhq.com"
@@ -52,6 +58,7 @@ def article(slug,title,og_title,desc,cat,standfirst,body,faq,related,published="
 <link rel="icon" href="../../favicon.ico">
 <link rel="preload" href="../../assets/fonts.css" as="style">
 <link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="../../assets/article.css">
 <script type="application/ld+json">{S(blog,ensure_ascii=False)}</script>
 <script type="application/ld+json">{S(crumbs,ensure_ascii=False)}</script>
@@ -61,21 +68,11 @@ def article(slug,title,og_title,desc,cat,standfirst,body,faq,related,published="
 <div id="progress" aria-hidden="true"></div>
 <a class="skip-link" href="#maincontent">Skip to content</a>
 
-<header class="abar">
-  <a class="home" href="../../index.html" aria-label="SideKix home">
-    <img src="../../assets/sidekix-wordmark.png" alt="SideKix">
-  </a>
-  <nav class="anav" aria-label="Main">
-    <a href="../../index.html">Home</a>
-    <a href="../../how-it-works.html">How it works</a>
-    <a href="../../membership.html">Membership</a>
-    <a href="../../advisors.html">Advisors</a>
-    <a href="../../partners.html">Partners</a>
-    <a href="../../events.html">Events</a>
-    <a href="../../library.html" aria-current="page">Resources</a>
-  </nav>
-  <a class="acta" href="../../membership.html">Build the Future</a>
-</header>
+<nav id="kx-nav" aria-label="Main">
+  <a href="../../index.html" aria-label="SideKix home"><img src="../../assets/img/2321feb76252.png?v=2" alt="SideKix" width="2164" height="602" decoding="async" fetchpriority="high" loading="eager"></a>
+  <button class="kx-burger" type="button" aria-expanded="false" aria-label="Menu"><i aria-hidden="true"></i><span>Menu</span></button>
+  <div class="kx-links"><a href="../../index.html">Home</a><a href="../../how-it-works.html">How it works</a><a href="../../membership.html">Membership</a><a href="../../advisors.html">Advisors</a><a href="../../partners.html">Partners</a><a href="../../events.html">Events</a><span aria-current="page">Resources</span></div>
+</nav>
 
 <main id="maincontent">
 <div class="artgrid">
