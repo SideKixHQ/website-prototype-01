@@ -954,6 +954,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   background:linear-gradient(180deg,rgba(5,5,5,.35),rgba(5,5,5,.94) 45%)}
 .sk-inner{max-width:1180px;margin:0 auto;padding:54px 28px 34px;
   display:grid;grid-template-columns:1.75fr 1fr 1fr 1fr 1fr;gap:28px}
+/* Pages whose footer still has three nav columns rather than four keep the
+   original four track grid, so they fill the row instead of leaving a gap
+   where the Guides and tools column would sit. */
+.sk-inner:not(:has(> nav:nth-of-type(4))){
+  grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
 .sk-brand{max-width:34ch}
 .sk-word{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;color:#FFF8E8;letter-spacing:.01em;margin-bottom:10px}
 .sk-brand p{color:#B9B4AB;font-family:'Poppins',system-ui,sans-serif;font-size:14px;line-height:1.65;margin:0 0 18px}

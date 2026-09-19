@@ -184,6 +184,11 @@ hr{border:none;height:1px;background:var(--line);margin:44px 0}
   background:linear-gradient(180deg,rgba(5,5,5,.35),rgba(5,5,5,.94) 45%)}
 .sk-inner{max-width:1180px;margin:0 auto;padding:52px 28px 32px;
   display:grid;grid-template-columns:1.75fr 1fr 1fr 1fr 1fr;gap:28px}
+/* Pages whose footer still has three nav columns rather than four keep the
+   original four track grid, so they fill the row instead of leaving a gap
+   where the Guides and tools column would sit. */
+.sk-inner:not(:has(> nav:nth-of-type(4))){
+  grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
 .sk-brand{max-width:34ch}
 .sk-tagline{font-weight:800;font-size:19px;line-height:1.25;color:#F4EACF;margin:0 0 20px}
 .sk-word{font-family:var(--display);font-size:30px;font-weight:600;color:var(--head);margin-bottom:10px}
