@@ -11,7 +11,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://sidekixhq.com"
 
 # noindex or not a destination
-SKIP = {"404.html"}
+# checkout.html and claim.html are steps inside a flow, not pages anyone
+# should arrive on from a search result. Listing them invites Google to
+# index a dead end and dilutes the set of pages that are destinations.
+SKIP = {"404.html", "checkout.html", "claim.html"}
 
 # Glossary term pages are ~90 words each and the definition repeats three times
 # on the page, so Google reads the set as doorway content: 59 pages, 0
@@ -40,6 +43,7 @@ PRIORITY = {
  "homegrown.html": "0.9",
  "start-a-business-in-north-carolina.html": "0.9",
  "terms.html": "0.3", "privacy.html": "0.3", "cookies.html": "0.3",
+ "purchase-policy.html": "0.3",
 }
 FREQ = {"index.html": "weekly", "events.html": "weekly", "press.html": "weekly",
         "library.html": "weekly", "market-data.html": "monthly"}
@@ -71,15 +75,25 @@ def main():
     # screenshot, which means the flat *.html glob above never sees them
     for p in sorted(glob.glob(os.path.join(ROOT, "q", "*", "index.html"))):
         on_disk.append(("q/%s/" % os.path.basename(os.path.dirname(p)), p))
+    # One page per state, generated weekly by build/mkstateevents.py from the
+    # same events.json the hub uses. Pages appear and disappear as coverage
+    # changes, so this glob is the only correct source: a hardcoded list would
+    # leave the sitemap advertising states that dropped off.
+    for p in sorted(glob.glob(os.path.join(ROOT, "business-events", "*.html"))):
+        on_disk.append(("business-events/%s" % os.path.basename(p), p))
 
     urls = []
     for slug, p in on_disk:
         url = SITE + "/" + slug
         mod = datetime.date.fromtimestamp(os.path.getmtime(p)).isoformat()
-        key = os.path.basename(slug) or "index.html"
-        urls.append((url, mod, FREQ.get(key, "monthly"),
+        key = "index.html" if slug == "" else (
+            slug if slug.endswith("/") else os.path.basename(slug))
+        urls.append((url, mod,
+                     FREQ.get(key, "weekly" if slug.startswith("business-events/")
+                              else "monthly"),
                      PRIORITY.get(key,
                          "0.8" if slug.startswith("q/")
+                         else "0.8" if slug.startswith("business-events/")
                          else GUIDE_PRIORITY if key.startswith("how-to-start-")
                          else "0.6" if slug.startswith("blog/") else "0.7")))
 
