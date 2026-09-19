@@ -52,6 +52,21 @@ jobs:
         if: ${{ inputs.mode != 'probe' }}
         run: python build_events_seo.py
 
+      # One page per state, from the same events.json. A single hub page
+      # cannot rank for "business events in ohio" and "business events in
+      # texas" at once, because it is not about either in particular. Pages
+      # are written only for states with enough upcoming events to stand on
+      # their own, and removed again when coverage drops.
+      - name: Build state pages
+        if: ${{ inputs.mode != 'probe' }}
+        run: python build/mkstateevents.py
+
+      # The state pages appear and disappear week to week, so the sitemap has
+      # to be regenerated from what is on disk rather than only date-stamped.
+      - name: Rebuild sitemap
+        if: ${{ inputs.mode != 'probe' }}
+        run: python build/mksitemap.py
+
       - name: Commit if changed
         if: ${{ inputs.mode != 'probe' }}
         run: |
@@ -60,7 +75,7 @@ jobs:
           # assets/ is staged too: pulling the inlined images and font out of
           # the HTML writes new files there, and an untracked file is invisible
           # to git diff, so staging first is what makes the check honest.
-          git add events.json events.html sitemap.xml llms.txt assets
+          git add events.json events.html sitemap.xml llms.txt assets business-events
           if git diff --cached --quiet; then
             echo "No change."
             exit 0
