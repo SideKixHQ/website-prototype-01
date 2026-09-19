@@ -55,7 +55,7 @@ SEO_LIMIT = 60
 START = "<!-- kx:seo:start -->"
 END = "<!-- kx:seo:end -->"
 
-TITLE = "Free Business Events Near You, Every State, Updated Weekly | SideKix"
+TITLE = "Small Business Events Near You, Every State, Updated Weekly | SideKix"
 DESCRIPTION = (
     "Business events for founders in every state, from SBDCs, colleges, "
     "nonprofits, banks and companies. Online, livestreamed and in person. "
