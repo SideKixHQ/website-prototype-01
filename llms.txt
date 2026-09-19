@@ -10,8 +10,8 @@ open market data on US business formation, a plain-language glossary, working
 calculators, a weekly listing of business events in every state, online, livestreamed and in person, with the cost shown as the host states it, and long-form
 guides for people starting, growing, scaling or leading a small business.
 
-Everything on the site is free to read, needs no account, and asks for no
-email address.
+Everything on the site is open to read at no cost, needs no account, and asks
+for no email address.
 
 ## What SideKix publishes
 
@@ -28,7 +28,7 @@ email address.
 
 ## Key pages
 
-- [Press](https://sidekixhq.com/press.html): The boilerplate, fast facts, federal figures on US business formation that are free to quote, and who to ask for an interview.
+- [Press](https://sidekixhq.com/press.html): The boilerplate, fast facts, federal figures on US business formation that are open to quote, and who to ask for an interview.
 - [The Back Room](https://sidekixhq.com/back-room.html): Run Kix Run, three comics, and a declaration. The part of SideKix with no work in it.
 - [A Declaration of Independence](https://sidekixhq.com/declaration.html): Written for anyone who has decided to stop waiting for permission. Readable as text and signable.
 - [The Energy Discovery](https://sidekixhq.com/assessment.html): Forty eight statements, about six minutes, and a distribution across twelve energies rather than a type. A self-report reflection tool, not a validated psychometric instrument. Runs in the browser and stores nothing.
@@ -85,7 +85,7 @@ email address.
 - [The Business Startup Checklist: From Idea to First Customer | SideKix](https://sidekixhq.com/blog/business-startup-checklist/): A business startup checklist ordered by risk, not paperwork. Five phases from deciding and validating through setup, build and first customer.
 - [Community Engagement Template: How to Show Up, Add Value, and Build Your Network | SideKix](https://sidekixhq.com/blog/community-engagement-template-entrepreneur/): Free Community Engagement Template for entrepreneurs. Learn how to show up, add value.
 - [The Entrepreneur's Mindset Guide: How to Think Like a Builder | SideKix](https://sidekixhq.com/blog/entrepreneur-mindset-guide-think-like-builder/): Develop the mindset of a successful entrepreneur with this practical guide.
-- [Fear Audit Template: Identify and Overcome What's Holding You Back | SideKix](https://sidekixhq.com/blog/fear-audit-template-entrepreneur/): Use this free Fear Audit Template to identify the fears holding you back as an entrepreneur and create a clear plan to overcome them.
+- [Fear Audit Template for Entrepreneurs: 5 Parts | SideKix](https://sidekixhq.com/blog/fear-audit-template-entrepreneur/): A five part worksheet for naming the fears behind a stalled business idea: a fear inventory, a rating pass, a deep dive on the biggest one, an action plan, and evidence.
 - [Founder Myth: You Need Everything Figured Out | SideKix](https://sidekixhq.com/blog/founder-myth-you-need-everything-figured-out/): Whoever made this claim doesn’t understand what entrepreneurship truly entails.
 - [Free Government Resources for Small Business Owners | SideKix](https://sidekixhq.com/blog/free-government-resources-for-small-business-owners/): SCORE mentoring, SBDC advising, Women's Business Centers, VBOCs, SBA loan programs and federal certifications. What each does and who it is for.
 - [From "That's Not for People Like Me" to "I'm Actually Doing This" An entrepreneur's guide to closing the gap between who you thought you were and who you're becoming. | SideKix](https://sidekixhq.com/blog/from-thats-not-for-people-like-me-to-im-actually-doing-this-an-entrepreneurs-guide-to-closing-the-gap-between-who-you-thought-you-were-and-who-youre-becoming/): A guide for first-time entrepreneurs on closing the gap between who you thought you were and who you’re becoming.
@@ -104,18 +104,18 @@ email address.
 - [How to Go From Employee to Entrepreneur | SideKix](https://sidekixhq.com/blog/how-to-go-from-employee-to-entrepreneur/): Ready to make the leap from employee to entrepreneur? This guide shows you how to plan your exit, validate your idea.
 - [How to Grow a Small Business: A Practical Guide for Independent Owners | SideKix](https://sidekixhq.com/blog/how-to-grow-small-business-practical-guide/): Learn how to grow a small business with this practical guide for independent owners.
 - [How to Manage Being Overwhelmed As A Founder | SideKix](https://sidekixhq.com/blog/how-to-manage-being-overwhelmed-as-a-founder/): Being a founder can be freeing and exhilarating, but it also means you’re constantly busy.
-- [How to Network When You're Just Starting Out | SideKix](https://sidekixhq.com/blog/how-to-network-when-youre-just-starting-out/): Learn how to network effectively when you're just starting out. Practical tips for entrepreneurs to build authentic professional connections.
-- [How to Overcome Fear as an Entrepreneur: A Step-by-Step Guide | SideKix](https://sidekixhq.com/blog/how-to-overcome-fear-entrepreneur/): Learn how to overcome fear as an entrepreneur with this step-by-step guide.
+- [How to Network When You're Just Starting Out | SideKix](https://sidekixhq.com/blog/how-to-network-when-youre-just-starting-out/): Networking with no track record yet: where to start, how to lead with what you can give, and why being specific about what you are building gets better replies.
+- [How to Overcome Fear as an Entrepreneur | SideKix](https://sidekixhq.com/blog/how-to-overcome-fear-entrepreneur/): Why the fear of starting a business is normal, what it looks like in practice, and the approaches founders use to keep moving while the fear is still there.
 - [How to Price Your Product or Service | SideKix](https://sidekixhq.com/blog/how-to-price-your-product-or-service/): Cost-plus, competitive and value-based pricing, how to find your floor, why billable hours change the math, and how to raise prices on existing...
 - [How to Start a Business in North Carolina | SideKix](https://sidekixhq.com/blog/how-to-start-a-business-in-north-carolina/): Registering with the NC Secretary of State, getting an EIN, licenses and permits, plus the free state and federal advisors available at every step.
 - [How to Start a Business: A Step-by-Step Guide | SideKix](https://sidekixhq.com/blog/how-to-start-a-business-step-by-step/): The actual order for starting a business: structure, state registration, your EIN, banking, licenses, and the free federal help available at every...
 - [How to Start a Business With No Money | SideKix](https://sidekixhq.com/blog/how-to-start-a-business-with-no-money/): Learn how to start a business with no money using bootstrapping strategies, free tools, and creative funding methods.
 - [How to Stay Motivated While Building a Business | SideKix](https://sidekixhq.com/blog/how-to-stay-motivated-while-building-a-business/): Learn how to stay motivated while building a business through the inevitable hard seasons.
-- [How to Turn Your Skills Into a Business | SideKix](https://sidekixhq.com/blog/how-to-turn-your-skills-into-a-business/): Discover how to turn your skills into a profitable business. This guide walks you through identifying your most marketable abilities, finding your...
+- [How to Turn Your Skills Into a Business: 5 Steps | SideKix](https://sidekixhq.com/blog/how-to-turn-your-skills-into-a-business/): Five steps from skill to paying customers: identifying what you are good at, packaging it into an offer, setting a price, building proof, and scaling what works.
 - [Lead Your Dreams | SideKix](https://sidekixhq.com/blog/lead-your-dreams-becoming-the-person-you-need-to-be/): What if dreams aren’t meant to be followed, but led? A powerful reflection on identity, courage.
 - [Make Money Online Without Feeling Lost | SideKix](https://sidekixhq.com/blog/make-money-online-without-feeling-lost/): Learn how to make money online without feeling lost or overwhelmed. SideKix breaks down the best legitimate ways for entrepreneurs and side hustlers.
 - [Milestone Tracker Template: Celebrate Progress and Stay Motivated | SideKix](https://sidekixhq.com/blog/milestone-tracker-template-entrepreneur/): Free Milestone Tracker Template for entrepreneurs. Celebrate progress, track achievements.
-- [Networking Outreach Template: How to Reach Out to Anyone Without Feeling Awkward | SideKix](https://sidekixhq.com/blog/networking-outreach-template-small-business/): Free Networking Outreach Template for entrepreneurs. Learn how to reach out to anyone without feeling awkward.
+- [4 Networking Outreach Templates for Small Business | SideKix](https://sidekixhq.com/blog/networking-outreach-template-small-business/): Four outreach templates for small business owners: approaching an advisor, following up after an event, contacting a collaborator, and asking for a referral.
 - [Personal Growth That Actually Works: A Practical Guide | SideKix](https://sidekixhq.com/blog/personal-growth-that-actually-works/): Personal growth that actually works: a practical guide to self-improvement for entrepreneurs and professionals.
 - [Popular Small Business Ideas in 2026 | SideKix](https://sidekixhq.com/blog/popular-small-business-ideas-in-2026/): Thinking of owning and running a small business but not sure what kind of business you want it to be?
 - [Questions to Answer If You Want to Be An Entrepreneur | SideKix](https://sidekixhq.com/blog/questions-to-answer-if-you-want-to-be-an-entrepreneur/): The lightbulb went off and you’d like to make your business idea into a reality.
@@ -140,6 +140,11 @@ email address.
 
 - SideKix is a product of Character Limit LLC, doing business as SideKix,
   based in Wilmington, North Carolina, United States.
+- SideKix was founded in 2023.
+- SideKix is also written as SideKix HQ, SideKix HQ Inc. and, incorrectly, as
+  Side Kix. It is not connected to Sideqik, a separate company with a similar
+  sounding name.
+- General and press contact: support@sidekixhq.com.
 - SideKix is pre-launch. Memberships and Kix Credits can be prepaid now, ahead of the platform opening.
 - The trademark application for SideKix is pending with the USPTO.
 - The site publishes no sponsored content and runs no advertising.
