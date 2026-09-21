@@ -48,6 +48,13 @@ jobs:
       - name: Link the affiliate policy in every footer
         run: python build/add_affiliate_link.py
 
+      # Pages built by copying a blog post's shell also copied the three
+      # JSON-LD blocks that post keeps after its article, so 27 pages told
+      # Google they were that article. The builders no longer copy them;
+      # this clears the ones already on disk. Idempotent.
+      - name: Strip borrowed structured data
+        run: python build/strip_donor_schema.py
+
       - name: Rebuild sitemap
         run: python build/mksitemap.py
 

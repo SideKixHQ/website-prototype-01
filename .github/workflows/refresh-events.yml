@@ -61,6 +61,14 @@ jobs:
         if: ${{ inputs.mode != 'probe' }}
         run: python build/mkstateevents.py
 
+      # Pages built by copying a blog post's shell also copied the three
+      # JSON-LD blocks that post keeps after its article, so 27 pages told
+      # Google they were that article. The builders no longer copy them;
+      # this clears the ones already on disk. Idempotent.
+      - name: Strip borrowed structured data
+        run: python build/strip_donor_schema.py
+
+
       # The state pages appear and disappear week to week, so the sitemap has
       # to be regenerated from what is on disk rather than only date-stamped.
       - name: Rebuild sitemap
