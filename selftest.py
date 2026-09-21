@@ -334,6 +334,19 @@ def test_parsers(m) -> None:
     check("   the split date layout still reads", len(t10), 1)
     print(f"   {'ok  ' if len(t10)==1 else 'FAIL'} the split date layout still reads")
 
+    # The header asked for Brotli while urllib3 had no Brotli decoder, so every
+    # CDN that honoured it returned a body nothing could read, the status was
+    # 200 and the source reported no events. Asking only for what is installed
+    # is the fix, and this is the check that the two cannot drift apart again.
+    from urllib3.response import HTTPResponse
+    decoders = {d.lower() for d in getattr(HTTPResponse, "CONTENT_DECODERS", ())}
+    asked = {p.strip() for p in m.UA["Accept-Encoding"].split(",") if p.strip()}
+    unreadable = sorted(asked - decoders - {"identity"})
+    check("   we only ask for compressions we can undo", unreadable, [])
+    print(f"   {'ok  ' if not unreadable else 'FAIL'} we only ask for compressions we can undo")
+    check("   and we still ask for something", bool(asked), True)
+    print(f"   {'ok  ' if asked else 'FAIL'} and we still ask for something")
+
 
 def test_safety_rail(m) -> None:
     section("4. The safety rail")

@@ -1,3 +1,9 @@
 requests>=2.31
 beautifulsoup4>=4.12
 python-dateutil>=2.8
+# Without this, requests advertises Brotli and urllib3 cannot undo it, so
+# every CDN that honours br hands back a body nothing can read and the
+# source silently returns no events. scrape_events.accept_encoding() only
+# asks for what is installed, so this is the difference between asking and
+# not asking rather than between working and breaking.
+brotli>=1.1

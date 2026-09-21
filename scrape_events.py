@@ -38,6 +38,34 @@ PINNED = HERE / "pinned.json"
 # Network, Kiva and Hello Alice. These are the headers an ordinary browser
 # sends. A Session is used so cookies set by an interstitial are kept for the
 # retry, which is what 406 usually wants.
+def accept_encoding() -> str:
+    """Ask only for the compressions this interpreter can actually undo.
+
+    The header used to say "gzip, deflate, br" while requests was installed
+    without Brotli support, so urllib3 could undo the first two and not the
+    third. A CDN that honours br then returned a Brotli body, urllib3 handed
+    it back still compressed, response.text was binary, BeautifulSoup found no
+    tags in it, and every parser reported nothing. The status was 200 and the
+    page was fine; the bytes were unreadable.
+
+    That is the whole explanation for sba.gov, score.org, irs.gov, uspto.gov
+    and most of the company webinar pages returning nothing since the day they
+    were added, and for the pattern in which the sources that still worked
+    were the older portals that only ever gzip.
+
+    Reading the list of decoders off urllib3 rather than hardcoding one means
+    this cannot drift apart again: install Brotli and the header asks for it,
+    remove it and the header stops.
+    """
+    try:
+        from urllib3.response import HTTPResponse
+        have = {d.lower() for d in getattr(HTTPResponse, "CONTENT_DECODERS", ())}
+    except Exception:
+        have = set()
+    usable = [e for e in ("br", "zstd", "gzip", "deflate") if e in have]
+    return ", ".join(usable) if usable else "identity"
+
+
 UA = {
     "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
                    "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -45,7 +73,7 @@ UA = {
     "Accept": ("text/html,application/xhtml+xml,application/xml;q=0.9,"
                "image/avif,image/webp,*/*;q=0.8"),
     "Accept-Language": "en-US,en;q=0.9",
-    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Encoding": accept_encoding(),
     "Sec-Fetch-Dest": "document",
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Site": "none",
@@ -1402,8 +1430,25 @@ def probe() -> int:
             dead.append(name)
             continue
 
-        soup = BeautifulSoup(r.text, "html.parser")
-        got, how = parse_page(soup, src)
+        # A 200 whose body has no tags in it is not an empty calendar, it is a
+        # body we could not read. Saying which is the difference between
+        # "no events this month" and a fortnight of looking at the wrong thing.
+        body = r.text
+        if "<" not in body[:4000] and not body.lstrip()[:1] in ("[", "{"):
+            log(f"  {name:34s} {code:>5}  {'':>9}  {'':>6}  "
+                f"200 but the body is not readable markup ({len(r.content)} bytes, "
+                f"content-encoding {r.headers.get('content-encoding')!r})")
+            thin.append(name)
+            continue
+
+        soup = BeautifulSoup(body, "html.parser")
+        # Sources whose events do not come from the listing HTML are fetched
+        # by scrape() rather than parsed here, so ask it rather than reporting
+        # a zero that only means "this probe looked in the wrong place".
+        if src.get("parser") == "ecenter_feed":
+            got, how = scrape_ecenter_feed(src), "ecenter feed"
+        else:
+            got, how = parse_page(soup, src)
 
         now = datetime.now(timezone.utc)
         horizon = now + timedelta(days=HORIZON_DAYS)
