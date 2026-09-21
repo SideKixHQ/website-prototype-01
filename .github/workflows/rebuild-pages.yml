@@ -27,11 +27,18 @@ jobs:
           python build/mkhomegrown.py
           python build/mkjobspage.py
 
+      # Copy fixes that span every article page. Sixty three files carrying
+      # one identical string is a scripted job, not sixty three hand edits.
+      # The script is idempotent, so leaving it here costs nothing on runs
+      # where the wording is already current.
+      - name: Apply site wide copy fixes
+        run: python build/fix_guides_cta.py
+
       - name: Commit if changed
         run: |
           git config user.name "shellpages-bot"
           git config user.email "actions@github.com"
-          git add homegrown.html where-the-jobs-are.html sitemap.xml llms.txt
+          git add homegrown.html where-the-jobs-are.html sitemap.xml llms.txt blog build/artgen.py
           if git diff --cached --quiet; then
             echo "No change."
             exit 0
