@@ -130,6 +130,14 @@ def chrome() -> tuple[str, str, str]:
     nav = nav.replace('<a href="../events.html">Events</a>',
                       '<span aria-current="page">Events</span>')
     foot = body[body.rfind("</main>") + len("</main>"):].replace(*UP)
+    # The donor is a blog post and it keeps its structured data after the
+    # article, not in the head, so lifting the footer lifted three blocks that
+    # describe the blog post: a BlogPosting, a BreadcrumbList whose trail ends
+    # at the post, and the post's own FAQPage. Copied onto a state page they
+    # tell Google the page is that article, contradict the CollectionPage and
+    # BreadcrumbList this builder writes, and attach the wrong questions.
+    foot = re.sub(r'<script type="application/ld\+json">.*?</script>', "",
+                  foot, flags=re.S)
     return head, nav, foot
 
 
