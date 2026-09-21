@@ -434,6 +434,115 @@ def from_time_tags(soup: BeautifulSoup, source: dict) -> list[dict]:
     return found
 
 
+# SCORE publishes the same listing on a national page and on one roll-up per
+# state. The national page carries the shared webinar pool; a state roll-up
+# carries that same pool again plus the events its own chapters are running.
+# Read naively, a chapter's roundtable in Cedar Rapids would arrive alongside
+# four copies of one national webinar, and that webinar would then be repeated
+# on fifty state pages, which is the thin duplicated content the glossary
+# pages were already punished for.
+#
+# The markup separates them for us. A card belonging to a chapter carries
+# score_state-ia and score_chapter-des-moines on its wrapper; a card from the
+# shared pool carries neither. So a state source keeps only the cards that
+# name a state, and the national source keeps only the cards that do not, and
+# each event is published once in the one place it belongs.
+_SCORE_STATE = re.compile(r"score_state-([a-z]{2})")
+_SCORE_WHEN = re.compile(
+    r"((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},\s+20\d\d"
+    r"(?:\s+\d{1,2}(?::\d{2})?\s*(?:am|pm))?)", re.I)
+
+STATE_OF = {
+    "al": "Alabama", "ak": "Alaska", "az": "Arizona", "ar": "Arkansas",
+    "ca": "California", "co": "Colorado", "ct": "Connecticut", "de": "Delaware",
+    "dc": "District of Columbia", "fl": "Florida", "ga": "Georgia", "hi": "Hawaii",
+    "id": "Idaho", "il": "Illinois", "in": "Indiana", "ia": "Iowa", "ks": "Kansas",
+    "ky": "Kentucky", "la": "Louisiana", "me": "Maine", "md": "Maryland",
+    "ma": "Massachusetts", "mi": "Michigan", "mn": "Minnesota", "ms": "Mississippi",
+    "mo": "Missouri", "mt": "Montana", "ne": "Nebraska", "nv": "Nevada",
+    "nh": "New Hampshire", "nj": "New Jersey", "nm": "New Mexico", "ny": "New York",
+    "nc": "North Carolina", "nd": "North Dakota", "oh": "Ohio", "ok": "Oklahoma",
+    "or": "Oregon", "pa": "Pennsylvania", "pr": "Puerto Rico", "ri": "Rhode Island",
+    "sc": "South Carolina", "sd": "South Dakota", "tn": "Tennessee", "tx": "Texas",
+    "ut": "Utah", "vt": "Vermont", "va": "Virginia", "wa": "Washington",
+    "wv": "West Virginia", "wi": "Wisconsin", "wy": "Wyoming",
+}
+
+
+def _score_wrapper(card):
+    """The element that carries the taxonomy classes for this card."""
+    for node in (card.find_parent(class_=_SCORE_STATE),
+                 card.find(class_=_SCORE_STATE)):
+        if node is not None:
+            return node
+    return None
+
+
+def from_score(soup: BeautifulSoup, source: dict) -> list[dict]:
+    """score.org, which is server rendered but says so in none of the usual ways.
+
+    There is no JSON-LD on the page, no <time> element and no heading wrapped
+    around a link, so all three generic parsers come back empty from a page
+    that is plainly full of events. The card is a div that reads, in order:
+    the format, the date, the price, the title in an h5, then a description.
+    """
+    wanted = (source.get("scope") or "").strip()
+    national = wanted in ("", "National")
+    found, seen = [], set()
+
+    for card in soup.select(".event-card"):
+        wrapper = _score_wrapper(card)
+        classes = " ".join(wrapper.get("class", [])) if wrapper is not None else ""
+        state_code = _SCORE_STATE.search(classes)
+        state = STATE_OF.get(state_code.group(1), "") if state_code else ""
+
+        # The shared pool belongs to the national listing; a chapter's own
+        # events belong to its state. Anything else is a copy.
+        if national:
+            if state:
+                continue
+        elif state != wanted:
+            continue
+
+        heading = card.find("h5")
+        link = card.find("a", href=lambda h: h and "/business-education/" in h)
+        title = clean(heading.get_text(" ", strip=True)) if heading else (
+            clean(link.get_text(" ", strip=True)) if link else "")
+        if not is_real_title(title):
+            continue
+
+        blob = card.get_text(" ", strip=True)
+        match = _SCORE_WHEN.search(blob)
+        if not match:
+            continue
+        try:
+            when = dateparse.parse(match.group(1), fuzzy=True)
+        except (ValueError, OverflowError):
+            continue
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=timezone(timedelta(hours=-4)))
+
+        key = (title.lower(), when.date())
+        if key in seen:
+            continue
+        seen.add(key)
+
+        url = requests.compat.urljoin(source["url"], link["href"]) if link else source["url"]
+        found.append(
+            {
+                "title": title,
+                "host": source["name"],
+                "start": when.isoformat(),
+                "duration": "",
+                "topic": "",
+                "url": url,
+                "summary": clean(blob),
+                "raw": blob,
+            }
+        )
+    return found
+
+
 def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
     """Fallback for pages with no JSON-LD: a heading link followed by a date.
 
@@ -499,21 +608,43 @@ def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
 
 
 def parse_page(soup: BeautifulSoup, source: dict) -> tuple[list[dict], str]:
-    """json-ld first, then the source's named parser, then headings."""
+    """json-ld first, then the source's named parser, then the generic ones.
+
+    A named parser used to be the last word: whatever it returned was the
+    answer, including nothing. So when a site changed shape under one, its
+    source went to zero and stayed there, silently, while the generic parsers
+    that might have read the page perfectly well were never reached. That is
+    how sixty three sources came to return nothing without anyone noticing.
+
+    A named parser is a shortcut to a better reading of a page whose shape we
+    know, not a declaration that no other reading is allowed. So it is tried
+    first and trusted when it finds something, and when it comes back empty
+    the page still goes through json-ld, time tags and headings like any
+    other.
+    """
     events = from_jsonld(soup, source)
     if events:
         return events, "json-ld"
-    which = source.get("parser")
-    if which == "sba":
-        return from_sba(soup, source), "sba"
-    if which == "neoserra":
-        return from_neoserra(soup, source), "neoserra"
-    if which == "time":
-        return from_time_tags(soup, source), "time"
+
+    which = source.get("parser") or ""
+    # Resolved here rather than at import time because every one of these is
+    # defined further down the file.
+    named = {
+        "sba": from_sba,
+        "neoserra": from_neoserra,
+        "score": from_score,
+        "time": from_time_tags,
+    }.get(which)
+    if named is not None:
+        events = named(soup, source)
+        if events:
+            return events, which
+
     events = from_time_tags(soup, source)
     if events:
-        return events, "time"
-    return from_headings(soup, source), "headings"
+        return events, "time (fallback)" if named is not None else "time"
+    events = from_headings(soup, source)
+    return events, "headings (fallback)" if named is not None else "headings"
 
 
 def paged_url(url: str, page: int) -> str:
@@ -529,6 +660,75 @@ def paged_url(url: str, page: int) -> str:
     return f"{url}{join}page={page}"
 
 
+def scrape_ecenter_feed(source: dict) -> list[dict]:
+    """eCenterDirect portals that draw their list with JavaScript.
+
+    Some SBDC portals on this platform serve a listing in the HTML and some
+    serve a search form with nothing in it, and which one you get is a setting
+    at the centre, not a difference in the software. Maryland, Arkansas and
+    Montana are set to the second kind, so the page a scraper receives is a
+    form, while a browser fills it in afterwards. Read as HTML they look like
+    centres with no events; Maryland alone has fifty five.
+
+    What the browser is doing is asking for a calendar feed, which is a plain
+    GET returning JSON and needs no JavaScript at all:
+
+        /events/feed?source=conferences&start=YYYY-MM-DD&end=YYYY-MM-DD
+
+    So this asks for the same thing directly. The feed carries an id, a title
+    and a start, and the event page at /events/<id> carries the price and the
+    description, which enrich_costs already knows how to read.
+    """
+    base = source["url"].rstrip("/")
+    origin_match = re.match(r"https?://[^/]+", base)
+    origin = origin_match.group(0) if origin_match else base
+
+    today = datetime.now(timezone.utc).date()
+    window = today + timedelta(days=HORIZON_DAYS)
+    feed_url = (f"{base}/feed?source=conferences&blank=blank"
+                f"&start={today.isoformat()}&end={window.isoformat()}")
+
+    try:
+        resp = fetch(feed_url)
+        rows = resp.json()
+    except (requests.RequestException, ValueError) as err:
+        log(f"  ! {source['name']}: feed failed ({err})")
+        return []
+    if not isinstance(rows, list):
+        log(f"  ! {source['name']}: feed was not a list of events")
+        return []
+
+    out = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        title = clean(str(row.get("title") or ""))
+        start = str(row.get("start") or "").strip()
+        if not start or not is_real_title(title):
+            continue
+        event_id = row.get("id")
+        url = f"{origin}/events/{event_id}" if event_id is not None else source["url"]
+        out.append(
+            {
+                "title": title,
+                "host": source["name"],
+                "start": start,
+                "duration": "",
+                "topic": "",
+                "url": url,
+                # The feed carries no description and no venue. Both are on the
+                # event page, which enrich_costs fetches for exactly this shape
+                # of url, so they are left empty rather than invented here.
+                "summary": "",
+                "raw": title,
+                "category": source.get("category", ""),
+                "scope": source.get("scope", ""),
+            }
+        )
+    log(f"  {source['name']}: {len(out)} raw via ecenter feed")
+    return out
+
+
 def scrape(source: dict) -> list[dict]:
     """Fetch a source and return its events.
 
@@ -538,6 +738,9 @@ def scrape(source: dict) -> list[dict]:
     returns nothing new, so a source that runs out at page four does not cost
     twelve requests.
     """
+    if source.get("parser") == "ecenter_feed":
+        return scrape_ecenter_feed(source)
+
     pages = int(source.get("pages", 1))
     collected: list[dict] = []
     how = "?"
@@ -732,9 +935,21 @@ def _neoserra_aspx(soup: BeautifulSoup, source: dict) -> list[dict]:
             return " ".join(el.get_text(" ", strip=True).split()) if el else ""
 
         month, day, year = grab(".cddatemonth"), grab(".cddateday"), grab(".cddateyear")
-        if not (month and day):
-            continue
-        when = f"{month} {day} {year}".strip()
+        if month and day:
+            when = f"{month} {day} {year}".strip()
+        else:
+            # The same front end ships a second date layout, one element
+            # reading "Sep 24 2026" rather than three carrying the month, the
+            # day and the year separately. Requiring the split one dropped
+            # every row on every portal using the other, which is why Idaho
+            # published nothing while showing fourteen dated events.
+            combined = grab(".cdeventdate") or grab(".cdeventlistdateblock")
+            found = re.search(
+                r"((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?"
+                r"\s+\d{1,2},?\s+\d{4})", combined)
+            if not found:
+                continue
+            when = found.group(1)
 
         clock = re.search(r"\d{1,2}:\d{2}\s*[APap]\.?[Mm]", grab(".cdeventtime"))
         if clock:
@@ -1252,6 +1467,40 @@ def prune_past(path=None) -> int:
     return 0
 
 
+def report_lost_sources(events: list[dict]) -> list[str]:
+    """Name any host that published last week and publishes nothing today.
+
+    Sixty three of the sources in this list were returning nothing, and the
+    oldest events.json in the repository shows several of them had never
+    returned anything at all. Nothing failed loudly: a source that stops
+    matching simply contributes zero, the total still looks healthy because
+    the other sources grew, and the page carries on.
+
+    So the run says it out loud. This compares the hosts in the file already
+    published against the hosts about to be written, and prints the ones that
+    have gone quiet. It changes nothing and blocks nothing, because a centre
+    with a genuinely empty calendar is normal and should not fail a build. It
+    only makes the week it happens the week somebody can see it.
+    """
+    if not OUT.exists():
+        return []
+    try:
+        before = json.loads(OUT.read_text()).get("events", [])
+    except (json.JSONDecodeError, OSError):
+        return []
+
+    had = {e.get("host", "") for e in before if e.get("host")}
+    have = {e.get("host", "") for e in events if e.get("host")}
+    lost = sorted(h for h in had - have if h)
+    if lost:
+        log(f"\n  {len(lost)} host(s) published last run and none this run:")
+        for host in lost:
+            log(f"    - {host}")
+        log("  A quiet centre is normal. A familiar name here two weeks "
+            "running is a parser to look at.")
+    return lost
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="print, do not write")
@@ -1307,6 +1556,8 @@ def main() -> int:
         f"not stated for {unstated}")
 
     events.sort(key=lambda e: e["start"])
+
+    report_lost_sources(events)
 
     log(f"\n{len(events)} events after filtering")
     for e in events:

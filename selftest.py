@@ -12,7 +12,7 @@ rather than on a Monday morning when the Action runs.
 Exit code is 0 if everything passes, 1 if anything fails, which means it
 can go straight into CI.
 
-What this CANNOT check: whether the 47 source URLs are real and return
+What this CANNOT check: whether the source URLs in sources.json are real and return
 usable markup. Nothing offline can. Use `python scrape_events.py --probe`
 on a machine with network access for that.
 """
@@ -268,6 +268,72 @@ def test_parsers(m) -> None:
     check("   the ordinary heading shape still reads", len(t7), 1)
     print(f"   {'ok  ' if len(t7)==1 else 'FAIL'} the ordinary heading shape still reads")
 
+    # A named parser used to be the last word, so a site that changed shape
+    # under one sent its source to zero and the generic parsers that could
+    # still read the page were never reached.
+    ev8, how8 = m.parse_page(
+        BeautifulSoup(normal, "html.parser"),
+        {"name": "x", "url": "https://x.test/e", "parser": "score"})
+    check("   a named parser that finds nothing falls through", len(ev8), 1)
+    print(f"   {'ok  ' if len(ev8)==1 else 'FAIL'} a named parser that finds nothing falls through")
+    check("   and the fall through is named in the log", "fallback" in how8, True)
+    print(f"   {'ok  ' if 'fallback' in how8 else 'FAIL'} and the fall through is named in the log")
+
+    # SCORE repeats one national webinar pool on every state roll-up. Only the
+    # cards that name a chapter belong to that state; the rest belong to the
+    # national listing and must not be copied onto fifty pages.
+    score = """
+    <div class="pp-content-post score_state-ia score_chapter-des-moines">
+      <div class="event-card">In-Person Live Event Sep 24, 2026 8:00 am free
+      <h5>Cedar Rapids Morning Roundtable</h5>
+      <a href="/business-education/cedar-rapids-roundtable/">Cedar Rapids Morning Roundtable</a>
+      </div></div>
+    <div class="pp-content-post">
+      <div class="event-card">Online Live Event Sep 22, 2026 1:00 pm free
+      <h5>Mastering Small Business Financial Management</h5>
+      <a href="/business-education/mastering-financial-management/">Mastering</a>
+      </div></div>"""
+    soup_score = BeautifulSoup(score, "html.parser")
+    nat = m.from_score(soup_score, {"name": "SCORE", "scope": "National",
+                                    "url": "https://www.score.org/find-workshops"})
+    iowa = m.from_score(soup_score, {"name": "SCORE Iowa", "scope": "Iowa",
+                                     "url": "https://www.score.org/ia/"})
+    ohio = m.from_score(soup_score, {"name": "SCORE Ohio", "scope": "Ohio",
+                                     "url": "https://www.score.org/oh/"})
+    check("   the national listing keeps only the shared pool", len(nat), 1)
+    print(f"   {'ok  ' if len(nat)==1 else 'FAIL'} the national listing keeps only the shared pool")
+    check("   a state keeps only its own chapters", len(iowa), 1)
+    print(f"   {'ok  ' if len(iowa)==1 else 'FAIL'} a state keeps only its own chapters")
+    check("   Iowa's event does not appear on Ohio's page", len(ohio), 0)
+    print(f"   {'ok  ' if len(ohio)==0 else 'FAIL'} Iowa's event does not appear on Ohio's page")
+    check("   the state card is the local one", iowa[0]["title"] if iowa else "",
+          "Cedar Rapids Morning Roundtable")
+    print(f"   {'ok  ' if iowa and iowa[0]['title'].startswith('Cedar') else 'FAIL'} the state card is the local one")
+
+    # The older SBDC front end ships two date layouts. Requiring the one split
+    # across three elements dropped every row on every portal using the other.
+    aspx = """
+    <div class="cdevent"><div class="cdeventdate">Sep 24 2026</div>
+    <div class="cdeventtitle"><a href="workshop.aspx">Creating with Canva</a></div></div>
+    <div class="cdevent"><div class="cdeventdate cdondemand">On Demand Until Dec 31 2026</div>
+    <div class="cdeventtitle"><a href="workshop.aspx">Creating with Canva On Demand</a></div></div>"""
+    t9 = m._neoserra_aspx(BeautifulSoup(aspx, "html.parser"),
+                          {"name": "Idaho SBDC", "url": "https://business.idahosbdc.org/Events.aspx"})
+    check("   a combined date element is read", len(t9), 1)
+    print(f"   {'ok  ' if len(t9)==1 else 'FAIL'} a combined date element is read")
+    check("   an on demand row is still skipped",
+          all("On Demand" not in e["title"] for e in t9), True)
+    print(f"   {'ok  ' if all('On Demand' not in e['title'] for e in t9) else 'FAIL'} an on demand row is still skipped")
+
+    split = """
+    <div class="cdevent"><div class="cddatemonth">Oct</div><div class="cddateday">14</div>
+    <div class="cddateyear">2026</div><div class="cdeventtime">10:00 AM</div>
+    <div class="cdeventtitle"><a href="workshop.aspx">Business Plan Basics Workshop</a></div></div>"""
+    t10 = m._neoserra_aspx(BeautifulSoup(split, "html.parser"),
+                           {"name": "x", "url": "https://x.test/Events.aspx"})
+    check("   the split date layout still reads", len(t10), 1)
+    print(f"   {'ok  ' if len(t10)==1 else 'FAIL'} the split date layout still reads")
+
 
 def test_safety_rail(m) -> None:
     section("4. The safety rail")
@@ -436,8 +502,12 @@ def main() -> int:
         for f in FAIL:
             print(f"  x {f}")
         return 1
+    try:
+        count = len(json.loads((HERE / "sources.json").read_text())["sources"])
+    except Exception:
+        count = 0
     print("\nEverything offline checks out. What this does NOT prove is that the")
-    print("47 source URLs are real. For that, on a machine with network access:")
+    print(f"{count} source URLs are real. For that, on a machine with network access:")
     print("    python scrape_events.py --probe")
     return 0
 

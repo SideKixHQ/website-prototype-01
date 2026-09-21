@@ -27,7 +27,8 @@
       "name": "SCORE",
       "url": "https://www.score.org/find-workshops",
       "category": "Nonprofit",
-      "scope": "National"
+      "scope": "National",
+      "parser": "score"
     },
     {
       "name": "IRS",
@@ -76,7 +77,7 @@
     {
       "name": "Arkansas SBTDC",
       "url": "https://asbtdc.ecenterdirect.com/events",
-      "parser": "neoserra",
+      "parser": "ecenter_feed",
       "category": "College",
       "scope": "Arkansas"
     },
@@ -189,7 +190,7 @@
     {
       "name": "Maryland SBDC",
       "url": "https://mdsbdc.ecenterdirect.com/events",
-      "parser": "neoserra",
+      "parser": "ecenter_feed",
       "category": "College",
       "scope": "Maryland"
     },
@@ -223,7 +224,7 @@
     {
       "name": "Montana SBDC",
       "url": "https://mtsbdc.ecenterdirect.com/events",
-      "parser": "neoserra",
+      "parser": "ecenter_feed",
       "category": "College",
       "scope": "Montana"
     },
@@ -395,7 +396,7 @@
     {
       "name": "West Virginia SBDC",
       "url": "https://wvsbdc.ecenterdirect.com/events",
-      "parser": "neoserra",
+      "parser": "ecenter_feed",
       "category": "College",
       "scope": "West Virginia"
     },
@@ -726,6 +727,370 @@
       "url": "https://jseb.jacksonville.gov/events",
       "category": "Network",
       "scope": "Florida"
+    },
+    {
+      "name": "SCORE Alabama",
+      "url": "https://www.score.org/al/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Alabama"
+    },
+    {
+      "name": "SCORE Alaska",
+      "url": "https://www.score.org/ak/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Alaska"
+    },
+    {
+      "name": "SCORE Arizona",
+      "url": "https://www.score.org/az/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Arizona"
+    },
+    {
+      "name": "SCORE Arkansas",
+      "url": "https://www.score.org/ar/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Arkansas"
+    },
+    {
+      "name": "SCORE California",
+      "url": "https://www.score.org/ca/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "California"
+    },
+    {
+      "name": "SCORE Colorado",
+      "url": "https://www.score.org/co/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Colorado"
+    },
+    {
+      "name": "SCORE Connecticut",
+      "url": "https://www.score.org/ct/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Connecticut"
+    },
+    {
+      "name": "SCORE Delaware",
+      "url": "https://www.score.org/de/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Delaware"
+    },
+    {
+      "name": "SCORE District of Columbia",
+      "url": "https://www.score.org/dc/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "District of Columbia"
+    },
+    {
+      "name": "SCORE Florida",
+      "url": "https://www.score.org/fl/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Florida"
+    },
+    {
+      "name": "SCORE Georgia",
+      "url": "https://www.score.org/ga/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Georgia"
+    },
+    {
+      "name": "SCORE Hawaii",
+      "url": "https://www.score.org/hi/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Hawaii"
+    },
+    {
+      "name": "SCORE Idaho",
+      "url": "https://www.score.org/id/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Idaho"
+    },
+    {
+      "name": "SCORE Illinois",
+      "url": "https://www.score.org/il/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Illinois"
+    },
+    {
+      "name": "SCORE Indiana",
+      "url": "https://www.score.org/in/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Indiana"
+    },
+    {
+      "name": "SCORE Iowa",
+      "url": "https://www.score.org/ia/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Iowa"
+    },
+    {
+      "name": "SCORE Kansas",
+      "url": "https://www.score.org/ks/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Kansas"
+    },
+    {
+      "name": "SCORE Kentucky",
+      "url": "https://www.score.org/ky/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Kentucky"
+    },
+    {
+      "name": "SCORE Louisiana",
+      "url": "https://www.score.org/la/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Louisiana"
+    },
+    {
+      "name": "SCORE Maine",
+      "url": "https://www.score.org/me/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Maine"
+    },
+    {
+      "name": "SCORE Maryland",
+      "url": "https://www.score.org/md/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Maryland"
+    },
+    {
+      "name": "SCORE Massachusetts",
+      "url": "https://www.score.org/ma/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Massachusetts"
+    },
+    {
+      "name": "SCORE Michigan",
+      "url": "https://www.score.org/mi/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Michigan"
+    },
+    {
+      "name": "SCORE Minnesota",
+      "url": "https://www.score.org/mn/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Minnesota"
+    },
+    {
+      "name": "SCORE Mississippi",
+      "url": "https://www.score.org/ms/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Mississippi"
+    },
+    {
+      "name": "SCORE Missouri",
+      "url": "https://www.score.org/mo/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Missouri"
+    },
+    {
+      "name": "SCORE Montana",
+      "url": "https://www.score.org/mt/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Montana"
+    },
+    {
+      "name": "SCORE Nebraska",
+      "url": "https://www.score.org/ne/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Nebraska"
+    },
+    {
+      "name": "SCORE Nevada",
+      "url": "https://www.score.org/nv/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Nevada"
+    },
+    {
+      "name": "SCORE New Hampshire",
+      "url": "https://www.score.org/nh/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "New Hampshire"
+    },
+    {
+      "name": "SCORE New Jersey",
+      "url": "https://www.score.org/nj/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "New Jersey"
+    },
+    {
+      "name": "SCORE New Mexico",
+      "url": "https://www.score.org/nm/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "New Mexico"
+    },
+    {
+      "name": "SCORE New York",
+      "url": "https://www.score.org/ny/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "New York"
+    },
+    {
+      "name": "SCORE North Carolina",
+      "url": "https://www.score.org/nc/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "North Carolina"
+    },
+    {
+      "name": "SCORE North Dakota",
+      "url": "https://www.score.org/nd/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "North Dakota"
+    },
+    {
+      "name": "SCORE Ohio",
+      "url": "https://www.score.org/oh/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Ohio"
+    },
+    {
+      "name": "SCORE Oklahoma",
+      "url": "https://www.score.org/ok/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Oklahoma"
+    },
+    {
+      "name": "SCORE Oregon",
+      "url": "https://www.score.org/or/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Oregon"
+    },
+    {
+      "name": "SCORE Pennsylvania",
+      "url": "https://www.score.org/pa/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Pennsylvania"
+    },
+    {
+      "name": "SCORE Puerto Rico",
+      "url": "https://www.score.org/pr/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Puerto Rico"
+    },
+    {
+      "name": "SCORE Rhode Island",
+      "url": "https://www.score.org/ri/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Rhode Island"
+    },
+    {
+      "name": "SCORE South Carolina",
+      "url": "https://www.score.org/sc/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "South Carolina"
+    },
+    {
+      "name": "SCORE South Dakota",
+      "url": "https://www.score.org/sd/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "South Dakota"
+    },
+    {
+      "name": "SCORE Tennessee",
+      "url": "https://www.score.org/tn/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Tennessee"
+    },
+    {
+      "name": "SCORE Texas",
+      "url": "https://www.score.org/tx/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Texas"
+    },
+    {
+      "name": "SCORE Utah",
+      "url": "https://www.score.org/ut/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Utah"
+    },
+    {
+      "name": "SCORE Vermont",
+      "url": "https://www.score.org/vt/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Vermont"
+    },
+    {
+      "name": "SCORE Virginia",
+      "url": "https://www.score.org/va/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Virginia"
+    },
+    {
+      "name": "SCORE Washington",
+      "url": "https://www.score.org/wa/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Washington"
+    },
+    {
+      "name": "SCORE West Virginia",
+      "url": "https://www.score.org/wv/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "West Virginia"
+    },
+    {
+      "name": "SCORE Wisconsin",
+      "url": "https://www.score.org/wi/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Wisconsin"
+    },
+    {
+      "name": "SCORE Wyoming",
+      "url": "https://www.score.org/wy/",
+      "parser": "score",
+      "category": "Nonprofit",
+      "scope": "Wyoming"
     }
   ]
 }
