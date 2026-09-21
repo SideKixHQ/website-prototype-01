@@ -34,11 +34,26 @@ jobs:
       - name: Apply site wide copy fixes
         run: python build/fix_guides_cta.py
 
+      # Every page built through build/toolgen.py inherited its head from a
+      # donor that had lost its description, canonical and og tags, so 111 of
+      # the 217 URLs in the sitemap carried none of them. toolgen now writes
+      # those tags itself; this repairs the pages already on disk. Idempotent,
+      # so it is safe to leave in the pipeline.
+      - name: Repair page metadata
+        run: python build/fix_page_meta.py
+
+      - name: Rebuild sitemap
+        run: python build/mksitemap.py
+
       - name: Commit if changed
         run: |
           git config user.name "shellpages-bot"
           git config user.email "actions@github.com"
-          git add homegrown.html where-the-jobs-are.html sitemap.xml llms.txt blog build/artgen.py
+          # The metadata repair touches pages across the whole tree, so
+          # naming paths here would mean maintaining a list that goes
+          # stale. The runner starts from a clean checkout and only these
+          # scripts have run, so everything changed is intended.
+          git add -A
           if git diff --cached --quiet; then
             echo "No change."
             exit 0
