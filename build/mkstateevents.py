@@ -64,6 +64,14 @@ HORIZON_DAYS = 120
 # on the hub and on every state page they are relevant to.
 NOT_A_STATE = {"National", "", None}
 
+# Matching the hub card exactly: the same three stroke colours cycling and
+# the same month abbreviations.
+STROKE = ("#38D2FF", "#D670FF", "#F3E4A8")
+MONTHS = ("JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+          "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
+FULL = ("January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December")
+
 
 def slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
@@ -90,12 +98,6 @@ def upcoming(events: list[dict]) -> list[dict]:
         out.append((dt, e))
     out.sort(key=lambda p: p[0])
     return [e for _, e in out]
-
-
-def pretty_date(dt: datetime) -> str:
-    if dt.hour or dt.minute:
-        return dt.strftime("%A, %B %-d, %Y at %-I:%M %p")
-    return dt.strftime("%A, %B %-d, %Y")
 
 
 def chrome() -> tuple[str, str, str]:
@@ -131,25 +133,77 @@ def chrome() -> tuple[str, str, str]:
     return head, nav, foot
 
 
+CARD_SELECTORS = ("#kx-grid", ".kx-ev", ".kx-num", ".kx-mon", ".rough",
+                  ".kx-meta", ".kx-badge", ".kx-badges", ".kx-go")
+
+
+def card_styles() -> tuple[str, str]:
+    """The card CSS and the rough-edge filter, taken from events.html.
+
+    These pages used a plain text list while the hub drew cards, so the two
+    looked like different sites. Copying the rules here rather than rewriting
+    them means a change to the hub's card design reaches the state pages on
+    the next build instead of drifting apart again.
+    """
+    src = (ROOT / "events.html").read_text(encoding="utf-8")
+    css = "".join(re.findall(r"<style[^>]*>(.*?)</style>", src, re.S))
+    keep = []
+    for sel, body in re.findall(r"([^{}]+)\{([^{}]*)\}", css):
+        sel = sel.strip()
+        if sel.startswith("@") or not sel:
+            continue
+        # The hub carries several #kx-grid overrides marked !important, for
+        # the width its own filter controls need. Copied here they beat the
+        # rule below and collapsed the grid to a single column, so the card
+        # styling comes across and the layout does not.
+        if "#kx-grid" in sel:
+            continue
+        if any(w in sel for w in CARD_SELECTORS):
+            keep.append(f"{sel}{{{body.strip()}}}")
+    # The base grid is set inline on the hub's container, so it is not in the
+    # stylesheet to copy. State pages have no filter controls, so they lay out
+    # the same way at every width without the hub's overrides.
+    grid = ("#kx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));"
+            "gap:24px;max-width:1180px;margin:0 auto}"
+            "@media (max-width:900px){#kx-grid{grid-template-columns:1fr}}")
+    filt = re.search(r"<svg[^>]*>\s*<defs>\s*<filter id=\"kx-rough\".*?</svg>", src, re.S)
+    return grid + "\n" + "\n".join(keep), (filt.group(0) if filt else "")
+
+
 def event_rows(events: list[dict]) -> tuple[str, list[dict]]:
-    """The visible list, and the structured data that matches it."""
+    """The visible cards, and the structured data that matches them."""
     items, graph = [], []
     for e in events:
         dt = parse(e.get("start", ""))
         if dt is None:
             continue
-        facts = [bes.mode_label(e), bes.cost_label(e)]
         where = (e.get("location") or "").strip()
+        mode = bes.mode_label(e)
+        badges = [f'<span class="kx-badge kx-mode-'
+                  f'{html.escape((mode or "other").lower().replace(" ", "-"))}">'
+                  f'{html.escape(mode or "Check with host")}</span>']
         if where and not re.search(r"online", where, re.I):
-            facts.append(where)
+            badges.append(f'<span class="kx-badge kx-where">{html.escape(where)}</span>')
+        badges.append(f'<span class="kx-badge kx-cost">{html.escape(bes.cost_label(e))}</span>')
+
+        bits = [e.get("host", ""), f"{FULL[dt.month - 1]} {dt.day}"]
+        if not e.get("time_tbd") and (dt.hour or dt.minute):
+            bits.append(dt.strftime("%-I:%M %p"))
+        meta = " &middot; ".join(html.escape(x) for x in bits if x)
+        stroke = STROKE[len(items) % len(STROKE)]
         items.append(
-            '<li class="kx-ev">'
-            f'<a href="{html.escape(e.get("url", HUB), quote=True)}"'
+            f'<article class="kx-ev" data-topic="{html.escape(e.get("topic") or "")}">'
+            '<div class="rough" aria-hidden="true"></div>'
+            f'<div class="kx-num" style="-webkit-text-stroke:1.5px {stroke};">{dt.day}</div>'
+            f'<div class="kx-mon">{MONTHS[dt.month - 1]}</div>'
+            f'<h3><a href="{html.escape(e.get("url", HUB), quote=True)}"'
             ' rel="noopener nofollow" target="_blank">'
-            f'{html.escape(e.get("title", ""))}</a>'
-            f'<span>{html.escape(e.get("host", ""))}. {html.escape(pretty_date(dt))}. '
-            f'{html.escape(". ".join(f for f in facts if f))}.</span>'
-            "</li>")
+            f'{html.escape(e.get("title", ""))}</a></h3>'
+            f'<div class="kx-meta">{meta}</div>'
+            f'<div class="kx-badges">{"".join(badges)}</div>'
+            f'<a class="kx-go" href="{html.escape(e.get("url", HUB), quote=True)}"'
+            ' rel="noopener nofollow" target="_blank">Open event page &rarr;</a>'
+            "</article>")
 
         place = bes.location_block(e)
         if place is None:
@@ -184,7 +238,8 @@ def event_rows(events: list[dict]) -> tuple[str, list[dict]]:
 
 
 def page_html(state: str, events: list[dict], siblings: list[str],
-              updated: str, head: str, nav: str, foot: str) -> str:
+              updated: str, head: str, nav: str, foot: str,
+              cardcss: str, roughsvg: str) -> str:
     s = slug(state)
     url = f"{SITE}/business-events/{s}.html"
     title = f"Small Business Events in {state}, Updated Weekly | SideKix"
@@ -247,16 +302,24 @@ def page_html(state: str, events: list[dict], siblings: list[str],
 <meta content="#060502" name="theme-color"/>
 {head}
 <style id="kx-ev">
-.kx-evlist{{list-style:none;margin:0;padding:0}}
-.kx-ev{{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}}
-.kx-ev a{{display:block;font-weight:600}}
-.kx-ev span{{display:block;margin-top:4px;font-size:.92rem;opacity:.78}}
+{cardcss}
 .kx-states{{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}}
-.kx-states a{{padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:.9rem}}
-@media (prefers-color-scheme: light){{
-  .kx-ev{{border-bottom-color:rgba(0,0,0,.12)}}
-  .kx-states a{{border-color:rgba(0,0,0,.22)}}
-}}
+.kx-states a{{padding:6px 12px;border:1px solid rgba(212,168,86,.35);border-radius:999px;font-size:.9rem}}
+.kx-states a:hover{{border-color:rgba(212,168,86,.8)}}
+/* The article shell holds body copy to a reading column, which squeezed the
+   card grid into a single lane. Centring against the viewport instead lets
+   the cards use the page the way they do on the hub, without touching the
+   shell's own width for the prose above and below. */
+/* The grid sits outside the article column rather than inside it. A CSS
+   breakout would have to know how far the column is offset from the centre
+   of the page, and it is not centred, so the cards kept running off the
+   left edge. Taking it out of that container in the markup needs no
+   arithmetic and cannot drift when the shell changes. */
+.kx-evsection{{padding:8px 28px 12px}}
+/* article.css underlines links in body copy. On a card the whole heading is
+   the link, so the underline reads as a mistake. */
+.kx-ev h3 a{{text-decoration:none;border-bottom:none;background:none}}
+.kx-ev h3 a:hover{{text-decoration:underline}}
 </style>
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
 </head>
@@ -279,9 +342,18 @@ They sit on the calendars of organizations that do not compete for attention,
 so the events run half empty while the people who would benefit never hear
 about them. This page gathers what is scheduled in {html.escape(state)} over
 the next few months, in one place, refreshed weekly.</p>
-<ul class="kx-evlist">
+</div>
+</article>
+</div>
+{roughsvg}
+<section aria-label="Upcoming events" class="kx-evsection">
+<div id="kx-grid">
 {rows}
-</ul>
+</div>
+</section>
+<div class="artgrid">
+<article>
+<div class="body">
 <h2>What is on this list</h2>
 <p>Every listing links to the host, not to SideKix. The cost line repeats what
 the host states, so an event marked at no cost is one the host describes that
@@ -423,12 +495,14 @@ def main() -> int:
 
     OUTDIR.mkdir(exist_ok=True)
     head, nav, foot = chrome()
+    cardcss, roughsvg = card_styles()
 
     written = []
     for state in order:
         sibs = [x for x in order if x != state][:12]
         (OUTDIR / f"{slug(state)}.html").write_text(
-            page_html(state, keep[state], sibs, updated, head, nav, foot),
+            page_html(state, keep[state], sibs, updated, head, nav, foot,
+                      cardcss, roughsvg),
             encoding="utf-8")
         written.append(slug(state))
         print(f"  {state}: {len(keep[state])} events", file=sys.stderr)
