@@ -93,7 +93,7 @@
       ]
     },
     {
-      "source": "/build/(.*)",
+      "source": "/build/:path*",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "source": "/sidekix-events-handoff/(.*)",
+      "source": "/sidekix-events-handoff/:path*",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "source": "/(.*).json",
+      "source": "/:path*.json",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "source": "/(.*).py",
+      "source": "/:path*.py",
       "headers": [
         {
           "key": "X-Robots-Tag",
