@@ -43,12 +43,6 @@
       "scope": "National"
     },
     {
-      "name": "MBDA",
-      "url": "https://www.mbda.gov/events",
-      "category": "Federal",
-      "scope": "National"
-    },
-    {
       "name": "CDFI Fund",
       "url": "https://www.cdfifund.gov/events-view",
       "category": "Federal",
@@ -179,13 +173,6 @@
       "parser": "neoserra",
       "category": "College",
       "scope": "Louisiana"
-    },
-    {
-      "name": "Maine SBDC",
-      "url": "https://mainesbdc.centerdynamics.com/Events.aspx",
-      "parser": "neoserra",
-      "category": "College",
-      "scope": "Maine"
     },
     {
       "name": "Maryland SBDC",
@@ -444,12 +431,6 @@
       "scope": "National"
     },
     {
-      "name": "NAWBO",
-      "url": "https://www.nawbo.org/events",
-      "category": "Nonprofit",
-      "scope": "National"
-    },
-    {
       "name": "MicroMentor",
       "url": "https://www.mbmentors.org/webinars",
       "category": "Nonprofit",
@@ -474,31 +455,11 @@
       "scope": "National"
     },
     {
-      "name": "1 Million Cups",
-      "url": "https://www.eventbrite.com/o/1-million-cups-15924399928",
-      "category": "Network",
-      "scope": "National",
-      "note": "Was 1millioncups.com/s/communities, which is Salesforce Experience Cloud: it renders client side and hands a parser nothing, which is why this source has never produced an event. Chapters publish on Eventbrite. Eventbrite refuses some automated fetches with a 405, so probe from CI before trusting this."
-    },
-    {
-      "name": "1 Million Cups Round Rock",
-      "url": "https://www.eventbrite.com/o/1-million-cups-round-rock-14918712049",
-      "category": "Network",
-      "scope": "Texas",
-      "note": "Candidate. Unprobed."
-    },
-    {
       "name": "Venture Cafe",
       "url": "https://venturecafeglobal.org/events/",
       "category": "Nonprofit",
       "scope": "National",
       "note": "Free weekly Thursday Gatherings in several US cities. Candidate. Unprobed."
-    },
-    {
-      "name": "Hello Alice",
-      "url": "https://www.helloalice.com/events",
-      "category": "Network",
-      "scope": "National"
     },
     {
       "name": "SoCal Veterans Business Outreach Center",
@@ -507,34 +468,10 @@
       "scope": "California"
     },
     {
-      "name": "Maryland Women's Business Center",
-      "url": "https://marylandwbc.org/events/",
-      "category": "Nonprofit",
-      "scope": "Maryland"
-    },
-    {
       "name": "Western Wisconsin Women's Business Center",
       "url": "https://www.successfulbusiness.org/events",
       "category": "Nonprofit",
       "scope": "Wisconsin"
-    },
-    {
-      "name": "Women's Business Development Center Chicago",
-      "url": "https://www.wbdc.org/en/events/",
-      "category": "Nonprofit",
-      "scope": "Illinois"
-    },
-    {
-      "name": "NEW Women's Business Center",
-      "url": "https://www.new-wbc.org/workshops-events/",
-      "category": "Nonprofit",
-      "scope": "California"
-    },
-    {
-      "name": "MCSC Women's Business Center",
-      "url": "https://mcscorp.org/services/workshops/",
-      "category": "Nonprofit",
-      "scope": "Michigan"
     },
     {
       "name": "Women's Enterprise Development Center",
@@ -547,12 +484,6 @@
       "url": "https://www.rencenter.org/events/",
       "category": "Nonprofit",
       "scope": "California"
-    },
-    {
-      "name": "KCSourceLink",
-      "url": "https://www.kcsourcelink.com/events",
-      "category": "Nonprofit",
-      "scope": "Missouri"
     },
     {
       "name": "Pennsylvania Business One-Stop Shop",
@@ -607,12 +538,6 @@
       "url": "https://www.wwbic.com/events/",
       "category": "Bank",
       "scope": "Wisconsin"
-    },
-    {
-      "name": "Native CDFI Network",
-      "url": "https://nativecdfi.net/events/",
-      "category": "Bank",
-      "scope": "National"
     },
     {
       "name": "Meta Blueprint",
