@@ -28,6 +28,8 @@ for no email address.
 
 ## Key pages
 
+- [How to Hire a Business Advisor](https://sidekixhq.com/hire-a-business-advisor.html): What a business advisor does, how it differs from a consultant, a coach and a fractional executive, what each costs, the federally funded options that charge nothing, and four questions for a first conversation.
+- [Free Small Business Help in North Carolina](https://sidekixhq.com/free-small-business-help-north-carolina.html): The three counseling networks that charge nothing in NC (community college Small Business Centers, the SBTDC in the UNC System, SCORE), the Wilmington ecosystem, and the CDFI lenders for businesses a bank turns down.
 - [Press](https://sidekixhq.com/press.html): The boilerplate, fast facts, federal figures on US business formation that are open to quote, and who to ask for an interview.
 - [The Back Room](https://sidekixhq.com/back-room.html): Run Kix Run, three comics, and a declaration. The part of SideKix with no work in it.
 - [A Declaration of Independence](https://sidekixhq.com/declaration.html): Written for anyone who has decided to stop waiting for permission. Readable as text and signable.
@@ -135,6 +137,38 @@ for no email address.
 - [Weekly Business Check-In Template for Entrepreneurs | SideKix](https://sidekixhq.com/blog/weekly-business-check-in-template/): Use this free Weekly Business Check-In Template to stay focused, review your progress, and plan ahead.
 - [What to Do After Having Your Business Idea | SideKix](https://sidekixhq.com/blog/what-to-do-after-having-your-business-idea/): You’ve just had an idea for a business– the lightbulb is glowing and you’re so inspired that you’re ready to get to work.
 - [Why Most People Never Start a Business | SideKix](https://sidekixhq.com/blog/why-most-people-never-start-a-business/): Around 165 million US adults have had a business idea and roughly 5.6 million applications get filed a year. What sits in that gap, and what...
+
+<!-- kx:states:llms:start -->
+## Business events by state
+
+Checked at the source and refreshed weekly. Last run 2026-09-21. Each page lists what is scheduled in that state over the next few months, with the host, the date and the cost as the host states it.
+
+- [Business events in Alabama](https://sidekixhq.com/business-events/alabama.html): 30 upcoming events for people starting, growing or leading a business in Alabama.
+- [Business events in Arizona](https://sidekixhq.com/business-events/arizona.html): 24 upcoming events for people starting, growing or leading a business in Arizona.
+- [Business events in Connecticut](https://sidekixhq.com/business-events/connecticut.html): 8 upcoming events for people starting, growing or leading a business in Connecticut.
+- [Business events in District of Columbia](https://sidekixhq.com/business-events/district-of-columbia.html): 10 upcoming events for people starting, growing or leading a business in District of Columbia.
+- [Business events in Illinois](https://sidekixhq.com/business-events/illinois.html): 67 upcoming events for people starting, growing or leading a business in Illinois.
+- [Business events in Indiana](https://sidekixhq.com/business-events/indiana.html): 23 upcoming events for people starting, growing or leading a business in Indiana.
+- [Business events in Louisiana](https://sidekixhq.com/business-events/louisiana.html): 54 upcoming events for people starting, growing or leading a business in Louisiana.
+- [Business events in Massachusetts](https://sidekixhq.com/business-events/massachusetts.html): 9 upcoming events for people starting, growing or leading a business in Massachusetts.
+- [Business events in Minnesota](https://sidekixhq.com/business-events/minnesota.html): 12 upcoming events for people starting, growing or leading a business in Minnesota.
+- [Business events in Nebraska](https://sidekixhq.com/business-events/nebraska.html): 16 upcoming events for people starting, growing or leading a business in Nebraska.
+- [Business events in New Jersey](https://sidekixhq.com/business-events/new-jersey.html): 24 upcoming events for people starting, growing or leading a business in New Jersey.
+- [Business events in New York](https://sidekixhq.com/business-events/new-york.html): 66 upcoming events for people starting, growing or leading a business in New York.
+- [Business events in North Carolina](https://sidekixhq.com/business-events/north-carolina.html): 83 upcoming events for people starting, growing or leading a business in North Carolina.
+- [Business events in Ohio](https://sidekixhq.com/business-events/ohio.html): 59 upcoming events for people starting, growing or leading a business in Ohio.
+- [Business events in Oklahoma](https://sidekixhq.com/business-events/oklahoma.html): 9 upcoming events for people starting, growing or leading a business in Oklahoma.
+- [Business events in Oregon](https://sidekixhq.com/business-events/oregon.html): 14 upcoming events for people starting, growing or leading a business in Oregon.
+- [Business events in Pennsylvania](https://sidekixhq.com/business-events/pennsylvania.html): 81 upcoming events for people starting, growing or leading a business in Pennsylvania.
+- [Business events in Puerto Rico](https://sidekixhq.com/business-events/puerto-rico.html): 10 upcoming events for people starting, growing or leading a business in Puerto Rico.
+- [Business events in South Carolina](https://sidekixhq.com/business-events/south-carolina.html): 8 upcoming events for people starting, growing or leading a business in South Carolina.
+- [Business events in Tennessee](https://sidekixhq.com/business-events/tennessee.html): 22 upcoming events for people starting, growing or leading a business in Tennessee.
+- [Business events in Texas](https://sidekixhq.com/business-events/texas.html): 111 upcoming events for people starting, growing or leading a business in Texas.
+- [Business events in Utah](https://sidekixhq.com/business-events/utah.html): 21 upcoming events for people starting, growing or leading a business in Utah.
+- [Business events in Virginia](https://sidekixhq.com/business-events/virginia.html): 62 upcoming events for people starting, growing or leading a business in Virginia.
+- [Business events in Washington](https://sidekixhq.com/business-events/washington.html): 10 upcoming events for people starting, growing or leading a business in Washington.
+
+<!-- kx:states:llms:end -->
 
 ## Facts worth citing accurately
 

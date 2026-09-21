@@ -91,9 +91,60 @@
           "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
+    },
+    {
+      "source": "/build/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/sidekix-events-handoff/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).json",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).py",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ],
   "redirects": [
+    {
+      "source": "/sidekix-events-handoff/events.html",
+      "destination": "/events.html",
+      "permanent": true
+    },
+    {
+      "source": "/sidekix-events-handoff",
+      "destination": "/events.html",
+      "permanent": true
+    },
+    {
+      "source": "/sidekix-events-handoff/",
+      "destination": "/events.html",
+      "permanent": true
+    },
     {
       "source": "/about-us",
       "destination": "/how-it-works.html",
