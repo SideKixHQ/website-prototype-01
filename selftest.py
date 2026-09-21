@@ -176,6 +176,54 @@ def test_parsers(m) -> None:
     check("   Neoserra parser skips non-event links", len(got2), 1)
     print(f"   {'ok  ' if len(got2)==1 else 'FAIL'} Neoserra parser skips non-event links")
 
+    # The <time> fallback. Seventeen states returned nothing because their
+    # listings put the date in a card above the title, or used a plain link
+    # with no heading, and from_headings can read neither.
+    src = {"name": "Test SBDC", "url": "https://example.org/events/"}
+
+    tribe = """
+    <div class="tribe-events-calendar-list__event-row">
+      <time datetime="2026-10-06"><span>Oct</span><span>6</span></time>
+      <div><h3><a href="/event/taking-the-leap/">Taking the Leap: Starting a Business</a></h3>
+      <p>Wilmington, NC. In person.</p></div>
+    </div>"""
+    t1 = m.from_time_tags(BeautifulSoup(tribe, "html.parser"), src)
+    check("   time parser reads a calendar card", len(t1), 1)
+    print(f"   {'ok  ' if len(t1)==1 else 'FAIL'} time parser reads a calendar card")
+
+    card = """
+    <article><div><time datetime="2026-11-12T18:00:00-05:00">Nov 12</time></div>
+    <h2><a href="/e/99">Money, Margins and Momentum</a></h2></article>"""
+    t2 = m.from_time_tags(BeautifulSoup(card, "html.parser"), src)
+    check("   time parser reads a date-first card", len(t2), 1)
+    print(f"   {'ok  ' if len(t2)==1 else 'FAIL'} time parser reads a date above the title")
+
+    noise = """
+    <div><time datetime="2026-10-02">Oct 2</time>
+    <a href="/y">October 2 from 12:00 pm to 1:00 pm</a></div>"""
+    t3 = m.from_time_tags(BeautifulSoup(noise, "html.parser"), src)
+    check("   time parser rejects calendar furniture", len(t3), 0)
+    print(f"   {'ok  ' if len(t3)==0 else 'FAIL'} time parser rejects calendar furniture")
+
+    twice = """
+    <div><time datetime="2026-10-06T09:00">s</time><time datetime="2026-10-06T17:00">e</time>
+    <h3><a href="/e/1">Building Your Foundation Workshop</a></h3></div>"""
+    t4 = m.from_time_tags(BeautifulSoup(twice, "html.parser"), src)
+    check("   time parser counts a start and end once", len(t4), 1)
+    print(f"   {'ok  ' if len(t4)==1 else 'FAIL'} time parser counts a start and end once")
+
+    # A weekday or month STEM is not a date. "Money," was read as "Monday,"
+    # and "Marketing 101" as "March 1", so both titles were discarded.
+    keep = ["Money, Margins and Momentum", "Marketing 101 for Founders",
+            "Monthly Bookkeeping Basics", "Sunset Networking Mixer",
+            "Wedding Business Bootcamp", "Friendly Introductions to Funding"]
+    drop = ["Monday, October 21", "October 21 from 12:00 pm to 1:00 pm (EDT)",
+            "Tue, Oct 6", "12:00 pm", "10/21"]
+    wrong = ([t for t in keep if not m.is_real_title(t)]
+             + [t for t in drop if m.is_real_title(t)])
+    check("   real titles survive the date filter", wrong, [])
+    print(f"   {'ok  ' if not wrong else 'FAIL'} real titles survive the date filter")
+
 
 def test_safety_rail(m) -> None:
     section("4. The safety rail")
@@ -215,16 +263,20 @@ def test_data(m) -> None:
     check("   every url is https", bad_url, [])
     print(f"   {'ok  ' if not bad_url else 'FAIL'} every url is https")
 
-    banned = re.compile(r"\bfree\b|\baspiring\b|\bmentor\b|\bcoach\b|\bspark\b", re.I)
-    hits = [e["title"][:30] for e in events
-            if banned.search(e.get("summary", "") + " " + e.get("title", ""))]
-    check("   no banned words in the copy", hits, [])
-    print(f"   {'ok  ' if not hits else 'FAIL'} no banned words in the copy")
+    # These two used to assert the brand word and dash rules against scraped
+    # event titles and summaries. That was always the wrong target: an event
+    # name belongs to the host, and rewriting "SBA and DoD Mentor-Protege
+    # Programs" would be putting words in their mouth. The rules govern copy
+    # SideKix writes. What is worth checking here is that the host's text
+    # arrives intact and is not silently mangled.
+    mangled = [e["title"][:30] for e in events
+               if "  " in e.get("title", "") or e.get("title", "") != e.get("title", "").strip()]
+    check("   host titles arrive clean", mangled, [])
+    print(f"   {'ok  ' if not mangled else 'FAIL'} host titles arrive clean")
 
-    dashes = [e["title"][:30] for e in events
-              if re.search(r"[\u2013\u2014]|\s-\s", e.get("summary", ""))]
-    check("   no dashes used as punctuation", dashes, [])
-    print(f"   {'ok  ' if not dashes else 'FAIL'} no dashes used as punctuation")
+    empty = [e.get("url", "")[:40] for e in events if not e.get("title", "").strip()]
+    check("   no event is missing a title", empty, [])
+    print(f"   {'ok  ' if not empty else 'FAIL'} no event is missing a title")
 
     dupes = len(events) - len({e["title"].strip().lower() for e in events})
     check("   no duplicate titles", dupes, 0)

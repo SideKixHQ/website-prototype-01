@@ -203,10 +203,20 @@ def classify(text: str) -> str:
 
 import re as _re
 
+# The day and month names have to be whole words. The first version let any
+# word STARTING with a weekday or month stem count as a date, so
+# "Money, Margins and Momentum" was read as "Monday," plus two words and
+# thrown away, and "Marketing 101 for Founders" was read as "March 1" plus
+# two words and thrown away with it. Every parser inherited that, so real
+# events have been dropped quietly across all sources, not only the ones
+# returning nothing.
 _DATEISH = _re.compile(
     r"^\s*(?:"
-    r"(?:mon|tue|wed|thu|fri|sat|sun)[a-z]*,?\s*"          # Monday,
-    r"|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+\d"  # October 21
+    r"(?:mon|tues|wednes|thurs|fri|satur|sun)day\b,?\s*"    # Monday,
+    r"|(?:mon|tue|wed|thu|fri|sat|sun)\b\.?,?\s*"           # Mon.
+    r"|(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?"
+    r"|jul(?:y)?|aug(?:ust)?|sep(?:t|tember)?|oct(?:ober)?|nov(?:ember)?"
+    r"|dec(?:ember)?)\b\.?\s+\d"                           # October 21
     r"|\d{1,2}[/-]\d{1,2}"                                  # 10/21
     r"|\d{1,2}:\d{2}\s*(?:am|pm)"                          # 12:00 pm
     r")", _re.I)
@@ -310,6 +320,92 @@ DATE_NEAR_LINK = re.compile(
 )
 
 
+def from_time_tags(soup: BeautifulSoup, source: dict) -> list[dict]:
+    """Fallback for card and list layouts that carry a real <time> element.
+
+    from_headings needs the title inside a heading and the date in the six
+    elements after it. Most modern event listings break both rules: the date
+    sits in a card above the title, or the title is a plain link, or the date
+    is only in a datetime attribute and never appears as text the regex would
+    match. Seventeen states were returning nothing for exactly this reason.
+
+    A <time datetime="..."> is machine-readable and platform-agnostic, so
+    this walks those instead and climbs to the nearest container that also
+    holds a titled link. It guesses nothing about any one site's class names,
+    which is what makes it worth having as a general fallback rather than as
+    seventeen bespoke parsers.
+    """
+    found: list[dict] = []
+    seen: set[tuple] = set()
+
+    for tag in soup.find_all("time"):
+        stamp = (tag.get("datetime") or "").strip()
+        when = None
+        if stamp:
+            try:
+                when = dateparse.parse(stamp)
+            except (ValueError, OverflowError, TypeError):
+                when = None
+        if when is None:
+            text = tag.get_text(" ", strip=True)
+            match = DATE_NEAR_LINK.search(text)
+            if not match:
+                continue
+            try:
+                when = dateparse.parse(match.group(1), fuzzy=True)
+            except (ValueError, OverflowError):
+                continue
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=timezone(timedelta(hours=-4)))
+
+        # Climb until a container holds a usable title. Four levels is enough
+        # for card markup and stops before the whole listing becomes "the
+        # container", which would give every event the same title.
+        node, link, title = tag, None, ""
+        for _ in range(4):
+            node = node.parent
+            if node is None or getattr(node, "name", None) in (None, "body", "html"):
+                break
+            for heading in node.find_all(["h1", "h2", "h3", "h4", "h5"]):
+                candidate = clean(heading.get_text(" ", strip=True))
+                if is_real_title(candidate):
+                    title = candidate
+                    link = heading.find("a", href=True) or node.find("a", href=True)
+                    break
+            if title:
+                break
+            for anchor in node.find_all("a", href=True):
+                candidate = clean(anchor.get_text(" ", strip=True))
+                if is_real_title(candidate):
+                    title, link = candidate, anchor
+                    break
+            if title:
+                break
+        if not title:
+            continue
+
+        href = link["href"] if link is not None else source["url"]
+        url = requests.compat.urljoin(source["url"], href)
+        key = (title.lower(), when.date())
+        if key in seen:
+            continue
+        seen.add(key)
+
+        summary = clean(node.get_text(" ", strip=True)) if node is not None else ""
+        found.append(
+            {
+                "title": title,
+                "host": source["name"],
+                "start": when.isoformat(),
+                "duration": "",
+                "topic": "",
+                "url": url,
+                "summary": summary,
+            }
+        )
+    return found
+
+
 def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
     """Fallback for pages with no JSON-LD: a heading link followed by a date."""
     found = []
@@ -364,6 +460,11 @@ def parse_page(soup: BeautifulSoup, source: dict) -> tuple[list[dict], str]:
         return from_sba(soup, source), "sba"
     if which == "neoserra":
         return from_neoserra(soup, source), "neoserra"
+    if which == "time":
+        return from_time_tags(soup, source), "time"
+    events = from_time_tags(soup, source)
+    if events:
+        return events, "time"
     return from_headings(soup, source), "headings"
 
 
