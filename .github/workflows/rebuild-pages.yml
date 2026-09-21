@@ -42,6 +42,12 @@ jobs:
       - name: Repair page metadata
         run: python build/fix_page_meta.py
 
+      # The Affiliate Policy has to be reachable from wherever a reader
+      # lands, which on a site with no template layer means writing the
+      # footer link into all 279 pages that have a footer. Idempotent.
+      - name: Link the affiliate policy in every footer
+        run: python build/add_affiliate_link.py
+
       - name: Rebuild sitemap
         run: python build/mksitemap.py
 
