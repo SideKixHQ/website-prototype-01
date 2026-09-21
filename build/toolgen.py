@@ -74,14 +74,41 @@ def page(filename, title, desc, eyebrow, h1, lede, body,
     """Return one complete tool page."""
     head = HEAD
     head = re.sub(r"<title>.*?</title>", f"<title>{e(title)}</title>", head, count=1, flags=re.S)
-    # every description-bearing meta on the donor carries the same string
-    old = re.search(r'<meta content="([^"]*)" name="description"/?>', head).group(1)
-    head = head.replace(old, e(desc))
+    # Swapping the donor's description only works while the donor HAS one.
+    # tools.html was regenerated without a description, a canonical or any og
+    # tags, so this silently produced pages carrying none of them: 111 of the
+    # 217 URLs in the sitemap, every state page and guide among them. The tags
+    # are now written here rather than inherited, so the donor cannot take
+    # them away again.
+    old = re.search(r'<meta content="([^"]*)" name="description"/?>', head)
+    if old:
+        head = head.replace(old.group(1), e(desc))
     head = head.replace(f"{SITE}/tools.html", f"{SITE}/{filename}")
     head = re.sub(r'(<meta content=")[^"]*(" property="og:title"/?>)',
                   lambda m: m.group(1) + e(title.split(" | ")[0]) + m.group(2), head, count=1)
     head = re.sub(r'(<meta content=")[^"]*(" name="twitter:title"/?>)',
                   lambda m: m.group(1) + e(title.split(" | ")[0]) + m.group(2), head, count=1)
+
+    # Whatever the donor did not supply, add outright. Keyed on the tag being
+    # absent, so a donor that regains its own tags does not end up with two.
+    short = e(title.split(" | ")[0])
+    url = f"{SITE}/" if filename == "index.html" else f"{SITE}/{filename}"
+    for probe, tag in (
+        ('name="description"', f'<meta content="{e(desc)}" name="description"/>'),
+        ('rel="canonical"', f'<link href="{url}" rel="canonical"/>'),
+        ('name="robots"', '<meta content="index, follow, max-image-preview:large" name="robots"/>'),
+        ('property="og:type"', '<meta content="website" property="og:type"/>'),
+        ('property="og:site_name"', '<meta content="SideKix" property="og:site_name"/>'),
+        ('property="og:title"', f'<meta content="{short}" property="og:title"/>'),
+        ('property="og:description"', f'<meta content="{e(desc)}" property="og:description"/>'),
+        ('property="og:url"', f'<meta content="{url}" property="og:url"/>'),
+        ('property="og:image"', f'<meta content="{SITE}/assets/k-mark.png" property="og:image"/>'),
+        ('name="twitter:card"', '<meta content="summary_large_image" name="twitter:card"/>'),
+        ('name="twitter:title"', f'<meta content="{short}" name="twitter:title"/>'),
+        ('name="twitter:description"', f'<meta content="{e(desc)}" name="twitter:description"/>'),
+    ):
+        if probe not in head:
+            head = re.sub(r"(</title>)", lambda m: m.group(1) + "\n" + tag, head, count=1)
     # the donor's own structured data describes the calculators page
     head = re.sub(r'<script type="application/ld\+json">.*?</script>', "", head, flags=re.S)
     # the donor also carries whatever page CSS it was built with. tools.html is
@@ -103,6 +130,10 @@ def page(filename, title, desc, eyebrow, h1, lede, body,
                     faq_pairs.append((qa["name"], qa["acceptedAnswer"]["text"]))
     if faq_pairs:
         head += f'<style id="kx-faq">\n{FAQ_CSS}\n</style>\n'
+    # Stripping the donor's schema and styles leaves runs of blank lines,
+    # and the inserted tags add more. Harmless, but it makes the head hard
+    # to read when someone opens view-source.
+    head = re.sub(r"\n{3,}", "\n\n", head)
     head += "</head>"
 
     main = (f'<main id="maincontent">\n<section class="{wrapcls}">\n{back}\n'

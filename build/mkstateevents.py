@@ -357,6 +357,53 @@ def link_hub(order: list[str], counts: dict[str, int]) -> None:
     page_path.write_text(page, encoding="utf-8")
 
 
+LLMS_START = "<!-- kx:states:llms:start -->"
+LLMS_END = "<!-- kx:states:llms:end -->"
+
+
+def update_llms(order: list[str], counts: dict[str, int], updated: str) -> None:
+    """Put the state pages in llms.txt.
+
+    llms.txt is the file an answer engine reads to work out what this site
+    covers. A weekly verified events listing per state is the most citable
+    thing here and the least likely to be duplicated anywhere else, so it
+    belongs in that file rather than only in the sitemap. Written between
+    markers and regenerated each run, because the set of states changes.
+    """
+    path = ROOT / "llms.txt"
+    if not path.exists():
+        print("  llms.txt missing, state pages left out of it", file=sys.stderr)
+        return
+    text = path.read_text(encoding="utf-8")
+
+    lines = [f"{LLMS_START}", "## Business events by state", "",
+             f"Checked at the source and refreshed weekly. Last run {updated}. "
+             "Each page lists what is scheduled in that state over the next few "
+             "months, with the host, the date and the cost as the host states it.",
+             ""]
+    for state in sorted(order):
+        lines.append(
+            f"- [Business events in {state}]"
+            f"({SITE}/business-events/{slug(state)}.html): "
+            f"{counts[state]} upcoming events for people starting, growing or "
+            f"leading a business in {state}.")
+    lines += ["", LLMS_END]
+    block = "\n".join(lines)
+
+    if LLMS_START in text and LLMS_END in text:
+        text = re.sub(re.escape(LLMS_START) + r"[\s\S]*?" + re.escape(LLMS_END),
+                      lambda _: block, text, count=1)
+        print("  llms.txt state section refreshed", file=sys.stderr)
+    else:
+        marker = "## Facts worth citing accurately"
+        if marker in text:
+            text = text.replace(marker, block + "\n\n" + marker, 1)
+        else:
+            text = text.rstrip() + "\n\n" + block + "\n"
+        print("  llms.txt state section added", file=sys.stderr)
+    path.write_text(text, encoding="utf-8")
+
+
 def main() -> int:
     if not DATA.exists():
         print("events.json missing", file=sys.stderr)
@@ -398,7 +445,9 @@ def main() -> int:
             shutil.rmtree(f)
             removed.append(f.name + "/")
 
-    link_hub(order, {s: len(keep[s]) for s in order})
+    counts = {s: len(keep[s]) for s in order}
+    link_hub(order, counts)
+    update_llms(order, counts, updated)
 
     skipped = sorted(set(by_state) - set(keep))
     print(f"\n  {len(written)} state pages written, {len(removed)} removed",
