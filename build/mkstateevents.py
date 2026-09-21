@@ -316,6 +316,7 @@ def page_html(state: str, events: list[dict], siblings: list[str],
    left edge. Taking it out of that container in the markup needs no
    arithmetic and cannot drift when the shell changes. */
 .kx-evsection{{padding:8px 28px 12px}}
+.kx-evhead{{max-width:1180px;margin:0 auto 6px;font-size:clamp(20px,3vw,26px)}}
 /* article.css underlines links in body copy. On a card the whole heading is
    the link, so the underline reads as a mistake. */
 .kx-ev h3 a{{text-decoration:none;border-bottom:none;background:none}}
@@ -346,7 +347,8 @@ the next few months, in one place, refreshed weekly.</p>
 </article>
 </div>
 {roughsvg}
-<section aria-label="Upcoming events" class="kx-evsection">
+<section aria-labelledby="kx-ev-h" class="kx-evsection">
+<h2 class="kx-evhead" id="kx-ev-h">What is coming up in {html.escape(state)}</h2>
 <div id="kx-grid">
 {rows}
 </div>
@@ -412,7 +414,7 @@ def link_hub(order: list[str], counts: dict[str, int]) -> None:
         'margin:16px 0 0;padding:0}'
         '.kx-statelist a{display:inline-block;padding:8px 14px;border:1px solid '
         'rgba(255,255,255,.22);border-radius:999px;font-size:.95rem}'
-        '.kx-statelist span{opacity:.62;font-size:.85rem}</style>\n'
+        '.kx-statelist span{opacity:.80;font-size:.85rem}</style>\n'
         f'{HUB_END}')
 
     if HUB_START in page and HUB_END in page:
