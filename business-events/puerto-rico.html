@@ -81,16 +81,127 @@ img{width:auto;height:auto}
 [hidden]{display:none !important}
 </style>
 <style id="kx-ev">
-.kx-evlist{list-style:none;margin:0;padding:0}
-.kx-ev{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
-.kx-ev a{display:block;font-weight:600}
-.kx-ev span{display:block;margin-top:4px;font-size:.92rem;opacity:.78}
+#kx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;max-width:1180px;margin:0 auto}@media (max-width:900px){#kx-grid{grid-template-columns:1fr}}
+.kx-gold-text{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
+/* event card, matching the kx-glowbox treatment */
+  .kx-ev{position:relative;padding:22px;border:1px solid #1E1C18;border-radius:14px;background:rgba(10,10,12,.6);transition:border-color .3s,transform .3s;}
+.kx-ev:hover{border-color:rgba(212,168,86,.5);transform:translateY(-3px)}
+.kx-ev .rough{position:absolute;inset:7px;border:1.6px solid rgba(212,168,86,.4);border-radius:18px;filter:url(#kx-rough);pointer-events:none;}
+.kx-num{font-family:'EA Majer',sans-serif;font-size:52px;line-height:1;margin-bottom:4px;color:transparent;}
+.kx-mon{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.22em;color:#928F86;margin-bottom:18px;}
+.kx-ev h3{font-size:21px;font-weight:800;margin:0 0 10px;line-height:1.3}
+.kx-ev h3 a{color:#fff}
+.kx-ev h3 a:hover{color:#D4A856}
+.kx-ev p{color:#9B958B;font-size:15px;line-height:1.65;margin:0 0 16px}
+.kx-meta{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.12em;color:#928F86;text-transform:uppercase}
+.kx-meta span+span::before{content:"·";margin:0 8px;color:#3F3D38}
+.kx-ev[hidden]{display:none}
+/* the two greys were the hardest things to read on the page */
+.kx-ev p, .kx-meta, .kx-count{color:#CEC9BC !important}
+.kx-ev h3 a{color:#FFFFEF !important}
+.kx-mon{color:#D4A856 !important}
+/* ---- a card lights up in its own colour ----
+   the cards only shifted their border on hover, so pointing at one gave no
+   sense of which topic it belonged to. each now throws a shadow in the colour
+   of its own chip, and the month abbreviation warms to match. keyboard users
+   get the same treatment via :focus-within, since they never hover. */
+.kx-ev{transition:border-color .3s ease, box-shadow .35s ease, transform .3s ease}
+.kx-ev[data-topic="Finance"]:hover{border-color:rgba(166,224,180,.55) !important;
+  box-shadow:0 0 0 1px rgba(166,224,180,.28),
+             0 0 44px rgba(166,224,180,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Finance"]:hover .kx-mon{color:rgb(166,224,180) !important}
+.kx-ev[data-topic="Finance"]:focus-within{border-color:rgba(166,224,180,.55) !important;
+  box-shadow:0 0 0 1px rgba(166,224,180,.28), 0 0 44px rgba(166,224,180,.22) !important}
+.kx-ev[data-topic="Funding"]:hover{border-color:rgba(255,231,166,.55) !important;
+  box-shadow:0 0 0 1px rgba(255,231,166,.28),
+             0 0 44px rgba(255,231,166,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Funding"]:hover .kx-mon{color:rgb(255,231,166) !important}
+.kx-ev[data-topic="Funding"]:focus-within{border-color:rgba(255,231,166,.55) !important;
+  box-shadow:0 0 0 1px rgba(255,231,166,.28), 0 0 44px rgba(255,231,166,.22) !important}
+.kx-ev[data-topic="Hiring"]:hover{border-color:rgba(132,208,198,.55) !important;
+  box-shadow:0 0 0 1px rgba(132,208,198,.28),
+             0 0 44px rgba(132,208,198,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Hiring"]:hover .kx-mon{color:rgb(132,208,198) !important}
+.kx-ev[data-topic="Hiring"]:focus-within{border-color:rgba(132,208,198,.55) !important;
+  box-shadow:0 0 0 1px rgba(132,208,198,.28), 0 0 44px rgba(132,208,198,.22) !important}
+.kx-ev[data-topic="Legal"]:hover{border-color:rgba(177,139,228,.55) !important;
+  box-shadow:0 0 0 1px rgba(177,139,228,.28),
+             0 0 44px rgba(177,139,228,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Legal"]:hover .kx-mon{color:rgb(177,139,228) !important}
+.kx-ev[data-topic="Legal"]:focus-within{border-color:rgba(177,139,228,.55) !important;
+  box-shadow:0 0 0 1px rgba(177,139,228,.28), 0 0 44px rgba(177,139,228,.22) !important}
+.kx-ev[data-topic="Marketing"]:hover{border-color:rgba(242,147,63,.55) !important;
+  box-shadow:0 0 0 1px rgba(242,147,63,.28),
+             0 0 44px rgba(242,147,63,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Marketing"]:hover .kx-mon{color:rgb(242,147,63) !important}
+.kx-ev[data-topic="Marketing"]:focus-within{border-color:rgba(242,147,63,.55) !important;
+  box-shadow:0 0 0 1px rgba(242,147,63,.28), 0 0 44px rgba(242,147,63,.22) !important}
+.kx-ev[data-topic="Operations"]:hover{border-color:rgba(111,176,224,.55) !important;
+  box-shadow:0 0 0 1px rgba(111,176,224,.28),
+             0 0 44px rgba(111,176,224,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Operations"]:hover .kx-mon{color:rgb(111,176,224) !important}
+.kx-ev[data-topic="Operations"]:focus-within{border-color:rgba(111,176,224,.55) !important;
+  box-shadow:0 0 0 1px rgba(111,176,224,.28), 0 0 44px rgba(111,176,224,.22) !important}
+.kx-ev[data-topic="Policy"]:hover{border-color:rgba(220,226,232,.55) !important;
+  box-shadow:0 0 0 1px rgba(220,226,232,.28),
+             0 0 44px rgba(220,226,232,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Policy"]:hover .kx-mon{color:rgb(220,226,232) !important}
+.kx-ev[data-topic="Policy"]:focus-within{border-color:rgba(220,226,232,.55) !important;
+  box-shadow:0 0 0 1px rgba(220,226,232,.28), 0 0 44px rgba(220,226,232,.22) !important}
+.kx-ev[data-topic="Technology"]:hover{border-color:rgba(240,133,90,.55) !important;
+  box-shadow:0 0 0 1px rgba(240,133,90,.28),
+             0 0 44px rgba(240,133,90,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Technology"]:hover .kx-mon{color:rgb(240,133,90) !important}
+.kx-ev[data-topic="Technology"]:focus-within{border-color:rgba(240,133,90,.55) !important;
+  box-shadow:0 0 0 1px rgba(240,133,90,.28), 0 0 44px rgba(240,133,90,.22) !important}
+/* the pointer light that follows the cursor inside a card */
+.kx-ev::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:0;transition:opacity .4s ease;z-index:0;
+  background:radial-gradient(420px circle at var(--px,50%) var(--py,0%),
+    rgba(255,255,255,.05), transparent 60%)}
+.kx-ev:hover::after{opacity:1}
+.kx-ev > *{position:relative;z-index:1}
+.kx-ev{transition:none}
+.kx-ev::after{display:none}
+.kx-ev:hover .kx-stage{color:#CEC9BC}
+.kx-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.kx-badge{font-family:'Space Grotesk',system-ui,sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid rgba(239,233,223,.18);color:#C9C2B6;white-space:nowrap}
+.kx-badge.kx-mode-online{border-color:rgba(122,196,168,.45);color:#8FD4B6}
+.kx-badge.kx-mode-livestream{border-color:rgba(214,178,102,.5);color:#E2BE72}
+.kx-badge.kx-mode-in-person{border-color:rgba(196,142,122,.45);color:#DDA98C}
+.kx-badge.kx-cost{border-color:rgba(239,233,223,.28);color:#EFE9DF}
+.kx-badge.kx-where{max-width:260px;overflow:hidden;text-overflow:ellipsis}
+.kx-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#D6B266;text-decoration:none;border-bottom:1px solid rgba(214,178,102,.35);padding-bottom:2px}
+.kx-go:hover{color:#EFE9DF;border-bottom-color:#EFE9DF}
+.kx-go{min-height:44px;align-items:flex-end;padding-bottom:12px;margin-top:8px}
+.kx-badge{font-size:11px;padding:6px 10px}
+.kx-badge.kx-where{max-width:100%}
+.kx-ev,.kx-ev *{min-width:0; overflow-wrap:anywhere}
 .kx-states{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
-.kx-states a{padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:.9rem}
-@media (prefers-color-scheme: light){
-  .kx-ev{border-bottom-color:rgba(0,0,0,.12)}
-  .kx-states a{border-color:rgba(0,0,0,.22)}
-}
+.kx-states a{padding:6px 12px;border:1px solid rgba(212,168,86,.35);border-radius:999px;font-size:.9rem}
+.kx-states a:hover{border-color:rgba(212,168,86,.8)}
+/* The article shell holds body copy to a reading column, which squeezed the
+   card grid into a single lane. Centring against the viewport instead lets
+   the cards use the page the way they do on the hub, without touching the
+   shell's own width for the prose above and below. */
+/* The grid sits outside the article column rather than inside it. A CSS
+   breakout would have to know how far the column is offset from the centre
+   of the page, and it is not centred, so the cards kept running off the
+   left edge. Taking it out of that container in the markup needs no
+   arithmetic and cannot drift when the shell changes. */
+.kx-evsection{padding:8px 28px 12px}
+/* article.css underlines links in body copy. On a card the whole heading is
+   the link, so the underline reads as a mistake. */
+.kx-ev h3 a{text-decoration:none;border-bottom:none;background:none}
+.kx-ev h3 a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://sidekixhq.com/business-events/puerto-rico.html#page","url":"https://sidekixhq.com/business-events/puerto-rico.html","name":"Small Business Events in Puerto Rico","description":"Business events for Puerto Rico founders, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person, with the cost shown as the host states it. Checked at the source every week.","isPartOf":{"@id":"https://sidekixhq.com/#website"},"dateModified":"2026-09-21"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"SideKix","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Events","item":"https://sidekixhq.com/events.html"},{"@type":"ListItem","position":3,"name":"Puerto Rico","item":"https://sidekixhq.com/business-events/puerto-rico.html"}]},{"@type":"ItemList","name":"Upcoming business events in Puerto Rico","numberOfItems":3,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Event","name":"Academia Propiedad intelectual nivel Basico","startDate":"2026-09-30T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=1460034"},"url":"https://ic.prsbtdc.org/workshop.aspx?ekey=1460034","description":"Por favor siga las instrucciones para registrarse: Escriba su nombre con ambos apellidos en letra may\u00fascula sin acentos. Debe llenar todos los campos y completar los dos pasos para recibir el enlace de participaci\u00f3n. Su nombre y el email debe ser el mismo en a","organizer":{"@type":"Organization","name":"Puerto Rico SBTDC","url":"https://ic.prsbtdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=1460034"}}},{"@type":"ListItem","position":2,"item":{"@type":"Event","name":"ACADEMIA PROPIEDAD INTELECTUAL (NIVEL AVANZADO)","startDate":"2026-10-28T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=13460005"},"url":"https://ic.prsbtdc.org/workshop.aspx?ekey=13460005","description":"IMPORTANTE Siga las siguientes instruccciones: *Escriba su nombre en letra may\u00fascula sin acentos. *Debe completar los dos pasos para recibir el enlace de participaci\u00f3n. Le preguntar\u00e1 su nombre dos veces. *Su nombre y el email en ambos pasos del registro debe s","organizer":{"@type":"Organization","name":"Puerto Rico SBTDC","url":"https://ic.prsbtdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=13460005"}}},{"@type":"ListItem","position":3,"item":{"@type":"Event","name":"Mercadeo Digital para Exportadores","startDate":"2026-11-04T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=2460007"},"url":"https://ic.prsbtdc.org/workshop.aspx?ekey=2460007","description":"IMPORTANTE Siga las siguientes instruccciones: *Escriba su nombre en letra may\u00fascula sin acentos. *Debe completar los DOS pasos para recibir el enlace de participaci\u00f3n. Le preguntar\u00e1 su nombre dos veces. *Su nombre y el email en ambos pasos del registro debe s","organizer":{"@type":"Organization","name":"Puerto Rico SBTDC","url":"https://ic.prsbtdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ic.prsbtdc.org/workshop.aspx?ekey=2460007"}}}]}]}</script>
 </head>
@@ -121,18 +232,29 @@ They sit on the calendars of organizations that do not compete for attention,
 so the events run half empty while the people who would benefit never hear
 about them. This page gathers what is scheduled in Puerto Rico over
 the next few months, in one place, refreshed weekly.</p>
-<ul class="kx-evlist">
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=8460009" rel="noopener nofollow" target="_blank">Capacitación e incentivos para la fuerza laboral</a><span>Puerto Rico SBTDC. Thursday, September 24, 2026 at 9:00 AM. In person. No cost. Ponce PRSBTDC Service Center-Universidad Interamericana Universidad Interamericana Recinto Ponce.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=1460045" rel="noopener nofollow" target="_blank">Crédito Personal Vs. Negocio: Más conectados de los que imaginas</a><span>Puerto Rico SBTDC. Tuesday, September 29, 2026 at 1:00 PM. In person. No cost. Centro Empresarial Carolina.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=1460034" rel="noopener nofollow" target="_blank">Academia Propiedad intelectual nivel Basico</a><span>Puerto Rico SBTDC. Wednesday, September 30, 2026 at 10:00 AM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=7460005" rel="noopener nofollow" target="_blank">Capital e Incentivos para tu Negocio</a><span>Puerto Rico SBTDC. Friday, October 2, 2026 at 10:00 AM. In person. No cost. Fajardo PR SBTDC Service Center - Universidad Interamericana Recinto de Fajardo Edificio de Administracion, Universidad Interamericana Recinto de Fajardo.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=2460008" rel="noopener nofollow" target="_blank">Exportación: el siguiente paso de la Manufactura</a><span>Puerto Rico SBTDC. Wednesday, October 7, 2026 at 9:00 AM. In person. No cost. Centro de Emprendimiento Centro de Emprendimiento Puerto Rico Emprende (CEPRE).</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=6460038" rel="noopener nofollow" target="_blank">NEW BUSINESS PROGRAM: PONLE ACCION A TU IDEA DE NEGOCIO</a><span>Puerto Rico SBTDC. Thursday, October 8, 2026 at 9:00 AM. In person. No cost. Arecibo PR SBTDC Service Center - Universidad Interamericana Recinto de Arecibo.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=8460012" rel="noopener nofollow" target="_blank">Academia de propiedad intelectual: Secretos comerciales</a><span>Puerto Rico SBTDC. Wednesday, October 14, 2026 at 10:00 AM. In person. No cost. Ponce PRSBTDC Service Center-Universidad Interamericana Universidad Interamericana Recinto Ponce.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=13460005" rel="noopener nofollow" target="_blank">ACADEMIA PROPIEDAD INTELECTUAL (NIVEL AVANZADO)</a><span>Puerto Rico SBTDC. Wednesday, October 28, 2026 at 10:00 AM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=7460006" rel="noopener nofollow" target="_blank">New Business Program: ¡Ponle acción a tu idea de negocio!</a><span>Puerto Rico SBTDC. Friday, October 30, 2026 at 9:00 AM. In person. No cost. Fajardo PR SBTDC Service Center - Universidad Interamericana Recinto de Fajardo Edificio de Administracion, Universidad Interamericana Recinto de Fajardo.</span></li>
-<li class="kx-ev"><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=2460007" rel="noopener nofollow" target="_blank">Mercadeo Digital para Exportadores</a><span>Puerto Rico SBTDC. Wednesday, November 4, 2026 at 10:00 AM. Online. No cost.</span></li>
-</ul>
+</div>
+</article>
+</div>
+<svg aria-hidden="true" height="0" style="position:absolute;" width="0"><defs>
+<filter id="kx-rough"><feturbulence basefrequency="0.014" numoctaves="2" result="n" seed="7" type="fractalNoise"></feturbulence><fedisplacementmap in="SourceGraphic" in2="n" scale="4" xchannelselector="R" ychannelselector="G"></fedisplacementmap></filter>
+</defs></svg>
+<section aria-label="Upcoming events" class="kx-evsection">
+<div id="kx-grid">
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">24</div><div class="kx-mon">SEP</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=8460009" rel="noopener nofollow" target="_blank">Capacitación e incentivos para la fuerza laboral</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; September 24 &middot; 9:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Ponce PRSBTDC Service Center-Universidad Interamericana Universidad Interamericana Recinto Ponce</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=8460009" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Funding"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #D670FF;">29</div><div class="kx-mon">SEP</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=1460045" rel="noopener nofollow" target="_blank">Crédito Personal Vs. Negocio: Más conectados de los que imaginas</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; September 29 &middot; 1:00 PM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Centro Empresarial Carolina</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=1460045" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #F3E4A8;">30</div><div class="kx-mon">SEP</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=1460034" rel="noopener nofollow" target="_blank">Academia Propiedad intelectual nivel Basico</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; September 30 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=1460034" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Funding"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">2</div><div class="kx-mon">OCT</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=7460005" rel="noopener nofollow" target="_blank">Capital e Incentivos para tu Negocio</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; October 2 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Fajardo PR SBTDC Service Center - Universidad Interamericana Recinto de Fajardo Edificio de Administracion, Universidad Interamericana Recinto de Fajardo</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=7460005" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #D670FF;">7</div><div class="kx-mon">OCT</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=2460008" rel="noopener nofollow" target="_blank">Exportación: el siguiente paso de la Manufactura</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; October 7 &middot; 9:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Centro de Emprendimiento Centro de Emprendimiento Puerto Rico Emprende (CEPRE)</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=2460008" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #F3E4A8;">8</div><div class="kx-mon">OCT</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=6460038" rel="noopener nofollow" target="_blank">NEW BUSINESS PROGRAM: PONLE ACCION A TU IDEA DE NEGOCIO</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; October 8 &middot; 9:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Arecibo PR SBTDC Service Center - Universidad Interamericana Recinto de Arecibo</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=6460038" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">14</div><div class="kx-mon">OCT</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=8460012" rel="noopener nofollow" target="_blank">Academia de propiedad intelectual: Secretos comerciales</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; October 14 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Ponce PRSBTDC Service Center-Universidad Interamericana Universidad Interamericana Recinto Ponce</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=8460012" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #D670FF;">28</div><div class="kx-mon">OCT</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=13460005" rel="noopener nofollow" target="_blank">ACADEMIA PROPIEDAD INTELECTUAL (NIVEL AVANZADO)</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; October 28 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=13460005" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #F3E4A8;">30</div><div class="kx-mon">OCT</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=7460006" rel="noopener nofollow" target="_blank">New Business Program: ¡Ponle acción a tu idea de negocio!</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; October 30 &middot; 9:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Fajardo PR SBTDC Service Center - Universidad Interamericana Recinto de Fajardo Edificio de Administracion, Universidad Interamericana Recinto de Fajardo</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=7460006" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Technology"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">4</div><div class="kx-mon">NOV</div><h3><a href="https://ic.prsbtdc.org/workshop.aspx?ekey=2460007" rel="noopener nofollow" target="_blank">Mercadeo Digital para Exportadores</a></h3><div class="kx-meta">Puerto Rico SBTDC &middot; November 4 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://ic.prsbtdc.org/workshop.aspx?ekey=2460007" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+</div>
+</section>
+<div class="artgrid">
+<article>
+<div class="body">
 <h2>What is on this list</h2>
 <p>Every listing links to the host, not to SideKix. The cost line repeats what
 the host states, so an event marked at no cost is one the host describes that

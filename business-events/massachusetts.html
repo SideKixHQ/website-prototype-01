@@ -81,16 +81,127 @@ img{width:auto;height:auto}
 [hidden]{display:none !important}
 </style>
 <style id="kx-ev">
-.kx-evlist{list-style:none;margin:0;padding:0}
-.kx-ev{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
-.kx-ev a{display:block;font-weight:600}
-.kx-ev span{display:block;margin-top:4px;font-size:.92rem;opacity:.78}
+#kx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;max-width:1180px;margin:0 auto}@media (max-width:900px){#kx-grid{grid-template-columns:1fr}}
+.kx-gold-text{background:linear-gradient(100deg,#F3E4A8,#D4A856 40%,#A1853E 72%,#F3E4A8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kxShimmer 6s linear infinite}
+/* event card, matching the kx-glowbox treatment */
+  .kx-ev{position:relative;padding:22px;border:1px solid #1E1C18;border-radius:14px;background:rgba(10,10,12,.6);transition:border-color .3s,transform .3s;}
+.kx-ev:hover{border-color:rgba(212,168,86,.5);transform:translateY(-3px)}
+.kx-ev .rough{position:absolute;inset:7px;border:1.6px solid rgba(212,168,86,.4);border-radius:18px;filter:url(#kx-rough);pointer-events:none;}
+.kx-num{font-family:'EA Majer',sans-serif;font-size:52px;line-height:1;margin-bottom:4px;color:transparent;}
+.kx-mon{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.22em;color:#928F86;margin-bottom:18px;}
+.kx-ev h3{font-size:21px;font-weight:800;margin:0 0 10px;line-height:1.3}
+.kx-ev h3 a{color:#fff}
+.kx-ev h3 a:hover{color:#D4A856}
+.kx-ev p{color:#9B958B;font-size:15px;line-height:1.65;margin:0 0 16px}
+.kx-meta{font-family:'Space Grotesk',monospace;font-size:11.5px;letter-spacing:.12em;color:#928F86;text-transform:uppercase}
+.kx-meta span+span::before{content:"·";margin:0 8px;color:#3F3D38}
+.kx-ev[hidden]{display:none}
+/* the two greys were the hardest things to read on the page */
+.kx-ev p, .kx-meta, .kx-count{color:#CEC9BC !important}
+.kx-ev h3 a{color:#FFFFEF !important}
+.kx-mon{color:#D4A856 !important}
+/* ---- a card lights up in its own colour ----
+   the cards only shifted their border on hover, so pointing at one gave no
+   sense of which topic it belonged to. each now throws a shadow in the colour
+   of its own chip, and the month abbreviation warms to match. keyboard users
+   get the same treatment via :focus-within, since they never hover. */
+.kx-ev{transition:border-color .3s ease, box-shadow .35s ease, transform .3s ease}
+.kx-ev[data-topic="Finance"]:hover{border-color:rgba(166,224,180,.55) !important;
+  box-shadow:0 0 0 1px rgba(166,224,180,.28),
+             0 0 44px rgba(166,224,180,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Finance"]:hover .kx-mon{color:rgb(166,224,180) !important}
+.kx-ev[data-topic="Finance"]:focus-within{border-color:rgba(166,224,180,.55) !important;
+  box-shadow:0 0 0 1px rgba(166,224,180,.28), 0 0 44px rgba(166,224,180,.22) !important}
+.kx-ev[data-topic="Funding"]:hover{border-color:rgba(255,231,166,.55) !important;
+  box-shadow:0 0 0 1px rgba(255,231,166,.28),
+             0 0 44px rgba(255,231,166,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Funding"]:hover .kx-mon{color:rgb(255,231,166) !important}
+.kx-ev[data-topic="Funding"]:focus-within{border-color:rgba(255,231,166,.55) !important;
+  box-shadow:0 0 0 1px rgba(255,231,166,.28), 0 0 44px rgba(255,231,166,.22) !important}
+.kx-ev[data-topic="Hiring"]:hover{border-color:rgba(132,208,198,.55) !important;
+  box-shadow:0 0 0 1px rgba(132,208,198,.28),
+             0 0 44px rgba(132,208,198,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Hiring"]:hover .kx-mon{color:rgb(132,208,198) !important}
+.kx-ev[data-topic="Hiring"]:focus-within{border-color:rgba(132,208,198,.55) !important;
+  box-shadow:0 0 0 1px rgba(132,208,198,.28), 0 0 44px rgba(132,208,198,.22) !important}
+.kx-ev[data-topic="Legal"]:hover{border-color:rgba(177,139,228,.55) !important;
+  box-shadow:0 0 0 1px rgba(177,139,228,.28),
+             0 0 44px rgba(177,139,228,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Legal"]:hover .kx-mon{color:rgb(177,139,228) !important}
+.kx-ev[data-topic="Legal"]:focus-within{border-color:rgba(177,139,228,.55) !important;
+  box-shadow:0 0 0 1px rgba(177,139,228,.28), 0 0 44px rgba(177,139,228,.22) !important}
+.kx-ev[data-topic="Marketing"]:hover{border-color:rgba(242,147,63,.55) !important;
+  box-shadow:0 0 0 1px rgba(242,147,63,.28),
+             0 0 44px rgba(242,147,63,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Marketing"]:hover .kx-mon{color:rgb(242,147,63) !important}
+.kx-ev[data-topic="Marketing"]:focus-within{border-color:rgba(242,147,63,.55) !important;
+  box-shadow:0 0 0 1px rgba(242,147,63,.28), 0 0 44px rgba(242,147,63,.22) !important}
+.kx-ev[data-topic="Operations"]:hover{border-color:rgba(111,176,224,.55) !important;
+  box-shadow:0 0 0 1px rgba(111,176,224,.28),
+             0 0 44px rgba(111,176,224,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Operations"]:hover .kx-mon{color:rgb(111,176,224) !important}
+.kx-ev[data-topic="Operations"]:focus-within{border-color:rgba(111,176,224,.55) !important;
+  box-shadow:0 0 0 1px rgba(111,176,224,.28), 0 0 44px rgba(111,176,224,.22) !important}
+.kx-ev[data-topic="Policy"]:hover{border-color:rgba(220,226,232,.55) !important;
+  box-shadow:0 0 0 1px rgba(220,226,232,.28),
+             0 0 44px rgba(220,226,232,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Policy"]:hover .kx-mon{color:rgb(220,226,232) !important}
+.kx-ev[data-topic="Policy"]:focus-within{border-color:rgba(220,226,232,.55) !important;
+  box-shadow:0 0 0 1px rgba(220,226,232,.28), 0 0 44px rgba(220,226,232,.22) !important}
+.kx-ev[data-topic="Technology"]:hover{border-color:rgba(240,133,90,.55) !important;
+  box-shadow:0 0 0 1px rgba(240,133,90,.28),
+             0 0 44px rgba(240,133,90,.22),
+             0 18px 44px rgba(0,0,0,.6) !important}
+.kx-ev[data-topic="Technology"]:hover .kx-mon{color:rgb(240,133,90) !important}
+.kx-ev[data-topic="Technology"]:focus-within{border-color:rgba(240,133,90,.55) !important;
+  box-shadow:0 0 0 1px rgba(240,133,90,.28), 0 0 44px rgba(240,133,90,.22) !important}
+/* the pointer light that follows the cursor inside a card */
+.kx-ev::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:0;transition:opacity .4s ease;z-index:0;
+  background:radial-gradient(420px circle at var(--px,50%) var(--py,0%),
+    rgba(255,255,255,.05), transparent 60%)}
+.kx-ev:hover::after{opacity:1}
+.kx-ev > *{position:relative;z-index:1}
+.kx-ev{transition:none}
+.kx-ev::after{display:none}
+.kx-ev:hover .kx-stage{color:#CEC9BC}
+.kx-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.kx-badge{font-family:'Space Grotesk',system-ui,sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid rgba(239,233,223,.18);color:#C9C2B6;white-space:nowrap}
+.kx-badge.kx-mode-online{border-color:rgba(122,196,168,.45);color:#8FD4B6}
+.kx-badge.kx-mode-livestream{border-color:rgba(214,178,102,.5);color:#E2BE72}
+.kx-badge.kx-mode-in-person{border-color:rgba(196,142,122,.45);color:#DDA98C}
+.kx-badge.kx-cost{border-color:rgba(239,233,223,.28);color:#EFE9DF}
+.kx-badge.kx-where{max-width:260px;overflow:hidden;text-overflow:ellipsis}
+.kx-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#D6B266;text-decoration:none;border-bottom:1px solid rgba(214,178,102,.35);padding-bottom:2px}
+.kx-go:hover{color:#EFE9DF;border-bottom-color:#EFE9DF}
+.kx-go{min-height:44px;align-items:flex-end;padding-bottom:12px;margin-top:8px}
+.kx-badge{font-size:11px;padding:6px 10px}
+.kx-badge.kx-where{max-width:100%}
+.kx-ev,.kx-ev *{min-width:0; overflow-wrap:anywhere}
 .kx-states{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
-.kx-states a{padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:.9rem}
-@media (prefers-color-scheme: light){
-  .kx-ev{border-bottom-color:rgba(0,0,0,.12)}
-  .kx-states a{border-color:rgba(0,0,0,.22)}
-}
+.kx-states a{padding:6px 12px;border:1px solid rgba(212,168,86,.35);border-radius:999px;font-size:.9rem}
+.kx-states a:hover{border-color:rgba(212,168,86,.8)}
+/* The article shell holds body copy to a reading column, which squeezed the
+   card grid into a single lane. Centring against the viewport instead lets
+   the cards use the page the way they do on the hub, without touching the
+   shell's own width for the prose above and below. */
+/* The grid sits outside the article column rather than inside it. A CSS
+   breakout would have to know how far the column is offset from the centre
+   of the page, and it is not centred, so the cards kept running off the
+   left edge. Taking it out of that container in the markup needs no
+   arithmetic and cannot drift when the shell changes. */
+.kx-evsection{padding:8px 28px 12px}
+/* article.css underlines links in body copy. On a card the whole heading is
+   the link, so the underline reads as a mistake. */
+.kx-ev h3 a{text-decoration:none;border-bottom:none;background:none}
+.kx-ev h3 a:hover{text-decoration:underline}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://sidekixhq.com/business-events/massachusetts.html#page","url":"https://sidekixhq.com/business-events/massachusetts.html","name":"Small Business Events in Massachusetts","description":"Business events for Massachusetts founders, from SBDCs, colleges, nonprofits, banks and companies. Online, livestreamed and in person, with the cost shown as the host states it. Checked at the source every week.","isPartOf":{"@id":"https://sidekixhq.com/#website"},"dateModified":"2026-09-21"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"SideKix","item":"https://sidekixhq.com/"},{"@type":"ListItem","position":2,"name":"Events","item":"https://sidekixhq.com/events.html"},{"@type":"ListItem","position":3,"name":"Massachusetts","item":"https://sidekixhq.com/business-events/massachusetts.html"}]},{"@type":"ItemList","name":"Upcoming business events in Massachusetts","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Event","name":"Introduction to AI for Small Businesses","startDate":"2026-09-24T13:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=110460038"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=110460038","description":"The Massachusetts Small Business Development Center (MSBDC) provides free and confidential business advice and low-cost educational programs to prospective and existing Massachusetts small businesses.","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=110460038"}}},{"@type":"ListItem","position":2,"item":{"@type":"Event","name":"STEP Grant Application Webinar","startDate":"2026-09-25T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=170460010"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=170460010","description":"Join us to learn about the Massachusetts State Trade Expansion Program (STEP), a grant available to eligible Massachusetts small businesses for the purpose of increasing export sales of their goods and services.","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=170460010"}}},{"@type":"ListItem","position":3,"item":{"@type":"Event","name":"Creating a Dynamic Capability Statement - Get Noticed!","startDate":"2026-09-30T12:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=180460004"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=180460004","description":"Learn how to craft a capability statement specifically tailored to federal buyers and prime contractors...what to include, what to avoid, and how to present your strengths to align with government expectations.","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=180460004"}}},{"@type":"ListItem","position":4,"item":{"@type":"Event","name":"TTWR: Incident Response for Small Business: What to Do When Something Goes Wrong","startDate":"2026-10-07T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=150460012"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=150460012","description":"You have been hacked. Now what? We spend a lot of time talking about how to prevent cyberattacks. But what happens when prevention is not enough? When you open your laptop and something is clearly, terrifyingly wrong? Most small business owners have no idea wh","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=150460012"}}},{"@type":"ListItem","position":5,"item":{"@type":"Event","name":"How to Start a Business","startDate":"2026-10-07T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=80460021"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=80460021","description":"Are you looking to start a business but don\u2019t know where to begin? This workshop will guide you through the essential steps of launching your business. We\u2019ll cover key business fundamentals, from start-up considerations and business structure options to creati","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=80460021"}}},{"@type":"ListItem","position":6,"item":{"@type":"Event","name":"Estimated Taxes Made Simple: A Guide for Small Business Owners","startDate":"2026-10-27T11:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=80460022"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=80460022","description":"Estimated taxes don\u2019t have to be overwhelming. Join us for an informative webinar featuring an IRS Stakeholder Liaison who will help small business owners better understand estimated tax payments, who is required to pay them, how payments are calculated, and i","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=80460022"}}},{"@type":"ListItem","position":7,"item":{"@type":"Event","name":"November Tech Talks with Rob - Year End Tech Tune-Up: Simplify, Secure and Set Up 2027 for Success","startDate":"2026-11-04T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=60460017"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=60460017","description":"Join us for \u201cTech Talk with Rob\u201d an enlightening webinar series designed specifically for small business owners looking to navigate the complex world of technology. Each session, hosted by tech expert Rob, will delve into critical topics that are essential for","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=60460017"}}},{"@type":"ListItem","position":8,"item":{"@type":"Event","name":"Asia Trade Talk: Ask the Expert","startDate":"2026-11-12T10:00:00-04:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","location":{"@type":"VirtualLocation","url":"https://clients.msbdc.org/workshop.aspx?ekey=170460016"},"url":"https://clients.msbdc.org/workshop.aspx?ekey=170460016","description":"The Massachusetts Small Business Development Center (MSBDC) provides free and confidential business advice and low-cost educational programs to prospective and existing Massachusetts small businesses.","organizer":{"@type":"Organization","name":"Massachusetts SBDC","url":"https://clients.msbdc.org/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://clients.msbdc.org/workshop.aspx?ekey=170460016"}}}]}]}</script>
 </head>
@@ -121,17 +232,28 @@ They sit on the calendars of organizations that do not compete for attention,
 so the events run half empty while the people who would benefit never hear
 about them. This page gathers what is scheduled in Massachusetts over
 the next few months, in one place, refreshed weekly.</p>
-<ul class="kx-evlist">
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=110460038" rel="noopener nofollow" target="_blank">Introduction to AI for Small Businesses</a><span>Massachusetts SBDC. Thursday, September 24, 2026 at 1:00 PM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=170460010" rel="noopener nofollow" target="_blank">STEP Grant Application Webinar</a><span>Massachusetts SBDC. Friday, September 25, 2026 at 12:00 PM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=180460004" rel="noopener nofollow" target="_blank">Creating a Dynamic Capability Statement - Get Noticed!</a><span>Massachusetts SBDC. Wednesday, September 30, 2026 at 12:00 PM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=150460012" rel="noopener nofollow" target="_blank">TTWR: Incident Response for Small Business: What to Do When Something Goes Wrong</a><span>Massachusetts SBDC. Wednesday, October 7, 2026 at 10:00 AM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=80460021" rel="noopener nofollow" target="_blank">How to Start a Business</a><span>Massachusetts SBDC. Wednesday, October 7, 2026 at 10:00 AM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=150460013" rel="noopener nofollow" target="_blank">Cybersecurity Workshop: A Hands-on Experience for Small Businesses</a><span>Massachusetts SBDC. Thursday, October 8, 2026 at 10:00 AM. In person. No cost. Berkshire Innovation Center.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=80460022" rel="noopener nofollow" target="_blank">Estimated Taxes Made Simple: A Guide for Small Business Owners</a><span>Massachusetts SBDC. Tuesday, October 27, 2026 at 11:00 AM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=60460017" rel="noopener nofollow" target="_blank">November Tech Talks with Rob - Year End Tech Tune-Up: Simplify, Secure and Set Up 2027 for Success</a><span>Massachusetts SBDC. Wednesday, November 4, 2026 at 10:00 AM. Online. No cost.</span></li>
-<li class="kx-ev"><a href="https://clients.msbdc.org/workshop.aspx?ekey=170460016" rel="noopener nofollow" target="_blank">Asia Trade Talk: Ask the Expert</a><span>Massachusetts SBDC. Thursday, November 12, 2026 at 10:00 AM. Online. No cost.</span></li>
-</ul>
+</div>
+</article>
+</div>
+<svg aria-hidden="true" height="0" style="position:absolute;" width="0"><defs>
+<filter id="kx-rough"><feturbulence basefrequency="0.014" numoctaves="2" result="n" seed="7" type="fractalNoise"></feturbulence><fedisplacementmap in="SourceGraphic" in2="n" scale="4" xchannelselector="R" ychannelselector="G"></fedisplacementmap></filter>
+</defs></svg>
+<section aria-label="Upcoming events" class="kx-evsection">
+<div id="kx-grid">
+<article class="kx-ev" data-topic="Technology"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">24</div><div class="kx-mon">SEP</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=110460038" rel="noopener nofollow" target="_blank">Introduction to AI for Small Businesses</a></h3><div class="kx-meta">Massachusetts SBDC &middot; September 24 &middot; 1:00 PM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=110460038" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Funding"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #D670FF;">25</div><div class="kx-mon">SEP</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=170460010" rel="noopener nofollow" target="_blank">STEP Grant Application Webinar</a></h3><div class="kx-meta">Massachusetts SBDC &middot; September 25 &middot; 12:00 PM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=170460010" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Legal"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #F3E4A8;">30</div><div class="kx-mon">SEP</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=180460004" rel="noopener nofollow" target="_blank">Creating a Dynamic Capability Statement - Get Noticed!</a></h3><div class="kx-meta">Massachusetts SBDC &middot; September 30 &middot; 12:00 PM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=180460004" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">7</div><div class="kx-mon">OCT</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=150460012" rel="noopener nofollow" target="_blank">TTWR: Incident Response for Small Business: What to Do When Something Goes Wrong</a></h3><div class="kx-meta">Massachusetts SBDC &middot; October 7 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=150460012" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #D670FF;">7</div><div class="kx-mon">OCT</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=80460021" rel="noopener nofollow" target="_blank">How to Start a Business</a></h3><div class="kx-meta">Massachusetts SBDC &middot; October 7 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=80460021" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #F3E4A8;">8</div><div class="kx-mon">OCT</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=150460013" rel="noopener nofollow" target="_blank">Cybersecurity Workshop: A Hands-on Experience for Small Businesses</a></h3><div class="kx-meta">Massachusetts SBDC &middot; October 8 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-in-person">In person</span><span class="kx-badge kx-where">Berkshire Innovation Center</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=150460013" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Finance"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #38D2FF;">27</div><div class="kx-mon">OCT</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=80460022" rel="noopener nofollow" target="_blank">Estimated Taxes Made Simple: A Guide for Small Business Owners</a></h3><div class="kx-meta">Massachusetts SBDC &middot; October 27 &middot; 11:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=80460022" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #D670FF;">4</div><div class="kx-mon">NOV</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=60460017" rel="noopener nofollow" target="_blank">November Tech Talks with Rob - Year End Tech Tune-Up: Simplify, Secure and Set Up 2027 for Success</a></h3><div class="kx-meta">Massachusetts SBDC &middot; November 4 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=60460017" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+<article class="kx-ev" data-topic="Business"><div class="rough" aria-hidden="true"></div><div class="kx-num" style="-webkit-text-stroke:1.5px #F3E4A8;">12</div><div class="kx-mon">NOV</div><h3><a href="https://clients.msbdc.org/workshop.aspx?ekey=170460016" rel="noopener nofollow" target="_blank">Asia Trade Talk: Ask the Expert</a></h3><div class="kx-meta">Massachusetts SBDC &middot; November 12 &middot; 10:00 AM</div><div class="kx-badges"><span class="kx-badge kx-mode-online">Online</span><span class="kx-badge kx-cost">No cost</span></div><a class="kx-go" href="https://clients.msbdc.org/workshop.aspx?ekey=170460016" rel="noopener nofollow" target="_blank">Open event page &rarr;</a></article>
+</div>
+</section>
+<div class="artgrid">
+<article>
+<div class="body">
 <h2>What is on this list</h2>
 <p>Every listing links to the host, not to SideKix. The cost line repeats what
 the host states, so an event marked at no cost is one the host describes that
