@@ -224,6 +224,50 @@ def test_parsers(m) -> None:
     check("   real titles survive the date filter", wrong, [])
     print(f"   {'ok  ' if not wrong else 'FAIL'} real titles survive the date filter")
 
+    # Localist, which runs most university calendars, writes the UTC offset in
+    # seconds. dateutil rejects the whole stamp, so every event on every such
+    # calendar used to fall back to the visible text and land at midnight.
+    fixed = m.repair_seconds_offset("2026-09-24T10:00:00-14400")
+    check("   a seconds offset is re-read as hours", fixed.isoformat(),
+          "2026-09-24T10:00:00-04:00")
+    print(f"   {'ok  ' if fixed else 'FAIL'} a seconds offset is re-read as hours")
+    untouched = m.repair_seconds_offset("2026-09-24T10:00:00-04:00")
+    check("   a well formed offset is left alone", untouched, None)
+    print(f"   {'ok  ' if untouched is None else 'FAIL'} a well formed offset is left alone")
+    silly = m.repair_seconds_offset("2026-09-24T10:00:00-99999")
+    check("   an impossible offset is refused", silly, None)
+    print(f"   {'ok  ' if silly is None else 'FAIL'} an impossible offset is refused")
+
+    localist = """
+    <div class="ev"><time datetime="2026-10-01T09:00:00-14400">Oct. 1, 2026 at 9 a.m.</time>
+    <h3><a href="/event/start">How to Start Your Business Workshop</a></h3></div>"""
+    t5 = m.from_time_tags(BeautifulSoup(localist, "html.parser"), src)
+    got5 = t5[0]["start"] if t5 else ""
+    check("   a Localist card keeps its real hour", got5, "2026-10-01T09:00:00-04:00")
+    print(f"   {'ok  ' if got5.endswith('T09:00:00-04:00') else 'FAIL'} a Localist card keeps its real hour")
+
+    # The heading sits inside the link rather than the other way round, and the
+    # date follows the link. Reading only the usual shape skipped every row.
+    wrapped = """
+    <div class="listItem"><a class="listLink" href="/events/true-north">
+    <div class="eventDate"><div class="day">21</div><div class="month">Sep</div></div>
+    <h3 class="listTitle">True North Strategy Workshop</h3></a>
+    <div class="listSummary"><span>September 21, 2026</span></div></div>"""
+    t6 = m.from_headings(BeautifulSoup(wrapped, "html.parser"), src)
+    title6 = t6[0]["title"] if t6 else ""
+    check("   a card wrapped in its link is read", len(t6), 1)
+    print(f"   {'ok  ' if len(t6)==1 else 'FAIL'} a card wrapped in its link is read")
+    check("   the date badge stays out of the title", title6,
+          "True North Strategy Workshop")
+    print(f"   {'ok  ' if title6=='True North Strategy Workshop' else 'FAIL'} the date badge stays out of the title")
+
+    # The ordinary shape, link inside the heading, must be unchanged by that.
+    normal = """
+    <h3><a href="/a">Marketing Basics For New Owners</a></h3><p>October 5, 2026 2:00 pm</p>"""
+    t7 = m.from_headings(BeautifulSoup(normal, "html.parser"), src)
+    check("   the ordinary heading shape still reads", len(t7), 1)
+    print(f"   {'ok  ' if len(t7)==1 else 'FAIL'} the ordinary heading shape still reads")
+
 
 def test_safety_rail(m) -> None:
     section("4. The safety rail")

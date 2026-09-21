@@ -710,9 +710,21 @@
       "scope": "North Carolina"
     },
     {
-      "name": "Florida SBDC calendar",
-      "url": "https://floridasbdc.org/live-training-calendar",
+      "name": "Florida SBDC at UCF",
+      "url": "https://events.ucf.edu/calendar/246/florida-sbdc-at-ucf/upcoming/",
       "category": "College",
+      "scope": "Florida"
+    },
+    {
+      "name": "Synapse Florida",
+      "url": "https://synapsefl.com/communitycalendar/",
+      "category": "Nonprofit",
+      "scope": "Florida"
+    },
+    {
+      "name": "Jacksonville Small and Emerging Business",
+      "url": "https://jseb.jacksonville.gov/events",
+      "category": "Network",
       "scope": "Florida"
     }
   ]

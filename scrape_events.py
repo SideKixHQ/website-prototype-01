@@ -320,6 +320,34 @@ DATE_NEAR_LINK = re.compile(
 )
 
 
+# Localist powers most university event calendars, and it writes the UTC
+# offset in seconds rather than the hours and minutes ISO 8601 asks for:
+# datetime="2026-09-24T10:00:00-14400". dateutil rejects the whole string, so
+# the event fell through to the tag's visible text, which carries the date
+# ("Sept. 24, 2026 at 10 a.m.") but not a time the date regex can read. Every
+# event from every Localist calendar therefore landed at midnight. This is
+# only ever tried after a normal parse has already failed, so a well formed
+# stamp is never touched.
+_SECS_OFFSET = re.compile(r"^(.*T\d{2}:\d{2}(?::\d{2})?)([+-])(\d{3,6})$")
+
+
+def repair_seconds_offset(stamp: str):
+    """Re-read an offset written in seconds. Returns None if it is not one."""
+    match = _SECS_OFFSET.match(stamp or "")
+    if not match:
+        return None
+    base, sign, digits = match.groups()
+    total = int(digits)
+    # A real offset is a whole number of minutes and never more than 14 hours.
+    if total % 60 or total > 14 * 3600:
+        return None
+    hours, minutes = divmod(total // 60, 60)
+    try:
+        return dateparse.parse(f"{base}{sign}{hours:02d}:{minutes:02d}")
+    except (ValueError, OverflowError, TypeError):
+        return None
+
+
 def from_time_tags(soup: BeautifulSoup, source: dict) -> list[dict]:
     """Fallback for card and list layouts that carry a real <time> element.
 
@@ -345,7 +373,7 @@ def from_time_tags(soup: BeautifulSoup, source: dict) -> list[dict]:
             try:
                 when = dateparse.parse(stamp)
             except (ValueError, OverflowError, TypeError):
-                when = None
+                when = repair_seconds_offset(stamp)
         if when is None:
             text = tag.get_text(" ", strip=True)
             match = DATE_NEAR_LINK.search(text)
@@ -407,19 +435,39 @@ def from_time_tags(soup: BeautifulSoup, source: dict) -> list[dict]:
 
 
 def from_headings(soup: BeautifulSoup, source: dict) -> list[dict]:
-    """Fallback for pages with no JSON-LD: a heading link followed by a date."""
+    """Fallback for pages with no JSON-LD: a heading link followed by a date.
+
+    Two shapes are read. The common one puts the link inside the heading,
+    <h3><a>Title</a></h3>, and the date in the elements after the heading.
+    The other wraps the whole card in the link, <a><div>21 Sep</div>
+    <h3>Title</h3></a>, and puts the date in a block after the link. Reading
+    only the first shape is why Jacksonville, and any other site built this
+    way, returned nothing at all: the heading has no link of its own, so
+    every row was skipped before the date was ever looked for.
+    """
     found = []
     for tag in soup.find_all(["h2", "h3", "h4", "h5"]):
         link = tag.find("a", href=True)
-        if not link:
-            continue
-        title = clean(link.get_text(" ", strip=True))
+        if link is not None:
+            # Link inside the heading: the title is the link text and the
+            # date follows the heading.
+            scan = tag
+            title = clean(link.get_text(" ", strip=True))
+        else:
+            # Heading inside the link: the link text would carry the card's
+            # date badge as well, so the title comes from the heading and the
+            # date is looked for after the link.
+            link = tag.find_parent("a", href=True)
+            if link is None:
+                continue
+            scan = link
+            title = clean(tag.get_text(" ", strip=True))
         if len(title) < 12:
             continue
 
         window = " ".join(
             sib.get_text(" ", strip=True)
-            for sib in list(tag.next_siblings)[:6]
+            for sib in list(scan.next_siblings)[:6]
             if getattr(sib, "get_text", None)
         )
         window = f"{tag.get_text(' ', strip=True)} {window}"
