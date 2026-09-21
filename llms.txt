@@ -155,18 +155,18 @@ Checked at the source and refreshed weekly. Last run 2026-09-21. Each page lists
 - [Business events in Nebraska](https://sidekixhq.com/business-events/nebraska.html): 16 upcoming events for people starting, growing or leading a business in Nebraska.
 - [Business events in New Jersey](https://sidekixhq.com/business-events/new-jersey.html): 24 upcoming events for people starting, growing or leading a business in New Jersey.
 - [Business events in New York](https://sidekixhq.com/business-events/new-york.html): 66 upcoming events for people starting, growing or leading a business in New York.
-- [Business events in North Carolina](https://sidekixhq.com/business-events/north-carolina.html): 83 upcoming events for people starting, growing or leading a business in North Carolina.
-- [Business events in Ohio](https://sidekixhq.com/business-events/ohio.html): 59 upcoming events for people starting, growing or leading a business in Ohio.
+- [Business events in North Carolina](https://sidekixhq.com/business-events/north-carolina.html): 84 upcoming events for people starting, growing or leading a business in North Carolina.
+- [Business events in Ohio](https://sidekixhq.com/business-events/ohio.html): 60 upcoming events for people starting, growing or leading a business in Ohio.
 - [Business events in Oklahoma](https://sidekixhq.com/business-events/oklahoma.html): 9 upcoming events for people starting, growing or leading a business in Oklahoma.
-- [Business events in Oregon](https://sidekixhq.com/business-events/oregon.html): 14 upcoming events for people starting, growing or leading a business in Oregon.
-- [Business events in Pennsylvania](https://sidekixhq.com/business-events/pennsylvania.html): 81 upcoming events for people starting, growing or leading a business in Pennsylvania.
+- [Business events in Oregon](https://sidekixhq.com/business-events/oregon.html): 12 upcoming events for people starting, growing or leading a business in Oregon.
+- [Business events in Pennsylvania](https://sidekixhq.com/business-events/pennsylvania.html): 82 upcoming events for people starting, growing or leading a business in Pennsylvania.
 - [Business events in Puerto Rico](https://sidekixhq.com/business-events/puerto-rico.html): 10 upcoming events for people starting, growing or leading a business in Puerto Rico.
 - [Business events in South Carolina](https://sidekixhq.com/business-events/south-carolina.html): 8 upcoming events for people starting, growing or leading a business in South Carolina.
-- [Business events in Tennessee](https://sidekixhq.com/business-events/tennessee.html): 22 upcoming events for people starting, growing or leading a business in Tennessee.
-- [Business events in Texas](https://sidekixhq.com/business-events/texas.html): 111 upcoming events for people starting, growing or leading a business in Texas.
-- [Business events in Utah](https://sidekixhq.com/business-events/utah.html): 21 upcoming events for people starting, growing or leading a business in Utah.
+- [Business events in Tennessee](https://sidekixhq.com/business-events/tennessee.html): 24 upcoming events for people starting, growing or leading a business in Tennessee.
+- [Business events in Texas](https://sidekixhq.com/business-events/texas.html): 116 upcoming events for people starting, growing or leading a business in Texas.
+- [Business events in Utah](https://sidekixhq.com/business-events/utah.html): 20 upcoming events for people starting, growing or leading a business in Utah.
 - [Business events in Virginia](https://sidekixhq.com/business-events/virginia.html): 62 upcoming events for people starting, growing or leading a business in Virginia.
-- [Business events in Washington](https://sidekixhq.com/business-events/washington.html): 10 upcoming events for people starting, growing or leading a business in Washington.
+- [Business events in Washington](https://sidekixhq.com/business-events/washington.html): 11 upcoming events for people starting, growing or leading a business in Washington.
 
 <!-- kx:states:llms:end -->
 
