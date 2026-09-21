@@ -1177,6 +1177,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sidekixhq.com/business-events/arkansas.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sidekixhq.com/business-events/connecticut.html</loc>
     <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -1207,7 +1213,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sidekixhq.com/business-events/iowa.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sidekixhq.com/business-events/louisiana.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sidekixhq.com/business-events/maryland.html</loc>
     <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1220,6 +1238,12 @@
   </url>
   <url>
     <loc>https://sidekixhq.com/business-events/minnesota.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sidekixhq.com/business-events/montana.html</loc>
     <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
