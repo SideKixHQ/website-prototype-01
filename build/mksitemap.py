@@ -44,6 +44,7 @@ PRIORITY = {
  "start-a-business-in-north-carolina.html": "0.9",
  "terms.html": "0.3", "privacy.html": "0.3", "cookies.html": "0.3",
  "purchase-policy.html": "0.3",
+ "affiliate-policy.html": "0.3",
 }
 FREQ = {"index.html": "weekly", "events.html": "weekly", "press.html": "weekly",
         "library.html": "weekly", "market-data.html": "monthly"}
