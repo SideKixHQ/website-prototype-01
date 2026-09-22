@@ -20,6 +20,11 @@ rebuild pipeline and cost nothing on a run where the markup is already right.
    All of them use the article shell, so a .backlink anchor as the first
    child of .ahead picks up assets/article.css with no new styling.
 
+4. Hub names read as title case in every back row but two, one back row was
+   missing its "Back to" altogether, and "Back to SideKix" pointed at
+   index.html, which the host answers with a 308 to /. Every reader of those
+   fifteen pages paid a redirect to reach the home page.
+
 Nothing here needs the network and nothing outside the standard library.
 """
 
@@ -125,14 +130,62 @@ def fix_orphans():
     return changed
 
 
+# ---- 4. label casing, and one redirect hop --------------------------------
+# Exact strings rather than regexes wherever the markup allows it, so a page
+# that has already been corrected cannot match twice.
+
+LABELS = (
+    ("</svg> Back to state filing</a>", "</svg> Back to State Filing</a>"),
+    ("</svg> Back to press</a>", "</svg> Back to Press</a>"),
+    ('<a class="kx-bk" href="library.html"><svg aria-hidden="true" '
+     'focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7">'
+     "</path></svg> Resources</a>",
+     '<a class="kx-bk" href="library.html"><svg aria-hidden="true" '
+     'focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7">'
+     "</path></svg> Back to Resources</a>"),
+)
+
+# Only the back row moves. Anything else on the page that links to
+# index.html is left alone.
+HOME = re.compile(
+    r'(<a class="kx-bk" href=")index\.html("><svg[^>]*>'
+    r'<path[^>]*></path></svg> Back to SideKix</a>)'
+)
+
+
+def fix_labels():
+    changed = 0
+    for here, _dirs, names in os.walk(ROOT):
+        if os.path.basename(here) == ".git":
+            _dirs[:] = []
+            continue
+        for name in sorted(names):
+            if not name.endswith(".html"):
+                continue
+            path = os.path.join(here, name)
+            text = read(path)
+            fixed = text
+            for old, new in LABELS:
+                fixed = fixed.replace(old, new)
+            # index.html is only the home page at the top of the tree.
+            if here == ROOT:
+                fixed = HOME.sub(r"\1/\2", fixed)
+            if fixed != text:
+                write(path, fixed)
+                changed += 1
+    return changed
+
+
 def main():
     blog = fix_blog()
     gloss = fix_glossary()
     orphans = fix_orphans()
+    labels = fix_labels()
     print("blog articles repointed at library.html: %d" % blog)
     print("glossary back row repointed:             %d" % gloss)
     print("pages given a back link:                 %d" % orphans)
-    if not (blog or gloss or orphans):
+    print("back rows relabelled or unredirected:    %d" % labels)
+    if not (blog or gloss or orphans or labels):
         print("Nothing to do, every back link already points where it should.")
 
 
