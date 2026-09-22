@@ -55,6 +55,13 @@ jobs:
       - name: Strip borrowed structured data
         run: python build/strip_donor_schema.py
 
+      # Back links that pointed at the wrong hub, plus the ninety five
+      # pages that had none. Blog articles pointed at resources.html, the
+      # Resource Library, rather than library.html where the posts are
+      # actually listed. Idempotent, so it is safe to leave in the pipeline.
+      - name: Repair back links
+        run: python build/fix_backlinks.py
+
       - name: Rebuild sitemap
         run: python build/mksitemap.py
 
