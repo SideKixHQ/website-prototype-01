@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>SideKix Blog</title>
+    <link>https://sidekixhq.com/library.html</link>
+    <atom:link href="https://sidekixhq.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Guides, answers and essays for people starting and building a business, from SideKix.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://sidekixhq.com/assets/k-mark.png</url>
+      <title>SideKix Blog</title>
+      <link>https://sidekixhq.com/library.html</link>
+    </image>
+    <item>
+      <title>We Didn’t Get the Time Back. Now AI Is Making the Same Promise.</title>
+      <link>https://sidekixhq.com/blog/we-didnt-get-the-time-back-ai-is-making-the-same-promise/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/we-didnt-get-the-time-back-ai-is-making-the-same-promise/</guid>
+      <pubDate>Wed, 30 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Smartphones were supposed to handle the practical stuff so we could spend more time with the people we love. What the research says actually happened, and what it tells us about AI.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>We’re in a Trust Recession. What Would It Take to Rebuild It?</title>
+      <link>https://sidekixhq.com/blog/trust-recession-what-would-it-take-to-rebuild-it/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/trust-recession-what-would-it-take-to-rebuild-it/</guid>
+      <pubDate>Mon, 28 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Trust in each other and in government has fallen for decades, while confidence in small business holds. What that means for people starting something, and the standard SideKix is holding itself to.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>America Has an Entrepreneurship Gap. It Isn’t an Information Gap.</title>
+      <link>https://sidekixhq.com/blog/america-entrepreneurship-gap-not-information-gap/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/america-entrepreneurship-gap-not-information-gap/</guid>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 +0000</pubDate>
+      <description>61% of Americans have had a business idea. 92% never pursued it. Two national surveys show what actually sits in that gap, and it is not a shortage of information.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Why Most People Never Start a Business</title>
+      <link>https://sidekixhq.com/blog/why-most-people-never-start-a-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/why-most-people-never-start-a-business/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Around 165 million US adults have had a business idea and roughly 5.6 million applications get filed a year. What sits in that gap, and what closes it.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Sole Proprietorship vs LLC: Which to Choose</title>
+      <link>https://sidekixhq.com/blog/sole-proprietorship-vs-llc/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/sole-proprietorship-vs-llc/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Liability, cost, tax treatment and how each looks to clients. Plus the ways LLC protection gets lost, which matters more than the formation decision itself.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Small Business Survival Rates: What the Data Actually Says</title>
+      <link>https://sidekixhq.com/blog/small-business-survival-rates-what-the-data-says/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/small-business-survival-rates-what-the-data-says/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>BLS cohort data on business survival at one, two, five and ten years, plus the caveat that makes the failure rate lower than the headline number suggests.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Start a Business: A Step-by-Step Guide</title>
+      <link>https://sidekixhq.com/blog/how-to-start-a-business-step-by-step/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-start-a-business-step-by-step/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>The actual order for starting a business: structure, state registration, your EIN, banking, licenses, and the free federal help available at every stage.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Start a Business in North Carolina</title>
+      <link>https://sidekixhq.com/blog/how-to-start-a-business-in-north-carolina/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-start-a-business-in-north-carolina/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Registering with the NC Secretary of State, getting an EIN, licenses and permits, plus the free state and federal advisors available at every step.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Price Your Product or Service</title>
+      <link>https://sidekixhq.com/blog/how-to-price-your-product-or-service/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-price-your-product-or-service/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Cost-plus, competitive and value-based pricing, how to find your floor, why billable hours change the math, and how to raise prices on existing customers.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Calculate Your Breakeven Point</title>
+      <link>https://sidekixhq.com/blog/how-to-calculate-your-breakeven-point/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-calculate-your-breakeven-point/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>The breakeven formula, how to split fixed from variable costs, what the number tells you about pricing and cuts, and the mistake that makes it useless.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Build a Support System as a Founder</title>
+      <link>https://sidekixhq.com/blog/how-to-build-a-support-system-as-a-founder/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-build-a-support-system-as-a-founder/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Why building alone is the statistical norm, what isolation costs in decision quality, the four types of support, and where to find each one free.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Build a Business Alone</title>
+      <link>https://sidekixhq.com/blog/how-to-build-a-business-alone/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-build-a-business-alone/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Nearly eight in ten US businesses have no employees. What solo actually involves: pricing, structure, handling every function, and where the free support is.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How Much Does It Cost to Start a Small Business?</title>
+      <link>https://sidekixhq.com/blog/how-much-does-it-cost-to-start-a-small-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-much-does-it-cost-to-start-a-small-business/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>The three cost categories that decide your real starting number: one-time setup, monthly burn, and the runway most budgets leave out entirely.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Free Government Resources for Small Business Owners</title>
+      <link>https://sidekixhq.com/blog/free-government-resources-for-small-business-owners/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/free-government-resources-for-small-business-owners/</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>SCORE mentoring, SBDC advising, Women's Business Centers, VBOCs, SBA loan programs and federal certifications. What each does and who it is for.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Manage Being Overwhelmed As A Founder</title>
+      <link>https://sidekixhq.com/blog/how-to-manage-being-overwhelmed-as-a-founder/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-manage-being-overwhelmed-as-a-founder/</guid>
+      <pubDate>Fri, 21 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Being a founder can be freeing and exhilarating, but it also means you’re constantly busy.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The Business Startup Checklist: From Idea to First Customer</title>
+      <link>https://sidekixhq.com/blog/business-startup-checklist/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/business-startup-checklist/</guid>
+      <pubDate>Thu, 20 Aug 2026 12:00:00 +0000</pubDate>
+      <description>A business startup checklist ordered by risk, not paperwork. Five phases from deciding and validating through setup, build and first customer.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Get Help Starting a Business: Where to Actually Look</title>
+      <link>https://sidekixhq.com/blog/how-to-get-help-starting-a-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-get-help-starting-a-business/</guid>
+      <pubDate>Thu, 20 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Where to actually get help starting a business: free SBA-funded mentoring through SCORE and SBDCs, local resources, peer accountability and paid advisors.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How Much Does It Cost to Start a Business? Real Numbers</title>
+      <link>https://sidekixhq.com/blog/how-much-does-it-cost-to-start-a-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-much-does-it-cost-to-start-a-business/</guid>
+      <pubDate>Thu, 20 Aug 2026 12:00:00 +0000</pubDate>
+      <description>What it really costs to start a business: universal costs, cost by business type, LLC fees by state, hidden costs like self-employment tax.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Business Advisor vs Coach vs Consultant: Which Do You Need?</title>
+      <link>https://sidekixhq.com/blog/business-advisor-vs-coach-vs-consultant/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/business-advisor-vs-coach-vs-consultant/</guid>
+      <pubDate>Thu, 20 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Mentor, advisor, coach or consultant? What each role actually does, when to hire which, typical costs, and five questions to vet anyone before you pay.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Questions to Answer If You Want to Be An Entrepreneur</title>
+      <link>https://sidekixhq.com/blog/questions-to-answer-if-you-want-to-be-an-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/questions-to-answer-if-you-want-to-be-an-entrepreneur/</guid>
+      <pubDate>Fri, 07 Aug 2026 12:00:00 +0000</pubDate>
+      <description>The lightbulb went off and you’d like to make your business idea into a reality.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Tools Every Entrepreneur Needs Before Launching</title>
+      <link>https://sidekixhq.com/blog/tools-every-entrepreneur-needs-before-launching/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/tools-every-entrepreneur-needs-before-launching/</guid>
+      <pubDate>Wed, 22 Jul 2026 12:00:00 +0000</pubDate>
+      <description>The time has finally come to launch. You’ve put in the blood, sweat, tears, and elbow grease for months if not years.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Founder Myth: You Need Everything Figured Out</title>
+      <link>https://sidekixhq.com/blog/founder-myth-you-need-everything-figured-out/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/founder-myth-you-need-everything-figured-out/</guid>
+      <pubDate>Wed, 15 Jul 2026 12:00:00 +0000</pubDate>
+      <description>Whoever made this claim doesn’t understand what entrepreneurship truly entails.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Popular Small Business Ideas in 2026</title>
+      <link>https://sidekixhq.com/blog/popular-small-business-ideas-in-2026/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/popular-small-business-ideas-in-2026/</guid>
+      <pubDate>Wed, 08 Jul 2026 12:00:00 +0000</pubDate>
+      <description>Thinking of owning and running a small business but not sure what kind of business you want it to be?</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Lead Your Dreams</title>
+      <link>https://sidekixhq.com/blog/lead-your-dreams-becoming-the-person-you-need-to-be/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/lead-your-dreams-becoming-the-person-you-need-to-be/</guid>
+      <pubDate>Tue, 30 Jun 2026 12:00:00 +0000</pubDate>
+      <description>What if dreams aren’t meant to be followed, but led? A powerful reflection on identity, courage.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>From "That's Not for People Like Me" to "I'm Actually Doing This" An entrepreneur's guide to closing the gap between who you thought you were and who you're becoming.</title>
+      <link>https://sidekixhq.com/blog/from-thats-not-for-people-like-me-to-im-actually-doing-this-an-entrepreneurs-guide-to-closing-the-gap-between-who-you-thought-you-were-and-who-youre-becoming/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/from-thats-not-for-people-like-me-to-im-actually-doing-this-an-entrepreneurs-guide-to-closing-the-gap-between-who-you-thought-you-were-and-who-youre-becoming/</guid>
+      <pubDate>Wed, 24 Jun 2026 12:00:00 +0000</pubDate>
+      <description>A guide for first-time entrepreneurs on closing the gap between who you thought you were and who you’re becoming.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>What to Do After Having Your Business Idea</title>
+      <link>https://sidekixhq.com/blog/what-to-do-after-having-your-business-idea/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/what-to-do-after-having-your-business-idea/</guid>
+      <pubDate>Fri, 12 Jun 2026 12:00:00 +0000</pubDate>
+      <description>You’ve just had an idea for a business– the lightbulb is glowing and you’re so inspired that you’re ready to get to work.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Build a Business While Working a 9-to-5</title>
+      <link>https://sidekixhq.com/blog/how-to-build-a-business-while-working-a-9-to-5/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-build-a-business-while-working-a-9-to-5/</guid>
+      <pubDate>Fri, 12 Jun 2026 12:00:00 +0000</pubDate>
+      <description>So you’re at work, tray on your shoulder or folding clothes or typing at a desk- whatever 9-to-5 it is, you’re good at it.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The Loneliness of Entrepreneurship and What to Do About It</title>
+      <link>https://sidekixhq.com/blog/the-loneliness-of-entrepreneurship-and-what-to-do-about-it/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/the-loneliness-of-entrepreneurship-and-what-to-do-about-it/</guid>
+      <pubDate>Fri, 05 Jun 2026 12:00:00 +0000</pubDate>
+      <description>Explore the issue of entrepreneur loneliness and discover ways to connect with others for support and collaboration in your journey.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>SideKix vs. Going it Alone: A Real Comparison</title>
+      <link>https://sidekixhq.com/blog/the-biggest-solopreneur-challenges-and-how-to-overcome-them/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/the-biggest-solopreneur-challenges-and-how-to-overcome-them/</guid>
+      <pubDate>Fri, 05 Jun 2026 12:00:00 +0000</pubDate>
+      <description>Solopreneur challenges can slow growth, increase stress, and lead to burnout. The five biggest obstacles of building alone, and what changes with a team.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>5 Reasons Smart People Never Start Their Business</title>
+      <link>https://sidekixhq.com/blog/5-reasons-smart-people-never-start-their-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/5-reasons-smart-people-never-start-their-business/</guid>
+      <pubDate>Fri, 29 May 2026 12:00:00 +0000</pubDate>
+      <description>Starting a business, taking that first huge step to turn a great idea into a reality, is one of the most daunting challenges to take on.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>SideKix is the Business Operating System for entrepreneurs who need structure, support, and direction to build their business.</title>
+      <link>https://sidekixhq.com/blog/sidekix-is-the-business-operating-system-for-entrepreneurs-who-need-structure-support-and-direction-to-build-their-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/sidekix-is-the-business-operating-system-for-entrepreneurs-who-need-structure-support-and-direction-to-build-their-business/</guid>
+      <pubDate>Sun, 24 May 2026 12:00:00 +0000</pubDate>
+      <description>Overcome business obstacles together. Business is hard. You shouldn’t have to build alone; find your support network.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Weekly Business Check-In Template for Entrepreneurs</title>
+      <link>https://sidekixhq.com/blog/weekly-business-check-in-template/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/weekly-business-check-in-template/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Use this free Weekly Business Check-In Template to stay focused, review your progress, and plan ahead.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The Small Business Strategy Guide: How to Plan, Focus, and Actually Execute</title>
+      <link>https://sidekixhq.com/blog/small-business-strategy-guide-plan-focus-execute/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/small-business-strategy-guide-plan-focus-execute/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>The Small Business Strategy Guide: learn how to plan, focus, and actually execute your business goals.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The SideKix Business Playbook: Your Complete Roadmap from Idea to Momentum</title>
+      <link>https://sidekixhq.com/blog/sidekix-business-playbook-roadmap/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/sidekix-business-playbook-roadmap/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>The SideKix Business Playbook is your complete roadmap from idea to momentum.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The Entrepreneur's Mindset Guide: How to Think Like a Builder</title>
+      <link>https://sidekixhq.com/blog/entrepreneur-mindset-guide-think-like-builder/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/entrepreneur-mindset-guide-think-like-builder/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Develop the mindset of a successful entrepreneur with this practical guide.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The Best Tools for Small Business Owners in 2025 (That Actually Save Time)</title>
+      <link>https://sidekixhq.com/blog/best-tools-small-business-owners-2025/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/best-tools-small-business-owners-2025/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Discover the best tools for small business owners in 2025 that actually save time.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>The 7 Biggest Roadblocks Entrepreneurs Face (And How to Overcome Each One)</title>
+      <link>https://sidekixhq.com/blog/biggest-roadblocks-entrepreneurs-how-to-overcome/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/biggest-roadblocks-entrepreneurs-how-to-overcome/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Discover the 7 biggest roadblocks entrepreneurs face and how to overcome each one.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Taking Small Actions When You Feel Stuck: A Guide for Entrepreneurs</title>
+      <link>https://sidekixhq.com/blog/taking-small-actions-when-stuck-entrepreneur-guide/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/taking-small-actions-when-stuck-entrepreneur-guide/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Feeling stuck in your business? This guide shows you how taking small, consistent actions breaks through overwhelm and builds unstoppable momentum.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Support System Checklist: Build Your Entrepreneurial Safety Net</title>
+      <link>https://sidekixhq.com/blog/support-system-checklist-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/support-system-checklist-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Build your entrepreneurial safety net with this free Support System Checklist.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Small Business Ideas for Beginners: 20+ Ways to Get Started</title>
+      <link>https://sidekixhq.com/blog/small-business-ideas-for-beginners/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/small-business-ideas-for-beginners/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Explore 20+ small business ideas for beginners with low startup costs and high earning potential.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Side Hustle vs. Small Business: What's the Difference?</title>
+      <link>https://sidekixhq.com/blog/side-hustle-vs-small-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/side-hustle-vs-small-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>What is the difference between a side hustle and a small business? This guide breaks down the key distinctions in mindset, structure, taxes.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Personal Growth That Actually Works: A Practical Guide</title>
+      <link>https://sidekixhq.com/blog/personal-growth-that-actually-works/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/personal-growth-that-actually-works/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Personal growth that actually works: a practical guide to self-improvement for entrepreneurs and professionals.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Networking Outreach Template: How to Reach Out to Anyone Without Feeling Awkward</title>
+      <link>https://sidekixhq.com/blog/networking-outreach-template-small-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/networking-outreach-template-small-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Four outreach templates for small business owners: approaching an advisor, following up after an event, contacting a collaborator, and asking for a referral.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Milestone Tracker Template: Celebrate Progress and Stay Motivated</title>
+      <link>https://sidekixhq.com/blog/milestone-tracker-template-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/milestone-tracker-template-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Free Milestone Tracker Template for entrepreneurs. Celebrate progress, track achievements.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Turn Your Skills Into a Business</title>
+      <link>https://sidekixhq.com/blog/how-to-turn-your-skills-into-a-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-turn-your-skills-into-a-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Five steps from skill to paying customers: identifying what you are good at, packaging it into an offer, setting a price, building proof, and scaling what works.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Stop Feeling Isolated as a Small Business Owner</title>
+      <link>https://sidekixhq.com/blog/stop-feeling-isolated-small-business-owner/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/stop-feeling-isolated-small-business-owner/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Feeling isolated as a small business owner is more common than you think.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Stay Motivated While Building a Business</title>
+      <link>https://sidekixhq.com/blog/how-to-stay-motivated-while-building-a-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-stay-motivated-while-building-a-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to stay motivated while building a business through the inevitable hard seasons.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Start a Business With No Money</title>
+      <link>https://sidekixhq.com/blog/how-to-start-a-business-with-no-money/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-start-a-business-with-no-money/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to start a business with no money using bootstrapping strategies, free tools, and creative funding methods.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Overcome Fear as an Entrepreneur: A Step-by-Step Guide</title>
+      <link>https://sidekixhq.com/blog/how-to-overcome-fear-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-overcome-fear-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Why the fear of starting a business is normal, what it looks like in practice, and the approaches founders use to keep moving while the fear is still there.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Network When You're Just Starting Out</title>
+      <link>https://sidekixhq.com/blog/how-to-network-when-youre-just-starting-out/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-network-when-youre-just-starting-out/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Networking with no track record yet: where to start, how to lead with what you can give, and why being specific about what you are building gets better replies.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Grow a Small Business: A Practical Guide for Independent Owners</title>
+      <link>https://sidekixhq.com/blog/how-to-grow-small-business-practical-guide/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-grow-small-business-practical-guide/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to grow a small business with this practical guide for independent owners.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Go From Employee to Entrepreneur</title>
+      <link>https://sidekixhq.com/blog/how-to-go-from-employee-to-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-go-from-employee-to-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Ready to make the leap from employee to entrepreneur? This guide shows you how to plan your exit, validate your idea.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Get Funding for Your Business Idea</title>
+      <link>https://sidekixhq.com/blog/how-to-get-funding-for-your-business-idea/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-get-funding-for-your-business-idea/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to get funding for your business idea — from bootstrapping and grants to investors and loans.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Find a Job in Today's Market (The Modern Playbook)</title>
+      <link>https://sidekixhq.com/blog/how-to-find-a-job-modern-playbook/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-find-a-job-modern-playbook/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>The modern playbook for how to find a job in today's market. Updated strategies for job seekers covering LinkedIn, networking, applications.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Find a Business Mentor (And Actually Get One)</title>
+      <link>https://sidekixhq.com/blog/how-to-find-a-business-mentor/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-find-a-business-mentor/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to find a business mentor — and actually land one. Discover where to look, how to approach potential mentors.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Find Support as a Small Business Owner (Even When You Don't Know Where to Look)</title>
+      <link>https://sidekixhq.com/blog/how-to-find-support-small-business-owner/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-find-support-small-business-owner/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Discover how to find support as a small business owner — even when you don't know where to look.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Build Community Around Your Small Business</title>
+      <link>https://sidekixhq.com/blog/how-to-build-community-small-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-build-community-small-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to build a loyal community around your small business. This guide covers content, events, partnerships.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Fear Audit Template: Identify and Overcome What's Holding You Back</title>
+      <link>https://sidekixhq.com/blog/fear-audit-template-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/fear-audit-template-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>A five part worksheet for naming the fears behind a stalled business idea: a fear inventory, a rating pass, a deep dive on the biggest one, an action plan, and evidence.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Community Engagement Template: How to Show Up, Add Value, and Build Your Network</title>
+      <link>https://sidekixhq.com/blog/community-engagement-template-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/community-engagement-template-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Free Community Engagement Template for entrepreneurs. Learn how to show up, add value.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Business Roadmap Template: Map Your Path from Where You Are to Where You Want to Be</title>
+      <link>https://sidekixhq.com/blog/business-roadmap-template-small-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/business-roadmap-template-small-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Download this free Business Roadmap Template to map your path from where you are to where you want to be.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Best AI Tools for Small Business Owners in 2026</title>
+      <link>https://sidekixhq.com/blog/best-ai-tools-for-small-business-owners/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/best-ai-tools-for-small-business-owners/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Discover the best AI tools for small business owners in 2026. From content creation and customer service to bookkeeping and marketing — AI tools.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Accountability Partner Template: How to Set Up Your First Accountability Relationship</title>
+      <link>https://sidekixhq.com/blog/accountability-partner-template-entrepreneur/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/accountability-partner-template-entrepreneur/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Set up your first accountability relationship with this free Accountability Partner Template.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>90-Day Goal-Setting Template for Small Business Owners</title>
+      <link>https://sidekixhq.com/blog/90-day-goal-setting-template-small-business/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/90-day-goal-setting-template-small-business/</guid>
+      <pubDate>Sat, 23 May 2026 12:00:00 +0000</pubDate>
+      <description>Free 90-Day Goal-Setting Template for small business owners. Break your big vision into actionable 90-day sprints and finally make consistent progress.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Make Money Online Without Feeling Lost</title>
+      <link>https://sidekixhq.com/blog/make-money-online-without-feeling-lost/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/make-money-online-without-feeling-lost/</guid>
+      <pubDate>Fri, 22 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to make money online without feeling lost or overwhelmed. SideKix breaks down the best legitimate ways for entrepreneurs and side hustlers.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>90% of Americans Want to Be Their Own Boss — And Here's Why They Should</title>
+      <link>https://sidekixhq.com/blog/90-percent-of-americans-want-to-be-their-own-boss/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/90-percent-of-americans-want-to-be-their-own-boss/</guid>
+      <pubDate>Tue, 19 May 2026 12:00:00 +0000</pubDate>
+      <description>90% of Americans want to be their own boss. Why the real dream is owning your time and values, and what has to change about how startups get built.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+  </channel>
+</rss>

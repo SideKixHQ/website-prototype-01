@@ -9,6 +9,23 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-10-13
+
+### An RSS feed for the blog
+
+`build/mkfeed.py` writes `feed.xml` (RSS 2.0) from the 65 posts under `blog/`,
+reading each post's og:title, meta description and article:published_time, so
+there is nothing to keep in step by hand. It also adds a
+`<link rel="alternate" type="application/rss+xml">` tag to library.html so the
+feed can be found from the blog hub (set POST_LINKS in the script to tag every
+post too). The guid is the post's
+permalink, which is what automation tools key on to decide a post is new.
+
+Run `python3 build/mkfeed.py` after publishing a post and commit `feed.xml`.
+Checked by parsing the output as XML: 65 items, newest first.
+
+---
+
 ## 2026-09-10
 
 ### A jobs map, as a pipeline rather than a picture
