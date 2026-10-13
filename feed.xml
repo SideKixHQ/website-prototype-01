@@ -6,12 +6,28 @@
     <atom:link href="https://sidekixhq.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Guides, answers and essays for people starting and building a business, from SideKix.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2026 12:00:00 +0000</lastBuildDate>
     <image>
       <url>https://sidekixhq.com/assets/k-mark.png</url>
       <title>SideKix Blog</title>
       <link>https://sidekixhq.com/library.html</link>
     </image>
+    <item>
+      <title>Team Building Tips for Your New Hires</title>
+      <link>https://sidekixhq.com/blog/team-building-tips-for-your-new-hires/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/team-building-tips-for-your-new-hires/</guid>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 +0000</pubDate>
+      <description>How founders can help new hires settle in and work well as a team: onboarding and integration, mentorship, meaningful first work, and quick team building exercises.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>Marketing Hacks for the Entrepreneurs Who Skipped Business School</title>
+      <link>https://sidekixhq.com/blog/marketing-hacks-for-the-entrepreneurs-who-skipped-business-school/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/marketing-hacks-for-the-entrepreneurs-who-skipped-business-school/</guid>
+      <pubDate>Fri, 02 Oct 2026 12:00:00 +0000</pubDate>
+      <description>Four marketing approaches that work without an MBA: SEO and a Google Business profile, social media and email, word of mouth and referrals, and paid ads.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
     <item>
       <title>We Didn’t Get the Time Back. Now AI Is Making the Same Promise.</title>
       <link>https://sidekixhq.com/blog/we-didnt-get-the-time-back-ai-is-making-the-same-promise/</link>
@@ -26,6 +42,14 @@
       <guid isPermaLink="true">https://sidekixhq.com/blog/trust-recession-what-would-it-take-to-rebuild-it/</guid>
       <pubDate>Mon, 28 Sep 2026 12:00:00 +0000</pubDate>
       <description>Trust in each other and in government has fallen for decades, while confidence in small business holds. What that means for people starting something, and the standard SideKix is holding itself to.</description>
+      <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
+    </item>
+    <item>
+      <title>How to Quickly Increase Your Business Revenue</title>
+      <link>https://sidekixhq.com/blog/how-to-quickly-increase-your-business-revenue/</link>
+      <guid isPermaLink="true">https://sidekixhq.com/blog/how-to-quickly-increase-your-business-revenue/</guid>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Five ways to raise small business revenue: know what sells, look after your customers, expand your offerings, raise prices strategically, and increase your presence.</description>
       <media:content url="https://sidekixhq.com/assets/k-mark.png" medium="image"/>
     </item>
     <item>
