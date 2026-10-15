@@ -188,6 +188,26 @@ module.exports = async (req, res) => {
     }
   }
 
+  // A membership rate lock saves a card and charges nothing (setup-mode
+  // Checkout), so it completes with no payment. Stripe holds the Customer,
+  // the saved card and the locked rate (session + SetupIntent metadata);
+  // this log ties a function log back to the reservation for support.
+  if (
+    event.type === 'checkout.session.completed' &&
+    event.data.object.mode === 'setup' &&
+    event.data.object.metadata?.type === 'membership'
+  ) {
+    const session = event.data.object;
+    console.log('SideKix website rate lock saved (no charge):', {
+      sessionId: session.id,
+      customerId: typeof session.customer === 'string' ? session.customer : session.customer?.id,
+      customerEmail: session.customer_details?.email,
+      plan: session.metadata?.plan,
+      lockedMonthlyUsdCents: session.metadata?.lockedMonthlyUsdCents,
+      setupIntentId: typeof session.setup_intent === 'string' ? session.setup_intent : session.setup_intent?.id,
+    });
+  }
+
   // The embedded Payment Element flow (create-payment-intent.js) never
   // creates a Checkout Session — the PaymentIntent itself carries the same
   // metadata shape, and its own id is a perfectly good unique idempotency

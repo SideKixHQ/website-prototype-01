@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
   const origin = req.headers.origin || `https://${req.headers.host}`;
   const { type } = req.body || {};
 
-  let lineItem;
+  let lineItem; // null for a rate lock, which charges nothing today
   let successUrl;
   let cancelUrl;
   let metadata;
@@ -57,20 +57,20 @@ module.exports = async (req, res) => {
       res.status(400).json({ error: 'Unknown plan' });
       return;
     }
-    lineItem = {
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: `SideKix ${plan.name} — rate lock`,
-          description: 'One-time pre-order to lock in this monthly rate. Recurring billing starts when this tier goes live.',
-        },
-        unit_amount: plan.monthlyUsdCents,
-      },
-      quantity: 1,
-    };
+    // Rate lock (owner's decision, 2026-10-15): save the card now and
+    // charge nothing until the tier goes live. A Checkout Session in
+    // `setup` mode creates a Customer with the card attached; the reserved
+    // plan and monthly rate ride along in metadata, so the first charge at
+    // launch is made against the rate the member was shown today.
+    lineItem = null;
     successUrl = `${origin}/join.html?reserved=1&plan=${req.body.plan}&session_id={CHECKOUT_SESSION_ID}`;
     cancelUrl = `${origin}/join.html?plan=${req.body.plan}&intent=prepay`;
-    metadata = { source: 'website', type: 'membership', plan: req.body.plan };
+    metadata = {
+      source: 'website',
+      type: 'membership',
+      plan: req.body.plan,
+      lockedMonthlyUsdCents: String(plan.monthlyUsdCents),
+    };
   } else {
     res.status(400).json({ error: 'Unknown purchase type' });
     return;
@@ -84,15 +84,22 @@ module.exports = async (req, res) => {
   // belongs here, not just on membership.html.
   const submitMessage = type === 'credits'
     ? 'Kix turns your goals and challenges into a personalized path forward. Credits are yours the moment you buy them, so all purchases are final. Kix Credits never expire.'
-    : 'Kix turns your goals and challenges into a personalized path forward. This is a one-time payment to lock in your rate; recurring billing starts when this tier goes live.';
+    : 'Kix turns your goals and challenges into a personalized path forward. Nothing is charged today. Your card is saved to lock in this rate, and billing starts when this tier goes live. We will email you first.';
 
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2026-07-29.dahlia',
     });
+    const modeParams = lineItem
+      ? { mode: 'payment', line_items: [lineItem] }
+      : {
+          mode: 'setup',
+          currency: 'usd',
+          customer_creation: 'always',
+          setup_intent_data: { metadata },
+        };
     const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      line_items: [lineItem],
+      ...modeParams,
       success_url: successUrl,
       cancel_url: cancelUrl,
       metadata,

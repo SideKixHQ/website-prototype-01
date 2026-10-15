@@ -2181,8 +2181,8 @@ try{
       var lbl=btn?btn.textContent:''; if(btn){btn.disabled=true;btn.textContent='Sending...';}
       var reveal=function(){ f.style.display='none'; var t=document.getElementById('thanks'); t.classList.add('on'); t.focus(); };
 
-      // A prepay reservation is a real charge, not a waitlist signup — route
-      // it to Stripe Checkout instead of the contact-form endpoint. Anything
+      // A rate-lock reservation saves a card in Stripe Checkout (nothing is
+      // charged today), so it goes there instead of the contact-form endpoint. Anything
       // else (plain waitlist, credits waitlist, updates signup) is unchanged.
       var qp=new URLSearchParams(location.search);
       if(qp.get('intent')==='prepay' && qp.get('plan')){
@@ -2268,8 +2268,8 @@ try{
   var t=document.getElementById('thanks');
   if(t){
     t.innerHTML = '<h2>You’re locked in'+(d?', '+d.n:'')+'.</h2>'+
-      '<p>Payment received'+(d?' — your rate of <b>'+d.m+'</b> is reserved':'')+
-      '. A receipt is on its way to your inbox, and we will email you the moment this tier goes live.</p>';
+      '<p>Card saved, nothing charged today'+(d?'. Your rate of <b>'+d.m+'</b> is reserved':'')+
+      '. We will email you before this tier goes live, and you can change your mind at any point before then.</p>';
     t.classList.add('on'); t.focus();
   }
 })();
