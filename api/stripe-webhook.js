@@ -18,6 +18,29 @@ function readRawBody(req) {
 // wants an opaque unique id plus the purchase details; it never cares
 // whether that id came from a Checkout Session (cs_...) or a PaymentIntent
 // created directly (pi_...), so this same call works for either.
+// Records a membership rate lock (card saved, nothing charged) with
+// Admin-Backend, which charges it when the tier launches.
+async function submitRateLock(lock) {
+  if (!lock.email || !lock.stripeCustomerId || !lock.setupIntentId || !lock.plan) {
+    console.error('SideKix [website rate lock] incomplete session, not recorded:', lock.sessionId);
+    return { ok: true };
+  }
+  const lockRes = await fetch('https://api.sidekixhq.com/internal/website-membership/rate-locks', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
+      'x-device-agent': 'web',
+    },
+    body: JSON.stringify(lock),
+  });
+  if (!lockRes.ok) {
+    const body = await lockRes.text().catch(() => '');
+    throw new Error(`Admin-Backend responded ${lockRes.status}: ${body}`);
+  }
+  return { ok: true };
+}
+
 async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged, currency, stripePaymentIntentId }) {
   if (!email) {
     console.error('SideKix [website credits claim] no email for', idempotencyId);
@@ -198,14 +221,25 @@ module.exports = async (req, res) => {
     event.data.object.metadata?.type === 'membership'
   ) {
     const session = event.data.object;
-    console.log('SideKix website rate lock saved (no charge):', {
+    const lock = {
       sessionId: session.id,
-      customerId: typeof session.customer === 'string' ? session.customer : session.customer?.id,
-      customerEmail: session.customer_details?.email,
-      plan: session.metadata?.plan,
-      lockedMonthlyUsdCents: session.metadata?.lockedMonthlyUsdCents,
+      stripeCustomerId: typeof session.customer === 'string' ? session.customer : session.customer?.id,
       setupIntentId: typeof session.setup_intent === 'string' ? session.setup_intent : session.setup_intent?.id,
-    });
+      email: session.customer_details?.email || session.customer_email,
+      plan: session.metadata?.plan,
+      lockedMonthlyUsdCents: parseInt(session.metadata?.lockedMonthlyUsdCents, 10),
+    };
+    console.log('SideKix website rate lock saved (no charge):', lock);
+    // Admin-Backend charges this card the locked rate when the tier goes
+    // live (POST admin/membership/rate-locks/activate). Non-2xx here makes
+    // Stripe redeliver; the endpoint is idempotent on sessionId.
+    try {
+      await submitRateLock(lock);
+    } catch (err) {
+      console.error('SideKix [website rate lock] failed:', err);
+      res.status(502).json({ error: 'Could not record rate lock, will retry' });
+      return;
+    }
   }
 
   // The embedded Payment Element flow (create-payment-intent.js) never
