@@ -1831,6 +1831,8 @@ input[type="file"]{min-height:24px}
 </style>
   <link rel="stylesheet" href="assets/site-wide.css?v=fa2a61ed">
 <script>
+/* The SideKix API, where advisor applications go (the admin panel's backend). */
+window.SIDEKIX_API_BASE = window.SIDEKIX_API_BASE || 'https://api.sidekixhq.com';
 /* Talks to the SideKix backend. Write-only public endpoint. */
 window.SIDEKIX_SUBMIT = function (payload) {
   return fetch('https://sidekix-email-server.onrender.com/public/form', {
@@ -2434,29 +2436,64 @@ try{
       var sendLbl=sendBtn?sendBtn.textContent:'';
       if(sendBtn){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; }
 
-      Promise.all([
-        window.SIDEKIX_FILE(document.getElementById('cv')),
-        window.SIDEKIX_FILE(document.getElementById('photo'))
-      ]).then(function(files){
-        return window.SIDEKIX_SUBMIT({
-          form_type:'application',
-          email:v('email'),
-          name:v('fullname'),
-          linkedin:v('linkedin'),
-          languages:v('languages'),
-          years_owner:String(years.value>=20?'20+':years.value),
-          business_types:checked('biztype').join(', '),
-          background:checked('background').join(', '),
-          strengths:checked('strengths').join(', '),
-          expertise:checked('expertise').join(', '),
-          details:rows.map(function(r){ return r[0]+': '+r[1]; }).join('\n'),
-          company_website:(document.getElementById('ahp')||{}).value||'',
-          attachments:files.filter(Boolean)
-        });
-      }).then(reveal).catch(function(){
+      /* Straight into the SideKix admin panel's Applications (James,
+         2026-10-25). Choices go by their names; the server matches them to
+         its lists. A member is asked to apply in the app instead. */
+      var full=v('fullname').split(/\s+/).filter(Boolean);
+      var other=function(name,id){ return checked(name).indexOf('Other')>-1 ? v(id) : ''; };
+      var answers={
+        firstName: full.length>1 ? full.slice(0,-1).join(' ') : (full[0]||''),
+        lastName: full.length>1 ? full[full.length-1] : '',
+        email: v('email'),
+        ownedBusiness: checked('owned'),
+        businessType: checked('biztype'),
+        businessTypeOther: other('biztype','biztype_other'),
+        howLongBusinessOwner: v('tenure'),
+        background: checked('background'),
+        yearsOfExperience: Number(years.value),
+        previousAdvisorExperience: checked('mentored'),
+        advisorExperienceExplanation: v('mentorwhy'),
+        areaOfExpertise: checked('expertise'),
+        areaOfExpertiseOther: other('expertise','expertise_other'),
+        keyStrengths: checked('strengths'),
+        keyStrengthsOther: other('strengths','strengths_other'),
+        businessDescription: v('role'),
+        linkedin: v('linkedin'),
+        languages: v('languages'),
+        challengeDescription: v('challenge'),
+        whyAdvisor: v('why')
+      };
+      Object.keys(answers).forEach(function(k){
+        var a=answers[k];
+        if(a==='' || (Array.isArray(a) && !a.length)) delete answers[k];
+      });
+      var data=new FormData();
+      data.append('answers', JSON.stringify(answers));
+      data.append('photo', document.getElementById('photo').files[0]);
+      var cvFile=document.getElementById('cv').files[0];
+      if(cvFile) data.append('resume', cvFile);
+      var trap=(document.getElementById('ahp')||{}).value||'';
+      if(trap) data.append('company_website', trap);
+
+      var failed=function(message){
         if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent=sendLbl; }
-        note.style.display='';
-        note.innerHTML='We could not send that automatically. Please email your application to <a href="mailto:Advisors@sidekixhq.com" style="color:inherit">Advisors@sidekixhq.com</a> and we will pick it up from there.';
+        fail(3, message);
+      };
+      // The API asks every web caller to say what it is, like claim.html does.
+      fetch(window.SIDEKIX_API_BASE + '/questionnaire/apply', { method:'POST', body:data, headers:{ 'x-device-agent':'web' } })
+        .then(function(r){
+          if(r.ok) return reveal();
+          return r.json().catch(function(){ return {}; }).then(function(body){
+            var m=body && body.message;
+            if(Array.isArray(m)) m=m[0];
+            if(body && body.missingFields && body.missingFields.length && !m) m='Please check the highlighted answers.';
+            failed(m || 'Something went wrong. Please try again.');
+          });
+        })
+        .catch(function(){
+          if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent=sendLbl; }
+          note.style.display='';
+          note.innerHTML='We could not send that automatically. Please email your application to <a href="mailto:Advisors@sidekixhq.com" style="color:inherit">Advisors@sidekixhq.com</a> and we will pick it up from there.';
       });
   });
 })();
