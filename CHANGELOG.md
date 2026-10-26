@@ -9,6 +9,24 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-10-26
+
+### The prepay note says what the button does
+
+The line under the "Prepay and lock this rate" buttons on membership.html said
+"Reserve now and nothing is charged today… you can change your mind at any point
+before then". The button opens Stripe Checkout in payment mode and charges the
+first month (api/create-checkout-session.js), and memberships aren't refundable.
+The line now reads: "Prepaying charges your first month today and locks this rate
+for as long as you stay a member. Ongoing billing starts when your tier goes live,
+and we will email you before it does. Memberships aren't refundable. Not ready to
+pay?" followed by the existing "Sign up for notifications" link.
+
+Checked by rendering membership.html in Playwright (Chromium, 1280 wide): the new
+line shows centred under the plan cards with the notifications link below it.
+
+---
+
 ## 2026-10-13
 
 ### An RSS feed for the blog
