@@ -1830,9 +1830,8 @@ input[type="file"]{min-height:24px}
 #kx-ring{width:160px !important;height:160px !important}
 </style>
   <link rel="stylesheet" href="assets/site-wide.css?v=fa2a61ed">
+<script src="assets/sidekix-api.js?v=53f74222"></script>
 <script>
-/* The SideKix API, where advisor applications go (the admin panel's backend). */
-window.SIDEKIX_API_BASE = window.SIDEKIX_API_BASE || 'https://api.sidekixhq.com';
 /* Talks to the SideKix backend. Write-only public endpoint. */
 window.SIDEKIX_SUBMIT = function (payload) {
   return fetch('https://sidekix-email-server.onrender.com/public/form', {
