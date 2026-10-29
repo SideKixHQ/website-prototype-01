@@ -83,7 +83,7 @@ module.exports = async (req, res) => {
   // Purchase" and being charged, so the final-sale/no-expiry disclosure
   // belongs here, not just on membership.html.
   const submitMessage = type === 'credits'
-    ? 'Kix turns your goals and challenges into a personalized path forward. Credits are yours the moment you buy them, so all purchases are final. Kix Credits never expire.'
+    ? 'Kix turns your goals and challenges into a personalized path forward. Kix Credits are yours the moment you buy them. Kix Credits are not refundable and do not expire.'
     : 'Kix turns your goals and challenges into a personalized path forward. This is a one-time payment to lock in your rate; recurring billing starts when this tier goes live.';
 
   try {
