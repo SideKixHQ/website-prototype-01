@@ -2045,5 +2045,15 @@
       "destination": "/",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/p/:id/",
+      "destination": "/api/post-preview?id=:id"
+    },
+    {
+      "source": "/p/:id",
+      "destination": "/api/post-preview?id=:id"
+    }
   ]
 }
