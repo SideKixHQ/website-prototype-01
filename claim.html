@@ -95,9 +95,10 @@ button:disabled{opacity:.5;cursor:default}
   </div>
 </div>
 
+<script src="assets/sidekix-api.js?v=53f74222"></script>
 <script>
 (function(){
-  var API_BASE = 'https://api.sidekixhq.com';
+  var API_BASE = window.SIDEKIX_API_BASE;
   // Admin-Backend's global DeviceIdGuard requires x-device-agent (app/android/
   // ios/web) on every route not explicitly exempted — every fetch below sends
   // 'web', the honest value for a browser page. Found by actually running
