@@ -35,18 +35,31 @@ p.sub{color:var(--grey);font-size:14.5px;line-height:1.65;margin-bottom:20px}
 }
 .note b{color:var(--cream)}
 .linkback{display:inline-block;margin-top:24px;color:var(--gold-mid);font-size:13.5px;text-decoration:none}
+.store{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;
+  border-radius:999px;background:linear-gradient(180deg,#F6E3A6,#C99B47);color:#160F02;
+  font-family:var(--body);font-weight:700;font-size:15.5px;text-decoration:none;margin-bottom:22px;white-space:nowrap;
+}
+.store svg{width:18px;height:18px;flex:none}
+.store:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px}
+.android{font-size:13px;color:var(--grey);margin-top:14px}
+.android a{color:var(--gold-mid)}
 .linkback:hover{color:var(--gold)}
 </style>
 </head>
 <body>
 <div class="card">
   <p class="eyebrow">SideKix</p>
-  <h1>The app is almost here.</h1>
-  <span class="badge">Coming soon to the App Store</span>
-  <p class="sub">We're putting the finishing touches on the SideKix app. The moment it's live, this page will take you straight there.</p>
+  <h1>Get the SideKix app.</h1>
+  <p class="sub">SideKix is live on the App Store for iPhone. Download it, sign in, and Kix picks up from there.</p>
+  <a class="store" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359?ct=get_app_page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.8-.8-3-.8C6.9 7.2 5.4 8.1 4.6 9.6c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.4-.9-2.4-3.9zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></svg>
+    Download SideKix
+  </a>
   <div class="note">
     Already bought Kix Credits? <b>Sign up with the same email you used at checkout</b> — the instant you verify it, your credits will already be waiting. No extra steps, no claim link to dig up.
   </div>
+  <p class="android">On Android? SideKix is iPhone first. <a href="join.html">Join the waitlist</a> and we'll tell you when it's ready.</p>
   <a class="linkback" href="membership.html">← Back to SideKix</a>
 </div>
 </body>
