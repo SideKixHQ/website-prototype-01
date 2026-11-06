@@ -3181,11 +3181,15 @@ html.kx-idle *::after{
   .kx-hcarrow{
     display:flex;align-items:center;justify-content:center;
     position:absolute;
-    top:50%;
+    /* level with the photo: at 50% they sat on top of the score line now
+       that they are no longer hidden behind the card */
+    top:27%;
     transform:translateY(-50%);
     width:46px;height:46px;
     border-radius:999px;
-    z-index:8;
+    /* above the cards (whose z-index runs up to 600) and the dots (1200):
+       at 8 the centre card sat on top and a tap on the arrow flipped it */
+    z-index:1300;
     cursor:pointer;
     border:1px solid rgba(212,168,86,.55);
     background:rgba(10,8,6,.72);
@@ -4060,9 +4064,9 @@ class Component extends DCLogic {
         drawSky();
         drawCv();
       }
-      this._raf.push(requestAnimationFrame(loop));
+      this._rafMain=requestAnimationFrame(loop);
     };
-    this._raf.push(requestAnimationFrame(loop));
+    this._rafMain=requestAnimationFrame(loop);
     const onScrollPerf=()=>{ scrolling=true; clearTimeout(scrollIdle); scrollIdle=setTimeout(()=>{ scrolling=false; },150); };
     on(window,'scroll',onScrollPerf,{passive:true});
 
@@ -4137,68 +4141,140 @@ class Component extends DCLogic {
     const doorway=document.getElementById('kx-doorway');
     if(doorway){ const dio=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ doorway.style.filter='brightness(1) saturate(1)'; doorway.style.transform='scale(1)'; dio.unobserve(doorway); } }); },{threshold:.35}); dio.observe(doorway); }
 
-    // ── advisor coverflow: fluid momentum drag, looping, 3D depth ──
+    // ── advisor coverflow: one controller for drag, swipe, tap, dots, arrows, wheel and keys ──
+    // Rewritten 2026-11 to replace this block plus four patch scripts that fought it:
+    // a click-capture flip fix, a focus handler that re-centred on every press, a
+    // "guard" that fired fake pointerup events at (0,0), and a second flip-label
+    // handler. The rules now:
+    //  - a press only becomes a drag once it has moved 6px, and only if it moved
+    //    more sideways than down. A vertical move is left to the page to scroll.
+    //  - the pointer is captured only once a drag starts, so taps on dots, arrows,
+    //    links and the card's own buttons reach them as normal clicks.
+    //  - a swipe moves one to three cards depending on its speed, never a free fling.
+    //  - a tap on the centre card flips it; a tap on a side card brings it forward.
+    //  - the loop runs only while the stage is on screen, and writes a style only
+    //    when its value changes.
     const stage=document.getElementById('kx-hc-stage');
     if(stage){
       const cards=[...stage.querySelectorAll('.kx-hc')];
       const dots=[...stage.querySelectorAll('.kx-hc-dot')];
       const N=cards.length;
       cards.forEach(c=>{ c.style.transition='none'; });
-      let pos=0, vel=0, goal=null;
-      let dragging=false, sx=0, sPos=0, lastX=0, moved=0, activeId=null;
+      let pos=0, goal=null, drag=null, vel=0, activeId=null, justDragged=0;
       const wrap=r=>{ while(r>N/2)r-=N; while(r<=-N/2)r+=N; return r; };
       const spacingOf=()=>{ const w=stage.clientWidth||900; return Math.max(150,Math.min(300,w*0.30)); };
       let spacing=spacingOf();
       on(window,'resize',()=>{ spacing=spacingOf(); });
+      const memo=cards.map(()=>({}));
+      const put=(i,prop,val)=>{ const m=memo[i]; if(m[prop]!==val){ m[prop]=val; cards[i].style[prop]=val; } };
       let bob=0;
-      const render=()=>{ bob+=0.016;
+      const render=()=>{ if(!RM) bob+=0.016;
         const centerIdx=((Math.round(pos)%N)+N)%N;
         cards.forEach((el,i)=>{
           const rel=wrap(i-pos), ar=Math.abs(rel);
-          if(ar>3.15){ el.style.opacity='0'; el.style.visibility='hidden'; el.style.pointerEvents='none'; return; }
-          el.style.visibility='visible'; el.style.pointerEvents=ar<0.5?'auto':'auto';
+          if(ar>3.15){ put(i,'opacity','0'); put(i,'visibility','hidden'); put(i,'pointerEvents','none'); return; }
+          put(i,'visibility','visible'); put(i,'pointerEvents','auto');
           const x=Math.sign(rel)*Math.pow(ar,0.92)*spacing;
           const scale=Math.max(0.56,1-ar*0.15);
           const rot=Math.max(-52,Math.min(52,-rel*20));
           const tz=-ar*170;
           const isC=ar<0.5;
-          const y=isC?Math.sin(bob*1.3)*5:0;
-          el.style.transform='translate(-50%,-50%) translateX('+x.toFixed(1)+'px) translateY('+y.toFixed(1)+'px) translateZ('+tz.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+scale.toFixed(3)+')';
-          el.style.opacity=Math.max(0,1-ar*0.24).toFixed(3);
-          el.style.zIndex=String(600-Math.round(ar*12));
-          el.style.filter=isC ? 'drop-shadow(0 26px 60px rgba(0,0,0,.6))'
-                               : 'brightness('+Math.max(0.42,1-ar*0.17).toFixed(2)+') blur('+(TOUCH?'0':Math.min(6,ar*1.7).toFixed(1))+'px)';
+          const y=isC&&!RM?Math.sin(bob*1.3)*5:0;
+          put(i,'transform','translate(-50%,-50%) translateX('+x.toFixed(1)+'px) translateY('+y.toFixed(1)+'px) translateZ('+tz.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg) scale('+scale.toFixed(3)+')');
+          put(i,'opacity',Math.max(0,1-ar*0.24).toFixed(2));
+          put(i,'zIndex',String(600-Math.round(ar*12)));
+          put(i,'filter',isC ? 'drop-shadow(0 26px 60px rgba(0,0,0,.6))'
+                             : 'brightness('+Math.max(0.42,1-ar*0.17).toFixed(2)+') blur('+(TOUCH?'0':Math.min(6,ar*1.7).toFixed(1))+'px)');
         });
-        if(activeId!==centerIdx){ activeId=centerIdx; dots.forEach((d,i)=>{ const on2=i===centerIdx; d.style.background=on2?'#F3E4A8':'#3C3A35'; d.style.width=on2?'22px':'8px'; d.style.boxShadow=on2?'0 0 12px rgba(255,201,110,.7)':'none'; }); }
+        if(activeId!==centerIdx){ activeId=centerIdx; dots.forEach((d,i)=>{ const on2=i===centerIdx; d.style.background=on2?'#F3E4A8':'#3C3A35'; d.style.width=on2?'22px':'8px'; d.style.boxShadow=on2?'0 0 12px rgba(255,201,110,.7)':'none'; d.setAttribute('aria-current',on2?'true':'false'); }); }
       };
       const physics=()=>{
-        if(!dragging){
+        if(!drag || drag.axis!=='x'){
           if(goal!==null){ pos+=(goal-pos)*0.16; if(Math.abs(goal-pos)<0.001){ pos=goal; goal=null; } }
-          else if(Math.abs(vel)>0.0022){ pos+=vel; vel*=0.93; }
-          else { const t=Math.round(pos); pos+=(t-pos)*0.14; vel=0; }
+          else { const t=Math.round(pos); pos+=(t-pos)*0.14; }
         }
-        { const _p0=pos; pos=((pos%N)+N)%N;
-          if(goal!==null) goal+=(pos-_p0); }   /* keep the goal with the wrap, or it can never be reached */
+        { const p0=pos; pos=((pos%N)+N)%N; if(goal!==null) goal+=(pos-p0); }   /* keep the goal with the wrap */
         render();
-        this._raf.push(requestAnimationFrame(physics));
       };
-      this._raf.push(requestAnimationFrame(physics));
+      // run only while the stage is on screen; one frame id, not one per frame
+      let visible=true;
+      const loop=()=>{ this._rafHc=null; if(!visible) return; physics(); this._rafHc=requestAnimationFrame(loop); };
+      const kick=()=>{ if(visible && this._rafHc==null) this._rafHc=requestAnimationFrame(loop); };
+      try{ const vio=new IntersectionObserver(es=>{ visible=es[es.length-1].isIntersecting; kick(); },{rootMargin:'200px 0px'}); vio.observe(stage); this._cleanup.push(()=>vio.disconnect()); }catch(_){}
+      on(document,'visibilitychange',()=>{ if(document.hidden){ cancelDrag(); } else kick(); });
+      render(); kick();
 
-      const snapTo=(idx)=>{ let t=idx; while(t-pos>N/2)t-=N; while(t-pos<-N/2)t+=N; goal=t; vel=0; };
-      on(stage,'pointerdown',e=>{ dragging=true; goal=null; sx=e.clientX; lastX=e.clientX; sPos=pos; moved=0; vel=0; stage.style.cursor='grabbing'; try{stage.setPointerCapture(e.pointerId);}catch(_){} });
-      on(stage,'pointermove',e=>{ if(!dragging)return; const dx=e.clientX-sx; moved=Math.max(moved,Math.abs(dx)); pos=sPos-dx/spacing; const inst=-(e.clientX-lastX)/spacing; vel=inst*0.85+vel*0.15; lastX=e.clientX; });
-      const release=(e)=>{ if(!dragging)return; dragging=false; stage.style.cursor='grab'; vel=Math.max(-0.62,Math.min(0.62,vel));
-        try{stage.releasePointerCapture(e.pointerId);}catch(_){}
-        if(moved<6){ // treat as tap — capture retargets events, so resolve by point
-          const hit=document.elementFromPoint(e.clientX,e.clientY);
-          const card=hit&&hit.closest&&hit.closest('.kx-hc');
-          if(card && !(hit.closest('.kx-hc-btn'))){ const idx=+card.dataset.idx;
-            if(Math.abs(wrap(idx-pos))<0.5){ card.classList.toggle('flipped'); card.__kxFlipEvt=e.timeStamp; } else { snapTo(idx); } } }
-        else if(Math.abs(vel)<0.06){ if(moved>=30){ const dir=(pos>sPos)?1:-1; snapTo(Math.round(sPos)+dir); } else { snapTo(Math.round(pos)); } } };
-      on(stage,'pointerup',release); on(stage,'pointercancel',release); on(stage,'lostpointercapture',()=>{ dragging=false; stage.style.cursor='grab'; });
-      on(stage,'wheel',e=>{ if(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey){ e.preventDefault(); goal=null; vel+=(e.deltaX||e.deltaY)*0.00045; vel=Math.max(-0.5,Math.min(0.5,vel)); } },{passive:false});
-      on(stage,'keydown',e=>{ if(e.key==='ArrowRight'){ e.preventDefault(); snapTo(Math.round(pos)+1); } else if(e.key==='ArrowLeft'){ e.preventDefault(); snapTo(Math.round(pos)-1); } else if(e.key==='Enter'||e.key===' '){ const c=cards[((Math.round(pos)%N)+N)%N]; if(c){ e.preventDefault(); c.classList.toggle('flipped'); } } });
-      dots.forEach(d=>{ on(d,'click',e=>{ e.stopPropagation(); snapTo(+d.dataset.idx); }); });
+      const base=()=>goal!==null?goal:Math.round(pos);
+      const snapTo=(idx)=>{ let t=idx; while(t-pos>N/2)t-=N; while(t-pos<-N/2)t+=N; goal=t; kick(); };
+      const step=(d)=>{ goal=base()+d; kick(); };
+      stage.__kxSnap=snapTo; stage.__kxStep=step;           /* for the side arrows */
+      const isCentred=idx=>Math.abs(wrap(idx-pos))<0.5;
+      const flip=card=>{ card.classList.toggle('flipped'); card.setAttribute('aria-pressed',card.classList.contains('flipped')?'true':'false'); };
+      // things inside the stage that are their own controls: a tap on them is theirs
+      const OWN='.kx-hc-dot,.kx-hcarrow,.kx-hc-btn,.kx-fliplabel,a,button,input,select,textarea';
+
+      function cancelDrag(){ if(!drag) return; const was=drag.axis==='x'; drag=null; stage.style.cursor='grab'; if(was){ justDragged=performance.now(); snapTo(Math.round(pos)); } }
+      on(stage,'pointerdown',e=>{
+        if(e.button>0 || !e.isPrimary) return;
+        if(e.target.closest && e.target.closest('.kx-hcarrow')) return;
+        drag={id:e.pointerId, sx:e.clientX, sy:e.clientY, sPos:pos, lastX:e.clientX, lastT:e.timeStamp, axis:null};
+        vel=0;
+      });
+      on(stage,'pointermove',e=>{
+        if(!drag || e.pointerId!==drag.id) return;
+        const dx=e.clientX-drag.sx, dy=e.clientY-drag.sy;
+        if(drag.axis===null){
+          if(Math.abs(dx)<6 && Math.abs(dy)<6) return;
+          if(Math.abs(dy)>Math.abs(dx)){ drag=null; return; }          /* a scroll: the page has it */
+          drag.axis='x'; goal=null; drag.sPos=pos; drag.sx=e.clientX; stage.style.cursor='grabbing';
+          try{ stage.setPointerCapture(e.pointerId); }catch(_){}
+          kick(); return;
+        }
+        if(drag.axis!=='x') return;
+        pos=drag.sPos-(e.clientX-drag.sx)/spacing;
+        const dt=Math.max(1,e.timeStamp-drag.lastT);
+        const v=-(e.clientX-drag.lastX)/spacing/dt;                      /* cards per ms */
+        vel=v*0.7+vel*0.3; drag.lastX=e.clientX; drag.lastT=e.timeStamp;
+      });
+      on(stage,'pointerup',e=>{
+        if(!drag || e.pointerId!==drag.id) return;
+        const d=drag; drag=null; stage.style.cursor='grab';
+        try{ if(stage.hasPointerCapture && stage.hasPointerCapture(e.pointerId)) stage.releasePointerCapture(e.pointerId); }catch(_){}
+        if(d.axis==='x'){
+          justDragged=performance.now();
+          const travelled=pos-d.sPos;
+          // a quick flick reaches further than a slow drag, but never more than three cards
+          let target=Math.round(pos+Math.max(-2,Math.min(2,vel*260)));
+          if(target===Math.round(d.sPos) && Math.abs(travelled)>0.12) target+=travelled>0?1:-1;
+          target=Math.max(Math.round(d.sPos)-3,Math.min(Math.round(d.sPos)+3,target));
+          snapTo(target); return;
+        }
+        // a tap. Resolve by point: the arrows send synthetic taps at a card's position.
+        const hit=(e.isTrusted && e.target!==stage)?e.target:document.elementFromPoint(e.clientX,e.clientY);
+        if(!hit || !hit.closest || hit.closest(OWN)) return;
+        const card=hit.closest('.kx-hc'); if(!card) return;
+        const idx=+card.dataset.idx;
+        if(isCentred(idx)){ flip(card); card.__kxFlipEvt=e.timeStamp; } else snapTo(idx);
+      });
+      on(stage,'pointercancel',cancelDrag);
+      on(stage,'lostpointercapture',e=>{ if(e.target===stage && drag && e.pointerId===drag.id) cancelDrag(); });   /* a touch starts captured by the card; moving capture to the stage fires this on the card first */
+      on(window,'blur',cancelDrag);
+      // a click straight after a drag is the end of the drag, not a tap on whatever is under it
+      on(stage,'click',e=>{ if(performance.now()-justDragged<350){ e.preventDefault(); e.stopPropagation(); } },true);
+      // the flip prompt is a button inside the card: same rule as tapping the card
+      on(stage,'click',e=>{ const lab=e.target.closest && e.target.closest('.kx-fliplabel'); if(!lab) return;
+        e.preventDefault(); e.stopPropagation(); const card=lab.closest('.kx-hc'); if(!card) return;
+        if(isCentred(+card.dataset.idx)) flip(card); else snapTo(+card.dataset.idx); },true);
+      let wheelAcc=0, wheelT=0;
+      on(stage,'wheel',e=>{ if(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey){ e.preventDefault();
+        const now=performance.now(); if(now-wheelT>250) wheelAcc=0; wheelT=now;
+        wheelAcc+=(e.deltaX||e.deltaY); if(Math.abs(wheelAcc)>=60){ step(wheelAcc>0?1:-1); wheelAcc=0; } } },{passive:false});
+      on(stage,'keydown',e=>{ if(e.defaultPrevented) return;                  /* the card's own key handler got it */
+        if(e.key==='ArrowRight'){ e.preventDefault(); step(1); }
+        else if(e.key==='ArrowLeft'){ e.preventDefault(); step(-1); }
+        else if((e.key==='Enter'||e.key===' ') && e.target===stage){ const c=cards[((Math.round(pos)%N)+N)%N]; if(c){ e.preventDefault(); flip(c); } } });
+      dots.forEach(d=>{ on(d,'click',e=>{ e.stopPropagation(); snapTo(+d.dataset.idx); });
+        on(d,'keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); snapTo(+d.dataset.idx); } }); });
     }
 
     // dream portal drag-to-reveal
@@ -4297,8 +4373,8 @@ class Component extends DCLogic {
           const x=sx+(ex-sx)*p, y=sy+(ey-sy)*p+Math.sin(p*Math.PI)*wob, op=p<0.1?p/0.1:(p>0.88?(1-p)/0.12:1), sc=hover?1.55:1;
           wish.style.opacity=String(Math.max(0,Math.min(1,op)));
           wish.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) translate(-50%,-50%) scale('+sc+')';
-          flightRaf=requestAnimationFrame(step); this._raf.push(flightRaf); };
-        flightRaf=requestAnimationFrame(step); this._raf.push(flightRaf); };
+          flightRaf=requestAnimationFrame(step); };
+        flightRaf=requestAnimationFrame(step); };
       on(wish,'pointerdown',e=>{ e.preventDefault(); openReward(e.clientX,e.clientY); });
       on(wish,'click',e=>openReward(e.clientX,e.clientY));
       if(rClose)on(rClose,'click',closeReward);
@@ -4310,7 +4386,7 @@ class Component extends DCLogic {
       this._cleanup.push(()=>{ wishTimers.forEach(clearTimeout); if(cdIv)clearInterval(cdIv); if(flightRaf)cancelAnimationFrame(flightRaf); });
     }
   }
-  componentWillUnmount(){ (this._raf||[]).forEach(id=>cancelAnimationFrame(id)); (this._cleanup||[]).forEach(f=>f()); }
+  componentWillUnmount(){ (this._raf||[]).forEach(id=>cancelAnimationFrame(id)); [this._rafMain,this._rafHc].forEach(id=>{ if(id!=null) cancelAnimationFrame(id); }); (this._cleanup||[]).forEach(f=>f()); }
   renderVals(){ return {}; }
 }
 </script>
@@ -4554,46 +4630,7 @@ body.kxc-away #kx-nav .kx-mag{padding:9px 18px !important;font-size:12.5px !impo
 }
 </style>
 <!--kx-hc-flipfix-->
-<script>
-(function(){
-  function go(){
-    var stage=document.getElementById('kx-hc-stage'); if(!stage) return false;
-    if(stage.dataset.flipfix) return true;
-    stage.dataset.flipfix='1';
-    var downX=0, downY=0, moved=0, before=null;
-    stage.addEventListener('pointerdown',function(e){
-      downX=e.clientX; downY=e.clientY; moved=0;
-      var c=e.target.closest&&e.target.closest('.kx-hc');
-      before=c?c.classList.contains('flipped'):null;
-    },true);
-    stage.addEventListener('pointermove',function(e){
-      moved=Math.max(moved,Math.abs(e.clientX-downX),Math.abs(e.clientY-downY));
-    },true);
-    document.addEventListener('click',function(e){          /* capture, because something upstream eats clicks */
-      if(!e.target.closest || !e.target.closest('#kx-hc-stage')) return;
-      if(moved>6) return;                                  /* that was a drag */
-      var card=e.target.closest&&e.target.closest('.kx-hc');
-      if(!card) return;
-      if(e.target.closest('.kx-hc-btn')) return;           /* leave the buttons alone */
-      if(before!==null && card.classList.contains('flipped')!==before) return;  /* the built-in handler got it */
-      /* pointerup and click come from the same physical tap a few ms apart,
-         so this blocks a double toggle without blocking a deliberate second tap */
-      if(card.__kxFlipEvt!=null && Math.abs(e.timeStamp-card.__kxFlipEvt)<120) return;
-      var sc=stage.getBoundingClientRect(), cc=card.getBoundingClientRect();
-      var off=Math.abs((cc.left+cc.width/2)-(sc.left+sc.width/2));
-      if(!cc.width || off < cc.width*0.4){          /* no width means no layout yet, treat as centred */
-        card.classList.toggle('flipped');
-      }else{
-        var dot=document.querySelector('.kx-hc-dot[data-idx="'+card.dataset.idx+'"]');
-        if(dot) dot.click();                                /* bring it to the front first */
-      }
-    },true);
-    return true;
-  }
-  var t=0, iv=setInterval(function(){ if(go()||++t>240) clearInterval(iv); },400);
-  if(document.readyState!=='loading') go(); else document.addEventListener('DOMContentLoaded',go);
-})();
-</script>
+<!-- kx-flipfix removed: the carousel controller handles taps itself -->
 <!--kx-a11y-->
 <script>
 (function(){
@@ -4632,7 +4669,7 @@ body.kxc-away #kx-nav .kx-mag{padding:9px 18px !important;font-size:12.5px !impo
       var i=((+card.dataset.idx + (e.key==='ArrowRight'?1:-1))%n+n)%n;
       var dot=document.querySelector('.kx-hc-dot[data-idx="'+i+'"]');
       var next=stage.querySelector('.kx-hc[data-idx="'+i+'"]');
-      if(dot) dot.click();
+      if(stage.__kxSnap) stage.__kxSnap(i); else if(dot) dot.click();
       if(next && next.focus) next.focus();
     }
   },true);
@@ -4641,6 +4678,9 @@ body.kxc-away #kx-nav .kx-mag{padding:9px 18px !important;font-size:12.5px !impo
   document.addEventListener('focusin',function(e){
     var card=e.target && e.target.closest && e.target.closest('.kx-hc');
     if(!card) return;
+    /* only keyboard focus: a mouse or touch press also focuses the card, and
+       re-centring then undid the drag that press was starting */
+    try{ if(!card.matches(':focus-visible')) return; }catch(_){ return; }
     var dot=document.querySelector('.kx-hc-dot[data-idx="'+card.dataset.idx+'"]');
     if(dot) dot.click();
   },true);
@@ -4985,43 +5025,7 @@ try{
 }catch(e){console.error("SideKix [support] failed:",e);}
 </script>
 <!--kx-carousel-guard-->
-<script>
-try{
-(function(){
-  var stage=document.getElementById('kx-hc-stage');
-  var t=0, iv=setInterval(function(){
-    stage=document.getElementById('kx-hc-stage');
-    if(stage||++t>60){ clearInterval(iv); if(stage) guard(stage); }
-  },300);
-  function guard(stage){
-    if(stage.dataset.guard) return;
-    stage.dataset.guard='1';
-    var last=0;
-    stage.addEventListener('pointermove',function(){ last=Date.now(); },{passive:true,capture:true});
-    stage.addEventListener('pointerdown',function(){ last=Date.now(); },{passive:true,capture:true});
-
-    /* if a gesture is abandoned without pointerup, hand control back */
-    function bail(){
-      ['pointerup','pointercancel','lostpointercapture'].forEach(function(type){
-        stage.dispatchEvent(new PointerEvent(type,{bubbles:true,clientX:0,clientY:0,pointerId:1}));
-      });
-    }
-    setInterval(function(){
-      if(!last) return;
-      if(Date.now()-last>700 && /grabbing/.test(stage.style.cursor||'')){ last=0; bail(); }
-    },400);
-
-    /* leaving the page or losing focus mid-drag should not freeze it */
-    ['blur','visibilitychange'].forEach(function(ev){
-      addEventListener(ev,function(){ if(/grabbing/.test(stage.style.cursor||'')) bail(); });
-    });
-    stage.addEventListener('touchend',function(){ setTimeout(function(){
-      if(/grabbing/.test(stage.style.cursor||'')) bail();
-    },120);},{passive:true});
-  }
-})();
-}catch(e){console.error("SideKix [carousel guard] failed:",e);}
-</script>
+<!-- kx-carousel-guard removed: the controller ends abandoned drags itself -->
 <!--kx-chat-->
 <script>
 try{
@@ -5094,39 +5098,7 @@ try{
 })();
 }catch(e){console.error("SideKix [chat] failed:",e);}
 </script>
-<!--kx-fliplabel-->
-<script>
-(function(){
-  /* explicit handler for the prompt, in capture phase, and it wins over the
-     carousel's own tap logic so the words behave like the rest of the card */
-  function flip(card,ts){
-    if(!card) return;
-    var stage=document.getElementById('kx-hc-stage');
-    if(stage){
-      var sc=stage.getBoundingClientRect(), cc=card.getBoundingClientRect();
-      var off=Math.abs((cc.left+cc.width/2)-(sc.left+sc.width/2));
-      if(cc.width && off > cc.width*0.4){
-        var dot=document.querySelector('.kx-hc-dot[data-idx="'+card.dataset.idx+'"]');
-        if(dot) dot.click();
-        return;
-      }
-    }
-    /* a keypress can also raise a click, so one gesture must toggle once */
-    if(card.__kxLabelEvt!=null && Math.abs(ts-card.__kxLabelEvt)<350) return;
-    card.__kxLabelEvt=ts;
-    card.classList.toggle('flipped');
-    card.__kxFlipEvt=ts;
-  }
-  document.addEventListener('click',function(e){
-    var lab=e.target&&e.target.closest?e.target.closest('.kx-fliplabel'):null;
-    if(!lab) return;
-    e.preventDefault(); e.stopPropagation();
-    flip(lab.closest('.kx-hc'), e.timeStamp);
-  },true);
-  /* Enter and Space are already handled by the card's own keyboard support,
-     so adding a second handler here only cancelled it out */
-})();
-</script>
+<!--kx-fliplabel: handled by the carousel controller-->
 <script>
 /* a reveal that depends on an IntersectionObserver threshold can never fire
    when the observed element is far taller than the screen, which is the case
@@ -5596,6 +5568,7 @@ try{
     /* the neighbour on that side is whichever visible card sits nearest the
        centre without being the centre one */
     function move(dir){
+      if(stage.__kxStep){ stage.__kxStep(dir); return; }
       var box=stage.getBoundingClientRect();
       var cx=box.left+box.width/2, cy=box.top+box.height/2;
       var best=null, bestD=Infinity;
@@ -5615,14 +5588,25 @@ try{
       b.className='kx-hcarrow '+cls;
       b.setAttribute('aria-label',label);
       b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+d+'"/></svg>';
-      b.addEventListener('click',function(e){
-        e.preventDefault(); e.stopPropagation(); move(dir);
-      });
+      /* clicks are handled by the delegated listener below */
       return b;
     }
 
     stage.appendChild(arrow('prev','Previous advisor','M15 5l-7 7 7 7',-1));
     stage.appendChild(arrow('next','Next advisor','M9 5l7 7-7 7',1));
+    /* the page framework re-creates these buttons and the copies lose the
+       listener above, so a tap did nothing. One delegated handler survives that. */
+    if(!window.__kxArrowDelegate){
+      window.__kxArrowDelegate=1;
+      document.addEventListener('click',function(e){
+        var b=e.target && e.target.closest && e.target.closest('.kx-hcarrow');
+        if(!b || b.__kxHandled===e) return;
+        e.preventDefault(); e.stopPropagation();
+        var st=document.getElementById('kx-hc-stage'); if(!st) return;
+        var dir=b.classList.contains('prev')?-1:1;
+        if(st.__kxStep) st.__kxStep(dir); else move(dir);
+      },true);
+    }
     return true;
   }
 
