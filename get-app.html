@@ -35,18 +35,30 @@ p.sub{color:var(--grey);font-size:14.5px;line-height:1.65;margin-bottom:20px}
 }
 .note b{color:var(--cream)}
 .linkback{display:inline-block;margin-top:24px;color:var(--gold-mid);font-size:13.5px;text-decoration:none}
+.store{
+  display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;
+  border-radius:999px;background:linear-gradient(180deg,#D7C582,#A1853E);color:#1B1400;
+  font-family:var(--body);font-weight:700;font-size:16px;text-decoration:none;white-space:nowrap;
+  box-shadow:0 8px 30px rgba(231,182,70,.25);
+}
+.store:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px}
+.where{font-family:var(--util);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-mid);margin-top:10px}
+.android{font-size:13px;color:var(--grey);margin-top:14px}
+.android a{color:var(--gold-mid)}
 .linkback:hover{color:var(--gold)}
 </style>
 </head>
 <body>
 <div class="card">
   <p class="eyebrow">SideKix</p>
-  <h1>The app is almost here.</h1>
-  <span class="badge">Coming soon to the App Store</span>
-  <p class="sub">We're putting the finishing touches on the SideKix app. The moment it's live, this page will take you straight there.</p>
+  <h1>Get the SideKix app.</h1>
+  <p class="sub">Available now on iPhone.</p>
+  <a class="store" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download SideKix</a>
+  <p class="where">On the App Store</p>
   <div class="note">
     Already bought Kix Credits? <b>Sign up with the same email you used at checkout</b> — the instant you verify it, your credits will already be waiting. No extra steps, no claim link to dig up.
   </div>
+  <p class="android">On Android or the web? Not yet. We are launching on iOS first. <a href="join.html">Join the waitlist</a> and you will be the first to know when your platform is live.</p>
   <a class="linkback" href="membership.html">← Back to SideKix</a>
 </div>
 </body>
