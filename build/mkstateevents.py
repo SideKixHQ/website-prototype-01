@@ -312,7 +312,7 @@ def page_html(state: str, events: list[dict], siblings: list[str],
 <style id="kx-ev">
 {cardcss}
 .kx-states{{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}}
-.kx-states a{{padding:6px 12px;border:1px solid rgba(212,168,86,.35);border-radius:999px;font-size:.9rem}}
+.kx-states a{{display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border:1px solid rgba(212,168,86,.35);border-radius:999px;font-size:.9rem}}
 .kx-states a:hover{{border-color:rgba(212,168,86,.8)}}
 /* The article shell holds body copy to a reading column, which squeezed the
    card grid into a single lane. Centring against the viewport instead lets

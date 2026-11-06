@@ -472,7 +472,7 @@ CSS = """
 .mkt .rblurb{margin:0 0 12px;font-size:14.5px;line-height:1.6;color:#B9B4AB}
 .mkt .rmore{cursor:pointer;background:none;border:1px solid rgba(212,168,86,.32);color:var(--grey);
   font-family:var(--util);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
-  border-radius:999px;padding:0 14px;min-height:36px;transition:color .3s,border-color .3s}
+  border-radius:999px;padding:0 14px;min-height:44px;transition:color .3s,border-color .3s}
 .mkt .rmore:hover{color:#F3E4A8;border-color:var(--gold)}
 .mkt .rmore:focus-visible{outline:3px solid var(--gold-pale);outline-offset:2px}
 .mkt .rmore[aria-expanded="true"]{color:#1a1400;background:var(--gold);border-color:var(--gold);font-weight:700}

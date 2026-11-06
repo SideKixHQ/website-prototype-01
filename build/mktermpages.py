@@ -40,7 +40,7 @@ CSS = """
 .tm .def{margin:0 0 30px;padding:24px 26px;border-left:3px solid #D4A856;
   background:rgba(212,168,86,.06);border-radius:0 12px 12px 0}
 .tm .def p{margin:0;font-size:18.5px;line-height:1.65;color:#F0E6CE}
-.tm .cat{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;
+.tm .cat{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;
   border-radius:999px;border:1px solid rgba(212,168,86,.4);color:#F3E4A8;
   font-family:var(--util,inherit);font-size:10.5px;letter-spacing:.2em;
   text-transform:uppercase;text-decoration:none;margin:0 0 26px}
