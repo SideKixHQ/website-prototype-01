@@ -222,7 +222,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 
 /* ---------- responsive ---------- */
 @media(max-width:1000px){
-  .artgrid{grid-template-columns:1fr;gap:0}
+  /* minmax(0,…) rather than 1fr: a 1fr track will not shrink below its
+     content, so a wide table, even inside its own scroller, pushed the whole
+     article off the right edge of a phone. */
+  .artgrid{grid-template-columns:minmax(0,1fr);gap:0}
   .toc{position:static;padding:0 0 8px;margin:0 0 26px;border-bottom:1px solid var(--line)}
   .toc ol{border-left:none;display:flex;flex-wrap:wrap;gap:6px}
   .toc a{border:1px solid var(--line);border-radius:999px;padding:9px 14px;margin:0;
@@ -350,7 +353,13 @@ body{color:var(--text)}
 .faqs .a a:hover,.cta p a:hover,.standfirst a:hover{color:#fff;border-bottom-color:var(--gold-pale)}
 /* and anything else that slips through keeps a readable colour */
 a{color:#FFEBB9}
-.abar a,.sk-footer a,.toc a,.related a,.backlink,.cta .alt{color:inherit}
+.abar a,.sk-footer a,.toc a,.related a,.backlink{color:inherit}
+/* the closing box shares its class name with site.css's gold pill button,
+   which sets bold dark text (#1a1400) on .cta. inside this dark box that made
+   the outline button 1.01:1 on every blog post, and set the paragraph in bold.
+   reset what leaks through and give the outline button its own colour. */
+.cta{font-size:16px;font-weight:400;color:#E1D7BE;box-shadow:none;display:block}
+.cta .alt{color:var(--gold-pale,#F3E4A8)}
 /* .cta .go is a gold button: its text must stay dark, not inherit the
    surrounding light grey. that combination was 1.29:1 on 62 pages. */
 .cta .go{color:#0B0800}

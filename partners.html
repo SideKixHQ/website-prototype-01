@@ -1850,7 +1850,9 @@ window.SIDEKIX_SUBMIT = function (payload) {
    right for the homepage, which fills it; here it left a third of the hero
    empty. */
 #prt-home{height:auto;min-height:clamp(540px,70vh,660px)}
-.wrap.res.prt{padding-top:36px}
+/* the page never defined .wrap, so everything under the hero ran edge to
+   edge on a phone. same gutter as the other pages. */
+.wrap.res.prt{padding-top:36px;padding-left:28px;padding-right:28px;max-width:1180px;margin-left:auto;margin-right:auto}
 
 @media (max-width:640px){
   /* The homepage's own phone treatment, value for value: the section stops
@@ -1868,7 +1870,7 @@ window.SIDEKIX_SUBMIT = function (payload) {
   .prt-homecta{justify-content:center;gap:12px;margin-top:22px}
   .prt-btn{flex:1 1 100%;padding-left:20px;padding-right:20px}
   .prt-homenote{text-align:center}
-  .wrap.res.prt{padding-top:48px}
+  .wrap.res.prt{padding-top:48px;padding-left:20px;padding-right:20px}
 }
 @media (prefers-reduced-motion:reduce){
   .prt-homeart{transition:none}
