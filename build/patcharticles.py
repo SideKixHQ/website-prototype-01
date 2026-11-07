@@ -28,7 +28,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV = """<nav aria-label="Main" id="kx-nav">
 <a aria-label="SideKix home" href="../../index.html"><img alt="SideKix" decoding="async" fetchpriority="high" height="602" loading="eager" src="../../assets/img/2321feb76252.png?v=2" width="2164"/></a>
 <button aria-expanded="false" aria-label="Menu" class="kx-burger" type="button"><i aria-hidden="true"></i><span>Menu</span></button>
-<div class="kx-links"><a href="../../index.html">Home</a><a href="../../how-it-works.html">How it works</a><a href="../../membership.html">Membership</a><a href="../../advisors.html">Advisors</a><a href="../../partners.html">Partners</a><a href="../../events.html">Events</a><span aria-current="page">Resources</span></div>
+<div class="kx-links"><a href="../../index.html">Home</a><a href="../../kix.html">Kix</a><a href="../../how-it-works.html">How it works</a><a href="../../membership.html">Membership</a><a href="../../advisors.html">Advisors</a><a href="../../partners.html">Partners</a><a href="../../events.html">Events</a><span aria-current="page">Resources</span></div>
 </nav>"""
 
 SITECSS = '<link href="../../assets/site.css" rel="stylesheet"/>'
