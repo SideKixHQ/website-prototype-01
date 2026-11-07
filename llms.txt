@@ -5,7 +5,14 @@
 > personalized path forward. Operated by Character Limit LLC, doing business
 > as SideKix, from Wilmington, North Carolina.
 
-SideKix is pre-launch. The public site is a research and resource library:
+The SideKix app is available now on iPhone from the App Store:
+https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359
+Android and the web are not available yet. Kix is the Entrepreneurial Support
+Guide within the SideKix app. Kix asks what is in your way, then helps you
+navigate the roadblocks and barriers, systemic and psychological, that stand
+between an idea and the next step.
+
+Alongside the app, the public site is a research and resource library:
 open market data on US business formation, a plain-language glossary, working
 calculators, a weekly listing of business events in every state, online, livestreamed and in person, with the cost shown as the host states it, and long-form
 guides for people starting, growing, scaling or leading a small business.
@@ -28,6 +35,7 @@ for no email address.
 
 ## Key pages
 
+- [Get the SideKix app](https://sidekixhq.com/get-app.html): Where to download the SideKix app. Available now on iPhone from the App Store; Android and the web are not available yet.
 - [How to Hire a Business Advisor](https://sidekixhq.com/hire-a-business-advisor.html): What a business advisor does, how it differs from a consultant, a coach and a fractional executive, what each costs, the federally funded options that charge nothing, and four questions for a first conversation.
 - [Free Small Business Help in North Carolina](https://sidekixhq.com/free-small-business-help-north-carolina.html): The three counseling networks that charge nothing in NC (community college Small Business Centers, the SBTDC in the UNC System, SCORE), the Wilmington ecosystem, and the CDFI lenders for businesses a bank turns down.
 - [Press](https://sidekixhq.com/press.html): The boilerplate, fast facts, federal figures on US business formation that are open to quote, and who to ask for an interview.
@@ -188,7 +196,11 @@ Checked at the source and refreshed weekly. Last run 2026-10-12. Each page lists
   Side Kix. It is not connected to Sideqik, a separate company with a similar
   sounding name.
 - General and press contact: support@sidekixhq.com.
-- SideKix is pre-launch. Memberships and Kix Credits can be prepaid now, ahead of the platform opening.
+- The SideKix app is available now on iPhone from the App Store. It is not yet
+  available on Android or the web.
+- Kix is the Entrepreneurial Support Guide within the SideKix app.
+- Memberships and Kix Credits can be prepaid now. Ongoing membership billing
+  starts when each tier goes live.
 - The trademark application for SideKix is pending with the USPTO.
 - The site publishes no sponsored content and runs no advertising.
 
