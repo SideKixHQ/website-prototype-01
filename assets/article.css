@@ -186,8 +186,9 @@ hr{border:none;height:1px;background:var(--line);margin:44px 0}
   display:grid;grid-template-columns:1.75fr 1fr 1fr 1fr 1fr;gap:28px}
 /* Pages whose footer still has three nav columns rather than four keep the
    original four track grid, so they fill the row instead of leaving a gap
-   where the Guides and tools column would sit. */
-.sk-inner:not(:has(> nav:nth-of-type(4))){
+   where the Guides and tools column would sit. :where() keeps this at the
+   weight of .sk-inner alone, so the phone and tablet layouts below still win. */
+.sk-inner:where(:not(:has(> nav:nth-of-type(4)))){
   grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
 .sk-brand{max-width:34ch}
 .sk-tagline{font-weight:800;font-size:19px;line-height:1.25;color:#F4EACF;margin:0 0 20px}

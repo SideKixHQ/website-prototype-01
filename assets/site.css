@@ -957,8 +957,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   display:grid;grid-template-columns:1.75fr 1fr 1fr 1fr 1fr;gap:28px}
 /* Pages whose footer still has three nav columns rather than four keep the
    original four track grid, so they fill the row instead of leaving a gap
-   where the Guides and tools column would sit. */
-.sk-inner:not(:has(> nav:nth-of-type(4))){
+   where the Guides and tools column would sit. :where() keeps this at the
+   weight of .sk-inner alone, so the phone and tablet layouts below still win. */
+.sk-inner:where(:not(:has(> nav:nth-of-type(4)))){
   grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
 .sk-brand{max-width:34ch}
 .sk-word{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;color:#FFF8E8;letter-spacing:.01em;margin-bottom:10px}
