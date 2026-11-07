@@ -20,7 +20,7 @@ SITE = 'https://sidekixhq.com'
 
 # the site's top bar is fixed, so the first section clears it like the other pages do
 FRAME_FIT = ('#kixpage{background:#050403;color:#ECE5D3}'
-             '#kixpage > section.hero{padding-top:clamp(104px,12vw,140px)}')
+             '#kixpage > section.kp-hero{padding-top:clamp(104px,12vw,140px)}')
 
 TITLE = 'Kix: Your Entrepreneurial Support Guide | SideKix'
 OG_TITLE = 'Kix, your entrepreneurial support guide | SideKix'
