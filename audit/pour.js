@@ -24,7 +24,7 @@ for(const f of pages){
   d.querySelectorAll("img").forEach(i=>{if(i.getAttribute("alt")===null)add("Perceivable","img with no alt")});
   d.querySelectorAll("svg:not([aria-hidden]):not([aria-label])").forEach(s=>{
     if(!s.querySelector("title")) add("Perceivable","svg neither hidden nor named")});
-  d.querySelectorAll("video,audio").forEach(()=>add("Perceivable","media with no captions track"));
+  d.querySelectorAll("video,audio").forEach(e=>{ if(!e.querySelector("track")) add("Perceivable","media with no captions track"); });
   if(/font-size:\s*([0-9]|1[01])px/.test(css)===false){} // handled in mobile pass
   // colour alone conveying meaning
   d.querySelectorAll("[style*='color']").forEach(()=>{});

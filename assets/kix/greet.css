@@ -1,0 +1,74 @@
+/* ---- Kix layer: orb, greeting, panel ---- */
+.kxl{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:none}
+.kxl > *{pointer-events:auto}
+.kxl,.kxl *,.kxl-panel,.kxl-panel *{box-sizing:border-box}
+.kxl-orb{position:relative;width:68px;height:68px;border-radius:999px;border:1px solid rgba(243,228,168,.7);background:radial-gradient(circle at 50% 50%,#1C150A,#050403 70%);cursor:pointer;padding:0;overflow:hidden;
+  box-shadow:0 0 0 4px rgba(212,168,86,.12),0 10px 34px rgba(0,0,0,.6),0 0 30px rgba(255,186,72,.35);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+.kxl-orb:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 0 4px rgba(212,168,86,.22),0 12px 40px rgba(0,0,0,.6),0 0 46px rgba(255,186,72,.55)}
+.kxl-orb canvas{position:absolute;inset:0;width:100%;height:100%}
+.kxl-orb-l{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:500 10px/1 'Space Grotesk',ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:#F3E4A8;text-shadow:0 1px 6px #000}
+.kxl-orb:focus-visible,.kxl button:focus-visible,.kxl-panel button:focus-visible,.kxl-panel a:focus-visible{outline:3px solid #F3E4A8;outline-offset:3px}
+.kxl-bubble{position:relative;width:min(340px,calc(100vw - 32px));background:#0E0C09;border:1px solid rgba(212,168,86,.55);border-radius:20px 20px 6px 20px;padding:18px 18px 16px;color:#ECE5D3;
+  box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 40px rgba(255,186,72,.18);font-family:'Poppins',system-ui,sans-serif;transform-origin:bottom right;animation:kxlIn .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes kxlIn{from{transform:translateY(10px) scale(.96);opacity:.0}to{transform:none;opacity:1}}
+.kxl-bubble p{margin:0 32px 0 0;font-size:15px;line-height:1.55}
+.kxl-bubble b{color:#FFF3D2;font-weight:600}
+.kxl-bubble .kxl-q{margin-top:8px;color:#F3E4A8;font-weight:600}
+.kxl-x{position:absolute;top:6px;right:6px;width:44px;height:44px;border-radius:999px;border:0;background:transparent;color:#A69C88;font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.kxl-x:hover{color:#F3E4A8}
+.kxl-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.kxl-row button{min-height:44px;border-radius:999px;padding:0 16px;font:600 14px 'Poppins',system-ui,sans-serif;cursor:pointer}
+.kxl-hear{background:rgba(255,255,255,.05);border:1px solid rgba(212,168,86,.55);color:#EBD08C;display:inline-flex;align-items:center;gap:8px}
+.kxl-hear i{width:22px;height:22px;border-radius:999px;background:#FFBA48;color:#1A1205;display:grid;place-items:center;font-style:normal;font-size:9px}
+.kxl-open{background:linear-gradient(180deg,#D7C582,#A1853E);border:0;color:#1B1400}
+.kxl-panel{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-end;justify-content:center;background:rgba(3,2,1,.62);
+  padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.kxl-panel[hidden]{display:none!important}
+.kxl-sheet{width:min(560px,100%);max-height:min(88vh,760px);overflow:auto;background:#0B0906;border:1px solid rgba(212,168,86,.45);border-radius:24px;color:#ECE5D3;font-family:'Poppins',system-ui,sans-serif;
+  box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(255,186,72,.15);animation:kxlUp .4s cubic-bezier(.16,1,.3,1) both}
+@keyframes kxlUp{from{transform:translateY(24px)}to{transform:none}}
+.kxl-head{position:sticky;top:0;z-index:3;height:150px;background:#000;border-bottom:1px solid #2A2418}
+.kxl-head canvas{position:absolute;inset:0;width:100%;height:100%}
+.kxl-head .st{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:400 11px 'Space Grotesk',ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:#A69C88}
+.kxl-close{position:absolute;top:8px;right:8px;width:44px;height:44px;display:grid;place-items:center;border-radius:999px;border:1px solid #2A2418;background:rgba(5,4,3,.7);color:#ECE5D3;font-size:22px;cursor:pointer;z-index:2}
+.kxl-body{padding:20px 20px 22px;display:grid;gap:14px}
+.kxl-body h2{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:30px;line-height:1.1;color:#FFF8E6}
+.kxl-body h2 em{color:#F3E4A8;font-weight:500}
+.kxl-chips{display:flex;flex-wrap:wrap;gap:8px}
+.kxl-chip{font:500 13.5px 'Poppins',system-ui,sans-serif;color:#ECE5D3;background:transparent;border:1px solid #2A2418;border-radius:999px;padding:8px 14px;min-height:44px;cursor:pointer;text-align:left;max-width:100%}
+.kxl-chip[aria-pressed="true"]{background:#D4A856;color:#140E02;border-color:#D4A856}
+.kxl-said{display:grid;gap:8px;min-height:20px}
+.kxl-said p{margin:0;font-size:15.5px;line-height:1.6;opacity:.0;transition:opacity .35s}
+.kxl-said p.in{opacity:1}
+.kxl-said p.qline{color:#F3E4A8;font-weight:500}
+.kxl-cta{display:none;gap:10px;align-items:center;flex-wrap:wrap}
+.kxl-cta.in{display:flex}
+.kxl-cta a.go{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:999px;background:linear-gradient(180deg,#D7C582,#A1853E);color:#1B1400;font-weight:700;text-decoration:none}
+.kxl-cta a.more{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#EBD08C;font-weight:600;text-decoration:none}
+.kxl-mini{display:none}
+.kxl-said p.you{color:#A69C88;font-size:13.5px;font-style:italic}
+.kxl-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* phones: the greeting shrinks to one slim strip beside the orb, so the page stays readable */
+@media (max-width:599px){
+  .kxl{left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));flex-direction:row;align-items:center;justify-content:flex-end;gap:8px}
+  .kxl-orb{width:60px;height:60px;flex:none}
+  .kxl-orb-l{bottom:5px;font-size:9px}
+  .kxl-bubble{flex:1;width:auto;min-width:0;min-height:60px;padding:4px;border-radius:18px 6px 6px 18px;display:flex;align-items:center;gap:0;transform-origin:center right}
+  .kxl-bubble > p{display:none}
+  .kxl-mini{display:block;flex:1;min-width:0;min-height:44px;padding:4px 6px 4px 10px;border:0;background:transparent;color:#ECE5D3;font:400 13.5px/1.3 'Poppins',system-ui,sans-serif;text-align:left;cursor:pointer;order:1}
+  .kxl-mini b{display:block;color:#FFF3D2;font-weight:600}
+  .kxl-mini span{color:#F3E4A8;font-weight:600}
+  .kxl-row{order:2;margin:0;gap:0;flex-wrap:nowrap}
+  .kxl-row .kxl-open{display:none}
+  .kxl-row .kxl-hear{width:44px;height:44px;padding:0;justify-content:center;border-radius:999px}
+  .kxl-hear span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .kxl-x{position:static;order:3;flex:none}
+  .kxl-panel{padding:max(12px,env(safe-area-inset-top,0px)) 0 0}
+  .kxl-sheet{width:100%;max-height:92vh;max-height:92dvh;border-radius:22px 22px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .kxl-head{height:110px}
+  .kxl-body{padding:16px 16px 20px}
+  .kxl-body h2{font-size:26px}
+}
+@media (max-width:899px){.kxl.dock-aware{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){.kxl-bubble,.kxl-sheet{animation:none}.kxl-said p{transition:none}.kxl-orb{transition:none}}
+body.still .kxl-bubble,body.still .kxl-sheet{animation:none}

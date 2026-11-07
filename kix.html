@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kix: Your Entrepreneurial Support Guide | SideKix</title>
+<meta name="description" content="Kix is your Entrepreneurial Support Guide within the SideKix app. Tell Kix what is in your way and get one clear next step. On iPhone now.">
+<link rel="canonical" href="https://sidekixhq.com/kix.html">
+<meta property="og:title" content="Kix, your entrepreneurial support guide | SideKix">
+<meta property="og:description" content="Tell Kix what is in your way and get one clear next step. On iPhone now.">
+<meta property="og:url" content="https://sidekixhq.com/kix.html">
+<meta property="og:type" content="website">
+<meta name="apple-itunes-app" content="app-id=6757533359">
+<meta property="og:image" content="https://sidekixhq.com/assets/og/default.png">
+<meta property="og:image:alt" content="The SideKix K mark">
+<meta name="twitter:card" content="summary_large_image">
+<link href="assets/img/e5f9768003a5.png?v=2" rel="icon" sizes="32x32" type="image/png">
+<link href="assets/img/e2b22b796d58.png?v=2" rel="apple-touch-icon" sizes="180x180">
+<link href="assets/fonts.css" rel="stylesheet">
+<style>
+/* Layout: one dark column that opens on Kix's live voice, then walks the campaign's
+   nine beats top to bottom; a notes layer can be toggled over every section. */
+:root{
+  color-scheme:dark;
+  --ink:#050403;          /* page ground */
+  --night:#0E0C09;        /* raised surfaces */
+  --line:#2A2418;         /* hairlines */
+  --gold:#D4A856;         /* brand gold */
+  --gold-pale:#F3E4A8;    /* highlights, headline italics */
+  --flare:#FFBA48;        /* Kix voice gold */
+  --text:#ECE5D3;         /* body */
+  --mute:#A69C88;         /* secondary */
+  --note:#7FB7C9;         /* mockup annotations only, kept off-brand on purpose */
+  --note-bg:#0B1A1F;
+  --display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --body:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --util:'Space Grotesk',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-padding-bottom:96px} /* focused controls never land under the sticky bar or the docked button (WCAG 2.4.11) */
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+a{color:var(--gold-pale)}
+:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--util);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#A1853E}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:#FFF8E6;text-wrap:balance;margin:0}
+h2{font-size:clamp(32px,6vw,52px);line-height:1.04}
+h2 em,h1 em{font-style:italic;color:var(--gold-pale);font-weight:500}
+.lede{color:var(--mute);font-size:17px;max-width:58ch;margin:0}
+section{padding-block:clamp(64px,10vw,120px);position:relative}
+section + section{border-top:1px solid var(--line)}
+
+/* /kix additions: written answers and FAQ as details, Ask Kix box, current nav item */
+.answers{display:grid;gap:10px;margin-top:24px;max-width:820px}
+.ans{border:1px solid var(--line);border-radius:14px;background:var(--night)}
+.ans summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:12px 18px;font-weight:600;color:#FFF3D2}
+.ans summary::-webkit-details-marker{display:none}
+.ans summary::after{content:"+";font-family:var(--util);font-size:20px;color:var(--gold);flex:none}
+.ans[open] summary::after{content:"\2212"}
+.ans p{margin:0;padding:0 18px 16px;color:var(--text);font-size:15.5px;line-height:1.65}
+.ans summary:focus-visible{outline:3px solid var(--gold-pale);outline-offset:2px;border-radius:12px}
+.askbox{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;max-width:820px;background:var(--night);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px)}
+.askform{display:flex;gap:8px;align-items:center;border:1px solid rgba(212,168,86,.4);border-radius:999px;padding:5px 5px 5px 18px;background:#080705}
+.askform input{flex:1;min-width:0;min-height:44px;background:none;border:0;outline:0;color:var(--text);font:400 16px var(--body)}
+.askform input::placeholder{color:#8F8676}
+.askform button{flex:none;width:44px;height:44px;border-radius:999px;border:0;background:var(--gold);color:#140E02;display:grid;place-items:center;cursor:pointer}
+.askform button svg{width:16px;height:16px}
+.askform:focus-within{outline:3px solid var(--gold-pale);outline-offset:3px}
+.askans{display:grid;gap:10px;min-height:96px}
+.askans .empty{margin:0;color:var(--mute);font-size:14px;border:1px dashed var(--line);border-radius:12px;padding:16px}
+.askans .q{margin:0;font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#C9A95E}
+.askans .a{margin:0;font-size:16px;line-height:1.65;color:var(--text)}
+.askans .src{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600;color:#EBD08C;text-decoration:none}
+.askans .src:hover{color:var(--gold-pale)}
+.links a{min-width:44px;justify-content:center}
+.askbox > *{min-width:0}
+#ask .chip{white-space:normal;text-align:left;max-width:100%;line-height:1.35;padding-top:8px;padding-bottom:8px}
+.crumbs ol{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:6px;font-family:var(--util);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.crumbs li{display:flex;align-items:center;gap:6px;color:var(--gold-pale)}
+.crumbs li + li::before{content:"\203A";color:var(--mute);font-size:14px}
+.crumbs a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;color:#E8DEC4;text-decoration:underline;text-decoration-color:rgba(212,168,86,.6);text-underline-offset:5px}
+.crumbs a:hover{color:var(--gold-pale)}
+.sitenav .links{gap:4px 16px;flex-wrap:nowrap}
+.sitenav .links a{letter-spacing:.12em;white-space:nowrap}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.links a[aria-current="page"],.menupanel a[aria-current="page"],footer .explore a[aria-current="page"]{color:var(--gold-pale);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:6px}
+/* site navigation: logo, the site's own links, one Download button; Menu on phones */
+.sitenav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(5,4,3,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:22px;min-height:68px}
+.logo{display:inline-flex;align-items:center;min-height:44px;flex:none}
+.logo img{width:130px;height:auto;display:block}
+.links{display:flex;gap:4px 22px;flex-wrap:wrap;flex:1;justify-content:flex-end}
+.links a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--util);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#E8DEC4;text-decoration:none}
+.links a:hover{color:var(--gold-pale)}
+.navdl{min-height:44px;padding:0 20px;font-size:14px}
+.menubtn{display:none;align-items:center;gap:10px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(212,168,86,.55);background:transparent;color:#E8DEC4;font-family:var(--util);font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;margin-left:auto}
+.menubtn .hb{display:grid;gap:4px}.menubtn .hb i{display:block;width:18px;height:1.5px;background:currentColor}
+.menupanel{border-top:1px solid var(--line);background:rgba(5,4,3,.97)}
+.menupanel ul{list-style:none;margin:0;padding:8px 0 4px}
+.menupanel li a{display:flex;align-items:center;min-height:48px;font-size:17px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line)}
+.menupanel .cta{margin:16px 0 20px;width:100%}
+@media (max-width:1180px){.sitenav .links,.sitenav .cta.navdl{display:none}.sitenav .menubtn{display:inline-flex}}
+@media (min-width:1181px){.menupanel{display:none!important}}
+footer .explore{display:flex;flex-wrap:wrap;gap:0 18px;align-items:center;margin-bottom:10px;font-size:14px}
+footer .explore b{color:var(--text);font-weight:500;margin-right:4px}
+footer .explore a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;color:#C9C0AC;text-decoration:none}
+footer .explore a:hover{color:var(--gold-pale)}
+/* mockup chrome */
+.mbar{position:relative;z-index:50;background:rgba(5,4,3,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+.mbar .wrap{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
+.mbar .tag{font-family:var(--util);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--note)}
+.mbar .sp{flex:1}
+.mbtn{font:500 13px var(--body);color:var(--text);background:var(--night);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;min-height:44px}
+.mbtn[aria-pressed="true"]{border-color:var(--note);color:var(--note)}
+.note{display:none;margin-top:28px;background:var(--note-bg);border:1px dashed rgba(127,183,201,.5);border-radius:12px;padding:14px 16px;color:#CFE6EE;font-size:14px;line-height:1.55;max-width:760px}
+.note b{color:#EAF6FA;font-weight:600}
+.note .k{font-family:var(--util);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--note);display:block;margin-bottom:6px}
+.note ul{margin:6px 0 0;padding-left:18px}
+body.notes .note{display:block}
+.note-only{display:none}
+body.notes .note-only{display:block}
+
+/* buttons */
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;font:700 16px var(--body);text-decoration:none;cursor:pointer;border:0;letter-spacing:.01em}
+.cta.gold{background:linear-gradient(180deg,#D7C582,#A1853E);color:#1B1400;box-shadow:0 10px 44px rgba(231,182,70,.35)}
+.cta.gold:hover{filter:brightness(1.06)}
+.cta.ghost{background:rgba(255,255,255,.05);color:#EBD08C;border:1px solid rgba(212,168,86,.55);font-weight:600}
+.cta svg{width:18px;height:18px;flex:none}
+.small{font-family:var(--util);font-size:12px;letter-spacing:.06em;color:var(--mute)}
+
+/* hero */
+.hero{padding-block:0 clamp(48px,8vw,80px);border-top:0;overflow:hidden}
+.hero > .wrap{width:100%}
+.hero .stage{position:relative;height:clamp(190px,30vh,340px);margin-top:-8px}
+.hero .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .stage::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0,transparent 18%,transparent 70%,var(--ink) 100%);pointer-events:none}
+.hero .copy{position:relative;z-index:2;text-align:center;display:grid;justify-items:center;gap:20px;margin-top:-28px}
+.hero h1{font-size:clamp(40px,8.4vw,92px);line-height:.98;letter-spacing:-.005em;max-width:15ch}
+.hero h1 .l2{display:block;font-style:italic;color:var(--gold-pale);font-weight:500;font-size:.62em;line-height:1.1;margin-top:14px;letter-spacing:0}
+.hero .sub{color:#D9D0BC;font-size:17px;max-width:44ch;margin:0}
+.hero .sub b{color:#FFF3D2;font-weight:600}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hear{position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px;background:rgba(14,12,9,.7);border:1px solid rgba(255,186,72,.45);color:var(--gold-pale);border-radius:999px;padding:0 18px 0 8px;min-height:44px;font:600 14px var(--body);cursor:pointer}
+.hear .pb{width:30px;height:30px;border-radius:999px;background:var(--flare);display:grid;place-items:center;color:#1A1205}
+.hear .pb svg{width:12px;height:12px}
+.hear .t{font-family:var(--util);font-weight:400;font-size:12px;color:var(--mute);min-width:38px;text-align:left}
+.cap{position:relative;z-index:2;min-height:24px;font-family:var(--util);font-size:12px;letter-spacing:.08em;color:var(--mute);text-align:center}
+.hero .top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding-block:18px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--util);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.brand img{width:26px;height:26px}
+.brand b{color:var(--gold-pale);font-weight:500}
+
+/* sticky download bar (phones, after the hero) */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px));background:linear-gradient(180deg,rgba(5,4,3,0),rgba(5,4,3,.96) 30%);display:flex;gap:10px;align-items:center;transform:translateY(120%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.dock.on{transform:none}
+body.menu-open .dock{transform:translateY(120%)}
+.dock .cta{flex:1;min-height:50px}
+.dock .small{flex:none;text-align:right;line-height:1.3}
+@media (min-width:900px){.dock{display:none}}
+
+/* problem */
+.gap{display:grid;gap:36px;justify-items:center;text-align:center}
+.gap .stat small{margin-inline:auto}
+.gap h2{max-width:22ch}
+.stat{font-family:var(--display);font-weight:600;font-size:clamp(64px,14vw,150px);line-height:.9;color:var(--gold-pale);letter-spacing:-.01em;font-variant-numeric:lining-nums}
+.stat small{display:block;font-family:var(--body);font-size:17px;font-weight:400;color:var(--text);letter-spacing:0;margin-top:14px;max-width:34ch;line-height:1.5}
+/* idea -> the next step? -> business: a spark crosses the gap */
+.bridge{position:relative;width:100%;max-width:720px;margin-inline:auto;padding:54px 4px 44px}
+.br-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center}
+.br-dot{width:14px;height:14px;border-radius:999px;position:relative;flex:none}
+.br-dot.a{background:var(--gold-pale);border:1.5px solid var(--gold-pale);box-shadow:0 0 14px rgba(255,186,72,.7)}
+.br-dot.b{border:1.5px solid rgba(212,168,86,.5);background:var(--ink)}
+.br-lbl{position:absolute;top:26px;font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.br-dot.a .br-lbl{left:0}
+.br-dot.b .br-lbl{right:0}
+.br-track{position:relative;height:2px;margin:0 8px}
+.br-track::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(212,168,86,.32) 0 6px,transparent 6px 12px)}
+.br-s1{position:absolute;left:0;top:0;height:100%;width:35%;background:var(--gold);transform-origin:left center}
+.br-fill{position:absolute;left:35%;top:0;height:100%;width:65%;background:linear-gradient(90deg,var(--gold),var(--gold-pale));transform-origin:left center;transform:scaleX(0)}
+.br-spark{position:absolute;top:50%;left:35%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:999px;background:#FFF8E6;box-shadow:0 0 12px 4px rgba(255,186,72,.9),0 0 34px 12px rgba(255,186,72,.35);opacity:0}
+.br-q{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--display);font-style:italic;font-size:clamp(21px,3.4vw,27px);line-height:1;color:var(--gold-pale);white-space:nowrap}
+.br-qm{position:absolute;left:100%;bottom:0}
+.bridge.run .br-s1{animation:brS1 1.1s cubic-bezier(.2,.7,.2,1) both}
+.bridge.run .br-fill{animation:brFill 7s ease-in-out 1.1s infinite both}
+.bridge.run .br-spark{animation:brSpark 7s ease-in-out 1.1s infinite both}
+.bridge.run .br-dot.b{animation:brEnd 7s ease-in-out 1.1s infinite both}
+.bridge.run .br-dot.b .br-lbl{animation:brEndL 7s ease-in-out 1.1s infinite both}
+.bridge.run .br-qm{animation:brQm 7s ease-in-out 1.1s infinite both}
+@keyframes brS1{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes brFill{0%,18%{transform:scaleX(0);opacity:1}62%,90%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes brSpark{0%,14%{left:35%;opacity:0}20%{left:35%;opacity:1}62%{left:100%;opacity:1}70%,100%{left:100%;opacity:0}}
+@keyframes brEnd{0%,58%{background:var(--ink);border-color:rgba(212,168,86,.5);box-shadow:none}66%,90%{background:var(--gold-pale);border-color:var(--gold-pale);box-shadow:0 0 22px rgba(255,186,72,.85)}100%{background:var(--ink);border-color:rgba(212,168,86,.5);box-shadow:none}}
+@keyframes brEndL{0%,58%{color:var(--mute)}66%,90%{color:var(--gold-pale)}100%{color:var(--mute)}}
+@keyframes brQm{0%,26%{opacity:1}44%,90%{opacity:0}100%{opacity:1}}
+.src{font-family:var(--util);font-size:11px;color:var(--mute);letter-spacing:.04em}
+
+/* meet kix */
+.meet{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.defn{font-family:var(--display);font-size:clamp(28px,4.4vw,42px);line-height:1.15;color:#FFF8E6;margin:18px 0 0}
+.defn b{font-weight:600;color:var(--gold-pale)}
+.facts{display:grid;gap:0;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.facts dd{margin:0;color:var(--text)}
+@media (max-width:760px){.meet{grid-template-columns:1fr}.facts div{grid-template-columns:1fr;gap:4px}}
+
+/* tell kix */
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 34px;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mute);padding:8px 14px 8px 8px;border:1px solid var(--line);border-radius:999px}
+.steps li::before{content:counter(s);width:24px;height:24px;border-radius:999px;display:grid;place-items:center;font-family:var(--util);font-size:12px;background:var(--night);color:var(--gold-pale);border:1px solid rgba(212,168,86,.4)}
+.steps li.on{color:var(--text);border-color:rgba(212,168,86,.6)}
+.steps li.on::before{background:var(--gold);color:#140E02}
+.studio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;background:var(--night);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.studio .voice{position:relative;min-height:320px;background:#000;border-right:1px solid var(--line)}
+.studio .voice canvas{position:absolute;inset:0;width:100%;height:100%}
+.studio .voice .st{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-family:var(--util);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.studio .talk{padding:clamp(18px,3vw,30px);display:grid;gap:16px;align-content:start;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 13px var(--body);color:var(--text);background:transparent;border:1px solid var(--line);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer}
+.chip:hover{border-color:rgba(212,168,86,.6)}
+.ask{display:flex;gap:8px;align-items:center;border:1px solid rgba(212,168,86,.4);border-radius:999px;padding:5px 5px 5px 18px;background:#080705}
+.ask input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font:400 16px var(--body)}
+.ask input::placeholder{color:#7D7465}
+.ask button{flex:none;width:44px;height:44px;border-radius:999px;border:0;background:var(--gold);color:#140E02;display:grid;place-items:center;cursor:pointer}
+.ask button svg{width:16px;height:16px}
+.chip[aria-pressed="true"]{background:var(--gold);color:#140E02;border-color:var(--gold)}
+.said{display:grid;gap:10px;min-height:170px;align-content:start}
+.said .empty{margin:0;color:var(--mute);font-size:14px;border:1px dashed var(--line);border-radius:12px;padding:16px}
+.said .you{margin:0;font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.said .line{margin:0;font-size:16px;line-height:1.6;color:var(--text);opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s}
+.said .line.in{opacity:1;transform:none}
+.said .line.qline{color:var(--gold-pale);font-weight:500}
+@media (prefers-reduced-motion:reduce){.said .line{transition:none}}
+.reply{display:grid;gap:14px;min-height:150px}
+.reply .part{opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+.reply .part.in{opacity:1;transform:none}
+.reply .part h4{margin:0 0 4px;font-family:var(--util);font-weight:400;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.reply .part p{margin:0;color:var(--text);font-size:15px}
+.reply .empty{color:var(--mute);font-size:14px;border:1px dashed var(--line);border-radius:12px;padding:16px}
+.map{display:flex;align-items:center;gap:0;margin-top:4px;opacity:0;transition:opacity .5s}
+.map.in{opacity:1}
+.map .ms{flex:1;min-width:0;display:grid;justify-items:center;gap:8px;text-align:center;position:relative}
+.map .ms i{width:34px;height:34px;border-radius:999px;border:1.5px solid rgba(212,168,86,.7);display:grid;place-items:center;font:500 12px var(--util);font-style:normal;color:var(--gold-pale);background:#000;position:relative;z-index:1}
+.map .ms:first-child i{background:var(--gold);color:#140E02;box-shadow:0 0 18px rgba(255,186,72,.6)}
+.map .ms span{font-size:12px;color:var(--mute);line-height:1.35;padding:0 4px}
+.map .ms + .ms::before{content:"";position:absolute;top:17px;right:50%;width:100%;height:1.5px;background:linear-gradient(90deg,var(--gold),rgba(212,168,86,.25))}
+.keep{display:none;gap:12px;align-items:center;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line)}
+.keep.in{display:flex}
+.keep .small{flex:1 1 200px}
+@media (max-width:820px){.studio{grid-template-columns:1fr}.studio .voice{min-height:200px;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.pillar{padding:26px 24px 8px 0;border-right:1px solid var(--line);display:grid;gap:10px;align-content:start}
+.pillar + .pillar{padding-left:24px}
+.pillar:last-child{border-right:0}
+.pillar h3{font-size:34px}
+.pillar p{margin:0;color:var(--mute);font-size:15px}
+.proof{font-family:var(--util);font-size:12.5px;color:var(--gold-pale);letter-spacing:.02em;border-left:2px solid var(--gold);padding-left:10px;margin-top:6px}
+@media (max-width:760px){.pillars{grid-template-columns:1fr}.pillar{border-right:0;border-bottom:1px solid var(--line);padding:22px 0}.pillar + .pillar{padding-left:0}}
+
+/* demo */
+.demo{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(28px,6vw,80px);align-items:center}
+.phone{width:min(300px,78vw);aspect-ratio:9/19.5;border-radius:44px;background:#0B0A08;border:1px solid #3A3226;padding:12px;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 6px #14110C;justify-self:center}
+.phone .scr{width:100%;height:100%;border-radius:34px;background:repeating-linear-gradient(135deg,#0F0D0A 0 12px,#12100C 12px 24px);display:grid;place-items:center;text-align:center;padding:24px;color:var(--mute);font-size:13px;border:1px dashed #3A3226}
+.phone .scr b{display:block;color:var(--gold-pale);font-family:var(--display);font-size:24px;font-weight:600;margin-bottom:8px}
+@media (max-width:760px){.demo{grid-template-columns:1fr}}
+
+/* advisors */
+.advs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:36px}
+.adv{display:grid;gap:10px}
+.adv img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;filter:saturate(.85) contrast(1.02);border:1px solid var(--line)}
+.adv b{font-weight:600;font-size:14px;color:#FFF3D2;line-height:1.3}
+.adv span{font-size:12.5px;color:var(--mute);line-height:1.4}
+.phase{display:flex;gap:0;margin-top:36px;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.phase div{flex:1 1 160px;padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.phase div:last-child{border-right:0}
+.phase .n{font-family:var(--util);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.phase .w{font-size:14px;color:var(--text);margin-top:2px}
+.phase .live{background:rgba(212,168,86,.1)}
+.phase .live .n{color:var(--gold)}
+@media (max-width:760px){.advs{grid-template-columns:repeat(3,minmax(0,1fr))}.advs .adv:nth-child(n+4){display:none}.phase div{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* community */
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
+.story{border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:20px;align-content:space-between;background:var(--night);min-width:0}
+.story blockquote{margin:0;font-family:var(--display);font-size:23px;line-height:1.28;color:#FFF3D2;font-style:italic;font-weight:500}
+.story .sum{margin:0;font-size:15px;line-height:1.6;color:var(--text)}
+.story .sumk{display:block;font-family:var(--util);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.by{display:flex;gap:12px;align-items:center;min-width:0}
+.by i{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;font:500 13px var(--util);font-style:normal;color:#140E02;background:var(--gold);flex:none}
+.by b{display:block;font-size:14px;color:#FFF3D2;font-weight:600;line-height:1.3}
+.by span{display:block;font-size:12.5px;color:var(--mute);line-height:1.35}
+@media (max-width:760px){.stories{grid-template-columns:1fr}}
+
+/* final */
+.final{text-align:center;display:grid;justify-items:center;gap:22px}
+.final h2{font-size:clamp(40px,8vw,84px)}
+.final .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;max-width:560px;width:100%;border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:left}
+.price div{padding:16px 18px;border-right:1px solid var(--line);min-width:0}
+.price div:last-child{border-right:0}
+.price .n{font-family:var(--util);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.price .v{font-family:var(--display);font-size:28px;font-weight:600;color:#FFF8E6;line-height:1.1;margin-top:4px}
+.price p{margin:6px 0 0;font-size:13px;color:var(--mute);line-height:1.45}
+@media (max-width:640px){.price{grid-template-columns:1fr}.price div{border-right:0;border-bottom:1px solid var(--line)}}
+/* next move: cards with a gold trace running round the edge; they lift and light like the site's homepage cards */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:660px;width:100%;margin-top:6px}
+.move{position:relative;display:grid;gap:8px;align-content:start;text-align:left;padding:26px 24px 22px;border-radius:20px;min-height:44px;
+  background:radial-gradient(120% 90% at 20% 0%,rgba(212,168,86,.12),transparent 60%),linear-gradient(180deg,#15120C,#0B0906);
+  color:var(--text);text-decoration:none;isolation:isolate;
+  box-shadow:0 0 0 1px rgba(212,168,86,.18),0 18px 50px rgba(0,0,0,.55),0 0 34px rgba(255,186,72,.10);
+  transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease}
+.move::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--ang),rgba(212,168,86,.22) 0deg,rgba(212,168,86,.22) 230deg,#A1853E 270deg,#F3E4A8 318deg,#FFBA48 336deg,rgba(212,168,86,.22) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:kxTrace 6s linear infinite}
+.move + .move::before{animation-delay:-3s}
+.move:hover,.move:focus-visible{transform:translateY(-6px);
+  box-shadow:0 0 0 1px #F3E4A8,0 0 60px rgba(255,201,110,.6),0 0 22px rgba(255,180,80,.5),inset 0 0 90px rgba(255,192,98,.26)}
+.move:hover::before,.move:focus-visible::before{animation-duration:2.2s}
+.move:focus-visible{outline:3px solid var(--gold-pale);outline-offset:4px}
+.mv-k{font-family:var(--util);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#C9A95E}
+.mv-v{font-family:var(--display);font-weight:600;font-size:clamp(40px,7vw,52px);line-height:1;color:#FFF8E6}
+.mv-v small{font-family:var(--body);font-size:16px;font-weight:500;color:var(--mute);margin-left:4px}
+.mv-d{font-size:14.5px;line-height:1.55;color:#C9C0AC}
+.mv-go{margin-top:8px;font-weight:600;font-size:14.5px;color:#EBD08C}
+.moves.in .move{animation:kxPop .8s cubic-bezier(.16,1,.3,1) both}
+.moves.in .move + .move{animation-delay:.12s}
+@keyframes kxTrace{to{--ang:360deg}}
+@keyframes kxPop{0%{transform:translateY(14px) scale(.97);box-shadow:0 0 0 1px rgba(212,168,86,.18),0 18px 50px rgba(0,0,0,.55)}
+  55%{box-shadow:0 0 0 1px #F3E4A8,0 0 60px rgba(255,201,110,.45),0 0 22px rgba(255,180,80,.35),inset 0 0 70px rgba(255,192,98,.18)}
+  100%{transform:none}}
+@media (max-width:640px){.moves{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.move::before{animation:none;background:linear-gradient(135deg,#F3E4A8,rgba(212,168,86,.35) 40%,rgba(212,168,86,.35) 60%,#D4A856)}.moves.in .move{animation:none}.move{transition:none}.move:hover,.move:focus-visible{transform:none}}
+/* pause motion: one switch stops every moving thing on the page */
+body.still *,body.still *::before,body.still *::after{animation-play-state:paused!important}
+.qrbox{display:none;align-items:center;gap:18px;text-align:left;border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--night)}
+.qrbox.show{display:flex}
+.qrbox #qr{background:#fff;padding:8px;border-radius:8px;line-height:0}
+.qrbox #qr img,.qrbox #qr canvas{width:112px!important;height:112px!important}
+footer{border-top:1px solid var(--line);padding-block:40px 120px}
+footer .eco{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--mute)}
+footer .eco b{color:var(--text);font-weight:500}
+footer .legal{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:16px}
+footer .legal a{display:inline-flex;align-items:center;min-height:44px;color:#C9C0AC;font-size:14px;text-decoration:none}
+footer .legal a:hover{color:var(--gold-pale)}
+footer .eco span.soon{font-family:var(--util);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-left:6px}
+
+/* event log (notes mode) */
+.log{display:none;position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:45;width:min(320px,calc(100vw - 24px));max-height:180px;overflow:auto;background:var(--note-bg);border:1px dashed rgba(127,183,201,.6);border-radius:12px;padding:10px 12px;font:12px/1.5 var(--util);color:#CFE6EE}
+body.notes .log{display:block}
+@media (min-width:900px){.log{bottom:16px}}
+.log .k{color:var(--note);letter-spacing:.14em;text-transform:uppercase;font-size:10px}
+.skip{position:absolute;left:-9999px;top:8px;z-index:200;background:#D4A856;color:#140E02;padding:10px 16px;border-radius:999px;font-weight:700}.skip:focus{left:12px}
+</style>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://sidekixhq.com/kix.html#webpage", "url": "https://sidekixhq.com/kix.html", "name": "Kix, your entrepreneurial support guide | SideKix", "isPartOf": {"@id": "https://sidekixhq.com/#website"}, "about": {"@id": "https://sidekixhq.com/kix.html#app"}, "breadcrumb": {"@id": "https://sidekixhq.com/kix.html#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://sidekixhq.com/kix.html#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sidekixhq.com/"}, {"@type": "ListItem", "position": 2, "name": "Kix", "item": "https://sidekixhq.com/kix.html"}]}, {"@type": "MobileApplication", "@id": "https://sidekixhq.com/kix.html#app", "name": "SideKix", "operatingSystem": "iOS", "installUrl": "https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359", "url": "https://sidekixhq.com/kix.html", "publisher": {"@id": "https://sidekixhq.com/#organization"}, "description": "Kix is your Entrepreneurial Support Guide within the SideKix app."}, {"@type": "FAQPage", "@id": "https://sidekixhq.com/kix.html#faq", "mainEntity": [{"@type": "Question", "name": "What is Kix?", "acceptedAnswer": {"@type": "Answer", "text": "Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of you."}}, {"@type": "Question", "name": "Is Kix a coach?", "acceptedAnswer": {"@type": "Answer", "text": "No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside SideKix.”"}}, {"@type": "Question", "name": "Can I talk to Kix, or do I have to type?", "acceptedAnswer": {"@type": "Answer", "text": "Either. You can speak or type, and Kix Credits measure the conversation the same way."}}, {"@type": "Question", "name": "What does Kix cost?", "acceptedAnswer": {"@type": "Answer", "text": "350 Kix Credits are $19 and cover up to 90 minutes of conversation with Kix. There’s no subscription, and credits never expire. Your Milestones and Steps never use credits. Memberships start at $39 a month."}}, {"@type": "Question", "name": "Which phones does Kix work on?", "acceptedAnswer": {"@type": "Answer", "text": "SideKix is on iPhone now. Android and the web are not available yet. Join the waitlist and you’ll be the first to know when your platform is live."}}, {"@type": "Question", "name": "Is there a daily limit?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 90 minutes of conversation with Kix a day. Your Milestones and Steps stay open all day regardless."}}]}]}</script>
+
+
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<header class="sitenav" id="sitenav">
+  <div class="wrap nav-in">
+    <a class="logo" href="https://sidekixhq.com/" aria-label="SideKix home"><img src="assets/kix/img/sidekix-logo-090127.webp" alt="SideKix home" width="130" height="36" loading="eager"></a>
+    <nav class="links" aria-label="Site"><a href="https://sidekixhq.com/">Home</a><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a><a href="https://sidekixhq.com/how-it-works.html">How it works</a><a href="https://sidekixhq.com/membership.html">Membership</a><a href="https://sidekixhq.com/advisors.html">Advisors</a><a href="https://sidekixhq.com/partners.html">Partners</a><a href="https://sidekixhq.com/events.html">Events</a><a href="https://sidekixhq.com/library.html">Resources</a></nav>
+    <a class="cta gold navdl" data-dl="nav" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a>
+    <button class="menubtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><span class="hb" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button>
+  </div>
+  <div class="menupanel" id="menuPanel" hidden>
+    <nav class="wrap" aria-label="Site menu"><ul><li><a href="https://sidekixhq.com/">Home</a></li><li><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a></li><li><a href="https://sidekixhq.com/how-it-works.html">How it works</a></li><li><a href="https://sidekixhq.com/membership.html">Membership</a></li><li><a href="https://sidekixhq.com/advisors.html">Advisors</a></li><li><a href="https://sidekixhq.com/partners.html">Partners</a></li><li><a href="https://sidekixhq.com/events.html">Events</a></li><li><a href="https://sidekixhq.com/library.html">Resources</a></li></ul><a class="cta gold" data-dl="menu" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a></nav>
+  </div>
+</header>
+<main>
+<!-- 1. HERO -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="wrap top" style="justify-content:space-between">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="https://sidekixhq.com/">Home</a></li><li><span aria-current="page">Kix</span></li></ol></nav>
+    <button class="mbtn" id="motionBtn" type="button" aria-pressed="false">Pause motion</button>
+  </div>
+  <div class="stage"><canvas id="heroCv" aria-hidden="true"></canvas></div>
+  <div class="wrap copy">
+    <button class="hear" id="hearBtn" type="button">
+      <span class="pb" id="hearIcon"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg></span>
+      Hear Kix <span class="t" id="hearT">0:11</span>
+    </button>
+    <div class="cap" id="cap" aria-live="polite">Tap to hear Kix. Sound only plays when you ask.</div>
+    <h1 id="h1">The idea won’t build itself. <span class="l2">But you don’t have to build it alone.</span></h1>
+    <p class="sub">Meet <b>Kix</b>, your AI-powered entrepreneurial sidekick. Turn your idea into action with personalized guidance, clear next steps, and support along the way.</p>
+    <div class="row">
+      <a class="cta gold" data-dl="hero" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.8-.8-3-.8C6.9 7.2 5.4 8.1 4.6 9.6c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.4-.9-2.4-3.9zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></svg>
+        Download Kix
+      </a>
+      <a class="cta ghost" href="#how">See how it works</a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 2. PROBLEM -->
+<section id="problem" aria-labelledby="h-problem">
+  <div class="wrap gap">
+    <span class="eyebrow">The gap</span>
+    <div class="stat">174 million<small>Americans have had an idea for a business. Most of them are still holding it.</small></div>
+    <h2 id="h-problem">Wanting to build is the easy part. <em>Knowing what comes next</em> is where it stalls.</h2>
+    <div class="bridge" id="bridge" aria-hidden="true">
+      <div class="br-row">
+        <span class="br-dot a"><span class="br-lbl">Your idea</span></span>
+        <span class="br-track"><span class="br-s1"></span><span class="br-fill"></span><span class="br-spark"></span><span class="br-q">the next step<span class="br-qm">?</span></span></span>
+        <span class="br-dot b"><span class="br-lbl">Your business</span></span>
+      </div>
+    </div>
+    <p class="src">Source: US Census Bureau data on Americans 15 and over who have had a business idea, as derived on sidekixhq.com/market-data.</p>
+    
+  </div>
+</section>
+
+<!-- 3. MEET KIX -->
+<section id="meet" aria-labelledby="h-meet">
+  <div class="wrap meet">
+    <div>
+      <span class="eyebrow">Meet Kix</span>
+      <h2 id="h-meet" style="margin-top:14px">A guide that <em>listens first.</em></h2>
+      <p class="defn">Kix is your <b>Entrepreneurial Support Guide</b> within the SideKix app.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Talk or type</dt><dd>Say it out loud or write it down. Kix works either way.</dd></div>
+      <div><dt>Starts where you are</dt><dd>An idea you never acted on, a business three years in, a career the market is rewriting.</dd></div>
+      <div><dt>Tells the truth</dt><dd>Even when it doesn’t know the answer.</dd></div>
+      <div><dt>Draws your map</dt><dd>Your milestones come straight from the conversation, and redraw when things change.</dd></div>
+    </dl>
+  </div>
+  <div class="wrap"></div>
+</section>
+
+<!-- 4. WHAT'S IN YOUR WAY (interactive) -->
+<section id="how" aria-labelledby="h-how">
+  <div class="wrap">
+    <span class="eyebrow">How it works · try it</span>
+    <h2 id="h-how" style="margin-top:14px">What’s in <em>your way?</em></h2>
+    <ol class="steps" id="steps">
+      <li class="on">Pick what’s in your way</li>
+      <li>Hear how Kix thinks it through</li>
+      <li>Answer Kix in the app</li>
+    </ol>
+    <div class="studio">
+      <div class="voice"><canvas id="askCv" aria-hidden="true"></canvas><div class="st" id="askState">Kix · listening</div></div>
+      <div class="talk">
+        <div class="chips" role="group" aria-label="What’s in your way">
+          <button class="chip" type="button" data-b="0" aria-pressed="false">I don’t have the money</button>
+          <button class="chip" type="button" data-b="1" aria-pressed="false">I don’t have the time</button>
+          <button class="chip" type="button" data-b="2" aria-pressed="false">I don’t know where to start</button>
+          <button class="chip" type="button" data-b="3" aria-pressed="false">What if it doesn’t work?</button>
+          <button class="chip" type="button" data-b="4" aria-pressed="false">The doors aren’t open to me</button>
+          <button class="chip" type="button" data-b="5" aria-pressed="false">I’m doing this alone</button>
+          <button class="chip" type="button" data-b="6" aria-pressed="false">It isn’t ready yet</button>
+          <button class="chip" type="button" data-b="7" aria-pressed="false">Everything feels urgent</button>
+          <button class="chip" type="button" data-b="8" aria-pressed="false">Something else</button>
+        </div>
+        <div class="said" id="said" aria-live="polite"><p class="empty">Tap the one that sounds like you. Kix answers out loud, with captions.</p></div>
+        <div class="keep" id="keep">
+          <a class="cta gold" data-dl="answer" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Answer Kix in the app</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 4b. KIX'S ANSWERS IN WRITING -->
+<section id="answers" aria-labelledby="h-ans">
+  <div class="wrap">
+    <span class="eyebrow">Kix’s answers</span>
+    <h2 id="h-ans" style="margin-top:14px">Every answer, <em>in writing.</em></h2>
+    <p class="lede" style="margin-top:14px">The same words Kix says above, for reading at your own pace.</p>
+    <div class="answers">
+      <details class="ans"><summary>I don’t have the money</summary><p>Money’s usually the first wall people name, and it’s a real one. Often the better question is how little you need to find out if this works. What’s the smallest version you could sell to one person? Let’s price it out line by line tonight. If outside money makes sense after that, I’ll help you get ready before you ask for it, and show you where you’d actually fit.</p></details>
+      <details class="ans"><summary>I don’t have the time</summary><p>Twenty minutes a night is enough to move something, as long as it’s the right twenty minutes. When could you protect three short blocks this week? Pick them now. I’ll hand you one step that fits each block, small enough to finish, and the plan keeps track so you don’t have to.</p></details>
+      <details class="ans"><summary>I don’t know where to start</summary><p>You don’t need the whole plan to start. You need the next step, and finding it is my job. What’s the idea in one sentence, the way you’d tell a friend? Write that down today. From there we’ll lay out the first few steps together, in an order that fits your life, and I’ll bring the training for each one when you get there.</p></details>
+      <details class="ans"><summary>What if it doesn’t work?</summary><p>That fear usually means this matters to you. So we aim to fail small, early and cheap, before anything big is riding on it. Which part are you most worried won’t work? Let’s test that part first, this week, with something you can try in an afternoon. Whatever happens, you’ll know more than you do now.</p></details>
+      <details class="ans"><summary>The doors aren’t open to me</summary><p>A lot of advice assumes you already have the money, the contacts, or the right title. Plenty of people building something don’t, and they build anyway. Which door feels most closed right now: money, people, or know how? Tell me, and I’ll find the people, programs and training that open it, and help you get ready to walk through.</p></details>
+      <details class="ans"><summary>I’m doing this alone</summary><p>Building alone is heavier than it looks from the outside, and you don’t have to carry all of it. Who’s one person you could tell about this today, even in a text? I’ll be here whenever you get stuck. And when you’re ready, I’ll connect you with people building something like yours, and advisors who’ve stood where you are.</p></details>
+      <details class="ans"><summary>It isn’t ready yet</summary><p>Ready usually shows up after people see it, not before. What’s the smallest piece you could show one person this week? Pick a date, show it as it is, and let their reaction tell you what to fix first.</p></details>
+      <details class="ans"><summary>Everything feels urgent</summary><p>When everything’s urgent, it’s hard to move anything. If only one thing moved this week, which would make the rest easier? Do that one first. I’ll hold the rest of the list so it isn’t sitting on you.</p></details>
+      <details class="ans"><summary>Something else</summary><p>Whatever it is, say it the way it comes out. I’ll listen first, ask what I need to, and then we’ll work out the next step together.</p></details>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 5. PILLARS -->
+<section id="pillars" aria-labelledby="h-pillars">
+  <div class="wrap">
+    <span class="eyebrow">Why Kix</span>
+    <h2 id="h-pillars" style="margin-top:14px">Action. Support. <em>A system that adapts.</em></h2>
+    <div class="pillars">
+      <div class="pillar"><h3>Action</h3><p>Every milestone opens into steps small enough to finish. The next move is always on screen.</p><div class="proof">Milestones and Steps are unmetered. The work never costs a credit.</div></div>
+      <div class="pillar"><h3>Support</h3><p>Kix is there at 11pm when the doubt shows up. Advisors are there when you want a person.</p><div class="proof">350 Kix Credits ≈ 90 minutes of conversation. They never expire.</div></div>
+      <div class="pillar"><h3>System</h3><p>Your map redraws when something changes, so the plan keeps up with your life.</p><div class="proof">Built for a few hours a week, alongside a day job.</div></div>
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- 7. ADVISORS -->
+<section id="advisors" aria-labelledby="h-adv">
+  <div class="wrap">
+    <span class="eyebrow">Advisors</span>
+    <h2 id="h-adv" style="margin-top:14px">Someone has stood <em>exactly here.</em></h2>
+    <p class="lede" style="margin-top:16px">Kix is the guide in your pocket. Advisors are the people behind it: founders and operators matched to what you’re building.</p>
+    <div class="advs"><div class="adv"><img src="assets/kix/img/sarah-gould-202288.webp" alt="Sarah Gould" width="160" height="160" loading="lazy"><b>Sarah Gould</b><span>Leadership &amp; Second Order Change</span></div><div class="adv"><img src="assets/kix/img/trent-potter-ed046c.webp" alt="Trent Potter" width="160" height="160" loading="lazy"><b>Trent Potter</b><span>Strategy, Culture &amp; Leadership</span></div><div class="adv"><img src="assets/kix/img/ebony-baylock-fee13b.webp" alt="Ebony Baylock" width="160" height="160" loading="lazy"><b>Ebony Baylock</b><span>Sales &amp; Business Growth</span></div><div class="adv"><img src="assets/kix/img/floyd-shiffman-26ea5c.webp" alt="Floyd Shiffman" width="160" height="160" loading="lazy"><b>Floyd Shiffman</b><span>AI &amp; Revenue Systems</span></div><div class="adv"><img src="assets/kix/img/amy-turner-69b6cd.webp" alt="Amy Turner" width="160" height="160" loading="lazy"><b>Amy Turner</b><span>Offers, Pricing &amp; Growth</span></div></div>
+    
+  </div>
+</section>
+
+<!-- 8. COMMUNITY -->
+<section id="community" aria-labelledby="h-com">
+  <div class="wrap">
+    <span class="eyebrow">Community</span>
+    <h2 id="h-com" style="margin-top:14px">Build next to people <em>a week ahead of you.</em></h2>
+    <div class="stories">
+      <figure class="story" style="margin:0">
+        <blockquote>“Where was SideKix when I was starting to build? I wish I had a tool like this.”</blockquote>
+        <figcaption class="by"><i aria-hidden="true">ZB</i><span><b>Zuben Bastani</b>President and Founder, ReachWell</span></figcaption>
+      </figure>
+      <figure class="story" style="margin:0">
+        <blockquote>“When we first started we googled everything and blindly trusted it. Now we can message another female baker for support!”</blockquote>
+        <figcaption class="by"><i aria-hidden="true">L+K</i><span><b>Lauren Wright and Keala Yu</b>Owners, Pie Slayer</span></figcaption>
+      </figure>
+      <figure class="story" style="margin:0">
+        <blockquote>“This isn’t another ‘let me make you rich’ product. It’s the human side of owning a business, and that’s what people need.”</blockquote>
+        <figcaption class="by"><i aria-hidden="true">NC</i><span><b>Nathan Coury</b>Owner, Freak Bros Pizza</span></figcaption>
+      </figure>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 8b. FAQ -->
+<section id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2 id="h-faq" style="margin-top:14px">About <em>Kix.</em></h2>
+    <div class="answers" style="margin-top:28px">
+      <details class="ans"><summary>What is Kix?</summary><p>Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of you.</p></details>
+      <details class="ans"><summary>Is Kix a coach?</summary><p>No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside SideKix.”</p></details>
+      <details class="ans"><summary>Can I talk to Kix, or do I have to type?</summary><p>Either. You can speak or type, and Kix Credits measure the conversation the same way.</p></details>
+      <details class="ans"><summary>What does Kix cost?</summary><p>350 Kix Credits are $19 and cover up to 90 minutes of conversation with Kix. There’s no subscription, and credits never expire. Your Milestones and Steps never use credits. Memberships start at $39 a month.</p></details>
+      <details class="ans"><summary>Which phones does Kix work on?</summary><p>SideKix is on iPhone now. Android and the web are not available yet. Join the waitlist and you’ll be the first to know when your platform is live.</p></details>
+      <details class="ans"><summary>Is there a daily limit?</summary><p>Up to 90 minutes of conversation with Kix a day. Your Milestones and Steps stay open all day regardless.</p></details>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 9. FINAL CTA -->
+<section id="start" aria-labelledby="h-final">
+  <div class="wrap final">
+    <span class="eyebrow">Ready</span>
+    <h2 id="h-final">Your next move <em>starts here.</em></h2>
+    <div class="row">
+      <a class="cta gold" data-dl="final" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a>
+    </div>
+    <div class="qrbox" id="qrbox"><div id="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" width="112" height="112" role="img" aria-label="QR code that opens Kix in the App Store" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path fill="#0E0C09" d="M4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM17 4h1v1h-1zM19 4h1v1h-1zM23 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM31 4h1v1h-1zM34 4h1v1h-1zM35 4h1v1h-1zM36 4h1v1h-1zM37 4h1v1h-1zM38 4h1v1h-1zM39 4h1v1h-1zM40 4h1v1h-1zM4 5h1v1h-1zM10 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM19 5h1v1h-1zM23 5h1v1h-1zM25 5h1v1h-1zM29 5h1v1h-1zM30 5h1v1h-1zM34 5h1v1h-1zM40 5h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM14 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1zM25 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM31 6h1v1h-1zM34 6h1v1h-1zM36 6h1v1h-1zM37 6h1v1h-1zM38 6h1v1h-1zM40 6h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM22 7h1v1h-1zM26 7h1v1h-1zM27 7h1v1h-1zM28 7h1v1h-1zM29 7h1v1h-1zM30 7h1v1h-1zM31 7h1v1h-1zM34 7h1v1h-1zM36 7h1v1h-1zM37 7h1v1h-1zM38 7h1v1h-1zM40 7h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM13 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM31 8h1v1h-1zM32 8h1v1h-1zM34 8h1v1h-1zM36 8h1v1h-1zM37 8h1v1h-1zM38 8h1v1h-1zM40 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM14 9h1v1h-1zM16 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM34 9h1v1h-1zM40 9h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM32 10h1v1h-1zM34 10h1v1h-1zM35 10h1v1h-1zM36 10h1v1h-1zM37 10h1v1h-1zM38 10h1v1h-1zM39 10h1v1h-1zM40 10h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM15 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM27 11h1v1h-1zM28 11h1v1h-1zM31 11h1v1h-1zM32 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM30 12h1v1h-1zM33 12h1v1h-1zM34 12h1v1h-1zM35 12h1v1h-1zM36 12h1v1h-1zM37 12h1v1h-1zM40 12h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM25 13h1v1h-1zM27 13h1v1h-1zM28 13h1v1h-1zM31 13h1v1h-1zM32 13h1v1h-1zM33 13h1v1h-1zM36 13h1v1h-1zM38 13h1v1h-1zM39 13h1v1h-1zM4 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM17 14h1v1h-1zM18 14h1v1h-1zM19 14h1v1h-1zM23 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM33 14h1v1h-1zM35 14h1v1h-1zM36 14h1v1h-1zM38 14h1v1h-1zM4 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM25 15h1v1h-1zM31 15h1v1h-1zM32 15h1v1h-1zM35 15h1v1h-1zM38 15h1v1h-1zM39 15h1v1h-1zM4 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM15 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM31 16h1v1h-1zM32 16h1v1h-1zM33 16h1v1h-1zM34 16h1v1h-1zM35 16h1v1h-1zM38 16h1v1h-1zM39 16h1v1h-1zM40 16h1v1h-1zM4 17h1v1h-1zM8 17h1v1h-1zM11 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM20 17h1v1h-1zM22 17h1v1h-1zM25 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM31 17h1v1h-1zM32 17h1v1h-1zM33 17h1v1h-1zM36 17h1v1h-1zM37 17h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM35 18h1v1h-1zM36 18h1v1h-1zM37 18h1v1h-1zM38 18h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM21 19h1v1h-1zM22 19h1v1h-1zM26 19h1v1h-1zM28 19h1v1h-1zM30 19h1v1h-1zM31 19h1v1h-1zM32 19h1v1h-1zM35 19h1v1h-1zM36 19h1v1h-1zM38 19h1v1h-1zM40 19h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM9 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM13 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM27 20h1v1h-1zM30 20h1v1h-1zM33 20h1v1h-1zM34 20h1v1h-1zM35 20h1v1h-1zM37 20h1v1h-1zM38 20h1v1h-1zM40 20h1v1h-1zM8 21h1v1h-1zM11 21h1v1h-1zM12 21h1v1h-1zM13 21h1v1h-1zM14 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM21 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM29 21h1v1h-1zM31 21h1v1h-1zM32 21h1v1h-1zM36 21h1v1h-1zM37 21h1v1h-1zM38 21h1v1h-1zM39 21h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM27 22h1v1h-1zM28 22h1v1h-1zM30 22h1v1h-1zM31 22h1v1h-1zM33 22h1v1h-1zM35 22h1v1h-1zM37 22h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM7 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM22 23h1v1h-1zM25 23h1v1h-1zM30 23h1v1h-1zM33 23h1v1h-1zM35 23h1v1h-1zM36 23h1v1h-1zM38 23h1v1h-1zM39 23h1v1h-1zM10 24h1v1h-1zM11 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM21 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM28 24h1v1h-1zM30 24h1v1h-1zM31 24h1v1h-1zM33 24h1v1h-1zM34 24h1v1h-1zM35 24h1v1h-1zM38 24h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM14 25h1v1h-1zM15 25h1v1h-1zM16 25h1v1h-1zM17 25h1v1h-1zM18 25h1v1h-1zM19 25h1v1h-1zM21 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM28 25h1v1h-1zM29 25h1v1h-1zM30 25h1v1h-1zM31 25h1v1h-1zM32 25h1v1h-1zM33 25h1v1h-1zM35 25h1v1h-1zM36 25h1v1h-1zM39 25h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM7 26h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM18 26h1v1h-1zM19 26h1v1h-1zM22 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM32 26h1v1h-1zM33 26h1v1h-1zM34 26h1v1h-1zM35 26h1v1h-1zM36 26h1v1h-1zM37 26h1v1h-1zM38 26h1v1h-1zM6 27h1v1h-1zM7 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM23 27h1v1h-1zM25 27h1v1h-1zM27 27h1v1h-1zM28 27h1v1h-1zM30 27h1v1h-1zM35 27h1v1h-1zM36 27h1v1h-1zM38 27h1v1h-1zM4 28h1v1h-1zM7 28h1v1h-1zM10 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM27 28h1v1h-1zM30 28h1v1h-1zM31 28h1v1h-1zM33 28h1v1h-1zM34 28h1v1h-1zM35 28h1v1h-1zM37 28h1v1h-1zM38 28h1v1h-1zM39 28h1v1h-1zM40 28h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM7 29h1v1h-1zM8 29h1v1h-1zM11 29h1v1h-1zM12 29h1v1h-1zM15 29h1v1h-1zM17 29h1v1h-1zM18 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM23 29h1v1h-1zM26 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM31 29h1v1h-1zM35 29h1v1h-1zM36 29h1v1h-1zM37 29h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM13 30h1v1h-1zM14 30h1v1h-1zM16 30h1v1h-1zM19 30h1v1h-1zM21 30h1v1h-1zM23 30h1v1h-1zM25 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1zM29 30h1v1h-1zM30 30h1v1h-1zM31 30h1v1h-1zM33 30h1v1h-1zM35 30h1v1h-1zM36 30h1v1h-1zM38 30h1v1h-1zM6 31h1v1h-1zM8 31h1v1h-1zM12 31h1v1h-1zM13 31h1v1h-1zM14 31h1v1h-1zM16 31h1v1h-1zM17 31h1v1h-1zM19 31h1v1h-1zM20 31h1v1h-1zM21 31h1v1h-1zM23 31h1v1h-1zM24 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM31 31h1v1h-1zM33 31h1v1h-1zM38 31h1v1h-1zM39 31h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM8 32h1v1h-1zM10 32h1v1h-1zM11 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM16 32h1v1h-1zM17 32h1v1h-1zM21 32h1v1h-1zM22 32h1v1h-1zM25 32h1v1h-1zM26 32h1v1h-1zM28 32h1v1h-1zM32 32h1v1h-1zM33 32h1v1h-1zM34 32h1v1h-1zM35 32h1v1h-1zM36 32h1v1h-1zM37 32h1v1h-1zM38 32h1v1h-1zM39 32h1v1h-1zM40 32h1v1h-1zM12 33h1v1h-1zM13 33h1v1h-1zM15 33h1v1h-1zM16 33h1v1h-1zM18 33h1v1h-1zM19 33h1v1h-1zM20 33h1v1h-1zM22 33h1v1h-1zM25 33h1v1h-1zM26 33h1v1h-1zM27 33h1v1h-1zM29 33h1v1h-1zM30 33h1v1h-1zM32 33h1v1h-1zM36 33h1v1h-1zM39 33h1v1h-1zM4 34h1v1h-1zM5 34h1v1h-1zM6 34h1v1h-1zM7 34h1v1h-1zM8 34h1v1h-1zM9 34h1v1h-1zM10 34h1v1h-1zM12 34h1v1h-1zM13 34h1v1h-1zM14 34h1v1h-1zM15 34h1v1h-1zM16 34h1v1h-1zM18 34h1v1h-1zM19 34h1v1h-1zM21 34h1v1h-1zM24 34h1v1h-1zM27 34h1v1h-1zM28 34h1v1h-1zM29 34h1v1h-1zM30 34h1v1h-1zM32 34h1v1h-1zM34 34h1v1h-1zM36 34h1v1h-1zM4 35h1v1h-1zM10 35h1v1h-1zM15 35h1v1h-1zM16 35h1v1h-1zM18 35h1v1h-1zM19 35h1v1h-1zM20 35h1v1h-1zM21 35h1v1h-1zM22 35h1v1h-1zM23 35h1v1h-1zM24 35h1v1h-1zM26 35h1v1h-1zM28 35h1v1h-1zM30 35h1v1h-1zM31 35h1v1h-1zM32 35h1v1h-1zM36 35h1v1h-1zM37 35h1v1h-1zM38 35h1v1h-1zM39 35h1v1h-1zM40 35h1v1h-1zM4 36h1v1h-1zM6 36h1v1h-1zM7 36h1v1h-1zM8 36h1v1h-1zM10 36h1v1h-1zM12 36h1v1h-1zM15 36h1v1h-1zM17 36h1v1h-1zM22 36h1v1h-1zM26 36h1v1h-1zM27 36h1v1h-1zM30 36h1v1h-1zM32 36h1v1h-1zM33 36h1v1h-1zM34 36h1v1h-1zM35 36h1v1h-1zM36 36h1v1h-1zM37 36h1v1h-1zM38 36h1v1h-1zM40 36h1v1h-1zM4 37h1v1h-1zM6 37h1v1h-1zM7 37h1v1h-1zM8 37h1v1h-1zM10 37h1v1h-1zM15 37h1v1h-1zM20 37h1v1h-1zM21 37h1v1h-1zM23 37h1v1h-1zM24 37h1v1h-1zM27 37h1v1h-1zM28 37h1v1h-1zM29 37h1v1h-1zM31 37h1v1h-1zM32 37h1v1h-1zM33 37h1v1h-1zM34 37h1v1h-1zM35 37h1v1h-1zM40 37h1v1h-1zM4 38h1v1h-1zM6 38h1v1h-1zM7 38h1v1h-1zM8 38h1v1h-1zM10 38h1v1h-1zM13 38h1v1h-1zM14 38h1v1h-1zM17 38h1v1h-1zM18 38h1v1h-1zM20 38h1v1h-1zM21 38h1v1h-1zM22 38h1v1h-1zM24 38h1v1h-1zM25 38h1v1h-1zM26 38h1v1h-1zM27 38h1v1h-1zM28 38h1v1h-1zM29 38h1v1h-1zM31 38h1v1h-1zM32 38h1v1h-1zM34 38h1v1h-1zM4 39h1v1h-1zM10 39h1v1h-1zM15 39h1v1h-1zM18 39h1v1h-1zM21 39h1v1h-1zM22 39h1v1h-1zM25 39h1v1h-1zM26 39h1v1h-1zM27 39h1v1h-1zM28 39h1v1h-1zM30 39h1v1h-1zM31 39h1v1h-1zM36 39h1v1h-1zM38 39h1v1h-1zM39 39h1v1h-1zM4 40h1v1h-1zM5 40h1v1h-1zM6 40h1v1h-1zM7 40h1v1h-1zM8 40h1v1h-1zM9 40h1v1h-1zM10 40h1v1h-1zM12 40h1v1h-1zM13 40h1v1h-1zM17 40h1v1h-1zM18 40h1v1h-1zM19 40h1v1h-1zM21 40h1v1h-1zM23 40h1v1h-1zM24 40h1v1h-1zM25 40h1v1h-1zM28 40h1v1h-1zM31 40h1v1h-1zM34 40h1v1h-1zM35 40h1v1h-1zM37 40h1v1h-1zM38 40h1v1h-1zM39 40h1v1h-1zM40 40h1v1h-1z"/></svg></div><div><b style="color:#FFF3D2">On a computer?</b><br><span class="small">Scan with your iPhone camera to open Kix in the App Store.</span></div></div>
+    <div class="moves" id="moves">
+      <a class="move" data-dl="credits" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">
+        <span class="mv-k">Talk it through</span>
+        <span class="mv-v">$19</span>
+        <span class="mv-d">350 Kix Credits, about 90 minutes with Kix. One-time, and they never expire.</span>
+        <span class="mv-go">Get credits in the app <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="move" data-ev="membership" href="https://sidekixhq.com/membership.html">
+        <span class="mv-k">Membership</span>
+        <span class="mv-v">from $39<small>a month</small></span>
+        <span class="mv-d">Prepay now to lock your rate. Billing starts when your tier goes live.</span>
+        <span class="mv-go">See membership <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+    <p class="small">iPhone first. On Android? <a href="https://sidekixhq.com/join.html">Join the waitlist</a> and we’ll tell you the day it lands.</p>
+    
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Explore SideKix" class="explore"><b>Explore SideKix</b><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a><a href="https://sidekixhq.com/">Home</a><a href="https://sidekixhq.com/how-it-works.html">How it works</a><a href="https://sidekixhq.com/membership.html">Membership</a><a href="https://sidekixhq.com/advisors.html">Advisors</a><a href="https://sidekixhq.com/partners.html">Partners</a><a href="https://sidekixhq.com/events.html">Events</a><a href="https://sidekixhq.com/library.html">Resources</a></nav>
+    <div class="eco"><b>Kix lives inside SideKix</b><span>Journey Maps</span><span>Kix</span><span>Advisors</span><span>Community</span><span>Discovery</span></div>
+    <p style="margin:22px 0 0;font-family:var(--display);font-style:italic;font-size:22px;color:#FFF3D2">Talent is everywhere. Opportunity is for all.</p>
+    <nav aria-label="Policies" class="legal"><a href="https://sidekixhq.com/terms.html">Terms of Use</a><a href="https://sidekixhq.com/privacy.html">Privacy Policy</a><a href="https://sidekixhq.com/cookies.html">Cookie Policy</a><a href="https://sidekixhq.com/purchase-policy.html">Purchase Policy</a><a href="https://sidekixhq.com/affiliate-policy.html">Affiliate Policy</a></nav>
+    <p class="small" style="margin-top:14px">SideKix is a product of Character Limit LLC, Wilmington, North Carolina.</p>
+  </div>
+</footer>
+
+<nav class="dock" id="dock" aria-label="Download Kix"><a class="cta gold" data-dl="dock" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a></nav>
+<audio id="kixAudio" preload="none" src="assets/kix/audio/greeting.mp3"><track kind="captions" srclang="en" label="English" src="assets/kix/audio/greeting.vtt" default></audio>
+
+<script>
+/* KixVoice: the Kix voice visual, adapted from James's "Sidekix · Kix voice visual" artifact.
+   Changes: transparent ground, pauses when off screen, reduced-motion aware. */
+(function(root){'use strict';
+const TAU=Math.PI*2,clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),lerp=(a,b,t)=>a+(b-a)*t;
+const P={idle:{base:.18,gain:0,speed:.35,sparks:.25},listening:{base:.26,gain:.45,speed:.55,sparks:.5},thinking:{base:.30,gain:0,speed:1.6,sparks:.7},speaking:{base:.34,gain:.9,speed:1,sparks:1}};
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+class KixVoice{
+ constructor(c,o={}){this.canvas=c;this.ctx=c.getContext('2d');this.o=Object.assign({color:[255,186,72],hot:[255,244,214],strands:22,maxSparks:200,maxDpr:2,scale:1},o);
+  this.state='idle';this.preset=Object.assign({},P.idle);this.targetLevel=0;this.level=0;this.energy=.18;this.t=0;this.phaseT=0;this.introT=RM?1:0;this.analyser=null;this.visible=true;
+  this.strands=[];for(let i=0;i<this.o.strands;i++)this.strands.push({f1:1.2+Math.random()*2.6,f2:.6+Math.random()*1.8,p1:Math.random()*TAU,p2:Math.random()*TAU,s1:(.6+Math.random()*1.2)*(Math.random()<.5?-1:1),s2:.3+Math.random()*.8,amp:.55+Math.random()*.6,bright:.35+Math.random()*.65,warm:Math.random(),f3:5+Math.random()*7,wob:.08+Math.random()*.14});
+  this.sparks=[];this._acc=0;this._resize=this._resize.bind(this);this._frame=this._frame.bind(this);
+  new ResizeObserver(this._resize).observe(c);this._resize();
+  new IntersectionObserver(es=>{this.visible=es[0].isIntersecting;if(this.visible&&!this._raf){this._last=performance.now();this._raf=requestAnimationFrame(this._frame);}}).observe(c);
+  this._last=performance.now();this._raf=requestAnimationFrame(this._frame);}
+ setState(s){if(P[s])this.state=s}
+ setLevel(v){this.targetLevel=clamp(+v||0,0,1)}
+ attachAnalyser(a){this.analyser=a;this._buf=a?new Float32Array(a.fftSize):null}
+ _resize(){const d=Math.min(devicePixelRatio||1,this.o.maxDpr),r=this.canvas.getBoundingClientRect();this.dpr=d;this.w=Math.max(1,Math.round(r.width*d));this.h=Math.max(1,Math.round(r.height*d));this.canvas.width=this.w;this.canvas.height=this.h}
+ _frame(now){this._raf=null;if(!this.visible||document.body.classList.contains('still'))return;const dt=Math.min(.05,(now-this._last)/1000);this._last=now;
+  if(this.analyser){this.analyser.getFloatTimeDomainData(this._buf);let s=0;for(let i=0;i<this._buf.length;i++)s+=this._buf[i]*this._buf[i];this.targetLevel=clamp((Math.log10(Math.sqrt(s/this._buf.length)+1e-5)+2.3)/1.8,0,1)}
+  this._update(RM?dt*.5:dt);this._draw();this._raf=requestAnimationFrame(this._frame)}
+ _update(dt){const tg=P[this.state];for(const k in tg)this.preset[k]=lerp(this.preset[k],tg[k],1-Math.exp(-dt*4));
+  const k=this.targetLevel>this.level?18:6;this.level=lerp(this.level,this.targetLevel,1-Math.exp(-dt*k));
+  let e=this.preset.base+this.preset.gain*this.level;if(this.state==='thinking')e+=.08*Math.sin(this.t*3.2);if(this.state==='idle')e+=.03*Math.sin(this.t*1.1);
+  this.energy=lerp(this.energy,e,1-Math.exp(-dt*10));this.t+=dt;this.phaseT+=dt*this.preset.speed*(.7+this.level*.9);if(this.introT<1)this.introT=Math.min(1,this.introT+dt/1.6);
+  const W=this.w,H=this.h;this._acc+=dt*140*this.preset.sparks*(.3+this.energy)*(RM?.3:1);
+  while(this._acc>1&&this.sparks.length<this.o.maxSparks){this._acc-=1;const u=(Math.random()*2-1)*.85,dir=Math.sign(u)||1;
+   this.sparks.push({x:u*W*.5*this._spread(),y:(Math.random()-.5)*H*.18*this._env(u)*(.5+this.energy),vx:dir*(20+Math.random()*90)*this.dpr*(.5+this.energy),vy:(Math.random()-.5)*30*this.dpr,life:0,max:.6+Math.random()*1.4,size:(.4+Math.random()*1.3)*this.dpr})}
+  if(this._acc>1)this._acc=0;for(let i=this.sparks.length-1;i>=0;i--){const p=this.sparks[i];p.life+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy*=.98;if(p.life>p.max)this.sparks.splice(i,1)}}
+ _env(u){const a=Math.abs(u);return Math.exp(-a*a*3.4)*(1-.55*Math.exp(-((a/.09)**2)))}
+ _spread(){return .12+.88*(1-Math.pow(1-this.introT,3))}
+ _draw(){const{ctx,w:W,h:H,dpr}=this,[r,g,b]=this.o.color,[hr,hg,hb]=this.o.hot,cx=W/2,cy=H/2,E=this.energy,sp=this._spread(),halfW=W*.5*sp,amp=Math.min(H*.32,W*.09)*(.35+E*1.1)*this.o.scale;
+  ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='lighter';
+  const hz=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*.55);hz.addColorStop(0,`rgba(${r},${g-40},${b-40},${.10+.22*E})`);hz.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=hz;ctx.fillRect(0,0,W,H);
+  const lg=ctx.createLinearGradient(cx-halfW*1.15,0,cx+halfW*1.15,0);lg.addColorStop(0,`rgba(${r},${g},${b},0)`);lg.addColorStop(.5,`rgba(${hr},${hg},${hb},${.7+.3*E})`);lg.addColorStop(1,`rgba(${r},${g},${b},0)`);
+  ctx.fillStyle=lg;ctx.fillRect(cx-halfW*1.15,cy-.75*dpr,halfW*2.3,1.5*dpr);ctx.globalAlpha=.25;ctx.fillRect(cx-halfW*1.15,cy-3*dpr,halfW*2.3,6*dpr);ctx.globalAlpha=1;
+  const st=Math.max(2,Math.round(3*dpr)),T=this.phaseT;
+  for(const s of this.strands){ctx.beginPath();for(let px=-halfW;px<=halfW;px+=st){const u=px/halfW,env=this._env(u),wave=Math.sin(u*s.f1*TAU+s.p1+T*s.s1*2.2)*Math.cos(u*s.f2*TAU+s.p2-T*s.s2*1.6),fib=1+s.wob*Math.sin(u*s.f3*TAU-T*3.1+s.p2),y=cy+wave*fib*env*amp*s.amp;if(px===-halfW)ctx.moveTo(cx+px,y);else ctx.lineTo(cx+px,y)}
+   const cr=Math.round(lerp(r,255,s.warm*.3)),cg=Math.round(lerp(g-30,g+20,s.warm));ctx.strokeStyle=`rgba(${cr},${cg},${b},${.05*s.bright*(.6+E)})`;ctx.lineWidth=6*dpr;ctx.stroke();ctx.strokeStyle=`rgba(${cr},${cg},${b+20},${.34*s.bright*(.5+E*.8)})`;ctx.lineWidth=.75*dpr;ctx.stroke()}
+  for(const p of this.sparks){const a=Math.sin(p.life/p.max*Math.PI)*(.5+.5*E);ctx.fillStyle=`rgba(${r},${g+20},${b+40},${a})`;ctx.fillRect(cx+p.x,cy+p.y,p.size,p.size)}
+  const cR=Math.min(W,H)*(.06+.32*E*E+.05*E),co=ctx.createRadialGradient(cx,cy,0,cx,cy,cR);co.addColorStop(0,`rgba(255,255,255,${.75+.25*E})`);co.addColorStop(.12,`rgba(${hr},${hg},${hb},${.55+.4*E})`);co.addColorStop(.35,`rgba(${r},${g-20},${b-40},${.22+.3*E})`);co.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=co;ctx.beginPath();ctx.arc(cx,cy,cR,0,TAU);ctx.fill();
+  this._ray(cx,cy,Math.min(H*.5,W*.3)*(.25+.95*E),2.2*dpr*(.6+E),Math.PI/2,.85*(.4+E));this._ray(cx,cy,halfW*(.3+.5*E),2.5*dpr*(.6+E),0,.6*(.4+E));
+  for(let i=0;i<4;i++)this._ray(cx,cy,Math.min(W,H)*.22*E,1.2*dpr,this.t*.05+i*Math.PI/4+Math.PI/8,.18*E);ctx.globalCompositeOperation='source-over'}
+ _ray(cx,cy,len,th,ang,al){if(len<1||al<=.01)return;const{ctx}=this,[hr,hg,hb]=this.o.hot,[r,g,b]=this.o.color;ctx.save();ctx.translate(cx,cy);ctx.rotate(ang);
+  const gr=ctx.createLinearGradient(-len,0,len,0);gr.addColorStop(0,`rgba(${r},${g},${b},0)`);gr.addColorStop(.5,`rgba(${hr},${hg},${hb},${clamp(al,0,1)})`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.fillStyle=gr;ctx.fillRect(-len,-th/2,len*2,th);
+  ctx.scale(1,th*4/len);const ha=ctx.createRadialGradient(0,0,0,0,0,len*.7);ha.addColorStop(0,`rgba(${r},${g},${b},${clamp(al*.35,0,1)})`);ha.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.fillStyle=ha;ctx.beginPath();ctx.arc(0,0,len*.7,0,TAU);ctx.fill();ctx.restore()}
+}
+KixVoice.prototype.kick=function(){if(!this._raf&&this.visible){this._last=performance.now();this._raf=requestAnimationFrame(this._frame)}};
+root.KixVoice=KixVoice;})(window);
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const IS_IOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const IS_ANDROID=/Android/.test(navigator.userAgent);
+const DESKTOP=!IS_IOS&&!IS_ANDROID&&matchMedia('(hover:hover)').matches;
+
+/* events go to the site's anonymous analytics (assets/kx-analytics.js), which honours Do Not Track */
+function track(name,props){try{if(window.kx&&kx.ev)kx.ev(name,props||{});}catch(_){}}
+
+
+/* hero voice */
+const hero=new KixVoice($('#heroCv'),{scale:1.25});
+const audio=$('#kixAudio');let actx=null,analyser=null;
+const hearBtn=$('#hearBtn'),hearT=$('#hearT'),cap=$('#cap'),icon=$('#hearIcon');
+const PLAY='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg>',PAUSE='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5h2.5v9H2.5zM7 1.5h2.5v9H7z" fill="currentColor"/></svg>';
+const fmt=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+hearBtn.addEventListener('click',async()=>{
+  try{
+    if(!actx){actx=new (window.AudioContext||window.webkitAudioContext)();const src=actx.createMediaElementSource(audio);analyser=actx.createAnalyser();analyser.fftSize=1024;src.connect(analyser);analyser.connect(actx.destination);}
+    await actx.resume();
+    if(audio.paused){hero.attachAnalyser(analyser);hero.setState('speaking');await audio.play();icon.innerHTML=PAUSE;track('kix_voice_play',{placement:'hero'});}
+    else{audio.pause();}
+  }catch(e){cap.textContent='This browser would not play the clip. Try another browser or tap again.';}
+});
+const HERO_LINES=["Hi, I’m Kix.", "Whatever brought you here, an idea, a business, or a question, I can help you find the next step.", "What’s in your way?"];
+const HERO_AT=[0,2.2,9.9]; /* where each line starts, read from the pauses in the clip */
+audio.addEventListener('timeupdate',()=>{const d=audio.duration||11.4,t=audio.currentTime;hearT.textContent=fmt(d-t);let i=0;while(i<HERO_AT.length-1&&t>=HERO_AT[i+1])i++;if(cap.textContent!==HERO_LINES[i])cap.textContent=HERO_LINES[i];});
+audio.addEventListener('pause',()=>{icon.innerHTML=PLAY;hero.attachAnalyser(null);hero.setLevel(0);hero.setState('idle');});
+audio.addEventListener('ended',()=>{cap.textContent='That was Kix. Download Kix to talk it through.';track('kix_voice_complete',{});});
+
+/* downloads: iPhone goes to the store, a computer shows a QR code, Android goes to the waitlist */
+const STORE='https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359';
+let qrMade=false;
+document.querySelectorAll('[data-dl]').forEach(a=>a.addEventListener('click',e=>{
+  const placement=a.dataset.dl;track('cta_download',{placement,device:IS_IOS?'ios':IS_ANDROID?'android':'desktop'});
+  if(IS_ANDROID){e.preventDefault();location.href='https://sidekixhq.com/join.html';return;}
+  if(DESKTOP){e.preventDefault();const box=$('#qrbox');box.classList.add('show');
+    
+    box.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});}
+}));
+document.querySelectorAll('[data-ev]').forEach(a=>a.addEventListener('click',()=>track('cta_'+a.dataset.ev,{})));
+
+document.documentElement.lang='en';
+const menuBtn=$('#menuBtn'),menuPanel=$('#menuPanel');
+function setMenu(open,focusBack){menuPanel.hidden=!open;document.body.classList.toggle('menu-open',open);menuBtn.setAttribute('aria-expanded',open?'true':'false');if(open){const f=menuPanel.querySelector('a');f&&f.focus();track('nav_menu_open',{});}else if(focusBack){menuBtn.focus();}}
+menuBtn.addEventListener('click',()=>setMenu(menuPanel.hidden));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menuPanel.hidden)setMenu(false,true);});
+document.addEventListener('click',e=>{if(!menuPanel.hidden&&!e.target.closest('#sitenav'))setMenu(false);});
+document.querySelectorAll('.links a,.menupanel a,footer .explore a').forEach(a=>a.addEventListener('click',()=>track('nav_click',{to:a.textContent})));
+/* WCAG 2.2.2: anything that moves on its own can be paused */
+const motionBtn=$('#motionBtn');
+motionBtn.addEventListener('click',()=>{const on=!document.body.classList.contains('still');document.body.classList.toggle('still',on);motionBtn.setAttribute('aria-pressed',on?'true':'false');motionBtn.textContent=on?'Play motion':'Pause motion';if(!on){hero.kick();ask.kick();}track('motion_'+(on?'pause':'play'),{});});
+/* the next-move cards pop once they are on screen */
+const moves=$('#moves');
+if(moves && !matchMedia('(prefers-reduced-motion: reduce)').matches){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){moves.classList.add('in');o.disconnect();}},{threshold:.35}).observe(moves);}
+/* the idea-to-business line animates once it is on screen; reduced motion keeps it still */
+const bridge=$('#bridge');
+if(bridge && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ bridge.classList.add('run'); o.disconnect(); } },{threshold:.5}).observe(bridge);
+}
+
+/* phones: dock a Download button once the hero has scrolled away */
+const dock=$('#dock');
+new IntersectionObserver(es=>{dock.classList.toggle('on',!es[0].isIntersecting)},{threshold:.15}).observe($('#top'));
+
+/* What's in your way: the approved Kix scripts, one per barrier.
+   clip: the Cartesia file for that script once generated (null until then). */
+const ask=new KixVoice($('#askCv'),{strands:16,maxSparks:120});ask.setState('listening');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SCRIPTS=[
+ {k:'funding',clip:'assets/kix/audio/funding.mp3',t:"Money's usually the first wall people name, and it's a real one. Often the better question is how little you need to find out if this works. What's the smallest version you could sell to one person? Let's price it out line by line tonight. If outside money makes sense after that, I'll help you get ready before you ask for it, and show you where you'd actually fit."},
+ {k:'time',clip:'assets/kix/audio/time.mp3',t:"Twenty minutes a night is enough to move something, as long as it's the right twenty minutes. When could you protect three short blocks this week? Pick them now. I'll hand you one step that fits each block, small enough to finish, and the plan keeps track so you don't have to."},
+ {k:'where_to_start',clip:'assets/kix/audio/where_to_start.mp3',t:"You don't need the whole plan to start. You need the next step, and finding it is my job. What's the idea in one sentence, the way you'd tell a friend? Write that down today. From there we'll lay out the first few steps together, in an order that fits your life, and I'll bring the training for each one when you get there."},
+ {k:'fear_of_failure',clip:'assets/kix/audio/fear_of_failure.mp3',t:"That fear usually means this matters to you. So we aim to fail small, early and cheap, before anything big is riding on it. Which part are you most worried won't work? Let's test that part first, this week, with something you can try in an afternoon. Whatever happens, you'll know more than you do now."},
+ {k:'access',clip:'assets/kix/audio/access.mp3',t:"A lot of advice assumes you already have the money, the contacts, or the right title. Plenty of people building something don't, and they build anyway. Which door feels most closed right now: money, people, or know how? Tell me, and I'll find the people, programs and training that open it, and help you get ready to walk through."},
+ {k:'unsupported',clip:'assets/kix/audio/unsupported.mp3',t:"Building alone is heavier than it looks from the outside, and you don't have to carry all of it. Who's one person you could tell about this today, even in a text? I'll be here whenever you get stuck. And when you're ready, I'll connect you with people building something like yours, and advisors who've stood where you are."},
+ {k:'not_ready',clip:'assets/kix/audio/not_ready.mp3',t:"Ready usually shows up after people see it, not before. What's the smallest piece you could show one person this week? Pick a date, show it as it is, and let their reaction tell you what to fix first."},
+ {k:'overwhelm',clip:'assets/kix/audio/overwhelm.mp3',t:"When everything's urgent, it's hard to move anything. If only one thing moved this week, which would make the rest easier? Do that one first. I'll hold the rest of the list so it isn't sitting on you."},
+ {k:'something_else',clip:'assets/kix/audio/something_else.mp3',t:"Whatever it is, say it the way it comes out. I'll listen first, ask what I need to, and then we'll work out the next step together."}
+];
+const said=$('#said'),keep=$('#keep'),steps=[...document.querySelectorAll('#steps li')],stateEl=$('#askState'),chips=[...document.querySelectorAll('#how .chip')];
+const clipAudio=new Audio();let clipCtx=null,clipAn=null;
+let timers=[],raf=null,run=0;
+function setStep(i){steps.forEach((s,j)=>s.classList.toggle('on',j<=i))}
+function esc(x){return x.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function stopAll(){timers.forEach(clearTimeout);timers=[];if(raf)cancelAnimationFrame(raf);raf=null;clipAudio.pause();ask.attachAnalyser(null);ask.setLevel(0);}
+function simulate(ms){const t0=performance.now();(function f(){const t=(performance.now()-t0)/1000;if(t*1000>ms){ask.setLevel(0);raf=null;return}ask.setLevel(.3+.5*Math.abs(Math.sin(t*9))*Math.abs(Math.sin(t*2.3)));raf=requestAnimationFrame(f)})()}
+async function speak(i,chip){
+  stopAll();const my=++run;const S=SCRIPTS[i];
+  chips.forEach(c=>c.setAttribute('aria-pressed',c===chip?'true':'false'));
+  track('barrier_select',{barrier:S.k});
+  keep.classList.remove('in');setStep(1);
+  const sentences=S.t.match(/[^.?!]+[.?!]+/g).map(x=>x.trim());
+  said.innerHTML='<p class="you">You picked: '+esc(chip.textContent)+'</p>'+sentences.map(x=>'<p class="line'+(x.endsWith('?')?' qline':'')+'">'+esc(x.replace(/'/g,'’'))+'</p>').join('');
+  const lines=[...said.querySelectorAll('.line')];
+  ask.setState('thinking');stateEl.textContent='Kix · thinking';
+  /* pace captions at speaking speed, about 2.6 words a second, or to the clip's length when there is one */
+  const words=sentences.map(x=>x.split(/\s+/).length),total=words.reduce((a,b)=>a+b,0);
+  let dur=total/2.6*1000;
+  if(S.clip){try{if(!clipCtx){clipCtx=new (window.AudioContext||window.webkitAudioContext)();const src=clipCtx.createMediaElementSource(clipAudio);clipAn=clipCtx.createAnalyser();clipAn.fftSize=1024;src.connect(clipAn);clipAn.connect(clipCtx.destination);}await clipCtx.resume();clipAudio.src=S.clip;await clipAudio.play();if(my!==run)return;dur=(clipAudio.duration||dur/1000)*1000;ask.attachAnalyser(clipAn);}catch(e){S.clip=null;}}
+  const lead=RM||S.clip?0:600;
+  timers.push(setTimeout(()=>{ if(my!==run)return; ask.setState('speaking');stateEl.textContent='Kix · speaking'; if(!S.clip&&!RM) simulate(dur); },lead));
+  let at=lead;
+  lines.forEach((el,j)=>{ timers.push(setTimeout(()=>{ if(my===run) el.classList.add('in'); },RM?0:at)); at+=dur*words[j]/total; });
+  timers.push(setTimeout(()=>{ if(my!==run)return; ask.attachAnalyser(null);ask.setState('listening');stateEl.textContent='Kix · listening';setStep(2);keep.classList.add('in');track('barrier_heard',{barrier:S.k}); },RM?0:lead+dur));
+}
+chips.forEach(c=>c.addEventListener('click',()=>speak(+c.dataset.b,c)));
+
+})();
+</script>
+<script src="assets/kx-analytics.js" defer></script>
+</body>
+</html>
