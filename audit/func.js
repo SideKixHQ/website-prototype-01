@@ -60,7 +60,7 @@ const rq=await load(ROOT+"/resources.html"), rd=rq.d, rw=rq.w;
  ok(!!d.querySelector(".unum")&&d.querySelector(".unum").textContent==="168 million","the 168 million headline is present");
  ok(d.querySelectorAll(".turnbits li").length===7,"the seven pieces appear once, in the survival section");
  ok(d.querySelectorAll(".opbits").length===0,"the duplicate set is gone");
- ok([...d.querySelectorAll(".msec h2")].map(h=>h.textContent).join(" | ")==="Potential Entrepreneurs | Failing over time | Existing Entrepreneurs","sections carry the new names");
+ ok([...d.querySelectorAll(".msec h2")].map(h=>h.textContent.replace(/\s+/g," ")).join(" | ")==="Potential Entrepreneurs | Failing over time | Existing Entrepreneurs","sections carry the new names");
  ok(d.querySelectorAll(".potyr").length===5,"five time horizons offered");
  ok(!!d.querySelector("#turn")&&/does\u2019?n.t have to/.test(d.querySelector("#turn").textContent),"the statement is present");
  ok(errs.length===0,"no JS errors");}
