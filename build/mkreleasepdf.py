@@ -33,6 +33,7 @@ def doc():
                         % (e(text), e(ATTRIB)))
     return """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/>
 <title>%(hl)s</title>
+<link href="../fonts.css" rel="stylesheet"/><!-- the site's own Poppins; the page is rendered from assets/press/ -->
 <style>
 @page{size:letter;margin:0.9in 0.85in}
 *{box-sizing:border-box}
