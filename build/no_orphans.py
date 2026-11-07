@@ -18,9 +18,9 @@ import glob, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP = ('node_modules', 'audit', 'host-configs', 'sidekix-events-handoff', 'patches', '.git', 'build')
-TAGS = 'div|p|dd|dt|li|figcaption|blockquote|h1|h2|h3|h4|h5|h6|summary|button|a|span|label|td|th|small|em|b|strong'
+TAGS = 'div|i|cite|caption|legend|p|dd|dt|li|figcaption|blockquote|h1|h2|h3|h4|h5|h6|summary|button|a|span|label|td|th|small|em|b|strong'
 # text right before a closing tag: "... word word</tag>"
-END = re.compile(r'([^<>\s][^<>]*?)[ \t]+([^<>\s&]+)(\s*)</(%s)>' % TAGS)
+END = re.compile(r'(?<=>)([^<>]*?[^<>\s])[ \t]+([^<>\s&]+)(\s*)</(%s)>' % TAGS)
 RAW = re.compile(r'(<script\b.*?</script>|<style\b.*?</style>|<!--.*?-->|<textarea\b.*?</textarea>|<pre\b.*?</pre>)', re.S | re.I)
 MAXPAIR = 24   # the two joined words must fit on a 320px line comfortably
 

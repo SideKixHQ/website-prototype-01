@@ -75,6 +75,12 @@ jobs:
         if: ${{ inputs.mode != 'probe' }}
         run: python build/mksitemap.py
 
+      # Regenerated pages lose the no-break space that keeps the last word of a
+      # line from standing alone; put it back. Idempotent.
+      - name: Keep last words together
+        if: ${{ inputs.mode != 'probe' }}
+        run: python build/no_orphans.py
+
       - name: Commit if changed
         if: ${{ inputs.mode != 'probe' }}
         run: |

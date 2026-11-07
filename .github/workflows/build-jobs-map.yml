@@ -41,6 +41,11 @@ jobs:
       - name: Render the page
         run: python build/mkjobspage.py
 
+      # Regenerated pages lose the no-break space that keeps the last word of a
+      # line from standing alone; put it back. Idempotent.
+      - name: Keep last words together
+        run: python build/no_orphans.py
+
       - name: Commit if changed
         run: |
           git config user.name "jobsmap-bot"
