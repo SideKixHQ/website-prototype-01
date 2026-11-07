@@ -38,10 +38,13 @@ button:disabled{opacity:.5;cursor:default}
 .hidden{display:none}
 .big-result h1{margin-bottom:14px}
 .big-result p{color:var(--grey);font-size:15px}
+
+/* keyboard focus: the same gold ring the rest of the site uses */
+a:focus-visible,button:focus-visible,[role="tab"]:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #F3E4A8;outline-offset:2px}
 </style>
 </head>
 <body>
-<div class="card">
+<main class="card">
   <div id="step-loading">
     <p class="eyebrow">Kix Credits</p>
     <h1>One moment…</h1>
@@ -93,7 +96,7 @@ button:disabled{opacity:.5;cursor:default}
     <p id="error-body">Something went wrong.</p>
     <a class="linkback" href="membership.html">Back to SideKix →</a>
   </div>
-</div>
+</main>
 
 <script src="assets/sidekix-api.js?v=53f74222"></script>
 <script>
