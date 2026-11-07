@@ -31,6 +31,9 @@ RELEASES = [
 PODCASTS = []      # shows James has been a guest on
 ARTICLES = []      # pieces James has written elsewhere
 COVERAGE = [
+ ("AI Innovation Needs Guardrails: How Businesses Can Balance Progress With Protection",
+  "LA Examiner", "5 November 2026",
+  "https://laexaminer.com/ai-innovation-needs-guardrails-how-businesses-can-balance-progress-with-protection/"),
  ("Wilmington startup SideKix prepares for national launch",
   "WilmingtonBiz", "9 July 2026",
   "https://www.wilmingtonbiz.com/technology/2026/07/09/"
