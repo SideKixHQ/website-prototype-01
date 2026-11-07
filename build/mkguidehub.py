@@ -52,7 +52,7 @@ CSS = """
   letter-spacing:.18em;text-transform:uppercase;color:#BDB4A4}
 .gh input[type=search],.gh select{background:rgba(255,255,255,.04);
   border:1px solid rgba(212,168,86,.3);border-radius:9px;color:#F0E8D4;
-  padding:10px 13px;font:inherit;font-size:15px;min-height:44px}
+  padding:10px 13px;font:inherit;font-size:16px;min-height:44px}
 .gh input[type=search]{flex:1 1 15rem;min-width:0}
 .gh input[type=search]:focus-visible,.gh select:focus-visible,
 .gh th button:focus-visible{outline:3px solid #F3E4A8;outline-offset:2px}

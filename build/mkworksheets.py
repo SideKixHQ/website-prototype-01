@@ -41,7 +41,7 @@ CSS = """
 .ws-f{margin:18px 0 0}
 .ws-f > label{display:block;font-size:15px;color:#E8DEC4;margin:0 0 8px}
 .ws-f textarea{width:100%;box-sizing:border-box;resize:vertical;
-  font-family:var(--body);font-size:15.5px;line-height:1.75;color:#F1ECE2;
+  font-family:var(--body);font-size:16px;line-height:1.75;color:#F1ECE2;
   background:rgba(255,255,255,.03);border:1px solid rgba(212,168,86,.22);
   border-radius:10px;padding:12px 14px}
 .ws-f textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.05)}
@@ -56,7 +56,7 @@ CSS = """
 .ws-table th{text-align:left;font-family:var(--util);font-size:10px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gold);font-weight:400;padding:0 8px 8px 0}
 .ws-table td{padding:0 8px 8px 0;vertical-align:top}
-.ws-table input{width:100%;box-sizing:border-box;font-family:var(--body);font-size:15px;
+.ws-table input{width:100%;box-sizing:border-box;font-family:var(--body);font-size:16px;
   color:#F1ECE2;background:rgba(255,255,255,.03);border:1px solid rgba(212,168,86,.22);
   border-radius:8px;padding:10px 12px;min-height:44px}
 .ws-table input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.05)}
