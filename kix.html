@@ -2356,8 +2356,11 @@ body.notes #kixpage .note-only{display:block}
 #kixpage .steps{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 34px;padding:0;list-style:none;counter-reset:s}
 #kixpage .steps li{counter-increment:s;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mute);padding:8px 14px 8px 8px;border:1px solid var(--line);border-radius:999px}
 #kixpage .steps li::before{content:counter(s);width:24px;height:24px;border-radius:999px;display:grid;place-items:center;font-family:var(--util);font-size:12px;background:var(--night);color:var(--gold-pale);border:1px solid rgba(212,168,86,.4)}
-#kixpage .steps li.kp-on{color:var(--text);border-color:rgba(212,168,86,.6)}
-#kixpage .steps li.kp-on::before{background:var(--gold);color:#140E02}
+#kixpage .steps li{transition:color .5s ease,border-color .5s ease,box-shadow .5s ease}
+#kixpage .steps li::before{transition:background .5s ease,color .5s ease,box-shadow .5s ease}
+#kixpage .steps li.kp-on{color:var(--text);border-color:rgba(212,168,86,.6);box-shadow:0 0 22px rgba(255,186,72,.18)}
+#kixpage .steps li.kp-on::before{background:var(--gold);color:#140E02;box-shadow:0 0 12px rgba(255,201,110,.55)}
+@media (prefers-reduced-motion:reduce){#kixpage .steps li,#kixpage .steps li::before{transition:none}}
 #kixpage .studio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;background:var(--night);border:1px solid var(--line);border-radius:22px;overflow:hidden}
 #kixpage .studio .voice{position:relative;min-height:320px;background:#000;border-right:1px solid var(--line)}
 #kixpage .studio .voice canvas{position:absolute;inset:0;width:100%;height:100%}
@@ -4059,7 +4062,16 @@ const SCRIPTS=[
 const said=$('#said'),keep=$('#keep'),steps=[...document.querySelectorAll('#steps li')],stateEl=$('#askState'),chips=[...document.querySelectorAll('#how .chip')];
 const clipAudio=new Audio();let clipCtx=null,clipAn=null;
 let timers=[],raf=null,run=0;
-function setStep(i){steps.forEach((s,j)=>s.classList.toggle('kp-on',j<=i))}
+/* the three steps light as you scroll through this section, and as Kix answers; whichever is further along wins */
+let stepTalk=0, stepScroll=0;
+function paintSteps(){const k=Math.max(stepTalk,stepScroll);steps.forEach((s,j)=>s.classList.toggle('kp-on',j<=k))}
+function setStep(i){stepTalk=i;paintSteps()}
+(function(){const row=document.getElementById('steps');if(!row)return;let raf=0;
+ const measure=()=>{raf=0;const t=row.getBoundingClientRect().top,vh=innerHeight;
+  /* by where the row of steps sits on screen, so all three are lit while it is still in view:
+     step 2 as it passes the middle, step 3 as it nears the top */
+  const k=t<vh*.3?2:t<vh*.55?1:0;if(k!==stepScroll){stepScroll=k;paintSteps()}};
+ addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(measure)},{passive:true});addEventListener('resize',measure);measure();})();
 function esc(x){return x.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function stopAll(){timers.forEach(clearTimeout);timers=[];if(raf)cancelAnimationFrame(raf);raf=null;clipAudio.pause();ask.attachAnalyser(null);ask.setLevel(0);}
 function simulate(ms){const t0=performance.now();(function f(){const t=(performance.now()-t0)/1000;if(t*1000>ms){ask.setLevel(0);raf=null;return}ask.setLevel(.3+.5*Math.abs(Math.sin(t*9))*Math.abs(Math.sin(t*2.3)));raf=requestAnimationFrame(f)})()}
