@@ -386,7 +386,7 @@ body.notes .log{display:block}
   <div class="wrap copy">
     <button class="hear" id="hearBtn" type="button">
       <span class="pb" id="hearIcon"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg></span>
-      Hear Kix <span class="t" id="hearT">0:11</span>
+      Hear Kix <span class="t" id="hearT">0:39</span>
     </button>
     <div class="cap" id="cap" aria-live="polite">Tap to hear Kix. Sound only plays when you ask.</div>
     <h1 id="h1">The idea won’t build itself. <span class="l2">But you don’t have to build it alone.</span></h1>
@@ -600,7 +600,7 @@ body.notes .log{display:block}
 </footer>
 
 <nav class="dock" id="dock" aria-label="Download Kix"><a class="cta gold" data-dl="dock" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a></nav>
-<audio id="kixAudio" preload="none" src="assets/kix/audio/greeting.mp3"><track kind="captions" srclang="en" label="English" src="assets/kix/audio/greeting.vtt" default></audio>
+<audio id="kixAudio" preload="none" src="assets/kix/audio/kix-intro.mp3"></audio>
 
 <script>
 /* KixVoice: the Kix voice visual, adapted from James's "Sidekix · Kix voice visual" artifact.
@@ -675,13 +675,11 @@ hearBtn.addEventListener('click',async()=>{
   try{
     if(!actx){actx=new (window.AudioContext||window.webkitAudioContext)();const src=actx.createMediaElementSource(audio);analyser=actx.createAnalyser();analyser.fftSize=1024;src.connect(analyser);analyser.connect(actx.destination);}
     await actx.resume();
-    if(audio.paused){hero.attachAnalyser(analyser);hero.setState('speaking');await audio.play();icon.innerHTML=PAUSE;track('kix_voice_play',{placement:'hero'});}
+    if(audio.paused){hero.attachAnalyser(analyser);hero.setState('speaking');await audio.play();icon.innerHTML=PAUSE;cap.textContent='Kix is speaking.';track('kix_voice_play',{placement:'hero'});}
     else{audio.pause();}
   }catch(e){cap.textContent='This browser would not play the clip. Try another browser or tap again.';}
 });
-const HERO_LINES=["Hi, I’m Kix.", "Whatever brought you here, an idea, a business, or a question, I can help you find the next step.", "What’s in your way?"];
-const HERO_AT=[0,2.2,9.9]; /* where each line starts, read from the pauses in the clip */
-audio.addEventListener('timeupdate',()=>{const d=audio.duration||11.4,t=audio.currentTime;hearT.textContent=fmt(d-t);let i=0;while(i<HERO_AT.length-1&&t>=HERO_AT[i+1])i++;if(cap.textContent!==HERO_LINES[i])cap.textContent=HERO_LINES[i];});
+audio.addEventListener('timeupdate',()=>{hearT.textContent=fmt((audio.duration||39)-audio.currentTime)});
 audio.addEventListener('pause',()=>{icon.innerHTML=PLAY;hero.attachAnalyser(null);hero.setLevel(0);hero.setState('idle');});
 audio.addEventListener('ended',()=>{cap.textContent='That was Kix. Download Kix to talk it through.';track('kix_voice_complete',{});});
 
