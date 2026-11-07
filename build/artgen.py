@@ -71,7 +71,7 @@ def article(slug,title,og_title,desc,cat,standfirst,body,faq,related,published="
 <nav id="kx-nav" aria-label="Main">
   <a href="../../index.html" aria-label="SideKix home"><img src="../../assets/img/2321feb76252.png?v=2" alt="SideKix" width="2164" height="602" decoding="async" fetchpriority="high" loading="eager"></a>
   <button class="kx-burger" type="button" aria-expanded="false" aria-label="Menu"><i aria-hidden="true"></i><span>Menu</span></button>
-  <div class="kx-links"><a href="../../index.html">Home</a><a href="../../how-it-works.html">How it works</a><a href="../../membership.html">Membership</a><a href="../../advisors.html">Advisors</a><a href="../../partners.html">Partners</a><a href="../../events.html">Events</a><span aria-current="page">Resources</span></div>
+  <div class="kx-links"><a href="../../index.html">Home</a><a href="../../kix.html">Kix</a><a href="../../how-it-works.html">How it works</a><a href="../../membership.html">Membership</a><a href="../../advisors.html">Advisors</a><a href="../../partners.html">Partners</a><a href="../../events.html">Events</a><span aria-current="page">Resources</span></div>
 </nav>
 
 <main id="maincontent">

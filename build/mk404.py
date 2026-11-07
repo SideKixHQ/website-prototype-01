@@ -16,6 +16,7 @@ FONT = ("'Poppins',system-ui,-apple-system,sans-serif")
 DIRECTORY = [
     ("Start here", [
         ("/", "Home"),
+        ("/kix.html", "Kix"),
         ("/how-it-works.html", "How it works"),
         ("/membership.html", "Membership"),
         ("/join.html", "Early access"),
@@ -196,7 +197,7 @@ def build():
         items = "".join('<li><a href="%s">%s</a></li>' % (h, t) for h, t in links)
         dirhtml.append("<section><h2>%s</h2><ul>%s</ul></section>" % (heading, items))
 
-    foot = [("/", "Home"), ("/how-it-works.html", "How it works"),
+    foot = [("/", "Home"), ("/kix.html", "Kix"), ("/how-it-works.html", "How it works"),
             ("/membership.html", "Membership"), ("/library.html", "Library"),
             ("/glossary.html", "Glossary"), ("/tools.html", "Calculators"),
             ("/faq.html", "FAQ"), ("/press.html", "Press"),
