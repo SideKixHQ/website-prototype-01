@@ -34,7 +34,7 @@ SKIP_UNSHIPPED = {"homegrown.html", "where-the-jobs-are.html"}
 
 PRIORITY = {
  "": "1.0", "index.html": "1.0",
- "how-it-works.html": "0.9", "membership.html": "0.9", "join.html": "0.9",
+ "how-it-works.html": "0.9", "kix.html": "0.9", "membership.html": "0.9", "join.html": "0.9",
  "tools.html": "0.9", "library.html": "0.9", "assessment.html": "0.9",
  "market-data.html": "0.9", "state-filing.html": "0.9",
  "business-idea-where-to-start.html": "0.9",
