@@ -196,13 +196,16 @@ button.co-pay:disabled{opacity:.6;cursor:default}
   .co-check-circle,.co-check-mark{animation:none;stroke-dashoffset:0}
   #kx-ring{animation:none}
 }
+
+/* keyboard focus: the same gold ring the rest of the site uses */
+a:focus-visible,button:focus-visible,[role="tab"]:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #F3E4A8;outline-offset:2px}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="kx-cursor"></div>
 <div aria-hidden="true" id="kx-ring"></div>
 
-<div class="card">
+<main class="card">
   <div id="step-form">
     <p class="eyebrow">Kix Credits</p>
     <h1>Complete your purchase</h1>
@@ -252,7 +255,7 @@ button.co-pay:disabled{opacity:.6;cursor:default}
   <div class="co-success hidden" id="stepSuccess">
     <div class="co-burst">
       <i></i><i></i>
-      <svg class="co-check" viewbox="0 0 52 52">
+      <svg aria-hidden="true" class="co-check" focusable="false" viewbox="0 0 52 52">
         <circle class="co-check-circle" cx="26" cy="26" r="24"></circle>
         <path class="co-check-mark" d="M14 27l7 7 17-17"></path>
       </svg>
@@ -268,10 +271,10 @@ button.co-pay:disabled{opacity:.6;cursor:default}
     <div class="co-applink">
       <p class="co-applink-label">Or have the link sent to you:</p>
       <div class="co-applink-tabs" role="tablist">
-        <button aria-selected="true" class="co-applink-tab is-active" data-channel="sms" id="appLinkTabSms" role="tab" type="button">Text me the app link</button>
-        <button aria-selected="false" class="co-applink-tab" data-channel="email" id="appLinkTabEmail" role="tab" type="button">Email me the app link</button>
+        <button aria-controls="appLinkPanel" aria-selected="true" class="co-applink-tab is-active" data-channel="sms" id="appLinkTabSms" role="tab" type="button">Text me the app link</button>
+        <button aria-controls="appLinkPanel" aria-selected="false" class="co-applink-tab" data-channel="email" id="appLinkTabEmail" role="tab" tabindex="-1" type="button">Email me the app link</button>
       </div>
-      <div class="co-applink-row">
+      <div aria-labelledby="appLinkTabSms" class="co-applink-row" id="appLinkPanel" role="tabpanel">
         <input aria-label="Phone number" autocomplete="tel" id="appLinkPhone" placeholder="+1 555 123 4567" type="tel"/>
         <button id="appLinkSendBtn" type="button">Send</button>
       </div>
@@ -283,7 +286,7 @@ button.co-pay:disabled{opacity:.6;cursor:default}
       Back to SideKix
     </a>
   </div>
-</div>
+</main>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
@@ -538,9 +541,20 @@ try{
       tabEmail.setAttribute('aria-selected', channel==='email');
       phoneRow.classList.toggle('hidden', channel==='email');
       statusEl.classList.add('hidden');
+      /* tab pattern: only the selected tab is in the Tab order, and the panel names its tab */
+      tabSms.tabIndex = channel==='sms' ? 0 : -1;
+      tabEmail.tabIndex = channel==='email' ? 0 : -1;
+      var panel=document.getElementById('appLinkPanel');
+      if(panel) panel.setAttribute('aria-labelledby', channel==='sms' ? 'appLinkTabSms' : 'appLinkTabEmail');
     }
     tabSms.addEventListener('click', function(){ setChannel('sms'); });
     tabEmail.addEventListener('click', function(){ setChannel('email'); });
+    /* arrow keys move between the two tabs */
+    [tabSms, tabEmail].forEach(function(t){ t.addEventListener('keydown', function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'||e.key==='Home'||e.key==='End'){
+        e.preventDefault(); var next = (t===tabSms) ? 'email' : 'sms';
+        if(e.key==='Home') next='sms'; if(e.key==='End') next='email';
+        setChannel(next); (next==='sms'?tabSms:tabEmail).focus(); } }); });
 
     function showStatus(msg, isError){
       statusEl.textContent=msg;
