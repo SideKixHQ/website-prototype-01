@@ -2090,7 +2090,7 @@ html.kx-idle *::after{
 <article class="card" data-cat="Education"><span class="tag">Education</span><h3><a href="blog/why-most-people-never-start-a-business/" rel="noopener" target="_blank">Why Most People Never Start a Business</a></h3><p>Around 165 million US adults have had a business idea and roughly 5.6 million applications get filed a year. What sits in that gap.</p><a class="go" href="blog/why-most-people-never-start-a-business/" rel="noopener" target="_blank">Read it →</a></article>
 
 </div>
-<p aria-live="polite" class="count" id="count">Showing all 65 pieces</p>
+<p aria-live="polite" class="count" id="count">Showing all 70 pieces</p>
 </section>
 </main>
 <script>
@@ -2417,6 +2417,8 @@ try{
     count.textContent = cat==='all' ? ('Showing all '+n+' pieces') : ('Showing '+n+' in '+cat);
   }
   btns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.dataset.cat); }); });
+  /* the count is typed into the page and drifted when pieces were added; set it from the grid on load */
+  if(count) count.textContent='Showing all '+cards.length+' pieces';
 })();
 }catch(e){console.error("SideKix [resources] failed:",e);}
 </script>

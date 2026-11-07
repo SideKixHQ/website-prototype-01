@@ -82,17 +82,26 @@ console.log("\n== glossary.html ==");
  ok(w.getComputedStyle(d.querySelector(".gcatname")).opacity==="1","category name is always visible (1.4.1)");
  ok(errs.length===0,"no JS errors");}
 
-console.log("\n== tools.html ==");
-{const {d,w,errs}=await load(ROOT+"/tools.html");
- const g=id=>d.getElementById(id).textContent;
- ok(g("s_out")==="$6,280"&&g("b_out")==="29 sales"&&g("h_out")==="$95/hr"&&g("p_out")==="$82",
-    "all four calculators compute the defaults correctly");
- const i=d.getElementById("b_price");i.value="200";i.dispatchEvent(new w.Event("input",{bubbles:true}));
- ok(g("b_out")==="20 sales"&&g("b_rev")==="$4,000","breakeven recalculates on input");
- const v=d.getElementById("b_var");v.value="500";v.dispatchEvent(new w.Event("input",{bubbles:true}));
- ok(/at or above your price/.test(g("b_sub")),"impossible input explains itself instead of breaking");
- ok(d.querySelectorAll(".cjump").length===4,"four jump chips");
+console.log("\n== tools.html and the four calculators ==");
+/* The calculators used to live on tools.html. Each now has its own page and
+   tools.html is the index, so the defaults are checked where they are. */
+{const {d,errs}=await load(ROOT+"/tools.html");
+ const hrefs=[...d.querySelectorAll("a[href]")].map(a=>a.getAttribute("href"));
+ ok(["startup-cost-calculator.html","breakeven-calculator.html","hourly-rate-calculator.html","product-pricing-calculator.html"].every(h=>hrefs.includes(h)),
+    "tools.html links all four calculators");
  ok(errs.length===0,"no JS errors");}
+for(const [file,id,want] of [["startup-cost-calculator.html","s_out","$6,280"],["breakeven-calculator.html","b_out","29 sales"],
+                             ["hourly-rate-calculator.html","h_out","$95/hr"],["product-pricing-calculator.html","p_out","$82"]]){
+ const {d,errs}=await load(ROOT+"/"+file);
+ const el=d.getElementById(id);
+ ok(!!el && el.textContent===want, `${file} computes the default (${want})`);
+ if(file==="breakeven-calculator.html"){
+  const w=d.defaultView, g=x=>d.getElementById(x).textContent;
+  const i=d.getElementById("b_price");i.value="200";i.dispatchEvent(new w.Event("input",{bubbles:true}));
+  ok(g("b_out")==="20 sales"&&g("b_rev")==="$4,000","breakeven recalculates on input");
+  const v=d.getElementById("b_var");v.value="500";v.dispatchEvent(new w.Event("input",{bubbles:true}));
+  ok(/at or above your price/.test(g("b_sub")),"impossible input explains itself instead of breaking");}
+ ok(errs.length===0,`${file}: no JS errors`);}
 
 console.log("\n== a template article (worksheet strip) ==");
 {const {d,w,errs}=await load(ROOT+"/blog/weekly-business-check-in-template/index.html");
@@ -106,8 +115,9 @@ console.log("\n== a template article (worksheet strip) ==");
 console.log("\n== library.html ==");
 {const {d,w,errs}=await load(ROOT+"/library.html");
  const cards=d.querySelectorAll("article.card").length;
- ok(cards===63,`grid holds ${cards} cards`);
- ok(/Showing all 63 pieces/.test(d.body.innerHTML),"the count line matches the grid");
+ /* the library grows; what matters is that the grid is full and the count line agrees with it */
+ ok(cards>=63,`grid holds ${cards} cards`);
+ ok(new RegExp("Showing all "+cards+" pieces").test(d.getElementById("count").textContent),"the count line matches the grid");
  ok([...d.querySelectorAll(".hubs a")].every(a=>!/sidekixhq\.com/.test(a.getAttribute("href"))),
     "hub tiles no longer point at WordPress");
  ok(errs.length===0,"no JS errors");}
