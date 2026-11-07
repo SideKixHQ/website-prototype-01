@@ -858,6 +858,15 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px soli
   .nav{flex-direction:column-reverse}
   .btn{width:100%}
 }
+
+/* business types: a long list, so one per line on phones and two columns on wider screens */
+.opts.opts-list{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+@media (min-width:640px){.opts.opts-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.opts.opts-list > .opt{display:block;width:100%}
+.opts.opts-list > .opt{position:relative}
+.opts.opts-list .opt input{position:absolute!important;inset:0;width:100%;height:100%;margin:0;opacity:0;z-index:1}
+.opts.opts-list .opt span{height:100%;width:100%;box-sizing:border-box;flex-direction:column;align-items:flex-start;justify-content:center}
+.opts.opts-list .opt span em{display:block;margin:3px 0 0}
 </style>
 <style>
 /* the file inputs are positioned, so their wrapper must be too */
@@ -1888,9 +1897,9 @@ window.SIDEKIX_FILE = function (input) {
 <div class="opts"><label class="opt"><input id="owned_0" name="owned" type="radio" value="Yes"/><span>Yes</span></label><label class="opt"><input id="owned_1" name="owned" type="radio" value="No"/><span>No</span></label></div>
 </fieldset>
 <fieldset>
-<legend>What type of business?</legend>
-<p class="hint">Select all that apply.</p>
-<div class="opts"><label class="opt"><input id="biztype_0" name="biztype" type="checkbox" value="Product-based"/><span>Product-based<em>retail, online shop, handmade goods</em></span></label><label class="opt"><input id="biztype_1" name="biztype" type="checkbox" value="Service-based"/><span>Service-based<em>consulting, marketing, coaching</em></span></label><label class="opt"><input id="biztype_2" name="biztype" type="checkbox" value="Food &amp; Beverage"/><span>Food &amp; Beverage<em>restaurant, catering, food truck</em></span></label><label class="opt"><input id="biztype_3" name="biztype" type="checkbox" value="Creative / Media"/><span>Creative / Media<em>photography, design, content</em></span></label><label class="opt"><input id="biztype_4" name="biztype" type="checkbox" value="Other"/><span>Other</span></label></div>
+<legend>What type of business(es) do you own?</legend>
+<p class="hint">Select one or more.</p>
+<div class="opts opts-list"><label class="opt"><input id="biztype_0" name="biztype" type="checkbox" value="Product-based"/><span>Product-based<em>retail, online shop, handmade goods</em></span></label><label class="opt"><input id="biztype_1" name="biztype" type="checkbox" value="Service-based"/><span>Service-based<em>consulting, freelancing, coaching</em></span></label><label class="opt"><input id="biztype_2" name="biztype" type="checkbox" value="Food &amp; Beverage"/><span>Food &amp; Beverage<em>restaurant, catering, food truck</em></span></label><label class="opt"><input id="biztype_3" name="biztype" type="checkbox" value="Home Services"/><span>Home Services<em>cleaning, landscaping, repair</em></span></label><label class="opt"><input id="biztype_4" name="biztype" type="checkbox" value="Pet Services"/><span>Pet Services<em>grooming, walking, pet sitting</em></span></label><label class="opt"><input id="biztype_5" name="biztype" type="checkbox" value="Education &amp; Training"/><span>Education &amp; Training<em>tutoring, courses, workshops</em></span></label><label class="opt"><input id="biztype_6" name="biztype" type="checkbox" value="Health &amp; Wellness"/><span>Health &amp; Wellness<em>fitness, nutrition, therapy</em></span></label><label class="opt"><input id="biztype_7" name="biztype" type="checkbox" value="Childcare &amp; Family Services"/><span>Childcare &amp; Family Services</span></label><label class="opt"><input id="biztype_8" name="biztype" type="checkbox" value="Financial"/><span>Financial<em>accounting, investing, bookkeeping</em></span></label><label class="opt"><input id="biztype_9" name="biztype" type="checkbox" value="Creative / Media"/><span>Creative / Media<em>photography, design, content</em></span></label><label class="opt"><input id="biztype_10" name="biztype" type="checkbox" value="Manufacturing or Production"/><span>Manufacturing or Production</span></label><label class="opt"><input id="biztype_11" name="biztype" type="checkbox" value="Real Estate"/><span>Real Estate<em>construction, home sales, vacation rentals</em></span></label><label class="opt"><input id="biztype_12" name="biztype" type="checkbox" value="Tech or Digital Products"/><span>Tech or Digital Products<em>apps, SaaS, digital tools</em></span></label><label class="opt"><input id="biztype_13" name="biztype" type="checkbox" value="B2B / Professional Services"/><span>B2B / Professional Services<em>legal, finance, HR</em></span></label><label class="opt"><input id="biztype_14" name="biztype" type="checkbox" value="Artistic / Creative Practice"/><span>Artistic / Creative Practice<em>artist, maker, performer</em></span></label><label class="opt"><input id="biztype_15" name="biztype" type="checkbox" value="Travel / Events / Experiences"/><span>Travel / Events / Experiences</span></label><label class="opt"><input id="biztype_16" name="biztype" type="checkbox" value="Nonprofit / Social Enterprise"/><span>Nonprofit / Social Enterprise</span></label><label class="opt"><input id="biztype_17" name="biztype" type="checkbox" value="Other"/><span>Other<em>tell us more</em></span></label></div>
 <div class="otherwrap" data-for="biztype" hidden="">
 <label class="f" for="biztype_other">Tell us what type of business</label>
 <input id="biztype_other" name="biztype_other" placeholder="For example, wholesale, franchise, agency" type="text"/>
