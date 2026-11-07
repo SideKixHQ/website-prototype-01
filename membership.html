@@ -775,6 +775,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .tier:not(.tilting){transform:none}
   .beat{transition:none !important}
 }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style>
 /* the footer has to sit above the veil and every fixed layer, and stay clickable */
@@ -1415,6 +1418,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   -webkit-mask-composite:xor;mask-composite:exclude;
   animation:kxTraceRing 4.5s linear infinite;z-index:-1}
 @media (prefers-reduced-motion: reduce){.mem .now .flagline::before{animation:none}}
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style>
 .mem .next{padding-top:78px}
@@ -1546,7 +1552,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .mem .tier .nm{color:var(--accent) !important}
 .mem .tier li i{color:var(--accent) !important}
 .mem .tier:hover{border-color:var(--accent) !important;
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 45%,transparent),0 18px 50px rgba(0,0,0,.6)}
+  box-shadow:0 0 0 1px transparent,0 18px 50px rgba(0,0,0,.6);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 45%,transparent),0 18px 50px rgba(0,0,0,.6)}
 
 /* Access in blue */
 .mem .tier[data-tier="access"] .go{background:linear-gradient(180deg,#93D6E9,#389CC6) !important;color:#082027 !important}
@@ -1702,6 +1708,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 @media (prefers-reduced-motion: reduce){
   .mem .tier[data-tier="premium"]::before{animation:none}
 }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxpa:0deg}
 </style>
 <style>
 /* the veil sits over everything and re-rasterises text, which reads as soft.
@@ -2423,8 +2432,10 @@ p,li,dd,td,th,.rblurb,.gdef,.cos,.barnote,.oddscaveat,.potfoot{
    gold and green had bespoke coloured glows; blue fell back to the generic
    rule, which draws a 1px ring and a black shadow and no colour at all. */
 .mem .tier:hover{
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.16),
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 0 1px var(--accent),
+    0 0 54px transparent,
+    0 24px 66px rgba(0,0,0,.72) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.16),
     0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent),
     0 0 54px color-mix(in srgb, var(--accent) 26%, transparent),
     0 24px 66px rgba(0,0,0,.72) !important;
@@ -2466,6 +2477,7 @@ p,li,dd,td,th,.rblurb,.gdef,.cos,.barnote,.oddscaveat,.potfoot{
    it now uses each card's --accent, and it is strong enough to see. */
 .mem .tier::after{
   background:radial-gradient(460px circle at var(--px,50%) var(--py,0%),
+    transparent, transparent 64%) !important;background:radial-gradient(460px circle at var(--px,50%) var(--py,0%),
     color-mix(in srgb, var(--accent) 26%, transparent), transparent 64%) !important}
 .mem .tier[data-tier="access"]::after{
   background:radial-gradient(460px circle at var(--px,50%) var(--py,0%),
@@ -2819,7 +2831,7 @@ main > .wrap:first-of-type{padding-top:132px !important}
 /* the homepage leaves the document scrolling normally and clips nothing above
    the orb. matching that. */
 html, body, #kx-root{overflow-x:visible !important}
-main{overflow-x:clip}
+main{overflow-x:hidden;overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
 <style id="kx-memgrid-mobile">

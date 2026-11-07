@@ -299,32 +299,36 @@
 
 .asmt .abar-fill{
   background:linear-gradient(90deg,
+    var(--e),
+    var(--e)) !important;background:linear-gradient(90deg,
     color-mix(in srgb,var(--e) 60%,transparent),
     var(--e)) !important;
-  box-shadow:0 0 14px color-mix(in srgb,var(--e) 35%,transparent)}
+  box-shadow:0 0 14px transparent;box-shadow:0 0 14px color-mix(in srgb,var(--e) 35%,transparent)}
 .asmt .abar-pct{color:var(--e) !important;font-weight:600}
 .asmt .abar-top .abar-name{color:var(--e) !important}
-.asmt .abar-top .abar-ico{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--e) 55%,transparent))}
-.asmt .abar-track{background:color-mix(in srgb,var(--e) 9%,transparent)}
+.asmt .abar-top .abar-ico{filter:drop-shadow(0 0 12px var(--e));filter:drop-shadow(0 0 12px color-mix(in srgb,var(--e) 55%,transparent))}
+.asmt .abar-track{background:transparent;background:color-mix(in srgb,var(--e) 9%,transparent)}
 
 /* the top three cards take their animal's colour on the edge, the number,
    the title and the glow behind the art */
 .asmt .acard{
-  border-color:color-mix(in srgb,var(--e) 42%,transparent) !important;
-  background:
-    radial-gradient(120% 80% at 50% 0%,
+  border-color:transparent !important;border-color:color-mix(in srgb,var(--e) 42%,transparent) !important;
+  background:radial-gradient(120% 80% at 50% 0%,
+      transparent, transparent 62%),
+    rgba(10,10,12,.72) !important;background:radial-gradient(120% 80% at 50% 0%,
       color-mix(in srgb,var(--e) 11%,transparent), transparent 62%),
     rgba(10,10,12,.72) !important;
-  box-shadow:0 14px 40px color-mix(in srgb,var(--e) 14%,transparent)}
+  box-shadow:0 14px 40px transparent;box-shadow:0 14px 40px color-mix(in srgb,var(--e) 14%,transparent)}
 .asmt .acard-pct{
   color:var(--e) !important;
-  text-shadow:0 0 26px color-mix(in srgb,var(--e) 45%,transparent)}
+  text-shadow:0 0 26px transparent;text-shadow:0 0 26px color-mix(in srgb,var(--e) 45%,transparent)}
 .asmt .acard-title{color:var(--e) !important}
 .asmt .acard-art{
   background:radial-gradient(circle at 50% 55%,
+    transparent, transparent 68%) !important;background:radial-gradient(circle at 50% 55%,
     color-mix(in srgb,var(--e) 22%,transparent), transparent 68%) !important}
-.asmt .acard-dl dt{color:color-mix(in srgb,var(--e) 74%,#8A8378) !important}
-.asmt .acard-with{border-top-color:color-mix(in srgb,var(--e) 26%,transparent) !important}
+.asmt .acard-dl dt{color:var(--e) !important;color:color-mix(in srgb,var(--e) 74%,#8A8378) !important}
+.asmt .acard-with{border-top-color:transparent !important;border-top-color:color-mix(in srgb,var(--e) 26%,transparent) !important}
 
 /* the form itself warms up: a gold rail down the answered side, and the
    chosen option in the site gold rather than flat */
@@ -359,14 +363,15 @@
 .asmt .aform{--p:#D4A856}
 
 /* the page's colour on its furniture */
-.asmt .aprog{background:color-mix(in srgb,var(--p) 14%,transparent)}
+.asmt .aprog{background:transparent;background:color-mix(in srgb,var(--p) 14%,transparent)}
 .asmt .aprog-bar{
   background:linear-gradient(90deg,
+    var(--p), var(--p)) !important;background:linear-gradient(90deg,
     color-mix(in srgb,var(--p) 55%,transparent), var(--p)) !important;
-  box-shadow:0 0 14px color-mix(in srgb,var(--p) 50%,transparent) !important}
-.asmt .apage-n{color:color-mix(in srgb,var(--p) 62%,#8A8378)}
+  box-shadow:0 0 14px var(--p) !important;box-shadow:0 0 14px color-mix(in srgb,var(--p) 50%,transparent) !important}
+.asmt .apage-n{color:var(--p);color:color-mix(in srgb,var(--p) 62%,#8A8378)}
 .asmt .aitem-n{color:var(--p) !important}
-.asmt .aitem{border-bottom-color:color-mix(in srgb,var(--p) 16%,transparent) !important}
+.asmt .aitem{border-bottom-color:transparent !important;border-bottom-color:color-mix(in srgb,var(--p) 16%,transparent) !important}
 
 /* a soft wash behind the page, so the whole screen carries it */
 .asmt .aform::before{
@@ -374,6 +379,7 @@
   width:min(900px,120vw);height:420px;
   transform:translateX(-50%);
   background:radial-gradient(60% 60% at 50% 0%,
+    transparent, transparent 70%);background:radial-gradient(60% 60% at 50% 0%,
     color-mix(in srgb,var(--p) 13%,transparent), transparent 70%);
   pointer-events:none;z-index:-1;
   transition:background .5s ease}
@@ -399,7 +405,7 @@
 .asmt .opt-4{color:#EFA24C !important;border-color:rgba(239,162,76,.5) !important}
 
 .asmt .aitem-row label:hover{
-  background:color-mix(in srgb,currentColor 10%,transparent) !important;
+  background:transparent !important;background:color-mix(in srgb,currentColor 10%,transparent) !important;
   border-color:currentColor !important}
 
 /* the chosen one fills with its own step on the scale */
@@ -414,7 +420,7 @@
   border-color:#FFD9A0 !important;color:#1B1000 !important}
 .asmt .aitem-row label:has(input:checked){
   font-weight:600 !important;
-  box-shadow:0 4px 18px color-mix(in srgb,currentColor 22%,transparent) !important}
+  box-shadow:0 4px 18px transparent !important;box-shadow:0 4px 18px color-mix(in srgb,currentColor 22%,transparent) !important}
 .asmt .aitem-row label:has(input:checked) .opt-dot{
   background:currentColor;box-shadow:0 0 0 3px rgba(255,255,255,.22) inset}
 
@@ -474,15 +480,15 @@
   min-height:46px;padding:6px 15px 6px 9px;border-radius:999px;cursor:pointer;
   font-family:var(--body);font-size:14.5px;color:#CFC5AC;
   background:rgba(212,168,86,.05);
-  border:1px solid color-mix(in srgb,var(--e) 34%,transparent);
+  border:1px solid transparent;border:1px solid color-mix(in srgb,var(--e) 34%,transparent);
   transition:background .18s ease,color .18s ease,border-color .18s ease}
 .asmt .pr-chip img{width:26px;height:26px;object-fit:contain;flex:none}
 .asmt .pr-pct{font-family:var(--util);font-size:10px;color:#8A8378;margin-left:3px}
 .asmt .pr-chip:hover{
   border-color:var(--e);color:#FFF8E8;
-  background:color-mix(in srgb,var(--e) 12%,transparent)}
+  background:transparent;background:color-mix(in srgb,var(--e) 12%,transparent)}
 .asmt .pr-chip[aria-pressed="true"]{
-  background:color-mix(in srgb,var(--e) 20%,transparent);
+  background:transparent;background:color-mix(in srgb,var(--e) 20%,transparent);
   border-color:var(--e);color:#FFF8E8;font-weight:600}
 .asmt .pr-chip[aria-pressed="true"] .pr-pct{color:var(--e)}
 .asmt .pr-chip:focus-visible{outline:3px solid #FFD166;outline-offset:3px}
@@ -490,9 +496,9 @@
 /* the opened panel */
 .asmt .pr-open{
   margin:26px 0 0;padding:26px clamp(18px,3vw,30px);border-radius:16px;
-  border:1px solid color-mix(in srgb,var(--e) 38%,transparent);
-  background:
-    radial-gradient(110% 70% at 50% 0%, color-mix(in srgb,var(--e) 10%,transparent), transparent 62%),
+  border:1px solid transparent;border:1px solid color-mix(in srgb,var(--e) 38%,transparent);
+  background:radial-gradient(110% 70% at 50% 0%, transparent, transparent 62%),
+    rgba(10,10,12,.7);background:radial-gradient(110% 70% at 50% 0%, color-mix(in srgb,var(--e) 10%,transparent), transparent 62%),
     rgba(10,10,12,.7)}
 .asmt .pr-h{
   font-family:var(--display);font-weight:600;font-size:21px;
@@ -506,9 +512,9 @@
   background:rgba(212,168,86,.05);
   border:1px solid rgba(161,133,62,.34);
   transition:background .18s ease,border-color .18s ease}
-.asmt .pr-plan:hover{background:color-mix(in srgb,var(--e) 11%,transparent);border-color:var(--e)}
+.asmt .pr-plan:hover{background:transparent;background:color-mix(in srgb,var(--e) 11%,transparent);border-color:var(--e)}
 .asmt .pr-plan[aria-pressed="true"]{
-  background:color-mix(in srgb,var(--e) 16%,transparent);
+  background:transparent;background:color-mix(in srgb,var(--e) 16%,transparent);
   border-color:var(--e)}
 .asmt .pr-plan:focus-visible{outline:3px solid #FFD166;outline-offset:2px}
 .asmt .pr-if{
@@ -520,13 +526,13 @@
 
 /* writing it out, which is the rehearsal */
 .asmt .pr-commit{margin:24px 0 0;padding-top:20px;
-  border-top:1px solid color-mix(in srgb,var(--e) 22%,transparent)}
+  border-top:1px solid transparent;border-top:1px solid color-mix(in srgb,var(--e) 22%,transparent)}
 .asmt .pr-commit[hidden]{display:none}
 .asmt .pr-text{
   width:100%;padding:13px 15px;border-radius:12px;
   font-family:var(--body);font-size:15px;line-height:1.6;color:#F4EACF;
   background:rgba(8,7,5,.75);
-  border:1px solid color-mix(in srgb,var(--e) 40%,transparent);
+  border:1px solid transparent;border:1px solid color-mix(in srgb,var(--e) 40%,transparent);
   resize:vertical}
 .asmt .pr-text:focus{outline:3px solid #FFD166;outline-offset:2px}
 .asmt .pr-count{
@@ -535,7 +541,7 @@
 
 /* the thing to do this week */
 .asmt .pr-reh{margin:26px 0 0;padding-top:20px;
-  border-top:1px solid color-mix(in srgb,var(--e) 22%,transparent)}
+  border-top:1px solid transparent;border-top:1px solid color-mix(in srgb,var(--e) 22%,transparent)}
 .asmt .pr-rh{
   font-family:var(--display);font-weight:600;font-size:18px;
   color:#FFF8E8;margin:0 0 8px}
@@ -583,6 +589,7 @@
   width:88%;height:52%;transform:translateX(-50%);
   border-radius:50%;
   background:radial-gradient(ellipse at 50% 100%,
+    transparent, transparent 72%);background:radial-gradient(ellipse at 50% 100%,
     color-mix(in srgb,var(--e) 34%,transparent), transparent 72%);
   filter:blur(6px);pointer-events:none}
 .asmt .sc-art img{
@@ -595,6 +602,7 @@
 .asmt .sc-top{opacity:1}
 .asmt .sc-top .sc-art img{
   filter:drop-shadow(0 8px 22px rgba(0,0,0,.6))
+         drop-shadow(0 0 18px transparent);filter:drop-shadow(0 8px 22px rgba(0,0,0,.6))
          drop-shadow(0 0 18px color-mix(in srgb,var(--e) 45%,transparent))}
 
 .asmt .sc:hover,.asmt .sc:focus-visible{transform:translateY(-6px);opacity:1}
@@ -637,6 +645,7 @@
   background:linear-gradient(180deg,#141109,#0A0906);
   border:1px solid var(--e);
   box-shadow:0 18px 46px rgba(0,0,0,.75),
+             0 0 30px transparent;box-shadow:0 18px 46px rgba(0,0,0,.75),
              0 0 30px color-mix(in srgb,var(--e) 24%,transparent);
   opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .18s ease,transform .18s ease,visibility .18s;
@@ -776,7 +785,7 @@
 .asmt .ascene figure.sc{opacity:calc(.82 + .18 * var(--s,1)) !important}
 .asmt .sc-p{color:#CFC7B4}
 @supports (color:color-mix(in srgb,#000 50%,#fff)){
-  .asmt .sc-p{color:color-mix(in srgb, var(--e) 58%, #F3E4A8)}
+  .asmt .sc-p{color:var(--e);color:color-mix(in srgb, var(--e) 58%, #F3E4A8)}
 }
 
 

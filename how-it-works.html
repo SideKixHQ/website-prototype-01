@@ -625,6 +625,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   .tier,.tiers.lit .tier{opacity:1 !important;transform:none !important}
   .beat{transition:none !important}
 }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style>
 /* the footer has to sit above the veil and every fixed layer, and stay clickable */
@@ -820,9 +823,9 @@ p,li,dd,td,th,.rblurb,.gdef,.cos,.barnote,.oddscaveat,.potfoot{
    phone. 980vh roughly halves that. desktop is untouched. */
 @media(max-width:980px){
   .show{height:980vh}
-  .show{height:980svh}
+  .show{height:980vh;height:980svh}
   .pin{height:100vh}
-  .pin{height:100svh}
+  .pin{height:100vh;height:100svh}
   /* the beats must never be wider than the screen */
   .beat{max-width:100%;padding-left:4px;padding-right:4px;box-sizing:border-box}
   .beat h2,.beat p{max-width:100%;overflow-wrap:break-word;word-break:break-word}
@@ -971,7 +974,7 @@ main > .wrap:first-of-type{padding-top:132px !important}
 /* the homepage leaves the document scrolling normally and clips nothing above
    the orb. matching that. */
 html, body, #kx-root{overflow-x:visible !important}
-main{overflow-x:clip}
+main{overflow-x:hidden;overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
 <style id="kx-loop-mobile">

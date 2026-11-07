@@ -89,6 +89,9 @@
     #kx-grid{grid-template-columns:1fr!important}
     .kx-next{padding:30px 24px!important}
   }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style>
 /* footer and skip-link styles, brought across with the markup */
@@ -149,66 +152,66 @@
    legible either way. */
 .kx-store[data-topic="Finance"]{
   --c:#A6E0B4;color:#A6E0B4;
-  border-color:color-mix(in srgb,#A6E0B4 40%,transparent);
-  background:color-mix(in srgb,#A6E0B4 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#A6E0B4 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#A6E0B4 7%,transparent)}
 .kx-store[data-topic="Finance"]:hover{
-  border-color:#A6E0B4;background:color-mix(in srgb,#A6E0B4 14%,transparent)}
+  border-color:#A6E0B4;background:transparent;background:color-mix(in srgb,#A6E0B4 14%,transparent)}
 .kx-store[data-topic="Finance"][aria-pressed="true"]{
   background:#A6E0B4;border-color:#A6E0B4;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Funding"]{
   --c:#FFE7A6;color:#FFE7A6;
-  border-color:color-mix(in srgb,#FFE7A6 40%,transparent);
-  background:color-mix(in srgb,#FFE7A6 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#FFE7A6 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#FFE7A6 7%,transparent)}
 .kx-store[data-topic="Funding"]:hover{
-  border-color:#FFE7A6;background:color-mix(in srgb,#FFE7A6 14%,transparent)}
+  border-color:#FFE7A6;background:transparent;background:color-mix(in srgb,#FFE7A6 14%,transparent)}
 .kx-store[data-topic="Funding"][aria-pressed="true"]{
   background:#FFE7A6;border-color:#FFE7A6;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Hiring"]{
   --c:#84D0C6;color:#84D0C6;
-  border-color:color-mix(in srgb,#84D0C6 40%,transparent);
-  background:color-mix(in srgb,#84D0C6 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#84D0C6 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#84D0C6 7%,transparent)}
 .kx-store[data-topic="Hiring"]:hover{
-  border-color:#84D0C6;background:color-mix(in srgb,#84D0C6 14%,transparent)}
+  border-color:#84D0C6;background:transparent;background:color-mix(in srgb,#84D0C6 14%,transparent)}
 .kx-store[data-topic="Hiring"][aria-pressed="true"]{
   background:#84D0C6;border-color:#84D0C6;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Legal"]{
   --c:#B18BE4;color:#B18BE4;
-  border-color:color-mix(in srgb,#B18BE4 40%,transparent);
-  background:color-mix(in srgb,#B18BE4 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#B18BE4 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#B18BE4 7%,transparent)}
 .kx-store[data-topic="Legal"]:hover{
-  border-color:#B18BE4;background:color-mix(in srgb,#B18BE4 14%,transparent)}
+  border-color:#B18BE4;background:transparent;background:color-mix(in srgb,#B18BE4 14%,transparent)}
 .kx-store[data-topic="Legal"][aria-pressed="true"]{
   background:#B18BE4;border-color:#B18BE4;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Marketing"]{
   --c:#F2933F;color:#F2933F;
-  border-color:color-mix(in srgb,#F2933F 40%,transparent);
-  background:color-mix(in srgb,#F2933F 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#F2933F 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#F2933F 7%,transparent)}
 .kx-store[data-topic="Marketing"]:hover{
-  border-color:#F2933F;background:color-mix(in srgb,#F2933F 14%,transparent)}
+  border-color:#F2933F;background:transparent;background:color-mix(in srgb,#F2933F 14%,transparent)}
 .kx-store[data-topic="Marketing"][aria-pressed="true"]{
   background:#F2933F;border-color:#F2933F;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Operations"]{
   --c:#6FB0E0;color:#6FB0E0;
-  border-color:color-mix(in srgb,#6FB0E0 40%,transparent);
-  background:color-mix(in srgb,#6FB0E0 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#6FB0E0 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#6FB0E0 7%,transparent)}
 .kx-store[data-topic="Operations"]:hover{
-  border-color:#6FB0E0;background:color-mix(in srgb,#6FB0E0 14%,transparent)}
+  border-color:#6FB0E0;background:transparent;background:color-mix(in srgb,#6FB0E0 14%,transparent)}
 .kx-store[data-topic="Operations"][aria-pressed="true"]{
   background:#6FB0E0;border-color:#6FB0E0;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Policy"]{
   --c:#DCE2E8;color:#DCE2E8;
-  border-color:color-mix(in srgb,#DCE2E8 40%,transparent);
-  background:color-mix(in srgb,#DCE2E8 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#DCE2E8 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#DCE2E8 7%,transparent)}
 .kx-store[data-topic="Policy"]:hover{
-  border-color:#DCE2E8;background:color-mix(in srgb,#DCE2E8 14%,transparent)}
+  border-color:#DCE2E8;background:transparent;background:color-mix(in srgb,#DCE2E8 14%,transparent)}
 .kx-store[data-topic="Policy"][aria-pressed="true"]{
   background:#DCE2E8;border-color:#DCE2E8;color:#0C0B08;font-weight:600}
 .kx-store[data-topic="Technology"]{
   --c:#F0855A;color:#F0855A;
-  border-color:color-mix(in srgb,#F0855A 40%,transparent);
-  background:color-mix(in srgb,#F0855A 7%,transparent)}
+  border-color:transparent;border-color:color-mix(in srgb,#F0855A 40%,transparent);
+  background:transparent;background:color-mix(in srgb,#F0855A 7%,transparent)}
 .kx-store[data-topic="Technology"]:hover{
-  border-color:#F0855A;background:color-mix(in srgb,#F0855A 14%,transparent)}
+  border-color:#F0855A;background:transparent;background:color-mix(in srgb,#F0855A 14%,transparent)}
 .kx-store[data-topic="Technology"][aria-pressed="true"]{
   background:#F0855A;border-color:#F0855A;color:#0C0B08;font-weight:600}
 
@@ -353,35 +356,35 @@
 .kx-store[data-topic="Finance"][aria-pressed="true"]{
   background:#A6E0B4 !important;border-color:#A6E0B4 !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#A6E0B4 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#A6E0B4 30%,transparent) !important}
 .kx-store[data-topic="Funding"][aria-pressed="true"]{
   background:#FFE7A6 !important;border-color:#FFE7A6 !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#FFE7A6 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#FFE7A6 30%,transparent) !important}
 .kx-store[data-topic="Hiring"][aria-pressed="true"]{
   background:#84D0C6 !important;border-color:#84D0C6 !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#84D0C6 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#84D0C6 30%,transparent) !important}
 .kx-store[data-topic="Legal"][aria-pressed="true"]{
   background:#B18BE4 !important;border-color:#B18BE4 !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#B18BE4 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#B18BE4 30%,transparent) !important}
 .kx-store[data-topic="Marketing"][aria-pressed="true"]{
   background:#F2933F !important;border-color:#F2933F !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#F2933F 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#F2933F 30%,transparent) !important}
 .kx-store[data-topic="Operations"][aria-pressed="true"]{
   background:#6FB0E0 !important;border-color:#6FB0E0 !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#6FB0E0 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#6FB0E0 30%,transparent) !important}
 .kx-store[data-topic="Policy"][aria-pressed="true"]{
   background:#DCE2E8 !important;border-color:#DCE2E8 !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#DCE2E8 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#DCE2E8 30%,transparent) !important}
 .kx-store[data-topic="Technology"][aria-pressed="true"]{
   background:#F0855A !important;border-color:#F0855A !important;color:#1B1400 !important;
   font-weight:700 !important;
-  box-shadow:0 6px 22px color-mix(in srgb,#F0855A 30%,transparent) !important}
+  box-shadow:0 6px 22px transparent !important;box-shadow:0 6px 22px color-mix(in srgb,#F0855A 30%,transparent) !important}
 .kx-store[data-topic="All"][aria-pressed="true"]{
   background:#D4A856 !important;border-color:#D4A856 !important;color:#1B1400 !important;
   font-weight:700 !important;
@@ -792,7 +795,7 @@ main > .wrap:first-of-type{padding-top:132px !important}
 /* the homepage leaves the document scrolling normally and clips nothing above
    the orb. matching that. */
 html, body, #kx-root{overflow-x:visible !important}
-main{overflow-x:clip}
+main{overflow-x:hidden;overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
 <style id="kx-partners-bg">
@@ -855,6 +858,9 @@ body{background:#050403 !important}
   .prtcta::before{animation:none;
     background:conic-gradient(from 0deg, transparent 0 58%, #F3E4A8 72%, #D4A856 90%, transparent 100%)}
 }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style id="kx-prtform">
 /* ---- the introduction form, matching join.html exactly ----
@@ -937,6 +943,10 @@ body{background:#050403 !important}
 .pfpill:has(input:checked){background:#D4A856;border-color:#D4A856;color:#1B1400;
   font-weight:700;box-shadow:0 6px 22px rgba(212,168,86,.30)}
 .pfpill:has(input:focus-visible){outline:3px solid #F3E4A8;outline-offset:3px}
+/* for browsers without :has(): a script marks the pill instead (see the end of the page) */
+.pfpill.is-on{background:#D4A856;border-color:#D4A856;color:#1B1400;font-weight:700;box-shadow:0 6px 22px rgba(212,168,86,.30)}
+.pfpill.is-focus{outline:3px solid #F3E4A8;outline-offset:3px}
+
 
 /* the consent rows, copied from join.html */
 .pfcard .consent{display:grid;grid-template-columns:26px 1fr;gap:12px;
@@ -2497,6 +2507,19 @@ try{
   });
 })();
 }catch(e){console.error('SideKix [partners film] failed:',e);}
+</script>
+<script>
+/* Older browsers (Firefox before 121, Chrome before 105) have no :has(), so a picked
+   pill would not look picked. Mark it with a class there; modern browsers skip this. */
+(function(){ try{ if(window.CSS&&CSS.supports&&CSS.supports('selector(:has(*))')) return; }catch(e){}
+  var pills=[].slice.call(document.querySelectorAll('.pfpill'));
+  function sync(){ pills.forEach(function(p){ var i=p.querySelector('input'); if(i) p.classList.toggle('is-on', i.checked); }); }
+  pills.forEach(function(p){ var i=p.querySelector('input'); if(!i) return;
+    i.addEventListener('change', sync);
+    i.addEventListener('focus', function(){ p.classList.add('is-focus'); });
+    i.addEventListener('blur', function(){ p.classList.remove('is-focus'); }); });
+  document.addEventListener('reset', function(){ setTimeout(sync,0); }, true); sync();
+})();
 </script>
 </body>
 </html>
