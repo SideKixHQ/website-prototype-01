@@ -72,3 +72,4 @@
 @media (max-width:899px){.kxl.dock-aware{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
 @media (prefers-reduced-motion:reduce){.kxl-bubble,.kxl-sheet{animation:none}.kxl-said p{transition:none}.kxl-orb{transition:none}}
 body.still .kxl-bubble,body.still .kxl-sheet{animation:none}
+.kxl-cta .kxl-sub{flex-basis:100%;margin-top:-2px;font-size:13.5px;line-height:1.5;color:#B8AE98}
