@@ -5,7 +5,7 @@
 > personalized path forward. Operated by Character Limit LLC, doing business
 > as SideKix, from Wilmington, North Carolina.
 
-The SideKix app is available now on iPhone from the App Store:
+SideKix is in beta. The SideKix app is available now on iPhone from the App Store:
 https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359
 Android and the web are not available yet. Kix is the Entrepreneurial Support
 Guide within the SideKix app. Kix asks what is in your way, then helps you
@@ -197,7 +197,7 @@ Checked at the source and refreshed weekly. Last run 2026-10-12. Each page lists
   Side Kix. It is not connected to Sideqik, a separate company with a similar
   sounding name.
 - General and press contact: support@sidekixhq.com.
-- The SideKix app is available now on iPhone from the App Store. It is not yet
+- SideKix is in beta. The SideKix app is available now on iPhone from the App Store. It is not yet
   available on Android or the web.
 - Kix is the Entrepreneurial Support Guide within the SideKix app.
 - Memberships and Kix Credits can be prepaid now. Ongoing membership billing
