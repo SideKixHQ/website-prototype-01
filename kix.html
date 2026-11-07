@@ -357,6 +357,63 @@ body.notes .log{display:block}
 .log .k{color:var(--note);letter-spacing:.14em;text-transform:uppercase;font-size:10px}
 .skip{position:absolute;left:-9999px;top:8px;z-index:200;background:#D4A856;color:#140E02;padding:10px 16px;border-radius:999px;font-weight:700}.skip:focus{left:12px}
 .kx-rate{margin:14px 0 0;font-family:var(--util,"Space Grotesk",ui-monospace,monospace);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#D9CFB8;text-align:center}.kx-rate .kx-stars{color:#F3C969;letter-spacing:.12em;margin-right:6px;font-size:13px}
+
+/* ---- gold treatment, shared with the membership boxes ---- */
+.gcard{position:relative;isolation:isolate;border-radius:20px;padding:26px 24px 22px;
+  background:radial-gradient(120% 90% at 20% 0%,rgba(212,168,86,.12),transparent 60%),linear-gradient(180deg,#15120C,#0B0906);
+  box-shadow:0 0 0 1px rgba(212,168,86,.18),0 18px 50px rgba(0,0,0,.55),0 0 34px rgba(255,186,72,.10);
+  transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease}
+.gcard::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--ang),rgba(212,168,86,.22) 0deg,rgba(212,168,86,.22) 230deg,#A1853E 270deg,#F3E4A8 318deg,#FFBA48 336deg,rgba(212,168,86,.22) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:kxTrace 6s linear infinite;animation-delay:calc(var(--i,0) * -2s)}
+.gcard:hover{transform:translateY(-6px);box-shadow:0 0 0 1px #F3E4A8,0 0 60px rgba(255,201,110,.45),0 0 22px rgba(255,180,80,.35),inset 0 0 90px rgba(255,192,98,.18)}
+.gcard:hover::before{animation-duration:2.2s}
+.gpop.in > *{animation:kxPop .8s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0) * .12s)}
+
+/* Why Kix */
+.pillars.gpop{gap:18px;border-top:0;margin-top:40px}
+.pillars.gpop .pillar{border-right:0;padding:26px 24px 24px;display:grid;gap:12px;align-content:start}
+.pillars.gpop .pillar + .pillar{padding-left:24px}
+.pn{font-family:var(--util);font-size:11px;letter-spacing:.24em;color:#C9A95E}
+.pillars.gpop .proof{margin-top:auto;padding-top:4px}
+@media (max-width:760px){.pillars.gpop{grid-template-columns:1fr}.pillars.gpop .pillar,.pillars.gpop .pillar + .pillar{border-bottom:0;padding:24px 22px}}
+
+/* Meet Kix tiles */
+.facts.gpop{border-top:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.facts.gpop .tile{display:grid;grid-template-columns:1fr;gap:8px;padding:18px 18px 20px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(180deg,#120F0A,#0A0806);position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s}
+.facts.gpop .tile::after{content:"";position:absolute;left:18px;right:18px;top:0;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,#F3E4A8,#FFBA48,transparent);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.facts.gpop.in .tile::after{transform:scaleX(1);transition-delay:calc(var(--i,0) * .15s + .2s)}
+.facts.gpop .tile:hover{transform:translateY(-4px);border-color:rgba(212,168,86,.55);box-shadow:0 0 34px rgba(255,186,72,.16)}
+.facts.gpop .tile dt{padding-top:0}
+@media (max-width:520px){.facts.gpop{grid-template-columns:1fr}}
+
+/* Community quote cards */
+.stories.gpop .story{position:relative;overflow:hidden;isolation:isolate;border-color:rgba(212,168,86,.22);
+  background:radial-gradient(120% 80% at 0% 0%,rgba(212,168,86,.10),transparent 55%),var(--night);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s}
+.stories.gpop .story::before{content:"\201C";position:absolute;top:-18px;right:14px;font-family:var(--display);font-size:120px;line-height:1;color:rgba(243,228,168,.10);pointer-events:none;z-index:-1}
+.stories.gpop .story:hover{transform:translateY(-6px);border-color:#D4A856;box-shadow:0 0 50px rgba(255,186,72,.22)}
+
+/* Questions and answers open with a gold edge */
+.ans{transition:border-color .3s,box-shadow .3s,background .3s}
+.ans:hover{border-color:rgba(212,168,86,.45)}
+.ans[open]{border-color:rgba(212,168,86,.6);box-shadow:inset 3px 0 0 #D4A856,0 0 30px rgba(255,186,72,.10);background:linear-gradient(90deg,rgba(212,168,86,.07),transparent 40%),var(--night)}
+
+/* Advisors */
+.adv img{transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s,filter .4s}
+.adv:hover img{transform:translateY(-4px);border-color:#D4A856;box-shadow:0 0 0 2px rgba(243,228,168,.35),0 0 34px rgba(255,186,72,.3);filter:none}
+
+/* Sections: a soft gold seam between them, headings rise in */
+section + section{border-top-color:transparent}
+section + section::before{content:"";position:absolute;top:-1px;left:50%;width:min(720px,80%);height:1px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(212,168,86,.55),transparent)}
+html.rv-on .rv,html.rv-on [data-rv]{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .9s cubic-bezier(.16,1,.3,1)}
+html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){.gcard::before{animation:none}.gpop.in > *{animation:none}.gcard,.tile,.story,.adv img{transition:none}
+  .facts.gpop .tile::after{transform:scaleX(1);transition:none}}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://sidekixhq.com/kix.html#webpage", "url": "https://sidekixhq.com/kix.html", "name": "Kix, your entrepreneurial support guide | SideKix", "isPartOf": {"@id": "https://sidekixhq.com/#website"}, "about": {"@id": "https://sidekixhq.com/kix.html#app"}, "breadcrumb": {"@id": "https://sidekixhq.com/kix.html#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://sidekixhq.com/kix.html#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sidekixhq.com/"}, {"@type": "ListItem", "position": 2, "name": "Kix", "item": "https://sidekixhq.com/kix.html"}]}, {"@type": "MobileApplication", "@id": "https://sidekixhq.com/kix.html#app", "name": "SideKix", "operatingSystem": "iOS", "installUrl": "https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359", "url": "https://sidekixhq.com/kix.html", "publisher": {"@id": "https://sidekixhq.com/#organization"}, "description": "Kix is your Entrepreneurial Support Guide within the SideKix app."}, {"@type": "FAQPage", "@id": "https://sidekixhq.com/kix.html#faq", "mainEntity": [{"@type": "Question", "name": "What is Kix?", "acceptedAnswer": {"@type": "Answer", "text": "Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of you."}}, {"@type": "Question", "name": "Is Kix a coach?", "acceptedAnswer": {"@type": "Answer", "text": "No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside SideKix.”"}}, {"@type": "Question", "name": "Can I talk to Kix, or do I have to type?", "acceptedAnswer": {"@type": "Answer", "text": "Either. You can speak or type, and Kix Credits measure the conversation the same way."}}, {"@type": "Question", "name": "What does Kix cost?", "acceptedAnswer": {"@type": "Answer", "text": "350 Kix Credits are $19 and cover up to 90 minutes of conversation with Kix. There’s no subscription, and credits never expire. Your Milestones and Steps never use credits. Memberships start at $39 a month."}}, {"@type": "Question", "name": "Which phones does Kix work on?", "acceptedAnswer": {"@type": "Answer", "text": "SideKix is on iPhone now. Android and the web are not available yet. Join the waitlist and you’ll be the first to know when your platform is live."}}, {"@type": "Question", "name": "Is there a daily limit?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 90 minutes of conversation with Kix a day. Your Milestones and Steps stay open all day regardless."}}]}]}</script>
@@ -404,12 +461,25 @@ body.notes .log{display:block}
   </div>
 </section>
 
+<!-- 5. PILLARS -->
+<section id="pillars" aria-labelledby="h-pillars">
+  <div class="wrap">
+    <span class="eyebrow rv">Why Kix</span>
+    <h2 id="h-pillars" data-rv style="margin-top:14px">Action. Support. <em>A system that adapts.</em></h2>
+    <div class="pillars gpop" data-pop>
+      <div class="pillar gcard" style="--i:0"><span class="pn" aria-hidden="true">01</span><h3>Action</h3><p>Every milestone opens into steps small enough to finish. The next move is always on screen.</p><div class="proof">Milestones and Steps are unmetered. The work never costs a credit.</div></div>
+      <div class="pillar gcard" style="--i:1"><span class="pn" aria-hidden="true">02</span><h3>Support</h3><p>Kix is there at 11pm when the doubt shows up. Advisors are there when you want a person.</p><div class="proof">350 Kix Credits ≈ 90 minutes of conversation. They never expire.</div></div>
+      <div class="pillar gcard" style="--i:2"><span class="pn" aria-hidden="true">03</span><h3>System</h3><p>Your map redraws when something changes, so the plan keeps up with your life.</p><div class="proof">Built for a few hours a week, alongside a day job.</div></div>
+    </div>
+    
+  </div>
+</section>
 <!-- 2. PROBLEM -->
 <section id="problem" aria-labelledby="h-problem">
   <div class="wrap gap">
-    <span class="eyebrow">The gap</span>
+    <span class="eyebrow rv">The gap</span>
     <div class="stat">174 million<small>Americans have had an idea for a business. Most of them are still holding it.</small></div>
-    <h2 id="h-problem">Wanting to build is the easy part. <em>Knowing what comes next</em> is where it stalls.</h2>
+    <h2 id="h-problem" data-rv>Wanting to build is the easy part. <em>Knowing what comes next</em> is where it stalls.</h2>
     <div class="bridge" id="bridge" aria-hidden="true">
       <div class="br-row">
         <span class="br-dot a"><span class="br-lbl">Your idea</span></span>
@@ -426,15 +496,15 @@ body.notes .log{display:block}
 <section id="meet" aria-labelledby="h-meet">
   <div class="wrap meet">
     <div>
-      <span class="eyebrow">Meet Kix</span>
-      <h2 id="h-meet" style="margin-top:14px">A guide that <em>listens first.</em></h2>
+      <span class="eyebrow rv">Meet Kix</span>
+      <h2 id="h-meet" data-rv style="margin-top:14px">A guide that <em>listens first.</em></h2>
       <p class="defn">Kix is your <b>Entrepreneurial Support Guide</b> within the SideKix app.</p>
     </div>
-    <dl class="facts">
-      <div><dt>Talk or type</dt><dd>Say it out loud or write it down. Kix works either way.</dd></div>
-      <div><dt>Starts where you are</dt><dd>An idea you never acted on, a business three years in, a career the market is rewriting.</dd></div>
-      <div><dt>Tells the truth</dt><dd>Even when it doesn’t know the answer.</dd></div>
-      <div><dt>Draws your map</dt><dd>Your milestones come straight from the conversation, and redraw when things change.</dd></div>
+    <dl class="facts gpop" data-pop>
+      <div class="tile" style="--i:0"><dt>Talk or type</dt><dd>Say it out loud or write it down. Kix works either way.</dd></div>
+      <div class="tile" style="--i:1"><dt>Starts where you are</dt><dd>An idea you never acted on, a business three years in, a career the market is rewriting.</dd></div>
+      <div class="tile" style="--i:2"><dt>Tells the truth</dt><dd>Even when it doesn’t know the answer.</dd></div>
+      <div class="tile" style="--i:3"><dt>Draws your map</dt><dd>Your milestones come straight from the conversation, and redraw when things change.</dd></div>
     </dl>
   </div>
   <div class="wrap"></div>
@@ -443,8 +513,8 @@ body.notes .log{display:block}
 <!-- 4. WHAT'S IN YOUR WAY (interactive) -->
 <section id="how" aria-labelledby="h-how">
   <div class="wrap">
-    <span class="eyebrow">How it works · try it</span>
-    <h2 id="h-how" style="margin-top:14px">What’s in <em>your way?</em></h2>
+    <span class="eyebrow rv">How it works · try it</span>
+    <h2 id="h-how" data-rv style="margin-top:14px">What’s in <em>your way?</em></h2>
     <ol class="steps" id="steps">
       <li class="on">Pick what’s in your way</li>
       <li>Hear how Kix thinks it through</li>
@@ -474,47 +544,14 @@ body.notes .log{display:block}
   </div>
 </section>
 
-<!-- 4b. KIX'S ANSWERS IN WRITING -->
-<section id="answers" aria-labelledby="h-ans">
-  <div class="wrap">
-    <span class="eyebrow">Kix’s answers</span>
-    <h2 id="h-ans" style="margin-top:14px">Every answer, <em>in writing.</em></h2>
-    <p class="lede" style="margin-top:14px">The same words Kix says above, for reading at your own pace.</p>
-    <div class="answers">
-      <details class="ans"><summary>I don’t have the money</summary><p>Money’s usually the first wall people name, and it’s a real one. Often the better question is how little you need to find out if this works. What’s the smallest version you could sell to one person? Let’s price it out line by line tonight. If outside money makes sense after that, I’ll help you get ready before you ask for it, and show you where you’d actually fit.</p></details>
-      <details class="ans"><summary>I don’t have the time</summary><p>Twenty minutes a night is enough to move something, as long as it’s the right twenty minutes. When could you protect three short blocks this week? Pick them now. I’ll hand you one step that fits each block, small enough to finish, and the plan keeps track so you don’t have to.</p></details>
-      <details class="ans"><summary>I don’t know where to start</summary><p>You don’t need the whole plan to start. You need the next step, and finding it is my job. What’s the idea in one sentence, the way you’d tell a friend? Write that down today. From there we’ll lay out the first few steps together, in an order that fits your life, and I’ll bring the training for each one when you get there.</p></details>
-      <details class="ans"><summary>What if it doesn’t work?</summary><p>That fear usually means this matters to you. So we aim to fail small, early and cheap, before anything big is riding on it. Which part are you most worried won’t work? Let’s test that part first, this week, with something you can try in an afternoon. Whatever happens, you’ll know more than you do now.</p></details>
-      <details class="ans"><summary>The doors aren’t open to me</summary><p>A lot of advice assumes you already have the money, the contacts, or the right title. Plenty of people building something don’t, and they build anyway. Which door feels most closed right now: money, people, or know how? Tell me, and I’ll find the people, programs and training that open it, and help you get ready to walk through.</p></details>
-      <details class="ans"><summary>I’m doing this alone</summary><p>Building alone is heavier than it looks from the outside, and you don’t have to carry all of it. Who’s one person you could tell about this today, even in a text? I’ll be here whenever you get stuck. And when you’re ready, I’ll connect you with people building something like yours, and advisors who’ve stood where you are.</p></details>
-      <details class="ans"><summary>It isn’t ready yet</summary><p>Ready usually shows up after people see it, not before. What’s the smallest piece you could show one person this week? Pick a date, show it as it is, and let their reaction tell you what to fix first.</p></details>
-      <details class="ans"><summary>Everything feels urgent</summary><p>When everything’s urgent, it’s hard to move anything. If only one thing moved this week, which would make the rest easier? Do that one first. I’ll hold the rest of the list so it isn’t sitting on you.</p></details>
-      <details class="ans"><summary>Something else</summary><p>Whatever it is, say it the way it comes out. I’ll listen first, ask what I need to, and then we’ll work out the next step together.</p></details>
-    </div>
-    
-  </div>
-</section>
 
-<!-- 5. PILLARS -->
-<section id="pillars" aria-labelledby="h-pillars">
-  <div class="wrap">
-    <span class="eyebrow">Why Kix</span>
-    <h2 id="h-pillars" style="margin-top:14px">Action. Support. <em>A system that adapts.</em></h2>
-    <div class="pillars">
-      <div class="pillar"><h3>Action</h3><p>Every milestone opens into steps small enough to finish. The next move is always on screen.</p><div class="proof">Milestones and Steps are unmetered. The work never costs a credit.</div></div>
-      <div class="pillar"><h3>Support</h3><p>Kix is there at 11pm when the doubt shows up. Advisors are there when you want a person.</p><div class="proof">350 Kix Credits ≈ 90 minutes of conversation. They never expire.</div></div>
-      <div class="pillar"><h3>System</h3><p>Your map redraws when something changes, so the plan keeps up with your life.</p><div class="proof">Built for a few hours a week, alongside a day job.</div></div>
-    </div>
-    
-  </div>
-</section>
 
 
 <!-- 7. ADVISORS -->
 <section id="advisors" aria-labelledby="h-adv">
   <div class="wrap">
-    <span class="eyebrow">Advisors</span>
-    <h2 id="h-adv" style="margin-top:14px">Someone has stood <em>exactly here.</em></h2>
+    <span class="eyebrow rv">Advisors</span>
+    <h2 id="h-adv" data-rv style="margin-top:14px">Someone has stood <em>exactly here.</em></h2>
     <p class="lede" style="margin-top:16px">Kix is the guide in your pocket. Advisors are the people behind it: founders and operators matched to what you’re building.</p>
     <div class="advs"><div class="adv"><img src="assets/kix/img/sarah-gould-202288.webp" alt="Sarah Gould" width="160" height="160" loading="lazy"><b>Sarah Gould</b><span>Leadership &amp; Second Order Change</span></div><div class="adv"><img src="assets/kix/img/trent-potter-ed046c.webp" alt="Trent Potter" width="160" height="160" loading="lazy"><b>Trent Potter</b><span>Strategy, Culture &amp; Leadership</span></div><div class="adv"><img src="assets/kix/img/ebony-baylock-fee13b.webp" alt="Ebony Baylock" width="160" height="160" loading="lazy"><b>Ebony Baylock</b><span>Sales &amp; Business Growth</span></div><div class="adv"><img src="assets/kix/img/floyd-shiffman-26ea5c.webp" alt="Floyd Shiffman" width="160" height="160" loading="lazy"><b>Floyd Shiffman</b><span>AI &amp; Revenue Systems</span></div><div class="adv"><img src="assets/kix/img/amy-turner-69b6cd.webp" alt="Amy Turner" width="160" height="160" loading="lazy"><b>Amy Turner</b><span>Offers, Pricing &amp; Growth</span></div></div>
     
@@ -524,18 +561,18 @@ body.notes .log{display:block}
 <!-- 8. COMMUNITY -->
 <section id="community" aria-labelledby="h-com">
   <div class="wrap">
-    <span class="eyebrow">Community</span>
-    <h2 id="h-com" style="margin-top:14px">Build next to people <em>a week ahead of you.</em></h2>
-    <div class="stories">
-      <figure class="story" style="margin:0">
+    <span class="eyebrow rv">Community</span>
+    <h2 id="h-com" data-rv style="margin-top:14px">Build next to people <em>a week ahead of you.</em></h2>
+    <div class="stories gpop" data-pop>
+      <figure class="story" style="margin:0;--i:0">
         <blockquote>“Where was SideKix when I was starting to build? I wish I had a tool like this.”</blockquote>
         <figcaption class="by"><i aria-hidden="true">ZB</i><span><b>Zuben Bastani</b>President and Founder, ReachWell</span></figcaption>
       </figure>
-      <figure class="story" style="margin:0">
+      <figure class="story" style="margin:0;--i:1">
         <blockquote>“When we first started we googled everything and blindly trusted it. Now we can message another female baker for support!”</blockquote>
         <figcaption class="by"><i aria-hidden="true">L+K</i><span><b>Lauren Wright and Keala Yu</b>Owners, Pie Slayer</span></figcaption>
       </figure>
-      <figure class="story" style="margin:0">
+      <figure class="story" style="margin:0;--i:2">
         <blockquote>“This isn’t another ‘let me make you rich’ product. It’s the human side of owning a business, and that’s what people need.”</blockquote>
         <figcaption class="by"><i aria-hidden="true">NC</i><span><b>Nathan Coury</b>Owner, Freak Bros Pizza</span></figcaption>
       </figure>
@@ -547,8 +584,8 @@ body.notes .log{display:block}
 <!-- 8b. FAQ -->
 <section id="faq" aria-labelledby="h-faq">
   <div class="wrap">
-    <span class="eyebrow">Questions</span>
-    <h2 id="h-faq" style="margin-top:14px">About <em>Kix.</em></h2>
+    <span class="eyebrow rv">Questions</span>
+    <h2 id="h-faq" data-rv style="margin-top:14px">About <em>Kix.</em></h2>
     <div class="answers" style="margin-top:28px">
       <details class="ans"><summary>What is Kix?</summary><p>Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of you.</p></details>
       <details class="ans"><summary>Is Kix a coach?</summary><p>No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside SideKix.”</p></details>
@@ -564,8 +601,8 @@ body.notes .log{display:block}
 <!-- 9. FINAL CTA -->
 <section id="start" aria-labelledby="h-final">
   <div class="wrap final">
-    <span class="eyebrow">Ready</span>
-    <h2 id="h-final">Your next move <em>starts here.</em></h2>
+    <span class="eyebrow rv">Ready</span>
+    <h2 id="h-final" data-rv>Your next move <em>starts here.</em></h2>
     <div class="row">
       <a class="cta gold" data-dl="final" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a>
     </div>
@@ -586,6 +623,26 @@ body.notes .log{display:block}
       </a>
     </div>
     <p class="small">iPhone first. On Android? <a href="https://sidekixhq.com/join.html">Join the waitlist</a> and we’ll tell you the day it lands.</p>
+    
+  </div>
+</section>
+<!-- 4b. KIX'S ANSWERS IN WRITING -->
+<section id="answers" aria-labelledby="h-ans">
+  <div class="wrap">
+    <span class="eyebrow rv">Kix’s answers</span>
+    <h2 id="h-ans" data-rv style="margin-top:14px">Every answer, <em>in writing.</em></h2>
+    <p class="lede" style="margin-top:14px">The same words Kix says above, for reading at your own pace.</p>
+    <div class="answers">
+      <details class="ans"><summary>I don’t have the money</summary><p>Money’s usually the first wall people name, and it’s a real one. Often the better question is how little you need to find out if this works. What’s the smallest version you could sell to one person? Let’s price it out line by line tonight. If outside money makes sense after that, I’ll help you get ready before you ask for it, and show you where you’d actually fit.</p></details>
+      <details class="ans"><summary>I don’t have the time</summary><p>Twenty minutes a night is enough to move something, as long as it’s the right twenty minutes. When could you protect three short blocks this week? Pick them now. I’ll hand you one step that fits each block, small enough to finish, and the plan keeps track so you don’t have to.</p></details>
+      <details class="ans"><summary>I don’t know where to start</summary><p>You don’t need the whole plan to start. You need the next step, and finding it is my job. What’s the idea in one sentence, the way you’d tell a friend? Write that down today. From there we’ll lay out the first few steps together, in an order that fits your life, and I’ll bring the training for each one when you get there.</p></details>
+      <details class="ans"><summary>What if it doesn’t work?</summary><p>That fear usually means this matters to you. So we aim to fail small, early and cheap, before anything big is riding on it. Which part are you most worried won’t work? Let’s test that part first, this week, with something you can try in an afternoon. Whatever happens, you’ll know more than you do now.</p></details>
+      <details class="ans"><summary>The doors aren’t open to me</summary><p>A lot of advice assumes you already have the money, the contacts, or the right title. Plenty of people building something don’t, and they build anyway. Which door feels most closed right now: money, people, or know how? Tell me, and I’ll find the people, programs and training that open it, and help you get ready to walk through.</p></details>
+      <details class="ans"><summary>I’m doing this alone</summary><p>Building alone is heavier than it looks from the outside, and you don’t have to carry all of it. Who’s one person you could tell about this today, even in a text? I’ll be here whenever you get stuck. And when you’re ready, I’ll connect you with people building something like yours, and advisors who’ve stood where you are.</p></details>
+      <details class="ans"><summary>It isn’t ready yet</summary><p>Ready usually shows up after people see it, not before. What’s the smallest piece you could show one person this week? Pick a date, show it as it is, and let their reaction tell you what to fix first.</p></details>
+      <details class="ans"><summary>Everything feels urgent</summary><p>When everything’s urgent, it’s hard to move anything. If only one thing moved this week, which would make the rest easier? Do that one first. I’ll hold the rest of the list so it isn’t sitting on you.</p></details>
+      <details class="ans"><summary>Something else</summary><p>Whatever it is, say it the way it comes out. I’ll listen first, ask what I need to, and then we’ll work out the next step together.</p></details>
+    </div>
     
   </div>
 </section>
@@ -764,6 +821,14 @@ async function speak(i,chip){
 }
 chips.forEach(c=>c.addEventListener('click',()=>speak(+c.dataset.b,c)));
 
+})();
+
+/* pop-in groups and rising headings; content stays visible without script or with reduced motion */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){document.querySelectorAll('[data-pop]').forEach(e=>e.classList.add('in'));return;}
+  document.documentElement.classList.add('rv-on');
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('[data-pop],.rv,[data-rv]').forEach(e=>io.observe(e));
 })();
 </script>
 <script src="assets/kx-analytics.js" defer></script>
