@@ -424,6 +424,48 @@ html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
 
 /* kx-compat: plain defaults for browsers without @property */
 :root{--ang:0deg}
+
+/* Meet Kix, compact: it now sits between the hero and the picker */
+#meet{padding-block:clamp(48px,7vw,84px)}
+.facts.gpop{gap:10px}
+.facts.gpop .tile{padding:14px 15px 15px;gap:6px;align-content:start}
+.facts.gpop .tile dd{font-size:14.5px;line-height:1.5}
+@media (max-width:520px){.facts.gpop{grid-template-columns:repeat(2,minmax(0,1fr))}.facts.gpop .tile{padding:12px 12px 13px}.facts.gpop .tile dt{font-size:10px;letter-spacing:.12em}.facts.gpop .tile dd{font-size:13px}}
+/* every answer in writing, folded inside the picker section */
+.allans{margin-top:26px;border-top:1px solid var(--line);padding-top:6px}
+.allans > summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:10px;min-height:48px;font-weight:600;color:#EBD08C}
+.allans > summary::-webkit-details-marker{display:none}
+.allans > summary::after{content:"+";font-family:var(--util);font-size:20px;color:var(--gold)}
+.allans[open] > summary::after{content:"\2212"}
+.allans > summary:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px;border-radius:8px}
+.allans .kp-lede{margin:4px 0 14px}
+
+/* Hear more from Kix: the barriers open under the message */
+.kmore{position:relative;z-index:2;background:none;border:0;color:#EBD08C;font:600 14px var(--body);min-height:44px;padding:0 6px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.kmore .lbl{text-decoration:underline;text-decoration-color:rgba(235,208,140,.4);text-underline-offset:5px}
+.kmore:hover .lbl{text-decoration-color:currentColor}
+.kmore:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px;border-radius:8px}
+.kmore .chev{display:inline-block;transition:transform .3s}
+.kmore[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.heroask{display:grid;gap:12px;justify-items:center;width:100%;max-width:760px;margin:0 auto 8px;padding:20px 0 4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.heroask.in{animation:kpopen .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes kpopen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.heroask .askq{font-size:clamp(26px,4.4vw,38px);margin:0}
+.heroask .askhint{margin:0;color:var(--mute);font-size:14px}
+.heroask .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+@media (max-width:640px){.heroask .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.heroask .chip:last-child:nth-child(odd){grid-column:1/-1}.heroask .chip{font-size:13px;padding:8px 10px;text-align:center;justify-content:center}}
+.heroask .kp-st{font:400 11px var(--util);letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.heroask .said{width:100%;max-width:62ch;text-align:left;min-height:0}
+.heroask .keep{justify-content:center;border-top:0;padding-top:0}
+.heroask .allink{color:#EBD08C;font-size:14px;min-height:44px;display:inline-flex;align-items:center;gap:6px}
+#answers{padding-block:0 clamp(40px,6vw,72px)}
+#answers .allans{margin-top:0}
+@media (prefers-reduced-motion:reduce){.heroask.in{animation:none}.kmore .chev{transition:none}}
+
+/* words: no single word left alone on a line. Headings, buttons and short labels balance their lines;
+   running text avoids a lone last word. Browsers without text-wrap just wrap as before. */
+h1,h2,h3,dt,summary,button,.chip,.kp-cta,.kmore,.allink,.cap,.askhint,.kp-sub{text-wrap:balance}
+p,dd,li,blockquote,figcaption{text-wrap:pretty}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://sidekixhq.com/kix.html#webpage", "url": "https://sidekixhq.com/kix.html", "name": "Kix, your entrepreneurial support guide | SideKix", "isPartOf": {"@id": "https://sidekixhq.com/#website"}, "about": {"@id": "https://sidekixhq.com/kix.html#app"}, "breadcrumb": {"@id": "https://sidekixhq.com/kix.html#breadcrumb"}}, {"@type": "BreadcrumbList", "@id": "https://sidekixhq.com/kix.html#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sidekixhq.com/"}, {"@type": "ListItem", "position": 2, "name": "Kix", "item": "https://sidekixhq.com/kix.html"}]}, {"@type": "MobileApplication", "@id": "https://sidekixhq.com/kix.html#app", "name": "SideKix", "operatingSystem": "iOS", "installUrl": "https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359", "url": "https://sidekixhq.com/kix.html", "publisher": {"@id": "https://sidekixhq.com/#organization"}, "description": "Kix is your Entrepreneurial Support Guide within the SideKix app."}, {"@type": "FAQPage", "@id": "https://sidekixhq.com/kix.html#faq", "mainEntity": [{"@type": "Question", "name": "What is Kix?", "acceptedAnswer": {"@type": "Answer", "text": "Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of you."}}, {"@type": "Question", "name": "Is Kix a coach?", "acceptedAnswer": {"@type": "Answer", "text": "No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside SideKix.”"}}, {"@type": "Question", "name": "Can I talk to Kix, or do I have to type?", "acceptedAnswer": {"@type": "Answer", "text": "Either. You can speak or type, and Kix Credits measure the conversation the same way."}}, {"@type": "Question", "name": "What does Kix cost?", "acceptedAnswer": {"@type": "Answer", "text": "350 Kix Credits are $19 and cover up to 90 minutes of conversation with Kix. There’s no subscription, and credits never expire. Your Milestones and Steps never use credits. Memberships start at $39 a month."}}, {"@type": "Question", "name": "Which phones does Kix work on?", "acceptedAnswer": {"@type": "Answer", "text": "SideKix is on iPhone now. Android and the web are not available yet. Join the waitlist and you’ll be the first to know when your platform is live."}}, {"@type": "Question", "name": "Is there a daily limit?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 90 minutes of conversation with Kix a day. Your Milestones and Steps stay open all day regardless."}}]}]}</script>
@@ -431,23 +473,23 @@ html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
 
 </head>
 <body>
-<a class="skip" href="#top">Skip to content</a>
+<a class="skip" href="#top">Skip to&nbsp;content</a>
 <header class="sitenav" id="sitenav">
   <div class="kp-wrap nav-in">
     <a class="logo" href="https://sidekixhq.com/" aria-label="SideKix home"><img src="assets/kix/img/sidekix-logo-090127.webp" alt="SideKix home" width="130" height="36" loading="eager"></a>
-    <nav class="links" aria-label="Site"><a href="https://sidekixhq.com/">Home</a><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a><a href="https://sidekixhq.com/how-it-works.html">How it works</a><a href="https://sidekixhq.com/membership.html">Membership</a><a href="https://sidekixhq.com/advisors.html">Advisors</a><a href="https://sidekixhq.com/partners.html">Partners</a><a href="https://sidekixhq.com/events.html">Events</a><a href="https://sidekixhq.com/library.html">Resources</a></nav>
+    <nav class="links" aria-label="Site"><a href="https://sidekixhq.com/">Home</a><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a><a href="https://sidekixhq.com/how-it-works.html">How it&nbsp;works</a><a href="https://sidekixhq.com/membership.html">Membership</a><a href="https://sidekixhq.com/advisors.html">Advisors</a><a href="https://sidekixhq.com/partners.html">Partners</a><a href="https://sidekixhq.com/events.html">Events</a><a href="https://sidekixhq.com/library.html">Resources</a></nav>
     <a class="kp-cta gold navdl" data-dl="nav" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a>
     <button class="menubtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><span class="hb" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button>
   </div>
   <div class="menupanel" id="menuPanel" hidden>
-    <nav class="kp-wrap" aria-label="Site menu"><ul><li><a href="https://sidekixhq.com/">Home</a></li><li><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a></li><li><a href="https://sidekixhq.com/how-it-works.html">How it works</a></li><li><a href="https://sidekixhq.com/membership.html">Membership</a></li><li><a href="https://sidekixhq.com/advisors.html">Advisors</a></li><li><a href="https://sidekixhq.com/partners.html">Partners</a></li><li><a href="https://sidekixhq.com/events.html">Events</a></li><li><a href="https://sidekixhq.com/library.html">Resources</a></li></ul><a class="kp-cta gold" data-dl="menu" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a></nav>
+    <nav class="kp-wrap" aria-label="Site menu"><ul><li><a href="https://sidekixhq.com/">Home</a></li><li><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a></li><li><a href="https://sidekixhq.com/how-it-works.html">How it&nbsp;works</a></li><li><a href="https://sidekixhq.com/membership.html">Membership</a></li><li><a href="https://sidekixhq.com/advisors.html">Advisors</a></li><li><a href="https://sidekixhq.com/partners.html">Partners</a></li><li><a href="https://sidekixhq.com/events.html">Events</a></li><li><a href="https://sidekixhq.com/library.html">Resources</a></li></ul><a class="kp-cta gold" data-dl="menu" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a></nav>
   </div>
 </header>
 <main>
 <!-- 1. HERO -->
 <section class="kp-hero" id="top" aria-labelledby="h1">
   <div class="kp-wrap kp-top" style="justify-content:space-between">
-    <p class="kx-backrow"><a class="kx-bk" href="/"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to SideKix</a></p>
+    <p class="kx-backrow"><a class="kx-bk" href="/"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M15 5l-7 7 7 7"></path></svg> Back to&nbsp;SideKix</a></p>
     <button class="mbtn" id="motionBtn" type="button" aria-pressed="false">Pause motion</button>
   </div>
   <div class="stage"><canvas id="heroCv" aria-hidden="true"></canvas></div>
@@ -456,65 +498,73 @@ html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
       <span class="pb" id="hearIcon"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg></span>
       A message from Kix <span class="kp-t" id="hearT">0:39</span>
     </button>
-    <div class="cap" id="cap" aria-live="polite">Tap to hear Kix. Sound only plays when you ask.</div>
-    <h1 id="h1">The idea won’t build itself. <span class="l2">But you don’t have to build it alone.</span></h1>
-    <p class="kp-sub">Meet <b>Kix</b>, your AI-powered entrepreneurial guide. Turn your idea into action with personalized navigation, clear next steps, and support along the way.</p>
+    <div class="cap" id="cap" aria-live="polite">Tap to hear Kix. Sound only plays when you&nbsp;ask.</div>
+    <button class="kmore" id="moreBtn" type="button" aria-expanded="false" aria-controls="heroask"><span class="lbl">Hear more from&nbsp;Kix</span><span class="chev" aria-hidden="true">↓</span></button>
+    <div class="heroask" id="heroask" role="region" aria-labelledby="h-how" hidden>
+      <h2 class="askq" id="h-how">What’s in <em>your way?</em></h2>
+      <p class="askhint">Tap the one that sounds like you. Kix answers out loud, with&nbsp;captions.</p>
+      <div class="chips" role="group" aria-label="What’s in your way">
+          <button class="chip" type="button" data-b="0" aria-pressed="false">I don’t have the&nbsp;money</button>
+          <button class="chip" type="button" data-b="1" aria-pressed="false">I don’t have the&nbsp;time</button>
+          <button class="chip" type="button" data-b="2" aria-pressed="false">I don’t know where to&nbsp;start</button>
+          <button class="chip" type="button" data-b="3" aria-pressed="false">What if it doesn’t&nbsp;work?</button>
+          <button class="chip" type="button" data-b="4" aria-pressed="false">The doors aren’t open to&nbsp;me</button>
+          <button class="chip" type="button" data-b="5" aria-pressed="false">I’m doing this&nbsp;alone</button>
+          <button class="chip" type="button" data-b="6" aria-pressed="false">It isn’t ready&nbsp;yet</button>
+          <button class="chip" type="button" data-b="7" aria-pressed="false">Everything feels&nbsp;urgent</button>
+          <button class="chip" type="button" data-b="8" aria-pressed="false">Something else</button>
+        </div>
+      <div class="kp-st" id="askState" aria-live="polite">Kix ·&nbsp;listening</div>
+      <div class="said" id="said" aria-live="polite"></div>
+      <div class="keep" id="keep">
+          <a class="kp-cta gold" data-dl="answer" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Continue with&nbsp;Kix</a>
+          <span class="small">Take the conversation further in the&nbsp;app.</span>
+        </div>
+      <a class="allink" href="#answers">Read all of Kix’s answers <span aria-hidden="true">↓</span></a>
+    </div>
+    <h1 id="h1">The idea won’t build itself. <span class="l2">But you don’t have to build it&nbsp;alone.</span></h1>
+    <p class="kp-sub">Meet <b>Kix</b>, your AI-powered entrepreneurial guide. Turn your idea into action with personalized navigation, clear next steps, and support along the&nbsp;way.</p>
     <div class="kp-row">
       <a class="kp-cta gold" data-dl="hero" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.8-.8-3-.8C6.9 7.2 5.4 8.1 4.6 9.6c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.4-.9-2.4-3.9zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></svg>
         Download Kix
       </a>
-      <a class="kp-cta ghost" href="#how">See how it works</a>
+      <a class="kp-cta ghost" href="#meet">Meet Kix</a>
     </div>
-    <p class="kx-rate"><span class="kx-stars" aria-hidden="true">★★★★★</span> Rated 5.0 on the App Store</p>
+    <p class="kx-rate"><span class="kx-stars" aria-hidden="true">★★★★★</span> Rated 5.0 on the App&nbsp;Store</p>
     
   </div>
 </section>
 
-<!-- 4. WHAT'S IN YOUR WAY (interactive) -->
-<section id="how" aria-labelledby="h-how">
-  <div class="kp-wrap">
-    <span class="kp-eyebrow rv">How it works · try it</span>
-    <h2 id="h-how" data-rv style="margin-top:14px">What’s in <em>your way?</em></h2>
-    <ol class="steps" id="steps">
-      <li class="kp-on">Tell Kix where you’re stuck</li>
-      <li>Explore Kix’s thinking</li>
-      <li>Keep building with Kix</li>
-    </ol>
-    <div class="studio">
-      <div class="voice"><canvas id="askCv" aria-hidden="true"></canvas><div class="kp-st" id="askState">Kix · listening</div></div>
-      <div class="talk">
-        <div class="chips" role="group" aria-label="What’s in your way">
-          <button class="chip" type="button" data-b="0" aria-pressed="false">I don’t have the money</button>
-          <button class="chip" type="button" data-b="1" aria-pressed="false">I don’t have the time</button>
-          <button class="chip" type="button" data-b="2" aria-pressed="false">I don’t know where to start</button>
-          <button class="chip" type="button" data-b="3" aria-pressed="false">What if it doesn’t work?</button>
-          <button class="chip" type="button" data-b="4" aria-pressed="false">The doors aren’t open to me</button>
-          <button class="chip" type="button" data-b="5" aria-pressed="false">I’m doing this alone</button>
-          <button class="chip" type="button" data-b="6" aria-pressed="false">It isn’t ready yet</button>
-          <button class="chip" type="button" data-b="7" aria-pressed="false">Everything feels urgent</button>
-          <button class="chip" type="button" data-b="8" aria-pressed="false">Something else</button>
-        </div>
-        <div class="said" id="said" aria-live="polite"><p class="empty">Tap the one that sounds like you. Kix answers out loud, with captions.</p></div>
-        <div class="keep" id="keep">
-          <a class="kp-cta gold" data-dl="answer" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Continue with Kix</a>
-          <span class="small">Take the conversation further in the app.</span>
-        </div>
-      </div>
+
+
+<!-- 3. MEET KIX -->
+<section id="meet" aria-labelledby="h-meet">
+  <div class="kp-wrap meet">
+    <div>
+      <span class="kp-eyebrow rv">Meet Kix</span>
+      <h2 id="h-meet" data-rv style="margin-top:14px">A guide that <em>listens first.</em></h2>
+      <p class="defn">Kix is your <b>Entrepreneurial Support&nbsp;Guide</b> within the SideKix&nbsp;app.</p>
     </div>
-    
+    <dl class="facts gpop" data-pop>
+      <div class="tile" style="--i:0"><dt>Talk or&nbsp;type</dt><dd>Say it out loud or write it down. Kix works either&nbsp;way.</dd></div>
+      <div class="tile" style="--i:1"><dt>Starts where you&nbsp;are</dt><dd>An idea you never acted on, a business three years in, a career the market is&nbsp;rewriting.</dd></div>
+      <div class="tile" style="--i:2"><dt>Tells the&nbsp;truth</dt><dd>Even when it doesn’t know the&nbsp;answer.</dd></div>
+      <div class="tile" style="--i:3"><dt>Draws your&nbsp;map</dt><dd>Your milestones come straight from the conversation, and redraw when things&nbsp;change.</dd></div>
+    </dl>
   </div>
+  <div class="kp-wrap"></div>
 </section>
 
 <!-- 5. PILLARS -->
 <section id="pillars" aria-labelledby="h-pillars">
   <div class="kp-wrap">
     <span class="kp-eyebrow rv">Why Kix</span>
-    <h2 id="h-pillars" data-rv style="margin-top:14px">Action. Support. <em>A system that adapts.</em></h2>
+    <h2 id="h-pillars" data-rv style="margin-top:14px">Action. Support. <em>A system that&nbsp;adapts.</em></h2>
     <div class="pillars gpop" data-pop>
-      <div class="pillar gcard" style="--i:0"><span class="pn" aria-hidden="true">01</span><h3>Action</h3><p>Every milestone opens into steps small enough to finish. The next move is always on screen.</p><div class="proof">Milestones and Steps are unmetered. The work never costs a credit.</div></div>
-      <div class="pillar gcard" style="--i:1"><span class="pn" aria-hidden="true">02</span><h3>Support</h3><p>Kix is there at 11pm when the doubt shows up. Advisors are there when you want a person.</p><div class="proof">350 Kix Credits ≈ 90 minutes of conversation. They never expire.</div></div>
-      <div class="pillar gcard" style="--i:2"><span class="pn" aria-hidden="true">03</span><h3>System</h3><p>Your map redraws when something changes, so the plan keeps up with your life.</p><div class="proof">Built for a few hours a week, alongside a day job.</div></div>
+      <div class="pillar gcard" style="--i:0"><span class="pn" aria-hidden="true">01</span><h3>Action</h3><p>Every milestone opens into steps small enough to finish. The next move is always on&nbsp;screen.</p><div class="proof">Milestones and Steps are unmetered. The work never costs a&nbsp;credit.</div></div>
+      <div class="pillar gcard" style="--i:1"><span class="pn" aria-hidden="true">02</span><h3>Support</h3><p>Kix is there at 11pm when the doubt shows up. Advisors are there when you want a&nbsp;person.</p><div class="proof">350 Kix Credits ≈ 90 minutes of conversation. They never&nbsp;expire.</div></div>
+      <div class="pillar gcard" style="--i:2"><span class="pn" aria-hidden="true">03</span><h3>System</h3><p>Your map redraws when something changes, so the plan keeps up with your&nbsp;life.</p><div class="proof">Built for a few hours a week, alongside a day&nbsp;job.</div></div>
     </div>
     
   </div>
@@ -524,72 +574,38 @@ html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
 <section id="community" aria-labelledby="h-com">
   <div class="kp-wrap">
     <span class="kp-eyebrow rv">Community</span>
-    <h2 id="h-com" data-rv style="margin-top:14px">Build next to people <em>a week ahead of you.</em></h2>
+    <h2 id="h-com" data-rv style="margin-top:14px">Build next to people <em>a week ahead of&nbsp;you.</em></h2>
     <div class="stories gpop" data-pop>
       <figure class="story" style="margin:0;--i:0">
-        <blockquote>“Where was SideKix when I was starting to build? I wish I had a tool like this.”</blockquote>
-        <figcaption class="by"><i aria-hidden="true">ZB</i><span><b>Zuben Bastani</b>President and Founder, ReachWell</span></figcaption>
+        <blockquote>“Where was SideKix when I was starting to build? I wish I had a tool like&nbsp;this.”</blockquote>
+        <figcaption class="by"><i aria-hidden="true">ZB</i><span><b>Zuben Bastani</b>President and Founder,&nbsp;ReachWell</span></figcaption>
       </figure>
       <figure class="story" style="margin:0;--i:1">
-        <blockquote>“When we first started we googled everything and blindly trusted it. Now we can message another female baker for support!”</blockquote>
-        <figcaption class="by"><i aria-hidden="true">L+K</i><span><b>Lauren Wright and Keala Yu</b>Owners, Pie Slayer</span></figcaption>
+        <blockquote>“When we first started we googled everything and blindly trusted it. Now we can message another female baker for&nbsp;support!”</blockquote>
+        <figcaption class="by"><i aria-hidden="true">L+K</i><span><b>Lauren Wright and Keala&nbsp;Yu</b>Owners, Pie&nbsp;Slayer</span></figcaption>
       </figure>
       <figure class="story" style="margin:0;--i:2">
-        <blockquote>“This isn’t another ‘let me make you rich’ product. It’s the human side of owning a business, and that’s what people need.”</blockquote>
-        <figcaption class="by"><i aria-hidden="true">NC</i><span><b>Nathan Coury</b>Owner, Freak Bros Pizza</span></figcaption>
+        <blockquote>“This isn’t another ‘let me make you rich’ product. It’s the human side of owning a business, and that’s what people&nbsp;need.”</blockquote>
+        <figcaption class="by"><i aria-hidden="true">NC</i><span><b>Nathan Coury</b>Owner, Freak Bros&nbsp;Pizza</span></figcaption>
       </figure>
     </div>
     
   </div>
 </section>
 
-<!-- 3. MEET KIX -->
-<section id="meet" aria-labelledby="h-meet">
-  <div class="kp-wrap meet">
-    <div>
-      <span class="kp-eyebrow rv">Meet Kix</span>
-      <h2 id="h-meet" data-rv style="margin-top:14px">A guide that <em>listens first.</em></h2>
-      <p class="defn">Kix is your <b>Entrepreneurial Support Guide</b> within the SideKix app.</p>
-    </div>
-    <dl class="facts gpop" data-pop>
-      <div class="tile" style="--i:0"><dt>Talk or type</dt><dd>Say it out loud or write it down. Kix works either way.</dd></div>
-      <div class="tile" style="--i:1"><dt>Starts where you are</dt><dd>An idea you never acted on, a business three years in, a career the market is rewriting.</dd></div>
-      <div class="tile" style="--i:2"><dt>Tells the truth</dt><dd>Even when it doesn’t know the answer.</dd></div>
-      <div class="tile" style="--i:3"><dt>Draws your map</dt><dd>Your milestones come straight from the conversation, and redraw when things change.</dd></div>
-    </dl>
-  </div>
-  <div class="kp-wrap"></div>
-</section>
 
 <!-- 7. ADVISORS -->
 <section id="advisors" aria-labelledby="h-adv">
   <div class="kp-wrap">
     <span class="kp-eyebrow rv">Advisors</span>
     <h2 id="h-adv" data-rv style="margin-top:14px">Someone has stood <em>exactly here.</em></h2>
-    <p class="kp-lede" style="margin-top:16px">Kix is the guide in your pocket. Advisors are the people behind it: founders and operators matched to what you’re building.</p>
-    <div class="kp-advs"><div class="kp-adv"><img src="assets/kix/img/sarah-gould-202288.webp" alt="Sarah Gould" width="160" height="160" loading="lazy"><b>Sarah Gould</b><span>Leadership &amp; Second Order Change</span></div><div class="kp-adv"><img src="assets/kix/img/trent-potter-ed046c.webp" alt="Trent Potter" width="160" height="160" loading="lazy"><b>Trent Potter</b><span>Strategy, Culture &amp; Leadership</span></div><div class="kp-adv"><img src="assets/kix/img/ebony-baylock-fee13b.webp" alt="Ebony Baylock" width="160" height="160" loading="lazy"><b>Ebony Baylock</b><span>Sales &amp; Business Growth</span></div><div class="kp-adv"><img src="assets/kix/img/jeff-brandeis-fd5fb2.webp" alt="Jeff Brandeis" width="160" height="160" loading="lazy"><b>Jeff Brandeis</b><span>Revenue &amp; Sales Conversations</span></div><div class="kp-adv"><img src="assets/kix/img/javionn-malakhi-e66e30.webp" alt="Javionn Malakhi" width="160" height="160" loading="lazy"><b>Javionn Malakhi</b><span>Diagnostics &amp; Clarity</span></div></div>
+    <p class="kp-lede" style="margin-top:16px">Kix is the guide in your pocket. Advisors are the people behind it: founders and operators matched to what you’re&nbsp;building.</p>
+    <div class="kp-advs"><div class="kp-adv"><img src="assets/kix/img/sarah-gould-202288.webp" alt="Sarah Gould" width="160" height="160" loading="lazy"><b>Sarah Gould</b><span>Leadership &amp; Second Order&nbsp;Change</span></div><div class="kp-adv"><img src="assets/kix/img/trent-potter-ed046c.webp" alt="Trent Potter" width="160" height="160" loading="lazy"><b>Trent Potter</b><span>Strategy, Culture &amp;&nbsp;Leadership</span></div><div class="kp-adv"><img src="assets/kix/img/ebony-baylock-fee13b.webp" alt="Ebony Baylock" width="160" height="160" loading="lazy"><b>Ebony Baylock</b><span>Sales &amp; Business&nbsp;Growth</span></div><div class="kp-adv"><img src="assets/kix/img/jeff-brandeis-fd5fb2.webp" alt="Jeff Brandeis" width="160" height="160" loading="lazy"><b>Jeff Brandeis</b><span>Revenue &amp; Sales&nbsp;Conversations</span></div><div class="kp-adv"><img src="assets/kix/img/javionn-malakhi-e66e30.webp" alt="Javionn Malakhi" width="160" height="160" loading="lazy"><b>Javionn Malakhi</b><span>Diagnostics &amp;&nbsp;Clarity</span></div></div>
     <p class="advmore"><a href="/#kx-advisors">Meet all the Advisors <span aria-hidden="true">→</span></a></p>
     
   </div>
 </section>
 
-<!-- 2. PROBLEM -->
-<section id="problem" aria-labelledby="h-problem">
-  <div class="kp-wrap gap">
-    <span class="kp-eyebrow rv">The gap</span>
-    <div class="stat">174 million<small>Americans have had an idea for a business. Most of them are still holding it.</small></div>
-    <h2 id="h-problem" data-rv>Wanting to build is the easy part. <em>Knowing what comes next</em> is where it stalls.</h2>
-    <div class="bridge" id="bridge" aria-hidden="true">
-      <div class="br-row">
-        <span class="br-dot kp-a"><span class="br-lbl">Your idea</span></span>
-        <span class="br-track"><span class="br-s1"></span><span class="br-fill"></span><span class="br-spark"></span><span class="br-q">the next step<span class="br-qm">?</span></span></span>
-        <span class="br-dot kp-b"><span class="br-lbl">Your business</span></span>
-      </div>
-    </div>
-    <p class="src">Source: US Census Bureau data on Americans 15 and over who have had a business idea, as derived on sidekixhq.com/market-data.</p>
-    
-  </div>
-</section>
 
 <!-- 8b. FAQ -->
 <section id="faq" aria-labelledby="h-faq">
@@ -597,17 +613,26 @@ html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
     <span class="kp-eyebrow rv">Questions</span>
     <h2 id="h-faq" data-rv style="margin-top:14px">About <em>Kix.</em></h2>
     <div class="answers" style="margin-top:28px">
-      <details class="ans"><summary>What is Kix?</summary><p>Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of you.</p></details>
-      <details class="ans"><summary>Is Kix a coach?</summary><p>No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside SideKix.”</p></details>
-      <details class="ans"><summary>Can I talk to Kix, or do I have to type?</summary><p>Either. You can speak or type, and Kix Credits measure the conversation the same way.</p></details>
-      <details class="ans"><summary>What does Kix cost?</summary><p>350 Kix Credits are $19 and cover up to 90 minutes of conversation with Kix. There’s no subscription, and credits never expire. Your Milestones and Steps never use credits. Memberships start at $39 a month.</p></details>
-      <details class="ans"><summary>Which phones does Kix work on?</summary><p>SideKix is on iPhone now. Android and the web are not available yet. Join the waitlist and you’ll be the first to know when your platform is live.</p></details>
-      <details class="ans"><summary>Is there a daily limit?</summary><p>Up to 90 minutes of conversation with Kix a day. Your Milestones and Steps stay open all day regardless.</p></details>
+      <details class="ans"><summary>What is&nbsp;Kix?</summary><p>Kix is your Entrepreneurial Support Guide within the SideKix app. It helps you plan, focus, and name the action you can take today, then puts the resource or the person who makes that action easier right in front of&nbsp;you.</p></details>
+      <details class="ans"><summary>Is Kix a&nbsp;coach?</summary><p>No. Kix is a guide. Asked directly what it is, Kix says: “I’m Kix, an AI system inside&nbsp;SideKix.”</p></details>
+      <details class="ans"><summary>Can I talk to Kix, or do I have to&nbsp;type?</summary><p>Either. You can speak or type, and Kix Credits measure the conversation the same&nbsp;way.</p></details>
+      <details class="ans"><summary>What does Kix&nbsp;cost?</summary><p>350 Kix Credits are $19 and cover up to 90 minutes of conversation with Kix. There’s no subscription, and credits never expire. Your Milestones and Steps never use credits. Memberships start at $39 a&nbsp;month.</p></details>
+      <details class="ans"><summary>Which phones does Kix work&nbsp;on?</summary><p>SideKix is on iPhone now. Android and the web are not available yet. Join the waitlist and you’ll be the first to know when your platform is&nbsp;live.</p></details>
+      <details class="ans"><summary>Is there a daily&nbsp;limit?</summary><p>Up to 90 minutes of conversation with Kix a day. Your Milestones and Steps stay open all day&nbsp;regardless.</p></details>
     </div>
     
   </div>
 </section>
 
+<section id="answers" aria-label="Kix’s answers in writing">
+  <div class="kp-wrap">
+    <details class="allans">
+      <summary>Read all of Kix’s&nbsp;answers</summary>
+      <p class="kp-lede">The same words Kix says when you tell it what’s in your way, for reading at your own&nbsp;pace.</p>
+      <div class="answers">
+<details class="ans"><summary>I don’t have the&nbsp;money</summary><p>Money’s usually the first wall people name, and it’s a real one. Often the better question is how little you need to find out if this works. What’s the smallest version you could sell to one person? Let’s price it out line by line tonight. If outside money makes sense after that, I’ll help you get ready before you ask for it, and show you where you’d actually&nbsp;fit.</p></details>
+  </div>
+</section>
 <!-- 9. FINAL CTA -->
 <section id="start" aria-labelledby="h-final">
   <div class="kp-wrap final">
@@ -616,57 +641,37 @@ html.rv-on .rv.in,html.rv-on [data-rv].in{opacity:1;transform:none}
     <div class="kp-row">
       <a class="kp-cta gold" data-dl="final" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">Download Kix</a>
     </div>
-    <p class="kx-rate"><span class="kx-stars" aria-hidden="true">★★★★★</span> Rated 5.0 on the App Store</p>
-    <div class="qrbox" id="qrbox"><div id="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" width="112" height="112" role="img" aria-label="QR code that opens Kix in the App Store" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path fill="#0E0C09" d="M4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM17 4h1v1h-1zM19 4h1v1h-1zM23 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM31 4h1v1h-1zM34 4h1v1h-1zM35 4h1v1h-1zM36 4h1v1h-1zM37 4h1v1h-1zM38 4h1v1h-1zM39 4h1v1h-1zM40 4h1v1h-1zM4 5h1v1h-1zM10 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM19 5h1v1h-1zM23 5h1v1h-1zM25 5h1v1h-1zM29 5h1v1h-1zM30 5h1v1h-1zM34 5h1v1h-1zM40 5h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM14 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1zM25 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM31 6h1v1h-1zM34 6h1v1h-1zM36 6h1v1h-1zM37 6h1v1h-1zM38 6h1v1h-1zM40 6h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM22 7h1v1h-1zM26 7h1v1h-1zM27 7h1v1h-1zM28 7h1v1h-1zM29 7h1v1h-1zM30 7h1v1h-1zM31 7h1v1h-1zM34 7h1v1h-1zM36 7h1v1h-1zM37 7h1v1h-1zM38 7h1v1h-1zM40 7h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM13 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM31 8h1v1h-1zM32 8h1v1h-1zM34 8h1v1h-1zM36 8h1v1h-1zM37 8h1v1h-1zM38 8h1v1h-1zM40 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM14 9h1v1h-1zM16 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM34 9h1v1h-1zM40 9h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM32 10h1v1h-1zM34 10h1v1h-1zM35 10h1v1h-1zM36 10h1v1h-1zM37 10h1v1h-1zM38 10h1v1h-1zM39 10h1v1h-1zM40 10h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM15 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM27 11h1v1h-1zM28 11h1v1h-1zM31 11h1v1h-1zM32 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM30 12h1v1h-1zM33 12h1v1h-1zM34 12h1v1h-1zM35 12h1v1h-1zM36 12h1v1h-1zM37 12h1v1h-1zM40 12h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM25 13h1v1h-1zM27 13h1v1h-1zM28 13h1v1h-1zM31 13h1v1h-1zM32 13h1v1h-1zM33 13h1v1h-1zM36 13h1v1h-1zM38 13h1v1h-1zM39 13h1v1h-1zM4 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM17 14h1v1h-1zM18 14h1v1h-1zM19 14h1v1h-1zM23 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM33 14h1v1h-1zM35 14h1v1h-1zM36 14h1v1h-1zM38 14h1v1h-1zM4 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM25 15h1v1h-1zM31 15h1v1h-1zM32 15h1v1h-1zM35 15h1v1h-1zM38 15h1v1h-1zM39 15h1v1h-1zM4 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM15 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM31 16h1v1h-1zM32 16h1v1h-1zM33 16h1v1h-1zM34 16h1v1h-1zM35 16h1v1h-1zM38 16h1v1h-1zM39 16h1v1h-1zM40 16h1v1h-1zM4 17h1v1h-1zM8 17h1v1h-1zM11 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM20 17h1v1h-1zM22 17h1v1h-1zM25 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM31 17h1v1h-1zM32 17h1v1h-1zM33 17h1v1h-1zM36 17h1v1h-1zM37 17h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM35 18h1v1h-1zM36 18h1v1h-1zM37 18h1v1h-1zM38 18h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM21 19h1v1h-1zM22 19h1v1h-1zM26 19h1v1h-1zM28 19h1v1h-1zM30 19h1v1h-1zM31 19h1v1h-1zM32 19h1v1h-1zM35 19h1v1h-1zM36 19h1v1h-1zM38 19h1v1h-1zM40 19h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM9 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM13 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM27 20h1v1h-1zM30 20h1v1h-1zM33 20h1v1h-1zM34 20h1v1h-1zM35 20h1v1h-1zM37 20h1v1h-1zM38 20h1v1h-1zM40 20h1v1h-1zM8 21h1v1h-1zM11 21h1v1h-1zM12 21h1v1h-1zM13 21h1v1h-1zM14 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM21 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM29 21h1v1h-1zM31 21h1v1h-1zM32 21h1v1h-1zM36 21h1v1h-1zM37 21h1v1h-1zM38 21h1v1h-1zM39 21h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM27 22h1v1h-1zM28 22h1v1h-1zM30 22h1v1h-1zM31 22h1v1h-1zM33 22h1v1h-1zM35 22h1v1h-1zM37 22h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM7 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM22 23h1v1h-1zM25 23h1v1h-1zM30 23h1v1h-1zM33 23h1v1h-1zM35 23h1v1h-1zM36 23h1v1h-1zM38 23h1v1h-1zM39 23h1v1h-1zM10 24h1v1h-1zM11 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM21 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM28 24h1v1h-1zM30 24h1v1h-1zM31 24h1v1h-1zM33 24h1v1h-1zM34 24h1v1h-1zM35 24h1v1h-1zM38 24h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM14 25h1v1h-1zM15 25h1v1h-1zM16 25h1v1h-1zM17 25h1v1h-1zM18 25h1v1h-1zM19 25h1v1h-1zM21 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM28 25h1v1h-1zM29 25h1v1h-1zM30 25h1v1h-1zM31 25h1v1h-1zM32 25h1v1h-1zM33 25h1v1h-1zM35 25h1v1h-1zM36 25h1v1h-1zM39 25h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM7 26h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM18 26h1v1h-1zM19 26h1v1h-1zM22 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM32 26h1v1h-1zM33 26h1v1h-1zM34 26h1v1h-1zM35 26h1v1h-1zM36 26h1v1h-1zM37 26h1v1h-1zM38 26h1v1h-1zM6 27h1v1h-1zM7 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM23 27h1v1h-1zM25 27h1v1h-1zM27 27h1v1h-1zM28 27h1v1h-1zM30 27h1v1h-1zM35 27h1v1h-1zM36 27h1v1h-1zM38 27h1v1h-1zM4 28h1v1h-1zM7 28h1v1h-1zM10 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM27 28h1v1h-1zM30 28h1v1h-1zM31 28h1v1h-1zM33 28h1v1h-1zM34 28h1v1h-1zM35 28h1v1h-1zM37 28h1v1h-1zM38 28h1v1h-1zM39 28h1v1h-1zM40 28h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM7 29h1v1h-1zM8 29h1v1h-1zM11 29h1v1h-1zM12 29h1v1h-1zM15 29h1v1h-1zM17 29h1v1h-1zM18 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM23 29h1v1h-1zM26 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM31 29h1v1h-1zM35 29h1v1h-1zM36 29h1v1h-1zM37 29h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM13 30h1v1h-1zM14 30h1v1h-1zM16 30h1v1h-1zM19 30h1v1h-1zM21 30h1v1h-1zM23 30h1v1h-1zM25 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1zM29 30h1v1h-1zM30 30h1v1h-1zM31 30h1v1h-1zM33 30h1v1h-1zM35 30h1v1h-1zM36 30h1v1h-1zM38 30h1v1h-1zM6 31h1v1h-1zM8 31h1v1h-1zM12 31h1v1h-1zM13 31h1v1h-1zM14 31h1v1h-1zM16 31h1v1h-1zM17 31h1v1h-1zM19 31h1v1h-1zM20 31h1v1h-1zM21 31h1v1h-1zM23 31h1v1h-1zM24 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM31 31h1v1h-1zM33 31h1v1h-1zM38 31h1v1h-1zM39 31h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM8 32h1v1h-1zM10 32h1v1h-1zM11 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM16 32h1v1h-1zM17 32h1v1h-1zM21 32h1v1h-1zM22 32h1v1h-1zM25 32h1v1h-1zM26 32h1v1h-1zM28 32h1v1h-1zM32 32h1v1h-1zM33 32h1v1h-1zM34 32h1v1h-1zM35 32h1v1h-1zM36 32h1v1h-1zM37 32h1v1h-1zM38 32h1v1h-1zM39 32h1v1h-1zM40 32h1v1h-1zM12 33h1v1h-1zM13 33h1v1h-1zM15 33h1v1h-1zM16 33h1v1h-1zM18 33h1v1h-1zM19 33h1v1h-1zM20 33h1v1h-1zM22 33h1v1h-1zM25 33h1v1h-1zM26 33h1v1h-1zM27 33h1v1h-1zM29 33h1v1h-1zM30 33h1v1h-1zM32 33h1v1h-1zM36 33h1v1h-1zM39 33h1v1h-1zM4 34h1v1h-1zM5 34h1v1h-1zM6 34h1v1h-1zM7 34h1v1h-1zM8 34h1v1h-1zM9 34h1v1h-1zM10 34h1v1h-1zM12 34h1v1h-1zM13 34h1v1h-1zM14 34h1v1h-1zM15 34h1v1h-1zM16 34h1v1h-1zM18 34h1v1h-1zM19 34h1v1h-1zM21 34h1v1h-1zM24 34h1v1h-1zM27 34h1v1h-1zM28 34h1v1h-1zM29 34h1v1h-1zM30 34h1v1h-1zM32 34h1v1h-1zM34 34h1v1h-1zM36 34h1v1h-1zM4 35h1v1h-1zM10 35h1v1h-1zM15 35h1v1h-1zM16 35h1v1h-1zM18 35h1v1h-1zM19 35h1v1h-1zM20 35h1v1h-1zM21 35h1v1h-1zM22 35h1v1h-1zM23 35h1v1h-1zM24 35h1v1h-1zM26 35h1v1h-1zM28 35h1v1h-1zM30 35h1v1h-1zM31 35h1v1h-1zM32 35h1v1h-1zM36 35h1v1h-1zM37 35h1v1h-1zM38 35h1v1h-1zM39 35h1v1h-1zM40 35h1v1h-1zM4 36h1v1h-1zM6 36h1v1h-1zM7 36h1v1h-1zM8 36h1v1h-1zM10 36h1v1h-1zM12 36h1v1h-1zM15 36h1v1h-1zM17 36h1v1h-1zM22 36h1v1h-1zM26 36h1v1h-1zM27 36h1v1h-1zM30 36h1v1h-1zM32 36h1v1h-1zM33 36h1v1h-1zM34 36h1v1h-1zM35 36h1v1h-1zM36 36h1v1h-1zM37 36h1v1h-1zM38 36h1v1h-1zM40 36h1v1h-1zM4 37h1v1h-1zM6 37h1v1h-1zM7 37h1v1h-1zM8 37h1v1h-1zM10 37h1v1h-1zM15 37h1v1h-1zM20 37h1v1h-1zM21 37h1v1h-1zM23 37h1v1h-1zM24 37h1v1h-1zM27 37h1v1h-1zM28 37h1v1h-1zM29 37h1v1h-1zM31 37h1v1h-1zM32 37h1v1h-1zM33 37h1v1h-1zM34 37h1v1h-1zM35 37h1v1h-1zM40 37h1v1h-1zM4 38h1v1h-1zM6 38h1v1h-1zM7 38h1v1h-1zM8 38h1v1h-1zM10 38h1v1h-1zM13 38h1v1h-1zM14 38h1v1h-1zM17 38h1v1h-1zM18 38h1v1h-1zM20 38h1v1h-1zM21 38h1v1h-1zM22 38h1v1h-1zM24 38h1v1h-1zM25 38h1v1h-1zM26 38h1v1h-1zM27 38h1v1h-1zM28 38h1v1h-1zM29 38h1v1h-1zM31 38h1v1h-1zM32 38h1v1h-1zM34 38h1v1h-1zM4 39h1v1h-1zM10 39h1v1h-1zM15 39h1v1h-1zM18 39h1v1h-1zM21 39h1v1h-1zM22 39h1v1h-1zM25 39h1v1h-1zM26 39h1v1h-1zM27 39h1v1h-1zM28 39h1v1h-1zM30 39h1v1h-1zM31 39h1v1h-1zM36 39h1v1h-1zM38 39h1v1h-1zM39 39h1v1h-1zM4 40h1v1h-1zM5 40h1v1h-1zM6 40h1v1h-1zM7 40h1v1h-1zM8 40h1v1h-1zM9 40h1v1h-1zM10 40h1v1h-1zM12 40h1v1h-1zM13 40h1v1h-1zM17 40h1v1h-1zM18 40h1v1h-1zM19 40h1v1h-1zM21 40h1v1h-1zM23 40h1v1h-1zM24 40h1v1h-1zM25 40h1v1h-1zM28 40h1v1h-1zM31 40h1v1h-1zM34 40h1v1h-1zM35 40h1v1h-1zM37 40h1v1h-1zM38 40h1v1h-1zM39 40h1v1h-1zM40 40h1v1h-1z"/></svg></div><div><b style="color:#FFF3D2">On a computer?</b><br><span class="small">Scan with your iPhone camera to open Kix in the App Store.</span></div></div>
+    <p class="kx-rate"><span class="kx-stars" aria-hidden="true">★★★★★</span> Rated 5.0 on the App&nbsp;Store</p>
+    <div class="qrbox" id="qrbox"><div id="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" width="112" height="112" role="img" aria-label="QR code that opens Kix in the App Store" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path fill="#0E0C09" d="M4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM17 4h1v1h-1zM19 4h1v1h-1zM23 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM31 4h1v1h-1zM34 4h1v1h-1zM35 4h1v1h-1zM36 4h1v1h-1zM37 4h1v1h-1zM38 4h1v1h-1zM39 4h1v1h-1zM40 4h1v1h-1zM4 5h1v1h-1zM10 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM19 5h1v1h-1zM23 5h1v1h-1zM25 5h1v1h-1zM29 5h1v1h-1zM30 5h1v1h-1zM34 5h1v1h-1zM40 5h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM14 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1zM25 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM31 6h1v1h-1zM34 6h1v1h-1zM36 6h1v1h-1zM37 6h1v1h-1zM38 6h1v1h-1zM40 6h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM22 7h1v1h-1zM26 7h1v1h-1zM27 7h1v1h-1zM28 7h1v1h-1zM29 7h1v1h-1zM30 7h1v1h-1zM31 7h1v1h-1zM34 7h1v1h-1zM36 7h1v1h-1zM37 7h1v1h-1zM38 7h1v1h-1zM40 7h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM13 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM31 8h1v1h-1zM32 8h1v1h-1zM34 8h1v1h-1zM36 8h1v1h-1zM37 8h1v1h-1zM38 8h1v1h-1zM40 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM14 9h1v1h-1zM16 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM34 9h1v1h-1zM40 9h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM32 10h1v1h-1zM34 10h1v1h-1zM35 10h1v1h-1zM36 10h1v1h-1zM37 10h1v1h-1zM38 10h1v1h-1zM39 10h1v1h-1zM40 10h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM15 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM27 11h1v1h-1zM28 11h1v1h-1zM31 11h1v1h-1zM32 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM30 12h1v1h-1zM33 12h1v1h-1zM34 12h1v1h-1zM35 12h1v1h-1zM36 12h1v1h-1zM37 12h1v1h-1zM40 12h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM25 13h1v1h-1zM27 13h1v1h-1zM28 13h1v1h-1zM31 13h1v1h-1zM32 13h1v1h-1zM33 13h1v1h-1zM36 13h1v1h-1zM38 13h1v1h-1zM39 13h1v1h-1zM4 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM17 14h1v1h-1zM18 14h1v1h-1zM19 14h1v1h-1zM23 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM33 14h1v1h-1zM35 14h1v1h-1zM36 14h1v1h-1zM38 14h1v1h-1zM4 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM25 15h1v1h-1zM31 15h1v1h-1zM32 15h1v1h-1zM35 15h1v1h-1zM38 15h1v1h-1zM39 15h1v1h-1zM4 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM15 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM31 16h1v1h-1zM32 16h1v1h-1zM33 16h1v1h-1zM34 16h1v1h-1zM35 16h1v1h-1zM38 16h1v1h-1zM39 16h1v1h-1zM40 16h1v1h-1zM4 17h1v1h-1zM8 17h1v1h-1zM11 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM20 17h1v1h-1zM22 17h1v1h-1zM25 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM31 17h1v1h-1zM32 17h1v1h-1zM33 17h1v1h-1zM36 17h1v1h-1zM37 17h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM35 18h1v1h-1zM36 18h1v1h-1zM37 18h1v1h-1zM38 18h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM21 19h1v1h-1zM22 19h1v1h-1zM26 19h1v1h-1zM28 19h1v1h-1zM30 19h1v1h-1zM31 19h1v1h-1zM32 19h1v1h-1zM35 19h1v1h-1zM36 19h1v1h-1zM38 19h1v1h-1zM40 19h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM9 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM13 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM27 20h1v1h-1zM30 20h1v1h-1zM33 20h1v1h-1zM34 20h1v1h-1zM35 20h1v1h-1zM37 20h1v1h-1zM38 20h1v1h-1zM40 20h1v1h-1zM8 21h1v1h-1zM11 21h1v1h-1zM12 21h1v1h-1zM13 21h1v1h-1zM14 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM21 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM29 21h1v1h-1zM31 21h1v1h-1zM32 21h1v1h-1zM36 21h1v1h-1zM37 21h1v1h-1zM38 21h1v1h-1zM39 21h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM27 22h1v1h-1zM28 22h1v1h-1zM30 22h1v1h-1zM31 22h1v1h-1zM33 22h1v1h-1zM35 22h1v1h-1zM37 22h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM7 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM22 23h1v1h-1zM25 23h1v1h-1zM30 23h1v1h-1zM33 23h1v1h-1zM35 23h1v1h-1zM36 23h1v1h-1zM38 23h1v1h-1zM39 23h1v1h-1zM10 24h1v1h-1zM11 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM21 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM28 24h1v1h-1zM30 24h1v1h-1zM31 24h1v1h-1zM33 24h1v1h-1zM34 24h1v1h-1zM35 24h1v1h-1zM38 24h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM14 25h1v1h-1zM15 25h1v1h-1zM16 25h1v1h-1zM17 25h1v1h-1zM18 25h1v1h-1zM19 25h1v1h-1zM21 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM28 25h1v1h-1zM29 25h1v1h-1zM30 25h1v1h-1zM31 25h1v1h-1zM32 25h1v1h-1zM33 25h1v1h-1zM35 25h1v1h-1zM36 25h1v1h-1zM39 25h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM7 26h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM18 26h1v1h-1zM19 26h1v1h-1zM22 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM32 26h1v1h-1zM33 26h1v1h-1zM34 26h1v1h-1zM35 26h1v1h-1zM36 26h1v1h-1zM37 26h1v1h-1zM38 26h1v1h-1zM6 27h1v1h-1zM7 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM23 27h1v1h-1zM25 27h1v1h-1zM27 27h1v1h-1zM28 27h1v1h-1zM30 27h1v1h-1zM35 27h1v1h-1zM36 27h1v1h-1zM38 27h1v1h-1zM4 28h1v1h-1zM7 28h1v1h-1zM10 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM27 28h1v1h-1zM30 28h1v1h-1zM31 28h1v1h-1zM33 28h1v1h-1zM34 28h1v1h-1zM35 28h1v1h-1zM37 28h1v1h-1zM38 28h1v1h-1zM39 28h1v1h-1zM40 28h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM7 29h1v1h-1zM8 29h1v1h-1zM11 29h1v1h-1zM12 29h1v1h-1zM15 29h1v1h-1zM17 29h1v1h-1zM18 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM23 29h1v1h-1zM26 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM31 29h1v1h-1zM35 29h1v1h-1zM36 29h1v1h-1zM37 29h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM13 30h1v1h-1zM14 30h1v1h-1zM16 30h1v1h-1zM19 30h1v1h-1zM21 30h1v1h-1zM23 30h1v1h-1zM25 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1zM29 30h1v1h-1zM30 30h1v1h-1zM31 30h1v1h-1zM33 30h1v1h-1zM35 30h1v1h-1zM36 30h1v1h-1zM38 30h1v1h-1zM6 31h1v1h-1zM8 31h1v1h-1zM12 31h1v1h-1zM13 31h1v1h-1zM14 31h1v1h-1zM16 31h1v1h-1zM17 31h1v1h-1zM19 31h1v1h-1zM20 31h1v1h-1zM21 31h1v1h-1zM23 31h1v1h-1zM24 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM31 31h1v1h-1zM33 31h1v1h-1zM38 31h1v1h-1zM39 31h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM8 32h1v1h-1zM10 32h1v1h-1zM11 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM16 32h1v1h-1zM17 32h1v1h-1zM21 32h1v1h-1zM22 32h1v1h-1zM25 32h1v1h-1zM26 32h1v1h-1zM28 32h1v1h-1zM32 32h1v1h-1zM33 32h1v1h-1zM34 32h1v1h-1zM35 32h1v1h-1zM36 32h1v1h-1zM37 32h1v1h-1zM38 32h1v1h-1zM39 32h1v1h-1zM40 32h1v1h-1zM12 33h1v1h-1zM13 33h1v1h-1zM15 33h1v1h-1zM16 33h1v1h-1zM18 33h1v1h-1zM19 33h1v1h-1zM20 33h1v1h-1zM22 33h1v1h-1zM25 33h1v1h-1zM26 33h1v1h-1zM27 33h1v1h-1zM29 33h1v1h-1zM30 33h1v1h-1zM32 33h1v1h-1zM36 33h1v1h-1zM39 33h1v1h-1zM4 34h1v1h-1zM5 34h1v1h-1zM6 34h1v1h-1zM7 34h1v1h-1zM8 34h1v1h-1zM9 34h1v1h-1zM10 34h1v1h-1zM12 34h1v1h-1zM13 34h1v1h-1zM14 34h1v1h-1zM15 34h1v1h-1zM16 34h1v1h-1zM18 34h1v1h-1zM19 34h1v1h-1zM21 34h1v1h-1zM24 34h1v1h-1zM27 34h1v1h-1zM28 34h1v1h-1zM29 34h1v1h-1zM30 34h1v1h-1zM32 34h1v1h-1zM34 34h1v1h-1zM36 34h1v1h-1zM4 35h1v1h-1zM10 35h1v1h-1zM15 35h1v1h-1zM16 35h1v1h-1zM18 35h1v1h-1zM19 35h1v1h-1zM20 35h1v1h-1zM21 35h1v1h-1zM22 35h1v1h-1zM23 35h1v1h-1zM24 35h1v1h-1zM26 35h1v1h-1zM28 35h1v1h-1zM30 35h1v1h-1zM31 35h1v1h-1zM32 35h1v1h-1zM36 35h1v1h-1zM37 35h1v1h-1zM38 35h1v1h-1zM39 35h1v1h-1zM40 35h1v1h-1zM4 36h1v1h-1zM6 36h1v1h-1zM7 36h1v1h-1zM8 36h1v1h-1zM10 36h1v1h-1zM12 36h1v1h-1zM15 36h1v1h-1zM17 36h1v1h-1zM22 36h1v1h-1zM26 36h1v1h-1zM27 36h1v1h-1zM30 36h1v1h-1zM32 36h1v1h-1zM33 36h1v1h-1zM34 36h1v1h-1zM35 36h1v1h-1zM36 36h1v1h-1zM37 36h1v1h-1zM38 36h1v1h-1zM40 36h1v1h-1zM4 37h1v1h-1zM6 37h1v1h-1zM7 37h1v1h-1zM8 37h1v1h-1zM10 37h1v1h-1zM15 37h1v1h-1zM20 37h1v1h-1zM21 37h1v1h-1zM23 37h1v1h-1zM24 37h1v1h-1zM27 37h1v1h-1zM28 37h1v1h-1zM29 37h1v1h-1zM31 37h1v1h-1zM32 37h1v1h-1zM33 37h1v1h-1zM34 37h1v1h-1zM35 37h1v1h-1zM40 37h1v1h-1zM4 38h1v1h-1zM6 38h1v1h-1zM7 38h1v1h-1zM8 38h1v1h-1zM10 38h1v1h-1zM13 38h1v1h-1zM14 38h1v1h-1zM17 38h1v1h-1zM18 38h1v1h-1zM20 38h1v1h-1zM21 38h1v1h-1zM22 38h1v1h-1zM24 38h1v1h-1zM25 38h1v1h-1zM26 38h1v1h-1zM27 38h1v1h-1zM28 38h1v1h-1zM29 38h1v1h-1zM31 38h1v1h-1zM32 38h1v1h-1zM34 38h1v1h-1zM4 39h1v1h-1zM10 39h1v1h-1zM15 39h1v1h-1zM18 39h1v1h-1zM21 39h1v1h-1zM22 39h1v1h-1zM25 39h1v1h-1zM26 39h1v1h-1zM27 39h1v1h-1zM28 39h1v1h-1zM30 39h1v1h-1zM31 39h1v1h-1zM36 39h1v1h-1zM38 39h1v1h-1zM39 39h1v1h-1zM4 40h1v1h-1zM5 40h1v1h-1zM6 40h1v1h-1zM7 40h1v1h-1zM8 40h1v1h-1zM9 40h1v1h-1zM10 40h1v1h-1zM12 40h1v1h-1zM13 40h1v1h-1zM17 40h1v1h-1zM18 40h1v1h-1zM19 40h1v1h-1zM21 40h1v1h-1zM23 40h1v1h-1zM24 40h1v1h-1zM25 40h1v1h-1zM28 40h1v1h-1zM31 40h1v1h-1zM34 40h1v1h-1zM35 40h1v1h-1zM37 40h1v1h-1zM38 40h1v1h-1zM39 40h1v1h-1zM40 40h1v1h-1z"/></svg></div><div><b style="color:#FFF3D2">On a&nbsp;computer?</b><br><span class="small">Scan with your iPhone camera to open Kix in the App&nbsp;Store.</span></div></div>
     <div class="moves" id="moves">
       <a class="move" data-dl="credits" href="https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359">
-        <span class="mv-k">Talk it through</span>
+        <span class="mv-k">Talk it&nbsp;through</span>
         <span class="mv-v">$19</span>
-        <span class="mv-d">350 Kix Credits, about 90 minutes with Kix. One-time, and they never expire.</span>
+        <span class="mv-d">350 Kix Credits, about 90 minutes with Kix. One-time, and they never&nbsp;expire.</span>
         <span class="mv-go">Get credits in the app <span aria-hidden="true">→</span></span>
       </a>
       <a class="move" data-ev="membership" href="https://sidekixhq.com/membership.html">
         <span class="mv-k">Membership</span>
         <span class="mv-v">from $39<small>a month</small></span>
-        <span class="mv-d">Prepay now to lock your rate. Billing starts when your tier goes live.</span>
+        <span class="mv-d">Prepay now to lock your rate. Billing starts when your tier goes&nbsp;live.</span>
         <span class="mv-go">See membership <span aria-hidden="true">→</span></span>
       </a>
     </div>
-    <p class="small">iPhone first. On Android? <a href="https://sidekixhq.com/join.html">Join the waitlist</a> and we’ll tell you the day it lands.</p>
+    <p class="small">iPhone first. On Android? <a href="https://sidekixhq.com/join.html">Join the&nbsp;waitlist</a> and we’ll tell you the day it&nbsp;lands.</p>
     
   </div>
 </section>
 
-<!-- 4b. KIX'S ANSWERS IN WRITING -->
-<section id="answers" aria-labelledby="h-ans">
-  <div class="kp-wrap">
-    <span class="kp-eyebrow rv">Kix’s answers</span>
-    <h2 id="h-ans" data-rv style="margin-top:14px">Every answer, <em>in writing.</em></h2>
-    <p class="kp-lede" style="margin-top:14px">The same words Kix says above, for reading at your own pace.</p>
-    <div class="answers">
-      <details class="ans"><summary>I don’t have the money</summary><p>Money’s usually the first wall people name, and it’s a real one. Often the better question is how little you need to find out if this works. What’s the smallest version you could sell to one person? Let’s price it out line by line tonight. If outside money makes sense after that, I’ll help you get ready before you ask for it, and show you where you’d actually fit.</p></details>
-      <details class="ans"><summary>I don’t have the time</summary><p>Twenty minutes a night is enough to move something, as long as it’s the right twenty minutes. When could you protect three short blocks this week? Pick them now. I’ll hand you one step that fits each block, small enough to finish, and the plan keeps track so you don’t have to.</p></details>
-      <details class="ans"><summary>I don’t know where to start</summary><p>You don’t need the whole plan to start. You need the next step, and finding it is my job. What’s the idea in one sentence, the way you’d tell a friend? Write that down today. From there we’ll lay out the first few steps together, in an order that fits your life, and I’ll bring the training for each one when you get there.</p></details>
-      <details class="ans"><summary>What if it doesn’t work?</summary><p>That fear usually means this matters to you. So we aim to fail small, early and cheap, before anything big is riding on it. Which part are you most worried won’t work? Let’s test that part first, this week, with something you can try in an afternoon. Whatever happens, you’ll know more than you do now.</p></details>
-      <details class="ans"><summary>The doors aren’t open to me</summary><p>A lot of advice assumes you already have the money, the contacts, or the right title. Plenty of people building something don’t, and they build anyway. Which door feels most closed right now: money, people, or know how? Tell me, and I’ll find the people, programs and training that open it, and help you get ready to walk through.</p></details>
-      <details class="ans"><summary>I’m doing this alone</summary><p>Building alone is heavier than it looks from the outside, and you don’t have to carry all of it. Who’s one person you could tell about this today, even in a text? I’ll be here whenever you get stuck. And when you’re ready, I’ll connect you with people building something like yours, and advisors who’ve stood where you are.</p></details>
-      <details class="ans"><summary>It isn’t ready yet</summary><p>Ready usually shows up after people see it, not before. What’s the smallest piece you could show one person this week? Pick a date, show it as it is, and let their reaction tell you what to fix first.</p></details>
-      <details class="ans"><summary>Everything feels urgent</summary><p>When everything’s urgent, it’s hard to move anything. If only one thing moved this week, which would make the rest easier? Do that one first. I’ll hold the rest of the list so it isn’t sitting on you.</p></details>
-      <details class="ans"><summary>Something else</summary><p>Whatever it is, say it the way it comes out. I’ll listen first, ask what I need to, and then we’ll work out the next step together.</p></details>
-    </div>
-    
-  </div>
-</section>
 
 </main>
 
 <footer>
   <div class="kp-wrap">
-    <nav aria-label="Explore SideKix" class="explore"><b>Explore SideKix</b><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a><a href="https://sidekixhq.com/">Home</a><a href="https://sidekixhq.com/how-it-works.html">How it works</a><a href="https://sidekixhq.com/membership.html">Membership</a><a href="https://sidekixhq.com/advisors.html">Advisors</a><a href="https://sidekixhq.com/partners.html">Partners</a><a href="https://sidekixhq.com/events.html">Events</a><a href="https://sidekixhq.com/library.html">Resources</a></nav>
-    <div class="eco"><b>Kix lives inside SideKix</b><span>Journey Maps</span><span>Kix</span><span>Advisors</span><span>Community</span><span>Discovery</span></div>
-    <p style="margin:22px 0 0;font-family:var(--display);font-style:italic;font-size:22px;color:#FFF3D2">Talent is everywhere. Opportunity is for all.</p>
-    <nav aria-label="Policies" class="legal"><a href="https://sidekixhq.com/terms.html">Terms of Use</a><a href="https://sidekixhq.com/privacy.html">Privacy Policy</a><a href="https://sidekixhq.com/cookies.html">Cookie Policy</a><a href="https://sidekixhq.com/purchase-policy.html">Purchase Policy</a><a href="https://sidekixhq.com/affiliate-policy.html">Affiliate Policy</a></nav>
-    <p class="small" style="margin-top:14px">SideKix is a product of Character Limit LLC, Wilmington, North Carolina.</p>
+    <nav aria-label="Explore SideKix" class="explore"><b>Explore SideKix</b><a href="https://sidekixhq.com/kix.html" aria-current="page">Kix</a><a href="https://sidekixhq.com/">Home</a><a href="https://sidekixhq.com/how-it-works.html">How it&nbsp;works</a><a href="https://sidekixhq.com/membership.html">Membership</a><a href="https://sidekixhq.com/advisors.html">Advisors</a><a href="https://sidekixhq.com/partners.html">Partners</a><a href="https://sidekixhq.com/events.html">Events</a><a href="https://sidekixhq.com/library.html">Resources</a></nav>
+    <div class="eco"><b>Kix lives inside&nbsp;SideKix</b><span>Journey Maps</span><span>Kix</span><span>Advisors</span><span>Community</span><span>Discovery</span></div>
+    <p style="margin:22px 0 0;font-family:var(--display);font-style:italic;font-size:22px;color:#FFF3D2">Talent is everywhere. Opportunity is for&nbsp;all.</p>
+    <nav aria-label="Policies" class="legal"><a href="https://sidekixhq.com/terms.html">Terms of&nbsp;Use</a><a href="https://sidekixhq.com/privacy.html">Privacy Policy</a><a href="https://sidekixhq.com/cookies.html">Cookie Policy</a><a href="https://sidekixhq.com/purchase-policy.html">Purchase Policy</a><a href="https://sidekixhq.com/affiliate-policy.html">Affiliate Policy</a></nav>
+    <p class="small" style="margin-top:14px">SideKix is a product of Character Limit LLC, Wilmington, North&nbsp;Carolina.</p>
   </div>
 </footer>
 
@@ -746,13 +751,13 @@ hearBtn.addEventListener('click',async()=>{
   try{
     if(!actx){actx=new (window.AudioContext||window.webkitAudioContext)();const src=actx.createMediaElementSource(audio);analyser=actx.createAnalyser();analyser.fftSize=1024;src.connect(analyser);analyser.connect(actx.destination);}
     await actx.resume();
-    if(audio.paused){hero.attachAnalyser(analyser);hero.setState('speaking');await audio.play();icon.innerHTML=PAUSE;cap.textContent='Kix is speaking.';track('kix_voice_play',{placement:'hero'});}
+    if(audio.paused){stopAll();chips.forEach(c=>c.setAttribute('aria-pressed','false'));hero.attachAnalyser(analyser);hero.setState('speaking');await audio.play();icon.innerHTML=PAUSE;cap.textContent='Kix is speaking.';track('kix_voice_play',{placement:'hero'});}
     else{audio.pause();}
-  }catch(e){cap.textContent='This browser would not play the clip. Try another browser or tap again.';}
+  }catch(e){cap.textContent='This browser would not play the clip. Try another browser or tap\u00a0again.';}
 });
 audio.addEventListener('timeupdate',()=>{hearT.textContent=fmt((audio.duration||39)-audio.currentTime)});
-audio.addEventListener('pause',()=>{icon.innerHTML=PLAY;hero.attachAnalyser(null);hero.setLevel(0);hero.setState('idle');});
-audio.addEventListener('ended',()=>{cap.textContent='That was Kix. Download Kix to talk it through.';track('kix_voice_complete',{});});
+audio.addEventListener('pause',()=>{icon.innerHTML=PLAY;if(typeof clipAudio==='undefined'||clipAudio.paused){hero.attachAnalyser(null);hero.setLevel(0);hero.setState('idle');}});
+audio.addEventListener('ended',()=>{cap.textContent='Kix wants to know: what’s in your\u00a0way?';track('kix_voice_complete',{});if(window.__kxMore)window.__kxMore(true,'ended');});
 
 /* downloads: iPhone goes to the store, a computer shows a QR code, Android goes to the waitlist */
 const STORE='https://apps.apple.com/us/app/sidekix-ai-business-guide/id6757533359';
@@ -769,7 +774,7 @@ document.querySelectorAll('[data-ev]').forEach(a=>a.addEventListener('click',()=
 document.querySelectorAll('.links a,.menupanel a,footer .explore a').forEach(a=>a.addEventListener('click',()=>track('nav_click',{to:a.textContent})));
 /* WCAG 2.2.2: anything that moves on its own can be paused */
 const motionBtn=$('#motionBtn');
-motionBtn.addEventListener('click',()=>{const on=!document.body.classList.contains('still');document.body.classList.toggle('still',on);motionBtn.setAttribute('aria-pressed',on?'true':'false');motionBtn.textContent=on?'Play motion':'Pause motion';if(!on){hero.kick();ask.kick();}track('motion_'+(on?'pause':'play'),{});});
+motionBtn.addEventListener('click',()=>{const on=!document.body.classList.contains('still');document.body.classList.toggle('still',on);motionBtn.setAttribute('aria-pressed',on?'true':'false');motionBtn.textContent=on?'Play motion':'Pause motion';if(!on){hero.kick();}track('motion_'+(on?'pause':'play'),{});});
 /* the next-move cards pop once they are on screen */
 const moves=$('#moves');
 if(moves && !matchMedia('(prefers-reduced-motion: reduce)').matches){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){moves.classList.add('in');o.disconnect();}},{threshold:.35}).observe(moves);}
@@ -785,7 +790,7 @@ new IntersectionObserver(es=>{dock.classList.toggle('kp-on',!es[0].isIntersectin
 
 /* What's in your way: the approved Kix scripts, one per barrier.
    clip: the Cartesia file for that script once generated (null until then). */
-const ask=new KixVoice($('#askCv'),{strands:16,maxSparks:120});ask.setState('listening');
+const ask=hero; /* Kix answers in the hero's voice visual */
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const SCRIPTS=[
  {k:'funding',clip:'assets/kix/audio/funding.mp3',t:"Money's usually the first wall people name, and it's a real one. Often the better question is how little you need to find out if this works. What's the smallest version you could sell to one person? Let's price it out line by line tonight. If outside money makes sense after that, I'll help you get ready before you ask for it, and show you where you'd actually fit."},
@@ -798,7 +803,7 @@ const SCRIPTS=[
  {k:'overwhelm',clip:'assets/kix/audio/overwhelm.mp3',t:"When everything's urgent, it's hard to move anything. If only one thing moved this week, which would make the rest easier? Do that one first. I'll hold the rest of the list so it isn't sitting on you."},
  {k:'something_else',clip:'assets/kix/audio/something_else.mp3',t:"Whatever it is, say it the way it comes out. I'll listen first, ask what I need to, and then we'll work out the next step together."}
 ];
-const said=$('#said'),keep=$('#keep'),steps=[...document.querySelectorAll('#steps li')],stateEl=$('#askState'),chips=[...document.querySelectorAll('#how .chip')];
+const said=$('#said'),keep=$('#keep'),steps=[],stateEl=$('#askState'),chips=[...document.querySelectorAll('#heroask .chip')];
 const clipAudio=new Audio();let clipCtx=null,clipAn=null;
 let timers=[],raf=null,run=0;
 /* the three steps light as you scroll through this section, and as Kix answers; whichever is further along wins */
@@ -815,12 +820,13 @@ function esc(x){return x.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;
 function stopAll(){timers.forEach(clearTimeout);timers=[];if(raf)cancelAnimationFrame(raf);raf=null;clipAudio.pause();ask.attachAnalyser(null);ask.setLevel(0);}
 function simulate(ms){const t0=performance.now();(function f(){const t=(performance.now()-t0)/1000;if(t*1000>ms){ask.setLevel(0);raf=null;return}ask.setLevel(.3+.5*Math.abs(Math.sin(t*9))*Math.abs(Math.sin(t*2.3)));raf=requestAnimationFrame(f)})()}
 async function speak(i,chip){
+  if(!audio.paused) audio.pause();
   stopAll();const my=++run;const S=SCRIPTS[i];
   chips.forEach(c=>c.setAttribute('aria-pressed',c===chip?'true':'false'));
   track('barrier_select',{barrier:S.k});
   keep.classList.remove('in');setStep(1);
   const sentences=S.t.match(/[^.?!]+[.?!]+/g).map(x=>x.trim());
-  said.innerHTML='<p class="you">You picked: '+esc(chip.textContent)+'</p>'+sentences.map(x=>'<p class="line'+(x.endsWith('?')?' qline':'')+'">'+esc(x.replace(/'/g,'’'))+'</p>').join('');
+  said.innerHTML='<p class="you">You picked: '+esc(chip.textContent)+'</p>'+sentences.map(x=>'<p class="line'+(x.endsWith('?')?' qline':'')+'">'+esc(x.replace(/'/g,'’')).replace(/ (\S+)$/,'\u00a0$1')+'</p>').join('');
   const lines=[...said.querySelectorAll('.line')];
   ask.setState('thinking');stateEl.textContent='Kix · thinking';
   /* pace captions at speaking speed, about 2.6 words a second, or to the clip's length when there is one */
@@ -834,6 +840,15 @@ async function speak(i,chip){
   timers.push(setTimeout(()=>{ if(my!==run)return; ask.attachAnalyser(null);ask.setState('listening');stateEl.textContent='Kix · listening';setStep(2);keep.classList.add('in');track('barrier_heard',{barrier:S.k}); },RM?0:lead+dur));
 }
 chips.forEach(c=>c.addEventListener('click',()=>speak(+c.dataset.b,c)));
+/* "Hear more from Kix": opens the barriers under the message; they also open when the message ends */
+const moreBtn=$('#moreBtn'),heroask=$('#heroask');
+window.__kxMore=(open,why)=>{ if(open===!heroask.hidden) return; heroask.hidden=!open; moreBtn.setAttribute('aria-expanded',open?'true':'false');
+  moreBtn.querySelector('.lbl').textContent=open?'Hide Kix’s\u00a0questions':'Hear more from\u00a0Kix';
+  if(open){ heroask.classList.remove('in'); void heroask.offsetWidth; heroask.classList.add('in'); track('kix_more_open',{from:why}); if(why==='ended') heroask.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'}); }
+  else { stopAll(); chips.forEach(c=>c.setAttribute('aria-pressed','false')); said.innerHTML=''; keep.classList.remove('in'); ask.setState('idle'); stateEl.textContent='Kix · listening'; } };
+moreBtn.addEventListener('click',()=>window.__kxMore(heroask.hidden,'button'));
+/* the link to the written answers opens them */
+$('#heroask .allink').addEventListener('click',e=>{ const d=$('#answers details'); if(d) d.open=true; });
 
 })();
 
