@@ -774,6 +774,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   .tier,.tiers.lit .tier{opacity:1 !important;transform:none !important}
   .beat{transition:none !important}
 }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style>
 .legal{position:relative;z-index:62;padding:128px 0 90px}
@@ -1129,7 +1132,7 @@ main > .wrap:first-of-type{padding-top:132px !important}
 /* the homepage leaves the document scrolling normally and clips nothing above
    the orb. matching that. */
 html, body, #kx-root{overflow-x:visible !important}
-main{overflow-x:clip}
+main{overflow-x:hidden;overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
 <style id="kx-mainnav">

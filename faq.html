@@ -774,6 +774,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   .tier,.tiers.lit .tier{opacity:1 !important;transform:none !important}
   .beat{transition:none !important}
 }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg}
 </style>
 <style>
 .faq{position:relative;z-index:62;padding:132px 0 80px}
@@ -784,7 +787,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 
 .faqbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 auto 14px;max-width:820px}
 .faqbar a{font-family:var(--util);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;
-  border:1px solid color-mix(in srgb,var(--c) 40%,transparent);color:var(--c);border-radius:999px;padding:0 18px;
+  border:1px solid transparent;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);color:var(--c);border-radius:999px;padding:0 18px;
   min-height:44px;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s,border-color .3s}
 .faqbar a:hover,.faqbar a:focus-visible{background:var(--c);color:#0C0B08;border-color:var(--c)}
 .faqbar a:focus-visible{outline:3px solid var(--gold-pale);outline-offset:3px}
@@ -805,7 +808,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .faqsec .sub{font-family:var(--util);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-dim);margin:0 0 18px 15px}
 
 details.qa{border-bottom:1px solid var(--line);transition:background .3s}
-details.qa[open]{background:linear-gradient(180deg,color-mix(in srgb,var(--c) 5%,transparent),transparent)}
+details.qa[open]{background:linear-gradient(180deg,transparent,transparent);background:linear-gradient(180deg,color-mix(in srgb,var(--c) 5%,transparent),transparent)}
 details.qa summary{cursor:pointer;list-style:none;padding:18px 44px 18px 0;position:relative;
   font-family:var(--body);font-size:16.5px;font-weight:500;color:#F4EACF;line-height:1.5;min-height:44px}
 details.qa summary::-webkit-details-marker{display:none}
@@ -1142,7 +1145,7 @@ main > .wrap:first-of-type{padding-top:132px !important}
 /* the homepage leaves the document scrolling normally and clips nothing above
    the orb. matching that. */
 html, body, #kx-root{overflow-x:visible !important}
-main{overflow-x:clip}
+main{overflow-x:hidden;overflow-x:clip}
 @supports not (overflow:clip){ main{overflow-x:hidden} }
 </style>
 <style id="kx-faqmail">

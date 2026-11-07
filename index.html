@@ -2620,7 +2620,7 @@ img{width:auto;height:auto}
    #kx-root is the pre-mount name for the same wrapper and is listed so the
    rule applies before the app takes over. */
 html, body{overflow-x:visible !important}
-#dc-root, #kx-root{overflow-x:clip}
+#dc-root, #kx-root{overflow-x:hidden;overflow-x:clip}
 @supports not (overflow:clip){
   #dc-root, #kx-root{overflow-x:hidden}
 }
@@ -2641,7 +2641,7 @@ html, body{overflow-x:visible !important}
 
 /* the wrapper: 16:9, and never taller than the space available */
 #kx-film > div{
-  width:min(94vw, calc(88svh * 16 / 9), 1280px) !important;
+  width:min(94vw, calc(88vh * 16 / 9), 1280px) !important;width:min(94vw, calc(88svh * 16 / 9), 1280px) !important;
   height:auto !important;
   max-width:none !important;
   aspect-ratio:16 / 9 !important;
@@ -2670,7 +2670,7 @@ html, body{overflow-x:visible !important}
 
 @media(max-width:560px){
   #kx-film{padding:10px}
-  #kx-film > div{width:min(96vw, calc(76svh * 16 / 9)) !important}
+  #kx-film > div{width:min(96vw, calc(76vh * 16 / 9)) !important;width:min(96vw, calc(76svh * 16 / 9)) !important}
   @supports not (height: 1svh){
     #kx-film > div{width:min(96vw, calc(76vh * 16 / 9)) !important}
   }
@@ -2679,7 +2679,7 @@ html, body{overflow-x:visible !important}
 /* a phone held sideways */
 @media(max-height:480px){
   #kx-film{padding:8px}
-  #kx-film > div{width:min(90vw, calc(84svh * 16 / 9)) !important}
+  #kx-film > div{width:min(90vw, calc(84vh * 16 / 9)) !important;width:min(90vw, calc(84svh * 16 / 9)) !important}
   @supports not (height: 1svh){
     #kx-film > div{width:min(90vw, calc(84vh * 16 / 9)) !important}
   }
@@ -3228,7 +3228,7 @@ html.kx-idle *::after{
   justify-content:center}
 
 #kx-film > div{
-  width:min(94vw, calc(88svh * 16 / 9), 1280px) !important;
+  width:min(94vw, calc(88vh * 16 / 9), 1280px) !important;width:min(94vw, calc(88svh * 16 / 9), 1280px) !important;
   height:auto !important;
   max-width:none !important;
   aspect-ratio:16 / 9 !important;
@@ -3256,7 +3256,7 @@ html.kx-idle *::after{
 @media(max-width:560px){
   #kx-film{padding:8px}
   #kx-film > div{
-    width:min(96vw, calc(78svh * 16 / 9)) !important;
+    width:min(96vw, calc(78vh * 16 / 9)) !important;width:min(96vw, calc(78svh * 16 / 9)) !important;
     border-radius:10px}
   @supports not (height: 1svh){
     #kx-film > div{width:min(96vw, calc(78vh * 16 / 9)) !important}
@@ -3266,7 +3266,7 @@ html.kx-idle *::after{
 /* a phone held sideways */
 @media(max-height:480px){
   #kx-film{padding:6px}
-  #kx-film > div{width:min(92vw, calc(86svh * 16 / 9)) !important}
+  #kx-film > div{width:min(92vw, calc(86vh * 16 / 9)) !important;width:min(92vw, calc(86svh * 16 / 9)) !important}
   @supports not (height: 1svh){
     #kx-film > div{width:min(92vw, calc(86vh * 16 / 9)) !important}
   }
@@ -3560,6 +3560,9 @@ input[type="file"]{min-height:24px}
     #kx-paint-reset{right:14px!important;top:14px!important}
     #kx-reward-card{max-height:90vh!important;overflow:auto!important}
   }
+
+/* kx-compat: plain defaults for browsers without @property */
+:root{--kxa:0deg;--b:0}
 </style>
 </helmet>
 <div id="kx-root" style="position:relative;width:100%;background:#0B0A06;">
