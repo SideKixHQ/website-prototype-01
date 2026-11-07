@@ -67,8 +67,8 @@ BODY = [
  ("q", "We built SideKix to walk alongside you, to help you navigate every one of those "
        "action-stopping decisions. Not with generic advice, but with guidance specific to your "
        "idea, your situation, and where you are right now. You are no longer doing this alone."),
- ("p", "Memberships and Kix Credits can be prepaid now at SideKixHQ.com, ahead of the platform "
-       "opening. More information is available at SideKixHQ.com."),
+ ("p", "SideKix is in beta. The SideKix app is available now on iPhone, and memberships and "
+       "Kix Credits can be prepaid at SideKixHQ.com. More information is available at SideKixHQ.com."),
 ]
 
 ATTRIB = "said James Martucci, Founder and Chief Executive Officer of SideKix HQ"
