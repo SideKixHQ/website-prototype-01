@@ -96,6 +96,56 @@ async function submitCheckoutFailure({ email, credits, packs, amountAttempted, c
   }
 }
 
+// A membership rate lock saved on the website (create-checkout-session.js,
+// setup mode): the card is saved, nothing is charged. Admin-Backend records
+// it (idempotent on the Checkout Session id), lists it in the admin panel's
+// rate locks, and when the tier goes live charges the locked rate, grants
+// the membership in the app and renews at that rate. promoCode is sent for
+// when Admin-Backend stores it; until then its validation drops the field,
+// and the discount still holds because it is in lockedMonthlyUsdCents.
+async function submitRateLock(session) {
+  const meta = session.metadata || {};
+  const lockedMonthlyUsdCents = parseInt(meta.lockedMonthlyUsdCents, 10);
+  const setupIntentId = typeof session.setup_intent === 'string' ? session.setup_intent : session.setup_intent?.id;
+  const stripeCustomerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
+  const email = session.customer_details?.email || session.customer_email;
+  if (!setupIntentId || !stripeCustomerId || !email || !meta.plan || !Number.isInteger(lockedMonthlyUsdCents)) {
+    // A redelivery would carry the same data, so retrying cannot help.
+    console.error('SideKix [website rate lock] missing data, not recorded:', {
+      sessionId: session.id, setupIntentId: !!setupIntentId, stripeCustomerId: !!stripeCustomerId,
+      email: !!email, plan: meta.plan, lockedMonthlyUsdCents,
+    });
+    return;
+  }
+  const lockRes = await fetch('https://api.sidekixhq.com/internal/website-membership/rate-locks', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-internal-key': process.env.WEBSITE_INTERNAL_KEY || '',
+      'x-device-agent': 'web',
+    },
+    body: JSON.stringify({
+      sessionId: session.id,
+      stripeCustomerId,
+      setupIntentId,
+      email,
+      plan: meta.plan,
+      lockedMonthlyUsdCents,
+      ...(meta.promoCode ? { promoCode: meta.promoCode } : {}),
+    }),
+  });
+  if (!lockRes.ok) {
+    const body = await lockRes.text().catch(() => '');
+    throw new Error(`Admin-Backend responded ${lockRes.status}: ${body}`);
+  }
+  console.log('SideKix website rate lock recorded:', {
+    sessionId: session.id,
+    plan: meta.plan,
+    lockedMonthlyUsdCents,
+    promoCode: meta.promoCode || null,
+  });
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).end();
@@ -129,6 +179,20 @@ module.exports = async (req, res) => {
     console.error('Webhook signature verification failed against all configured secrets.');
     res.status(400).send('Webhook Error: signature verification failed');
     return;
+  }
+
+  if (
+    event.type === 'checkout.session.completed' &&
+    event.data.object.mode === 'setup' &&
+    event.data.object.metadata?.type === 'membership_rate_lock'
+  ) {
+    try {
+      await submitRateLock(event.data.object);
+    } catch (err) {
+      console.error('SideKix [website rate lock] failed:', err);
+      res.status(502).json({ error: 'Could not record rate lock, will retry' });
+      return;
+    }
   }
 
   // Both cover fulfillment: `completed` fires immediately for card payments,
