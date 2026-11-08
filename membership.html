@@ -3662,47 +3662,6 @@ input[type="file"]{min-height:24px}
   #mcomet{transition:none}
 }
 </style>
-<style id="kx-comet-gift">
-/* ---- the gift half of the offer ----
-   Separated from the claim above it by a rule, because they are two different
-   actions: keep the rate, or pass it on. $19 is deliberate: it is the price of
-   one credit pack, so the reward is legible as a pack rather than an
-   arbitrary figure. */
-
-.mreward-gift{
-  margin-top:26px;padding-top:22px;
-  border-top:1px solid rgba(212,168,86,.22)}
-
-.mreward-gifthead{
-  font-family:var(--display);font-style:italic;font-weight:600;
-  font-size:19px;color:#FFF8E8;margin:0 0 8px}
-
-.mreward-giftbody{
-  font-family:var(--body);font-size:14.5px;line-height:1.6;
-  color:#CFC5AC;margin:0 0 16px;max-width:44ch}
-.mreward-giftbody b{color:#FFD166;font-weight:600}
-
-.mreward-giftrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-
-.mreward-codechip{
-  display:inline-flex;align-items:center;
-  min-height:42px;padding:0 16px;border-radius:10px;
-  font-family:var(--util);font-size:11.5px;letter-spacing:.18em;
-  color:#E8DEC4;background:#2F2613;
-  border:1px dashed #A1853E}
-
-.mreward-copybtn{
-  min-height:42px;padding:0 18px;border-radius:999px;cursor:pointer;
-  font-family:var(--body);font-size:14px;font-weight:600;
-  color:#E8DEC4;background:rgba(212,168,86,.10);
-  border:1px solid #A1853E;
-  transition:background .2s ease,color .2s ease,border-color .2s ease}
-.mreward-copybtn:hover{
-  background:#4A3A18;color:#FFF8E8;border-color:#F3E4A8}
-.mreward-copybtn:focus-visible{outline:3px solid #FFD166;outline-offset:3px}
-.mreward-copybtn[data-done]{
-  background:#D4A856;color:#1B1400;border-color:#F3E4A8}
-</style>
 <style id="kx-cursor-size">
 /* ---- the cursor field ----
    Two numbers matter here and I had only been looking at one of them. The ring
@@ -4898,15 +4857,7 @@ try{
       rate stays 10% off, every year you keep&nbsp;building.</p>
 <p class="mreward-timer">Offer expires in <b id="mreward-clock">23:59:59</b></p>
 <a class="mreward-cta kx-mag kx-trace" href="join.html?promo=SIDEKIX-WISH">Claim 10%&nbsp;now</a>
-<div class="mreward-gift">
-<p class="mreward-gifthead">Or gift the&nbsp;wish.</p>
-<p class="mreward-giftbody">Share your star. Friends get 10% off, and you earn
-    <b>$19 in Kix&nbsp;credit</b> when they&nbsp;join.</p>
-<div class="mreward-giftrow">
-<span class="mreward-codechip">SIDEKIX-WISH</span>
-<button class="mreward-copybtn" id="mreward-copy" type="button">Copy invite&nbsp;link</button>
 </div>
-</div></div>
 </div>
 <script id="kx-comet-js">
 /* The star drifts across every so often. Catching it opens the offer. Nothing
@@ -5010,35 +4961,6 @@ try{
   document.addEventListener('visibilitychange', function(){
     if(document.hidden) stop();
     else if(!panel.classList.contains('on')) schedule();
-  });
-})();
-</script>
-<script id="kx-comet-copy-js">
-/* Copy the invite link. Falls back to the older command on an insecure origin,
-   where the clipboard API is unavailable. */
-(function(){
-  var b=document.getElementById('mreward-copy');
-  if(!b) return;
-  b.addEventListener('click', function(){
-    var link = location.origin + '/join.html?promo=SIDEKIX-WISH';
-    function done(){
-      var was=b.textContent;
-      b.textContent='Copied';
-      b.setAttribute('data-done','1');
-      setTimeout(function(){ b.textContent=was; b.removeAttribute('data-done'); }, 1800);
-    }
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(link).then(done, fallback);
-    } else { fallback(); }
-    function fallback(){
-      try{
-        var t=document.createElement('textarea');
-        t.value=link; t.style.position='fixed'; t.style.opacity='0';
-        document.body.appendChild(t); t.select();
-        document.execCommand('copy');
-        document.body.removeChild(t); done();
-      }catch(e){ b.textContent='SIDEKIX-WISH'; }
-    }
   });
 })();
 </script>
