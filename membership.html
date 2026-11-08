@@ -3806,7 +3806,7 @@ input[type="file"]{min-height:24px}
 <li><i>✓</i><span>Live rooms, the feed and <b>community</b> challenges</span></li>
 <li><i>✓</i><span><b>Self-Discoveries</b> and the full resource&nbsp;library</span></li>
 </ul>
-<div class="acts"><a class="go" href="join.html?plan=access&amp;intent=prepay">Prepay and lock this&nbsp;rate</a><a class="wait" href="join.html?plan=access&amp;intent=waitlist">Join the&nbsp;waitlist</a></div>
+<div class="acts"><a class="go" href="join.html?plan=access&amp;intent=prepay">Lock this&nbsp;rate</a><a class="wait" href="join.html?plan=access&amp;intent=waitlist">Join the&nbsp;waitlist</a></div>
 </div>
 <div class="tier best" data-tier="core">
 <span class="flag">Most Popular</span>
@@ -3820,7 +3820,7 @@ input[type="file"]{min-height:24px}
 <li><i>✓</i><span>An <b>Advisor session</b> every six&nbsp;months</span></li>
 <li><i>✓</i><span>Invited into <b>Squads</b>, and private rooms on&nbsp;request</span></li>
 </ul>
-<div class="acts"><a class="go" href="join.html?plan=core&amp;intent=prepay">Prepay and lock this&nbsp;rate</a><a class="wait" href="join.html?plan=core&amp;intent=waitlist">Join the&nbsp;waitlist</a></div>
+<div class="acts"><a class="go" href="join.html?plan=core&amp;intent=prepay">Lock this&nbsp;rate</a><a class="wait" href="join.html?plan=core&amp;intent=waitlist">Join the&nbsp;waitlist</a></div>
 </div>
 <div class="tier" data-tier="premium">
 <div class="nm">Premium</div>
@@ -3833,10 +3833,10 @@ input[type="file"]{min-height:24px}
 <li><i>✓</i><span><b>Premium Grants</b> and <b>investor matching</b></span></li>
 <li><i>✓</i><span><b>Variable gamification</b>, built to keep you motivated over the long&nbsp;haul</span></li>
 </ul>
-<div class="acts"><a class="go" href="join.html?plan=premium&amp;intent=prepay">Prepay and lock this&nbsp;rate</a><a class="wait" href="join.html?plan=premium&amp;intent=waitlist">Join the&nbsp;waitlist</a></div>
+<div class="acts"><a class="go" href="join.html?plan=premium&amp;intent=prepay">Lock this&nbsp;rate</a><a class="wait" href="join.html?plan=premium&amp;intent=waitlist">Join the&nbsp;waitlist</a></div>
 </div>
 </div>
-<p class="afterres"><span class="arline">Prepaying charges your first month today and locks this rate for as long as you stay a member. Ongoing billing starts when your tier goes live, and we will email you before it does. Memberships aren't refundable. Not ready to&nbsp;pay?</span><a class="kxcta kxcta-quiet" href="join.html?intent=notify">Sign up for notifications<span aria-hidden="true"> →</span></a></p>
+<p class="afterres"><span class="arline">Locking saves your card and charges nothing today. When your tier goes live, your card is charged this rate each month for as long as you stay a member, and we will email you before it does. Memberships aren't refundable. Not ready&nbsp;yet?</span><a class="kxcta kxcta-quiet" href="join.html?intent=notify">Sign up for notifications<span aria-hidden="true"> →</span></a></p>
 <div class="freein">
 <p class="fi-c">For context, business coaching runs <b>$150 to $500 an&nbsp;hour</b>,
   usually on a monthly retainer from <b>$500</b> up.</p>
@@ -4853,10 +4853,10 @@ try{
 <button aria-label="Close" id="mreward-close" type="button"><span aria-hidden="true">✕</span></button>
 <p class="mreward-eyebrow">You caught a falling&nbsp;star</p>
 <h2 id="mreward-title">Keep 10% off for&nbsp;life.</h2>
-<p class="mreward-body">Start a SideKix membership in the next 24 hours and your
-      rate stays 10% off, every year you keep&nbsp;building.</p>
+<p class="mreward-body">Lock your membership rate in the next 24 hours and it
+      stays 10% off, every year you keep&nbsp;building.</p>
 <p class="mreward-timer">Offer expires in <b id="mreward-clock">23:59:59</b></p>
-<a class="mreward-cta kx-mag kx-trace" href="join.html?promo=SIDEKIX-WISH">Claim 10%&nbsp;now</a>
+<a class="mreward-cta kx-mag kx-trace" href="#membership">Claim 10%&nbsp;now</a>
 </div>
 </div>
 <script id="kx-comet-js">
@@ -4869,7 +4869,38 @@ try{
   if(!star||!panel) return;
 
   var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var raf=null, tick=null, flying=false;
+  var raf=null, tick=null, flying=false, offerOn=false;
+
+  /* The 24 hours is the server's (api/wish.js): catching the star gets a
+     signed token that carries its own expiry, kept in this browser so the
+     countdown does not restart, and checkout only honours it while it is
+     valid. The prepay links carry it to join.html. */
+  var KEY='kx_wish';
+  function stored(){
+    try{ var w=JSON.parse(localStorage.getItem(KEY)||'null'); if(w&&w.token&&w.expiresAt>Date.now()) return w; }catch(e){}
+    return null;
+  }
+  function carry(w){
+    document.querySelectorAll('a[href*="intent=prepay"]').forEach(function(a){
+      var u=new URL(a.getAttribute('href'), location.href);
+      if(w) u.searchParams.set('wish', w.token); else u.searchParams.delete('wish');
+      a.setAttribute('href', u.pathname.replace(/^\//,'')+u.search);
+    });
+  }
+  function claimWish(){
+    var w=stored();
+    if(w) return Promise.resolve(w);
+    return fetch('/api/wish',{method:'POST'}).then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(w){ try{ localStorage.setItem(KEY, JSON.stringify(w)); }catch(e){} return w; });
+  }
+  carry(stored());
+
+  var cta=panel.querySelector('.mreward-cta');
+  if(cta) cta.addEventListener('click', function(e){
+    e.preventDefault();
+    var w=stored(); carry(w); close();
+    var t=document.querySelector('.tiers'); if(t) t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});
+  });
 
   function open(){
     stop();
@@ -4879,8 +4910,11 @@ try{
     document.documentElement.style.overflow='hidden';
     var c=document.getElementById('mreward-close');
     if(c) c.focus();
-    var end=Date.now()+86400000;
+    var end=null;
+    claimWish().then(function(w){ end=w.expiresAt; carry(w); count(); })
+      .catch(function(){ offerOn=false; close(); });
     function count(){
+      if(!end) return;
       var ms=Math.max(0,end-Date.now()), s=Math.floor(ms/1000);
       var h=String(Math.floor(s/3600)).padStart(2,'0');
       var m=String(Math.floor(s%3600/60)).padStart(2,'0');
@@ -4946,17 +4980,23 @@ try{
   }
 
   function schedule(){
+    if(!offerOn) return;
     /* a long wait, so it reads as a rare thing rather than a nag */
     setTimeout(fly, 18000+Math.random()*22000);
   }
 
-  /* nothing moves for anyone who asked for that; the star waits to be clicked */
-  if(RM){
-    star.hidden=false;
-    star.style.transform='translate('+(innerWidth-120)+'px,120px)';
-  } else {
-    schedule();
-  }
+  /* the star only appears while the server can honour the offer */
+  fetch('/api/wish').then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if(!d||!d.enabled) return;
+    offerOn=true;
+    /* nothing moves for anyone who asked for that; the star waits to be clicked */
+    if(RM){
+      star.hidden=false;
+      star.style.transform='translate('+(innerWidth-120)+'px,120px)';
+    } else {
+      schedule();
+    }
+  }).catch(function(){});
 
   document.addEventListener('visibilitychange', function(){
     if(document.hidden) stop();

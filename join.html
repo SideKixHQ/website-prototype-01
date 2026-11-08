@@ -2194,12 +2194,21 @@ try{
         fetch('/api/create-checkout-session',{
           method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({type:'membership',plan:qp.get('plan'),email:em.value.trim()})
+          body:JSON.stringify({type:'membership',plan:qp.get('plan'),email:em.value.trim(),wish:qp.get('wish')||undefined})
         }).then(function(r){ return r.json(); }).then(function(data){
           if(data && data.url){ window.location.href=data.url; return; }
+          if(data && (data.error==='offer_expired' || data.error==='offer_invalid')) throw new Error(data.error);
           throw new Error('no checkout url');
-        }).catch(function(){
+        }).catch(function(e){
           if(btn){btn.disabled=false;btn.textContent=lbl;}
+          if(e && (e.message==='offer_expired' || e.message==='offer_invalid')){
+            qp.delete('wish'); history.replaceState(null,'',location.pathname+'?'+qp.toString());
+            if(window.__kxPlanNote) window.__kxPlanNote(null);
+            err.textContent = e.message==='offer_expired'
+              ? 'Your 10% offer has expired. You can still lock this rate at the regular price: press the button again.'
+              : 'That 10% offer could not be checked. You can still lock this rate at the regular price: press the button again.';
+            return;
+          }
           err.innerHTML='Something went wrong starting checkout. Please email <a href="mailto:joinus@sidekixhq.com" style="color:inherit">joinus@sidekixhq.com</a> and we will get you set up by hand.';
         });
         return;
@@ -2238,16 +2247,24 @@ try{
   var q=new URLSearchParams(location.search);
   var plan=(q.get('plan')||'').toLowerCase(), intent=(q.get('intent')||'').toLowerCase();
   if(!plan) return;
-  var P={access:{n:'Access',m:'$39 a month',y:'$399 a year'},
-         core:{n:'Core',m:'$99 a month',y:'$999 a year'},
-         premium:{n:'Premium',m:'$299 a month',y:'$3,300 a year'}};
+  var P={access:{n:'Access',m:'$39 a month',y:'$399 a year',c:3900},
+         core:{n:'Core',m:'$99 a month',y:'$999 a year',c:9900},
+         premium:{n:'Premium',m:'$299 a month',y:'$3,300 a year',c:29900}};
   var d=P[plan]; if(!d) return;
+  var money=function(c){ return '$'+(c/100).toFixed(2).replace(/\.00$/,''); };
+  /* the token's expiry is readable here; whether it is genuine is checked by checkout */
+  var wishExp=function(t){ try{ var b=t.split('.')[0].replace(/-/g,'+').replace(/_/g,'/'); return JSON.parse(atob(b)).exp||0; }catch(e){ return 0; } };
   var note=document.createElement('div');
   note.className='plannote on'; note.id='kx-plan';
-  note.innerHTML = intent==='prepay'
-    ? '<b>Locking in '+d.n+'</b><span>You are reserving <em>'+d.n+'</em> at <em>'+d.m+'</em>. '+
-      'Your rate holds for as long as you stay a member, and billing starts when the tier goes live.</span>'
-    : '<b>Waitlist &middot; '+d.n+'</b><span>We will tell you the moment <em>'+d.n+'</em> opens, at <em>'+d.m+'</em>.</span>';
+  window.__kxPlanNote=function(token){
+    var off = token && wishExp(token)>Date.now();
+    note.innerHTML = intent==='prepay'
+      ? '<b>Locking in '+d.n+'</b><span>You are reserving <em>'+d.n+'</em> at <em>'+
+        (off ? money(Math.round(d.c*0.9))+' a month</em>, 10% off for life (regular '+d.m.replace(' a month','')+')' : d.m+'</em>')+
+        '. Nothing is charged today: your card is saved, and charged this rate each month once the tier goes live, for as long as you stay a member.</span>'
+      : '<b>Waitlist &middot; '+d.n+'</b><span>We will tell you the moment <em>'+d.n+'</em> opens, at <em>'+d.m+'</em>.</span>';
+  };
+  window.__kxPlanNote(q.get('wish'));
   var card=document.querySelector('.card');
   if(card && card.parentNode) card.parentNode.insertBefore(note, card);
   var h=document.querySelector('.join h1');
@@ -2267,13 +2284,15 @@ try{
   if(q.get('reserved')!=='1') return;
   var P={access:{n:'Access',m:'$39 a month'},core:{n:'Core',m:'$99 a month'},premium:{n:'Premium',m:'$299 a month'}};
   var d=P[(q.get('plan')||'').toLowerCase()];
+  var locked=parseInt(q.get('locked'),10);
+  if(d && locked>0) d={n:d.n, m:'$'+(locked/100).toFixed(2).replace(/\.00$/,'')+' a month'};
   var f=document.getElementById('joinform'); if(f) f.style.display='none';
   var note=document.getElementById('kx-plan'); if(note) note.style.display='none';
   var t=document.getElementById('thanks');
   if(t){
     t.innerHTML = '<h2>You’re locked in'+(d?', '+d.n:'')+'.</h2>'+
-      '<p>Payment received'+(d?' — your rate of <b>'+d.m+'</b> is reserved':'')+
-      '. A receipt is on its way to your inbox, and we will email you the moment this tier goes live.</p>';
+      '<p>Your card is saved and nothing has been charged'+(d?'. Your rate of <b>'+d.m+'</b> is locked':'')+
+      ', and we will email you the moment this tier goes live.</p>';
     t.classList.add('on'); t.focus();
   }
 })();
