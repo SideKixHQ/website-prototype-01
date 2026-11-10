@@ -9,6 +9,23 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-10
+
+### Premium no longer says unlimited Kix
+
+Premium is not unlimited (James, 2026-11-04 and 2026-11-10): it has the highest
+Kix limit of the plans. membership.html said otherwise in four places, now changed:
+the Premium card's "Unlimited Kix on your Journey Map" reads "The highest Kix limit
+on your Journey Map"; the Core info tip's "Premium removes the limit altogether"
+reads "Premium raises it furthest"; in the comparison table, Premium's Journey Map
+cell reads "Full, highest Kix limit" and its Kix usage cell reads "Highest limit,
+top up with Kix Credits". No prices changed.
+
+Checked by rendering membership.html in Playwright (Chromium, 1280 wide): the
+Premium card and the opened comparison table show the new text, with no page errors.
+
+---
+
 ## 2026-10-26
 
 ### The prepay note says what the button does
