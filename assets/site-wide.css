@@ -263,10 +263,10 @@
    2.12em is two lines at the h1's 1.06 line-height, 5.17em is three at
    the lede's 1.72. Phones are left alone: the ledes run to five and six
    lines there, so reserving the tallest would cost 175px of dead space
-   to close a 32px gap. */
+   to close a 32px gap. The glossary has no disc row, so it is left out. */
 @media(min-width:601px){
-  .res:not(.prt) h1, .faq h1, .mkt .rhead{min-height:2.12em}
-  .res:not(.prt) .lede, .faq .lede, .mkt .lede{min-height:5.17em}
+  .res:not(.prt):not(.gloss) h1, .faq h1, .mkt .rhead{min-height:2.12em}
+  .res:not(.prt):not(.gloss) .lede, .faq .lede, .mkt .lede{min-height:5.17em}
 }
 
 /* ---------------------------------------------------------------
