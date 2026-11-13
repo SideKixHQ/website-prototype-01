@@ -9,6 +9,28 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-13
+
+### Cancelling keeps your data, and no 90-minute daily cap
+
+James decided (2026-11-13) that ending a membership deletes nothing, and that the
+site should not advertise a daily Kix limit.
+
+- faq.html, "What happens if I cancel my membership and then come back?": the answer
+  said information is archived "for up to 60 days". It now says cancelling deletes
+  nothing, and data is deleted only when the account is deleted, after a 14-day grace
+  period.
+- faq.html "Is there a limit on how much I can use in a day?" and kix.html /
+  build/kix-src.html "Is there a daily limit?": the answers said "up to 90 minutes a
+  day". Kix enforces a much higher safety limit (350 minutes), so the answers now say
+  Kix Credits set how much you can talk with Kix, and a high safety limit exists that
+  members don't reach in normal use.
+- The FAQPage structured data on both pages carries the same text and still parses as
+  JSON. "350 Kix Credits ≈ 90 minutes" (pack size, not a daily cap) is unchanged. No
+  prices changed.
+
+---
+
 ## 2026-11-10
 
 ### Premium no longer says unlimited Kix
