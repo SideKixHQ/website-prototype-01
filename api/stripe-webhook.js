@@ -58,6 +58,26 @@ async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged
   return { ok: true };
 }
 
+async function recordCreditsTaxTransaction(intent) {
+  const calculation = intent.metadata?.taxCalculationId;
+  if (!calculation) return null;
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2026-07-29.dahlia' });
+  try {
+    const transaction = await stripe.tax.transactions.createFromCalculation(
+      { calculation, reference: intent.id },
+      { idempotencyKey: `sidekix-website-credits-tax-${intent.id}` },
+    );
+    console.log('SideKix website credits tax recorded:', { paymentIntentId: intent.id, taxTransactionId: transaction.id });
+    return transaction.id;
+  } catch (err) {
+    if (err?.type === 'StripeInvalidRequestError' && /reference/i.test(err?.message ?? '')) {
+      console.log('SideKix website credits tax already recorded for', intent.id);
+      return null;
+    }
+    throw err;
+  }
+}
+
 // The failed-payment counterpart to submitCreditsClaim above — previously a
 // declined card or an abandoned checkout left no record anywhere at all.
 // Unlike a successful claim, there's nothing to grant here, so a missing
@@ -277,6 +297,13 @@ module.exports = async (req, res) => {
     } catch (err) {
       console.error('SideKix [website credits claim] failed:', err);
       res.status(502).json({ error: 'Could not record credits claim, will retry' });
+      return;
+    }
+    try {
+      await recordCreditsTaxTransaction(intent);
+    } catch (err) {
+      console.error('SideKix [website credits tax] failed:', err);
+      res.status(502).json({ error: 'Could not record tax transaction, will retry' });
       return;
     }
   }

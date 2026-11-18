@@ -1,6 +1,8 @@
 const Stripe = require('stripe');
 const { getCreditsPricing, getMembershipPlans } = require('./lib/live-pricing');
 const wish = require('./lib/wish');
+const { isSalesTaxEnabled } = require('./lib/sales-tax');
+const { creditsTaxCode } = require('./lib/credits-tax');
 
 // Server-defined pricing only — the client sends an identifier (plan/packs),
 // never an amount. Fetched live from Admin-Backend (see lib/live-pricing.js)
@@ -15,6 +17,17 @@ function randomSuffix(length) {
     out += letters[Math.floor(Math.random() * letters.length)];
   }
   return out;
+}
+
+async function taxedLineItem(stripe, item) {
+  return {
+    ...item,
+    price_data: {
+      ...item.price_data,
+      tax_behavior: 'exclusive',
+      product_data: { ...item.price_data.product_data, tax_code: await creditsTaxCode(stripe) },
+    },
+  };
 }
 
 module.exports = async (req, res) => {
@@ -117,6 +130,8 @@ module.exports = async (req, res) => {
     },
   };
 
+  const creditsTaxed = type === 'credits' && isSalesTaxEnabled();
+
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2026-07-29.dahlia',
@@ -139,10 +154,11 @@ module.exports = async (req, res) => {
         })
       : await stripe.checkout.sessions.create({
           mode: 'payment',
-          line_items: [lineItem],
+          line_items: [creditsTaxed ? await taxedLineItem(stripe, lineItem) : lineItem],
           success_url: successUrl,
           cancel_url: cancelUrl,
           metadata,
+          ...(creditsTaxed ? { automatic_tax: { enabled: true }, billing_address_collection: 'required' } : {}),
           ...(email ? { customer_email: email } : {}),
           integration_identifier: `sidekix-website-${randomSuffix(8)}`,
           ...sharedText,
