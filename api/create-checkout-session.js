@@ -1,6 +1,7 @@
 const Stripe = require('stripe');
 const { getCreditsPricing, getMembershipPlans } = require('./lib/live-pricing');
 const wish = require('./lib/wish');
+const { isSalesTaxEnabled } = require('./lib/sales-tax');
 
 // Server-defined pricing only — the client sends an identifier (plan/packs),
 // never an amount. Fetched live from Admin-Backend (see lib/live-pricing.js)
@@ -95,13 +96,15 @@ module.exports = async (req, res) => {
   const email = typeof req.body.email === 'string' ? req.body.email.trim() : undefined;
 
   const dollars = (cents) => `$${(cents / 100).toFixed(2).replace(/\.00$/, '')}`;
+  const taxed = membership !== null && isSalesTaxEnabled();
+  const plusTax = taxed ? ' plus applicable sales tax' : '';
 
   // Shown on the Stripe-hosted checkout page itself (checkout.stripe.com),
   // not on our site, so it is the only copy a buyer sees between clicking
   // through and confirming. It has to say plainly what happens to the card.
   const submitMessage = type === 'credits'
     ? 'Kix turns your goals and challenges into a personalized path forward. Kix Credits are yours the moment you buy them. Kix Credits are not refundable and do not expire.'
-    : `Nothing is charged today. When SideKix ${membership.planName} goes live, this card is charged ${dollars(membership.lockedCents)} a month, your locked rate${membership.promoCode ? ` with ${wish.WISH_PERCENT}% off for life` : ''}, for as long as you stay a member. Memberships are not refundable.`;
+    : `Nothing is charged today. When SideKix ${membership.planName} goes live, this card is charged ${dollars(membership.lockedCents)} a month${plusTax}, your locked rate${membership.promoCode ? ` with ${wish.WISH_PERCENT}% off for life` : ''}, for as long as you stay a member. Memberships are not refundable.`;
 
   const sharedText = {
     consent_collection: {
@@ -130,9 +133,10 @@ module.exports = async (req, res) => {
           cancel_url: cancelUrl,
           metadata,
           setup_intent_data: {
-            description: `SideKix ${membership.planName} rate lock: ${dollars(membership.lockedCents)} a month, charged when the tier goes live`,
+            description: `SideKix ${membership.planName} rate lock: ${dollars(membership.lockedCents)} a month${plusTax}, charged when the tier goes live`,
             metadata,
           },
+          ...(taxed ? { billing_address_collection: 'required' } : {}),
           ...(email ? { customer_email: email } : {}),
           integration_identifier: `sidekix-website-${randomSuffix(8)}`,
           ...sharedText,
