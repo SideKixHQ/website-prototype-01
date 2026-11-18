@@ -18,7 +18,7 @@ function readRawBody(req) {
 // wants an opaque unique id plus the purchase details; it never cares
 // whether that id came from a Checkout Session (cs_...) or a PaymentIntent
 // created directly (pi_...), so this same call works for either.
-async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged, currency, stripePaymentIntentId }) {
+async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged, currency, stripePaymentIntentId, taxTransactionId }) {
   if (!email) {
     console.error('SideKix [website credits claim] no email for', idempotencyId);
     return { ok: true };
@@ -48,6 +48,7 @@ async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged
         amountCharged,
         currency,
         stripePaymentIntentId,
+        ...(taxTransactionId ? { taxTransactionId } : {}),
       }),
     },
   );
@@ -285,6 +286,14 @@ module.exports = async (req, res) => {
       packs: intent.metadata?.packs,
       amountReceived: intent.amount_received,
     });
+    let taxTransactionId = null;
+    try {
+      taxTransactionId = await recordCreditsTaxTransaction(intent);
+    } catch (err) {
+      console.error('SideKix [website credits tax] failed:', err);
+      res.status(502).json({ error: 'Could not record tax transaction, will retry' });
+      return;
+    }
     try {
       await submitCreditsClaim({
         idempotencyId: intent.id,
@@ -293,17 +302,11 @@ module.exports = async (req, res) => {
         amountCharged: typeof intent.amount_received === 'number' ? intent.amount_received / 100 : undefined,
         currency: intent.currency,
         stripePaymentIntentId: intent.id,
+        taxTransactionId,
       });
     } catch (err) {
       console.error('SideKix [website credits claim] failed:', err);
       res.status(502).json({ error: 'Could not record credits claim, will retry' });
-      return;
-    }
-    try {
-      await recordCreditsTaxTransaction(intent);
-    } catch (err) {
-      console.error('SideKix [website credits tax] failed:', err);
-      res.status(502).json({ error: 'Could not record tax transaction, will retry' });
       return;
     }
   }

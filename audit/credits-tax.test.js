@@ -206,6 +206,7 @@ test('webhook: a taxed embedded payment grants credits by pack and records the t
   assert.strictEqual(calls.transactions.length, 1);
   assert.deepStrictEqual(calls.transactions[0].p, { calculation: 'taxcalc_1', reference: 'pi_test' });
   assert.strictEqual(calls.transactions[0].opts.idempotencyKey, 'sidekix-website-credits-tax-pi_test');
+  assert.strictEqual(calls.fetches[0].body.taxTransactionId, 'tax_txn_1');
 }));
 
 test('webhook: a tax transaction that already exists for the payment is not an error', withEnv('true', async () => {
@@ -215,6 +216,8 @@ test('webhook: a tax transaction that already exists for the payment is not an e
     1990,
   ));
   assert.strictEqual(res.code, 200);
+  assert.strictEqual(calls.fetches[0].body.credits, 350);
+  assert.ok(!('taxTransactionId' in calls.fetches[0].body));
 }));
 
 test('webhook: a failed tax transaction asks Stripe to retry', withEnv('true', async () => {
@@ -224,6 +227,7 @@ test('webhook: a failed tax transaction asks Stripe to retry', withEnv('true', a
     1990,
   ));
   assert.strictEqual(res.code, 502);
+  assert.strictEqual(calls.fetches.length, 0);
 }));
 
 test('webhook: an untaxed embedded payment creates no tax transaction', withEnv(undefined, async () => {
@@ -234,4 +238,5 @@ test('webhook: an untaxed embedded payment creates no tax transaction', withEnv(
   assert.strictEqual(res.code, 200);
   assert.strictEqual(calls.fetches[0].body.credits, 350);
   assert.strictEqual(calls.transactions.length, 0);
+  assert.ok(!('taxTransactionId' in calls.fetches[0].body));
 }));
