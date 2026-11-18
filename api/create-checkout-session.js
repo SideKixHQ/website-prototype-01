@@ -1,8 +1,8 @@
 const Stripe = require('stripe');
+const { creditsTaxCode } = require('./lib/credits-tax');
 const { getCreditsPricing, getMembershipPlans } = require('./lib/live-pricing');
 const wish = require('./lib/wish');
 const { isSalesTaxEnabled } = require('./lib/sales-tax');
-const { creditsTaxCode } = require('./lib/credits-tax');
 
 // Server-defined pricing only — the client sends an identifier (plan/packs),
 // never an amount. Fetched live from Admin-Backend (see lib/live-pricing.js)
