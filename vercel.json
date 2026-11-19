@@ -2054,6 +2054,26 @@
     {
       "source": "/p/:id",
       "destination": "/api/post-preview?id=:id"
+    },
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "destination": "/.well-known/apple-app-site-association.json"
+    },
+    {
+      "source": "/app/post/:id/",
+      "destination": "/api/post-preview?id=:id"
+    },
+    {
+      "source": "/app/post/:id",
+      "destination": "/api/post-preview?id=:id"
+    },
+    {
+      "source": "/app/:path*/",
+      "destination": "/get-app.html"
+    },
+    {
+      "source": "/app/:path*",
+      "destination": "/get-app.html"
     }
   ]
 }
