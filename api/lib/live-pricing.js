@@ -22,15 +22,6 @@
 const ADMIN_BACKEND_BASE = 'https://api.sidekixhq.com';
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
-// Emergency fallback only — used solely if the very first fetch this
-// instance ever makes fails. Update these if the real price changes and
-// you want new instances to fail safe with the right number, but they are
-// not the source of truth; memberships/credits-pricing and memberships/plans
-// on Admin-Backend are.
-const FALLBACK_CREDITS_PRICING = {
-  pricePerCredit: 19.99 / 350,
-  standardBundle: { credits: 350, priceUSD: 19.99 },
-};
 const FALLBACK_MEMBERSHIP_PLANS = {
   access: { name: 'Access', monthlyUsdCents: 3900 },
   core: { name: 'Core', monthlyUsdCents: 9900 },
@@ -71,8 +62,8 @@ async function getCreditsPricing() {
     creditsPricingCache = { value, fetchedAt: Date.now() };
     return value;
   } catch (err) {
-    console.error('live-pricing: could not fetch credits pricing, falling back:', err);
-    return creditsPricingCache ? creditsPricingCache.value : FALLBACK_CREDITS_PRICING;
+    console.error('live-pricing: could not fetch credits pricing:', err);
+    return creditsPricingCache ? creditsPricingCache.value : null;
   }
 }
 

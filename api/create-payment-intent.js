@@ -33,7 +33,12 @@ module.exports = async (req, res) => {
   }
 
   const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body?.packs, 10) || 1));
-  const pack = resolveCreditPack(await getCreditsPricing(), req.body?.pack);
+  const pricing = await getCreditsPricing();
+  if (!pricing) {
+    res.status(503).json({ error: "Kix Credit prices couldn't be loaded. Please try again in a moment.", code: 'pricing_unavailable' });
+    return;
+  }
+  const pack = resolveCreditPack(pricing, req.body?.pack);
   if (!pack) {
     res.status(400).json({ error: 'That credit pack is not available', code: 'unknown_pack' });
     return;

@@ -106,3 +106,61 @@ test('the payment APIs charge the pack the server knows, never a client amount',
     if (saved.pricing) require.cache[pricingId] = saved.pricing; else delete require.cache[pricingId];
   }
 });
+
+test('no live price means no checkout and no listed packs, never a built-in price', async () => {
+  const intents = [];
+  const sessions = [];
+  const stripeId = require.resolve('stripe');
+  const pricingId = require.resolve(path.join(API, 'lib', 'live-pricing.js'));
+  const saved = { stripe: require.cache[stripeId], pricing: require.cache[pricingId] };
+  require.cache[stripeId] = {
+    id: stripeId, filename: stripeId, loaded: true,
+    exports: function FakeStripe() {
+      return {
+        paymentIntents: { create: async (p) => { intents.push(p); return { id: 'pi_t', client_secret: 's' }; } },
+        checkout: { sessions: { create: async (p) => { sessions.push(p); return { url: 'https://checkout.stripe.test/s' }; } } },
+        products: { retrieve: async (id) => ({ id, tax_code: 'txcd_10103000' }) },
+      };
+    },
+  };
+  const realFetch = global.fetch;
+  const realError = console.error;
+  global.fetch = async () => { throw new Error('offline'); };
+  console.error = () => {};
+  delete require.cache[pricingId];
+  for (const m of ['create-payment-intent.js', 'create-checkout-session.js', 'credit-packs.js']) {
+    delete require.cache[require.resolve(path.join(API, m))];
+  }
+  const before = process.env.SALES_TAX_ENABLED;
+  delete process.env.SALES_TAX_ENABLED;
+  try {
+    const paymentIntent = require(path.join(API, 'create-payment-intent.js'));
+    const checkoutSession = require(path.join(API, 'create-checkout-session.js'));
+    const listing = require(path.join(API, 'credit-packs.js'));
+    const res = () => ({ code: 200, body: null, headers: {}, status(c) { this.code = c; return this; }, json(b) { this.body = b; return this; }, setHeader(k, v) { this.headers[k] = v; } });
+    const post = async (h, body) => { const r = res(); await h({ method: 'POST', headers: { origin: 'https://sidekixhq.com' }, body }, r); return r; };
+
+    const intent = await post(paymentIntent, { pack: 'medium', packs: 1, email: 'a@b.co' });
+    assert.strictEqual(intent.code, 503);
+    assert.strictEqual(intent.body.code, 'pricing_unavailable');
+    assert.ok(intent.body.error);
+
+    const session = await post(checkoutSession, { type: 'credits', packs: 1 });
+    assert.strictEqual(session.code, 503);
+    assert.strictEqual(session.body.code, 'pricing_unavailable');
+
+    assert.strictEqual(intents.length, 0);
+    assert.strictEqual(sessions.length, 0);
+
+    const r = res();
+    await listing({ method: 'GET' }, r);
+    assert.deepStrictEqual(r.body.packs, []);
+    assert.strictEqual(r.headers['Cache-Control'], 'no-store');
+  } finally {
+    global.fetch = realFetch;
+    console.error = realError;
+    if (before === undefined) delete process.env.SALES_TAX_ENABLED; else process.env.SALES_TAX_ENABLED = before;
+    if (saved.stripe) require.cache[stripeId] = saved.stripe; else delete require.cache[stripeId];
+    if (saved.pricing) require.cache[pricingId] = saved.pricing; else delete require.cache[pricingId];
+  }
+});

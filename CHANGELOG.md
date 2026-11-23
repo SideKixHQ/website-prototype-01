@@ -29,6 +29,13 @@ Large, 750 for $39.99.
   shows Small, Medium and Large when all three are on sale, and checkout reads
   `?pack=`.
 - The Kix page, its source in `build/`, and the FAQ state the three prices.
+- When the live price cannot be fetched and none is cached, the site no longer
+  charges a built-in price. `create-payment-intent` and `create-checkout-session`
+  answer 503 `pricing_unavailable`, checkout shows its "try again" error and
+  nothing is charged, and `api/credit-packs.js` lists no packs and is not cached.
+  A built-in price that differed from the backend's charged the buyer and left
+  the claim held for review without credits.
+- The FAQ's "another 350 credits for $19" now says "another pack".
 
 Checked with `npm test` (the new `audit/credit-packs.test.js` included) and by
 loading the membership page in jsdom with and without the packs endpoint.
