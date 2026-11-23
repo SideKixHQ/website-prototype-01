@@ -1,5 +1,6 @@
 const Stripe = require('stripe');
 const { getCreditsPricing } = require('./lib/live-pricing');
+const { resolveCreditPack } = require('./lib/credit-packs');
 const { isSalesTaxEnabled } = require('./lib/sales-tax');
 const { creditsTaxCode, normalizePostalCode } = require('./lib/credits-tax');
 
@@ -32,9 +33,13 @@ module.exports = async (req, res) => {
   }
 
   const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body?.packs, 10) || 1));
-  const { standardBundle } = await getCreditsPricing();
-  const subtotal = packs * Math.round(standardBundle.priceUSD * 100);
-  const credits = packs * standardBundle.credits;
+  const pack = resolveCreditPack(await getCreditsPricing(), req.body?.pack);
+  if (!pack) {
+    res.status(400).json({ error: 'That credit pack is not available', code: 'unknown_pack' });
+    return;
+  }
+  const subtotal = packs * pack.priceCents;
+  const credits = packs * pack.credits;
 
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
@@ -83,7 +88,7 @@ module.exports = async (req, res) => {
       // stripe-webhook.js's payment_intent.succeeded handler reads
       // everything it needs straight off the PaymentIntent — same shape
       // create-checkout-session.js already stores on the Checkout Session.
-      metadata: { source: 'website', type: 'credits', packs: String(packs), credits: String(credits), email, ...taxMetadata },
+      metadata: { source: 'website', type: 'credits', pack: pack.key, packs: String(packs), credits: String(credits), email, ...taxMetadata },
     });
 
     res.status(200).json({

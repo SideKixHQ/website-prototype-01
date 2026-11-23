@@ -219,7 +219,7 @@ a:focus-visible,button:focus-visible,[role="tab"]:focus-visible,input:focus-visi
         <small class="co-summary-minutes" id="coMinutes">up to 90 minutes of&nbsp;conversation</small>
       </div>
       <div>
-        <span class="co-summary-price" id="coPrice">$19</span>
+        <span class="co-summary-price" id="coPrice">$19.99</span>
         <small class="co-summary-tax hidden" id="coTaxNote">plus applicable sales&nbsp;tax</small>
       </div>
     </div>
@@ -301,14 +301,19 @@ a:focus-visible,button:focus-visible,[role="tab"]:focus-visible,input:focus-visi
 <script>
 try{
 (function(){
-  var CREDIT_PACK_SIZE = 350, CREDIT_PACK_USD = 19, MAX_PACKS = 10;
-  var packs = Math.min(MAX_PACKS, Math.max(1, parseInt(new URLSearchParams(location.search).get('packs'), 10) || 1));
+  var PACKS = { small: { credits: 150, cents: 999 }, medium: { credits: 350, cents: 1999 }, large: { credits: 750, cents: 3999 } };
+  var MAX_PACKS = 10;
+  var query = new URLSearchParams(location.search);
+  var packKey = PACKS.hasOwnProperty(query.get('pack')) ? query.get('pack') : 'medium';
+  var CREDIT_PACK_SIZE = PACKS[packKey].credits, CREDIT_PACK_CENTS = PACKS[packKey].cents;
+  var packs = Math.min(MAX_PACKS, Math.max(1, parseInt(query.get('packs'), 10) || 1));
+  function priceLabel(cents){ return '$'+(cents/100).toFixed(2).replace(/\.00$/,''); }
 
   document.getElementById('coCredits').textContent = (CREDIT_PACK_SIZE*packs).toLocaleString()+' Kix Credits';
-  document.getElementById('coMinutes').textContent = 'up to '+(90*packs).toLocaleString()+' minutes of conversation';
-  document.getElementById('coPrice').textContent = '$'+(CREDIT_PACK_USD*packs).toLocaleString();
-  var payLabelText = 'Pay $'+(CREDIT_PACK_USD*packs).toLocaleString();
-  var chargeCents = CREDIT_PACK_USD*packs*100;
+  document.getElementById('coMinutes').textContent = 'up to '+Math.round(CREDIT_PACK_SIZE*packs*90/350).toLocaleString()+' minutes of conversation';
+  document.getElementById('coPrice').textContent = priceLabel(CREDIT_PACK_CENTS*packs);
+  var payLabelText = 'Pay '+priceLabel(CREDIT_PACK_CENTS*packs);
+  var chargeCents = CREDIT_PACK_CENTS*packs;
   var salesTax = false, configLoaded = false;
   var zipRow=document.getElementById('coZipRow');
   var zipInput=document.getElementById('coZip');
@@ -414,7 +419,7 @@ try{
       var intentPromise = fetch('/api/create-payment-intent',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({packs:packs,email:emailInput.value.trim(),postalCode:zipInput.value.trim()})
+        body:JSON.stringify({pack:packKey,packs:packs,email:emailInput.value.trim(),postalCode:zipInput.value.trim()})
       }).then(function(r){ return r.json(); }).then(function(data){
         if(data && data.code==='postal_code_required' && !salesTax){ showSalesTax(); }
         if(!data || !data.clientSecret){ throw new Error((data && data.error) || 'no client secret'); }

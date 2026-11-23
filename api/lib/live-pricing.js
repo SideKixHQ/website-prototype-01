@@ -28,8 +28,8 @@ const CACHE_TTL_MS = 5 * 60 * 1000;
 // not the source of truth; memberships/credits-pricing and memberships/plans
 // on Admin-Backend are.
 const FALLBACK_CREDITS_PRICING = {
-  pricePerCredit: 19 / 350,
-  standardBundle: { credits: 350, priceUSD: 19 },
+  pricePerCredit: 19.99 / 350,
+  standardBundle: { credits: 350, priceUSD: 19.99 },
 };
 const FALLBACK_MEMBERSHIP_PLANS = {
   access: { name: 'Access', monthlyUsdCents: 3900 },

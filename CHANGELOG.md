@@ -9,6 +9,30 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-23
+
+### Kix Credits in three packs: Small, Medium and Large
+
+James approved three packs on 2026-11-23, the same on the website, iPhone and
+Android: Small, 150 credits for $9.99; Medium, 350 for $19.99 (was $19);
+Large, 750 for $39.99.
+
+- `api/lib/credit-packs.js` reads the packs from Admin-Backend's
+  `memberships/credits-pricing` (`kixCreditPacks`, plus `standardBundle` for
+  Medium). A pack the backend does not list is not offered, so until the
+  backend change is live the site keeps selling Medium only.
+- `api/create-payment-intent.js` and `api/create-checkout-session.js` take a
+  `pack` key, price it on the server and send it to Stripe as
+  `metadata.pack`, which Admin-Backend checks before adding the credits.
+  An unknown pack answers 400 `unknown_pack`.
+- `api/credit-packs.js` lists the packs for the page. The membership page
+  shows Small, Medium and Large when all three are on sale, and checkout reads
+  `?pack=`.
+- The Kix page, its source in `build/`, and the FAQ state the three prices.
+
+Checked with `npm test` (the new `audit/credit-packs.test.js` included) and by
+loading the membership page in jsdom with and without the packs endpoint.
+
 ## 2026-11-13
 
 ### Cancelling keeps your data, and no 90-minute daily cap

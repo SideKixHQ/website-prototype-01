@@ -1,6 +1,7 @@
 const Stripe = require('stripe');
 const { creditsTaxCode } = require('./lib/credits-tax');
 const { getCreditsPricing, getMembershipPlans } = require('./lib/live-pricing');
+const { resolveCreditPack } = require('./lib/credit-packs');
 const wish = require('./lib/wish');
 const { isSalesTaxEnabled } = require('./lib/sales-tax');
 
@@ -47,24 +48,28 @@ module.exports = async (req, res) => {
 
   if (type === 'credits') {
     const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body.packs, 10) || 1));
-    const { standardBundle } = await getCreditsPricing();
+    const pack = resolveCreditPack(await getCreditsPricing(), req.body.pack);
+    if (!pack) {
+      res.status(400).json({ error: 'That credit pack is not available', code: 'unknown_pack' });
+      return;
+    }
     lineItem = {
       price_data: {
         currency: 'usd',
         product_data: {
           name: 'Kix Credits',
-          description: `${standardBundle.credits} credits per pack`,
+          description: `${pack.credits} credits per pack`,
         },
-        unit_amount: Math.round(standardBundle.priceUSD * 100),
+        unit_amount: pack.priceCents,
       },
       quantity: packs,
     };
-    successUrl = `${origin}/membership.html?purchased=1&packs=${packs}&session_id={CHECKOUT_SESSION_ID}`;
+    successUrl = `${origin}/membership.html?purchased=1&pack=${pack.key}&packs=${packs}&session_id={CHECKOUT_SESSION_ID}`;
     cancelUrl = `${origin}/membership.html`;
     // credits is stored explicitly (not just packs) so the webhook never
     // has to independently recompute the bundle size — one live source,
     // fetched once above.
-    metadata = { source: 'website', type: 'credits', packs: String(packs), credits: String(packs * standardBundle.credits) };
+    metadata = { source: 'website', type: 'credits', pack: pack.key, packs: String(packs), credits: String(packs * pack.credits) };
   } else if (type === 'membership') {
     // A membership rate lock (James, 2026-10-15): the card is saved and
     // nothing is charged. Admin-Backend records the lock from the webhook,
