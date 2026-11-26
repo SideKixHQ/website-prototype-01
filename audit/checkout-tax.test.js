@@ -85,11 +85,10 @@ test('membership rate lock collects the billing address and discloses tax with t
   assert.strictEqual(params.metadata.lockedMonthlyUsdCents, '9900');
 }));
 
-test('credits checkout is not changed by the flag', withFlag('true', async () => {
+test('credits checkout gets none of the rate-lock tax copy', withFlag('true', async () => {
   const { res, params } = await call({ type: 'credits', packs: 2 });
   assert.strictEqual(res.code, 200);
   assert.strictEqual(params.mode, 'payment');
-  assert.strictEqual(params.billing_address_collection, undefined);
-  assert.strictEqual(params.automatic_tax, undefined);
+  assert.strictEqual(params.setup_intent_data, undefined);
   assert.ok(!params.custom_text.submit.message.includes('sales tax'));
 }));
