@@ -9,6 +9,24 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-23
+
+### Purchase Policy: advisor payouts every other Friday
+
+James decided (2026-11-23) that the website Purchase Policy should name the payout
+schedule the backend and the admin panel already use.
+
+- purchase-policy.html, section 11: "Payouts may be made on a bi-weekly or other
+  disclosed schedule" now says payouts are made every other Friday, for earnings from
+  sessions and events completed at least 14 days earlier, that a balance under $25
+  carries over, and that a different schedule applies only where the Advisor Agreement
+  or written program terms disclose it. The verification and adjustment wording is
+  unchanged.
+- "Last updated" is now 23 November 2026, and the sitemap lastmod for the page is
+  2026-11-23. No other section changed.
+
+---
+
 ## 2026-11-19
 
 ### App links: sidekixhq.com/app/* opens the SideKix apps
@@ -40,6 +58,8 @@ redirected and rewrites to the `.json` file; `/app/post/<uuid>` (after the
 trailing-slash redirect) reaches the post preview; `/app/room/<id>/`,
 `/app/squad/<id>/`, `/app/` reach `get-app.html`; `/apply/`, `/p/<id>/` and the
 site's pages are untouched.
+
+---
 
 ## 2026-11-13
 
