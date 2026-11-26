@@ -1215,6 +1215,10 @@ def keep(event: dict, now: datetime, horizon: datetime) -> bool:
     return now < when < horizon
 
 
+def has_web_link(event: dict) -> bool:
+    return str(event.get("url", "")).startswith("https://")
+
+
 
 # ---------------------------------------------------------------------------
 # Location normalisation.
@@ -1583,6 +1587,11 @@ def main() -> int:
         events = pinned + events
 
     events = dedupe(events)
+
+    unlinked = [e for e in events if not has_web_link(e)]
+    if unlinked:
+        log(f"  dropping {len(unlinked)} event(s) with no https page to link to")
+    events = [e for e in events if has_web_link(e)]
 
     # Cost comes last because it is the only step that costs a request per
     # event. Doing it after dedupe means we never pay for a duplicate, and
