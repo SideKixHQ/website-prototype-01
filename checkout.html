@@ -329,6 +329,11 @@ try{
     }
     if(cardElement && !payBtn.disabled) payLabel.textContent = payLabelText;
     if(elements && elements.update) elements.update({ amount: data.amount });
+    syncExpress();
+  }
+  var walletsAvailable = false;
+  function syncExpress(){
+    expressShell.classList.toggle('hidden', !(walletsAvailable && (!salesTax || clientSecret)));
   }
 
   // Deliberately the classic Card Element, not the generic Payment Element —
@@ -462,8 +467,8 @@ try{
         });
         expressCheckoutElement.mount('#coExpressElement');
         expressCheckoutElement.on('availablepaymentmethodschange', function(ev){
-          var any = !!(ev && ev.availablePaymentMethods && Object.keys(ev.availablePaymentMethods).length);
-          expressShell.classList.toggle('hidden', !any);
+          walletsAvailable = !!(ev && ev.availablePaymentMethods && Object.keys(ev.availablePaymentMethods).length);
+          syncExpress();
         });
         expressCheckoutElement.on('confirm', function(event){
           setBusy(true);
