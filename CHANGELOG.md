@@ -9,6 +9,34 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-27
+
+### Hosting: stop Vercel serving internal files
+
+There was no `.vercelignore`, so Vercel published the whole repository. Internal
+files such as `build/kix-src.html`, everything under `sidekix-events-handoff/`,
+the Python scripts, `audit/` and `press-and-faq-updates.patch` were all reachable
+on sidekixhq.com.
+
+- .vercelignore: leaves out `build/`, `audit/`, `sidekix-events-handoff/`,
+  `host-configs/`, `.github/`, `node_modules/`, `__pycache__/`, `.vercel/`, every
+  `*.py`, `*.pyc`, `*.patch` and `*.md`, `requirements.txt`, the six unreferenced
+  `rate-*.png` screenshots in the root, `.gitignore`, `.vercelignore`, `.env*` and
+  `.DS_Store`. 154 tracked files are left out and 601 are still served.
+- Kept on purpose: every page, `api/` with `package.json` and
+  `package-lock.json` (Vercel installs `stripe` for the functions from them),
+  `assets/`, `q/`, `blog/`, `business-events/`, all the root JSON data files,
+  `sitemap.xml`, `feed.xml`, `robots.txt`, `llms.txt` and `favicon.ico`. The
+  redirects in vercel.json from `/sidekix-events-handoff/` to `/events.html`
+  still apply.
+- Checked: a scan of 27,298 local references in the served HTML, JS, CSS, JSON,
+  XML and TXT files, plus vercel.json's redirect and rewrite destinations, found
+  none pointing into an excluded path. The GitHub Actions workflows run on the
+  repository checkout, not on the deployed site, so they are unaffected.
+- The first deploy after merge needs checking by hand (see the PR).
+
+---
+
 ## 2026-11-26
 
 ### Events: skip events that have no web page
