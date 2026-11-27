@@ -1,3 +1,5 @@
+const { isSalesTaxEnabled } = require('./lib/sales-tax');
+
 // A publishable key is safe to expose client-side by design (that's the
 // whole point of the pk_/sk_ split) — this endpoint exists so checkout.html
 // can fetch it from the one place it's configured (STRIPE_PUBLISHABLE_KEY,
@@ -7,5 +9,5 @@
 // the Card Element can mount the instant they submit instead of waiting on
 // this network round trip too.
 module.exports = async (req, res) => {
-  res.status(200).json({ publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || null });
+  res.status(200).json({ publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || null, salesTax: isSalesTaxEnabled() });
 };

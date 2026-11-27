@@ -3753,6 +3753,7 @@ input[type="file"]{min-height:24px}
 <button aria-label="One more pack" class="qbtn" id="qplus" type="button"><span aria-hidden="true">+</span></button>
 </div>
 <div aria-atomic="true" aria-live="polite" class="price"><sup>$</sup><span id="qtotal">19</span></div>
+<div class="per" id="qtax" style="display:none">plus applicable sales&nbsp;tax</div>
 <div aria-atomic="true" aria-live="polite" class="per"><span id="qcred">350</span> Kix Credits</div>
 <div class="equals">up to <b><span id="qmins">90</span> minutes</b> of conversation</div>
 <button class="cta" id="qbuy" type="button"><span id="qlabel">Purchase 350&nbsp;credits</span></button>
@@ -4764,6 +4765,15 @@ try{
   txt.nodeValue = ' Back to ' + label;
   link.setAttribute('href', href);
   link.setAttribute('data-dynamic','1');
+})();
+</script>
+<script id="kx-salestax-js">
+(function(){
+  var note=document.getElementById('qtax');
+  if(!note||!window.fetch) return;
+  fetch('/api/stripe-config').then(function(r){ return r.json(); }).then(function(cfg){
+    if(cfg&&cfg.salesTax) note.style.display='';
+  }).catch(function(){});
 })();
 </script>
 <script id="kx-autotop-js">

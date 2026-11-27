@@ -71,12 +71,14 @@ p.sub{color:var(--grey);font-size:15px;margin-bottom:4px}
 .co-summary-price{font-family:var(--util);font-size:22px;color:var(--gold)}
 
 label{display:block;font-size:13px;letter-spacing:.03em;color:var(--grey);margin:0 0 7px}
-input[type=email]{
+input[type=email],#coZip{
   width:100%;background:#050403;border:1px solid var(--line);border-radius:10px;color:var(--cream);
   font-family:var(--body);font-size:16px;padding:14px 16px;outline:none;transition:border-color .2s,box-shadow .2s;
 }
-input[type=email]:focus{border-color:var(--gold-mid);box-shadow:0 0 0 3px rgba(212,168,86,.16)}
-input[type=email]:disabled{opacity:.6}
+input[type=email]:focus,#coZip:focus{border-color:var(--gold-mid);box-shadow:0 0 0 3px rgba(212,168,86,.16)}
+input[type=email]:disabled,#coZip:disabled{opacity:.6}
+#coZip{margin-top:14px}
+.co-summary-tax{display:block;margin-top:2px;text-align:right;font-family:var(--util);font-size:11.5px;color:var(--grey)}
 
 .co-express{margin-top:16px}
 .co-express-divider{
@@ -216,12 +218,19 @@ a:focus-visible,button:focus-visible,[role="tab"]:focus-visible,input:focus-visi
         <span class="co-summary-credits" id="coCredits">350 Kix&nbsp;Credits</span>
         <small class="co-summary-minutes" id="coMinutes">up to 90 minutes of&nbsp;conversation</small>
       </div>
-      <span class="co-summary-price" id="coPrice">$19</span>
+      <div>
+        <span class="co-summary-price" id="coPrice">$19</span>
+        <small class="co-summary-tax hidden" id="coTaxNote">plus applicable sales&nbsp;tax</small>
+      </div>
     </div>
 
     <form id="coForm" novalidate>
       <label for="coEmail">Email — where your claim link&nbsp;goes</label>
       <input autocomplete="email" id="coEmail" placeholder="you@example.com" required type="email"/>
+      <div class="hidden" id="coZipRow">
+        <label for="coZip" style="margin-top:14px">Billing ZIP code — used to work out sales&nbsp;tax</label>
+        <input autocomplete="postal-code" id="coZip" inputmode="numeric" maxlength="10" placeholder="27601" type="text"/>
+      </div>
 
       <div class="co-express hidden" id="coExpressShell">
         <div id="coExpressElement"></div>
@@ -299,6 +308,33 @@ try{
   document.getElementById('coMinutes').textContent = 'up to '+(90*packs).toLocaleString()+' minutes of conversation';
   document.getElementById('coPrice').textContent = '$'+(CREDIT_PACK_USD*packs).toLocaleString();
   var payLabelText = 'Pay $'+(CREDIT_PACK_USD*packs).toLocaleString();
+  var chargeCents = CREDIT_PACK_USD*packs*100;
+  var salesTax = false, configLoaded = false;
+  var zipRow=document.getElementById('coZipRow');
+  var zipInput=document.getElementById('coZip');
+  var taxNote=document.getElementById('coTaxNote');
+  function money(cents){ return '$'+(cents/100).toFixed(2).replace(/\.00$/,''); }
+  function showSalesTax(){
+    salesTax = true;
+    zipRow.classList.remove('hidden');
+    taxNote.classList.remove('hidden');
+  }
+  function applyTotal(data){
+    if(typeof data.amount!=='number') return;
+    chargeCents = data.amount;
+    payLabelText = 'Pay '+money(data.amount);
+    if(salesTax){
+      taxNote.textContent = data.tax ? 'includes '+money(data.tax)+' sales tax' : 'no sales tax';
+      document.getElementById('coPrice').textContent = money(data.amount);
+    }
+    if(cardElement && !payBtn.disabled) payLabel.textContent = payLabelText;
+    if(elements && elements.update) elements.update({ amount: data.amount });
+    syncExpress();
+  }
+  var walletsAvailable = false;
+  function syncExpress(){
+    expressShell.classList.toggle('hidden', !(walletsAvailable && (!salesTax || clientSecret)));
+  }
 
   // Deliberately the classic Card Element, not the generic Payment Element —
   // the latter pulls in whatever payment methods (Klarna, Link's own
@@ -338,6 +374,7 @@ try{
   // (needs the real amount + email, and the secret key server-side) still
   // can't start until submit.
   var publishableKeyPromise = fetch('/api/stripe-config').then(function(r){ return r.json(); });
+  publishableKeyPromise.then(function(cfg){ if(cfg && cfg.salesTax) showSalesTax(); }).catch(function(){}).then(function(){ configLoaded = true; });
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -346,6 +383,20 @@ try{
     if(!emailInput.checkValidity()){
       showError('Enter a valid email — that\'s where your claim link goes.');
       emailInput.focus();
+      return;
+    }
+
+    if(!cardElement && !configLoaded){
+      setBusy(true);
+      publishableKeyPromise.catch(function(){}).then(function(){
+        setTimeout(function(){ setBusy(false); form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit',{cancelable:true})); }, 0);
+      });
+      return;
+    }
+
+    if(!cardElement && salesTax && !/^\d{5}(-\d{4})?$/.test(zipInput.value.trim())){
+      showError('Enter your 5-digit billing ZIP code so sales tax can be worked out.');
+      zipInput.focus();
       return;
     }
 
@@ -359,6 +410,7 @@ try{
       // eventual confirm does.
       setBusy(true);
       emailInput.disabled=true;
+      zipInput.disabled=true;
       paymentLabelEl.classList.remove('hidden');
       paymentShell.classList.remove('hidden');
       paymentShell.classList.add('loading');
@@ -367,10 +419,12 @@ try{
       var intentPromise = fetch('/api/create-payment-intent',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({packs:packs,email:emailInput.value.trim()})
+        body:JSON.stringify({packs:packs,email:emailInput.value.trim(),postalCode:zipInput.value.trim()})
       }).then(function(r){ return r.json(); }).then(function(data){
+        if(data && data.code==='postal_code_required' && !salesTax){ showSalesTax(); }
         if(!data || !data.clientSecret){ throw new Error((data && data.error) || 'no client secret'); }
         clientSecret = data.clientSecret;
+        applyTotal(data);
       });
 
       publishableKeyPromise.then(function(cfg){
@@ -382,7 +436,7 @@ try{
         // publishable-key fetch. Card Element doesn't care either way; it's
         // confirmed separately via confirmCardPayment(clientSecret, ...).
         elements = stripe.elements({
-          mode:'payment', amount: CREDIT_PACK_USD*packs*100, currency:'usd',
+          mode:'payment', amount: chargeCents, currency:'usd',
           appearance: { variables: { borderRadius:'999px' } }
         });
 
@@ -413,8 +467,8 @@ try{
         });
         expressCheckoutElement.mount('#coExpressElement');
         expressCheckoutElement.on('availablepaymentmethodschange', function(ev){
-          var any = !!(ev && ev.availablePaymentMethods && Object.keys(ev.availablePaymentMethods).length);
-          expressShell.classList.toggle('hidden', !any);
+          walletsAvailable = !!(ev && ev.availablePaymentMethods && Object.keys(ev.availablePaymentMethods).length);
+          syncExpress();
         });
         expressCheckoutElement.on('confirm', function(event){
           setBusy(true);
@@ -466,6 +520,7 @@ try{
         paymentLabelEl.classList.add('hidden');
         paymentShell.classList.add('hidden');
         termsEl.classList.add('hidden');
+        zipInput.disabled=false;
         showError("Couldn't start checkout. Please try again in a moment.");
       });
 
@@ -496,7 +551,9 @@ try{
       return stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: cardElement,
-          billing_details: { email: emailInput.value.trim() }
+          billing_details: salesTax
+            ? { email: emailInput.value.trim(), address: { country: 'US', postal_code: zipInput.value.trim() } }
+            : { email: emailInput.value.trim() }
         }
       });
     }).then(function(result){

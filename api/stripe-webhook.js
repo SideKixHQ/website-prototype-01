@@ -18,7 +18,7 @@ function readRawBody(req) {
 // wants an opaque unique id plus the purchase details; it never cares
 // whether that id came from a Checkout Session (cs_...) or a PaymentIntent
 // created directly (pi_...), so this same call works for either.
-async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged, currency, stripePaymentIntentId }) {
+async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged, currency, stripePaymentIntentId, taxTransactionId }) {
   if (!email) {
     console.error('SideKix [website credits claim] no email for', idempotencyId);
     return { ok: true };
@@ -48,6 +48,7 @@ async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged
         amountCharged,
         currency,
         stripePaymentIntentId,
+        ...(taxTransactionId ? { taxTransactionId } : {}),
       }),
     },
   );
@@ -56,6 +57,26 @@ async function submitCreditsClaim({ idempotencyId, email, credits, amountCharged
     throw new Error(`Admin-Backend responded ${claimRes.status}: ${body}`);
   }
   return { ok: true };
+}
+
+async function recordCreditsTaxTransaction(intent) {
+  const calculation = intent.metadata?.taxCalculationId;
+  if (!calculation) return null;
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2026-07-29.dahlia' });
+  try {
+    const transaction = await stripe.tax.transactions.createFromCalculation(
+      { calculation, reference: intent.id },
+      { idempotencyKey: `sidekix-website-credits-tax-${intent.id}` },
+    );
+    console.log('SideKix website credits tax recorded:', { paymentIntentId: intent.id, taxTransactionId: transaction.id });
+    return transaction.id;
+  } catch (err) {
+    if (err?.type === 'StripeInvalidRequestError' && /reference/i.test(err?.message ?? '')) {
+      console.log('SideKix website credits tax already recorded for', intent.id);
+      return null;
+    }
+    throw err;
+  }
 }
 
 // The failed-payment counterpart to submitCreditsClaim above — previously a
@@ -265,6 +286,14 @@ module.exports = async (req, res) => {
       packs: intent.metadata?.packs,
       amountReceived: intent.amount_received,
     });
+    let taxTransactionId = null;
+    try {
+      taxTransactionId = await recordCreditsTaxTransaction(intent);
+    } catch (err) {
+      console.error('SideKix [website credits tax] failed:', err);
+      res.status(502).json({ error: 'Could not record tax transaction, will retry' });
+      return;
+    }
     try {
       await submitCreditsClaim({
         idempotencyId: intent.id,
@@ -273,6 +302,7 @@ module.exports = async (req, res) => {
         amountCharged: typeof intent.amount_received === 'number' ? intent.amount_received / 100 : undefined,
         currency: intent.currency,
         stripePaymentIntentId: intent.id,
+        taxTransactionId,
       });
     } catch (err) {
       console.error('SideKix [website credits claim] failed:', err);

@@ -10,7 +10,7 @@
     "audit:contrast": "node audit/contrast3.js",
     "audit:images": "node audit/imgaudit.js",
     "audit:nav": "node audit/navclear.js",
-    "test": "node audit/func.js && python3 selftest.py",
+    "test": "node --test audit/*.test.js && node audit/func.js && python3 selftest.py",
     "events:probe": "python3 scrape_events.py --probe",
     "events:dry": "python3 scrape_events.py --dry-run",
     "events": "python3 scrape_events.py"

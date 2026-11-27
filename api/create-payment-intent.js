@@ -1,5 +1,7 @@
 const Stripe = require('stripe');
 const { getCreditsPricing } = require('./lib/live-pricing');
+const { isSalesTaxEnabled } = require('./lib/sales-tax');
+const { creditsTaxCode, normalizePostalCode } = require('./lib/credits-tax');
 
 // Fetched live from Admin-Backend (see lib/live-pricing.js), same as
 // create-checkout-session.js — previously this hardcoded its own separate
@@ -22,15 +24,51 @@ module.exports = async (req, res) => {
     return;
   }
 
+  const taxed = isSalesTaxEnabled();
+  const postalCode = taxed ? normalizePostalCode(req.body?.postalCode) : null;
+  if (taxed && !postalCode) {
+    res.status(400).json({ error: 'A valid ZIP code is required', code: 'postal_code_required' });
+    return;
+  }
+
   const packs = Math.min(MAX_PACKS, Math.max(1, parseInt(req.body?.packs, 10) || 1));
   const { standardBundle } = await getCreditsPricing();
-  const amount = packs * Math.round(standardBundle.priceUSD * 100);
+  const subtotal = packs * Math.round(standardBundle.priceUSD * 100);
   const credits = packs * standardBundle.credits;
 
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2026-07-29.dahlia',
     });
+    let amount = subtotal;
+    let tax = 0;
+    let taxMetadata = {};
+    if (taxed) {
+      const calculation = await stripe.tax.calculations.create({
+        currency: 'usd',
+        customer_details: {
+          address: { country: 'US', postal_code: postalCode },
+          address_source: 'billing',
+        },
+        line_items: [
+          {
+            amount: subtotal,
+            quantity: 1,
+            reference: 'credits',
+            tax_code: await creditsTaxCode(stripe),
+            tax_behavior: 'exclusive',
+          },
+        ],
+      });
+      amount = calculation.amount_total;
+      tax = calculation.tax_amount_exclusive;
+      taxMetadata = {
+        taxCalculationId: calculation.id,
+        subtotalCents: String(subtotal),
+        taxCents: String(tax),
+        postalCode,
+      };
+    }
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
@@ -45,13 +83,15 @@ module.exports = async (req, res) => {
       // stripe-webhook.js's payment_intent.succeeded handler reads
       // everything it needs straight off the PaymentIntent — same shape
       // create-checkout-session.js already stores on the Checkout Session.
-      metadata: { source: 'website', type: 'credits', packs: String(packs), credits: String(credits), email },
+      metadata: { source: 'website', type: 'credits', packs: String(packs), credits: String(credits), email, ...taxMetadata },
     });
 
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
       publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
       amount,
+      subtotal,
+      tax,
       credits,
     });
   } catch (err) {
