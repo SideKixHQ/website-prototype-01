@@ -137,6 +137,19 @@ def test_inperson_switch(m) -> None:
         m.ALLOW_INPERSON = original
 
 
+def test_web_link(m) -> None:
+    section("2b. Only events with a web page are published")
+    cases = [
+        ("https page kept", {"url": "https://www.sba.gov/event/1"}, True),
+        ("email address dropped", {"url": "mailto:events@example.org"}, False),
+        ("plain http dropped", {"url": "http://example.org/e"}, False),
+        ("missing url dropped", {}, False),
+    ]
+    for label, event, want in cases:
+        check(f"   {label}", m.has_web_link(event), want)
+        print(f"   {'ok  ' if m.has_web_link(event) == want else 'FAIL'} {label}")
+
+
 def test_parsers(m) -> None:
     section("3. The parsers")
     from bs4 import BeautifulSoup
@@ -499,6 +512,7 @@ def main() -> int:
     m = load_scraper()
     test_filters(m)
     test_inperson_switch(m)
+    test_web_link(m)
     test_parsers(m)
     test_safety_rail(m)
     test_data(m)

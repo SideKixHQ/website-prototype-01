@@ -9,6 +9,25 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-26
+
+### Events: skip events that have no web page
+
+The 2026-11-23 refresh published "Global NY: Doing Business in Canada" (Pace
+University SBDC) with an email address as its link, so clicking it on the events
+page opened the visitor's mail app, and the selftest check "every url is https"
+failed from then on.
+
+- scrape_events.py: after dedupe, events whose link is not an https page are
+  dropped and the count is logged, so a host that lists an email address or a
+  plain-http page no longer reaches the site.
+- events.json: that one event removed by hand so the page is right before the
+  next weekly refresh. No other row changed.
+- selftest.py: section 2b checks that https links are kept and email, plain-http
+  and missing links are dropped. Selftest now passes in full.
+
+---
+
 ## 2026-11-23
 
 ### Purchase Policy: advisor payouts every other Friday
