@@ -9,6 +9,46 @@ site, comparing the build before the change with the build after it.
 
 ---
 
+## 2026-11-27
+
+### Cookies policy: list what the site and the panel actually store
+
+Section 5 said the website "uses no first-party cookies, no local or session
+storage, no analytics". That was not true on `main`, and the admin and advisor
+panel was not mentioned at all. Replaces the stale PR #20, whose wording also said
+nothing kept in the browser was sent to SideKix, which the falling-star offer
+contradicts. Awaiting James's sign-off on the wording.
+
+- cookies.html, section 5 "What is in use today": rewritten as an inventory from an
+  audit of every page, `assets/*.js`, `api/*.js`, `vercel.json` and the panel's
+  `origin/staging`. Website: `kx_wish` (falling-star offer, sent to checkout),
+  `kxl_greeted` (Kix greeting), `sk:ws:<page>` (four worksheets), `kx_sid`
+  (measurement script on the home page, quizzes and Energy Discovery, which has
+  no destination set and so sends nothing). Third parties named: Stripe (Stripe.js
+  fraud cookies on checkout.html, Stripe Checkout for rate locks), YouTube on
+  click, Google Fonts on three pages, Vercel hosting. Panel: the NextAuth sign-in
+  cookies, the persisted profile, the admin idle timer, the notes-panel setting,
+  drafts, onboarding keys and Google Analytics for Firebase.
+- cookies.html, section 6: says how to clear or block each of those, including
+  Do Not Track or Global Privacy Control for the measurement script.
+- After James's review (2026-11-27): panel Google Analytics is described as
+  running for every employee and advisor who uses the panel, with no consent
+  prompt, because the panel is an internal work tool (the consent prompt, admin
+  PR #395, was closed); sign-out deletes `persist:root`, the session drafts and
+  the onboarding keys, and keeps the notes-panel setting; the advisor
+  application draft is kept until it is submitted; `kx_wish` "holds no personal
+  information". This describes admin-panel changes still in review, so the page
+  goes live only after they reach the panel's `staging`.
+- cookies.html, section 14: one sentence pointing to section 5 for the named
+  providers. A `.legal code` rule so long cookie names wrap on narrow screens.
+- "Last updated" is now 27 November 2026, and the sitemap lastmod for the page is
+  2026-11-27. No other page changed.
+- Checked: `python3 selftest.py` 82 passed, 0 failed; `npm test` output identical
+  to `main` (the same two pre-existing func.js FAILs, glossary 1.4.1 and the
+  template article's contents rail).
+
+---
+
 ## 2026-11-26
 
 ### Events: skip events that have no web page
