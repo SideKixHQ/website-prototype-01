@@ -31,11 +31,12 @@ contradicts. Awaiting James's sign-off on the wording.
   drafts, onboarding keys and Google Analytics for Firebase.
 - cookies.html, section 6: says how to clear or block each of those, including
   Do Not Track or Global Privacy Control for the measurement script.
-- After James's review (2026-11-27): panel Google Analytics is described as loaded
-  only after the user chooses Allow, with the choice kept in
-  `sidekix.panel.analyticsConsent` and Do Not Track or Global Privacy Control
-  counting as No thanks; sign-out deletes `persist:root` and the drafts and keeps
-  the notes-panel setting and the analytics choice; `kx_wish` "holds no personal
+- After James's review (2026-11-27): panel Google Analytics is described as
+  running for every employee and advisor who uses the panel, with no consent
+  prompt, because the panel is an internal work tool (the consent prompt, admin
+  PR #395, was closed); sign-out deletes `persist:root`, the session drafts and
+  the onboarding keys, and keeps the notes-panel setting; the advisor
+  application draft is kept until it is submitted; `kx_wish` "holds no personal
   information". This describes admin-panel changes still in review, so the page
   goes live only after they reach the panel's `staging`.
 - cookies.html, section 14: one sentence pointing to section 5 for the named
