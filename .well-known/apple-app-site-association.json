@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "75682A9A73.app.sidekix.com",
+          "75682A9A73.app.sidekix.com.staging"
+        ],
+        "components": [
+          {
+            "/": "/app/*"
+          }
+        ]
+      }
+    ]
+  }
+}

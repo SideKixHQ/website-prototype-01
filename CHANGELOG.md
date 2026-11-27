@@ -110,6 +110,40 @@ schedule the backend and the admin panel already use.
 
 ---
 
+## 2026-11-19
+
+### App links: sidekixhq.com/app/* opens the SideKix apps
+
+James decided (2026-11-19) that Android App Links and iOS Universal Links use
+sidekixhq.com, under one path prefix, `/app/`, so no page of the site itself is
+ever opened in an app.
+
+- `.well-known/apple-app-site-association.json`, served at
+  `/.well-known/apple-app-site-association` (no extension) by a rewrite: the
+  production app `75682A9A73.app.sidekix.com`, then the staging build
+  `75682A9A73.app.sidekix.com.staging`, for `/app/*` only. It is a rewrite to a
+  `.json` file, not a header, because `trailingSlash` makes Vercel stop routing
+  at anything under `/.well-known/` before custom headers apply; the `.json`
+  file is served as `application/json`, and nothing under `/.well-known/` is
+  ever redirected.
+- `.well-known/assetlinks.json` for `com.sidekixhq.app`. Its two
+  `sha256_cert_fingerprints` are placeholders until the Play App Signing key
+  and the upload key SHA-256s are pasted from Play Console, App integrity.
+- `/app/post/:id` opens the existing post preview (`api/post-preview.js`), the
+  same page as `/p/:id`. Any other `/app/*` path opens `get-app.html`.
+- `get-app.html`: its three relative links (`assets/fonts.css`, `join.html`,
+  `membership.html`) are now absolute, so they resolve when the page is served
+  at `/app/room/<id>/`. Nothing else on the page changed.
+
+Checked by compiling `vercel.json` with `@vercel/routing-utils` 6.6.1 and
+matching each path against the generated routes: the AASA path is never
+redirected and rewrites to the `.json` file; `/app/post/<uuid>` (after the
+trailing-slash redirect) reaches the post preview; `/app/room/<id>/`,
+`/app/squad/<id>/`, `/app/` reach `get-app.html`; `/apply/`, `/p/<id>/` and the
+site's pages are untouched.
+
+---
+
 ## 2026-11-13
 
 ### Cancelling keeps your data, and no 90-minute daily cap
